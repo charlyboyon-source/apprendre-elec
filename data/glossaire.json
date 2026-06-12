@@ -1,1 +1,60 @@
-{}
+{
+  "DDR": {
+    "nom": "Dispositif Différentiel à courant Résiduel",
+    "definition": "Appareil qui compare le courant entrant et sortant d'un circuit. S'il détecte une fuite (vers la terre ou un corps humain), il coupe en quelques millisecondes.",
+    "niveau_associe": 6
+  },
+  "disjoncteur": {
+    "nom": "Disjoncteur",
+    "definition": "Appareil de protection qui coupe automatiquement le circuit en cas de surcharge ou de court-circuit. Contrairement au fusible, il se réarme d'un geste."
+  },
+  "phase": {
+    "nom": "Phase",
+    "definition": "Conducteur qui amène le courant depuis le réseau (repéré en rouge, marron ou noir). C'est lui qui est dangereux au toucher : il est sous tension par rapport à la terre."
+  },
+  "neutre": {
+    "nom": "Neutre",
+    "definition": "Conducteur de retour du courant, repéré en bleu clair. Son potentiel est proche de celui de la terre, mais on le traite avec les mêmes précautions que la phase."
+  },
+  "terre": {
+    "nom": "Terre (conducteur de protection)",
+    "definition": "Conducteur vert/jaune qui relie les carcasses métalliques des appareils au sol. En cas de défaut, il évacue le courant de fuite et permet au DDR de couper."
+  },
+  "NF C 15-100": {
+    "nom": "Norme NF C 15-100",
+    "definition": "LA norme française des installations électriques basse tension. Elle fixe les règles du logement : sections, protections, volumes de salle de bain, GTL… L'examen, le Consuel et les chantiers s'y réfèrent."
+  },
+  "volume de sécurité": {
+    "nom": "Volume de sécurité",
+    "definition": "Zone définie autour d'une baignoire ou d'une douche (volumes 0, 1, 2 et caché) où le matériel électrique autorisé est de plus en plus restreint à mesure qu'on s'approche de l'eau.",
+    "niveau_associe": 7
+  },
+  "TBTS": {
+    "nom": "Très Basse Tension de Sécurité",
+    "definition": "Alimentation ≤ 50 V fournie par un transformateur de sécurité. Dans les volumes de salle de bain, elle est limitée à 12 V alternatif, transformateur placé hors de tous les volumes."
+  },
+  "IPX7": {
+    "nom": "Indice de protection IPX7",
+    "definition": "Le 2e chiffre 7 = protégé contre l'immersion temporaire. Le X = protection contre les solides non testée. C'est l'exigence du volume 0."
+  },
+  "IPX4": {
+    "nom": "Indice de protection IPX4",
+    "definition": "Le 2e chiffre 4 = protégé contre les projections d'eau de toutes directions. Exigé en volumes 1, 2 et caché (IPX5 si la douche envoie des jets horizontaux)."
+  },
+  "classe II": {
+    "nom": "Matériel de classe II",
+    "definition": "Matériel à double isolation (symbole : double carré). Sa protection ne repose pas sur la terre : il n'a pas de borne PE et on ne le raccorde JAMAIS à la terre ni à la LES."
+  },
+  "LES": {
+    "nom": "Liaison Équipotentielle Supplémentaire",
+    "definition": "Conducteur vert/jaune qui met au même potentiel tous les éléments conducteurs de la pièce d'eau (canalisations, huisseries métalliques, baignoire métal…) — 2,5 mm² protégé mécaniquement, 4 mm² sinon."
+  },
+  "transformateur de séparation": {
+    "nom": "Transformateur de séparation",
+    "definition": "Transformateur qui isole galvaniquement la prise du réseau : pas de liaison directe avec la terre, donc pas de boucle de défaut possible à travers le corps. C'est lui qui rend la prise rasoir acceptable en volume 2."
+  },
+  "paroi": {
+    "nom": "Règle de la paroi",
+    "definition": "Une paroi fixe, pérenne et jointive au sol peut limiter un volume si elle est au moins aussi haute que lui — mais le volume se prolonge en la contournant horizontalement. Une paroi déforme un volume, elle ne le supprime jamais."
+  }
+}

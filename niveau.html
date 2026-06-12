@@ -12,19 +12,14 @@
   <header class="entete">
     <a href="index.html" class="bouton-burger" aria-label="Retour à la carte">←</a>
     <span class="titre-site">⚡ ApprendreElec</span>
-    <span class="compteur-electrons">0 e⁻</span>
+    <span style="display:flex; gap:8px; align-items:center">
+      <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
+      <span class="compteur-electrons">0 e⁻</span>
+    </span>
   </header>
 
-  <!-- Le moteur de leçon (Phase B) chargera le niveau via ?id=N -->
-  <main class="niveau">
-    <p style="text-align:center; color: var(--texte-2); padding: 40px 16px;">
-      Ce niveau arrive bientôt. ⚡
-    </p>
-  </main>
+  <main class="niveau"></main>
 
-  <script type="module">
-    import { majCompteurElectrons } from "./js/progression.js";
-    majCompteurElectrons();
-  </script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

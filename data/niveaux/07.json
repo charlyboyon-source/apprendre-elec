@@ -1,0 +1,184 @@
+{
+  "id": 7,
+  "bloc": 2,
+  "titre": "L'électricité dans la salle de bain",
+  "objectif": "Comprendre pourquoi eau + électricité = règles strictes",
+  "lecon": [
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 1/7 · LE POURQUOI",
+      "titre": "L'eau change toutes les règles",
+      "svg": "sdb-none.svg",
+      "contenu": "Un corps sec oppose quelques milliers d'ohms au courant. <b>Mouillé</b>, sa résistance s'effondre — elle peut passer sous 1 000 Ω, et encore moins en immersion. À 230 V, le même contact passe alors de « désagréable » à <b>mortel</b> : c'est la loi d'Ohm appliquée à ton propre corps. C'est pourquoi la [[NF C 15-100]] découpe ces pièces en [[volume de sécurité|volumes de sécurité]] : plus on est près de l'eau, plus les règles se durcissent. Ces règles s'appliquent à toute pièce contenant une baignoire ou une douche — y compris une douche extérieure ou un spa fixe.",
+      "memo": "Un simple lavabo ou évier ne déclenche PAS ces règles. Baignoire, douche, balnéo, spa fixe : OUI."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 2/7 · VOLUME 0",
+      "titre": "Volume 0 : dans l'eau",
+      "svg": "sdb-v0.svg",
+      "contenu": "Le volume 0, c'est <b>l'intérieur</b> de la baignoire ou du receveur de douche : la zone où ton corps baigne littéralement. Presque tout y est interdit. Seul un éclairage [[TBTS]] <b>12 V</b> très spécifique peut y exister (les spots de fond de baignoire balnéo, par exemple), avec un matériel [[IPX7]] — protégé contre l'immersion temporaire. Et même pour cette TBTS, le transformateur doit impérativement rester <b>hors de tous les volumes</b>.",
+      "memo": "Volume 0 = « dans l'eau » → IPX7, TBTS 12 V uniquement, transfo dehors."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 3/7 · VOLUME 1",
+      "titre": "Volume 1 : debout sous la douche",
+      "svg": "sdb-v1.svg",
+      "contenu": "Au-dessus du volume 0, jusqu'à <b>2,25 m</b> : c'est la zone où tu te tiens, ruisselant. La hauteur se mesure depuis le sol fini — ou depuis le <b>fond du receveur</b> s'il est surélevé. Matériel [[IPX4]] minimum (IPX5 si la douche envoie des jets horizontaux), et un chauffe-eau <b>instantané</b> peut y prendre place. Cas particulier de la <b>douche à l'italienne</b> (sans receveur) : le volume 1 devient un <b>cylindre de 1,20 m de rayon</b> centré sur la pomme de tête — ou sur le point de raccord de la douchette — et le volume 0 monte à 10 cm au-dessus du sol fini.",
+      "memo": "Volume 1 = bords du receveur × 2,25 m de haut. Italienne = cylindre R 1,20 m, V0 jusqu'à 10 cm."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 4/7 · VOLUME 2",
+      "titre": "Volume 2 : à portée de bras mouillé",
+      "svg": "sdb-v2.svg",
+      "contenu": "Une bande de <b>60 cm</b> tout autour du volume 1, alignée sur sa hauteur : c'est la distance d'un bras tendu et mouillé. Toujours [[IPX4]] minimum. Interrupteurs 230 V interdits (seule une commande [[TBTS]] 12 V est tolérée), prises interdites — à une exception près que tu découvres à l'écran 6. Un hublot d'éclairage [[classe II]] y est en revanche autorisé. Et attention à la règle de la [[paroi]] : une cloison fixe peut limiter le volume, mais celui-ci se prolonge en la contournant.",
+      "memo": "Volume 2 = volume 1 + 60 cm. Sa hauteur s'aligne TOUJOURS sur celle du volume 1."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 5/7 · VOLUME CACHÉ",
+      "titre": "Le volume caché : sous la baignoire",
+      "svg": "sdb-cache.svg",
+      "contenu": "Sous la baignoire ou le receveur se cache le 4e volume — et ce n'est <b>pas un placard technique</b>. La règle tient en une phrase : du <b>matériel</b> peut s'y trouver, de l'<b>appareillage</b> jamais. Concrètement : la pompe d'une balnéo peut y vivre (matériel [[IPX4]], protégé par [[DDR]] 30 mA)… mais aucune prise ni boîte avec appareillage pour la brancher — son alimentation se raccorde ailleurs. S'il y a de la TBTS dans ce volume : 12 V maxi, transformateur hors de tous les volumes, comme toujours.",
+      "memo": "Volume caché : matériel oui (IPX4 + 30 mA), appareillage non. Jamais."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 6/7 · QUOI, OÙ ?",
+      "titre": "Ce qui est autorisé, volume par volume",
+      "svg": "sdb-tableau.svg",
+      "contenu": "La seule prise tolérée en volume 2 : la <b>prise rasoir 20–50 VA</b> alimentée par un [[transformateur de séparation]]. Toutes les autres prises 230 V vont <b>hors volume</b>, protégées par [[DDR]] 30 mA. Le <b>lave-linge</b> : hors volume, à 60 cm minimum du bord du receveur, sur sa prise spécialisée. Le <b>chauffe-eau à accumulation</b> : interdit en volume 0 et 2, vertical interdit en volume 1 — s'il doit aller en volume 1, il sera <b>horizontal et placé le plus haut possible</b> ; en volume 2 et au-delà, pas de contrainte de position.",
+      "memo": "Échelle d'IP à réciter : 0 → IPX7 · 1, 2, caché → IPX4 · jets horizontaux → IPX5."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 7/7 · LE RÉCAP",
+      "titre": "Tu sais maintenant lire une salle de bain",
+      "svg": "sdb-all.svg",
+      "contenu": "Dernier maillon de la sécurité : la [[LES]], qui met au même potentiel canalisations métalliques, huisseries alu et baignoire métal en les reliant aux conducteurs de protection — en <b>2,5 mm²</b> sous conduit, <b>4 mm²</b> en pose directe. On n'y raccorde <b>jamais</b> les appareils [[classe II]], ni les porte-serviettes, bondes, siphons et poignées. Connexions sur métal <b>non peint</b>, de préférence soudées ou par collier. Tu as toutes les cartes : place au quiz pour vérifier que ça tient.",
+      "memo": "0 = dans l'eau · 1 = 2,25 m · 2 = +60 cm · caché = pas d'appareillage · LES 2,5 mm² protégé / 4 mm² sinon."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Le volume 0 correspond à :",
+      "svg": "sdb-v0.svg",
+      "choix": ["L'intérieur de la baignoire ou du receveur", "La bande de 60 cm autour de la douche", "La zone située sous la baignoire", "L'ensemble de la pièce d'eau"],
+      "bonne": 0,
+      "explication": "Volume 0 = « dans l'eau » : l'intérieur même de la baignoire ou du receveur. Seule la TBTS 12 V en IPX7 peut y exister.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Le volume 1 monte jusqu'à quelle hauteur ?",
+      "svg": "sdb-v1.svg",
+      "choix": ["2,00 m au-dessus du sol", "2,25 m au-dessus du sol", "2,40 m au-dessus du sol", "2,60 m au-dessus du sol"],
+      "bonne": 1,
+      "explication": "2,25 m au-dessus du sol (ou du fond du receveur s'il est surélevé). Au-dessus, on sort du volume 1.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "La largeur du volume 2 autour du volume 1 est de :",
+      "svg": "sdb-v2.svg",
+      "choix": ["40 cm", "50 cm", "60 cm", "80 cm"],
+      "bonne": 2,
+      "explication": "60 cm — la portée d'un bras mouillé. Et sa hauteur s'aligne toujours sur celle du volume 1.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "Douche à l'italienne (sans receveur) : le volume 1 est délimité par :",
+      "svg": "sdb-v1.svg",
+      "choix": ["Les bords visibles du carrelage", "Un cylindre de 1,20 m de rayon", "Un carré de 1 m de côté", "La largeur de la paroi vitrée"],
+      "bonne": 1,
+      "explication": "Sans receveur, le volume 1 devient un cylindre vertical de rayon 1,20 m centré sur la pomme de tête ou le raccord de la douchette — et le volume 0 monte à 10 cm du sol.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "L'indice de protection minimal exigé dans le volume 0 est :",
+      "svg": "sdb-v0.svg",
+      "choix": ["IPX4", "IPX5", "IPX6", "IPX7"],
+      "bonne": 3,
+      "explication": "IPX7 : protégé contre l'immersion temporaire. Logique : on est dans l'eau. Volumes 1, 2 et caché : IPX4 (IPX5 si jets horizontaux).",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Une prise 2P+T 230 V classique en volume 2, c'est :",
+      "svg": "sdb-v2.svg",
+      "choix": ["Autorisé si elle est IPX4", "Autorisé avec un DDR 30 mA", "Autorisé au-dessus de 1,30 m", "Interdit dans tous les cas"],
+      "bonne": 3,
+      "explication": "Interdit — aucune prise 2P+T dans les volumes. La prise normale va hors volume, protégée 30 mA.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "La seule prise tolérée en volume 2 est :",
+      "svg": "sdb-v2.svg",
+      "choix": ["La prise rasoir 20–50 VA à transfo de séparation", "La prise USB basse consommation", "La prise étanche IPX5 verrouillable", "La prise commandée par interrupteur"],
+      "bonne": 0,
+      "explication": "La prise rasoir 20–50 VA, alimentée par un transformateur de séparation qui isole du réseau — pas de boucle de défaut possible.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Dans le volume caché (sous la baignoire) :",
+      "svg": "sdb-cache.svg",
+      "choix": ["On peut poser une multiprise étanche", "Tout appareillage est interdit", "Une prise IPX4 est autorisée", "Un interrupteur 12 V est obligatoire"],
+      "bonne": 1,
+      "explication": "Aucun appareillage dans le volume caché. Le matériel qui s'y trouve : IPX4 minimum + protection 30 mA. Ce n'est pas un placard technique.",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "La TBTS admise dans les volumes de salle de bain est limitée à :",
+      "svg": "sdb-v1.svg",
+      "choix": ["12 V alternatif, transfo hors volumes", "24 V alternatif, transfo en volume 2", "50 V continu, transfo au tableau", "48 V alternatif, transfo sous receveur"],
+      "bonne": 0,
+      "explication": "12 V AC dans les volumes (50 V c'est la limite TBTS générale hors volumes), et le transformateur se place hors de TOUS les volumes — 0, 1, 2 et caché.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Le sèche-serviettes électrique classe II et la LES :",
+      "svg": "sdb-all.svg",
+      "choix": ["On le raccorde à la LES par sécurité", "On ne le raccorde jamais à la LES", "On le raccorde si sa carcasse est peinte", "On le raccorde seulement en volume 1"],
+      "bonne": 1,
+      "explication": "Jamais : la classe II repose sur la double isolation, sans borne PE. Lui amener un conducteur pourrait importer un potentiel dangereux. La LES, c'est pour les canalisations, huisseries métalliques, baignoire métal.",
+      "renvoi_lecon": 6
+    }
+  ],
+  "jeu": {
+    "type": "trouve-erreur",
+    "config": {
+      "rounds": [
+        {
+          "consigne": "Installation n°1 — un de ces 4 équipements est NON conforme. Touche-le.",
+          "items": [
+            { "id": "a", "x": 131, "y": 80, "emoji": "🔌", "label": "prise 230 V", "bad": true, "why": "Prise 2P+T en VOLUME 2 = interdit. Seule la prise rasoir à transfo de séparation y est tolérée. Celle-ci doit partir hors volume." },
+            { "id": "b", "x": 60, "y": 60, "emoji": "💡", "label": "spot TBTS 12 V", "bad": false },
+            { "id": "c", "x": 210, "y": 50, "emoji": "🎚️", "label": "inter hors vol.", "bad": false },
+            { "id": "d", "x": 250, "y": 110, "emoji": "🔥", "label": "sèche-serv. II", "bad": false }
+          ],
+          "win": "Bien vu ⚡ La prise 230 V était en volume 2 → interdite. Hors volume + DDR 30 mA, et tout le monde rentre chez soi."
+        },
+        {
+          "consigne": "Installation n°2 — même mission : débusque la faute.",
+          "items": [
+            { "id": "a", "x": 60, "y": 55, "emoji": "🚿", "label": "chauffe-eau inst.", "bad": false },
+            { "id": "b", "x": 131, "y": 95, "emoji": "🌀", "label": "lave-linge", "bad": true, "why": "Le lave-linge en VOLUME 2 = interdit. Il se place hors volume, à 60 cm minimum du bord du receveur, sur sa prise spécialisée." },
+            { "id": "c", "x": 215, "y": 45, "emoji": "💨", "label": "bouche VMC", "bad": false },
+            { "id": "d", "x": 255, "y": 100, "emoji": "🔆", "label": "DCL plafond", "bad": false }
+          ],
+          "win": "Exact 👏 Le lave-linge campe en volume 2 : dehors ! Hors volume et à ≥ 60 cm du bord du receveur."
+        },
+        {
+          "consigne": "Installation n°3 — la dernière. Concentration.",
+          "items": [
+            { "id": "a", "x": 55, "y": 62, "emoji": "🎚️", "label": "inter 230 V", "bad": true, "why": "Interrupteur 230 V en VOLUME 1 = interdit. Seule une commande TBTS 12 V y serait admise. On le sort hors volume (ou de la pièce)." },
+            { "id": "b", "x": 131, "y": 60, "emoji": "🪒", "label": "prise rasoir", "bad": false },
+            { "id": "c", "x": 131, "y": 108, "emoji": "🔦", "label": "hublot IPX4 II", "bad": false },
+            { "id": "d", "x": 248, "y": 108, "emoji": "♨️", "label": "radiateur II", "bad": false }
+          ],
+          "win": "Sans faute 🏆 L'interrupteur 230 V n'a rien à faire en volume 1. Commande TBTS ou déport hors volume."
+        }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

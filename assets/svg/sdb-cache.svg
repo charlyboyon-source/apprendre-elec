@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Coupe d'une salle de bain avec ses volumes">
+  <line x1="8" y1="146" x2="292" y2="146" stroke="#5b6775" stroke-width="2.5"/>
+  <line x1="14" y1="146" x2="14" y2="12" stroke="#5b6775" stroke-width="2.5"/>
+  <rect x="14" y="34" width="92" height="112" rx="3" fill="#e8744f" opacity="0.18"/>
+  <rect x="106" y="34" width="50" height="112" rx="3" fill="#e9c50e" opacity="0.18"/>
+  <path d="M22 100 q4 -10 14 -10 h44 q10 0 14 10 v38 q0 6 -6 6 h-60 q-6 0 -6 -6 z" fill="#e85b50" stroke="#b03a31" stroke-width="2" opacity="0.25"/>
+  <rect x="22" y="128" width="72" height="18" rx="3" fill="#7a4dd8" opacity=".9"/><text x="58" y="140" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif" font-weight="bold">VOLUME CACHÉ</text>
+  
+  
+  
+  <text x="216" y="80" font-size="8.5" fill="#7e8a98" font-family="monospace">HORS VOLUME</text>
+  
+  
+  </svg>

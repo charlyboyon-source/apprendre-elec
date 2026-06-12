@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="155" viewBox="0 0 300 155" role="img" aria-label="Tableau des autorisations par volume">
+  <g font-family="monospace" font-size="9">
+  <text x="10" y="18" fill="#7e8a98">ZONE</text><text x="120" y="18" fill="#7e8a98">IP MIN</text><text x="200" y="18" fill="#7e8a98">EXEMPLE AUTORISÉ</text>
+  <text x="10" y="42" fill="#e85b50" font-weight="bold">Volume 0</text><text x="120" y="42" fill="#e8ecf0">IPX7</text><text x="200" y="42" fill="#9aa6b3">TBTS 12 V</text>
+  <text x="10" y="66" fill="#e8744f" font-weight="bold">Volume 1</text><text x="120" y="66" fill="#e8ecf0">IPX4*</text><text x="200" y="66" fill="#9aa6b3">chauffe-eau instant.</text>
+  <text x="10" y="90" fill="#e9c50e" font-weight="bold">Volume 2</text><text x="120" y="90" fill="#e8ecf0">IPX4</text><text x="200" y="90" fill="#9aa6b3">prise rasoir, hublot II</text>
+  <text x="10" y="114" fill="#7a4dd8" font-weight="bold">Caché</text><text x="120" y="114" fill="#e8ecf0">IPX4</text><text x="200" y="114" fill="#9aa6b3">canalisations</text>
+  <text x="10" y="138" fill="#27a05e" font-weight="bold">Hors vol.</text><text x="120" y="138" fill="#e8ecf0">IPX0</text><text x="200" y="138" fill="#9aa6b3">prises + 30 mA</text>
+  <text x="120" y="152" fill="#5b6775" font-size="7">*IPX5 si jets horizontaux</text>
+  </g></svg>

@@ -1,0 +1,263 @@
+/* Mise en page leçon / quiz / jeu + hub de niveau + glossaire. */
+
+.niveau {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--esp-3) var(--esp-3) var(--esp-5);
+}
+
+.niveau-message { text-align: center; color: var(--texte-2); padding: var(--esp-5) var(--esp-3); }
+
+.niveau-entete h2 { margin: var(--esp-1) 0; }
+.niveau-objectif { color: var(--texte-2); font-size: 0.9rem; margin-top: 0; }
+
+.bouton-sons {
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 0.9rem;
+}
+
+/* ---------- hub ---------- */
+.hub-grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--esp-3);
+  margin: var(--esp-4) 0;
+}
+
+.hub-case {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+  text-align: left;
+  color: var(--texte);
+  position: relative;
+}
+
+.hub-case .ic { font-size: 1.5rem; display: block; margin-bottom: var(--esp-2); }
+.hub-case b { display: block; margin-bottom: 3px; }
+.hub-case small { color: var(--texte-2); font-size: 0.72rem; line-height: 1.3; display: block; }
+.hub-case .fait { position: absolute; top: 10px; right: 10px; color: var(--ok); }
+
+/* ---------- leçon ---------- */
+.lecon-points { display: flex; gap: 5px; margin-bottom: var(--esp-3); }
+.lecon-points i { height: 6px; border-radius: 3px; background: var(--bordure); flex: 1; }
+.lecon-points i.actif { background: var(--jaune); }
+
+.lecon-ecran {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+}
+
+.lecon-kicker {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: var(--jaune);
+  text-transform: uppercase;
+  margin-bottom: var(--esp-2);
+}
+
+.lecon-figure {
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-2);
+  margin: var(--esp-2) 0 var(--esp-3);
+  display: flex;
+  justify-content: center;
+}
+.lecon-figure img { max-width: 100%; height: auto; }
+
+.lecon-texte { font-size: 0.92rem; line-height: 1.55; }
+
+.lecon-memo {
+  background: rgba(76, 217, 123, 0.08);
+  border-left: 3px solid var(--ok);
+  border-radius: 8px;
+  padding: var(--esp-2) var(--esp-3);
+  font-size: 0.82rem;
+  color: #bfe3cd;
+  margin-top: var(--esp-3);
+}
+
+.lecon-nav { display: flex; gap: var(--esp-2); margin-top: var(--esp-3); }
+.lecon-nav button {
+  flex: 1;
+  border-radius: 10px;
+  padding: 13px;
+  font-weight: 700;
+  border: none;
+}
+.lecon-prec { background: var(--fond-2); border: 1.5px solid var(--bordure) !important; color: var(--texte-2); }
+.lecon-suiv { background: var(--jaune); color: var(--texte-sur-jaune); }
+
+/* ---------- glossaire ---------- */
+.terme {
+  color: var(--jaune);
+  border-bottom: 1.5px dashed var(--jaune);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.popover-fond {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 13, 17, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 60;
+}
+
+.popover-glossaire {
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: 18px 18px 0 0;
+  max-width: 560px;
+  width: 100%;
+  padding: var(--esp-4) var(--esp-3);
+}
+.popover-glossaire h5 { color: var(--jaune); margin: 0 0 var(--esp-2); font-size: 0.95rem; }
+.popover-glossaire p { font-size: 0.86rem; line-height: 1.5; margin: 0; }
+.popover-glossaire a { display: inline-block; margin-top: var(--esp-2); font-size: 0.82rem; }
+.popover-glossaire button {
+  margin-top: var(--esp-3);
+  width: 100%;
+  background: var(--fond-2);
+  border: 1.5px solid var(--bordure);
+  color: var(--texte);
+  border-radius: 9px;
+  padding: 11px;
+  font-weight: 700;
+}
+
+/* ---------- quiz ---------- */
+.quiz-entete {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--texte-2);
+  margin-bottom: var(--esp-2);
+}
+
+.quiz-rail { display: grid; grid-auto-flow: column; gap: 3px; margin-bottom: var(--esp-3); }
+.quiz-rail i { height: 12px; border-radius: 2px; background: var(--bordure); }
+.quiz-rail i.faite { background: var(--jaune); }
+.quiz-rail i.courante { background: var(--orange); }
+
+.quiz-carte {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+}
+
+.quiz-figure {
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  padding: var(--esp-2);
+  margin-bottom: var(--esp-3);
+  display: flex;
+  justify-content: center;
+}
+.quiz-figure img { max-width: 100%; height: auto; }
+
+.quiz-question { font-weight: 700; font-size: 0.95rem; margin: 0 0 var(--esp-3); }
+
+.quiz-choix { display: flex; flex-direction: column; gap: 9px; }
+.choix {
+  background: var(--fond);
+  border: 1.5px solid var(--bordure);
+  border-radius: 10px;
+  padding: 12px 13px;
+  font-size: 0.86rem;
+  color: var(--texte);
+  text-align: left;
+  display: flex;
+  gap: 9px;
+}
+.choix .lettre { font-weight: 700; color: var(--texte-2); }
+.choix.selectionne { border-color: var(--jaune); background: var(--jaune-doux); }
+.choix.selectionne .lettre { color: var(--jaune); }
+
+.quiz-score {
+  text-align: center;
+  padding: var(--esp-4) var(--esp-3);
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  margin-bottom: var(--esp-3);
+}
+.quiz-score .grand { font-size: 2.6rem; font-weight: 800; color: var(--jaune); }
+.quiz-score .grand small { font-size: 0.4em; color: var(--texte-2); }
+.quiz-score p { font-size: 0.84rem; color: var(--texte-2); margin: var(--esp-1) 0 0; }
+
+.resultat {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+  margin-bottom: var(--esp-2);
+}
+.resultat-q { font-size: 0.85rem; font-weight: 700; display: flex; gap: 8px; margin-bottom: 7px; }
+.resultat-x { font-size: 0.8rem; line-height: 1.5; color: var(--texte-2); margin-bottom: 9px; }
+.resultat-x b { color: var(--ok); }
+.revoir-lecon {
+  background: none;
+  border: 1.5px solid var(--bordure);
+  border-radius: 8px;
+  color: var(--jaune);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 8px 11px;
+}
+
+/* ---------- jeu ---------- */
+.jeu-carte {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+  text-align: center;
+}
+.jeu-consigne { font-size: 0.9rem; font-weight: 700; margin: 0 0 var(--esp-3); }
+.jeu-scene {
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-2);
+}
+.jeu-item { cursor: pointer; }
+.jeu-item:hover .cible { stroke: var(--jaune); stroke-width: 2; }
+
+.jeu-retour {
+  margin-top: var(--esp-3);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  display: none;
+  text-align: left;
+}
+.jeu-retour.visible { display: block; }
+.jeu-retour.gagne { background: rgba(76, 217, 123, 0.08); border-left: 3px solid var(--ok); color: #bfe3cd; }
+.jeu-retour.perdu { background: rgba(255, 92, 92, 0.08); border-left: 3px solid var(--erreur); color: #f0c7c3; }
+
+.jeu-suivant {
+  margin-top: var(--esp-3);
+  width: 100%;
+  background: var(--jaune);
+  color: var(--texte-sur-jaune);
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-weight: 700;
+  display: none;
+}
+.jeu-suivant.visible { display: block; }

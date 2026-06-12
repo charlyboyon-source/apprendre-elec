@@ -6,7 +6,8 @@ const CLE_STOCKAGE = "apprendre-elec-v1";
 const ETAT_DEFAUT = {
   electrons: 0,
   badges: [],
-  niveauxTermines: []
+  niveauxTermines: [],
+  activites: {}
 };
 
 export function chargerProgression() {
@@ -49,6 +50,24 @@ export function niveauDebloque(idNiveau, etat = chargerProgression()) {
 
 export function niveauTermine(idNiveau, etat = chargerProgression()) {
   return etat.niveauxTermines.includes(idNiveau);
+}
+
+// Activités d'un niveau : "lecon", "quiz", "jeu".
+export function activiteFaite(idNiveau, activite, etat = chargerProgression()) {
+  return Boolean(etat.activites[idNiveau]?.[activite]);
+}
+
+export function marquerActivite(idNiveau, activite) {
+  const etat = chargerProgression();
+  etat.activites[idNiveau] = etat.activites[idNiveau] || {};
+  etat.activites[idNiveau][activite] = true;
+  sauverProgression(etat);
+  return etat;
+}
+
+export function toutesActivitesFaites(idNiveau, etat = chargerProgression()) {
+  const a = etat.activites[idNiveau] || {};
+  return Boolean(a.lecon && a.quiz && a.jeu);
 }
 
 export function majCompteurElectrons(valeur = chargerProgression().electrons) {
