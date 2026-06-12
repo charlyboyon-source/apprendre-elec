@@ -1,0 +1,104 @@
+/* ApprendreElec — Thème sombre "Atelier"
+   Fond anthracite, accents jaune/orange électrique. */
+
+:root {
+  /* Couleurs — fonds */
+  --fond: #1c1f24;            /* anthracite profond */
+  --fond-2: #24282f;          /* panneaux, cartes */
+  --fond-3: #2d323b;          /* éléments surélevés, popovers */
+  --bordure: #3a404b;
+
+  /* Couleurs — accents électriques */
+  --jaune: #ffd23f;           /* accent principal (électrons, actions) */
+  --orange: #ff8c2b;          /* accent secondaire (badges, alertes douces) */
+  --jaune-doux: rgba(255, 210, 63, 0.15);
+
+  /* Couleurs — états */
+  --ok: #4cd97b;
+  --erreur: #ff5c5c;
+  --verrou: #565d69;          /* niveaux verrouillés */
+
+  /* Texte */
+  --texte: #e8eaed;
+  --texte-2: #9aa3b0;
+  --texte-sur-jaune: #1c1f24;
+
+  /* Typo */
+  --police: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --police-titres: var(--police);
+  --taille-base: 16px;
+
+  /* Espacements */
+  --esp-1: 4px;
+  --esp-2: 8px;
+  --esp-3: 16px;
+  --esp-4: 24px;
+  --esp-5: 40px;
+
+  /* Rayons & ombres */
+  --rayon: 12px;
+  --rayon-bulle: 50%;
+  --ombre: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --lueur-jaune: 0 0 14px rgba(255, 210, 63, 0.45);
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: var(--taille-base); }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--police-titres); line-height: 1.2; }
+
+a { color: var(--jaune); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Header commun : burger + compteur d'électrons */
+.entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--esp-3);
+  background: var(--fond-2);
+  border-bottom: 1px solid var(--bordure);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.entete .titre-site {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--jaune);
+}
+
+.bouton-burger {
+  background: none;
+  border: none;
+  color: var(--texte);
+  font-size: 1.5rem;
+  padding: var(--esp-1) var(--esp-2);
+}
+
+.compteur-electrons {
+  background: var(--jaune-doux);
+  color: var(--jaune);
+  border: 1px solid var(--jaune);
+  border-radius: 999px;
+  padding: var(--esp-1) var(--esp-3);
+  font-weight: 700;
+}
+
+/* Emplacement bandeau premium — désactivé en v1 */
+.bandeau-premium { display: none; }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niveau — ApprendreElec</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/volty.css">
+</head>
+<body>
+  <header class="entete">
+    <a href="index.html" class="bouton-burger" aria-label="Retour à la carte">←</a>
+    <span class="titre-site">⚡ ApprendreElec</span>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+
+  <!-- Le moteur de leçon (Phase B) chargera le niveau via ?id=N -->
+  <main class="niveau">
+    <p style="text-align:center; color: var(--texte-2); padding: 40px 16px;">
+      Ce niveau arrive bientôt. ⚡
+    </p>
+  </main>
+
+  <script type="module">
+    import { majCompteurElectrons } from "./js/progression.js";
+    majCompteurElectrons();
+  </script>
+</body>
+</html>

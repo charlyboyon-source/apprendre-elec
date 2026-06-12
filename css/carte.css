@@ -1,0 +1,94 @@
+/* Carte des niveaux en bulles, regroupées par bloc. */
+
+.carte {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: var(--esp-4) var(--esp-3) var(--esp-5);
+}
+
+.bloc {
+  margin-bottom: var(--esp-5);
+}
+
+.bloc-titre {
+  font-size: 1rem;
+  color: var(--texte-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--bordure);
+  padding-bottom: var(--esp-2);
+  margin-bottom: var(--esp-4);
+}
+
+.bloc-titre .bloc-numero {
+  color: var(--orange);
+  margin-right: var(--esp-2);
+}
+
+.bulles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+/* Serpentin léger : une bulle sur deux décalée */
+.bulles .bulle-ligne:nth-child(odd)  { justify-content: flex-start; padding-left: 12%; }
+.bulles .bulle-ligne:nth-child(even) { justify-content: flex-end;  padding-right: 12%; }
+
+.bulle-ligne {
+  display: flex;
+}
+
+.bulle {
+  width: 76px;
+  height: 76px;
+  border-radius: var(--rayon-bulle);
+  border: 3px solid var(--bordure);
+  background: var(--fond-2);
+  color: var(--texte);
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Niveau terminé */
+.bulle.terminee {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+/* Niveau débloqué = prochain à jouer */
+.bulle.debloquee {
+  border-color: var(--jaune);
+  background: var(--jaune);
+  color: var(--texte-sur-jaune);
+  box-shadow: var(--lueur-jaune);
+}
+
+.bulle.debloquee:hover { transform: scale(1.07); }
+
+/* Niveau verrouillé */
+.bulle.verrouillee {
+  border-color: var(--verrou);
+  color: var(--verrou);
+  cursor: not-allowed;
+}
+
+.bulle .cadenas {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  font-size: 1rem;
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
