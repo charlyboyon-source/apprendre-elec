@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://charlyboyon.github.io/apprendre-elec/sitemap.xml
+Sitemap: https://charlyboyon-source.github.io/apprendre-elec/sitemap.xml
