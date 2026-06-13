@@ -1,0 +1,122 @@
+{
+  "id": 2,
+  "bloc": 1,
+  "titre": "La loi d'Ohm et la puissance",
+  "objectif": "Savoir relier U, R et I — puis calculer une puissance et une énergie sans hésiter",
+  "lecon": [
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 1/5 · LA LOI D'OHM",
+      "titre": "U = R × I : la loi qui gouverne tout",
+      "svg": "triangle-ohm.svg",
+      "contenu": "Au niveau 1, tu as vu que la tension pousse, que la résistance freine et que l'intensité en résulte. La [[loi d'Ohm]] met des chiffres sur cette intuition : <b>U = R × I</b>. La tension aux bornes d'une résistance (en volts) est égale à sa résistance (en ohms) multipliée par l'intensité qui la traverse (en ampères). Le moyen mnémotechnique du métier, c'est le <b>triangle</b> : U en haut, R et I en bas. Cache la grandeur que tu cherches, le triangle te donne la formule : U = R × I, R = U / I, I = U / R. Trois formules, une seule loi.",
+      "memo": "U = R × I. Cache ce que tu cherches dans le triangle : ce qui reste, c'est la formule."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 2/5 · APPLICATIONS",
+      "titre": "La loi d'Ohm en chiffres",
+      "svg": "triangle-ohm.svg",
+      "contenu": "Vérifie chaque calcul à la main, c'est le meilleur entraînement. <b>Cas 1 — je cherche I</b> : un radiateur de résistance 23 Ω branché sur 230 V → I = U / R = 230 / 23 = <b>10 A</b>. <b>Cas 2 — je cherche R</b> : une lampe halogène traversée par 0,5 A sous 230 V → R = U / I = 230 / 0,5 = <b>460 Ω</b>. <b>Cas 3 — je cherche U</b> : une résistance de 6 Ω traversée par 2 A → U = R × I = 6 × 2 = <b>12 V</b>. Le réflexe d'électricien : avant de calculer, vérifie que tes unités sont bien V, Ω et A — pas de milliampères qui traînent.",
+      "memo": "230 / 23 = 10 A · 230 / 0,5 = 460 Ω · 6 × 2 = 12 V. Toujours en V, Ω, A."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 3/5 · LA PUISSANCE",
+      "titre": "P = U × I : ce que l'appareil consomme",
+      "svg": "grandeurs.svg",
+      "contenu": "La [[puissance]] mesure la quantité d'énergie qu'un appareil convertit chaque seconde : symbole <b>P</b>, unité le <b>watt (W)</b>. La formule reine : <b>P = U × I</b>. Une bouilloire qui tire 8,7 A sous 230 V absorbe P = 230 × 8,7 ≈ <b>2 000 W</b> (soit 2 kW). À l'inverse, c'est la formule qui te donne le courant d'un appareil dont tu lis la plaque : un four de 2 300 W sous 230 V appelle I = P / U = 2300 / 230 = <b>10 A</b> — calcul que tu referas sans arrêt pour choisir disjoncteurs et sections. En combinant avec la loi d'Ohm, on obtient aussi <b>P = R × I²</b> : la puissance dissipée dans une résistance grimpe avec le carré du courant.",
+      "memo": "P = U × I (watts). Et pour le courant d'un appareil : I = P / U. Un 2 300 W sous 230 V = 10 A."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 4/5 · L'ÉNERGIE",
+      "titre": "L'énergie : la puissance qui dure",
+      "svg": "grandeurs.svg",
+      "contenu": "La puissance est instantanée ; ce que tu factures, c'est l'[[énergie électrique]] : la puissance multipliée par le temps. <b>E = P × t</b>. L'unité légale est le joule, mais le compteur parle en <b>kilowattheures (kWh)</b> : 1 kWh = un appareil de 1 000 W qui fonctionne pendant 1 heure. Exemples : un radiateur de 2 kW allumé 5 h consomme E = 2 × 5 = <b>10 kWh</b>. Une box internet de 10 W allumée 24 h : E = 0,01 kW × 24 h = 0,24 kWh — presque rien, mais 365 jours par an. Cette énergie dissipée par une résistance se transforme en chaleur : c'est l'[[effet Joule]], ton allié dans un radiateur, ton ennemi dans un conducteur sous-dimensionné qui chauffe.",
+      "memo": "E = P × t, en kWh au compteur. Effet Joule : toute résistance traversée chauffe."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 5/5 · LE RÉCAP",
+      "titre": "Quatre formules pour tout l'examen",
+      "svg": "triangle-ohm.svg",
+      "contenu": "Tu disposes maintenant du kit de calcul complet : <b>U = R × I</b> (loi d'Ohm), <b>P = U × I</b> (puissance), <b>P = R × I²</b> (puissance dissipée, effet Joule), <b>E = P × t</b> (énergie). Avec ces quatre relations, tu traites la quasi-totalité des applications numériques de l'examen. La méthode, toujours la même : 1) repère les grandeurs données et leurs unités · 2) repère la grandeur cherchée · 3) choisis LA formule qui les relie · 4) calcule, et vérifie que l'ordre de grandeur est plausible (une lampe ne tire pas 50 A, un four ne tire pas 0,01 A).",
+      "memo": "U = R×I · P = U×I · P = R×I² · E = P×t. Données → cherchée → formule → ordre de grandeur."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "La loi d'Ohm s'écrit :",
+      "svg": "triangle-ohm.svg",
+      "choix": ["U = R × I", "U = R / I", "I = R × U", "R = U × I"],
+      "bonne": 0,
+      "explication": "U = R × I : la tension (V) égale la résistance (Ω) multipliée par l'intensité (A). Les deux autres formes s'en déduisent : R = U/I et I = U/R.",
+      "renvoi_lecon": 0
+    },
+    {
+      "question": "Une résistance de 23 Ω est branchée sur 230 V. Quelle intensité la traverse ?",
+      "svg": "triangle-ohm.svg",
+      "choix": ["1 A", "10 A", "23 A", "100 A"],
+      "bonne": 1,
+      "explication": "I = U / R = 230 / 23 = 10 A.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Un appareil tire 0,5 A sous 230 V. Sa résistance vaut :",
+      "svg": "triangle-ohm.svg",
+      "choix": ["115 Ω", "230 Ω", "460 Ω", "1 150 Ω"],
+      "bonne": 2,
+      "explication": "R = U / I = 230 / 0,5 = 460 Ω.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "La puissance électrique se calcule par :",
+      "svg": "grandeurs.svg",
+      "choix": ["P = U / I", "P = U × I", "P = R × U", "P = E × t"],
+      "bonne": 1,
+      "explication": "P = U × I, en watts. (Et en combinant avec la loi d'Ohm : P = R × I².)",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Quel courant appelle un four de 2 300 W branché sur 230 V ?",
+      "svg": "grandeurs.svg",
+      "choix": ["1 A", "5 A", "10 A", "23 A"],
+      "bonne": 2,
+      "explication": "I = P / U = 2300 / 230 = 10 A. C'est LE calcul de dimensionnement que tu referas tout le temps.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Un radiateur de 2 kW fonctionne 5 heures. Énergie consommée ?",
+      "svg": "grandeurs.svg",
+      "choix": ["2,5 kWh", "7 kWh", "10 kWh", "0,4 kWh"],
+      "bonne": 2,
+      "explication": "E = P × t = 2 kW × 5 h = 10 kWh.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "L'effet Joule désigne :",
+      "svg": "grandeurs.svg",
+      "choix": ["La chute de tension dans un câble long", "La transformation en chaleur dans une résistance", "Le déphasage entre courant et tension", "L'usure des contacts d'un interrupteur"],
+      "bonne": 1,
+      "explication": "Toute résistance traversée par un courant dissipe de la chaleur (P = R × I²). Utile dans un radiateur, dangereux dans un conducteur sous-dimensionné.",
+      "renvoi_lecon": 3
+    }
+  ],
+  "jeu": {
+    "type": "vrai-faux-rapide",
+    "config": {
+      "affirmations": [
+        { "affirmation": "Si la résistance double à tension constante, l'intensité est divisée par deux.", "vrai": true, "explication": "I = U / R : R double → I est divisé par 2. La loi d'Ohm en action." },
+        { "affirmation": "Une résistance de 10 Ω traversée par 2 A a une tension de 12 V à ses bornes.", "vrai": false, "explication": "U = R × I = 10 × 2 = 20 V, pas 12 V." },
+        { "affirmation": "Un appareil de 1 150 W sous 230 V appelle 5 A.", "vrai": true, "explication": "I = P / U = 1150 / 230 = 5 A." },
+        { "affirmation": "Le kilowattheure est une unité de puissance.", "vrai": false, "explication": "Le kWh mesure une ÉNERGIE (puissance × temps). La puissance, c'est le watt." },
+        { "affirmation": "P = R × I² : si le courant double, la puissance dissipée quadruple.", "vrai": true, "explication": "Le courant intervient au carré : 2× le courant = 4× l'échauffement. C'est pour ça qu'un conducteur sous-dimensionné chauffe vite." },
+        { "affirmation": "Une ampoule de 60 W allumée 10 h consomme 6 kWh.", "vrai": false, "explication": "E = 0,06 kW × 10 h = 0,6 kWh. Attention à la conversion W → kW." },
+        { "affirmation": "I = U / R permet de calculer le courant si on connaît la tension et la résistance.", "vrai": true, "explication": "C'est l'une des trois formes de la loi d'Ohm — le triangle te les redonne toutes." },
+        { "affirmation": "Un grille-pain de 920 W sous 230 V a une résistance de 57,5 Ω.", "vrai": true, "explication": "I = 920 / 230 = 4 A, puis R = U / I = 230 / 4 = 57,5 Ω. Deux formules enchaînées." }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

@@ -6,10 +6,10 @@
       "titre": "Lois fondamentales et circuit électrique",
       "badge": "bloc-1",
       "niveaux": [
-        { "id": 1, "titre": "Niveau 1" },
-        { "id": 2, "titre": "Niveau 2" },
-        { "id": 3, "titre": "Niveau 3" },
-        { "id": 4, "titre": "Niveau 4" }
+        { "id": 1, "titre": "La nature de l'électricité" },
+        { "id": 2, "titre": "La loi d'Ohm et la puissance" },
+        { "id": 3, "titre": "Le circuit électrique" },
+        { "id": 4, "titre": "Série, parallèle et courant alternatif" }
       ]
     },
     {

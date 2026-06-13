@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150" role="img" aria-label="Tableau des grandeurs électriques">
+  <g font-family="monospace" font-size="9">
+  <text x="10" y="18" fill="#7e8a98">GRANDEUR</text><text x="118" y="18" fill="#7e8a98">SYMBOLE</text><text x="185" y="18" fill="#7e8a98">UNITÉ</text><text x="240" y="18" fill="#7e8a98">APPAREIL</text>
+  <text x="10" y="44" fill="#5ab0f0" font-weight="bold">Intensité</text><text x="118" y="44" fill="#e8ecf0">I</text><text x="185" y="44" fill="#e8ecf0">ampère (A)</text><text x="240" y="44" fill="#9aa6b3" font-size="8">ampèremètre</text>
+  <text x="10" y="70" fill="#ffd23f" font-weight="bold">Tension</text><text x="118" y="70" fill="#e8ecf0">U</text><text x="185" y="70" fill="#e8ecf0">volt (V)</text><text x="240" y="70" fill="#9aa6b3" font-size="8">voltmètre</text>
+  <text x="10" y="96" fill="#e8744f" font-weight="bold">Résistance</text><text x="118" y="96" fill="#e8ecf0">R</text><text x="185" y="96" fill="#e8ecf0">ohm (Ω)</text><text x="240" y="96" fill="#9aa6b3" font-size="8">ohmmètre</text>
+  <text x="10" y="122" fill="#4cd97b" font-weight="bold">Puissance</text><text x="118" y="122" fill="#e8ecf0">P</text><text x="185" y="122" fill="#e8ecf0">watt (W)</text><text x="240" y="122" fill="#9aa6b3" font-size="8">wattmètre</text>
+  <text x="10" y="145" fill="#5b6775" font-size="7.5">L'intensité se mesure EN SÉRIE, la tension EN PARALLÈLE (aux bornes).</text>
+  </g></svg>

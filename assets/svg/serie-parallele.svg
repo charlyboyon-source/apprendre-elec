@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Associations en série et en parallèle">
+  <text x="75" y="16" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">SÉRIE</text>
+  <line x1="15" y1="40" x2="40" y2="40" stroke="#e8ecf0" stroke-width="2"/>
+  <rect x="40" y="33" width="30" height="14" fill="none" stroke="#e8744f" stroke-width="1.6"/>
+  <text x="55" y="43" text-anchor="middle" font-size="8" fill="#e8744f">R1</text>
+  <line x1="70" y1="40" x2="85" y2="40" stroke="#e8ecf0" stroke-width="2"/>
+  <rect x="85" y="33" width="30" height="14" fill="none" stroke="#e8744f" stroke-width="1.6"/>
+  <text x="100" y="43" text-anchor="middle" font-size="8" fill="#e8744f">R2</text>
+  <line x1="115" y1="40" x2="140" y2="40" stroke="#e8ecf0" stroke-width="2"/>
+  <text x="75" y="68" text-anchor="middle" font-size="9" fill="#9aa6b3" font-family="monospace">Re = R1 + R2</text>
+  <text x="75" y="82" text-anchor="middle" font-size="7.5" fill="#5b6775">même courant I partout</text>
+  <text x="225" y="16" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">PARALLÈLE</text>
+  <line x1="165" y1="40" x2="190" y2="40" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="190" y1="25" x2="190" y2="55" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="190" y1="25" x2="215" y2="25" stroke="#e8ecf0" stroke-width="2"/>
+  <rect x="215" y="18" width="30" height="14" fill="none" stroke="#e8744f" stroke-width="1.6"/>
+  <text x="230" y="28" text-anchor="middle" font-size="8" fill="#e8744f">R1</text>
+  <line x1="245" y1="25" x2="270" y2="25" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="190" y1="55" x2="215" y2="55" stroke="#e8ecf0" stroke-width="2"/>
+  <rect x="215" y="48" width="30" height="14" fill="none" stroke="#e8744f" stroke-width="1.6"/>
+  <text x="230" y="58" text-anchor="middle" font-size="8" fill="#e8744f">R2</text>
+  <line x1="245" y1="55" x2="270" y2="55" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="270" y1="25" x2="270" y2="55" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="270" y1="40" x2="290" y2="40" stroke="#e8ecf0" stroke-width="2"/>
+  <text x="225" y="80" text-anchor="middle" font-size="9" fill="#9aa6b3" font-family="monospace">1/Re = 1/R1 + 1/R2</text>
+  <text x="225" y="94" text-anchor="middle" font-size="7.5" fill="#5b6775">même tension U aux bornes</text>
+  <line x1="15" y1="108" x2="285" y2="108" stroke="#2d323b" stroke-width="1"/>
+  <g font-size="8.5" fill="#9aa6b3" font-family="monospace">
+  <text x="150" y="128" text-anchor="middle">Exemple : R1 = R2 = 100 Ω</text>
+  <text x="150" y="144" text-anchor="middle">série → Re = 200 Ω&#160;&#160;·&#160;&#160;parallèle → Re = 50 Ω</text>
+  <text x="150" y="162" text-anchor="middle" fill="#ffd23f">En parallèle, Re est toujours PLUS PETITE que la plus petite R</text>
+  </g></svg>

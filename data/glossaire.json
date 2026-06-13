@@ -56,5 +56,121 @@
   "paroi": {
     "nom": "Règle de la paroi",
     "definition": "Une paroi fixe, pérenne et jointive au sol peut limiter un volume si elle est au moins aussi haute que lui — mais le volume se prolonge en la contournant horizontalement. Une paroi déforme un volume, elle ne le supprime jamais."
+  },
+  "électron": {
+    "nom": "Électron",
+    "definition": "Particule chargée négativement qui gravite autour du noyau de l'atome. Dans les métaux, les électrons libres peuvent se déplacer d'atome en atome : c'est eux qui portent le courant.",
+    "niveau_associe": 1
+  },
+  "conducteur": {
+    "nom": "Conducteur",
+    "definition": "Matériau qui laisse circuler le courant grâce à ses électrons libres (cuivre, aluminium…). Désigne aussi, par extension, les fils d'une installation."
+  },
+  "isolant": {
+    "nom": "Isolant",
+    "definition": "Matériau dont les électrons restent prisonniers de leurs atomes : le courant ne peut pas y circuler (PVC, verre, céramique, air sec). C'est lui qui gaine les conducteurs."
+  },
+  "courant électrique": {
+    "nom": "Courant électrique",
+    "definition": "Déplacement ordonné des électrons libres dans un conducteur, provoqué par un générateur. Sa grandeur de mesure est l'intensité, en ampères.",
+    "niveau_associe": 1
+  },
+  "sens conventionnel": {
+    "nom": "Sens conventionnel du courant",
+    "definition": "Sens adopté sur tous les schémas : du + vers le − à l'extérieur du générateur. Les électrons circulent en sens inverse — la convention a été fixée avant leur découverte."
+  },
+  "intensité": {
+    "nom": "Intensité (I)",
+    "definition": "Débit de charges électriques dans un circuit, en ampères (A). Se mesure avec un ampèremètre branché en série.",
+    "niveau_associe": 1
+  },
+  "tension": {
+    "nom": "Tension (U)",
+    "definition": "Différence de potentiel entre deux points d'un circuit, en volts (V) — la « pression » qui pousse les électrons. Se mesure avec un voltmètre branché en parallèle.",
+    "niveau_associe": 1
+  },
+  "résistance": {
+    "nom": "Résistance (R)",
+    "definition": "Opposition d'un matériau au passage du courant, en ohms (Ω). Elle augmente avec la longueur du conducteur et diminue quand sa section augmente.",
+    "niveau_associe": 1
+  },
+  "loi d'Ohm": {
+    "nom": "Loi d'Ohm",
+    "definition": "U = R × I : la tension aux bornes d'une résistance égale sa résistance multipliée par l'intensité qui la traverse. Les formes dérivées : R = U/I et I = U/R.",
+    "niveau_associe": 2
+  },
+  "puissance": {
+    "nom": "Puissance (P)",
+    "definition": "Énergie convertie chaque seconde par un appareil, en watts (W). P = U × I, et pour une résistance P = R × I².",
+    "niveau_associe": 2
+  },
+  "énergie électrique": {
+    "nom": "Énergie électrique (E)",
+    "definition": "Puissance multipliée par la durée de fonctionnement : E = P × t. Le compteur la mesure en kilowattheures (1 kWh = 1 000 W pendant 1 heure)."
+  },
+  "effet Joule": {
+    "nom": "Effet Joule",
+    "definition": "Transformation en chaleur de l'énergie électrique dans toute résistance traversée par un courant (P = R × I²). Recherché dans un radiateur, dangereux dans un conducteur sous-dimensionné."
+  },
+  "générateur": {
+    "nom": "Générateur",
+    "definition": "Élément qui crée la différence de potentiel mettant le circuit sous tension : pile, batterie, alternateur — ou le réseau de distribution dans un logement.",
+    "niveau_associe": 3
+  },
+  "récepteur": {
+    "nom": "Récepteur",
+    "definition": "Élément qui absorbe l'énergie électrique et la transforme : en lumière (lampe), chaleur (radiateur), mouvement (moteur)… Il se branche entre phase et neutre.",
+    "niveau_associe": 3
+  },
+  "appareil de commande": {
+    "nom": "Appareil de commande",
+    "definition": "Élément qui ouvre ou ferme le circuit sans consommer d'énergie : interrupteur, bouton-poussoir, télérupteur, minuterie… Il coupe toujours la phase, jamais le neutre seul."
+  },
+  "appareil de protection": {
+    "nom": "Appareil de protection",
+    "definition": "Élément qui surveille le circuit et le coupe en cas d'anomalie : fusible et disjoncteur contre surcharges et courts-circuits, DDR contre les fuites de courant vers la terre."
+  },
+  "surcharge": {
+    "nom": "Surcharge",
+    "definition": "Courant durablement supérieur à ce que supportent les conducteurs (trop d'appareils sur le même circuit). L'échauffement qui en résulte dégrade l'isolant et peut provoquer un incendie."
+  },
+  "court-circuit": {
+    "nom": "Court-circuit",
+    "definition": "Contact direct entre phase et neutre (ou entre deux potentiels différents) : la résistance s'effondre et le courant devient énorme en une fraction de seconde. La protection doit couper immédiatement."
+  },
+  "fusible": {
+    "nom": "Fusible",
+    "definition": "Appareil de protection contenant un filament calibré qui fond si le courant dépasse sa valeur nominale, ouvrant le circuit. Contrairement au disjoncteur, il se remplace après avoir fonctionné."
+  },
+  "association en série": {
+    "nom": "Association en série",
+    "definition": "Récepteurs branchés à la suite, sur un seul chemin de courant : même intensité partout, les tensions s'additionnent, et Re = R1 + R2.",
+    "niveau_associe": 4
+  },
+  "association en parallèle": {
+    "nom": "Association en parallèle (dérivation)",
+    "definition": "Récepteurs branchés entre les deux mêmes points : même tension pour tous, les courants s'additionnent, et 1/Re = 1/R1 + 1/R2. C'est le montage de toute installation domestique.",
+    "niveau_associe": 4
+  },
+  "résistance équivalente": {
+    "nom": "Résistance équivalente (Re)",
+    "definition": "Résistance unique qui remplacerait un groupement de résistances sans changer le courant total. Série : on additionne. Parallèle : on additionne les inverses, puis on inverse le résultat."
+  },
+  "courant alternatif": {
+    "nom": "Courant alternatif",
+    "definition": "Courant dont le sens s'inverse périodiquement, suivant une sinusoïde. C'est celui du réseau : facile à transformer pour le transport et plus facile à couper que le continu.",
+    "niveau_associe": 4
+  },
+  "période": {
+    "nom": "Période (T)",
+    "definition": "Durée d'un cycle complet d'un signal alternatif, en secondes. Sur le réseau français : T = 20 ms."
+  },
+  "fréquence": {
+    "nom": "Fréquence (f)",
+    "definition": "Nombre de cycles par seconde d'un signal alternatif, en hertz (Hz). f = 1/T. Le réseau français est à 50 Hz."
+  },
+  "valeur efficace": {
+    "nom": "Valeur efficace",
+    "definition": "Valeur d'une tension (ou d'un courant) alternatif qui produit le même échauffement qu'un continu de même valeur. Les « 230 V » du réseau sont une valeur efficace ; la crête vaut 230 × √2 ≈ 325 V."
   }
 }

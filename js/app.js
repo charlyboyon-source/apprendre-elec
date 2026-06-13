@@ -10,7 +10,13 @@ import { afficherVolty, voltyReagit } from "./volty.js";
 import { brancherBoutonSons } from "./audio.js";
 import { demarrerLecon } from "./lecon.js";
 import { demarrerQuiz } from "./quiz.js";
-import { demarrerJeu } from "./jeux/trouve-erreur.js";
+import { demarrerJeu as jeuTrouveErreur } from "./jeux/trouve-erreur.js";
+import { demarrerJeu as jeuVraiFaux } from "./jeux/vrai-faux-rapide.js";
+
+const JEUX = {
+  "trouve-erreur": { moteur: jeuTrouveErreur, nom: "Trouve l'erreur", desc: (c) => `${c.rounds.length} installations, 1 faute à débusquer` },
+  "vrai-faux-rapide": { moteur: jeuVraiFaux, nom: "Vrai / Faux rapide", desc: (c) => `${c.affirmations.length} affirmations, tranche vite` }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   majCompteurElectrons();
@@ -55,7 +61,7 @@ function afficherHub(niveau, conteneur) {
     <div class="hub-grille">
       <button class="hub-case" data-act="lecon">${coche(niveau.id, "lecon")}<span class="ic">📖</span><b>Leçon</b><small>${niveau.lecon.length} écrans visuels</small></button>
       <button class="hub-case" data-act="quiz">${coche(niveau.id, "quiz")}<span class="ic">🎯</span><b>Quiz</b><small>${niveau.quiz.length} questions · correction en fin de série</small></button>
-      <button class="hub-case" data-act="jeu">${coche(niveau.id, "jeu")}<span class="ic">🎮</span><b>Trouve l'erreur</b><small>${niveau.jeu.config.rounds.length} installations, 1 faute à débusquer</small></button>
+      <button class="hub-case" data-act="jeu">${coche(niveau.id, "jeu")}<span class="ic">🎮</span><b>${JEUX[niveau.jeu.type].nom}</b><small>${JEUX[niveau.jeu.type].desc(niveau.jeu.config)}</small></button>
     </div>
     <div class="activite"></div>`;
 
@@ -95,7 +101,7 @@ function lancerActivite(act, niveau, zone, conteneur, ecranDepart = 0) {
       onRevoirLecon: (ecran) => lancerActivite("lecon", niveau, zone, conteneur, ecran)
     });
   } else if (act === "jeu") {
-    demarrerJeu(niveau.jeu.config, zone, {
+    JEUX[niveau.jeu.type].moteur(niveau.jeu.config, zone, {
       onFin: () => {
         finActivite(niveau, "jeu", conteneur);
         voltyReagit("jeu-fini");

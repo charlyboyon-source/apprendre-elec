@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Signal sinusoïdal du courant alternatif">
+  <line x1="20" y1="75" x2="285" y2="75" stroke="#5b6775" stroke-width="1.4"/>
+  <line x1="30" y1="15" x2="30" y2="140" stroke="#5b6775" stroke-width="1.4"/>
+  <polyline points="30,75.0 34,70.3 38,65.6 42,61.1 46,56.7 50,52.5 54,48.5 58,44.9 62,41.6 66,38.6 70,36.0 74,33.9 78,32.2 82,31.0 86,30.2 90,30.0 94,30.2 98,31.0 102,32.2 106,33.9 110,36.0 114,38.6 118,41.6 122,44.9 126,48.5 130,52.5 134,56.7 138,61.1 142,65.6 146,70.3 150,75.0 154,79.7 158,84.4 162,88.9 166,93.3 170,97.5 174,101.5 178,105.1 182,108.4 186,111.4 190,114.0 194,116.1 198,117.8 202,119.0 206,119.8 210,120.0 214,119.8 218,119.0 222,117.8 226,116.1 230,114.0 234,111.4 238,108.4 242,105.1 246,101.5 250,97.5 254,93.3 258,88.9 262,84.4 266,79.7 270,75.0" fill="none" stroke="#ffd23f" stroke-width="2.2"/>
+  <line x1="30" y1="30" x2="270" y2="30" stroke="#3a4250" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="275" y="33" font-size="7.5" fill="#e8744f">+325 V (crête)</text>
+  <line x1="30" y1="120" x2="270" y2="120" stroke="#3a4250" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="275" y="123" font-size="7.5" fill="#e8744f">−325 V</text>
+  <line x1="30" y1="148" x2="270" y2="148" stroke="#5ab0f0" stroke-width="1.2"/>
+  <line x1="30" y1="144" x2="30" y2="152" stroke="#5ab0f0" stroke-width="1.2"/>
+  <line x1="270" y1="144" x2="270" y2="152" stroke="#5ab0f0" stroke-width="1.2"/>
+  <text x="150" y="162" text-anchor="middle" font-size="8.5" fill="#5ab0f0" font-family="monospace">T = 20 ms (une période) → f = 1/T = 50 Hz</text>
+  <text x="150" y="177" text-anchor="middle" font-size="8" fill="#9aa6b3" font-family="monospace">valeur efficace U = 230 V · valeur crête Û = 230 × √2 ≈ 325 V</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Triangle de la loi d'Ohm">
+  <path d="M150 18 L62 130 L238 130 Z" fill="none" stroke="#ffd23f" stroke-width="2"/>
+  <line x1="106" y1="74" x2="194" y2="74" stroke="#3a4250" stroke-width="1.5"/>
+  <line x1="150" y1="74" x2="150" y2="130" stroke="#3a4250" stroke-width="1.5"/>
+  <text x="150" y="62" text-anchor="middle" font-size="22" fill="#ffd23f" font-weight="bold">U</text>
+  <text x="122" y="112" text-anchor="middle" font-size="20" fill="#e8744f" font-weight="bold">R</text>
+  <text x="178" y="112" text-anchor="middle" font-size="20" fill="#5ab0f0" font-weight="bold">I</text>
+  <g font-family="monospace" font-size="9.5" fill="#9aa6b3">
+  <text x="150" y="152" text-anchor="middle">U = R × I&#160;&#160;&#160;&#160;R = U / I&#160;&#160;&#160;&#160;I = U / R</text>
+  <text x="150" y="166" text-anchor="middle" fill="#5b6775" font-size="8">Cache la grandeur cherchée : le triangle donne la formule</text>
+  </g></svg>

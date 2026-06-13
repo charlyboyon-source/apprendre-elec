@@ -261,3 +261,17 @@
   display: none;
 }
 .jeu-suivant.visible { display: block; }
+
+/* ---------- vrai / faux ---------- */
+.vf-boutons { display: flex; gap: var(--esp-3); margin-top: var(--esp-2); }
+.vf-boutons button {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.vf-boutons button:disabled { opacity: 0.55; cursor: default; }
+.vf-vrai { background: var(--ok); color: var(--texte-sur-jaune); }
+.vf-faux { background: var(--erreur); color: #fff; }
