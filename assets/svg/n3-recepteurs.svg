@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif">
+<line x1="30" y1="38" x2="290" y2="38" stroke="#e85b50" stroke-width="2"/>
+<text x="30" y="30" text-anchor="start" font-size="8" fill="#e85b50" font-weight="bold">phase</text>
+<line x1="30" y1="150" x2="290" y2="150" stroke="#5ab0f0" stroke-width="2"/>
+<text x="30" y="166" text-anchor="start" font-size="8" fill="#5ab0f0" font-weight="bold">neutre</text>
+<line x1="75" y1="38" x2="75" y2="73" stroke="#e8eaed" stroke-width="2"/>
+<circle cx="75" cy="90" r="17" fill="none" stroke="#e8eaed" stroke-width="2"/>
+<line x1="63" y1="78" x2="87" y2="102" stroke="#e8eaed" stroke-width="2"/>
+<line x1="87" y1="78" x2="63" y2="102" stroke="#e8eaed" stroke-width="2"/>
+<line x1="75" y1="107" x2="75" y2="150" stroke="#e8eaed" stroke-width="2"/>
+<text x="75" y="128" text-anchor="middle" font-size="7.5" fill="#9aa3b0" font-weight="normal">lampe</text>
+<line x1="160" y1="38" x2="160" y2="73" stroke="#e8eaed" stroke-width="2"/>
+<rect x="138" y="73" width="44" height="34" rx="3" fill="none" stroke="#e8eaed" stroke-width="2"/>
+<line x1="146" y1="73" x2="146" y2="107" stroke="#e8eaed" stroke-width="1.4"/>
+<line x1="160" y1="73" x2="160" y2="107" stroke="#e8eaed" stroke-width="1.4"/>
+<line x1="174" y1="73" x2="174" y2="107" stroke="#e8eaed" stroke-width="1.4"/>
+<line x1="160" y1="107" x2="160" y2="150" stroke="#e8eaed" stroke-width="2"/>
+<text x="160" y="123" text-anchor="middle" font-size="7.5" fill="#9aa3b0" font-weight="normal">radiateur</text>
+<line x1="245" y1="38" x2="245" y2="73" stroke="#e8eaed" stroke-width="2"/>
+<circle cx="245" cy="90" r="17" fill="none" stroke="#e8eaed" stroke-width="2"/>
+<text x="245" y="95" text-anchor="middle" font-size="12" fill="#e8eaed" font-weight="bold">M</text>
+<line x1="245" y1="107" x2="245" y2="150" stroke="#e8eaed" stroke-width="2"/>
+<text x="245" y="128" text-anchor="middle" font-size="7.5" fill="#9aa3b0" font-weight="normal">moteur</text>
+<text x="160" y="182" text-anchor="middle" font-size="9" fill="#9aa3b0">Récepteurs branchés entre phase et neutre</text>
+</svg>

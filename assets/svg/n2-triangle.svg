@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 195" font-family="'Segoe UI',system-ui,sans-serif">
+<path d="M160 28 L92 138 L228 138 Z" fill="none" stroke="#ffd23f" stroke-width="2"/>
+<line x1="118" y1="83" x2="202" y2="83" stroke="#9aa3b0" stroke-width="2"/>
+<line x1="160" y1="83" x2="160" y2="138" stroke="#9aa3b0" stroke-width="2"/>
+<text x="160" y="68" text-anchor="middle" font-size="22" fill="#ffd23f" font-weight="bold">U</text>
+<text x="132" y="122" text-anchor="middle" font-size="18" fill="#ff8c2b" font-weight="bold">R</text>
+<text x="188" y="122" text-anchor="middle" font-size="18" fill="#5ab0f0" font-weight="bold">I</text>
+<text x="160" y="162" text-anchor="middle" font-size="10" fill="#e8eaed" font-weight="normal">U = R × I&#160;&#160;&#160;R = U / I&#160;&#160;&#160;I = U / R</text>
+<text x="160" y="184" text-anchor="middle" font-size="9" fill="#9aa3b0">Cache la grandeur cherchée : la formule apparaît</text>
+</svg>

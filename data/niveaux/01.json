@@ -8,7 +8,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 1/6 · LA MATIÈRE",
       "titre": "Tout commence dans l'atome",
-      "svg": "atome.svg",
+      "svg": "n1-atome.svg",
       "contenu": "Toute la matière est faite d'atomes : un noyau chargé positivement, entouré d'[[électron|électrons]] chargés négativement. Dans les métaux — cuivre en tête — les électrons de la couche externe sont peu retenus par le noyau : on les appelle <b>électrons libres</b>. Ils sautent d'atome en atome en permanence, dans le désordre. C'est cette population d'électrons libres qui rend les métaux [[conducteur|conducteurs]] : il suffit de les mettre en mouvement ordonné. À l'inverse, les [[isolant|isolants]] (PVC, verre, céramique, air sec) gardent leurs électrons solidement accrochés : rien ne peut y circuler.",
       "memo": "Conducteur = électrons libres disponibles. Isolant = électrons prisonniers. C'est toute la différence."
     },
@@ -16,7 +16,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 2/6 · LE COURANT",
       "titre": "Le courant : des électrons mis en marche",
-      "svg": "circuit-simple.svg",
+      "svg": "n1-courant.svg",
       "contenu": "Branche un générateur aux deux bouts d'un fil de cuivre : les électrons libres se mettent en marche, tous dans le même sens. Ce déplacement ordonné, c'est le [[courant électrique]]. Attention au piège historique : les électrons (négatifs) circulent du − vers le +, mais le [[sens conventionnel]] du courant — celui des schémas, des flèches, des calculs — va du <b>+ vers le −</b> à l'extérieur du générateur. Il a été fixé avant la découverte de l'électron, et on l'a gardé. Aux 230 V du logement, ne t'imagine pas des électrons fonçant dans les fils : chaque électron avance très lentement, mais l'impulsion se transmet de proche en proche quasi instantanément — comme une rangée de dominos.",
       "memo": "Sens conventionnel = du + vers le − (à l'extérieur du générateur). Les électrons font l'inverse."
     },
@@ -24,7 +24,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 3/6 · L'INTENSITÉ",
       "titre": "L'intensité : le débit d'électrons",
-      "svg": "grandeurs.svg",
+      "svg": "n1-intensite.svg",
       "contenu": "Première grandeur à mesurer : combien de charges passent chaque seconde dans le fil. C'est l'[[intensité]], symbole <b>I</b>, en <b>ampères (A)</b>. Un ampère correspond à un débit d'un coulomb de charges par seconde — environ 6 milliards de milliards d'électrons chaque seconde. L'image à retenir : l'intensité est le <b>débit d'eau</b> dans le tuyau. Elle se mesure avec un <b>ampèremètre</b>, toujours branché <b>en série</b> dans le circuit : le courant doit le traverser pour être compté. Ordres de grandeur du métier : une lampe LED ≈ 0,05 A · un radiateur 2 000 W ≈ 9 A · une plaque de cuisson ≈ 20 A et plus.",
       "memo": "I en ampères (A) = débit de charges. Ampèremètre EN SÉRIE."
     },
@@ -32,7 +32,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 4/6 · LA TENSION",
       "titre": "La tension : la pression qui pousse",
-      "svg": "grandeurs.svg",
+      "svg": "n1-tension.svg",
       "contenu": "Pour que les électrons avancent, il faut les pousser. Cette « pression électrique » entre deux points d'un circuit, c'est la [[tension]], symbole <b>U</b>, en <b>volts (V)</b> — on dit aussi <b>différence de potentiel</b>. Dans l'image du tuyau, la tension est la <b>différence de pression</b> entre l'entrée et la sortie : sans différence, pas de circulation. Elle se mesure avec un <b>voltmètre</b>, branché <b>en parallèle</b>, c'est-à-dire entre les deux points dont on compare le potentiel — on dit « aux bornes » de l'élément. Valeurs du quotidien : pile 1,5 V · batterie de voiture 12 V · prise domestique <b>230 V</b> · réseau triphasé 400 V entre phases.",
       "memo": "U en volts (V) = pression entre deux points. Voltmètre EN PARALLÈLE (aux bornes)."
     },
@@ -40,7 +40,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 5/6 · LA RÉSISTANCE",
       "titre": "La résistance : le frein du circuit",
-      "svg": "grandeurs.svg",
+      "svg": "n1-resistance.svg",
       "contenu": "Aucun matériau ne laisse passer le courant sans opposition. Cette opposition, c'est la [[résistance]], symbole <b>R</b>, en <b>ohms (Ω)</b>. Dans le tuyau d'eau : c'est son étranglement. Plus la résistance est grande, plus le courant a du mal à passer — à tension égale, l'intensité chute. La résistance d'un fil dépend de trois choses : sa <b>longueur</b> (plus c'est long, plus ça résiste), sa <b>section</b> (plus c'est gros, moins ça résiste — retiens-le, c'est la base du dimensionnement des conducteurs) et son <b>matériau</b> (le cuivre résiste peu, le PVC énormément). Elle se mesure avec un <b>ohmmètre</b>, toujours <b>hors tension</b>.",
       "memo": "R en ohms (Ω) = le frein. Long et fin → résiste plus. Court et gros → résiste moins."
     },
@@ -48,7 +48,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 6/6 · LE RÉCAP",
       "titre": "Les trois grandeurs, une seule image",
-      "svg": "grandeurs.svg",
+      "svg": "n1-recap.svg",
       "contenu": "Récapitule avec l'image du circuit d'eau : la [[tension]] U (volts) est la pression qui pousse, l'[[intensité]] I (ampères) est le débit qui circule, la [[résistance]] R (ohms) est l'étranglement qui freine. Les trois sont liées : augmente la pression, le débit monte ; resserre le tuyau, le débit baisse. Cette relation a un nom — la loi d'Ohm — et c'est tout le programme du niveau 2. Dernier réflexe de pro à ancrer dès maintenant : on ne confond jamais le symbole de la grandeur (U, I, R) avec celui de son unité (V, A, Ω). « Une tension de 230 V », jamais « un voltage ».",
       "memo": "U pousse (V) · I circule (A) · R freine (Ω). Et « voltage » n'existe pas en français technique."
     }
@@ -56,7 +56,6 @@
   "quiz": [
     {
       "question": "Dans un métal conducteur, le courant électrique est un déplacement ordonné :",
-      "svg": "atome.svg",
       "choix": ["De noyaux d'atomes", "D'électrons libres", "De protons", "De molécules de cuivre"],
       "bonne": 1,
       "explication": "Seuls les électrons libres, peu retenus par leur noyau, peuvent se déplacer d'atome en atome. Noyaux et protons restent en place.",
@@ -64,7 +63,6 @@
     },
     {
       "question": "Le sens conventionnel du courant va :",
-      "svg": "circuit-simple.svg",
       "choix": ["Du − vers le +, comme les électrons", "Du + vers le −, à l'extérieur du générateur", "Dans les deux sens à la fois", "Du neutre vers la phase"],
       "bonne": 1,
       "explication": "Le sens conventionnel (celui des schémas) va du + vers le − à l'extérieur du générateur. Les électrons, eux, circulent en sens inverse — le sens a été fixé avant leur découverte.",
@@ -72,7 +70,6 @@
     },
     {
       "question": "L'intensité du courant se mesure en :",
-      "svg": "grandeurs.svg",
       "choix": ["Volts (V)", "Ohms (Ω)", "Ampères (A)", "Watts (W)"],
       "bonne": 2,
       "explication": "I se mesure en ampères (A) : c'est le débit de charges qui traversent le circuit chaque seconde.",
@@ -80,7 +77,6 @@
     },
     {
       "question": "Comment branche-t-on un ampèremètre ?",
-      "svg": "grandeurs.svg",
       "choix": ["En parallèle, aux bornes du récepteur", "En série, dans le circuit", "Entre phase et terre", "Peu importe, il mesure dans tous les cas"],
       "bonne": 1,
       "explication": "L'ampèremètre compte les charges qui le TRAVERSENT : il se branche en série. Le voltmètre, lui, se branche en parallèle.",
@@ -88,7 +84,6 @@
     },
     {
       "question": "La tension entre deux points s'appelle aussi :",
-      "svg": "grandeurs.svg",
       "choix": ["La différence de potentiel", "Le débit électrique", "La charge résiduelle", "Le voltage nominal"],
       "bonne": 0,
       "explication": "Tension = différence de potentiel entre deux points, en volts. Et « voltage » n'est pas un terme technique français.",
@@ -96,7 +91,6 @@
     },
     {
       "question": "À matériau égal, un conducteur plus LONG et plus FIN a une résistance :",
-      "svg": "grandeurs.svg",
       "choix": ["Plus faible", "Identique", "Plus grande", "Nulle s'il est en cuivre"],
       "bonne": 2,
       "explication": "La résistance augmente avec la longueur et diminue quand la section augmente. Long + fin = résistance plus grande. C'est la base du dimensionnement des conducteurs.",
@@ -104,7 +98,6 @@
     },
     {
       "question": "Quel trio grandeur / symbole / unité est correct ?",
-      "svg": "grandeurs.svg",
       "choix": ["Tension · I · ampère", "Résistance · R · ohm", "Intensité · U · volt", "Résistance · Ω · ohm"],
       "bonne": 1,
       "explication": "Résistance, symbole R, unité ohm (Ω). Attention : Ω est le symbole de l'UNITÉ, pas celui de la grandeur.",

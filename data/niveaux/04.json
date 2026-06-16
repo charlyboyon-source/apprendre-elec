@@ -8,7 +8,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 1/6 · LA SÉRIE",
       "titre": "En série : à la queue leu leu",
-      "svg": "serie-parallele.svg",
+      "svg": "n4-serie.svg",
       "contenu": "Deux récepteurs sont en [[association en série|série]] quand le courant n'a qu'un seul chemin : il traverse le premier, PUIS le second. Conséquences directes : l'<b>intensité est la même partout</b>, et les tensions s'additionnent — chacun prend sa part des 230 V. La [[résistance équivalente]] (la résistance unique qui remplacerait l'ensemble) s'obtient en additionnant : <b>Re = R1 + R2</b>. En série, ajouter un récepteur augmente toujours la résistance totale. Le défaut rédhibitoire pour le logement : un élément grillé ouvre la boucle, et <b>tout s'éteint</b> — souviens-toi des guirlandes d'antan.",
       "memo": "Série : un seul chemin, même I partout, Re = R1 + R2. Un maillon lâche = tout s'arrête."
     },
@@ -16,7 +16,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 2/6 · LE PARALLÈLE",
       "titre": "En parallèle : chacun sa voie",
-      "svg": "serie-parallele.svg",
+      "svg": "n4-parallele.svg",
       "contenu": "Deux récepteurs sont en [[association en parallèle|parallèle]] (on dit aussi « en dérivation ») quand ils sont branchés entre les <b>deux mêmes points</b> : chacun reçoit la <b>même tension</b>, et les courants s'additionnent dans le tronc commun. La formule : <b>1/Re = 1/R1 + 1/R2</b>. Cas particulier à connaître par cœur : deux résistances <b>identiques</b> en parallèle → Re = R/2. C'est le montage de toute l'installation domestique : chaque prise, chaque lampe reçoit ses 230 V indépendamment, et débrancher l'une n'éteint pas les autres.",
       "memo": "Parallèle : même U pour tous, 1/Re = 1/R1 + 1/R2. Deux R identiques → R/2. C'est le montage du logement."
     },
@@ -24,7 +24,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 3/6 · EN CHIFFRES",
       "titre": "Résistance équivalente : les pièges classiques",
-      "svg": "serie-parallele.svg",
+      "svg": "n4-comparatif.svg",
       "contenu": "Prends R1 = R2 = 100 Ω. En série : Re = 100 + 100 = <b>200 Ω</b>. En parallèle : 1/Re = 1/100 + 1/100 = 2/100, donc Re = <b>50 Ω</b>. Avec des valeurs différentes, R1 = 60 Ω et R2 = 30 Ω en parallèle : 1/Re = 1/60 + 1/30 = 1/60 + 2/60 = 3/60, donc Re = <b>20 Ω</b>. La règle de contrôle qui sauve à l'examen : en parallèle, Re est <b>toujours plus petite que la plus petite</b> des résistances. Si ton calcul donne plus grand, c'est faux — recommence. Et n'oublie pas l'inversion finale : 1/Re = 0,05 n'est pas la réponse, Re = 20 Ω l'est.",
       "memo": "Parallèle : Re < la plus petite des R, toujours. Et on inverse 1/Re à la fin du calcul !"
     },
@@ -32,7 +32,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 4/6 · L'ALTERNATIF",
       "titre": "Le courant alternatif : le va-et-vient du réseau",
-      "svg": "sinusoide.svg",
+      "svg": "n4-sinus.svg",
       "contenu": "Jusqu'ici, on a raisonné comme avec une pile : un courant continu, toujours dans le même sens. Mais le réseau fournit du [[courant alternatif]] : la tension change de polarité en permanence, suivant une courbe en S appelée <b>sinusoïde</b>. Les électrons font du sur-place en oscillant — et ça suffit : l'énergie, elle, est bien transmise. Pourquoi ce choix ? L'alternatif se transforme facilement (élever la tension pour le transport longue distance, l'abaisser pour la distribution) et se coupe plus facilement, l'arc électrique s'éteignant au passage par zéro. C'est lui qui a gagné la « guerre des courants » à la fin du XIXe siècle.",
       "memo": "Le réseau = alternatif sinusoïdal. Transformable et plus facile à couper : voilà pourquoi il a gagné."
     },
@@ -40,7 +40,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 5/6 · 50 HZ ET 230 V",
       "titre": "Période, fréquence, valeur efficace",
-      "svg": "sinusoide.svg",
+      "svg": "n4-sinus-cotee.svg",
       "contenu": "Trois nombres décrivent le signal du réseau. La [[période]] T : la durée d'un cycle complet, soit <b>20 ms</b> en France. La [[fréquence]] f : le nombre de cycles par seconde, en hertz (Hz), liée à la période par <b>f = 1/T</b> : 1/0,02 = <b>50 Hz</b> — le courant change de sens 100 fois par seconde. Et les fameux 230 V ? Ce n'est pas le maximum de la courbe : c'est la [[valeur efficace]], la tension continue qui produirait le même échauffement dans une résistance. Le sommet de la sinusoïde, la valeur de crête, vaut Û = U × √2 = 230 × 1,414 ≈ <b>325 V</b>. C'est bien 325 V que ton isolation encaisse à chaque crête.",
       "memo": "T = 20 ms · f = 1/T = 50 Hz · 230 V = valeur EFFICACE · crête = 230 × √2 ≈ 325 V."
     },
@@ -48,7 +48,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 6/6 · LE RÉCAP",
       "titre": "Le bloc 1 est dans la poche",
-      "svg": "sinusoide.svg",
+      "svg": "n4-recap.svg",
       "contenu": "Fais le bilan de ce premier bloc. Tu sais ce qu'est le courant (niveau 1 : électrons libres, U, I, R et leurs unités), tu sais calculer (niveau 2 : U = R×I, P = U×I, E = P×t), tu sais lire un circuit (niveau 3 : générateur, récepteurs, commande, conducteurs, protection) et tu sais maintenant combiner les récepteurs (série : Re = R1+R2 · parallèle : 1/Re = 1/R1+1/R2) et décrire le signal du réseau (sinusoïdal, 230 V efficaces, 50 Hz). Avec ces fondations, le bloc 2 peut attaquer le sujet le plus sérieux du métier : la sécurité électrique et la protection des personnes.",
       "memo": "Série Re = ΣR · parallèle 1/Re = Σ(1/R) · réseau : sinusoïdal, 230 V eff, 50 Hz, crête 325 V."
     }
@@ -56,7 +56,6 @@
   "quiz": [
     {
       "question": "Deux résistances en série : R1 = 40 Ω, R2 = 60 Ω. Résistance équivalente ?",
-      "svg": "serie-parallele.svg",
       "choix": ["24 Ω", "50 Ω", "100 Ω", "2 400 Ω"],
       "bonne": 2,
       "explication": "En série, les résistances s'additionnent : Re = 40 + 60 = 100 Ω.",
@@ -64,7 +63,6 @@
     },
     {
       "question": "Dans une association en série, quelle grandeur est identique partout ?",
-      "svg": "serie-parallele.svg",
       "choix": ["La tension", "L'intensité", "La puissance", "La résistance"],
       "bonne": 1,
       "explication": "Un seul chemin = même courant I dans tous les éléments. Ce sont les tensions qui se partagent.",
@@ -72,7 +70,6 @@
     },
     {
       "question": "Deux résistances de 100 Ω en parallèle. Résistance équivalente ?",
-      "svg": "serie-parallele.svg",
       "choix": ["200 Ω", "100 Ω", "50 Ω", "25 Ω"],
       "bonne": 2,
       "explication": "Deux résistances identiques en parallèle : Re = R/2 = 50 Ω. (1/Re = 1/100 + 1/100 = 2/100.)",
@@ -80,7 +77,6 @@
     },
     {
       "question": "En parallèle, la résistance équivalente est toujours :",
-      "svg": "serie-parallele.svg",
       "choix": ["Plus grande que la plus grande des R", "Égale à la somme des R", "Plus petite que la plus petite des R", "Égale à la moyenne des R"],
       "bonne": 2,
       "explication": "Chaque branche ajoutée offre un chemin de plus au courant : la résistance d'ensemble diminue. Re < min(R1, R2), toujours — c'est ton test de vraisemblance.",
@@ -88,7 +84,6 @@
     },
     {
       "question": "Les circuits d'une installation domestique sont montés :",
-      "svg": "serie-parallele.svg",
       "choix": ["En série, pour limiter le courant", "En parallèle, chacun sous 230 V", "En série-parallèle alterné", "En étoile autour du compteur"],
       "bonne": 1,
       "explication": "Tout le logement est en parallèle : chaque récepteur reçoit ses 230 V et fonctionne indépendamment des autres.",
@@ -96,7 +91,6 @@
     },
     {
       "question": "La fréquence du réseau français est de 50 Hz. Sa période vaut :",
-      "svg": "sinusoide.svg",
       "choix": ["50 ms", "20 ms", "2 ms", "0,5 s"],
       "bonne": 1,
       "explication": "T = 1/f = 1/50 = 0,02 s = 20 ms.",
@@ -104,7 +98,6 @@
     },
     {
       "question": "Les « 230 V » du réseau désignent :",
-      "svg": "sinusoide.svg",
       "choix": ["La valeur de crête de la sinusoïde", "La valeur moyenne du signal", "La valeur efficace", "La tension entre deux phases"],
       "bonne": 2,
       "explication": "230 V est la valeur EFFICACE — celle qui produit le même échauffement qu'un continu de 230 V. La crête vaut 230 × √2 ≈ 325 V.",
@@ -112,7 +105,6 @@
     },
     {
       "question": "La valeur de crête de la tension domestique vaut environ :",
-      "svg": "sinusoide.svg",
       "choix": ["230 V", "245 V", "325 V", "400 V"],
       "bonne": 2,
       "explication": "Û = U × √2 = 230 × 1,414 ≈ 325 V. C'est cette valeur que l'isolation des matériels doit encaisser à chaque crête.",

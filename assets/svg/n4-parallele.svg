@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 185" font-family="'Segoe UI',system-ui,sans-serif">
+<line x1="70" y1="40" x2="70" y2="130" stroke="#e8eaed" stroke-width="2"/>
+<line x1="250" y1="40" x2="250" y2="130" stroke="#e8eaed" stroke-width="2"/>
+<line x1="70" y1="62" x2="110" y2="62" stroke="#e8eaed" stroke-width="2"/>
+<path d="M110 62 L118.3 55 L135.0 69 L151.7 55 L168.3 69 L185.0 55 L201.7 69 L210 62" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linejoin="round"/>
+<line x1="210" y1="62" x2="250" y2="62" stroke="#e8eaed" stroke-width="2"/>
+<text x="160" y="52" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">R1</text>
+<line x1="70" y1="108" x2="110" y2="108" stroke="#e8eaed" stroke-width="2"/>
+<path d="M110 108 L118.3 101 L135.0 115 L151.7 101 L168.3 115 L185.0 101 L201.7 115 L210 108" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linejoin="round"/>
+<line x1="210" y1="108" x2="250" y2="108" stroke="#e8eaed" stroke-width="2"/>
+<text x="160" y="128" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">R2</text>
+<line x1="70" y1="40" x2="70" y2="28" stroke="#ffd23f" stroke-width="1.4"/>
+<line x1="250" y1="40" x2="250" y2="28" stroke="#ffd23f" stroke-width="1.4"/>
+<line x1="70" y1="28" x2="250" y2="28" stroke="#ffd23f" stroke-width="1.4"/>
+<text x="160" y="20" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">même tension U aux bornes</text>
+<text x="160" y="160" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">1/Re = 1/R1 + 1/R2</text>
+<text x="160" y="178" text-anchor="middle" font-size="9" fill="#9aa3b0">En parallèle, Re est plus petite que la plus petite R</text>
+</svg>

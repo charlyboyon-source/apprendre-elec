@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 195" font-family="'Segoe UI',system-ui,sans-serif">
+<rect x="45" y="45" width="150" height="80" rx="6" fill="none" stroke="#e8eaed" stroke-width="2"/>
+<rect x="60" y="62" width="120" height="30" rx="3" fill="none" stroke="#9aa3b0" stroke-width="2"/>
+<text x="105" y="84" text-anchor="middle" font-size="15" fill="#ffd23f" font-weight="bold">012345</text>
+<text x="163" y="84" text-anchor="middle" font-size="10" fill="#ff8c2b" font-weight="bold">kWh</text>
+<text x="120" y="114" text-anchor="middle" font-size="8.5" fill="#9aa3b0" font-weight="normal">compteur</text>
+<circle cx="248" cy="82" r="32" fill="none" stroke="#e8eaed" stroke-width="2"/>
+<line x1="248" y1="82" x2="248" y2="60" stroke="#ff8c2b" stroke-width="2" stroke-linecap="round"/>
+<line x1="248" y1="82" x2="266" y2="90" stroke="#ff8c2b" stroke-width="2" stroke-linecap="round"/>
+<text x="248" y="130" text-anchor="middle" font-size="8.5" fill="#9aa3b0" font-weight="normal">temps</text>
+<text x="160" y="160" text-anchor="middle" font-size="13" fill="#ffd23f" font-weight="bold">E = P × t</text>
+<text x="160" y="185" text-anchor="middle" font-size="9" fill="#9aa3b0">L'énergie facturée = puissance × durée</text>
+</svg>

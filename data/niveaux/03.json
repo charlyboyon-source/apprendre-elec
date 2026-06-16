@@ -8,7 +8,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 1/6 · LA BOUCLE",
       "titre": "Un circuit est une boucle fermée",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-boucle.svg",
       "contenu": "Le mot dit tout : un <b>circuit</b>, comme en sport auto, est une boucle. Le courant part du générateur, traverse les récepteurs, et <b>revient</b> au générateur. Boucle ouverte (interrupteur ouvert, fil coupé) : plus rien ne circule. Tout circuit, du plus simple au tableau d'une maison, combine cinq familles d'éléments : un [[générateur]] qui fournit, des [[récepteur|récepteurs]] qui consomment, des [[appareil de commande|appareils de commande]] qui décident, des conducteurs qui relient, et des [[appareil de protection|appareils de protection]] qui veillent. Ce niveau te les présente une à une.",
       "memo": "Pas de boucle fermée = pas de courant. Et 5 familles : génération, réception, commande, liaison, protection."
     },
@@ -16,7 +16,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 2/6 · LE GÉNÉRATEUR",
       "titre": "Le générateur : la source",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-source.svg",
       "contenu": "Le [[générateur]] crée la différence de potentiel qui met les électrons en mouvement — c'est la pompe du circuit. Pile, batterie, alternateur, panneau photovoltaïque : tous des générateurs. Dans le logement, ton « générateur » est le <b>réseau de distribution</b> : la tension arrive par le branchement, en 230 V entre [[phase]] et [[neutre]]. Détail qui compte pour la suite : un générateur réel a sa propre résistance interne — c'est pour ça que la tension d'une batterie s'effondre quand on lui demande trop de courant.",
       "memo": "Le générateur impose la tension. Dans le logement : le réseau, 230 V entre phase et neutre."
     },
@@ -24,7 +24,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 3/6 · LES RÉCEPTEURS",
       "titre": "Les récepteurs : ceux qui transforment",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-recepteurs.svg",
       "contenu": "Un [[récepteur]] absorbe de l'énergie électrique et la <b>transforme</b> : en lumière (lampes), en chaleur (radiateurs, four — l'effet Joule du niveau 2), en mouvement (moteurs de VMC, volets), en son, en données… C'est pour eux que le circuit existe. Sur un schéma, chaque récepteur a son symbole normalisé — la lampe est un cercle barré d'une croix. Règle d'or à retenir dès maintenant : un récepteur se branche <b>entre phase et neutre</b>, jamais entre phase et terre. La [[terre]] n'est pas un conducteur de retour : elle ne sert qu'à la sécurité.",
       "memo": "Récepteur = transformateur d'énergie. Branché phase-neutre. La terre n'alimente RIEN."
     },
@@ -32,7 +32,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 4/6 · LA COMMANDE",
       "titre": "Les appareils de commande : ceux qui décident",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-interrupteur.svg",
       "contenu": "Entre la source et le récepteur, il faut pouvoir décider : ouvrir ou fermer la boucle. C'est le rôle des [[appareil de commande|appareils de commande]] : interrupteur, bouton-poussoir, télérupteur, minuterie, détecteur de mouvement, thermostat. Leur point commun : ils n'absorbent quasiment pas d'énergie, ils <b>aiguillent</b>. Règle de câblage absolue, à l'examen comme sur chantier : la commande coupe <b>la phase</b>, jamais le neutre seul. Un interrupteur sur le neutre éteint la lampe… mais laisse tout le circuit sous tension : la douille reste dangereuse, lampe « éteinte ».",
       "memo": "La commande coupe LA PHASE. Couper le neutre seul = circuit éteint mais toujours dangereux."
     },
@@ -40,7 +40,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 5/6 · LES CONDUCTEURS",
       "titre": "Les conducteurs : phase, neutre, terre",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-conducteurs.svg",
       "contenu": "Les conducteurs relient tout le monde. En France, leur code couleur est normalisé et <b>non négociable</b> : la [[phase]] en <b>rouge, marron ou noir</b> (toute couleur sauf les deux suivantes), le [[neutre]] en <b>bleu clair — exclusivement</b>, et le conducteur de protection ([[terre]]) en <b>vert/jaune — exclusivement</b>. Le bleu et le vert/jaune sont réservés : interdiction formelle de les utiliser pour autre chose. La section des conducteurs se choisit selon le courant transporté — souviens-toi du niveau 1 : trop fin, ça résiste, ça chauffe (effet Joule). Les valeurs réglementaires précises t'attendent au bloc 3.",
       "memo": "Bleu clair = neutre, vert/jaune = terre : RÉSERVÉS. Phase = le reste (rouge, marron, noir…)."
     },
@@ -48,7 +48,7 @@
       "type": "texte",
       "kicker": "ÉCRAN 6/6 · LA PROTECTION",
       "titre": "Les appareils de protection : ceux qui veillent",
-      "svg": "circuit-simple.svg",
+      "svg": "n3-protection.svg",
       "contenu": "Deux accidents menacent un circuit : la [[surcharge]] (trop d'appareils, le courant dépasse ce que supportent les conducteurs, ça chauffe) et le [[court-circuit]] (phase et neutre se touchent : la résistance s'effondre, le courant devient énorme en une fraction de seconde). Contre eux : le [[fusible]], qui fond et se remplace, et le [[disjoncteur]], qui déclenche et se réarme. Tous deux protègent <b>l'installation</b>. Pour protéger <b>les personnes</b>, il faut détecter les fuites de courant vers la terre : c'est le rôle du [[DDR]], que tu retrouveras en détail au bloc 2. La protection s'insère toujours sur la phase, en amont du circuit protégé.",
       "memo": "Surcharge et court-circuit → fusible / disjoncteur (l'installation). Fuite à la terre → DDR (les personnes)."
     }
@@ -56,7 +56,6 @@
   "quiz": [
     {
       "question": "Pour qu'un courant circule, le circuit doit être :",
-      "svg": "circuit-simple.svg",
       "choix": ["Une boucle fermée", "Relié à la terre", "Protégé par fusible", "Câblé en bleu clair"],
       "bonne": 0,
       "explication": "Le courant part du générateur et doit y revenir : sans boucle fermée, rien ne circule.",
@@ -64,7 +63,6 @@
     },
     {
       "question": "Dans une installation domestique, le rôle de générateur est tenu par :",
-      "svg": "circuit-simple.svg",
       "choix": ["Le tableau électrique", "Le disjoncteur de branchement", "Le réseau de distribution", "La liaison à la terre"],
       "bonne": 2,
       "explication": "C'est le réseau qui impose les 230 V entre phase et neutre. Le tableau distribue, le disjoncteur protège : aucun des deux ne PRODUIT la tension.",
@@ -72,7 +70,6 @@
     },
     {
       "question": "Un récepteur domestique 230 V se branche :",
-      "svg": "circuit-simple.svg",
       "choix": ["Entre phase et terre", "Entre neutre et terre", "Entre phase et neutre", "Entre deux phases"],
       "bonne": 2,
       "explication": "Phase-neutre = 230 V. La terre ne sert qu'à la sécurité : elle n'alimente jamais un récepteur.",
@@ -80,7 +77,6 @@
     },
     {
       "question": "Un interrupteur doit couper :",
-      "svg": "circuit-simple.svg",
       "choix": ["Le neutre", "La phase", "La terre", "Phase ou neutre, au choix"],
       "bonne": 1,
       "explication": "La commande coupe LA PHASE. Couper le neutre éteint le récepteur mais laisse le circuit sous tension — danger invisible.",
@@ -88,7 +84,6 @@
     },
     {
       "question": "Quelle couleur est réservée EXCLUSIVEMENT au conducteur neutre ?",
-      "svg": "circuit-simple.svg",
       "choix": ["Noir", "Bleu clair", "Marron", "Vert/jaune"],
       "bonne": 1,
       "explication": "Bleu clair = neutre, vert/jaune = terre : deux couleurs réservées. La phase prend les autres (rouge, marron, noir…).",
@@ -96,7 +91,6 @@
     },
     {
       "question": "Phase et neutre entrent en contact direct : c'est :",
-      "svg": "circuit-simple.svg",
       "choix": ["Une surcharge", "Un court-circuit", "Un défaut d'isolement", "Une chute de tension"],
       "bonne": 1,
       "explication": "Contact direct phase-neutre = court-circuit : la résistance s'effondre et le courant devient énorme. La surcharge, c'est un excès progressif d'appareils branchés.",
@@ -104,7 +98,6 @@
     },
     {
       "question": "Quel appareil protège LES PERSONNES contre les fuites de courant ?",
-      "svg": "circuit-simple.svg",
       "choix": ["Le fusible", "Le disjoncteur divisionnaire", "Le DDR", "L'interrupteur"],
       "bonne": 2,
       "explication": "Fusible et disjoncteur protègent l'installation (surcharge, court-circuit). Le DDR détecte les fuites vers la terre et protège les personnes.",
