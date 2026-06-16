@@ -26,6 +26,8 @@ export function demarrerJeu(config, conteneur, { onFin } = {}) {
         <button class="jeu-suivant">${index === affirmations.length - 1 ? "Voir mon score ✓" : "Affirmation suivante →"}</button>
       </div>`;
 
+    window.scrollTo(0, 0); // chaque nouvelle affirmation repart en haut
+
     const retour = conteneur.querySelector(".jeu-retour");
     const suivant = conteneur.querySelector(".jeu-suivant");
 

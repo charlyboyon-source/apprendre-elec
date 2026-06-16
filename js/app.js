@@ -14,13 +14,14 @@ import { demarrerJeu as jeuTrouveErreur } from "./jeux/trouve-erreur.js";
 import { demarrerJeu as jeuVraiFaux } from "./jeux/vrai-faux-rapide.js";
 
 const JEUX = {
-  "trouve-erreur": { moteur: jeuTrouveErreur, nom: "Trouve l'erreur", desc: (c) => `${c.rounds.length} installations, 1 faute à débusquer` },
-  "vrai-faux-rapide": { moteur: jeuVraiFaux, nom: "Vrai / Faux rapide", desc: (c) => `${c.affirmations.length} affirmations, tranche vite` }
+  "trouve-erreur": { moteur: jeuTrouveErreur, nom: "Trouve l'erreur", onglet: "Jeu", desc: (c) => `${c.rounds.length} installations, 1 faute à débusquer` },
+  "vrai-faux-rapide": { moteur: jeuVraiFaux, nom: "Vrai / Faux rapide", onglet: "Vrai/Faux", desc: (c) => `${c.affirmations.length} affirmations, tranche vite` }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   majCompteurElectrons();
   brancherBoutonSons();
+  mesurerEntete();
 
   const conteneurCarte = document.querySelector(".carte");
   if (conteneurCarte) afficherCarte(conteneurCarte);
@@ -28,6 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const conteneurNiveau = document.querySelector(".niveau");
   if (conteneurNiveau) initNiveau(conteneurNiveau);
 });
+
+// La barre d'onglets de l'activité se cale juste sous le header du site :
+// on mémorise la hauteur du header dans --entete-h pour le `top` sticky.
+function mesurerEntete() {
+  const entete = document.querySelector(".entete");
+  if (!entete) return;
+  const maj = () => document.documentElement.style.setProperty("--entete-h", entete.offsetHeight + "px");
+  maj();
+  window.addEventListener("resize", maj);
+}
 
 async function initNiveau(conteneur) {
   const id = Number(new URLSearchParams(location.search).get("id"));
@@ -50,6 +61,7 @@ async function initNiveau(conteneur) {
   afficherHub(niveau, conteneur);
 }
 
+// Menu du niveau : Volty + les 3 modules en grosses cartes.
 function afficherHub(niveau, conteneur) {
   conteneur.innerHTML = `
     <div class="volty-zone"></div>
@@ -62,8 +74,7 @@ function afficherHub(niveau, conteneur) {
       <button class="hub-case" data-act="lecon">${coche(niveau.id, "lecon")}<span class="ic">📖</span><b>Leçon</b><small>${niveau.lecon.length} écrans visuels</small></button>
       <button class="hub-case" data-act="quiz">${coche(niveau.id, "quiz")}<span class="ic">🎯</span><b>Quiz</b><small>${niveau.quiz.length} questions · correction en fin de série</small></button>
       <button class="hub-case" data-act="jeu">${coche(niveau.id, "jeu")}<span class="ic">🎮</span><b>${JEUX[niveau.jeu.type].nom}</b><small>${JEUX[niveau.jeu.type].desc(niveau.jeu.config)}</small></button>
-    </div>
-    <div class="activite"></div>`;
+    </div>`;
 
   afficherVolty(
     conteneur.querySelector(".volty-zone"),
@@ -72,46 +83,66 @@ function afficherHub(niveau, conteneur) {
       : `<b>${niveau.titre}</b> — leçon, quiz, jeu. Termine les trois pour empocher <b>${niveau.recompense.electrons} e⁻</b> et déverrouiller la suite.`
   );
 
-  const zone = conteneur.querySelector(".activite");
   conteneur.querySelectorAll(".hub-case").forEach((btn) => {
-    btn.addEventListener("click", () => lancerActivite(btn.dataset.act, niveau, zone, conteneur));
+    btn.addEventListener("click", () => afficherActivite(btn.dataset.act, niveau, conteneur));
   });
+  window.scrollTo(0, 0);
 }
 
 function coche(id, act) {
   return activiteFaite(id, act) ? '<span class="fait">✓</span>' : "";
 }
 
-function lancerActivite(act, niveau, zone, conteneur, ecranDepart = 0) {
-  window.scrollTo({ top: 0 });
+// Vue plein écran d'une activité : elle remplace le menu. Une barre sticky
+// (Retour + 3 onglets) reste visible au scroll ; le moteur rend dans
+// `.activite-contenu`, qui occupe toute la zone sans rien au-dessus.
+function afficherActivite(act, niveau, conteneur, ecranDepart = 0) {
+  const ongletJeu = JEUX[niveau.jeu.type].onglet;
+  conteneur.innerHTML = `
+    <div class="activite-vue">
+      <div class="activite-barre">
+        <button class="retour-menu">← Retour</button>
+        <div class="onglets">
+          <button class="onglet" data-act="lecon">Leçon${coche(niveau.id, "lecon")}</button>
+          <button class="onglet" data-act="quiz">Quiz${coche(niveau.id, "quiz")}</button>
+          <button class="onglet" data-act="jeu">${ongletJeu}${coche(niveau.id, "jeu")}</button>
+        </div>
+      </div>
+      <div class="activite-contenu"></div>
+    </div>`;
+
+  conteneur.querySelector(`.onglet[data-act="${act}"]`).classList.add("actif");
+  conteneur.querySelector(".retour-menu").addEventListener("click", () => afficherHub(niveau, conteneur));
+  conteneur.querySelectorAll(".onglet").forEach((o) => {
+    o.addEventListener("click", () => {
+      if (o.dataset.act !== act) afficherActivite(o.dataset.act, niveau, conteneur);
+    });
+  });
+
+  const zone = conteneur.querySelector(".activite-contenu");
+  window.scrollTo(0, 0);
+
   if (act === "lecon") {
     demarrerLecon(niveau, zone, {
       ecranDepart,
-      onFin: () => {
-        finActivite(niveau, "lecon", conteneur);
-        voltyReagit("lecon-finie");
-      }
+      onFin: () => { finActivite(niveau, "lecon", conteneur); voltyReagit("lecon-finie"); }
     });
   } else if (act === "quiz") {
     demarrerQuiz(niveau, zone, {
-      onFin: (score, total) => {
-        finActivite(niveau, "quiz", conteneur);
-        voltyReagit(score >= total * 0.7 ? "quiz-bon-score" : "quiz-a-revoir");
-      },
-      onRevoirLecon: (ecran) => lancerActivite("lecon", niveau, zone, conteneur, ecran)
+      onFin: () => finActivite(niveau, "quiz", conteneur), // on reste sur les résultats
+      onRevoirLecon: (ecran) => afficherActivite("lecon", niveau, conteneur, ecran)
     });
   } else if (act === "jeu") {
     JEUX[niveau.jeu.type].moteur(niveau.jeu.config, zone, {
-      onFin: () => {
-        finActivite(niveau, "jeu", conteneur);
-        voltyReagit("jeu-fini");
-      }
+      onFin: () => { finActivite(niveau, "jeu", conteneur); voltyReagit("jeu-fini"); }
     });
   }
 }
 
 // Marque l'activité faite ; quand les trois sont bouclées pour la première
 // fois, crédite la récompense et déverrouille le niveau suivant.
+// Leçon/jeu : on revient au menu. Quiz : on reste sur les résultats, on
+// se contente de cocher l'onglet.
 function finActivite(niveau, act, conteneur) {
   const dejaTout = toutesActivitesFaites(niveau.id);
   marquerActivite(niveau.id, act);
@@ -121,14 +152,10 @@ function finActivite(niveau, act, conteneur) {
     terminerNiveau(niveau.id);
   }
 
-  if (act !== "quiz") afficherHub(niveau, conteneur); // le quiz affiche d'abord ses résultats
-  else mettreAJourCoches(niveau, conteneur);
-}
-
-function mettreAJourCoches(niveau, conteneur) {
-  conteneur.querySelectorAll(".hub-case").forEach((btn) => {
-    if (activiteFaite(niveau.id, btn.dataset.act) && !btn.querySelector(".fait")) {
-      btn.insertAdjacentHTML("afterbegin", '<span class="fait">✓</span>');
-    }
-  });
+  if (act === "quiz") {
+    const onglet = conteneur.querySelector('.onglet[data-act="quiz"]');
+    if (onglet && !onglet.querySelector(".fait")) onglet.insertAdjacentHTML("beforeend", '<span class="fait">✓</span>');
+  } else {
+    afficherHub(niveau, conteneur);
+  }
 }

@@ -54,6 +54,8 @@ export function demarrerJeu(config, conteneur, { onFin } = {}) {
         <button class="jeu-suivant">${index === rounds.length - 1 ? "Terminer le jeu ✓" : "Installation suivante →"}</button>
       </div>`;
 
+    window.scrollTo(0, 0); // chaque nouvelle installation repart en haut
+
     const retour = conteneur.querySelector(".jeu-retour");
     const suivant = conteneur.querySelector(".jeu-suivant");
 

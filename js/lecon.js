@@ -33,9 +33,12 @@ export function demarrerLecon(niveau, conteneur, { ecranDepart = 0, onFin } = {}
       if (index > 0) { index--; rendre(); }
     });
     conteneur.querySelector(".lecon-suiv").addEventListener("click", () => {
-      if (index < ecrans.length - 1) { index++; rendre(); window.scrollTo({ top: 0 }); }
+      if (index < ecrans.length - 1) { index++; rendre(); }
       else onFin?.();
     });
+
+    // Chaque écran (initial, Précédent, Suivant) repart en haut de la vue.
+    window.scrollTo(0, 0);
   }
 
   rendre();

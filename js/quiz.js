@@ -30,6 +30,8 @@ export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
       </div>`;
 
     brancherTermes(conteneur);
+    window.scrollTo(0, 0); // chaque nouvelle question repart en haut
+
     conteneur.querySelectorAll(".choix").forEach((btn) => {
       btn.addEventListener("click", () => {
         reponses[index] = Number(btn.dataset.k);
