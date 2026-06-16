@@ -3,7 +3,8 @@
   "blocs": [
     {
       "id": 1,
-      "titre": "Lois fondamentales et circuit électrique",
+      "titre": "Les bases de l'électricité",
+      "description": "Courant, tension, résistance, loi d'Ohm — tout ce qui circule dans les fils.",
       "badge": "bloc-1",
       "niveaux": [
         { "id": 1, "titre": "La nature de l'électricité" },
@@ -14,7 +15,8 @@
     },
     {
       "id": 2,
-      "titre": "Sécurité électrique et protection des personnes",
+      "titre": "Sécurité et protection des personnes",
+      "description": "Le danger électrique, la terre, le DDR, et travailler sans risque.",
       "badge": "bloc-2",
       "niveaux": [
         { "id": 5, "titre": "Le danger électrique pour le corps humain" },
@@ -26,8 +28,10 @@
     },
     {
       "id": 3,
-      "titre": "Tableau de distribution, conducteurs et dimensionnement",
+      "titre": "Tableau, conducteurs et dimensionnement",
+      "description": "Le tableau, les sections de câbles, les circuits de la maison.",
       "badge": "bloc-3",
+      "aVenir": true,
       "niveaux": [
         { "id": 10, "titre": "Niveau 10" },
         { "id": 11, "titre": "Niveau 11" },
@@ -39,7 +43,9 @@
     {
       "id": 4,
       "titre": "Schémas et montages d'éclairage",
+      "description": "Lire et câbler les montages courants du quotidien.",
       "badge": "bloc-4",
+      "aVenir": true,
       "niveaux": [
         { "id": 15, "titre": "Niveau 15" },
         { "id": 16, "titre": "Niveau 16" },
@@ -49,8 +55,10 @@
     },
     {
       "id": 5,
-      "titre": "Applications : ECS, domotique, IRVE, photovoltaïque",
+      "titre": "Applications modernes",
+      "description": "Eau chaude, domotique, recharge de voiture, photovoltaïque.",
       "badge": "bloc-5",
+      "aVenir": true,
       "niveaux": [
         { "id": 19, "titre": "Niveau 19" },
         { "id": 20, "titre": "Niveau 20" },
