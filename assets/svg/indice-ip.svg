@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="178" viewBox="0 0 300 178" role="img" aria-label="Décodage de l'indice de protection IP">
+  <text x="150" y="26" text-anchor="middle" font-size="20" fill="#ffd23f" font-family="monospace" font-weight="bold">IP 5 5</text>
+  <line x1="178" y1="32" x2="200" y2="52" stroke="#5ab0f0" stroke-width="1"/>
+  <line x1="160" y1="32" x2="120" y2="52" stroke="#e8744f" stroke-width="1"/>
+  <g font-family="monospace" font-size="8.5">
+  <text x="60" y="58" text-anchor="middle" fill="#e8744f" font-weight="bold">1er chiffre : SOLIDES</text>
+  <text x="10" y="78" fill="#9aa6b3">0 aucune</text>
+  <text x="10" y="92" fill="#9aa6b3">2 doigt (12,5 mm)</text>
+  <text x="10" y="106" fill="#9aa6b3">4 fil (1 mm)</text>
+  <text x="10" y="120" fill="#e8ecf0">5 poussière (limitée)</text>
+  <text x="10" y="134" fill="#e8ecf0">6 étanche poussière</text>
+  <text x="235" y="58" text-anchor="middle" fill="#5ab0f0" font-weight="bold">2e chiffre : EAU</text>
+  <text x="170" y="78" fill="#9aa6b3">1 gouttes verticales</text>
+  <text x="170" y="92" fill="#9aa6b3">4 projections</text>
+  <text x="170" y="106" fill="#e8ecf0">5 jets (lance)</text>
+  <text x="170" y="120" fill="#e8ecf0">7 immersion 1 m</text>
+  <text x="170" y="134" fill="#9aa6b3">8 immersion prolongée</text>
+  </g>
+  <text x="150" y="158" text-anchor="middle" font-size="8" fill="#e8ecf0" font-family="monospace">X = chiffre non précisé (ex. IPX4)</text>
+  <text x="150" y="172" text-anchor="middle" font-size="7.5" fill="#5b6775" font-family="monospace">L'indice IK, lui, note la résistance aux CHOCS (IK07 = 2 J, IK10 = 20 J)</text>
+</svg>

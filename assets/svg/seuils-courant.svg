@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Seuils d'intensité et effets sur le corps">
+  <g font-family="monospace" font-size="9">
+  <text x="10" y="16" fill="#7e8a98">INTENSITÉ (50 Hz)</text><text x="165" y="16" fill="#7e8a98">EFFET SUR LE CORPS</text>
+  <line x1="10" y1="22" x2="290" y2="22" stroke="#2d323b"/>
+  <text x="10" y="40" fill="#4cd97b" font-weight="bold">0,5 mA</text><text x="165" y="40" fill="#9aa6b3">seuil de perception</text>
+  <text x="10" y="62" fill="#e9c50e" font-weight="bold">10 mA</text><text x="165" y="62" fill="#9aa6b3">non-lâcher (tétanisation)</text>
+  <text x="10" y="84" fill="#e8744f" font-weight="bold">30 mA</text><text x="165" y="84" fill="#e8ecf0">paralysie respiratoire</text>
+  <text x="10" y="106" fill="#e85b50" font-weight="bold">75 mA</text><text x="165" y="106" fill="#e85b50">fibrillation ventriculaire</text>
+  <text x="10" y="128" fill="#e85b50" font-weight="bold">1 A et +</text><text x="165" y="128" fill="#e85b50">arrêt cardiaque, brûlures</text>
+  <line x1="10" y1="138" x2="290" y2="138" stroke="#2d323b"/>
+  <text x="10" y="156" fill="#ffd23f">⚡ Le DDR coupe dès 30 mA</text>
+  <text x="10" y="168" fill="#5b6775" font-size="7.5">Valeurs pour un courant alternatif, trajet main-pied</text>
+  </g></svg>

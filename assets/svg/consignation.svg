@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Les 4 étapes de la consignation">
+  <g font-family="monospace">
+  <circle cx="30" cy="30" r="13" fill="#ffd23f"/><text x="30" y="34" text-anchor="middle" font-size="11" fill="#1c1f24" font-weight="bold">1</text>
+  <text x="52" y="28" font-size="10" fill="#e8ecf0" font-weight="bold">SÉPARER</text>
+  <text x="52" y="40" font-size="7.5" fill="#9aa6b3">couper et sectionner la source</text>
+  <circle cx="30" cy="66" r="13" fill="#ffd23f"/><text x="30" y="70" text-anchor="middle" font-size="11" fill="#1c1f24" font-weight="bold">2</text>
+  <text x="52" y="64" font-size="10" fill="#e8ecf0" font-weight="bold">CONDAMNER</text>
+  <text x="52" y="76" font-size="7.5" fill="#9aa6b3">verrouiller (cadenas) + pancarte</text>
+  <circle cx="30" cy="102" r="13" fill="#ffd23f"/><text x="30" y="106" text-anchor="middle" font-size="11" fill="#1c1f24" font-weight="bold">3</text>
+  <text x="52" y="100" font-size="10" fill="#e8ecf0" font-weight="bold">IDENTIFIER</text>
+  <text x="52" y="112" font-size="7.5" fill="#9aa6b3">vérifier qu'on est sur le bon circuit</text>
+  <circle cx="30" cy="138" r="13" fill="#ffd23f"/><text x="30" y="142" text-anchor="middle" font-size="11" fill="#1c1f24" font-weight="bold">4</text>
+  <text x="52" y="136" font-size="10" fill="#e8ecf0" font-weight="bold">VÉRIFIER (VAT)</text>
+  <text x="52" y="148" font-size="7.5" fill="#9aa6b3">absence de tension, puis MALT</text>
+  <text x="150" y="166" text-anchor="middle" font-size="7.5" fill="#5b6775">S · C · I · V — dans cet ordre, sans en sauter une</text>
+  </g></svg>

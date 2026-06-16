@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="178" viewBox="0 0 300 178" role="img" aria-label="Trajet du courant dans le corps humain">
+  <circle cx="150" cy="30" r="14" fill="none" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="150" y1="44" x2="150" y2="110" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="150" y1="58" x2="108" y2="86" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="150" y1="58" x2="210" y2="64" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="150" y1="110" x2="132" y2="156" stroke="#e8ecf0" stroke-width="2"/>
+  <line x1="150" y1="110" x2="168" y2="156" stroke="#e8ecf0" stroke-width="2"/>
+  <path d="M210 64 q-30 6 -52 18 q-12 8 -10 30 q2 24 -16 44" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-dasharray="5 4"/>
+  <circle cx="158" cy="78" r="9" fill="#e85b50" opacity="0.9"/>
+  <text x="158" y="81" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">♥</text>
+  <text x="215" y="58" font-size="9" fill="#ffd23f" font-weight="bold">⚡ main</text>
+  <text x="120" y="172" font-size="8.5" fill="#5ab0f0">pied → terre</text>
+  <text x="150" y="100" text-anchor="middle" font-size="7.5" fill="#e85b50">le cœur sur le trajet</text>
+  <text x="150" y="14" text-anchor="middle" font-size="8" fill="#9aa6b3" font-family="monospace">main → pied : le pire trajet</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="178" viewBox="0 0 300 178" role="img" aria-label="Courbe de sécurité tension de contact / temps">
+  <line x1="40" y1="150" x2="285" y2="150" stroke="#5b6775" stroke-width="1.4"/>
+  <line x1="40" y1="18" x2="40" y2="150" stroke="#5b6775" stroke-width="1.4"/>
+  <text x="160" y="172" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-family="monospace">tension de contact (V) →</text>
+  <text x="14" y="84" font-size="8.5" fill="#9aa6b3" font-family="monospace" transform="rotate(-90 14 84)">temps admissible →</text>
+  <polyline points="40,20.0 45,33.3 50,48.6 55,60.0 60,68.9 65,76.0 70,81.8 75,86.7 80,90.8 85,94.3 90,97.3 95,100.0 100,102.4 105,104.4 110,106.3 115,108.0 120,109.5 125,110.9 130,112.2 135,113.3 140,114.4 145,115.4 150,116.3 155,117.1 160,117.9 165,118.7 170,119.4 175,120.0 180,120.6 185,121.2 190,121.7 195,122.2 200,122.7 205,123.2 210,123.6 215,124.0 220,124.4 225,124.8 230,125.1 235,125.5 240,125.8 245,126.1 250,126.4 255,126.7 260,126.9 265,127.2 270,127.5" fill="none" stroke="#e85b50" stroke-width="2.2"/>
+  <line x1="65" y1="18" x2="65" y2="150" stroke="#4cd97b" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="68" y="32" font-size="8" fill="#4cd97b">UL 25 V (mouillé)</text>
+  <line x1="90" y1="18" x2="90" y2="150" stroke="#ffd23f" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="93" y="46" font-size="8" fill="#ffd23f">UL 50 V (sec)</text>
+  <text x="150" y="120" font-size="8" fill="#e85b50" font-family="monospace">plus c'est haut,</text>
+  <text x="150" y="132" font-size="8" fill="#e85b50" font-family="monospace">plus vite il faut couper</text>
+</svg>

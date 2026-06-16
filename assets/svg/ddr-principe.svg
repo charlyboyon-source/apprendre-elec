@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Principe du dispositif différentiel">
+  <ellipse cx="150" cy="80" rx="46" ry="56" fill="none" stroke="#9aa6b3" stroke-width="3"/>
+  <ellipse cx="150" cy="80" rx="30" ry="40" fill="none" stroke="#3a4250" stroke-width="2"/>
+  <text x="150" y="150" text-anchor="middle" font-size="8" fill="#9aa6b3">tore magnétique</text>
+  <line x1="140" y1="14" x2="140" y2="146" stroke="#e8744f" stroke-width="2.5"/>
+  <text x="120" y="22" font-size="8" fill="#e8744f">phase</text>
+  <text x="146" y="40" font-size="8" fill="#e8744f">I→</text>
+  <line x1="160" y1="14" x2="160" y2="146" stroke="#5ab0f0" stroke-width="2.5"/>
+  <text x="163" y="22" font-size="8" fill="#5ab0f0">neutre</text>
+  <text x="166" y="124" font-size="8" fill="#5ab0f0">I→</text>
+  <text x="30" y="60" font-size="8.5" fill="#4cd97b" font-family="monospace">I phase</text>
+  <text x="30" y="74" font-size="8.5" fill="#4cd97b" font-family="monospace">= I neutre</text>
+  <text x="30" y="88" font-size="8.5" fill="#4cd97b" font-family="monospace">→ flux nul</text>
+  <text x="232" y="60" font-size="8.5" fill="#e85b50" font-family="monospace">si fuite :</text>
+  <text x="232" y="74" font-size="8.5" fill="#e85b50" font-family="monospace">I ph ≠ I n</text>
+  <text x="232" y="88" font-size="8.5" fill="#e85b50" font-family="monospace">→ coupe</text>
+  <text x="150" y="166" text-anchor="middle" font-size="7.5" fill="#5b6775">Il compare ce qui entre et ce qui sort</text>
+</svg>

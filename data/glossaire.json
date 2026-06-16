@@ -172,5 +172,150 @@
   "valeur efficace": {
     "nom": "Valeur efficace",
     "definition": "Valeur d'une tension (ou d'un courant) alternatif qui produit le même échauffement qu'un continu de même valeur. Les « 230 V » du réseau sont une valeur efficace ; la crête vaut 230 × √2 ≈ 325 V."
+  },
+  "électrisation": {
+    "nom": "Électrisation",
+    "definition": "Passage de courant à travers le corps humain, quelle qu'en soit la gravité — d'un simple picotement à une blessure sérieuse. Toute victime doit consulter, même si elle semble aller bien.",
+    "niveau_associe": 5
+  },
+  "électrocution": {
+    "nom": "Électrocution",
+    "definition": "Électrisation qui entraîne la mort. On peut être électrisé sans être électrocuté, mais pas l'inverse.",
+    "niveau_associe": 5
+  },
+  "tétanisation": {
+    "nom": "Tétanisation",
+    "definition": "Contraction incontrôlable des muscles sous l'effet du courant. Vers 10 mA, elle empêche la victime de lâcher le conducteur (seuil de non-lâcher) ; vers 30 mA, elle paralyse la respiration."
+  },
+  "fibrillation ventriculaire": {
+    "nom": "Fibrillation ventriculaire",
+    "definition": "Désorganisation du rythme cardiaque sous l'effet du courant (vers 75 mA) : le cœur tremble au lieu de pomper et n'assure plus la circulation du sang. C'est la principale cause de décès par électrocution."
+  },
+  "tension limite de sécurité": {
+    "nom": "Tension limite de sécurité (UL)",
+    "definition": "Tension de contact en dessous de laquelle le courant reste sans danger, quelle que soit la durée. En courant alternatif : 50 V en milieu sec, 25 V en milieu mouillé.",
+    "niveau_associe": 5
+  },
+  "tension de contact": {
+    "nom": "Tension de contact",
+    "definition": "Tension qui apparaît entre deux parties qu'une personne touche simultanément (par exemple une masse en défaut et le sol). Elle vaut Uc = R(terre) × I(défaut) et doit rester sous la tension limite de sécurité."
+  },
+  "courbe de sécurité": {
+    "nom": "Courbe de sécurité",
+    "definition": "Courbe normalisée reliant la tension de contact au temps maximal pendant lequel on peut la subir sans danger. Plus la tension de contact est élevée, plus le temps de coupure admissible est court."
+  },
+  "brûlure électrique": {
+    "nom": "Brûlure électrique",
+    "definition": "Lésion provoquée par effet Joule au passage du courant, aux points d'entrée et de sortie comme en profondeur le long du trajet interne. Souvent plus grave qu'elle n'en a l'air ; l'arc électrique y ajoute brûlures par rayonnement et projections.",
+    "niveau_associe": 5
+  },
+  "contact direct": {
+    "nom": "Contact direct",
+    "definition": "Contact d'une personne avec une pièce normalement sous tension (conducteur dénudé, borne, broche). On s'en protège par l'isolation, les capots, l'éloignement et, en complément, un DDR 30 mA.",
+    "niveau_associe": 6
+  },
+  "contact indirect": {
+    "nom": "Contact indirect",
+    "definition": "Contact avec une masse métallique mise accidentellement sous tension par un défaut d'isolement. On s'en protège en reliant les masses à la terre et en assurant la coupure automatique (DDR).",
+    "niveau_associe": 6
+  },
+  "masse": {
+    "nom": "Masse",
+    "definition": "Partie conductrice d'un matériel, normalement hors tension, susceptible d'être touchée — typiquement une carcasse métallique. On la relie au conducteur de protection pour qu'un défaut n'y soit pas dangereux."
+  },
+  "conducteur de protection": {
+    "nom": "Conducteur de protection (PE)",
+    "definition": "Conducteur vert/jaune qui relie les masses des matériels à la prise de terre. Purement sécuritaire : il n'alimente jamais un appareil.",
+    "niveau_associe": 6
+  },
+  "prise de terre": {
+    "nom": "Prise de terre",
+    "definition": "Piquet ou boucle de cuivre en contact avec le sol, offrant au courant de défaut un chemin vers la terre. Point de départ du conducteur de protection de l'installation.",
+    "niveau_associe": 6
+  },
+  "régime de neutre": {
+    "nom": "Régime de neutre",
+    "definition": "Façon dont le neutre de la source et les masses de l'installation sont reliés à la terre. Les trois régimes sont TT, TN et IT ; il détermine le comportement en cas de défaut et les protections nécessaires.",
+    "niveau_associe": 6
+  },
+  "régime TT": {
+    "nom": "Régime TT",
+    "definition": "Régime de neutre des logements raccordés au réseau public : neutre du transformateur relié à la Terre côté distributeur (1er T), masses reliées à la Terre chez l'usager par une prise distincte (2e T). Le DDR y est indispensable.",
+    "niveau_associe": 6
+  },
+  "défaut d'isolement": {
+    "nom": "Défaut d'isolement",
+    "definition": "Défaillance de l'isolation qui met en contact un conducteur actif et une masse (ou la terre). C'est lui qui rend une masse dangereuse et déclenche la boucle de défaut.",
+    "niveau_associe": 6
+  },
+  "boucle de défaut": {
+    "nom": "Boucle de défaut",
+    "definition": "Chemin parcouru par le courant lors d'un défaut d'isolement : de la phase à la masse, puis par le conducteur de protection, la prise de terre et le sol, jusqu'au retour à la source. En régime TT, sa résistance élevée limite le courant.",
+    "niveau_associe": 6
+  },
+  "sensibilité": {
+    "nom": "Sensibilité d'un DDR (IΔn)",
+    "definition": "Courant de fuite à partir duquel un DDR déclenche. 30 mA (haute sensibilité) pour protéger les personnes ; 300 ou 500 mA (moyenne sensibilité) pour prévenir l'incendie."
+  },
+  "interrupteur différentiel": {
+    "nom": "Interrupteur différentiel",
+    "definition": "DDR qui coupe sur fuite à la terre mais ne protège pas contre les surcharges ni les courts-circuits. Il commande des disjoncteurs placés en aval, qui assurent eux la protection contre les surintensités."
+  },
+  "disjoncteur différentiel": {
+    "nom": "Disjoncteur différentiel",
+    "definition": "Appareil unique réunissant les deux fonctions : protection contre les surintensités (surcharge, court-circuit) et protection différentielle contre les fuites à la terre."
+  },
+  "classe I": {
+    "nom": "Matériel de classe I",
+    "definition": "Matériel doté d'une isolation principale et d'une borne de terre obligatoire : sa masse est reliée au conducteur de protection. Sa sécurité repose sur la mise à la terre (four, lave-linge…).",
+    "niveau_associe": 8
+  },
+  "classe III": {
+    "nom": "Matériel de classe III",
+    "definition": "Matériel conçu pour être alimenté en TBTS (≤ 50 V alternatif), tension trop faible pour un choc dangereux. Symbole : un losange contenant III (rasoir, spot 12 V…).",
+    "niveau_associe": 8
+  },
+  "double isolation": {
+    "nom": "Double isolation",
+    "definition": "Isolation renforcée des matériels de classe II : à l'isolation principale s'ajoute une isolation supplémentaire, si bien qu'aucune mise à la terre n'est nécessaire. Symbole : un double carré."
+  },
+  "indice IP": {
+    "nom": "Indice de protection (IP)",
+    "definition": "Deux chiffres notant la protection d'un matériel : le 1er (0 à 6) contre les corps solides et la poussière, le 2e (0 à 8) contre l'eau. Un chiffre non spécifié s'écrit X (ex. IPX4).",
+    "niveau_associe": 8
+  },
+  "indice IK": {
+    "nom": "Indice IK",
+    "definition": "Indice notant la résistance d'un matériel aux chocs mécaniques, en énergie d'impact : de IK00 (aucune) à IK10 (20 J). Repères : IK07 = 2 J, IK08 = 5 J.",
+    "niveau_associe": 8
+  },
+  "habilitation électrique": {
+    "nom": "Habilitation électrique",
+    "definition": "Reconnaissance par l'employeur qu'une personne est capable d'accomplir en sécurité des tâches définies sur ou au voisinage d'installations électriques. Délivrée après formation, elle n'est pas une compétence métier.",
+    "niveau_associe": 9
+  },
+  "voisinage": {
+    "nom": "Voisinage (zone de)",
+    "definition": "Zone proche des pièces nues sous tension où le risque de contact ou d'amorçage impose des précautions particulières. Une habilitation comportant la lettre V autorise à y travailler."
+  },
+  "consignation": {
+    "nom": "Consignation",
+    "definition": "Procédure de mise en sécurité d'un ouvrage avant travaux hors tension, en quatre étapes : Séparer, Condamner, Identifier, Vérifier l'absence de tension (S.C.I.V.).",
+    "niveau_associe": 9
+  },
+  "VAT": {
+    "nom": "Vérification d'Absence de Tension (VAT)",
+    "definition": "Dernière étape de la consignation, réalisée avec un vérificateur dédié dont on contrôle le fonctionnement avant et après, sur tous les conducteurs, au plus près de la zone de travail.",
+    "niveau_associe": 9
+  },
+  "EPI": {
+    "nom": "Équipements de Protection Individuelle (EPI)",
+    "definition": "Protections portées par l'intervenant : gants isolants vérifiés, écran facial ou lunettes, casque isolant, chaussures de sécurité, vêtements adaptés. Ils complètent les protections collectives.",
+    "niveau_associe": 9
+  },
+  "NF C 18-510": {
+    "nom": "Norme NF C 18-510",
+    "definition": "Norme de prévention du risque électrique lors des opérations sur les installations : habilitations, consignation, zones d'environnement, EPI. À distinguer de la NF C 15-100, qui régit la conception des installations.",
+    "niveau_associe": 9
   }
 }

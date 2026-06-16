@@ -1,0 +1,153 @@
+{
+  "id": 9,
+  "bloc": 2,
+  "titre": "Travailler en sécurité",
+  "objectif": "Connaître l'habilitation, la consignation en 4 étapes, la VAT et les EPI imposés par la NF C 18-510",
+  "lecon": [
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 1/6 · LE CADRE",
+      "titre": "L'habilitation électrique",
+      "svg": "habilitation.svg",
+      "contenu": "Travailler près de l'électricité ne s'improvise pas : c'est encadré par la norme [[NF C 18-510]]. L'[[habilitation électrique]] est la reconnaissance, <b>par l'employeur</b>, qu'une personne est capable d'accomplir en sécurité des tâches données sur ou au voisinage d'installations électriques. Elle est délivrée après une <b>formation</b> à la prévention du risque électrique (théorie + pratique), et fait l'objet d'un recyclage périodique. Point capital : l'habilitation n'est <b>pas</b> une compétence métier — un excellent technicien non habilité n'a pas le droit d'intervenir, et un habilité reste tenu de savoir faire son travail.",
+      "memo": "Habilitation = l'employeur reconnaît, après formation, qu'on peut travailler en sécurité. Obligatoire, à recycler."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 2/6 · LIRE LE SYMBOLE",
+      "titre": "Décoder une habilitation",
+      "svg": "habilitation.svg",
+      "contenu": "Un symbole d'habilitation se lit caractère par caractère. La <b>1re lettre</b> donne le domaine de tension : <b>B</b> = basse tension, <b>H</b> = haute tension. Le <b>2e caractère</b> donne le rôle : <b>0</b> = travaux d'ordre non électrique, <b>1</b> = exécutant d'opérations électriques, <b>2</b> = chargé de travaux, <b>R</b> = chargé d'intervention générale (dépannage), <b>S</b> = chargé d'intervention élémentaire, <b>C</b> = chargé de consignation. Une lettre <b>V</b> ajoutée signifie « au [[voisinage]] » de pièces nues sous tension. Ainsi B1V se lit : basse tension, exécutant, au voisinage.",
+      "memo": "1re lettre = tension (B/H). 2e = rôle (0,1,2,R,S,C). V = au voisinage."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 3/6 · QUELQUES TITRES",
+      "titre": "Les habilitations qu'on croise le plus",
+      "svg": "habilitation.svg",
+      "contenu": "Quatre titres reviennent sans cesse. <b>B0</b> : non-électricien travaillant dans un local électrique (peintre, maçon) — il ne touche à aucun ouvrage sous tension. <b>BS</b> : chargé d'intervention <b>élémentaire</b>, pour des opérations simples et hors tension (remplacer à l'identique une prise, un interrupteur, une lampe, réarmer un disjoncteur). <b>BR</b> : chargé d'intervention <b>générale</b> en basse tension — le dépanneur, qui recherche les pannes, mesure, raccorde. <b>BC</b> : chargé de [[consignation]], celui qui met l'installation en sécurité pour qu'un autre y travaille. Chacun n'agit que dans le périmètre exact de son titre.",
+      "memo": "B0 non-électricien · BS petites interventions hors tension · BR dépannage général · BC consignation."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 4/6 · CONSIGNER",
+      "titre": "La consignation en 4 étapes",
+      "svg": "consignation.svg",
+      "contenu": "Avant de travailler hors tension, on <b>consigne</b> l'installation, dans un ordre strict — retiens S.C.I.V. <b>1. Séparer</b> : isoler l'ouvrage de toute source, de façon visible ou certaine (ouvrir le disjoncteur, retirer les fusibles). <b>2. Condamner</b> : bloquer l'organe de coupure en position ouverte par un cadenas et poser une pancarte « ne pas manœuvrer », pour empêcher toute remise sous tension. <b>3. Identifier</b> : s'assurer qu'on travaille bien sur le bon ouvrage (plans, repérage). <b>4. Vérifier l'absence de tension</b> (VAT). Sauter une étape, c'est risquer sa vie ou celle d'un collègue.",
+      "memo": "Consignation = Séparer · Condamner · Identifier · Vérifier (VAT). Dans cet ordre, sans en sauter une."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 5/6 · LA VAT",
+      "titre": "La vérification d'absence de tension",
+      "svg": "consignation.svg",
+      "contenu": "La 4e étape mérite son écran. La [[VAT]] se fait avec un <b>vérificateur d'absence de tension</b> dédié — surtout pas un multimètre ordinaire, qui peut tomber en panne sans qu'on le sache. La règle d'or : on teste le bon fonctionnement du VAT <b>immédiatement avant ET immédiatement après</b> la vérification, sur une source connue. La VAT se fait <b>au plus près de la zone de travail</b> et entre <b>tous</b> les conducteurs (phases, neutre, et par rapport à la terre). Ce n'est qu'une fois l'absence de tension confirmée qu'on peut considérer l'installation comme sûre — et, en haute tension, qu'on procède à la mise à la terre et en court-circuit.",
+      "memo": "VAT : appareil dédié, testé avant ET après, au plus près du chantier, sur tous les conducteurs."
+    },
+    {
+      "type": "texte",
+      "kicker": "ÉCRAN 6/6 · SE PROTÉGER",
+      "titre": "Les EPI et l'esprit de la norme",
+      "svg": "consignation.svg",
+      "contenu": "Même installation consignée, on garde ses [[EPI]] (équipements de protection individuelle) : gants isolants adaptés à la tension et vérifiés, écran facial ou lunettes contre l'arc électrique, casque isolant, chaussures de sécurité, vêtements adaptés. Ils complètent les protections collectives (nappes isolantes, balisage, cadenas de condamnation). Tout cela découle de la [[NF C 18-510]], qui régit la prévention du risque électrique lors des <b>opérations</b> — à ne pas confondre avec la [[NF C 15-100]], qui régit la <b>conception</b> des installations. L'une dit comment installer, l'autre comment intervenir sans se blesser. Les deux sont le quotidien de l'électricien.",
+      "memo": "EPI : gants isolants, écran facial, casque, chaussures. NF C 18-510 = opérer ; NF C 15-100 = installer."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Qui délivre l'habilitation électrique ?",
+      "svg": "habilitation.svg",
+      "choix": ["L'organisme de formation", "L'employeur", "Le fabricant du matériel", "Le distributeur d'électricité"],
+      "bonne": 1,
+      "explication": "C'est l'employeur qui habilite, après s'être assuré (notamment par une formation) que la personne sait travailler en sécurité.",
+      "renvoi_lecon": 0
+    },
+    {
+      "question": "Dans un symbole d'habilitation, la lettre B indique :",
+      "svg": "habilitation.svg",
+      "choix": ["La basse tension", "Un chargé de travaux", "Le voisinage", "Une opération de base"],
+      "bonne": 0,
+      "explication": "1re lettre = domaine de tension : B = basse tension, H = haute tension. Le rôle vient ensuite.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "L'habilitation BS correspond à :",
+      "svg": "habilitation.svg",
+      "choix": ["Un chargé de consignation", "Des interventions élémentaires hors tension", "Des travaux en haute tension", "Un non-électricien"],
+      "bonne": 1,
+      "explication": "BS = chargé d'intervention élémentaire : opérations simples et hors tension (remplacement à l'identique, réarmement). Le dépannage général, c'est le BR.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Quel est le bon ordre de la consignation ?",
+      "svg": "consignation.svg",
+      "choix": ["Identifier, Vérifier, Séparer, Condamner", "Séparer, Condamner, Identifier, Vérifier", "Condamner, Séparer, Vérifier, Identifier", "Vérifier, Séparer, Identifier, Condamner"],
+      "bonne": 1,
+      "explication": "S.C.I.V. : Séparer, Condamner, Identifier, Vérifier (VAT). L'ordre n'est pas négociable.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "La condamnation d'un organe de coupure sert à :",
+      "svg": "consignation.svg",
+      "choix": ["Mesurer la tension restante", "Empêcher toute remise sous tension", "Identifier le circuit", "Décharger les condensateurs"],
+      "bonne": 1,
+      "explication": "Condamner = bloquer en position ouverte (cadenas) + pancarte, pour que personne ne puisse réenclencher pendant les travaux.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "Pour réaliser une VAT, on utilise :",
+      "svg": "consignation.svg",
+      "choix": ["N'importe quel multimètre", "Un vérificateur d'absence de tension dédié, testé avant et après", "Un simple tournevis testeur de poche", "Le voyant du disjoncteur"],
+      "bonne": 1,
+      "explication": "Un VAT dédié, dont on contrôle le bon fonctionnement immédiatement avant ET après, sur tous les conducteurs.",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "Quelle est la différence entre NF C 18-510 et NF C 15-100 ?",
+      "svg": "consignation.svg",
+      "choix": ["Aucune, ce sont deux noms de la même norme", "La 18-510 régit les opérations en sécurité, la 15-100 la conception des installations", "La 18-510 ne concerne que la haute tension", "La 15-100 traite des EPI uniquement"],
+      "bonne": 1,
+      "explication": "NF C 18-510 = prévention du risque lors des opérations (habilitation, consignation, EPI). NF C 15-100 = conception et réalisation des installations BT.",
+      "renvoi_lecon": 5
+    }
+  ],
+  "jeu": {
+    "type": "trouve-erreur",
+    "config": {
+      "fond": "chantier.svg",
+      "rounds": [
+        {
+          "consigne": "Avant d'ouvrir l'armoire — un manquement met l'intervenant en danger. Touche-le.",
+          "items": [
+            { "id": "a", "x": 60, "y": 95, "emoji": "🧤", "label": "gants troués", "bad": true, "why": "Un EPI défectueux ne protège plus : des gants isolants percés sont à écarter immédiatement. On vérifie ses EPI avant chaque usage." },
+            { "id": "b", "x": 135, "y": 70, "emoji": "🔒", "label": "cadenas + pancarte", "bad": false },
+            { "id": "c", "x": 210, "y": 105, "emoji": "👓", "label": "écran facial", "bad": false },
+            { "id": "d", "x": 260, "y": 70, "emoji": "🥾", "label": "chaussures sécu.", "bad": false }
+          ],
+          "win": "Bien vu ⚡ Des gants isolants percés ne valent plus rien. On contrôle l'état de ses EPI avant chaque intervention."
+        },
+        {
+          "consigne": "L'intervenant va vérifier l'absence de tension. Repère l'erreur.",
+          "items": [
+            { "id": "a", "x": 60, "y": 95, "emoji": "📏", "label": "multimètre pour VAT", "bad": true, "why": "La VAT se fait avec un vérificateur d'absence de tension DÉDIÉ, testé avant et après — pas un multimètre ordinaire, qui peut être en panne sans qu'on le sache." },
+            { "id": "b", "x": 135, "y": 70, "emoji": "🔒", "label": "circuit condamné", "bad": false },
+            { "id": "c", "x": 210, "y": 105, "emoji": "🪧", "label": "pancarte posée", "bad": false },
+            { "id": "d", "x": 260, "y": 70, "emoji": "🧤", "label": "gants isolants OK", "bad": false }
+          ],
+          "win": "Exact 👏 La VAT exige un appareil dédié, vérifié avant ET après. Un multimètre n'offre aucune garantie de sécurité."
+        },
+        {
+          "consigne": "Dernière vérification de la consignation. Où est la faille ?",
+          "items": [
+            { "id": "a", "x": 60, "y": 95, "emoji": "✂️", "label": "source séparée", "bad": false },
+            { "id": "b", "x": 135, "y": 70, "emoji": "🔓", "label": "sectionneur non condamné", "bad": true, "why": "Sans condamnation, n'importe qui peut réenclencher pendant les travaux. On verrouille en position ouverte (cadenas) et on pose une pancarte." },
+            { "id": "c", "x": 210, "y": 105, "emoji": "🏷️", "label": "ouvrage identifié", "bad": false },
+            { "id": "d", "x": 260, "y": 70, "emoji": "✅", "label": "VAT effectuée", "bad": false }
+          ],
+          "win": "Sans faute 🏆 Une séparation non condamnée peut être refermée par un tiers. Cadenas + pancarte, toujours."
+        }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

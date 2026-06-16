@@ -17,11 +17,11 @@
       "titre": "Sécurité électrique et protection des personnes",
       "badge": "bloc-2",
       "niveaux": [
-        { "id": 5, "titre": "Niveau 5" },
-        { "id": 6, "titre": "Niveau 6" },
-        { "id": 7, "titre": "Niveau 7" },
-        { "id": 8, "titre": "Niveau 8" },
-        { "id": 9, "titre": "Niveau 9" }
+        { "id": 5, "titre": "Le danger électrique pour le corps humain" },
+        { "id": 6, "titre": "La protection des personnes" },
+        { "id": 7, "titre": "L'électricité dans la salle de bain" },
+        { "id": 8, "titre": "Le matériel et son environnement" },
+        { "id": 9, "titre": "Travailler en sécurité" }
       ]
     },
     {
