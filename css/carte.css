@@ -71,12 +71,22 @@
 
 .bulle.debloquee:hover { transform: scale(1.07); }
 
-/* Niveau verrouillé */
+/* Niveau accessible sans être l'étape suivante (ouvert manuellement / navigation libre) */
+.bulle.ouvert {
+  border-color: var(--jaune);
+  color: var(--jaune);
+  background: var(--fond-2);
+}
+.bulle.ouvert:hover { transform: scale(1.07); }
+
+/* Niveau verrouillé : cadenas conservé, mais cliquable pour l'ouvrir quand même */
 .bulle.verrouillee {
   border-color: var(--verrou);
   color: var(--verrou);
-  cursor: not-allowed;
+  cursor: pointer;
+  font: inherit;
 }
+.bulle.verrouillee:hover { border-color: var(--texte-2); }
 
 .bulle .cadenas {
   position: absolute;
@@ -92,3 +102,38 @@
   align-items: center;
   justify-content: center;
 }
+
+/* ---------- Dialogue de confirmation (ouvrir un niveau verrouillé) ---------- */
+.dialogue-fond {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 13, 17, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: var(--esp-3);
+}
+
+.dialogue {
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  max-width: 360px;
+  width: 100%;
+  padding: var(--esp-4) var(--esp-3);
+  box-shadow: var(--ombre);
+}
+.dialogue h5 { margin: 0 0 var(--esp-2); color: var(--jaune); font-size: 0.95rem; }
+.dialogue p { margin: 0; font-size: 0.88rem; line-height: 1.5; color: var(--texte); }
+
+.dialogue-actions { display: flex; gap: var(--esp-2); margin-top: var(--esp-4); }
+.dialogue-actions button {
+  flex: 1;
+  border-radius: 9px;
+  padding: 11px;
+  font-weight: 700;
+  border: none;
+}
+.dialogue-annuler { background: var(--fond-2); border: 1.5px solid var(--bordure); color: var(--texte-2); }
+.dialogue-ouvrir { background: var(--jaune); color: var(--texte-sur-jaune); }

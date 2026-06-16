@@ -7,7 +7,9 @@ const ETAT_DEFAUT = {
   electrons: 0,
   badges: [],
   niveauxTermines: [],
-  activites: {}
+  activites: {},
+  navigationLibre: false,      // réglage : accès direct à tous les niveaux
+  deverrouillesManuels: []     // niveaux verrouillés ouverts à la demande
 };
 
 export function chargerProgression() {
@@ -50,6 +52,37 @@ export function niveauDebloque(idNiveau, etat = chargerProgression()) {
 
 export function niveauTermine(idNiveau, etat = chargerProgression()) {
   return etat.niveauxTermines.includes(idNiveau);
+}
+
+// Réglage "Navigation libre" : tous les niveaux accessibles directement.
+export function navigationLibre(etat = chargerProgression()) {
+  return Boolean(etat.navigationLibre);
+}
+
+export function definirNavigationLibre(actif) {
+  const etat = chargerProgression();
+  etat.navigationLibre = Boolean(actif);
+  sauverProgression(etat);
+  return etat.navigationLibre;
+}
+
+// Ouverture à la demande d'un niveau verrouillé : il reste accessible ensuite.
+export function deverrouillerManuel(idNiveau) {
+  const etat = chargerProgression();
+  if (!etat.deverrouillesManuels.includes(idNiveau)) {
+    etat.deverrouillesManuels.push(idNiveau);
+    sauverProgression(etat);
+  }
+  return etat;
+}
+
+// Accessible = navigation libre, OU débloqué par la progression, OU terminé,
+// OU ouvert manuellement.
+export function niveauAccessible(idNiveau, etat = chargerProgression()) {
+  return navigationLibre(etat)
+    || niveauDebloque(idNiveau, etat)
+    || niveauTermine(idNiveau, etat)
+    || etat.deverrouillesManuels.includes(idNiveau);
 }
 
 // Activités d'un niveau : "lecon", "quiz", "jeu".

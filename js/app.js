@@ -3,9 +3,10 @@
 
 import {
   majCompteurElectrons, crediterElectrons, terminerNiveau,
-  niveauDebloque, activiteFaite, marquerActivite, toutesActivitesFaites
+  niveauAccessible, deverrouillerManuel, activiteFaite, marquerActivite, toutesActivitesFaites
 } from "./progression.js";
 import { afficherCarte } from "./carte.js";
+import { brancherMenu } from "./menu.js";
 import { afficherVolty, voltyReagit } from "./volty.js";
 import { brancherBoutonSons } from "./audio.js";
 import { demarrerLecon } from "./lecon.js";
@@ -24,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
   mesurerEntete();
 
   const conteneurCarte = document.querySelector(".carte");
-  if (conteneurCarte) afficherCarte(conteneurCarte);
+  if (conteneurCarte) {
+    afficherCarte(conteneurCarte);
+    brancherMenu(() => afficherCarte(conteneurCarte)); // re-rend la carte au changement de réglage
+  }
 
   const conteneurNiveau = document.querySelector(".niveau");
   if (conteneurNiveau) initNiveau(conteneurNiveau);
@@ -43,8 +47,14 @@ function mesurerEntete() {
 async function initNiveau(conteneur) {
   const id = Number(new URLSearchParams(location.search).get("id"));
   if (!id || id < 1 || id > 21) { location.href = "index.html"; return; }
-  if (!niveauDebloque(id)) {
-    conteneur.innerHTML = `<p class="niveau-message">🔒 Ce niveau est encore verrouillé. Termine le niveau ${id - 1} d'abord !</p>`;
+  if (!niveauAccessible(id)) {
+    conteneur.innerHTML = `
+      <p class="niveau-message">🔒 Ce niveau fait partie d'un parcours progressif et n'est pas encore débloqué.</p>
+      <div class="niveau-message"><button class="ouvrir-quand-meme" type="button">Ouvrir quand même</button></div>`;
+    conteneur.querySelector(".ouvrir-quand-meme").addEventListener("click", () => {
+      deverrouillerManuel(id);
+      location.reload();
+    });
     return;
   }
 

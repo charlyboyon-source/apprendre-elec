@@ -6,7 +6,16 @@
   padding: var(--esp-3) var(--esp-3) var(--esp-5);
 }
 
-.niveau-message { text-align: center; color: var(--texte-2); padding: var(--esp-5) var(--esp-3); }
+.niveau-message { text-align: center; color: var(--texte-2); padding: var(--esp-4) var(--esp-3) 0; }
+
+.ouvrir-quand-meme {
+  background: var(--jaune);
+  color: var(--texte-sur-jaune);
+  border: none;
+  border-radius: 9px;
+  padding: 11px 18px;
+  font-weight: 700;
+}
 
 .niveau-entete h2 { margin: var(--esp-1) 0; }
 .niveau-objectif { color: var(--texte-2); font-size: 0.9rem; margin-top: 0; }
