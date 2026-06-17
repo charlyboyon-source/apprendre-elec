@@ -13,11 +13,24 @@ export function brancherMenu(onChangement) {
   const drawer = document.createElement("nav");
   drawer.className = "menu-drawer";
   drawer.setAttribute("aria-label", "Menu");
+  const page = location.pathname.split("/").pop() || "index.html";
+  const type = new URLSearchParams(location.search).get("type");
+  const actif = (cond) => (cond ? " actif" : "");
+  const surParcours = page === "" || page === "index.html";
+  const surBiblio = page === "bibliotheque.html";
+
   drawer.innerHTML = `
     <div class="menu-tete">
       <span>Menu</span>
       <button class="menu-fermer" type="button" aria-label="Fermer">✕</button>
     </div>
+    <nav class="menu-liens">
+      <a class="menu-lien${actif(surParcours)}" href="index.html">⚡ Le parcours</a>
+      <a class="menu-lien${actif(surBiblio && type === "lecon")}" href="bibliotheque.html?type=lecon">📖 Toutes les leçons</a>
+      <a class="menu-lien${actif(surBiblio && type === "quiz")}" href="bibliotheque.html?type=quiz">🎯 Tous les quiz</a>
+      <a class="menu-lien${actif(surBiblio && type === "jeu")}" href="bibliotheque.html?type=jeu">🎮 Tous les jeux</a>
+    </nav>
+    <div class="menu-sep"></div>
     <label class="menu-reglage">
       <span class="menu-reglage-txt">
         <b>Navigation libre</b>

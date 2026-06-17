@@ -6,6 +6,7 @@ import {
   niveauAccessible, deverrouillerManuel, activiteFaite, marquerActivite, toutesActivitesFaites
 } from "./progression.js";
 import { afficherCarte } from "./carte.js";
+import { afficherBibliotheque } from "./bibliotheque.js";
 import { brancherMenu } from "./menu.js";
 import { afficherVolty, voltyReagit } from "./volty.js";
 import { brancherBoutonSons } from "./audio.js";
@@ -28,6 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (conteneurCarte) {
     afficherCarte(conteneurCarte);
     brancherMenu(() => afficherCarte(conteneurCarte)); // re-rend la carte au changement de réglage
+  }
+
+  const conteneurBiblio = document.querySelector(".bibliotheque");
+  if (conteneurBiblio) {
+    const type = new URLSearchParams(location.search).get("type") || "lecon";
+    afficherBibliotheque(conteneurBiblio, type);
+    brancherMenu(() => afficherBibliotheque(conteneurBiblio, type));
   }
 
   const conteneurNiveau = document.querySelector(".niveau");
@@ -68,7 +76,10 @@ async function initNiveau(conteneur) {
     return;
   }
 
-  afficherHub(niveau, conteneur);
+  // Lien profond depuis les bibliothèques : ouvrir directement le bon module.
+  const module = new URLSearchParams(location.search).get("module");
+  if (["lecon", "quiz", "jeu"].includes(module)) afficherActivite(module, niveau, conteneur);
+  else afficherHub(niveau, conteneur);
 }
 
 // Menu du niveau : Volty + les 3 modules en grosses cartes.

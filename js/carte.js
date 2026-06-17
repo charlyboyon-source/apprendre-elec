@@ -1,7 +1,8 @@
 // Rendu de la carte : bandeau de progression, en-têtes de bloc (icône +
 // titre + description), bulles avec verrouillage et état "à venir".
 
-import { chargerProgression, niveauDebloque, niveauTermine, niveauAccessible, deverrouillerManuel } from "./progression.js";
+import { chargerProgression, niveauDebloque, niveauTermine, niveauAccessible } from "./progression.js";
+import { demanderOuverture } from "./dialogue.js";
 
 // Petites icônes au trait (24×24), couleur héritée via currentColor.
 const ICONES_BLOC = {
@@ -105,7 +106,7 @@ function creerBulle(niveau, etat, aVenir) {
       bulle.textContent = niveau.id;
       bulle.setAttribute("aria-label", `Niveau ${niveau.id} — ${niveau.titre} (verrouillé — ouvrir quand même ?)`);
       bulle.appendChild(cadenasEl());
-      bulle.addEventListener("click", () => demanderOuverture(niveau));
+      bulle.addEventListener("click", () => demanderOuverture(niveau, () => { location.href = `niveau.html?id=${niveau.id}`; }));
       etatCls = "est-verrou";
     }
     label = niveau.titre;
@@ -119,32 +120,4 @@ function creerBulle(niveau, etat, aVenir) {
   libelle.textContent = label;
   item.appendChild(libelle);
   return item;
-}
-
-// Confirmation avant d'ouvrir un niveau hors progression.
-function demanderOuverture(niveau) {
-  fermerDialogue();
-  const fond = document.createElement("div");
-  fond.className = "dialogue-fond";
-  fond.innerHTML = `
-    <div class="dialogue" role="dialog" aria-modal="true" aria-labelledby="dlg-titre">
-      <h5 id="dlg-titre">Niveau ${niveau.id} — ${niveau.titre}</h5>
-      <p>Ce niveau fait partie d'un parcours progressif. L'ouvrir quand même ?</p>
-      <div class="dialogue-actions">
-        <button class="dialogue-annuler" type="button">Annuler</button>
-        <button class="dialogue-ouvrir" type="button">Ouvrir</button>
-      </div>
-    </div>`;
-
-  fond.querySelector(".dialogue-annuler").addEventListener("click", fermerDialogue);
-  fond.addEventListener("click", (e) => { if (e.target === fond) fermerDialogue(); });
-  fond.querySelector(".dialogue-ouvrir").addEventListener("click", () => {
-    deverrouillerManuel(niveau.id);
-    location.href = `niveau.html?id=${niveau.id}`;
-  });
-  document.body.appendChild(fond);
-}
-
-function fermerDialogue() {
-  document.querySelector(".dialogue-fond")?.remove();
 }
