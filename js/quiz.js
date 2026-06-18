@@ -1,13 +1,28 @@
-// Moteur de quiz : réponses enregistrées au fil de la série,
-// correction EN FIN DE SÉRIE avec renvoi vers l'écran de leçon concerné.
+// Moteur de quiz : tirage de 15 questions au hasard dans une banque
+// (niveau.banque) — chaque tentative redonne un tirage différent. Si la
+// source compte 15 questions ou moins (niveau.quiz des modules 2-9), on
+// prend tout. Correction EN FIN DE SÉRIE + renvoi vers le cours.
 
 import { activerTermes, brancherTermes } from "./glossaire.js";
 
+const NB_TIRAGE = 15;
+
+// Mélange (Fisher-Yates) puis prend n ; si la source est ≤ n, on garde tout dans l'ordre.
+function tirer(source, n) {
+  if (source.length <= n) return source.slice();
+  const copie = source.slice();
+  for (let i = copie.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copie[i], copie[j]] = [copie[j], copie[i]];
+  }
+  return copie.slice(0, n);
+}
+
 // Options :
-//   onFin(score, total)     : appelé à l'affichage des résultats
-//   onRevoirLecon(indexEcran) : renvoi vers la leçon depuis une erreur
+//   onFin(score, total)       : appelé à l'affichage des résultats
+//   onRevoirLecon(indexSection) : renvoi vers le cours depuis une erreur
 export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
-  const questions = niveau.quiz;
+  const questions = tirer(niveau.banque || niveau.quiz, NB_TIRAGE);
   const reponses = Array(questions.length).fill(null);
   let index = 0;
 
@@ -66,7 +81,7 @@ export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
       div.innerHTML = `
         <div class="resultat-q"><span>${ok ? "✅" : "❌"}</span><span>Q${i + 1}. ${q.question}</span></div>
         <div class="resultat-x">${ok ? "" : `Ta réponse : « ${q.choix[reponses[i]]} » — `}Bonne réponse : <b>${q.choix[q.bonne]}</b><br>${q.explication}</div>
-        ${ok ? "" : `<button class="revoir-lecon" data-ecran="${q.renvoi_lecon}">📖 Revoir la leçon — écran ${q.renvoi_lecon + 1}</button>`}`;
+        ${ok ? "" : `<button class="revoir-lecon" data-ecran="${q.renvoi_lecon}">📖 Revoir la leçon</button>`}`;
       liste.appendChild(div);
     });
 

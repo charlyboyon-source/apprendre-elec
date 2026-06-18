@@ -92,8 +92,8 @@ function afficherHub(niveau, conteneur) {
       <p class="niveau-objectif">${niveau.objectif}</p>
     </div>
     <div class="hub-grille">
-      <button class="hub-case" data-act="lecon">${coche(niveau.id, "lecon")}<span class="ic">📖</span><b>Leçon</b><small>${niveau.lecon.length} écrans visuels</small></button>
-      <button class="hub-case" data-act="quiz">${coche(niveau.id, "quiz")}<span class="ic">🎯</span><b>Quiz</b><small>${niveau.quiz.length} questions · correction en fin de série</small></button>
+      <button class="hub-case" data-act="lecon">${coche(niveau.id, "lecon")}<span class="ic">📖</span><b>Leçon</b><small>${descrLecon(niveau)}</small></button>
+      <button class="hub-case" data-act="quiz">${coche(niveau.id, "quiz")}<span class="ic">🎯</span><b>Quiz</b><small>${descrQuiz(niveau)}</small></button>
       <button class="hub-case" data-act="jeu">${coche(niveau.id, "jeu")}<span class="ic">🎮</span><b>${JEUX[niveau.jeu.type].nom}</b><small>${JEUX[niveau.jeu.type].desc(niveau.jeu.config)}</small></button>
     </div>`;
 
@@ -112,6 +112,15 @@ function afficherHub(niveau, conteneur) {
 
 function coche(id, act) {
   return activiteFaite(id, act) ? '<span class="fait">✓</span>' : "";
+}
+
+// Descripteurs adaptés au format (cours long / écrans paginés · banque / quiz fixe).
+function descrLecon(niveau) {
+  return niveau.cours ? "Cours complet à lire" : `${niveau.lecon.length} écrans visuels`;
+}
+function descrQuiz(niveau) {
+  if (niveau.banque) return `${Math.min(15, niveau.banque.length)} questions tirées au hasard`;
+  return `${niveau.quiz.length} questions · correction en fin de série`;
 }
 
 // Vue plein écran d'une activité : elle remplace le menu. Une barre sticky

@@ -7,8 +7,8 @@ import { demanderOuverture } from "./dialogue.js";
 const JEU_NOM = { "trouve-erreur": "Trouve l'erreur", "vrai-faux-rapide": "Vrai / Faux rapide" };
 
 const TYPES = {
-  lecon: { titre: "Toutes les leçons", icone: "📖", descr: (n) => `${n.lecon.length} écrans` },
-  quiz: { titre: "Tous les quiz", icone: "🎯", descr: (n) => `${n.quiz.length} questions` },
+  lecon: { titre: "Toutes les leçons", icone: "📖", descr: (n) => n.cours ? "Cours complet" : `${n.lecon.length} écrans` },
+  quiz: { titre: "Tous les quiz", icone: "🎯", descr: (n) => n.banque ? `${Math.min(15, n.banque.length)} questions au hasard` : `${n.quiz.length} questions` },
   jeu: { titre: "Tous les jeux", icone: "🎮", descr: (n) => JEU_NOM[n.jeu.type] || "Jeu" }
 };
 

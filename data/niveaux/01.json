@@ -2,122 +2,705 @@
   "id": 1,
   "bloc": 1,
   "titre": "La nature de l'électricité",
-  "objectif": "Comprendre ce qui circule dans les fils — et savoir nommer les grandeurs : courant, tension, résistance",
-  "lecon": [
+  "objectif": "Comprendre ce qui circule vraiment dans les fils — et savoir nommer les grandeurs : courant, tension, résistance",
+  "cours": {
+    "intro": "Bienvenue dans le tout premier module. Avant les calculs et les schémas, on pose les bases : qu'est-ce qui circule vraiment dans un fil, et avec quels mots de pro on en parle. Lis ce cours tranquillement, de haut en bas — tout le reste de la formation s'appuie dessus.",
+    "sections": [
+      {
+        "titre": "1. À quoi sert l'électricité ?",
+        "svg": "c1-usages.svg",
+        "contenu": "<p>Avant d'entrer dans la technique, une question simple : <b>pourquoi</b> tout ce courant ? Parce qu'une fois maîtrisée, l'électricité se transforme en presque tout ce dont on a besoin au quotidien.</p><p>On lui demande surtout quatre choses. <b>Le chauffage</b> : radiateurs, plancher chauffant, eau chaude, four — l'électricité devient chaleur. <b>L'éclairage</b> : lampes et LED transforment le courant en lumière. <b>La force motrice</b> : tout ce qui tourne ou se déplace grâce à un moteur — volet roulant, VMC, pompe, portail, machine-outil, et désormais le véhicule électrique. <b>La communication</b> : téléphone, internet, interphone, alarme, domotique font circuler de l'information.</p><p>Chauffer, éclairer, mettre en mouvement, communiquer : voilà le métier. Tout le reste du cours sert à le faire <b>sans danger</b> et <b>au bon calibre</b>.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "En logement, le chauffage et l'eau chaude pèsent le plus lourd sur la facture : ce sont les plus gros consommateurs. Tu t'en souviendras au moment de dimensionner les circuits."
+        },
+        "memo": "L'électricité sert à 4 choses : chauffer, éclairer, mettre en mouvement (force motrice), communiquer."
+      },
+      {
+        "titre": "2. L'atome et les électrons libres",
+        "svg": "n1-atome.svg",
+        "contenu": "<p>Toute la matière — le métal d'un fil, l'air, ton corps — est faite de minuscules briques : les <b>atomes</b>. Chaque atome a un <b>noyau</b> central chargé positivement (+), autour duquel gravitent des [[électron|électrons]] chargés négativement (−).</p><p>Dans la plupart des matériaux, ces électrons restent bien accrochés à leur noyau. Mais dans les <b>métaux</b> — et le <b>cuivre</b> en premier — les électrons de la couche extérieure sont très peu retenus : ils se détachent et se baladent d'atome en atome, dans tous les sens. On les appelle les <b>électrons libres</b>. Un fil de cuivre en contient un nombre vertigineux, en mouvement permanent mais désordonné.</p><p>L'électricité, ce sera tout simplement le moment où on arrive à mettre ces électrons libres d'accord pour avancer dans la même direction.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Le cœur d'un fil électrique est presque toujours en cuivre : c'est le champion des électrons libres, donc le meilleur passage pour le courant. L'aluminium, moins cher, en a aussi mais conduit moins bien — on le réserve aux grosses sections."
+        },
+        "memo": "Atome = noyau (+) + électrons (−). Dans les métaux, des électrons LIBRES se baladent : voilà la matière première de l'électricité."
+      },
+      {
+        "titre": "3. Conducteurs et isolants",
+        "svg": "c1-iso-cuivre.svg",
+        "contenu": "<p>Tous les matériaux ne réagissent pas pareil face au courant. On les range en deux familles.</p><p>Les [[conducteur|conducteurs]] laissent passer le courant parce qu'ils regorgent d'électrons libres : tous les métaux (cuivre, aluminium, or, fer…), mais aussi l'eau salée et le corps humain. Les [[isolant|isolants]], eux, retiennent fermement leurs électrons, donc rien ne circule : le <b>PVC</b> (le plastique des gaines), le verre, la céramique, le caoutchouc, l'air sec, le bois bien sec.</p><p>Un fil électrique, c'est justement le mariage des deux : une âme <b>conductrice</b> en cuivre, entourée d'une gaine <b>isolante</b> en PVC. Le cuivre transporte le courant, le PVC l'empêche de partir là où il ne faut pas — et te protège.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Tes outils (tournevis, pinces) ont des manches isolants : c'est ta première protection, car l'isolant t'empêche de faire partie du circuit. Un manche fendu ou abîmé ne joue plus son rôle — on le remplace, on ne bricole pas."
+        },
+        "memo": "Conducteur = électrons libres, ça passe (métaux). Isolant = électrons prisonniers, ça bloque (PVC, verre, air sec)."
+      },
+      {
+        "titre": "4. Le courant et le sens conventionnel",
+        "svg": "n1-courant.svg",
+        "contenu": "<p>Branche les deux bouts d'un fil de cuivre sur une pile : d'un coup, les électrons libres cessent de gigoter au hasard et se mettent à <b>avancer tous dans le même sens</b>. Ce déplacement d'ensemble, c'est le [[courant électrique]].</p><p>Attention à un piège historique. Les électrons, négatifs, vont en réalité du <b>−</b> vers le <b>+</b>. Mais bien avant qu'on découvre l'électron, les savants avaient déjà choisi un sens pour les schémas : du <b>+ vers le −</b>. On l'a gardé : c'est le [[sens conventionnel]] du courant, celui des flèches, des schémas et des calculs. Retiens simplement : sur un schéma, la flèche va du + vers le −.</p><p>Dernière surprise : les électrons avancent très <b>lentement</b> (quelques millimètres par minute). Pourtant la lampe s'allume dès que tu appuies sur l'interrupteur. C'est comme une rangée de dominos, ou un tuyau déjà plein d'eau : on pousse d'un côté, ça sort de l'autre tout de suite.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Ne te demande jamais « où vont vraiment les électrons » sur un schéma : raisonne toujours en sens conventionnel, du + vers le −. C'est la convention de toute la profession et de l'examen."
+        },
+        "memo": "Courant = électrons qui avancent ensemble. Sens conventionnel : + → −. Les électrons font l'inverse, et avancent lentement (mais l'effet est immédiat)."
+      },
+      {
+        "titre": "5. Comment produit-on l'électricité ?",
+        "svg": "c1-continu-alternatif.svg",
+        "contenu": "<p>D'où vient le courant qui arrive dans tes fils ? Il faut bien le <b>produire</b> quelque part. Il existe quatre grandes façons d'y arriver.</p><p><b>1. Le magnétisme.</b> On fait tourner un aimant devant une bobine de fil, et ce mouvement crée un courant. C'est le principe de l'<b>alternateur</b> : centrales, barrages, éoliennes, et même l'alternateur de ta voiture. Il produit un [[courant alternatif]].</p><p><b>2. Le photovoltaïque.</b> La lumière qui frappe un panneau solaire arrache des électrons et crée un courant. Il produit un <b>courant continu</b>.</p><p><b>3. La voie chimique.</b> Dans une pile ou une batterie, une réaction chimique sépare les charges entre les deux bornes. Elle produit aussi un <b>courant continu</b>.</p><p><b>4. L'électricité statique.</b> Par frottement (le pull qui crépite, la poignée qui « pique »). Spectaculaire, mais marginale : on ne s'en sert pas pour alimenter quoi que ce soit.</p><p>Retiens surtout la distinction. Le <b>courant continu</b> circule toujours dans le même sens (produit par la chimie et le photovoltaïque) ; le [[courant alternatif]] change de sens en permanence (produit par le magnétisme). Le réseau qui alimente ton logement est <b>alternatif</b> — on verra précisément pourquoi et comment au module 4.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Pile, batterie, panneau solaire = continu. Alternateur, réseau = alternatif. Beaucoup d'appareils (téléphone, LED, électronique) marchent en continu : leur petit bloc d'alimentation transforme l'alternatif de la prise en continu."
+        },
+        "memo": "4 sources : magnétisme (→ alternatif), photovoltaïque (→ continu), chimique (→ continu), statique (marginal). Le réseau est alternatif."
+      },
+      {
+        "titre": "6. L'intensité",
+        "svg": "n1-intensite.svg",
+        "contenu": "<p>On a un courant : on veut maintenant le mesurer. Première question — <b>combien</b> d'électrons passent chaque seconde ? C'est l'[[intensité]], notée <b>I</b>, qui se mesure en <b>ampères (A)</b>.</p><p>L'image la plus simple, c'est le <b>débit d'eau</b> dans un tuyau : beaucoup d'eau qui passe = fort débit = forte intensité. Un seul ampère, c'est déjà un fleuve d'électrons : environ 6 milliards de milliards de charges par seconde.</p><p>L'intensité se mesure avec un <b>ampèremètre</b>, branché <b>en série</b> : le courant doit le <b>traverser</b> pour être compté, comme un compteur d'eau posé sur le tuyau. Quelques ordres de grandeur du métier : une lampe LED tire environ 0,05 A, un radiateur de 2 000 W environ 9 A, une plaque de cuisson 20 A et plus.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Pour mesurer une intensité sans couper le fil, on utilise une pince ampèremétrique : on referme la pince autour du conducteur et elle lit le courant. Rapide et sans danger sur une installation sous tension."
+        },
+        "memo": "Intensité I = débit d'électrons, en ampères (A). Ampèremètre EN SÉRIE (le courant le traverse)."
+      },
+      {
+        "titre": "7. La tension",
+        "svg": "c1-iso-pile.svg",
+        "contenu": "<p>Pour que les électrons se mettent en marche, il faut quelque chose qui les <b>pousse</b>. Cette « pression électrique » entre deux points, c'est la [[tension]], notée <b>U</b>, en <b>volts (V)</b>. On l'appelle aussi <b>différence de potentiel</b>.</p><p>Reprends le tuyau : la tension, c'est la <b>différence de pression</b> entre l'entrée et la sortie. Pas de différence de pression, l'eau ne bouge pas ; pas de tension, pas de courant. Une pile crée cette tension entre sa borne + et sa borne − ; le réseau fait pareil entre la phase et le neutre.</p><p>La tension se mesure avec un <b>voltmètre</b>, branché <b>en parallèle</b>, c'est-à-dire <b>aux bornes</b> de l'élément (les deux pointes de touche sur les deux points à comparer). Valeurs à connaître : une pile bâton 1,5 V, une batterie de voiture 12 V, une prise de courant <b>230 V</b>, le réseau triphasé 400 V entre phases.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Avec un multimètre, mesurer une tension est l'opération la plus courante : sélecteur sur « V », les deux pointes aux bornes, et on lit. Sur une prise, tu dois trouver environ 230 V entre les deux alvéoles."
+        },
+        "memo": "Tension U = la pression qui pousse, en volts (V). Voltmètre EN PARALLÈLE (aux bornes). Une prise = 230 V."
+      },
+      {
+        "titre": "8. La résistance",
+        "svg": "n1-resistance.svg",
+        "contenu": "<p>Aucun matériau ne laisse passer le courant totalement librement : il y a toujours un <b>frein</b>. Ce frein, c'est la [[résistance]], notée <b>R</b>, en <b>ohms (Ω)</b>. Plus la résistance est grande, plus il est difficile au courant de passer.</p><p>Dans l'image du tuyau, la résistance, c'est un <b>étranglement</b> : plus le tuyau est pincé, moins l'eau passe. La résistance d'un fil dépend de <b>trois choses</b> : sa <b>longueur</b> (plus c'est long, plus ça résiste), sa <b>section</b> — son épaisseur (plus c'est gros, <b>moins</b> ça résiste) — et son <b>matériau</b> (le cuivre résiste peu, le PVC énormément).</p><p>La résistance se mesure avec un <b>ohmmètre</b>, toujours sur un circuit <b>hors tension</b> : l'appareil envoie son propre petit courant pour mesurer ; s'il y a déjà du courant, la mesure est fausse et l'appareil risque la casse.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Une rallonge trop fine et trop longue tirée pour une grosse meuleuse, ça chauffe : la résistance du fil dissipe de la chaleur. Réflexe : grosse section, longueur adaptée — et on déroule toujours entièrement un enrouleur quand il débite."
+        },
+        "memo": "Résistance R = le frein, en ohms (Ω). Long + fin → résiste plus. Court + gros → résiste moins. Ohmmètre HORS tension."
+      },
+      {
+        "titre": "9. Les trois grandeurs, vers la loi d'Ohm",
+        "svg": "n1-recap.svg",
+        "contenu": "<p>Récapitulons avec une seule image, le circuit d'eau : la [[tension]] U (volts) est la pression qui pousse, l'[[intensité]] I (ampères) est le débit qui circule, la [[résistance]] R (ohms) est l'étranglement qui freine.</p><p>Ces trois grandeurs ne sont pas indépendantes : pousse plus fort (plus de tension) et le débit monte ; pince le tuyau (plus de résistance) et le débit baisse. Cette relation entre U, I et R porte un nom — la [[loi d'Ohm]] — et c'est tout le programme du module suivant.</p><p>Un dernier réflexe de pro à prendre dès maintenant : ne confonds jamais le <b>symbole de la grandeur</b> (U, I, R) avec le <b>symbole de son unité</b> (V, A, Ω). On dit « une tension de 230 volts », jamais « un voltage » — ce mot n'existe pas en français technique.</p>",
+        "encadre": {
+          "titre": "Sur le chantier",
+          "texte": "Sur les plaques signalétiques et les schémas, tu liras tout le temps V, A, Ω et W. Apprends à les repérer vite : ce sont les unités de base du métier. La suite (loi d'Ohm, puissance) ne fait que les relier entre elles."
+        },
+        "memo": "U pousse (V) · I circule (A) · R freine (Ω). Les trois sont liées : c'est la loi d'Ohm (module 2). Et « voltage » n'existe pas."
+      }
+    ]
+  },
+  "banque": [
     {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · LA MATIÈRE",
-      "titre": "Tout commence dans l'atome",
-      "svg": "n1-atome.svg",
-      "contenu": "Toute la matière est faite d'atomes : un noyau chargé positivement, entouré d'[[électron|électrons]] chargés négativement. Dans les métaux — cuivre en tête — les électrons de la couche externe sont peu retenus par le noyau : on les appelle <b>électrons libres</b>. Ils sautent d'atome en atome en permanence, dans le désordre. C'est cette population d'électrons libres qui rend les métaux [[conducteur|conducteurs]] : il suffit de les mettre en mouvement ordonné. À l'inverse, les [[isolant|isolants]] (PVC, verre, céramique, air sec) gardent leurs électrons solidement accrochés : rien ne peut y circuler.",
-      "memo": "Conducteur = électrons libres disponibles. Isolant = électrons prisonniers. C'est toute la différence."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · LE COURANT",
-      "titre": "Le courant : des électrons mis en marche",
-      "svg": "n1-courant.svg",
-      "contenu": "Branche un générateur aux deux bouts d'un fil de cuivre : les électrons libres se mettent en marche, tous dans le même sens. Ce déplacement ordonné, c'est le [[courant électrique]]. Attention au piège historique : les électrons (négatifs) circulent du − vers le +, mais le [[sens conventionnel]] du courant — celui des schémas, des flèches, des calculs — va du <b>+ vers le −</b> à l'extérieur du générateur. Il a été fixé avant la découverte de l'électron, et on l'a gardé. Aux 230 V du logement, ne t'imagine pas des électrons fonçant dans les fils : chaque électron avance très lentement, mais l'impulsion se transmet de proche en proche quasi instantanément — comme une rangée de dominos.",
-      "memo": "Sens conventionnel = du + vers le − (à l'extérieur du générateur). Les électrons font l'inverse."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · L'INTENSITÉ",
-      "titre": "L'intensité : le débit d'électrons",
-      "svg": "n1-intensite.svg",
-      "contenu": "Première grandeur à mesurer : combien de charges passent chaque seconde dans le fil. C'est l'[[intensité]], symbole <b>I</b>, en <b>ampères (A)</b>. Un ampère correspond à un débit d'un coulomb de charges par seconde — environ 6 milliards de milliards d'électrons chaque seconde. L'image à retenir : l'intensité est le <b>débit d'eau</b> dans le tuyau. Elle se mesure avec un <b>ampèremètre</b>, toujours branché <b>en série</b> dans le circuit : le courant doit le traverser pour être compté. Ordres de grandeur du métier : une lampe LED ≈ 0,05 A · un radiateur 2 000 W ≈ 9 A · une plaque de cuisson ≈ 20 A et plus.",
-      "memo": "I en ampères (A) = débit de charges. Ampèremètre EN SÉRIE."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · LA TENSION",
-      "titre": "La tension : la pression qui pousse",
-      "svg": "n1-tension.svg",
-      "contenu": "Pour que les électrons avancent, il faut les pousser. Cette « pression électrique » entre deux points d'un circuit, c'est la [[tension]], symbole <b>U</b>, en <b>volts (V)</b> — on dit aussi <b>différence de potentiel</b>. Dans l'image du tuyau, la tension est la <b>différence de pression</b> entre l'entrée et la sortie : sans différence, pas de circulation. Elle se mesure avec un <b>voltmètre</b>, branché <b>en parallèle</b>, c'est-à-dire entre les deux points dont on compare le potentiel — on dit « aux bornes » de l'élément. Valeurs du quotidien : pile 1,5 V · batterie de voiture 12 V · prise domestique <b>230 V</b> · réseau triphasé 400 V entre phases.",
-      "memo": "U en volts (V) = pression entre deux points. Voltmètre EN PARALLÈLE (aux bornes)."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · LA RÉSISTANCE",
-      "titre": "La résistance : le frein du circuit",
-      "svg": "n1-resistance.svg",
-      "contenu": "Aucun matériau ne laisse passer le courant sans opposition. Cette opposition, c'est la [[résistance]], symbole <b>R</b>, en <b>ohms (Ω)</b>. Dans le tuyau d'eau : c'est son étranglement. Plus la résistance est grande, plus le courant a du mal à passer — à tension égale, l'intensité chute. La résistance d'un fil dépend de trois choses : sa <b>longueur</b> (plus c'est long, plus ça résiste), sa <b>section</b> (plus c'est gros, moins ça résiste — retiens-le, c'est la base du dimensionnement des conducteurs) et son <b>matériau</b> (le cuivre résiste peu, le PVC énormément). Elle se mesure avec un <b>ohmmètre</b>, toujours <b>hors tension</b>.",
-      "memo": "R en ohms (Ω) = le frein. Long et fin → résiste plus. Court et gros → résiste moins."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · LE RÉCAP",
-      "titre": "Les trois grandeurs, une seule image",
-      "svg": "n1-recap.svg",
-      "contenu": "Récapitule avec l'image du circuit d'eau : la [[tension]] U (volts) est la pression qui pousse, l'[[intensité]] I (ampères) est le débit qui circule, la [[résistance]] R (ohms) est l'étranglement qui freine. Les trois sont liées : augmente la pression, le débit monte ; resserre le tuyau, le débit baisse. Cette relation a un nom — la loi d'Ohm — et c'est tout le programme du niveau 2. Dernier réflexe de pro à ancrer dès maintenant : on ne confond jamais le symbole de la grandeur (U, I, R) avec celui de son unité (V, A, Ω). « Une tension de 230 V », jamais « un voltage ».",
-      "memo": "U pousse (V) · I circule (A) · R freine (Ω). Et « voltage » n'existe pas en français technique."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Dans un métal conducteur, le courant électrique est un déplacement ordonné :",
-      "choix": ["De noyaux d'atomes", "D'électrons libres", "De protons", "De molécules de cuivre"],
+      "question": "De quoi est composé un atome ?",
+      "choix": [
+        "Uniquement d'électrons",
+        "Un noyau positif entouré d'électrons négatifs",
+        "Un noyau négatif entouré de protons",
+        "Seulement de cuivre"
+      ],
       "bonne": 1,
-      "explication": "Seuls les électrons libres, peu retenus par leur noyau, peuvent se déplacer d'atome en atome. Noyaux et protons restent en place.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Le sens conventionnel du courant va :",
-      "choix": ["Du − vers le +, comme les électrons", "Du + vers le −, à l'extérieur du générateur", "Dans les deux sens à la fois", "Du neutre vers la phase"],
-      "bonne": 1,
-      "explication": "Le sens conventionnel (celui des schémas) va du + vers le − à l'extérieur du générateur. Les électrons, eux, circulent en sens inverse — le sens a été fixé avant leur découverte.",
+      "explication": "Un noyau chargé + au centre, des électrons chargés − autour.",
       "renvoi_lecon": 1
     },
     {
-      "question": "L'intensité du courant se mesure en :",
-      "choix": ["Volts (V)", "Ohms (Ω)", "Ampères (A)", "Watts (W)"],
-      "bonne": 2,
-      "explication": "I se mesure en ampères (A) : c'est le débit de charges qui traversent le circuit chaque seconde.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Comment branche-t-on un ampèremètre ?",
-      "choix": ["En parallèle, aux bornes du récepteur", "En série, dans le circuit", "Entre phase et terre", "Peu importe, il mesure dans tous les cas"],
+      "question": "Quelle est la charge d'un électron ?",
+      "choix": [
+        "Positive",
+        "Négative",
+        "Neutre",
+        "Elle change tout le temps"
+      ],
       "bonne": 1,
-      "explication": "L'ampèremètre compte les charges qui le TRAVERSENT : il se branche en série. Le voltmètre, lui, se branche en parallèle.",
+      "explication": "L'électron est négatif (−) ; le noyau, lui, est positif (+).",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Qu'est-ce qu'un électron libre dans un métal ?",
+      "choix": [
+        "Un électron arraché et perdu",
+        "Un électron peu retenu qui passe d'atome en atome",
+        "Un proton qui s'échappe",
+        "Un atome sans noyau"
+      ],
+      "bonne": 1,
+      "explication": "Dans les métaux, les électrons de la couche externe sont peu retenus : ils circulent d'atome en atome.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Quel matériau est réputé pour ses nombreux électrons libres ?",
+      "choix": [
+        "Le PVC",
+        "Le verre",
+        "Le cuivre",
+        "Le bois sec"
+      ],
+      "bonne": 2,
+      "explication": "Le cuivre est le champion des électrons libres : c'est pourquoi il est au cœur des fils.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Dans un fil de cuivre non branché, les électrons libres :",
+      "choix": [
+        "N'existent pas",
+        "Se déplacent en désordre",
+        "Avancent tous vers le +",
+        "Sont collés au noyau"
+      ],
+      "bonne": 1,
+      "explication": "Au repos, ils s'agitent dans tous les sens. Il faut une tension pour les faire avancer ensemble.",
+      "renvoi_lecon": 1
+    },
+    {
+      "question": "Un conducteur est un matériau qui :",
+      "choix": [
+        "Bloque le courant",
+        "Laisse passer le courant",
+        "Produit le courant",
+        "Stocke le courant"
+      ],
+      "bonne": 1,
+      "explication": "Le conducteur laisse circuler le courant grâce à ses électrons libres.",
       "renvoi_lecon": 2
     },
     {
-      "question": "La tension entre deux points s'appelle aussi :",
-      "choix": ["La différence de potentiel", "Le débit électrique", "La charge résiduelle", "Le voltage nominal"],
-      "bonne": 0,
-      "explication": "Tension = différence de potentiel entre deux points, en volts. Et « voltage » n'est pas un terme technique français.",
+      "question": "Lequel de ces matériaux est un isolant ?",
+      "choix": [
+        "Le cuivre",
+        "L'aluminium",
+        "Le PVC",
+        "L'eau salée"
+      ],
+      "bonne": 2,
+      "explication": "Le PVC retient ses électrons : il isole. Cuivre, aluminium et eau salée conduisent.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Pourquoi un métal conduit-il le courant ?",
+      "choix": [
+        "Parce qu'il est dur",
+        "Parce qu'il contient des électrons libres",
+        "Parce qu'il est brillant",
+        "Parce qu'il est lourd"
+      ],
+      "bonne": 1,
+      "explication": "Ce sont les électrons libres, abondants dans les métaux, qui transportent le courant.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "À quoi sert la gaine en PVC qui entoure un conducteur ?",
+      "choix": [
+        "À conduire le courant",
+        "À isoler et protéger",
+        "À augmenter l'intensité",
+        "À refroidir le cuivre"
+      ],
+      "bonne": 1,
+      "explication": "Le PVC est isolant : il empêche le courant de partir où il ne faut pas et protège l'utilisateur.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Lequel de ces éléments est conducteur ?",
+      "choix": [
+        "Le verre",
+        "Le caoutchouc",
+        "Le corps humain",
+        "L'air sec"
+      ],
+      "bonne": 2,
+      "explication": "Le corps humain conduit (d'où le danger). Verre, caoutchouc et air sec sont isolants.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Le manche isolant d'un tournevis sert à :",
+      "choix": [
+        "Mieux visser",
+        "Empêcher l'électricien de faire partie du circuit",
+        "Conduire le courant jusqu'à la vis",
+        "Décorer l'outil"
+      ],
+      "bonne": 1,
+      "explication": "L'isolant du manche évite que le courant ne traverse l'électricien : c'est une protection.",
+      "renvoi_lecon": 2
+    },
+    {
+      "question": "Le courant électrique, c'est :",
+      "choix": [
+        "Des électrons immobiles",
+        "Un déplacement ordonné d'électrons",
+        "De la chaleur qui circule",
+        "Une réaction chimique"
+      ],
+      "bonne": 1,
+      "explication": "Le courant est le déplacement d'ensemble des électrons libres, tous dans le même sens.",
       "renvoi_lecon": 3
     },
     {
-      "question": "À matériau égal, un conducteur plus LONG et plus FIN a une résistance :",
-      "choix": ["Plus faible", "Identique", "Plus grande", "Nulle s'il est en cuivre"],
+      "question": "Le sens conventionnel du courant va :",
+      "choix": [
+        "Du − vers le +",
+        "Du + vers le −",
+        "Dans les deux sens à la fois",
+        "Du neutre vers la terre"
+      ],
+      "bonne": 1,
+      "explication": "Par convention, sur les schémas, le courant va du + vers le − à l'extérieur du générateur.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "En réalité, dans un métal, les électrons se déplacent :",
+      "choix": [
+        "Du + vers le −",
+        "Du − vers le +",
+        "Ils ne bougent pas",
+        "Au hasard, même branché"
+      ],
+      "bonne": 1,
+      "explication": "Les électrons (négatifs) vont du − vers le + — l'inverse du sens conventionnel.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "Sur un schéma, la flèche du courant indique :",
+      "choix": [
+        "Le sens réel des électrons",
+        "Le sens conventionnel (+ vers −)",
+        "Le sens du vent",
+        "La direction de la terre"
+      ],
+      "bonne": 1,
+      "explication": "La flèche représente le sens conventionnel, celui des calculs et des schémas.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "Pourquoi la lampe s'allume instantanément alors que les électrons avancent lentement ?",
+      "choix": [
+        "Les électrons vont en fait très vite",
+        "L'effet se transmet de proche en proche, comme des dominos",
+        "La lampe stockait de l'électricité",
+        "C'est une illusion d'optique"
+      ],
+      "bonne": 1,
+      "explication": "Comme un tuyau déjà plein : on pousse d'un côté, ça sort de l'autre aussitôt.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "À quelle vitesse avancent les électrons dans un fil ?",
+      "choix": [
+        "À la vitesse de la lumière",
+        "Très lentement, quelques millimètres par minute",
+        "À 100 km/h",
+        "Ils ne se déplacent jamais"
+      ],
+      "bonne": 1,
+      "explication": "Leur dérive est très lente, mais l'impulsion se propage quasi instantanément.",
+      "renvoi_lecon": 3
+    },
+    {
+      "question": "L'intensité du courant se mesure en :",
+      "choix": [
+        "Volts",
+        "Ampères",
+        "Ohms",
+        "Watts"
+      ],
+      "bonne": 1,
+      "explication": "L'intensité (I) se mesure en ampères (A).",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Quel est le symbole de l'intensité ?",
+      "choix": [
+        "U",
+        "I",
+        "R",
+        "P"
+      ],
+      "bonne": 1,
+      "explication": "I pour l'intensité. U = tension, R = résistance, P = puissance.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Dans l'analogie de l'eau, l'intensité correspond :",
+      "choix": [
+        "À la pression",
+        "Au débit",
+        "À l'étranglement",
+        "À la température"
+      ],
+      "bonne": 1,
+      "explication": "L'intensité est le débit ; la pression est la tension ; l'étranglement est la résistance.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Comment branche-t-on un ampèremètre ?",
+      "choix": [
+        "En parallèle, aux bornes",
+        "En série, dans le circuit",
+        "Entre phase et terre",
+        "Peu importe"
+      ],
+      "bonne": 1,
+      "explication": "En série : le courant doit le traverser pour être compté.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Pourquoi l'ampèremètre se branche-t-il en série ?",
+      "choix": [
+        "Pour mesurer la tension",
+        "Pour que le courant le traverse et soit compté",
+        "Pour le protéger des surtensions",
+        "Pour aller plus vite"
+      ],
+      "bonne": 1,
+      "explication": "Mesurer un débit suppose que tout le courant passe par l'appareil : donc en série.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "Quel outil mesure l'intensité sans couper le fil ?",
+      "choix": [
+        "Le voltmètre",
+        "La pince ampèremétrique",
+        "L'ohmmètre",
+        "Le tournevis testeur"
+      ],
+      "bonne": 1,
+      "explication": "La pince ampèremétrique se referme autour du conducteur et lit le courant sans coupure.",
+      "renvoi_lecon": 5
+    },
+    {
+      "question": "La tension se mesure en :",
+      "choix": [
+        "Ampères",
+        "Ohms",
+        "Volts",
+        "Watts"
+      ],
       "bonne": 2,
-      "explication": "La résistance augmente avec la longueur et diminue quand la section augmente. Long + fin = résistance plus grande. C'est la base du dimensionnement des conducteurs.",
+      "explication": "La tension (U) se mesure en volts (V).",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "Quel est le symbole de la tension ?",
+      "choix": [
+        "I",
+        "R",
+        "U",
+        "Q"
+      ],
+      "bonne": 2,
+      "explication": "U pour la tension (différence de potentiel).",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "La tension est aussi appelée :",
+      "choix": [
+        "Différence de potentiel",
+        "Débit",
+        "Résistance interne",
+        "Fréquence"
+      ],
+      "bonne": 0,
+      "explication": "Tension = différence de potentiel entre deux points.",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "Comment branche-t-on un voltmètre ?",
+      "choix": [
+        "En série",
+        "En parallèle, aux bornes",
+        "Entre deux phases",
+        "Toujours hors tension"
+      ],
+      "bonne": 1,
+      "explication": "En parallèle, aux bornes de l'élément dont on compare le potentiel.",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "La tension d'une prise de courant domestique est d'environ :",
+      "choix": [
+        "12 V",
+        "230 V",
+        "400 V",
+        "1,5 V"
+      ],
+      "bonne": 1,
+      "explication": "230 V entre phase et neutre, la tension normalisée du logement.",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "Dans l'analogie de l'eau, la tension correspond :",
+      "choix": [
+        "Au débit",
+        "À la différence de pression",
+        "À l'étranglement",
+        "Au volume du réservoir"
+      ],
+      "bonne": 1,
+      "explication": "La tension est la différence de pression qui pousse l'eau (le courant).",
+      "renvoi_lecon": 6
+    },
+    {
+      "question": "La résistance se mesure en :",
+      "choix": [
+        "Volts",
+        "Ampères",
+        "Ohms",
+        "Hertz"
+      ],
+      "bonne": 2,
+      "explication": "La résistance (R) se mesure en ohms (Ω).",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "Quel est le symbole de la résistance ?",
+      "choix": [
+        "R",
+        "U",
+        "I",
+        "Z"
+      ],
+      "bonne": 0,
+      "explication": "R pour la résistance, en ohms (Ω).",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "À longueur et matériau égaux, un fil plus GROS (grosse section) a une résistance :",
+      "choix": [
+        "Plus grande",
+        "Plus faible",
+        "Identique",
+        "Nulle"
+      ],
+      "bonne": 1,
+      "explication": "Plus la section est grosse, plus le courant passe facilement : résistance plus faible.",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "À section et matériau égaux, un fil plus LONG a une résistance :",
+      "choix": [
+        "Plus faible",
+        "Plus grande",
+        "Identique",
+        "Nulle"
+      ],
+      "bonne": 1,
+      "explication": "Plus le fil est long, plus il freine le courant : résistance plus grande.",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "Quels sont les trois facteurs de la résistance d'un fil ?",
+      "choix": [
+        "Couleur, marque, prix",
+        "Longueur, section, matériau",
+        "Tension, courant, puissance",
+        "La température ambiante seulement"
+      ],
+      "bonne": 1,
+      "explication": "Longueur, section et matériau déterminent la résistance d'un conducteur.",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "L'ohmmètre se branche :",
+      "choix": [
+        "Sur un circuit sous tension",
+        "Sur un circuit hors tension",
+        "En série uniquement",
+        "Sur la prise de terre"
+      ],
+      "bonne": 1,
+      "explication": "Hors tension : l'ohmmètre injecte son propre courant de mesure, sinon la mesure est fausse et l'appareil en danger.",
+      "renvoi_lecon": 7
+    },
+    {
+      "question": "Quel trio grandeur · symbole · unité est correct ?",
+      "choix": [
+        "Tension · I · ampère",
+        "Intensité · I · ampère",
+        "Résistance · U · volt",
+        "Tension · R · ohm"
+      ],
+      "bonne": 1,
+      "explication": "Intensité = I = ampère. (Tension = U = volt ; résistance = R = ohm.)",
+      "renvoi_lecon": 8
+    },
+    {
+      "question": "Quelle unité correspond au symbole Ω ?",
+      "choix": [
+        "Le volt",
+        "L'ampère",
+        "L'ohm",
+        "Le watt"
+      ],
+      "bonne": 2,
+      "explication": "Ω est le symbole de l'ohm, unité de la résistance.",
+      "renvoi_lecon": 8
+    },
+    {
+      "question": "Le mot « voltage » :",
+      "choix": [
+        "Désigne la tension en français technique",
+        "N'existe pas en français technique",
+        "Est l'unité de l'intensité",
+        "Sert à mesurer la résistance"
+      ],
+      "bonne": 1,
+      "explication": "En français technique, on dit « tension » (en volts). « Voltage » est un anglicisme à éviter.",
+      "renvoi_lecon": 8
+    },
+    {
+      "question": "La relation qui lie U, R et I s'appelle :",
+      "choix": [
+        "La loi de Joule",
+        "La loi d'Ohm",
+        "La loi de Newton",
+        "La loi des nœuds"
+      ],
+      "bonne": 1,
+      "explication": "C'est la loi d'Ohm (U = R × I), au programme du module 2.",
+      "renvoi_lecon": 8
+    },
+    {
+      "question": "Si on augmente la tension appliquée à une résistance fixe, l'intensité :",
+      "choix": [
+        "Diminue",
+        "Augmente",
+        "Ne change pas",
+        "Devient nulle"
+      ],
+      "bonne": 1,
+      "explication": "Plus on pousse (tension), plus le débit (intensité) grimpe, à résistance constante.",
+      "renvoi_lecon": 8
+    },
+    {
+      "question": "Quelles sont les quatre grandes façons de produire de l'électricité ?",
+      "choix": [
+        "Magnétisme, photovoltaïque, chimique, statique",
+        "Cuivre, aluminium, or, fer",
+        "Phase, neutre, terre, masse",
+        "Volt, ampère, ohm, watt"
+      ],
+      "bonne": 0,
+      "explication": "Magnétisme (alternateur), photovoltaïque (panneau), chimique (pile/batterie) et statique (frottement, marginal).",
       "renvoi_lecon": 4
     },
     {
-      "question": "Quel trio grandeur / symbole / unité est correct ?",
-      "choix": ["Tension · I · ampère", "Résistance · R · ohm", "Intensité · U · volt", "Résistance · Ω · ohm"],
+      "question": "Quelle source produit du courant CONTINU ?",
+      "choix": [
+        "L'alternateur",
+        "La pile (voie chimique)",
+        "Le réseau électrique",
+        "Une éolienne"
+      ],
       "bonne": 1,
-      "explication": "Résistance, symbole R, unité ohm (Ω). Attention : Ω est le symbole de l'UNITÉ, pas celui de la grandeur.",
-      "renvoi_lecon": 5
+      "explication": "Pile, batterie et panneau photovoltaïque donnent du continu. Alternateur, éolienne et réseau donnent de l'alternatif.",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "Quelle source produit du courant ALTERNATIF ?",
+      "choix": [
+        "Une pile",
+        "Un panneau photovoltaïque",
+        "Un alternateur (magnétisme)",
+        "Une batterie de voiture"
+      ],
+      "bonne": 2,
+      "explication": "Le magnétisme — un aimant qui tourne devant une bobine — produit de l'alternatif : c'est l'alternateur.",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "Le courant qui arrive par la prise de ton logement est :",
+      "choix": [
+        "Continu",
+        "Alternatif",
+        "Statique",
+        "Sans tension"
+      ],
+      "bonne": 1,
+      "explication": "Le réseau de distribution fournit du courant alternatif (détaillé au module 4).",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "Un panneau photovoltaïque fournit :",
+      "choix": [
+        "Du courant alternatif",
+        "Du courant continu",
+        "De l'électricité statique",
+        "Du courant triphasé"
+      ],
+      "bonne": 1,
+      "explication": "La lumière sur le panneau crée un courant continu.",
+      "renvoi_lecon": 4
+    },
+    {
+      "question": "Faire tourner un moteur, un volet roulant ou une VMC, c'est un usage appelé :",
+      "choix": [
+        "Le chauffage",
+        "L'éclairage",
+        "La force motrice",
+        "La communication"
+      ],
+      "bonne": 2,
+      "explication": "Tout ce qui met en mouvement grâce à un moteur relève de la force motrice.",
+      "renvoi_lecon": 0
     }
   ],
   "jeu": {
     "type": "vrai-faux-rapide",
     "config": {
       "affirmations": [
-        { "affirmation": "Dans un fil de cuivre, ce sont les électrons libres qui se déplacent.", "vrai": true, "explication": "Le cuivre est conducteur précisément parce qu'il regorge d'électrons libres." },
-        { "affirmation": "Le PVC est un bon conducteur électrique.", "vrai": false, "explication": "Le PVC est un isolant — c'est pour ça qu'il sert de gaine autour des conducteurs." },
-        { "affirmation": "Les électrons circulent du + vers le −.", "vrai": false, "explication": "C'est le sens CONVENTIONNEL qui va du + vers le −. Les électrons, négatifs, vont du − vers le +." },
-        { "affirmation": "L'intensité se mesure en ampères avec un ampèremètre branché en série.", "vrai": true, "explication": "Le courant doit traverser l'ampèremètre pour être compté : branchement en série obligatoire." },
-        { "affirmation": "Un voltmètre se branche en série dans le circuit.", "vrai": false, "explication": "Le voltmètre se branche en PARALLÈLE, aux bornes de l'élément dont on mesure la tension." },
-        { "affirmation": "La tension d'une prise domestique française est de 230 V.", "vrai": true, "explication": "230 V entre phase et neutre : c'est la tension normalisée du réseau domestique." },
-        { "affirmation": "Plus un conducteur a une grosse section, plus sa résistance est grande.", "vrai": false, "explication": "C'est l'inverse : une grosse section laisse mieux passer le courant, donc résistance plus FAIBLE." },
-        { "affirmation": "L'ohmmètre s'utilise sur un circuit hors tension.", "vrai": true, "explication": "L'ohmmètre injecte son propre petit courant de mesure : circuit hors tension obligatoire, sinon mesure fausse et appareil en danger." }
+        {
+          "affirmation": "Dans un fil de cuivre, ce sont les électrons libres qui se déplacent.",
+          "vrai": true,
+          "explication": "Le cuivre est conducteur précisément parce qu'il regorge d'électrons libres."
+        },
+        {
+          "affirmation": "Le PVC est un bon conducteur électrique.",
+          "vrai": false,
+          "explication": "Le PVC est un isolant — c'est pour ça qu'il sert de gaine autour des conducteurs."
+        },
+        {
+          "affirmation": "Les électrons circulent du + vers le −.",
+          "vrai": false,
+          "explication": "C'est le sens CONVENTIONNEL qui va du + vers le −. Les électrons, négatifs, vont du − vers le +."
+        },
+        {
+          "affirmation": "L'intensité se mesure en ampères avec un ampèremètre branché en série.",
+          "vrai": true,
+          "explication": "Le courant doit traverser l'ampèremètre pour être compté : branchement en série obligatoire."
+        },
+        {
+          "affirmation": "Un voltmètre se branche en série dans le circuit.",
+          "vrai": false,
+          "explication": "Le voltmètre se branche en PARALLÈLE, aux bornes de l'élément dont on mesure la tension."
+        },
+        {
+          "affirmation": "La tension d'une prise domestique française est de 230 V.",
+          "vrai": true,
+          "explication": "230 V entre phase et neutre : c'est la tension normalisée du réseau domestique."
+        },
+        {
+          "affirmation": "Plus un conducteur a une grosse section, plus sa résistance est grande.",
+          "vrai": false,
+          "explication": "C'est l'inverse : une grosse section laisse mieux passer le courant, donc résistance plus FAIBLE."
+        },
+        {
+          "affirmation": "L'ohmmètre s'utilise sur un circuit hors tension.",
+          "vrai": true,
+          "explication": "L'ohmmètre injecte son propre petit courant de mesure : circuit hors tension obligatoire, sinon mesure fausse et appareil en danger."
+        }
       ]
     }
   },
-  "recompense": { "electrons": 50, "badge": null }
+  "recompense": {
+    "electrons": 50,
+    "badge": null
+  }
 }

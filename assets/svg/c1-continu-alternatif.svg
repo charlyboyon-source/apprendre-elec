@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" font-family="'Segoe UI',system-ui,sans-serif">
+<text x="160" y="20" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Deux types de courant</text>
+<text x="78" y="46" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">CONTINU</text>
+<line x1="20" y1="84" x2="120" y2="84" stroke="#9aa6b3" stroke-width="1.2"/>
+<line x1="30" y1="70" x2="128" y2="70" stroke="#e8eaed" stroke-width="2" stroke-linecap="round"/><polygon points="128,70 122.6,72.6 122.6,67.4" fill="#e8eaed"/>
+<text x="78" y="112" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">toujours le même sens</text>
+<text x="78" y="128" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">pile · photovoltaïque</text>
+<line x1="160" y1="30" x2="160" y2="150" stroke="#2d323b" stroke-width="1.2"/>
+<text x="242" y="46" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">ALTERNATIF</text>
+<line x1="180" y1="76" x2="300" y2="76" stroke="#9aa6b3" stroke-width="1.2"/>
+<polyline points="186.0,76.0 189.0,68.5 192.0,61.9 195.0,56.9 198.0,54.3 201.0,54.3 204.0,56.9 207.0,61.9 210.0,68.5 213.0,76.0 216.0,83.5 219.0,90.1 222.0,95.1 225.0,97.7 228.0,97.7 231.0,95.1 234.0,90.1 237.0,83.5 240.0,76.0 243.0,68.5 246.0,61.9 249.0,56.9 252.0,54.3 255.0,54.3 258.0,56.9 261.0,61.9 264.0,68.5 267.0,76.0 270.0,83.5 273.0,90.1 276.0,95.1 279.0,97.7 282.0,97.7 285.0,95.1 288.0,90.1 291.0,83.5 294.0,76.0" fill="none" stroke="#ff8c2b" stroke-width="2"/>
+<text x="242" y="112" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">change de sens sans arrêt</text>
+<text x="242" y="128" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">magnétisme · réseau</text>
+<text x="160" y="166" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="normal">Le réseau qui alimente ton logement est alternatif</text>
+</svg>

@@ -163,6 +163,60 @@
 .lecon-prec { background: var(--fond-2); border: 1.5px solid var(--bordure) !important; color: var(--texte-2); }
 .lecon-suiv { background: var(--jaune); color: var(--texte-sur-jaune); }
 
+/* ---------- cours long (une seule page scrollable) ---------- */
+.cours-intro {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--texte);
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--esp-3);
+  margin: 0 0 var(--esp-4);
+}
+
+.cours-section {
+  margin-bottom: var(--esp-5);
+  scroll-margin-top: 120px; /* dégage le header + la barre d'onglets sticky au renvoi */
+}
+
+.cours-titre {
+  font-size: 1.08rem;
+  color: var(--jaune);
+  border-bottom: 1px solid var(--bordure);
+  padding-bottom: var(--esp-2);
+  margin: 0 0 var(--esp-3);
+}
+
+.cours-texte { font-size: 0.92rem; line-height: 1.6; }
+.cours-texte p { margin: 0 0 var(--esp-3); }
+.cours-texte p:last-child { margin-bottom: 0; }
+.cours-texte b { color: var(--texte); }
+
+.cours-chantier {
+  background: rgba(255, 140, 43, 0.08);
+  border-left: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: var(--esp-3);
+  margin-top: var(--esp-3);
+}
+.cours-chantier b { display: block; color: var(--orange); font-size: 0.85rem; margin-bottom: 4px; }
+.cours-chantier p { margin: 0; font-size: 0.86rem; line-height: 1.5; color: #f0d9c2; }
+
+.cours-fini {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: var(--esp-5) auto 0;
+  background: var(--jaune);
+  color: var(--texte-sur-jaune);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
 /* ---------- glossaire ---------- */
 .terme {
   color: var(--jaune);

@@ -1,13 +1,49 @@
-// Moteur de leçon : écrans successifs avec points d'étape, navigation,
-// termes de glossaire cliquables.
+// Moteur de leçon. Deux formats détectés dans le JSON :
+//   - niveau.cours : cours long sur une seule page scrollable (sections titrées) ;
+//   - niveau.lecon : écrans paginés avec Suivant / Précédent (format historique).
+// Dans les deux cas : scroll-to-top à l'ouverture, glossaire [[…]] cliquable, mémos ◆.
 
 import { activerTermes, brancherTermes } from "./glossaire.js";
 
-// Lance la leçon dans `conteneur`. Options :
-//   ecranDepart : index de l'écran d'ouverture (renvoi depuis le quiz)
-//   onFin()     : appelé quand le dernier écran est validé
+// Options :
+//   ecranDepart : index de l'écran (paginé) ou de la section (cours) d'ouverture
+//   onFin()     : appelé quand la leçon est validée
 export function demarrerLecon(niveau, conteneur, { ecranDepart = 0, onFin } = {}) {
-  const ecrans = niveau.lecon;
+  if (niveau.cours) { rendreCours(niveau.cours, conteneur, ecranDepart, onFin); return; }
+  rendrePagine(niveau.lecon, conteneur, ecranDepart, onFin);
+}
+
+// ---------- Format "cours long sur une seule page" ----------
+function rendreCours(cours, conteneur, sectionDepart, onFin) {
+  const sections = cours.sections.map((s, i) => `
+    <section class="cours-section" id="cours-sec-${i}">
+      <h3 class="cours-titre">${s.titre}</h3>
+      ${s.svg ? `<div class="lecon-figure"><img src="assets/svg/${s.svg}" alt=""></div>` : ""}
+      <div class="cours-texte">${activerTermes(s.contenu)}</div>
+      ${s.encadre ? `<aside class="cours-chantier"><b>🔧 ${s.encadre.titre || "Sur le chantier"}</b><p>${activerTermes(s.encadre.texte)}</p></aside>` : ""}
+      ${s.memo ? `<div class="lecon-memo">◆ ${s.memo}</div>` : ""}
+    </section>`).join("");
+
+  conteneur.innerHTML = `
+    <article class="cours">
+      ${cours.intro ? `<p class="cours-intro">${activerTermes(cours.intro)}</p>` : ""}
+      ${sections}
+      <button class="cours-fini" type="button">J'ai terminé la leçon ✓</button>
+    </article>`;
+
+  brancherTermes(conteneur);
+  conteneur.querySelector(".cours-fini").addEventListener("click", () => onFin?.());
+
+  // Renvoi depuis le quiz : on défile jusqu'à la bonne section ; sinon, en haut.
+  requestAnimationFrame(() => {
+    const cible = sectionDepart > 0 ? conteneur.querySelector(`#cours-sec-${sectionDepart}`) : null;
+    if (cible) cible.scrollIntoView();
+    else window.scrollTo(0, 0);
+  });
+}
+
+// ---------- Format paginé historique (écrans + Suivant / Précédent) ----------
+function rendrePagine(ecrans, conteneur, ecranDepart, onFin) {
   let index = Math.min(ecranDepart, ecrans.length - 1);
 
   function rendre() {
