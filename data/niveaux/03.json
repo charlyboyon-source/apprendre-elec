@@ -2,143 +2,115 @@
   "id": 3,
   "bloc": 1,
   "titre": "Le circuit électrique",
-  "objectif": "Identifier les 5 familles d'éléments d'un circuit et le rôle de chacune",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · LA BOUCLE",
-      "titre": "Un circuit est une boucle fermée",
-      "svg": "n3-boucle.svg",
-      "contenu": "Le mot dit tout : un <b>circuit</b>, comme en sport auto, est une boucle. Le courant part du générateur, traverse les récepteurs, et <b>revient</b> au générateur. Boucle ouverte (interrupteur ouvert, fil coupé) : plus rien ne circule. Tout circuit, du plus simple au tableau d'une maison, combine cinq familles d'éléments : un [[générateur]] qui fournit, des [[récepteur|récepteurs]] qui consomment, des [[appareil de commande|appareils de commande]] qui décident, des conducteurs qui relient, et des [[appareil de protection|appareils de protection]] qui veillent. Ce niveau te les présente une à une.",
-      "memo": "Pas de boucle fermée = pas de courant. Et 5 familles : génération, réception, commande, liaison, protection."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · LE GÉNÉRATEUR",
-      "titre": "Le générateur : la source",
-      "svg": "n3-source.svg",
-      "contenu": "Le [[générateur]] crée la différence de potentiel qui met les électrons en mouvement — c'est la pompe du circuit. Pile, batterie, alternateur, panneau photovoltaïque : tous des générateurs. Dans le logement, ton « générateur » est le <b>réseau de distribution</b> : la tension arrive par le branchement, en 230 V entre [[phase]] et [[neutre]]. Détail qui compte pour la suite : un générateur réel a sa propre résistance interne — c'est pour ça que la tension d'une batterie s'effondre quand on lui demande trop de courant.",
-      "memo": "Le générateur impose la tension. Dans le logement : le réseau, 230 V entre phase et neutre."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · LES RÉCEPTEURS",
-      "titre": "Les récepteurs : ceux qui transforment",
-      "svg": "n3-recepteurs.svg",
-      "contenu": "Un [[récepteur]] absorbe de l'énergie électrique et la <b>transforme</b> : en lumière (lampes), en chaleur (radiateurs, four — l'effet Joule du niveau 2), en mouvement (moteurs de VMC, volets), en son, en données… C'est pour eux que le circuit existe. Sur un schéma, chaque récepteur a son symbole normalisé — la lampe est un cercle barré d'une croix. Règle d'or à retenir dès maintenant : un récepteur se branche <b>entre phase et neutre</b>, jamais entre phase et terre. La [[terre]] n'est pas un conducteur de retour : elle ne sert qu'à la sécurité.",
-      "memo": "Récepteur = transformateur d'énergie. Branché phase-neutre. La terre n'alimente RIEN."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · LA COMMANDE",
-      "titre": "Les appareils de commande : ceux qui décident",
-      "svg": "n3-interrupteur.svg",
-      "contenu": "Entre la source et le récepteur, il faut pouvoir décider : ouvrir ou fermer la boucle. C'est le rôle des [[appareil de commande|appareils de commande]] : interrupteur, bouton-poussoir, télérupteur, minuterie, détecteur de mouvement, thermostat. Leur point commun : ils n'absorbent quasiment pas d'énergie, ils <b>aiguillent</b>. Règle de câblage absolue, à l'examen comme sur chantier : la commande coupe <b>la phase</b>, jamais le neutre seul. Un interrupteur sur le neutre éteint la lampe… mais laisse tout le circuit sous tension : la douille reste dangereuse, lampe « éteinte ».",
-      "memo": "La commande coupe LA PHASE. Couper le neutre seul = circuit éteint mais toujours dangereux."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · LES CONDUCTEURS",
-      "titre": "Les conducteurs : phase, neutre, terre",
-      "svg": "n3-conducteurs.svg",
-      "contenu": "Les conducteurs relient tout le monde. En France, leur code couleur est normalisé et <b>non négociable</b> : la [[phase]] en <b>rouge, marron ou noir</b> (toute couleur sauf les deux suivantes), le [[neutre]] en <b>bleu clair — exclusivement</b>, et le conducteur de protection ([[terre]]) en <b>vert/jaune — exclusivement</b>. Le bleu et le vert/jaune sont réservés : interdiction formelle de les utiliser pour autre chose. La section des conducteurs se choisit selon le courant transporté — souviens-toi du niveau 1 : trop fin, ça résiste, ça chauffe (effet Joule). Les valeurs réglementaires précises t'attendent au bloc 3.",
-      "memo": "Bleu clair = neutre, vert/jaune = terre : RÉSERVÉS. Phase = le reste (rouge, marron, noir…)."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · LA PROTECTION",
-      "titre": "Les appareils de protection : ceux qui veillent",
-      "svg": "n3-protection.svg",
-      "contenu": "Deux accidents menacent un circuit : la [[surcharge]] (trop d'appareils, le courant dépasse ce que supportent les conducteurs, ça chauffe) et le [[court-circuit]] (phase et neutre se touchent : la résistance s'effondre, le courant devient énorme en une fraction de seconde). Contre eux : le [[fusible]], qui fond et se remplace, et le [[disjoncteur]], qui déclenche et se réarme. Tous deux protègent <b>l'installation</b>. Pour protéger <b>les personnes</b>, il faut détecter les fuites de courant vers la terre : c'est le rôle du [[DDR]], que tu retrouveras en détail au bloc 2. La protection s'insère toujours sur la phase, en amont du circuit protégé.",
-      "memo": "Surcharge et court-circuit → fusible / disjoncteur (l'installation). Fuite à la terre → DDR (les personnes)."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Pour qu'un courant circule, le circuit doit être :",
-      "choix": ["Une boucle fermée", "Relié à la terre", "Protégé par fusible", "Câblé en bleu clair"],
-      "bonne": 0,
-      "explication": "Le courant part du générateur et doit y revenir : sans boucle fermée, rien ne circule.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Dans une installation domestique, le rôle de générateur est tenu par :",
-      "choix": ["Le tableau électrique", "Le disjoncteur de branchement", "Le réseau de distribution", "La liaison à la terre"],
-      "bonne": 2,
-      "explication": "C'est le réseau qui impose les 230 V entre phase et neutre. Le tableau distribue, le disjoncteur protège : aucun des deux ne PRODUIT la tension.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "Un récepteur domestique 230 V se branche :",
-      "choix": ["Entre phase et terre", "Entre neutre et terre", "Entre phase et neutre", "Entre deux phases"],
-      "bonne": 2,
-      "explication": "Phase-neutre = 230 V. La terre ne sert qu'à la sécurité : elle n'alimente jamais un récepteur.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Un interrupteur doit couper :",
-      "choix": ["Le neutre", "La phase", "La terre", "Phase ou neutre, au choix"],
-      "bonne": 1,
-      "explication": "La commande coupe LA PHASE. Couper le neutre éteint le récepteur mais laisse le circuit sous tension — danger invisible.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "Quelle couleur est réservée EXCLUSIVEMENT au conducteur neutre ?",
-      "choix": ["Noir", "Bleu clair", "Marron", "Vert/jaune"],
-      "bonne": 1,
-      "explication": "Bleu clair = neutre, vert/jaune = terre : deux couleurs réservées. La phase prend les autres (rouge, marron, noir…).",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Phase et neutre entrent en contact direct : c'est :",
-      "choix": ["Une surcharge", "Un court-circuit", "Un défaut d'isolement", "Une chute de tension"],
-      "bonne": 1,
-      "explication": "Contact direct phase-neutre = court-circuit : la résistance s'effondre et le courant devient énorme. La surcharge, c'est un excès progressif d'appareils branchés.",
-      "renvoi_lecon": 5
-    },
-    {
-      "question": "Quel appareil protège LES PERSONNES contre les fuites de courant ?",
-      "choix": ["Le fusible", "Le disjoncteur divisionnaire", "Le DDR", "L'interrupteur"],
-      "bonne": 2,
-      "explication": "Fusible et disjoncteur protègent l'installation (surcharge, court-circuit). Le DDR détecte les fuites vers la terre et protège les personnes.",
-      "renvoi_lecon": 5
-    }
+  "objectif": "Identifier les 5 familles d'un circuit, le rôle de chacune et les règles d'or du câblage",
+  "cours": {
+    "intro": "Tu sais ce qu'est le courant et tu sais calculer. Regardons maintenant COMMENT tout ça s'assemble : le circuit. Cinq familles de composants suffisent à décrire n'importe quelle installation, de la lampe de chevet au tableau d'une maison. Ce module te donne le vocabulaire et les règles d'or du câblage.",
+    "sections": [
+      {
+        "titre": "1. Un circuit est une boucle fermée",
+        "svg": "n3-boucle.svg",
+        "contenu": "<p>Le mot dit tout : un <b>circuit</b>, comme en sport automobile, est une <b>boucle</b>. Le courant part du générateur, traverse les composants, et <b>revient</b> au générateur. S'il ne peut pas revenir, rien ne circule.</p><p>Coupe la boucle quelque part — un interrupteur ouvert, un fil débranché, un fusible fondu — et c'est le noir : <b>boucle ouverte = aucun courant</b>. Referme-la, et le courant repart aussitôt. C'est tout le principe de l'interrupteur : ouvrir ou fermer la boucle.</p><p>Premier réflexe de dépanneur : quand « ça ne marche pas », cherche où la boucle est coupée.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Une lampe qui ne s'allume pas, ce n'est pas forcément la lampe : ampoule grillée, fil dévissé, interrupteur HS, protection déclenchée… autant d'endroits où la boucle peut être ouverte. On cherche méthodiquement, du tableau vers le point d'utilisation." },
+        "memo": "Circuit = boucle. Fermée → ça circule. Ouverte (interrupteur, fil coupé, fusible fondu) → rien ne passe."
+      },
+      {
+        "titre": "2. Les 5 familles de composants",
+        "svg": "c3-familles.svg",
+        "contenu": "<p>Aussi compliquée soit-elle, une installation se décrit toujours avec <b>cinq familles</b> de composants.</p><p><b>1. Le [[générateur]]</b> fournit l'énergie (chez toi : le réseau). <b>2. Les [[appareil de protection|appareils de protection]]</b> veillent et coupent en cas de problème (disjoncteur, fusible, DDR). <b>3. Les [[appareil de commande|appareils de commande]]</b> décident d'ouvrir ou fermer la boucle (interrupteur, bouton…). <b>4. Les [[récepteur|récepteurs]]</b> transforment l'énergie en lumière, chaleur, mouvement… <b>5. Les conducteurs</b> relient tout le monde.</p><p>Retiens l'ordre logique : le courant sort du générateur, passe d'abord par la <b>protection</b>, puis par la <b>commande</b>, atteint le <b>récepteur</b> et revient — le tout via les <b>conducteurs</b>.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Sur un schéma de tableau, tu retrouves toujours cet ordre, de gauche à droite : arrivée (générateur) → protections → départs vers les récepteurs. Savoir nommer chaque famille, c'est déjà savoir lire un schéma." },
+        "memo": "5 familles : générateur · protection · commande · récepteur · conducteurs. Le courant les traverse dans cet ordre."
+      },
+      {
+        "titre": "3. Le générateur : la source",
+        "svg": "n3-source.svg",
+        "contenu": "<p>Le [[générateur]] crée la différence de potentiel qui met les électrons en mouvement — c'est la <b>pompe</b> du circuit. Pile, batterie, alternateur, panneau photovoltaïque : tous des générateurs.</p><p>Dans le logement, ton générateur, c'est le <b>réseau de distribution</b> : la tension arrive par le branchement, en <b>230 V</b> entre la [[phase]] et le [[neutre]]. C'est lui qui impose la tension ; les appareils, eux, prélèvent le courant dont ils ont besoin.</p><p>Détail qui resservira : un générateur réel a une petite <b>résistance interne</b>. C'est pour ça que la tension d'une vieille batterie s'effondre quand on lui demande beaucoup de courant — au démarrage d'une voiture, par exemple.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le réseau impose 230 V, point. Si la tension chute nettement sous charge à un endroit de l'installation, ce n'est pas « le réseau » : cherche une mauvaise connexion ou une section de câble trop faible (la chute de tension, vue au bloc 3)." },
+        "memo": "Le générateur impose la tension. Logement : réseau, 230 V entre phase et neutre. Tout générateur réel a une résistance interne."
+      },
+      {
+        "titre": "4. Les récepteurs : transformer l'énergie",
+        "svg": "n3-recepteurs.svg",
+        "contenu": "<p>Un [[récepteur]] absorbe l'énergie électrique et la <b>transforme</b> : en <b>lumière</b> (lampes), en <b>chaleur</b> (radiateur, four — l'effet Joule du module 2), en <b>mouvement</b> (moteurs de volet, VMC, pompe), en son, en données… C'est pour eux que le circuit existe.</p><p>Sur un schéma, chaque récepteur a son <b>symbole normalisé</b> : la lampe est un cercle barré d'une croix, le moteur un cercle avec un M.</p><p>Règle d'or, à graver : un récepteur se branche <b>entre phase et neutre</b>, <b>jamais entre phase et terre</b>. La [[terre]] n'est pas un conducteur de retour : elle ne sert qu'à la sécurité (bloc 2). Le courant revient par le neutre, point final.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Brancher un récepteur sur la terre au lieu du neutre, c'est la faute grave : ça fait circuler du courant dans le conducteur de protection, qui n'est pas fait pour ça — danger et déclenchement du DDR garantis." },
+        "memo": "Récepteur = transforme l'énergie (lumière / chaleur / mouvement). Branché phase-neutre, JAMAIS phase-terre. Retour par le neutre."
+      },
+      {
+        "titre": "5. Les appareils de commande",
+        "svg": "n3-interrupteur.svg",
+        "contenu": "<p>Entre la source et le récepteur, il faut pouvoir <b>décider</b> : allumer ou éteindre. C'est le rôle des [[appareil de commande|appareils de commande]] — interrupteur, bouton-poussoir, télérupteur, minuterie, détecteur de mouvement, thermostat. Leur point commun : ils ne consomment quasiment rien, ils <b>ouvrent ou ferment la boucle</b>.</p><p>Et voici LA règle de câblage, à l'examen comme sur le chantier : <b>la commande coupe la phase</b>, jamais le neutre seul.</p><p>Pourquoi ? Un interrupteur placé sur le neutre éteint bien la lampe… mais laisse la <b>phase sous tension</b> jusqu'à la douille. Lampe « éteinte », tu changes l'ampoule, et tu prends 230 V. En coupant la phase, l'appareil est réellement hors tension.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Avant d'intervenir sur un point lumineux, ne te fie jamais à l'interrupteur seul : coupe le disjoncteur du circuit et vérifie l'absence de tension. « Éteint » ne veut pas dire « hors tension » si l'inter est mal câblé sur le neutre." },
+        "memo": "La commande ouvre/ferme la boucle et coupe LA PHASE. Sur le neutre seul : éteint mais toujours sous tension = danger."
+      },
+      {
+        "titre": "6. Les conducteurs : phase, neutre, terre",
+        "svg": "c3-iso-fils.svg",
+        "contenu": "<p>Les conducteurs relient tout le monde. En France, leur <b>code couleur</b> est normalisé et <b>non négociable</b>.</p><p>La [[phase]] est en <b>rouge, marron ou noir</b> (toute couleur sauf les deux suivantes) ; le [[neutre]] en <b>bleu clair — exclusivement</b> ; le conducteur de protection, la [[terre]], en <b>vert/jaune — exclusivement</b>. Le bleu clair et le vert/jaune sont <b>réservés</b> : interdiction formelle de les employer pour autre chose.</p><p>Chaque fil a aussi une <b>section</b> (son épaisseur, en mm²) choisie selon le courant à transporter — souviens-toi du module 2 : trop fin, ça chauffe (effet Joule). Les valeurs réglementaires précises t'attendent au bloc 3.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le vert/jaune ne se coupe pas et ne se commande jamais : c'est un fil de sécurité, continu de la terre jusqu'à chaque masse. Si tu trouves du bleu clair employé comme phase sur une vieille installation, on remet aux normes — on ne perpétue pas l'erreur." },
+        "memo": "Phase = rouge/marron/noir. Neutre = bleu clair (réservé). Terre = vert-jaune (réservé). Section choisie selon le courant."
+      },
+      {
+        "titre": "7. Les appareils de protection",
+        "svg": "n3-protection.svg",
+        "contenu": "<p>Deux accidents guettent un circuit. La [[surcharge]] : trop d'appareils sur la même ligne, le courant dépasse ce que supportent les conducteurs, et ça chauffe. Le [[court-circuit]] : la phase et le neutre se touchent directement, la résistance s'effondre et le courant devient énorme en une fraction de seconde.</p><p>Contre ces deux-là, on protège <b>l'installation</b> : le [[fusible]] (un filament qui fond et qu'on remplace) ou le [[disjoncteur]] (qui déclenche et qu'on réarme).</p><p>Reste un troisième danger, pour <b>les personnes</b> cette fois : la fuite de courant vers la terre. C'est le rôle du [[DDR]], étudié en détail au bloc 2. Dans tous les cas, la protection s'insère <b>sur la phase, en amont</b> du circuit qu'elle protège.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Disjoncteur et DDR ne font pas le même travail : le disjoncteur protège les fils (ampères : surcharge et court-circuit), le DDR protège les gens (milliampères : fuite à la terre). Les deux sont nécessaires, jamais l'un à la place de l'autre." },
+        "memo": "Surcharge + court-circuit → fusible / disjoncteur (l'installation). Fuite à la terre → DDR (les personnes). Toujours sur la phase, en amont."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Un circuit électrique, c'est :", "choix": ["Un fil unique sans retour", "Une boucle où le courant part et revient", "Un empilement de piles", "Une plaque chauffante"], "bonne": 1, "explication": "Le courant part du générateur et doit y revenir : c'est une boucle.", "renvoi_lecon": 0 },
+    { "question": "Boucle ouverte (interrupteur ouvert) :", "choix": ["le courant double", "plus rien ne circule", "la tension monte", "le récepteur chauffe"], "bonne": 1, "explication": "Sans boucle fermée, le courant ne peut pas circuler.", "renvoi_lecon": 0 },
+    { "question": "Pour qu'un courant circule, le circuit doit être :", "choix": ["fermé", "ouvert", "relié à la terre", "en aluminium"], "bonne": 0, "explication": "Boucle fermée = le courant peut faire le tour.", "renvoi_lecon": 0 },
+    { "question": "Une ampoule ne s'allume plus. La cause la plus générale :", "choix": ["la couleur des fils", "la boucle est ouverte quelque part", "le compteur compte en kWh", "le réseau est alternatif"], "bonne": 1, "explication": "Ampoule grillée, fil dévissé, inter HS, protection déclenchée : la boucle est coupée à un endroit.", "renvoi_lecon": 0 },
+    { "question": "Refermer l'interrupteur :", "choix": ["coupe la boucle", "ferme la boucle et le courant repart", "inverse le sens du courant", "grille le récepteur"], "bonne": 1, "explication": "L'interrupteur fermé referme la boucle : le courant circule de nouveau.", "renvoi_lecon": 0 },
+    { "question": "Combien de familles de composants décrivent un circuit ?", "choix": ["3", "4", "5", "7"], "bonne": 2, "explication": "Générateur, protection, commande, récepteur, conducteurs : 5 familles.", "renvoi_lecon": 1 },
+    { "question": "Laquelle n'est PAS une des 5 familles ?", "choix": ["le générateur", "le récepteur", "le kilowattheure", "les conducteurs"], "bonne": 2, "explication": "Le kWh est une unité d'énergie, pas une famille de composants.", "renvoi_lecon": 1 },
+    { "question": "Le composant qui fournit l'énergie est :", "choix": ["le générateur", "le récepteur", "le conducteur", "l'interrupteur"], "bonne": 0, "explication": "Le générateur est la source ; le récepteur, lui, consomme.", "renvoi_lecon": 1 },
+    { "question": "Le composant qui transforme l'énergie est :", "choix": ["le générateur", "le récepteur", "la protection", "la commande"], "bonne": 1, "explication": "Le récepteur transforme l'énergie (lumière, chaleur, mouvement…).", "renvoi_lecon": 1 },
+    { "question": "En partant du générateur, le courant passe d'abord par :", "choix": ["le récepteur", "la protection", "la terre", "rien du tout"], "bonne": 1, "explication": "Ordre logique : générateur → protection → commande → récepteur → retour.", "renvoi_lecon": 1 },
+    { "question": "Les conducteurs servent à :", "choix": ["transformer l'énergie", "relier les composants entre eux", "produire la tension", "couper le courant"], "bonne": 1, "explication": "Les conducteurs relient tout le monde ; ils ne transforment ni ne produisent rien.", "renvoi_lecon": 1 },
+    { "question": "Dans un logement, le générateur est :", "choix": ["le tableau électrique", "le disjoncteur de branchement", "le réseau de distribution", "la prise de terre"], "bonne": 2, "explication": "C'est le réseau qui impose la tension. Le tableau distribue, le disjoncteur protège.", "renvoi_lecon": 2 },
+    { "question": "Le réseau impose, entre phase et neutre :", "choix": ["12 V", "24 V", "230 V", "400 V"], "bonne": 2, "explication": "230 V entre phase et neutre dans le logement.", "renvoi_lecon": 2 },
+    { "question": "Dans le circuit, le générateur joue le rôle :", "choix": ["du frein", "de la pompe", "du tuyau", "du robinet"], "bonne": 1, "explication": "Le générateur pousse les électrons : c'est la pompe du circuit.", "renvoi_lecon": 2 },
+    { "question": "Lequel n'est PAS un générateur ?", "choix": ["une pile", "un alternateur", "un panneau photovoltaïque", "une ampoule"], "bonne": 3, "explication": "L'ampoule est un récepteur : elle consomme, elle ne produit pas.", "renvoi_lecon": 2 },
+    { "question": "La tension d'une vieille batterie s'effondre sous forte charge à cause :", "choix": ["de la couleur des bornes", "de sa résistance interne", "du neutre", "de la terre"], "bonne": 1, "explication": "Tout générateur réel a une résistance interne qui fait chuter sa tension en charge.", "renvoi_lecon": 2 },
+    { "question": "Qui impose la tension dans l'installation ?", "choix": ["le récepteur", "le générateur (le réseau)", "l'interrupteur", "le fusible"], "bonne": 1, "explication": "Le générateur impose la tension ; les récepteurs prélèvent le courant.", "renvoi_lecon": 2 },
+    { "question": "Un récepteur :", "choix": ["produit la tension", "transforme l'énergie électrique (lumière, chaleur, mouvement)", "coupe le courant", "relie les fils"], "bonne": 1, "explication": "C'est la définition du récepteur : il transforme l'énergie reçue.", "renvoi_lecon": 3 },
+    { "question": "Un récepteur domestique 230 V se branche :", "choix": ["entre phase et terre", "entre neutre et terre", "entre phase et neutre", "entre deux phases"], "bonne": 2, "explication": "Phase-neutre = 230 V. La terre ne sert qu'à la sécurité.", "renvoi_lecon": 3 },
+    { "question": "Le courant d'un récepteur revient par :", "choix": ["la terre", "le neutre", "la phase", "l'air"], "bonne": 1, "explication": "Le neutre est le conducteur de retour. La terre n'alimente rien.", "renvoi_lecon": 3 },
+    { "question": "Brancher un récepteur entre phase et terre, c'est :", "choix": ["recommandé", "sans effet", "une faute grave et dangereuse", "obligatoire"], "bonne": 2, "explication": "On ne fait jamais passer le courant de service dans le conducteur de protection : danger.", "renvoi_lecon": 3 },
+    { "question": "Le symbole normalisé de la lampe est :", "choix": ["un rectangle", "un cercle barré d'une croix", "un triangle", "un M dans un cercle"], "bonne": 1, "explication": "La lampe = cercle barré d'une croix. Le M dans un cercle, c'est le moteur.", "renvoi_lecon": 3 },
+    { "question": "Un moteur de volet roulant est :", "choix": ["un générateur", "une protection", "un récepteur (force motrice)", "un conducteur"], "bonne": 2, "explication": "Il transforme l'électricité en mouvement : c'est un récepteur.", "renvoi_lecon": 3 },
+    { "question": "Le réseau fournit l'énergie ; le récepteur, lui :", "choix": ["la fournit aussi", "la consomme et la transforme", "la stocke", "la coupe"], "bonne": 1, "explication": "Le récepteur consomme l'énergie fournie par le générateur et la transforme.", "renvoi_lecon": 3 },
+    { "question": "Un appareil de commande sert à :", "choix": ["transformer l'énergie", "ouvrir ou fermer la boucle", "produire le courant", "protéger les fils"], "bonne": 1, "explication": "La commande aiguille : elle ouvre ou ferme le circuit, sans consommer.", "renvoi_lecon": 4 },
+    { "question": "Un interrupteur doit couper :", "choix": ["le neutre", "la phase", "la terre", "le neutre ou la phase, au choix"], "bonne": 1, "explication": "La commande coupe LA PHASE, jamais le neutre seul.", "renvoi_lecon": 4 },
+    { "question": "Un interrupteur câblé sur le neutre seul :", "choix": ["supprime tout danger", "éteint la lampe mais laisse la phase sous tension", "augmente la tension", "est recommandé"], "bonne": 1, "explication": "Lampe éteinte mais douille encore sous tension : danger au changement d'ampoule.", "renvoi_lecon": 4 },
+    { "question": "Lequel est un appareil de commande ?", "choix": ["un disjoncteur", "un bouton-poussoir", "une ampoule", "un conducteur"], "bonne": 1, "explication": "Le bouton-poussoir commande. Le disjoncteur protège, l'ampoule reçoit.", "renvoi_lecon": 4 },
+    { "question": "Les appareils de commande consomment :", "choix": ["beaucoup d'énergie", "quasiment rien", "autant qu'un radiateur", "de l'eau"], "bonne": 1, "explication": "Ils aiguillent le courant sans le consommer.", "renvoi_lecon": 4 },
+    { "question": "Pour changer une ampoule en sécurité :", "choix": ["se fier à l'interrupteur", "couper le disjoncteur du circuit et vérifier l'absence de tension", "couper le neutre", "ne rien faire"], "bonne": 1, "explication": "« Éteint » ne garantit pas « hors tension » : on coupe la protection et on vérifie.", "renvoi_lecon": 4 },
+    { "question": "La couleur réservée EXCLUSIVEMENT au neutre est :", "choix": ["le rouge", "le noir", "le bleu clair", "le vert-jaune"], "bonne": 2, "explication": "Bleu clair = neutre, exclusivement.", "renvoi_lecon": 5 },
+    { "question": "La couleur du conducteur de protection (terre) est :", "choix": ["bleu clair", "rouge", "vert-jaune", "marron"], "bonne": 2, "explication": "Vert/jaune = terre, exclusivement.", "renvoi_lecon": 5 },
+    { "question": "La phase peut être :", "choix": ["bleu clair", "vert-jaune", "rouge, marron ou noir", "uniquement rose"], "bonne": 2, "explication": "La phase prend toute couleur sauf le bleu clair et le vert/jaune, réservés.", "renvoi_lecon": 5 },
+    { "question": "Le vert-jaune :", "choix": ["peut servir de phase si besoin", "est réservé à la terre, jamais autre chose", "sert de neutre", "se commande comme la phase"], "bonne": 1, "explication": "Le vert/jaune est strictement réservé au conducteur de protection.", "renvoi_lecon": 5 },
+    { "question": "La section d'un conducteur (en mm²) se choisit surtout selon :", "choix": ["sa couleur", "le courant à transporter", "la marque du fil", "le prix au mètre"], "bonne": 1, "explication": "Plus le courant est fort, plus la section doit être grosse (sinon échauffement).", "renvoi_lecon": 5 },
+    { "question": "Un fil de section trop faible pour son courant :", "choix": ["refroidit", "chauffe par effet Joule", "change de couleur", "coupe la phase"], "bonne": 1, "explication": "Sous-dimensionné, il dissipe trop de chaleur (R × I²) : risque d'incendie.", "renvoi_lecon": 5 },
+    { "question": "Trop d'appareils sur une ligne, le courant dépasse la limite des fils : c'est :", "choix": ["un court-circuit", "une surcharge", "une fuite à la terre", "une simple coupure"], "bonne": 1, "explication": "La surcharge = excès durable de courant par rapport à ce que supportent les conducteurs.", "renvoi_lecon": 6 },
+    { "question": "Phase et neutre se touchent directement : c'est :", "choix": ["une surcharge", "un court-circuit", "un défaut d'isolement", "une chute de tension"], "bonne": 1, "explication": "Court-circuit : la résistance s'effondre, le courant devient énorme instantanément.", "renvoi_lecon": 6 },
+    { "question": "Contre surcharge et court-circuit, on utilise :", "choix": ["un DDR seul", "un disjoncteur ou un fusible", "un interrupteur", "un voltmètre"], "bonne": 1, "explication": "Disjoncteur ou fusible protègent les conducteurs contre les surintensités.", "renvoi_lecon": 6 },
+    { "question": "Le fusible, contrairement au disjoncteur :", "choix": ["se réarme", "fond et se remplace", "mesure la tension", "protège les personnes"], "bonne": 1, "explication": "Le fusible fond (à remplacer) ; le disjoncteur se réarme.", "renvoi_lecon": 6 },
+    { "question": "Le DDR protège :", "choix": ["les fils contre la surcharge", "les personnes contre les fuites à la terre", "le compteur", "la lampe"], "bonne": 1, "explication": "Le DDR détecte les fuites vers la terre et protège les personnes.", "renvoi_lecon": 6 },
+    { "question": "La protection s'insère :", "choix": ["sur le neutre", "sur la terre", "sur la phase, en amont du circuit", "après le récepteur"], "bonne": 2, "explication": "Toujours sur la phase, en tête du circuit à protéger.", "renvoi_lecon": 6 },
+    { "question": "Disjoncteur et DDR :", "choix": ["font exactement la même chose", "sont complémentaires (fils vs personnes)", "s'excluent l'un l'autre", "sont interdits ensemble"], "bonne": 1, "explication": "Disjoncteur = conducteurs (ampères) ; DDR = personnes (milliampères). Complémentaires.", "renvoi_lecon": 6 },
+    { "question": "Un disjoncteur qui a déclenché :", "choix": ["est définitivement mort", "se réarme une fois le défaut corrigé", "doit toujours être remplacé", "coupe le neutre"], "bonne": 1, "explication": "On corrige la cause, puis on réarme le disjoncteur (contrairement au fusible).", "renvoi_lecon": 6 }
   ],
   "jeu": {
     "type": "trouve-erreur",
     "config": {
       "fond": "circuit-simple.svg",
       "rounds": [
-        {
-          "consigne": "Circuit n°1 — un de ces 4 éléments est mal câblé ou mal choisi. Touche-le.",
-          "items": [
-            { "id": "a", "x": 60, "y": 105, "emoji": "🔋", "label": "générateur 230 V", "bad": false },
-            { "id": "b", "x": 122, "y": 80, "emoji": "🧯", "label": "fusible sur neutre", "bad": true, "why": "La protection s'insère sur LA PHASE, en amont du circuit. Un fusible sur le neutre seul laisse la phase sous tension jusqu'au récepteur, même fusible fondu." },
-            { "id": "c", "x": 185, "y": 105, "emoji": "🎚️", "label": "inter sur phase", "bad": false },
-            { "id": "d", "x": 245, "y": 140, "emoji": "💡", "label": "lampe ph-neutre", "bad": false }
-          ],
-          "win": "Bien vu ⚡ La protection se place sur la phase. Sur le neutre, elle ne supprime pas le danger en cas de défaut."
-        },
-        {
-          "consigne": "Circuit n°2 — débusque l'élément non conforme.",
-          "items": [
-            { "id": "a", "x": 60, "y": 105, "emoji": "🌀", "label": "lave-linge ph-terre", "bad": true, "why": "Un récepteur se branche entre PHASE et NEUTRE. La terre n'est pas un conducteur de retour : elle ne sert qu'à évacuer les courants de défaut." },
-            { "id": "b", "x": 122, "y": 80, "emoji": "🧯", "label": "fusible sur phase", "bad": false },
-            { "id": "c", "x": 185, "y": 105, "emoji": "🟦", "label": "neutre bleu clair", "bad": false },
-            { "id": "d", "x": 245, "y": 140, "emoji": "🟩", "label": "terre vert/jaune", "bad": false }
-          ],
-          "win": "Exact 👏 La terre n'alimente rien, jamais. Retour du courant = neutre, point final."
-        },
-        {
-          "consigne": "Circuit n°3 — le dernier. Œil de lynx.",
-          "items": [
-            { "id": "a", "x": 60, "y": 105, "emoji": "🔋", "label": "générateur 230 V", "bad": false },
-            { "id": "b", "x": 122, "y": 80, "emoji": "🎚️", "label": "inter coupe neutre", "bad": true, "why": "La commande coupe LA PHASE. Un interrupteur sur le neutre éteint la lampe mais laisse la douille sous tension : danger invisible au moment de changer l'ampoule." },
-            { "id": "c", "x": 185, "y": 105, "emoji": "🟥", "label": "phase en rouge", "bad": false },
-            { "id": "d", "x": 245, "y": 140, "emoji": "💡", "label": "lampe ph-neutre", "bad": false }
-          ],
-          "win": "Sans faute 🏆 Couper le neutre = éteint mais dangereux. La commande, c'est toujours sur la phase."
-        }
+        { "consigne": "Circuit n°1 — un de ces 4 éléments est mal câblé ou mal choisi. Touche-le.", "items": [{ "id": "a", "x": 60, "y": 105, "emoji": "🔋", "label": "générateur 230 V", "bad": false }, { "id": "b", "x": 122, "y": 80, "emoji": "🧯", "label": "fusible sur neutre", "bad": true, "why": "La protection s'insère sur LA PHASE, en amont du circuit. Un fusible sur le neutre seul laisse la phase sous tension jusqu'au récepteur, même fusible fondu." }, { "id": "c", "x": 185, "y": 105, "emoji": "🎚️", "label": "inter sur phase", "bad": false }, { "id": "d", "x": 245, "y": 140, "emoji": "💡", "label": "lampe ph-neutre", "bad": false }], "win": "Bien vu ⚡ La protection se place sur la phase. Sur le neutre, elle ne supprime pas le danger en cas de défaut." },
+        { "consigne": "Circuit n°2 — débusque l'élément non conforme.", "items": [{ "id": "a", "x": 60, "y": 105, "emoji": "🌀", "label": "lave-linge ph-terre", "bad": true, "why": "Un récepteur se branche entre PHASE et NEUTRE. La terre n'est pas un conducteur de retour : elle ne sert qu'à évacuer les courants de défaut." }, { "id": "b", "x": 122, "y": 80, "emoji": "🧯", "label": "fusible sur phase", "bad": false }, { "id": "c", "x": 185, "y": 105, "emoji": "🟦", "label": "neutre bleu clair", "bad": false }, { "id": "d", "x": 245, "y": 140, "emoji": "🟩", "label": "terre vert/jaune", "bad": false }], "win": "Exact 👏 La terre n'alimente rien, jamais. Retour du courant = neutre, point final." },
+        { "consigne": "Circuit n°3 — le dernier. Œil de lynx.", "items": [{ "id": "a", "x": 60, "y": 105, "emoji": "🔋", "label": "générateur 230 V", "bad": false }, { "id": "b", "x": 122, "y": 80, "emoji": "🎚️", "label": "inter coupe neutre", "bad": true, "why": "La commande coupe LA PHASE. Un interrupteur sur le neutre éteint la lampe mais laisse la douille sous tension : danger invisible au moment de changer l'ampoule." }, { "id": "c", "x": 185, "y": 105, "emoji": "🟥", "label": "phase en rouge", "bad": false }, { "id": "d", "x": 245, "y": 140, "emoji": "💡", "label": "lampe ph-neutre", "bad": false }], "win": "Sans faute 🏆 Couper le neutre = éteint mais dangereux. La commande, c'est toujours sur la phase." }
       ]
     }
   },
