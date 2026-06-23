@@ -2,114 +2,100 @@
   "id": 5,
   "bloc": 2,
   "titre": "Le danger électrique pour le corps humain",
-  "objectif": "Comprendre comment le courant blesse et tue — et savoir réagir face à une victime",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · LES MOTS JUSTES",
-      "titre": "Électrisation ou électrocution ?",
-      "svg": "corps-courant.svg",
-      "contenu": "Deux mots que le grand public confond, mais pas l'électricien. L'[[électrisation]] désigne tout passage de courant à travers le corps, avec ou sans gravité : un picotement dans le doigt est déjà une électrisation. L'[[électrocution]], elle, est une électrisation qui <b>entraîne la mort</b>. Autrement dit : on est électrisé souvent, électrocuté une seule fois. Le courant entre par un point de contact (souvent la main) et ressort par un autre (souvent les pieds, vers la [[terre]]). Le trajet le plus redouté est <b>main-pied</b> ou <b>main-main</b> : il traverse la cage thoracique, donc le cœur.",
-      "memo": "Électrisation = passage de courant. Électrocution = électrisation MORTELLE. Le pire trajet passe par le cœur."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · CE QUI TUE",
-      "titre": "C'est l'intensité qui tue, pas la tension",
-      "svg": "corps-courant.svg",
-      "contenu": "Phrase à graver : ce n'est pas la [[tension]] qui blesse, c'est l'[[intensité]] qui traverse le corps. Mais les deux sont liés par la loi d'Ohm : I = U / R. La [[tension]] impose le courant, à travers la résistance du corps. Et cette [[résistance]] n'est pas fixe : peau <b>sèche</b>, elle vaut plusieurs milliers d'ohms ; peau <b>mouillée</b> ou en sueur, elle s'effondre sous 1 000 Ω. Calcul qui fait froid dans le dos : 230 V appliqués à un corps mouillé de 1 000 Ω → I = 230 / 1 000 = <b>230 mA</b>. On verra à l'écran suivant qu'à partir de 75 mA, c'est déjà la zone mortelle. La basse tension domestique n'a donc rien d'anodin.",
-      "memo": "I = U / R. La tension fixe le courant ; mouillé, R chute et 230 V suffisent largement à tuer."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · LES SEUILS",
-      "titre": "Les seuils de courant et leurs effets",
-      "svg": "seuils-courant.svg",
-      "contenu": "Pour un courant alternatif 50 Hz et un trajet main-pied, les seuils sont connus et normalisés. <b>0,5 mA</b> : seuil de perception, on commence à sentir. <b>10 mA</b> : seuil de [[tétanisation|non-lâcher]] — les muscles se crispent et la victime ne peut plus lâcher le conducteur. <b>30 mA</b> : paralysie des muscles respiratoires, asphyxie si le courant dure : c'est précisément le calibre retenu pour protéger les personnes. <b>75 mA</b> : [[fibrillation ventriculaire|fibrillation]] du cœur, qui se met à battre de façon anarchique et n'assure plus la circulation. <b>1 A et plus</b> : arrêt cardiaque et brûlures profondes.",
-      "memo": "0,5 mA perçu · 10 mA non-lâcher · 30 mA asphyxie · 75 mA fibrillation · 1 A arrêt du cœur."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · LE TEMPS",
-      "titre": "La durée de passage change tout",
-      "svg": "courbe-securite.svg",
-      "contenu": "Un seuil n'a de sens qu'associé à une <b>durée</b>. Le danger dépend du couple intensité × temps : un courant modéré devient mortel s'il dure, un courant fort peut être supporté une fraction de seconde. C'est pourquoi 30 mA, supportables un très court instant, deviennent dangereux au bout de quelques secondes — et pourquoi le [[DDR]] doit couper <b>vite</b>. La [[courbe de sécurité]] traduit cette idée : elle relie la [[tension de contact]] (la tension qui apparaît sur ce qu'on touche) au temps maximal pendant lequel on peut la subir. Plus la tension de contact est élevée, plus le temps de coupure admissible est court.",
-      "memo": "Le danger = intensité × durée. Plus la tension de contact monte, plus il faut couper vite."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · LA LIMITE",
-      "titre": "Tension limite de sécurité et brûlures",
-      "svg": "courbe-securite.svg",
-      "contenu": "En dessous d'une certaine tension de contact, le courant reste sous les seuils dangereux quelle que soit la durée : c'est la [[tension limite de sécurité]] UL. En courant alternatif, elle vaut <b>50 V en milieu sec</b> et seulement <b>25 V en milieu mouillé</b> (salle de bain, chantier, extérieur) — la peau humide laissant passer bien plus de courant. Au-delà, il faut couper dans un délai imposé. N'oublie pas l'autre blessure : la [[brûlure électrique]]. Par effet Joule, le courant brûle aux points d'entrée et de sortie et tout le long de son trajet interne — des lésions souvent profondes, plus graves qu'elles n'en ont l'air. L'arc électrique ajoute brûlures par rayonnement et projections de métal en fusion.",
-      "memo": "UL = 50 V (sec) / 25 V (mouillé). Et le courant brûle aussi, en profondeur, par effet Joule."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · FACE À LA VICTIME",
-      "titre": "Conduite à tenir : Protéger, Examiner, Alerter, Secourir",
-      "svg": "corps-courant.svg",
-      "contenu": "Si quelqu'un est électrisé, l'ordre des gestes est vital. <b>1. Protéger</b> : ne JAMAIS toucher la victime encore en contact — tu deviendrais la deuxième victime. Coupe le courant (disjoncteur, prise) ; si c'est impossible, écarte la source avec un objet isolant et sec. <b>2. Examiner</b> : la victime parle-t-elle, respire-t-elle ? <b>3. Alerter</b> ou faire alerter les secours : SAMU <b>15</b>, pompiers <b>18</b>, numéro européen <b>112</b>. <b>4. Secourir</b> : appliquer les gestes de premiers secours, et en cas d'arrêt — massage cardiaque et défibrillateur (DAE) sans tarder. Toute victime d'électrisation doit consulter, même si elle semble aller bien : les lésions internes ne se voient pas.",
-      "memo": "Protéger (couper, ne pas toucher) · Examiner · Alerter (15/18/112) · Secourir. Toujours faire consulter."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Quelle différence entre électrisation et électrocution ?",
-      "svg": "corps-courant.svg",
-      "choix": ["Aucune, ce sont des synonymes", "L'électrocution entraîne la mort, pas forcément l'électrisation", "L'électrisation concerne le courant continu uniquement", "L'électrocution se produit seulement en haute tension"],
-      "bonne": 1,
-      "explication": "L'électrisation est tout passage de courant dans le corps ; l'électrocution est une électrisation MORTELLE.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Qu'est-ce qui est directement dangereux pour le corps ?",
-      "svg": "corps-courant.svg",
-      "choix": ["La tension, en volts", "L'intensité qui traverse le corps", "La puissance de l'installation", "La fréquence du réseau"],
-      "bonne": 1,
-      "explication": "C'est l'intensité qui traverse le corps qui blesse. La tension est dangereuse parce qu'elle impose ce courant (I = U/R).",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "Pourquoi un corps mouillé est-il plus en danger ?",
-      "svg": "corps-courant.svg",
-      "choix": ["La tension de la prise augmente", "Sa résistance chute, donc le courant grimpe", "L'eau produit elle-même du courant", "La fréquence du réseau change"],
-      "bonne": 1,
-      "explication": "Peau mouillée = résistance qui s'effondre sous 1 000 Ω. À tension égale, I = U/R augmente fortement.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "À partir de quel courant alternatif parle-t-on de seuil de non-lâcher ?",
-      "svg": "seuils-courant.svg",
-      "choix": ["0,5 mA", "10 mA", "30 mA", "75 mA"],
-      "bonne": 1,
-      "explication": "Vers 10 mA, les muscles se tétanisent et la victime ne peut plus lâcher le conducteur. 30 mA = paralysie respiratoire, 75 mA = fibrillation.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Le seuil de fibrillation ventriculaire se situe vers :",
-      "svg": "seuils-courant.svg",
-      "choix": ["10 mA", "30 mA", "75 mA", "500 mA"],
-      "bonne": 2,
-      "explication": "Vers 75 mA, le cœur fibrille : il bat de façon anarchique et n'assure plus la circulation du sang.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "La tension limite de sécurité en milieu mouillé (courant alternatif) est de :",
-      "svg": "courbe-securite.svg",
-      "choix": ["12 V", "25 V", "50 V", "230 V"],
-      "bonne": 1,
-      "explication": "25 V en milieu mouillé (contre 50 V en milieu sec). Au-delà, la coupure dans un délai imposé devient nécessaire.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Face à une victime encore en contact avec le courant, le premier geste est :",
-      "svg": "corps-courant.svg",
-      "choix": ["La tirer immédiatement par le bras", "Couper le courant avant tout contact", "Lui donner à boire", "Attendre les secours sans rien faire"],
-      "bonne": 1,
-      "explication": "Protéger d'abord : couper le courant. La toucher avant ferait de toi la deuxième victime. Ensuite : examiner, alerter (15/18/112), secourir.",
-      "renvoi_lecon": 5
-    }
+  "objectif": "Comprendre comment le courant blesse et tue — et savoir réagir, dans le bon ordre, face à une victime",
+  "cours": {
+    "intro": "Premier module du bloc 2, et le plus sérieux de toute la formation. On quitte la théorie pour parler de ce qui peut t'arriver, à toi ou à un collègue, sur un chantier. Le courant ne fait pas mal « comme une gifle » : il blesse selon des seuils précis, et il tue selon des règles qu'on connaît au milliampère près. Lis ce cours lentement — ici, chaque chiffre est exact et chaque chiffre compte.",
+    "sections": [
+      {
+        "titre": "1. Électrisation ou électrocution ?",
+        "svg": "corps-courant.svg",
+        "contenu": "<p>Deux mots que le grand public confond, mais pas l'électricien. L'[[électrisation]] désigne <b>tout passage de courant à travers le corps</b>, quelle que soit sa gravité : un picotement dans le doigt est déjà une électrisation. L'[[électrocution]], elle, est une électrisation qui <b>entraîne la mort</b>. Autrement dit : on est électrisé souvent, électrocuté une seule fois.</p><p>Pour blesser, le courant doit <b>traverser le corps</b> : il entre par un point de contact (le plus souvent la main) et ressort par un autre (souvent les pieds, vers la [[terre]]). Le chemin qu'il emprunte entre ces deux points fait toute la différence.</p><p>Le trajet le plus redouté est <b>main-pied</b> ou <b>main-main</b> : il traverse la cage thoracique, donc le <b>cœur</b> et les <b>poumons</b>. C'est ce trajet qui provoque les arrêts respiratoires et cardiaques. Un courant qui passerait d'un doigt à l'autre d'une même main serait bien moins grave : il ne touche pas les organes vitaux.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "C'est pour ça qu'on travaille « une main dans la poche » près d'une partie sous tension : on évite le trajet main-main qui traverse le thorax. Et de bonnes chaussures isolantes coupent le trajet main-pied vers la terre." },
+        "memo": "Électrisation = passage de courant (quelconque). Électrocution = électrisation MORTELLE. Le pire trajet (main-pied / main-main) passe par le cœur."
+      },
+      {
+        "titre": "2. C'est l'intensité qui tue, pas la tension",
+        "svg": "c5-mouille.svg",
+        "contenu": "<p>Phrase à graver : ce n'est pas la [[tension]] qui blesse, c'est l'[[intensité]] qui traverse le corps. On meurt de quelques dizaines de milliampères, pas de « 230 volts » en soi.</p><p>Mais tension et courant sont liés par la [[loi d'Ohm]] : <b>I = U / R</b>. La tension <b>impose</b> le courant, à travers la [[résistance]] du corps. Et cette résistance n'est pas fixe : peau <b>sèche</b>, elle vaut plusieurs milliers d'ohms ; peau <b>mouillée</b> ou en sueur, elle s'effondre autour de <b>1 000 Ω</b>.</p><p>Le calcul qui fait froid dans le dos : 230 V appliqués à un corps mouillé de 1 000 Ω donnent I = 230 / 1 000 = <b>0,23 A, soit 230 mA</b>. On verra à la section suivante que dès 75 mA, on est en zone mortelle. La basse tension domestique n'a donc rien d'anodin : c'est elle qui fait le plus de victimes, justement parce qu'on s'en méfie moins.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Mains moites, sol humide, transpiration d'été : la résistance de ton corps peut être dix fois plus basse qu'au repos. Le même contact qui « pique » à peine en hiver peut devenir mortel sur un chantier détrempé." },
+        "memo": "I = U / R. C'est l'intensité qui tue, mais la tension l'impose. Mouillé, R chute vers 1 000 Ω : 230 V / 1 000 Ω = 230 mA."
+      },
+      {
+        "titre": "3. Les seuils de courant et leurs effets",
+        "svg": "seuils-courant.svg",
+        "contenu": "<p>Pour un courant alternatif à 50 Hz et un trajet main-pied, les effets sur le corps suivent une échelle connue et normalisée. Retiens ces cinq paliers, ils tombent à l'examen.</p><p><b>0,5 mA</b> — seuil de <b>perception</b> : on commence tout juste à sentir le courant.<br><b>10 mA</b> — seuil de <b>non-lâcher</b> : les muscles se crispent ([[tétanisation]]) et la victime ne peut plus lâcher le conducteur qu'elle tient. Le contact se prolonge tout seul, ce qui aggrave tout.<br><b>30 mA</b> — <b>paralysie des muscles respiratoires</b> : asphyxie si le courant dure. C'est précisément le seuil retenu pour protéger les personnes.<br><b>75 mA</b> — <b>fibrillation ventriculaire</b> ([[fibrillation ventriculaire|fibrillation]]) : le cœur se met à battre de façon anarchique et n'assure plus la circulation du sang.<br><b>1 A et plus</b> — <b>arrêt cardiaque</b> et brûlures internes profondes.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le seuil de 30 mA n'est pas un hasard : c'est le calibre des interrupteurs différentiels qui protègent les personnes dans un logement. En dessous de 30 mA pendant un temps très court, le cœur tient ; le rôle du différentiel est de couper avant que ce ne soit plus le cas." },
+        "memo": "0,5 mA perçu · 10 mA non-lâcher (tétanisation) · 30 mA paralysie respiratoire · 75 mA fibrillation · 1 A arrêt cardiaque."
+      },
+      {
+        "titre": "4. La durée de passage change tout",
+        "svg": "courbe-securite.svg",
+        "contenu": "<p>Un seuil de courant n'a de sens qu'associé à une <b>durée</b>. Le danger réel dépend du couple <b>intensité × temps</b> : un courant modéré devient mortel s'il dure, alors qu'un courant fort peut être supporté pendant une fraction de seconde sans dommage irréversible.</p><p>C'est pour ça que 30 mA, tolérables un très court instant, deviennent dangereux au bout de quelques secondes — et pourquoi un [[DDR]] ne doit pas seulement détecter le défaut, mais <b>couper vite</b>.</p><p>La [[courbe de sécurité]] traduit exactement cette idée. Elle relie la [[tension de contact]] (la tension qui apparaît sur la masse qu'on touche) au <b>temps maximal</b> pendant lequel le corps peut la subir sans danger. La lecture est simple : plus la tension de contact est élevée, plus le temps de coupure admissible est court. À tension de contact faible, on peut rester très longtemps ; à tension élevée, il faut couper en une fraction de seconde.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Détecter le défaut ne suffit pas : tout l'enjeu est la vitesse de coupure. Un différentiel qui « voit » la fuite mais coupe trop tard ne protège personne. C'est pourquoi on teste régulièrement le bouton T des différentiels." },
+        "memo": "Danger = intensité × durée. La courbe de sécurité relie tension de contact et temps max. Plus la tension de contact monte, plus il faut couper vite."
+      },
+      {
+        "titre": "5. Tension limite de sécurité et brûlures",
+        "svg": "c5-ul-brulure.svg",
+        "contenu": "<p>En dessous d'une certaine tension de contact, le courant reste sous les seuils dangereux <b>quelle que soit la durée</b> : on peut la toucher indéfiniment sans risque. C'est la [[tension limite de sécurité|tension limite de sécurité UL]].</p><p>En courant alternatif, elle vaut <b>50 V en milieu sec</b> et seulement <b>25 V en milieu mouillé</b> (salle de bain, chantier, extérieur, locaux humides) — la peau humide laissant passer beaucoup plus de courant. Au-delà de UL, la coupure dans un délai imposé devient obligatoire.</p><p>N'oublie pas l'autre blessure : la [[brûlure électrique]]. Par [[effet Joule]], le courant échauffe les tissus aux points d'entrée et de sortie <b>et tout le long de son trajet interne</b>. Ces brûlures sont souvent <b>profondes</b> et bien plus graves qu'elles n'en ont l'air en surface. L'arc électrique, lui, ajoute des brûlures par rayonnement thermique et des projections de métal en fusion, même sans contact direct.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "UL = 25 V dès qu'il y a de l'eau, et une salle de bain est un « milieu mouillé » permanent : c'est toute la logique des volumes de sécurité qu'on verra au module suivant. Et une petite marque d'entrée sur un doigt peut cacher une brûlure interne grave : on fait toujours examiner." },
+        "memo": "Tension limite UL = 50 V (milieu sec) / 25 V (milieu mouillé). Le courant brûle aussi, en profondeur, par effet Joule ; l'arc brûle même à distance."
+      },
+      {
+        "titre": "6. Conduite à tenir face à une victime",
+        "svg": "c5-conduite.svg",
+        "contenu": "<p>Si quelqu'un est électrisé, l'ordre des gestes est <b>vital</b> — et il ne s'improvise pas. Quatre étapes, toujours dans cet ordre.</p><p><b>1. Protéger.</b> Ne <b>jamais</b> toucher une victime encore en contact avec le courant : tu deviendrais la deuxième victime. Coupe d'abord le courant (disjoncteur, prise, sectionneur). Si c'est impossible immédiatement, écarte la source avec un objet <b>isolant et sec</b> (manche en bois, balai).</p><p><b>2. Examiner.</b> Une fois le danger écarté : la victime parle-t-elle, répond-elle, respire-t-elle ?</p><p><b>3. Alerter</b> (ou faire alerter) les secours : <b>SAMU 15</b>, <b>pompiers 18</b>, <b>numéro d'urgence européen 112</b>.</p><p><b>4. Secourir</b> : appliquer les gestes de premiers secours ; en cas d'arrêt, massage cardiaque et défibrillateur (DAE) sans tarder.</p><p>Et une règle qui ne souffre aucune exception : <b>toute victime d'électrisation doit consulter un médecin</b>, même si elle semble aller parfaitement bien. Les lésions internes (cœur, brûlures profondes) ne se voient pas et peuvent se déclarer plus tard.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Mémorise l'ordre P-E-A-S : Protéger, Examiner, Alerter, Secourir. L'erreur mortelle classique, c'est de se précipiter pour tirer le collègue : on coupe le courant AVANT de toucher quoi que ce soit." },
+        "memo": "Protéger (couper, ne pas toucher) · Examiner · Alerter (15 / 18 / 112) · Secourir. Et toujours : faire consulter, même si la victime va bien."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Quelle différence entre électrisation et électrocution ?", "choix": ["Aucune, ce sont des synonymes", "L'électrocution entraîne la mort, pas forcément l'électrisation", "L'électrisation ne concerne que le courant continu", "L'électrocution se produit seulement en haute tension"], "bonne": 1, "explication": "L'électrisation est tout passage de courant dans le corps ; l'électrocution est une électrisation MORTELLE.", "renvoi_lecon": 0 },
+    { "question": "L'électrocution, c'est :", "choix": ["un simple picotement", "une électrisation qui entraîne la mort", "une décharge d'électricité statique", "un court-circuit dans une prise"], "bonne": 1, "explication": "Par définition, l'électrocution est l'électrisation qui aboutit au décès de la victime.", "renvoi_lecon": 0 },
+    { "question": "Un picotement ressenti dans un doigt au contact d'un fil est :", "choix": ["déjà une électrisation", "une électrocution", "sans aucun rapport avec le courant", "forcément mortel"], "bonne": 0, "explication": "Toute sensation de passage de courant, même bénigne, est une électrisation. Heureusement, la plupart ne sont pas mortelles.", "renvoi_lecon": 0 },
+    { "question": "Quel trajet du courant dans le corps est le plus dangereux ?", "choix": ["d'un doigt à l'autre de la même main", "main-pied ou main-main, à travers le thorax", "du pied gauche au pied droit", "de l'oreille à la joue"], "bonne": 1, "explication": "Le trajet main-pied ou main-main traverse la cage thoracique, donc le cœur et les poumons : c'est le plus mortel.", "renvoi_lecon": 0 },
+    { "question": "Pourquoi le trajet main-pied est-il redouté ?", "choix": ["il chauffe les jambes", "il traverse le cœur et les poumons", "il est plus long donc moins grave", "il ne touche aucun organe"], "bonne": 1, "explication": "En reliant une main au pied, le courant passe par le thorax et atteint les organes vitaux.", "renvoi_lecon": 0 },
+    { "question": "Par où le courant ressort-il le plus souvent vers le sol ?", "choix": ["par les cheveux", "par les pieds, vers la terre", "il ne ressort jamais", "par les yeux"], "bonne": 1, "explication": "Le courant entre par la main et ressort en général par les pieds vers la terre : d'où l'intérêt de chaussures isolantes.", "renvoi_lecon": 0 },
+    { "question": "Travailler « une main dans la poche » près d'une partie sous tension permet :", "choix": ["d'avoir l'air détendu", "d'éviter le trajet main-main à travers le thorax", "de tenir plus d'outils", "de mieux voir"], "bonne": 1, "explication": "Garder une main inactive évite que le courant ne traverse la poitrine d'une main à l'autre.", "renvoi_lecon": 0 },
+    { "question": "Qu'est-ce qui est directement dangereux pour le corps ?", "choix": ["la tension, en volts", "l'intensité qui traverse le corps", "la puissance de l'installation", "la fréquence du réseau"], "bonne": 1, "explication": "C'est l'intensité qui traverse le corps qui blesse. La tension est dangereuse parce qu'elle impose ce courant.", "renvoi_lecon": 1 },
+    { "question": "Quelle loi relie tension, courant et résistance du corps ?", "choix": ["P = U × I", "I = U / R", "E = P × t", "U = R + I"], "bonne": 1, "explication": "La loi d'Ohm I = U / R : la tension impose le courant à travers la résistance du corps.", "renvoi_lecon": 1 },
+    { "question": "À résistance du corps égale, plus la tension est élevée :", "choix": ["plus le courant dans le corps est faible", "plus le courant dans le corps est grand", "le courant ne change pas", "le corps devient isolant"], "bonne": 1, "explication": "I = U / R : à R constante, le courant augmente avec la tension.", "renvoi_lecon": 1 },
+    { "question": "La résistance d'un corps à peau mouillée est de l'ordre de :", "choix": ["1 000 Ω", "1 000 000 Ω", "10 Ω", "0 Ω"], "bonne": 0, "explication": "Peau mouillée ou en sueur, la résistance du corps s'effondre autour de 1 000 Ω (au lieu de plusieurs milliers d'ohms à sec).", "renvoi_lecon": 1 },
+    { "question": "230 V appliqués à un corps mouillé de 1 000 Ω donnent un courant de :", "choix": ["23 mA", "230 mA", "2,3 mA", "2,3 A"], "bonne": 1, "explication": "I = U / R = 230 / 1 000 = 0,23 A, soit 230 mA — bien au-delà du seuil mortel.", "renvoi_lecon": 1 },
+    { "question": "Pourquoi un corps mouillé est-il plus en danger ?", "choix": ["la tension de la prise augmente", "sa résistance chute, donc le courant grimpe", "l'eau produit elle-même du courant", "la fréquence du réseau change"], "bonne": 1, "explication": "Peau mouillée = résistance qui s'effondre. À tension égale, I = U / R augmente fortement.", "renvoi_lecon": 1 },
+    { "question": "La résistance du corps humain :", "choix": ["est fixe quelles que soient les conditions", "varie : élevée à sec, faible si mouillée", "augmente quand on transpire", "est nulle"], "bonne": 1, "explication": "Elle vaut plusieurs milliers d'ohms à sec et chute vers 1 000 Ω lorsque la peau est mouillée.", "renvoi_lecon": 1 },
+    { "question": "La basse tension domestique de 230 V :", "choix": ["ne peut jamais tuer", "peut tuer, surtout sur un corps mouillé", "n'est dangereuse qu'en courant continu", "est moins dangereuse que 12 V"], "bonne": 1, "explication": "Sur un corps mouillé de 1 000 Ω, 230 V donnent 230 mA : la basse tension fait le plus de victimes.", "renvoi_lecon": 1 },
+    { "question": "Le seuil de perception du courant alternatif est d'environ :", "choix": ["0,5 mA", "10 mA", "30 mA", "75 mA"], "bonne": 0, "explication": "Vers 0,5 mA, on commence tout juste à sentir le passage du courant.", "renvoi_lecon": 2 },
+    { "question": "À partir de quel courant parle-t-on de seuil de non-lâcher ?", "choix": ["0,5 mA", "10 mA", "30 mA", "75 mA"], "bonne": 1, "explication": "Vers 10 mA, les muscles se tétanisent et la victime ne peut plus lâcher le conducteur.", "renvoi_lecon": 2 },
+    { "question": "À environ 10 mA, que se passe-t-il ?", "choix": ["rien de notable", "les muscles se crispent, la victime ne peut plus lâcher", "le cœur s'arrête aussitôt", "la peau devient isolante"], "bonne": 1, "explication": "C'est la tétanisation : les muscles se contractent et la main reste serrée sur le conducteur.", "renvoi_lecon": 2 },
+    { "question": "Le seuil de paralysie des muscles respiratoires se situe vers :", "choix": ["0,5 mA", "10 mA", "30 mA", "1 A"], "bonne": 2, "explication": "À 30 mA, les muscles respiratoires se paralysent : asphyxie si le courant dure. C'est le seuil retenu pour protéger les personnes.", "renvoi_lecon": 2 },
+    { "question": "Le seuil de fibrillation ventriculaire se situe vers :", "choix": ["10 mA", "30 mA", "75 mA", "500 mA"], "bonne": 2, "explication": "Vers 75 mA, le cœur fibrille : il bat de façon anarchique et n'assure plus la circulation du sang.", "renvoi_lecon": 2 },
+    { "question": "À partir de 1 A, on observe :", "choix": ["un simple picotement", "l'arrêt cardiaque et des brûlures profondes", "rien si la peau est sèche", "uniquement une perception"], "bonne": 1, "explication": "À 1 A et au-delà : arrêt cardiaque et brûlures internes profondes.", "renvoi_lecon": 2 },
+    { "question": "Le calibre 30 mA des différentiels correspond au seuil de :", "choix": ["perception", "paralysie respiratoire", "arrêt cardiaque", "non-lâcher"], "bonne": 1, "explication": "30 mA = paralysie respiratoire ; c'est pour rester sous ce seuil que les différentiels « personnes » sont calibrés à 30 mA.", "renvoi_lecon": 2 },
+    { "question": "La fibrillation ventriculaire, c'est :", "choix": ["un cœur qui bat trop lentement", "un cœur qui bat de façon anarchique et n'assure plus la circulation", "une brûlure de la peau", "une contraction des bras"], "bonne": 1, "explication": "Le cœur se désorganise et ne pompe plus le sang efficacement : c'est mortel sans intervention rapide.", "renvoi_lecon": 2 },
+    { "question": "Le danger d'un courant pour le corps dépend :", "choix": ["de la seule intensité", "de la seule tension", "du couple intensité × durée", "de la couleur des fils"], "bonne": 2, "explication": "Le danger = intensité × durée : un même courant est d'autant plus grave qu'il dure longtemps.", "renvoi_lecon": 3 },
+    { "question": "Un courant modéré qui dure longtemps :", "choix": ["devient sans danger", "peut devenir mortel", "ne traverse plus le corps", "diminue tout seul"], "bonne": 1, "explication": "La durée aggrave tout : un courant supportable un instant devient mortel s'il se prolonge.", "renvoi_lecon": 3 },
+    { "question": "Pourquoi un dispositif différentiel doit-il couper vite ?", "choix": ["pour économiser l'énergie", "parce que le danger augmente avec la durée du passage du courant", "pour éviter d'user le disjoncteur", "pour faire moins de bruit"], "bonne": 1, "explication": "Comme le danger = intensité × durée, plus on coupe tôt, moins le courant a le temps de blesser.", "renvoi_lecon": 3 },
+    { "question": "La courbe de sécurité relie :", "choix": ["la puissance et le prix", "la tension de contact et le temps maximal de passage", "la fréquence et la tension", "la section et la longueur du câble"], "bonne": 1, "explication": "Elle donne, pour chaque tension de contact, le temps maximal pendant lequel le corps peut la subir sans danger.", "renvoi_lecon": 3 },
+    { "question": "Selon la courbe de sécurité, plus la tension de contact est élevée :", "choix": ["plus le temps de coupure admissible est long", "plus le temps de coupure admissible est court", "le temps ne change pas", "le courant devient nul"], "bonne": 1, "explication": "Tension de contact élevée = il faut couper en une fraction de seconde ; tension faible = on peut rester longtemps.", "renvoi_lecon": 3 },
+    { "question": "30 mA pendant une fraction de seconde seulement :", "choix": ["sont aussitôt mortels", "sont mieux supportés que 30 mA pendant plusieurs secondes", "n'ont aucun effet jamais", "valent 75 mA"], "bonne": 1, "explication": "C'est tout l'enjeu de la durée : 30 mA un très court instant passent mieux que 30 mA prolongés.", "renvoi_lecon": 3 },
+    { "question": "La tension de contact, c'est :", "choix": ["la tension du réseau au compteur", "la tension qui apparaît sur la masse que l'on touche", "la tension de crête", "la tension d'une pile"], "bonne": 1, "explication": "C'est la tension présente sur la partie métallique touchée par la victime — celle que la courbe de sécurité prend en compte.", "renvoi_lecon": 3 },
+    { "question": "La tension limite de sécurité UL en milieu sec (alternatif) est de :", "choix": ["12 V", "25 V", "50 V", "230 V"], "bonne": 2, "explication": "En milieu sec, UL = 50 V : en dessous, le contact reste sans danger quelle que soit la durée.", "renvoi_lecon": 4 },
+    { "question": "La tension limite de sécurité UL en milieu mouillé (alternatif) est de :", "choix": ["12 V", "25 V", "50 V", "230 V"], "bonne": 1, "explication": "En milieu mouillé, UL = 25 V (contre 50 V en milieu sec), car la peau humide laisse passer plus de courant.", "renvoi_lecon": 4 },
+    { "question": "En dessous de la tension limite de sécurité UL :", "choix": ["il faut couper en moins d'une seconde", "le contact est sans danger quelle que soit la durée", "le courant double", "la résistance du corps s'annule"], "bonne": 1, "explication": "Sous UL, le courant reste sous les seuils dangereux même si le contact dure : c'est la définition de la tension limite.", "renvoi_lecon": 4 },
+    { "question": "Pourquoi UL est-elle plus basse en milieu mouillé ?", "choix": ["l'eau augmente la tension", "la peau humide laisse passer beaucoup plus de courant", "il fait plus froid", "la fréquence baisse"], "bonne": 1, "explication": "Mouillé, la résistance du corps chute : à tension égale le courant grimpe, donc la limite de sécurité doit être plus basse (25 V).", "renvoi_lecon": 4 },
+    { "question": "Les brûlures électriques sont :", "choix": ["toujours superficielles et bénignes", "souvent profondes, le long du trajet du courant", "limitées à la peau visible", "sans gravité"], "bonne": 1, "explication": "Par effet Joule, le courant brûle en profondeur tout le long de son trajet interne : les lésions sont souvent bien plus graves qu'en surface.", "renvoi_lecon": 4 },
+    { "question": "Par quel effet le courant brûle-t-il les tissus ?", "choix": ["l'effet Joule", "l'effet photovoltaïque", "l'effet magnétique", "l'effet de peau"], "bonne": 0, "explication": "L'effet Joule : le passage du courant échauffe les tissus aux points d'entrée/sortie et le long du trajet interne.", "renvoi_lecon": 4 },
+    { "question": "L'arc électrique peut provoquer :", "choix": ["aucune blessure sans contact", "des brûlures par rayonnement et des projections de métal en fusion", "uniquement un éblouissement", "une simple décharge statique"], "bonne": 1, "explication": "L'arc brûle même à distance par rayonnement thermique et projette du métal en fusion, sans contact direct.", "renvoi_lecon": 4 },
+    { "question": "Une salle de bain est, pour la sécurité électrique, un milieu :", "choix": ["sec (UL = 50 V)", "mouillé (UL = 25 V)", "sans risque", "à haute tension"], "bonne": 1, "explication": "L'eau y est permanente : c'est un milieu mouillé, donc la tension limite de sécurité y est de 25 V.", "renvoi_lecon": 4 },
+    { "question": "Face à une victime encore en contact avec le courant, le premier geste est :", "choix": ["la tirer immédiatement par le bras", "couper le courant avant tout contact", "lui donner à boire", "attendre les secours sans rien faire"], "bonne": 1, "explication": "Protéger d'abord : couper le courant. La toucher avant ferait de toi la deuxième victime.", "renvoi_lecon": 5 },
+    { "question": "Pourquoi ne pas toucher une victime encore en contact avec le courant ?", "choix": ["on pourrait la réveiller", "on deviendrait soi-même la deuxième victime", "ça ne sert à rien", "ça la brûlerait davantage"], "bonne": 1, "explication": "Tant que le courant passe, toucher la victime t'électrise à ton tour : on coupe ou on écarte la source avec un objet isolant et sec.", "renvoi_lecon": 5 },
+    { "question": "Quel est l'ordre correct de la conduite à tenir ?", "choix": ["Secourir, Alerter, Examiner, Protéger", "Protéger, Examiner, Alerter, Secourir", "Alerter, Protéger, Secourir, Examiner", "Examiner, Secourir, Protéger, Alerter"], "bonne": 1, "explication": "P-E-A-S : Protéger, Examiner, Alerter, Secourir — toujours dans cet ordre.", "renvoi_lecon": 5 },
+    { "question": "Quel est le numéro du SAMU ?", "choix": ["15", "18", "112", "17"], "bonne": 0, "explication": "Le SAMU, c'est le 15. Les pompiers le 18, le numéro d'urgence européen le 112.", "renvoi_lecon": 5 },
+    { "question": "Quel est le numéro des pompiers ?", "choix": ["15", "18", "112", "115"], "bonne": 1, "explication": "Les pompiers, c'est le 18. Le SAMU le 15, le numéro européen le 112.", "renvoi_lecon": 5 },
+    { "question": "Quel est le numéro d'urgence européen ?", "choix": ["15", "18", "112", "911"], "bonne": 2, "explication": "Le 112 est le numéro d'urgence valable dans toute l'Union européenne.", "renvoi_lecon": 5 },
+    { "question": "Une victime d'électrisation qui semble aller parfaitement bien :", "choix": ["n'a pas besoin de consulter", "doit tout de même consulter un médecin", "peut reprendre le travail aussitôt", "n'a rien eu"], "bonne": 1, "explication": "Les lésions internes (cœur, brûlures profondes) ne se voient pas et peuvent se déclarer plus tard : on fait toujours consulter.", "renvoi_lecon": 5 }
   ],
   "jeu": {
     "type": "vrai-faux-rapide",
