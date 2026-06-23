@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" font-family="'Segoe UI',system-ui,sans-serif">
+<text x="160" y="20" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Trois grandeurs liées</text>
+<text x="60" y="52" text-anchor="middle" font-size="20" fill="#ffd23f" font-weight="bold">U</text>
+<line x1="34" y1="78" x2="86" y2="78" stroke="#ffd23f" stroke-width="2" stroke-linecap="round"/><polygon points="86,78 80.6,80.6 80.6,75.4" fill="#ffd23f"/>
+<text x="60" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">pousse</text>
+<text x="60" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">volts (V)</text>
+<text x="160" y="52" text-anchor="middle" font-size="20" fill="#5ab0f0" font-weight="bold">I</text>
+<circle cx="140" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
+<circle cx="154" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
+<circle cx="168" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
+<line x1="176" y1="78" x2="190" y2="78" stroke="#5ab0f0" stroke-width="2" stroke-linecap="round"/><polygon points="190,78 184.6,80.6 184.6,75.4" fill="#5ab0f0"/>
+<text x="160" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">circule</text>
+<text x="160" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ampères (A)</text>
+<text x="260" y="52" text-anchor="middle" font-size="20" fill="#ff8c2b" font-weight="bold">R</text>
+<path d="M232 78 L236.7 71 L246.0 85 L255.3 71 L264.7 85 L274.0 71 L283.3 85 L288 78" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linejoin="round"/>
+<text x="260" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">freine</text>
+<text x="260" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ohms (Ω)</text>
+<text x="160" y="142" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="normal">Augmente U → I monte. Augmente R → I baisse.</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 185" font-family="'Segoe UI',system-ui,sans-serif">
+<text x="160" y="20" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le compteur totalise les kWh</text>
+<polygon points="84.0,110.0 148.0,138.0 148.0,200.0 84.0,172.0" fill="#23272e" stroke="#4a515c" stroke-width="1.6" stroke-linejoin="round"/><polygon points="148.0,138.0 268.0,108.0 268.0,170.0 148.0,200.0" fill="#1c2026" stroke="#4a515c" stroke-width="1.6" stroke-linejoin="round"/><polygon points="84.0,110.0 204.0,80.0 268.0,108.0 148.0,138.0" fill="#343a44" stroke="#4a515c" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="104" y="112" width="78" height="26" rx="3" fill="#11201a" stroke="#9aa6b3" stroke-width="1.4"/>
+<text x="139" y="130" text-anchor="middle" font-size="13" fill="#ffd23f" font-weight="bold">012345</text>
+<text x="196" y="128" text-anchor="middle" font-size="9" fill="#5ab0f0" font-weight="bold">kWh</text>
+<text x="160" y="176" text-anchor="middle" font-size="12" fill="#ffd23f" font-weight="bold">E = P × t</text>
+</svg>
