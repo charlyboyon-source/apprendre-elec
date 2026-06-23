@@ -3,113 +3,98 @@
   "bloc": 1,
   "titre": "Série, parallèle et courant alternatif",
   "objectif": "Calculer une résistance équivalente — et lire le signal 230 V / 50 Hz comme un pro",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · LA SÉRIE",
-      "titre": "En série : à la queue leu leu",
-      "svg": "n4-serie.svg",
-      "contenu": "Deux récepteurs sont en [[association en série|série]] quand le courant n'a qu'un seul chemin : il traverse le premier, PUIS le second. Conséquences directes : l'<b>intensité est la même partout</b>, et les tensions s'additionnent — chacun prend sa part des 230 V. La [[résistance équivalente]] (la résistance unique qui remplacerait l'ensemble) s'obtient en additionnant : <b>Re = R1 + R2</b>. En série, ajouter un récepteur augmente toujours la résistance totale. Le défaut rédhibitoire pour le logement : un élément grillé ouvre la boucle, et <b>tout s'éteint</b> — souviens-toi des guirlandes d'antan.",
-      "memo": "Série : un seul chemin, même I partout, Re = R1 + R2. Un maillon lâche = tout s'arrête."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · LE PARALLÈLE",
-      "titre": "En parallèle : chacun sa voie",
-      "svg": "n4-parallele.svg",
-      "contenu": "Deux récepteurs sont en [[association en parallèle|parallèle]] (on dit aussi « en dérivation ») quand ils sont branchés entre les <b>deux mêmes points</b> : chacun reçoit la <b>même tension</b>, et les courants s'additionnent dans le tronc commun. La formule : <b>1/Re = 1/R1 + 1/R2</b>. Cas particulier à connaître par cœur : deux résistances <b>identiques</b> en parallèle → Re = R/2. C'est le montage de toute l'installation domestique : chaque prise, chaque lampe reçoit ses 230 V indépendamment, et débrancher l'une n'éteint pas les autres.",
-      "memo": "Parallèle : même U pour tous, 1/Re = 1/R1 + 1/R2. Deux R identiques → R/2. C'est le montage du logement."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · EN CHIFFRES",
-      "titre": "Résistance équivalente : les pièges classiques",
-      "svg": "n4-comparatif.svg",
-      "contenu": "Prends R1 = R2 = 100 Ω. En série : Re = 100 + 100 = <b>200 Ω</b>. En parallèle : 1/Re = 1/100 + 1/100 = 2/100, donc Re = <b>50 Ω</b>. Avec des valeurs différentes, R1 = 60 Ω et R2 = 30 Ω en parallèle : 1/Re = 1/60 + 1/30 = 1/60 + 2/60 = 3/60, donc Re = <b>20 Ω</b>. La règle de contrôle qui sauve à l'examen : en parallèle, Re est <b>toujours plus petite que la plus petite</b> des résistances. Si ton calcul donne plus grand, c'est faux — recommence. Et n'oublie pas l'inversion finale : 1/Re = 0,05 n'est pas la réponse, Re = 20 Ω l'est.",
-      "memo": "Parallèle : Re < la plus petite des R, toujours. Et on inverse 1/Re à la fin du calcul !"
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · L'ALTERNATIF",
-      "titre": "Le courant alternatif : le va-et-vient du réseau",
-      "svg": "n4-sinus.svg",
-      "contenu": "Jusqu'ici, on a raisonné comme avec une pile : un courant continu, toujours dans le même sens. Mais le réseau fournit du [[courant alternatif]] : la tension change de polarité en permanence, suivant une courbe en S appelée <b>sinusoïde</b>. Les électrons font du sur-place en oscillant — et ça suffit : l'énergie, elle, est bien transmise. Pourquoi ce choix ? L'alternatif se transforme facilement (élever la tension pour le transport longue distance, l'abaisser pour la distribution) et se coupe plus facilement, l'arc électrique s'éteignant au passage par zéro. C'est lui qui a gagné la « guerre des courants » à la fin du XIXe siècle.",
-      "memo": "Le réseau = alternatif sinusoïdal. Transformable et plus facile à couper : voilà pourquoi il a gagné."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · 50 HZ ET 230 V",
-      "titre": "Période, fréquence, valeur efficace",
-      "svg": "n4-sinus-cotee.svg",
-      "contenu": "Trois nombres décrivent le signal du réseau. La [[période]] T : la durée d'un cycle complet, soit <b>20 ms</b> en France. La [[fréquence]] f : le nombre de cycles par seconde, en hertz (Hz), liée à la période par <b>f = 1/T</b> : 1/0,02 = <b>50 Hz</b> — le courant change de sens 100 fois par seconde. Et les fameux 230 V ? Ce n'est pas le maximum de la courbe : c'est la [[valeur efficace]], la tension continue qui produirait le même échauffement dans une résistance. Le sommet de la sinusoïde, la valeur de crête, vaut Û = U × √2 = 230 × 1,414 ≈ <b>325 V</b>. C'est bien 325 V que ton isolation encaisse à chaque crête.",
-      "memo": "T = 20 ms · f = 1/T = 50 Hz · 230 V = valeur EFFICACE · crête = 230 × √2 ≈ 325 V."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · LE RÉCAP",
-      "titre": "Le bloc 1 est dans la poche",
-      "svg": "n4-recap.svg",
-      "contenu": "Fais le bilan de ce premier bloc. Tu sais ce qu'est le courant (niveau 1 : électrons libres, U, I, R et leurs unités), tu sais calculer (niveau 2 : U = R×I, P = U×I, E = P×t), tu sais lire un circuit (niveau 3 : générateur, récepteurs, commande, conducteurs, protection) et tu sais maintenant combiner les récepteurs (série : Re = R1+R2 · parallèle : 1/Re = 1/R1+1/R2) et décrire le signal du réseau (sinusoïdal, 230 V efficaces, 50 Hz). Avec ces fondations, le bloc 2 peut attaquer le sujet le plus sérieux du métier : la sécurité électrique et la protection des personnes.",
-      "memo": "Série Re = ΣR · parallèle 1/Re = Σ(1/R) · réseau : sinusoïdal, 230 V eff, 50 Hz, crête 325 V."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Deux résistances en série : R1 = 40 Ω, R2 = 60 Ω. Résistance équivalente ?",
-      "choix": ["24 Ω", "50 Ω", "100 Ω", "2 400 Ω"],
-      "bonne": 2,
-      "explication": "En série, les résistances s'additionnent : Re = 40 + 60 = 100 Ω.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Dans une association en série, quelle grandeur est identique partout ?",
-      "choix": ["La tension", "L'intensité", "La puissance", "La résistance"],
-      "bonne": 1,
-      "explication": "Un seul chemin = même courant I dans tous les éléments. Ce sont les tensions qui se partagent.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Deux résistances de 100 Ω en parallèle. Résistance équivalente ?",
-      "choix": ["200 Ω", "100 Ω", "50 Ω", "25 Ω"],
-      "bonne": 2,
-      "explication": "Deux résistances identiques en parallèle : Re = R/2 = 50 Ω. (1/Re = 1/100 + 1/100 = 2/100.)",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "En parallèle, la résistance équivalente est toujours :",
-      "choix": ["Plus grande que la plus grande des R", "Égale à la somme des R", "Plus petite que la plus petite des R", "Égale à la moyenne des R"],
-      "bonne": 2,
-      "explication": "Chaque branche ajoutée offre un chemin de plus au courant : la résistance d'ensemble diminue. Re < min(R1, R2), toujours — c'est ton test de vraisemblance.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Les circuits d'une installation domestique sont montés :",
-      "choix": ["En série, pour limiter le courant", "En parallèle, chacun sous 230 V", "En série-parallèle alterné", "En étoile autour du compteur"],
-      "bonne": 1,
-      "explication": "Tout le logement est en parallèle : chaque récepteur reçoit ses 230 V et fonctionne indépendamment des autres.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "La fréquence du réseau français est de 50 Hz. Sa période vaut :",
-      "choix": ["50 ms", "20 ms", "2 ms", "0,5 s"],
-      "bonne": 1,
-      "explication": "T = 1/f = 1/50 = 0,02 s = 20 ms.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Les « 230 V » du réseau désignent :",
-      "choix": ["La valeur de crête de la sinusoïde", "La valeur moyenne du signal", "La valeur efficace", "La tension entre deux phases"],
-      "bonne": 2,
-      "explication": "230 V est la valeur EFFICACE — celle qui produit le même échauffement qu'un continu de 230 V. La crête vaut 230 × √2 ≈ 325 V.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "La valeur de crête de la tension domestique vaut environ :",
-      "choix": ["230 V", "245 V", "325 V", "400 V"],
-      "bonne": 2,
-      "explication": "Û = U × √2 = 230 × 1,414 ≈ 325 V. C'est cette valeur que l'isolation des matériels doit encaisser à chaque crête.",
-      "renvoi_lecon": 4
-    }
+  "cours": {
+    "intro": "Dernier module du bloc 1. On combine maintenant plusieurs récepteurs — en série ou en parallèle — puis on découvre le courant qui anime vraiment le réseau : l'alternatif. Deux ou trois calculs simples, un peu de vocabulaire, et le bloc 1 est bouclé.",
+    "sections": [
+      {
+        "titre": "1. En série : un seul chemin",
+        "svg": "n4-serie.svg",
+        "contenu": "<p>Deux récepteurs sont en [[association en série|série]] quand le courant n'a <b>qu'un seul chemin</b> : il traverse le premier, puis le second, à la file.</p><p>Conséquences directes : l'<b>intensité est la même partout</b> (le même courant traverse tout le monde), et les <b>tensions s'additionnent</b> — chacun prend sa part de la tension totale. La [[résistance équivalente]] (la résistance unique qui remplacerait l'ensemble) s'obtient en additionnant : <b>Re = R1 + R2</b>. Ajouter un récepteur en série augmente donc toujours la résistance totale.</p><p>Le défaut rédhibitoire pour le logement : un seul élément grillé <b>ouvre la boucle</b>, et tout s'éteint — souviens-toi des vieilles guirlandes où une ampoule morte éteignait toute la chaîne.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "C'est exactement pour ça qu'on ne câble PAS les prises et les lampes d'une maison en série : un grillage et tout tombe. Le logement se câble en parallèle (section suivante)." },
+        "memo": "Série = un seul chemin. Même I partout · les tensions s'additionnent · Re = R1 + R2. Un maillon lâche, tout s'arrête."
+      },
+      {
+        "titre": "2. En parallèle : chacun sa dérivation",
+        "svg": "n4-parallele.svg",
+        "contenu": "<p>Deux récepteurs sont en [[association en parallèle|parallèle]] (on dit aussi « en <b>dérivation</b> ») quand ils sont branchés <b>entre les deux mêmes points</b>.</p><p>Conséquences : chacun reçoit la <b>même tension</b>, et les <b>courants s'additionnent</b> dans le tronc commun. La résistance équivalente se calcule par <b>1/Re = 1/R1 + 1/R2</b>. Cas à connaître par cœur : deux résistances <b>identiques</b> en parallèle donnent <b>Re = R/2</b>.</p><p>C'est le montage de <b>toute l'installation domestique</b> : chaque prise, chaque lampe reçoit ses 230 V indépendamment, et débrancher l'une n'éteint pas les autres. Tout est en parallèle entre la phase et le neutre.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Brancher en parallèle = ajouter une dérivation = ajouter du courant dans le tronc commun. Empiler les multiprises sur une même ligne, c'est additionner les courants : gare à la surcharge du circuit." },
+        "memo": "Parallèle (dérivation) = mêmes 2 points. Même U pour tous · les courants s'additionnent · 1/Re = 1/R1 + 1/R2. Deux R égales → R/2. C'est le montage du logement."
+      },
+      {
+        "titre": "3. Résistance équivalente : les pièges",
+        "svg": "n4-comparatif.svg",
+        "contenu": "<p>Mettons des chiffres. Avec R1 = R2 = 100 Ω :</p><p>— en <b>série</b> : Re = 100 + 100 = <b>200 Ω</b> ;<br>— en <b>parallèle</b> : 1/Re = 1/100 + 1/100 = 2/100, donc Re = <b>50 Ω</b>.</p><p>Avec des valeurs différentes, R1 = 60 Ω et R2 = 30 Ω en parallèle : 1/Re = 1/60 + 1/30 = 1/60 + 2/60 = 3/60, donc Re = <b>20 Ω</b>.</p><p>Deux pièges classiques. <b>1)</b> En parallèle, Re est <b>toujours plus petite que la plus petite</b> des résistances : si ton résultat est plus grand, c'est faux, recommence. <b>2)</b> N'oublie pas d'<b>inverser</b> à la fin : 1/Re = 0,05 n'est pas la réponse — Re = 1 / 0,05 = 20 Ω l'est.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le test « Re < la plus petite » te sauve à chaque fois en parallèle. En série, c'est l'inverse : Re est plus grande que la plus grande. Deux réflexes opposés à ne pas confondre." },
+        "memo": "Série 100+100 = 200 Ω · parallèle 100∥100 = 50 Ω. En parallèle, Re < la plus petite, et on inverse 1/Re à la fin."
+      },
+      {
+        "titre": "4. Le courant alternatif",
+        "svg": "n4-sinus.svg",
+        "contenu": "<p>Jusqu'ici on raisonnait comme avec une pile : un courant <b>continu</b>, toujours dans le même sens. Mais le réseau fournit du [[courant alternatif]] : la tension change de polarité en permanence, suivant une courbe en forme de S, la <b>sinusoïde</b>.</p><p>Les électrons, du coup, ne font qu'<b>osciller sur place</b> (un coup dans un sens, un coup dans l'autre) — et ça suffit : l'énergie, elle, est bien transmise tout le long du fil.</p><p>Pourquoi l'alternatif a-t-il gagné contre le continu à la fin du XIXe siècle ? Parce qu'il se <b>transforme facilement</b> (on élève la tension pour transporter loin avec peu de pertes, puis on l'abaisse pour la distribution) et qu'il se <b>coupe plus facilement</b> : l'arc électrique s'éteint tout seul au passage par zéro de la sinusoïde.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Tout le réseau, du barrage à ta prise, est alternatif. Les appareils qui ont besoin de continu (électronique, LED, recharge) embarquent un redresseur qui transforme l'alternatif en continu." },
+        "memo": "Réseau = courant alternatif (sinusoïde). Les électrons oscillent sur place. Avantages : transformable + coupure facile au passage par zéro."
+      },
+      {
+        "titre": "5. Période, fréquence, valeur efficace",
+        "svg": "n4-sinus-cotee.svg",
+        "contenu": "<p>Trois nombres décrivent le signal du réseau.</p><p>La [[période]] T : la durée d'un cycle complet, soit <b>20 ms</b> (0,02 s) en France. La [[fréquence]] f : le nombre de cycles par seconde, en <b>hertz (Hz)</b>, reliée à la période par <b>f = 1/T</b> : 1 / 0,02 = <b>50 Hz</b>. À 50 Hz, le courant change de sens 100 fois par seconde.</p><p>Et les fameux <b>230 V</b> ? Ce n'est pas le sommet de la courbe : c'est la [[valeur efficace]], c'est-à-dire la tension continue qui produirait le <b>même échauffement</b> dans une résistance. Le sommet, la valeur de <b>crête</b>, vaut Û = U × √2 = 230 × 1,414 ≈ <b>325 V</b>. C'est bien 325 V que l'isolation des matériels encaisse à chaque crête.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Quand tu lis « 230 V » sur une étiquette ou au multimètre, c'est toujours la valeur efficace. Mais les composants (isolants, condensateurs) doivent tenir la crête, ~325 V : c'est pour ça que le matériel est prévu plus large." },
+        "memo": "T = 20 ms · f = 1/T = 50 Hz · 230 V = valeur EFFICACE · crête Û = 230 × √2 ≈ 325 V."
+      },
+      {
+        "titre": "6. Récap : le bloc 1 est bouclé",
+        "svg": "c4-iso-bloc1.svg",
+        "contenu": "<p>Le bloc 1 est dans la poche. Fais le bilan des quatre modules.</p><p><b>Module 1</b> : ce qu'est le courant — électrons libres, et les grandeurs U, I, R avec leurs unités (V, A, Ω). <b>Module 2</b> : les calculs — U = R×I, P = U×I, P = R×I², E = P×t. <b>Module 3</b> : lire un circuit — générateur, protection, commande, récepteur, conducteurs. <b>Module 4</b> : combiner les récepteurs (série Re = R1+R2 · parallèle 1/Re = 1/R1+1/R2) et décrire le réseau (alternatif, 230 V efficaces, 50 Hz).</p><p>Avec ces fondations solides, le bloc 2 peut attaquer le sujet le plus sérieux du métier : la <b>sécurité électrique et la protection des personnes</b>.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Tu as posé toutes les bases. À partir d'ici, plus rien n'est « théorique » : chaque notion du bloc 2 s'appuie sur ce que tu viens d'apprendre — surtout la résistance du corps (module 1) et l'effet Joule (module 2)." },
+        "memo": "Bloc 1 : 1 grandeurs · 2 calculs · 3 circuit · 4 série/parallèle & alternatif. Direction le bloc 2 : la sécurité."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Deux récepteurs en série, ça veut dire :", "choix": ["deux chemins pour le courant", "un seul chemin pour le courant", "aucun courant ne passe", "deux générateurs"], "bonne": 1, "explication": "En série, le courant n'a qu'un seul chemin : il traverse l'un puis l'autre.", "renvoi_lecon": 0 },
+    { "question": "En série, l'intensité :", "choix": ["se partage entre les récepteurs", "est la même partout", "s'additionne", "est nulle"], "bonne": 1, "explication": "Un seul chemin = même courant I dans tous les éléments.", "renvoi_lecon": 0 },
+    { "question": "En série, les tensions :", "choix": ["sont identiques", "s'additionnent", "s'annulent", "se divisent par 2"], "bonne": 1, "explication": "Chaque récepteur prend sa part de la tension totale : les tensions s'additionnent.", "renvoi_lecon": 0 },
+    { "question": "Re en série pour R1 = 40 Ω et R2 = 60 Ω :", "choix": ["24 Ω", "50 Ω", "100 Ω", "2 400 Ω"], "bonne": 2, "explication": "Re = R1 + R2 = 40 + 60 = 100 Ω.", "renvoi_lecon": 0 },
+    { "question": "Re en série pour R1 = R2 = 100 Ω :", "choix": ["50 Ω", "100 Ω", "200 Ω", "10 000 Ω"], "bonne": 2, "explication": "Re = 100 + 100 = 200 Ω.", "renvoi_lecon": 0 },
+    { "question": "Trois résistances de 10 Ω en série donnent :", "choix": ["3,33 Ω", "10 Ω", "30 Ω", "1 000 Ω"], "bonne": 2, "explication": "Re = 10 + 10 + 10 = 30 Ω.", "renvoi_lecon": 0 },
+    { "question": "En série, ajouter une résistance :", "choix": ["diminue Re", "augmente Re", "ne change rien", "crée un court-circuit"], "bonne": 1, "explication": "Chaque résistance ajoutée s'additionne : Re augmente.", "renvoi_lecon": 0 },
+    { "question": "Dans une guirlande en série, une ampoule grille :", "choix": ["les autres restent allumées", "toute la guirlande s'éteint", "la tension double", "rien ne change"], "bonne": 1, "explication": "L'élément grillé ouvre la boucle : plus de courant nulle part.", "renvoi_lecon": 0 },
+    { "question": "Deux récepteurs en parallèle sont branchés :", "choix": ["l'un après l'autre", "entre les deux mêmes points", "en série cachée", "sur deux réseaux différents"], "bonne": 1, "explication": "Parallèle (dérivation) = branchés entre les deux mêmes points.", "renvoi_lecon": 1 },
+    { "question": "En parallèle, la tension :", "choix": ["s'additionne", "est la même pour tous", "se divise", "est nulle"], "bonne": 1, "explication": "Tous reçoivent la même tension (les deux mêmes points).", "renvoi_lecon": 1 },
+    { "question": "En parallèle, les courants :", "choix": ["sont identiques", "s'additionnent dans le tronc commun", "s'annulent", "ne circulent pas"], "bonne": 1, "explication": "Chaque branche prend son courant ; ils s'additionnent dans le tronc commun.", "renvoi_lecon": 1 },
+    { "question": "La formule de Re en parallèle est :", "choix": ["Re = R1 + R2", "1/Re = 1/R1 + 1/R2", "Re = R1 × R2", "Re = R1 − R2"], "bonne": 1, "explication": "On additionne les inverses : 1/Re = 1/R1 + 1/R2.", "renvoi_lecon": 1 },
+    { "question": "Deux résistances de 100 Ω en parallèle :", "choix": ["200 Ω", "100 Ω", "50 Ω", "25 Ω"], "bonne": 2, "explication": "Deux R identiques en parallèle : Re = R/2 = 50 Ω.", "renvoi_lecon": 1 },
+    { "question": "Deux résistances de 20 Ω en parallèle :", "choix": ["40 Ω", "10 Ω", "20 Ω", "5 Ω"], "bonne": 1, "explication": "R/2 = 20/2 = 10 Ω.", "renvoi_lecon": 1 },
+    { "question": "L'installation domestique est câblée :", "choix": ["en série", "en parallèle (chaque récepteur sous 230 V)", "en série-parallèle alterné", "sans neutre"], "bonne": 1, "explication": "Tout est en parallèle entre phase et neutre : chacun a ses 230 V.", "renvoi_lecon": 1 },
+    { "question": "Débrancher une lampe branchée en parallèle :", "choix": ["éteint toutes les autres", "n'éteint pas les autres", "double la tension", "grille le circuit"], "bonne": 1, "explication": "Chaque dérivation est indépendante : les autres restent alimentées.", "renvoi_lecon": 1 },
+    { "question": "En parallèle, la résistance équivalente est toujours :", "choix": ["plus grande que la plus grande des R", "égale à la somme des R", "plus petite que la plus petite des R", "égale à la moyenne des R"], "bonne": 2, "explication": "Chaque branche ajoute un chemin : Re < min(R1, R2). C'est le test de vraisemblance.", "renvoi_lecon": 2 },
+    { "question": "R1 = 60 Ω et R2 = 30 Ω en parallèle. Re ?", "choix": ["90 Ω", "45 Ω", "20 Ω", "18 Ω"], "bonne": 2, "explication": "1/Re = 1/60 + 1/30 = 3/60 → Re = 20 Ω (et 20 < 30 : cohérent).", "renvoi_lecon": 2 },
+    { "question": "Ton calcul donne 1/Re = 0,05. Alors Re vaut :", "choix": ["0,05 Ω", "20 Ω", "5 Ω", "0,2 Ω"], "bonne": 1, "explication": "Il faut inverser : Re = 1 / 0,05 = 20 Ω.", "renvoi_lecon": 2 },
+    { "question": "R1 = 6 Ω et R2 = 3 Ω en parallèle. Re ?", "choix": ["9 Ω", "4,5 Ω", "2 Ω", "18 Ω"], "bonne": 2, "explication": "1/Re = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 → Re = 2 Ω.", "renvoi_lecon": 2 },
+    { "question": "En série, la résistance équivalente est :", "choix": ["plus petite que la plus petite", "plus grande que la plus grande", "égale à la moyenne", "nulle"], "bonne": 1, "explication": "En série on additionne : Re dépasse la plus grande des résistances.", "renvoi_lecon": 2 },
+    { "question": "En parallèle, une erreur fréquente est de :", "choix": ["additionner les résistances comme en série", "utiliser 1/Re", "vérifier l'ordre de grandeur", "inverser à la fin"], "bonne": 0, "explication": "Additionner directement les R, c'est la formule de la SÉRIE, pas du parallèle.", "renvoi_lecon": 2 },
+    { "question": "Trois résistances de 30 Ω en parallèle :", "choix": ["90 Ω", "30 Ω", "10 Ω", "15 Ω"], "bonne": 2, "explication": "Trois R identiques : Re = R/3 = 30/3 = 10 Ω.", "renvoi_lecon": 2 },
+    { "question": "Comment vérifier rapidement un calcul en parallèle ?", "choix": ["Re doit dépasser la somme", "Re doit être plus petite que la plus petite des R", "Re = moyenne des R", "Re = la plus grande des R"], "bonne": 1, "explication": "Si Re ≥ la plus petite des R, le calcul est faux.", "renvoi_lecon": 2 },
+    { "question": "Le réseau fournit un courant :", "choix": ["continu", "alternatif", "statique", "nul"], "bonne": 1, "explication": "Le réseau de distribution est alternatif.", "renvoi_lecon": 3 },
+    { "question": "La courbe du courant alternatif s'appelle :", "choix": ["une droite", "une sinusoïde", "un créneau", "un triangle"], "bonne": 1, "explication": "L'alternatif suit une sinusoïde (courbe en S).", "renvoi_lecon": 3 },
+    { "question": "En alternatif, les électrons :", "choix": ["avancent toujours dans le même sens", "oscillent sur place", "sont parfaitement immobiles", "disparaissent"], "bonne": 1, "explication": "Le sens s'inversant sans cesse, les électrons oscillent ; l'énergie est tout de même transmise.", "renvoi_lecon": 3 },
+    { "question": "Un avantage clé de l'alternatif est qu'il :", "choix": ["ne chauffe jamais", "se transforme facilement (transport en haute tension)", "circule plus lentement", "n'a pas besoin de neutre"], "bonne": 1, "explication": "On élève la tension pour transporter loin avec peu de pertes, puis on l'abaisse.", "renvoi_lecon": 3 },
+    { "question": "L'arc électrique s'éteint plus facilement en alternatif :", "choix": ["c'est faux", "au passage par zéro de la sinusoïde", "parce qu'il fait froid", "au sommet de la courbe"], "bonne": 1, "explication": "Cent fois par seconde, la tension passe par zéro : l'arc s'éteint plus aisément.", "renvoi_lecon": 3 },
+    { "question": "Un courant continu :", "choix": ["change de sens 50 fois par seconde", "circule toujours dans le même sens", "est produit par l'alternateur", "suit une sinusoïde"], "bonne": 1, "explication": "Le continu garde le même sens (pile, batterie, photovoltaïque).", "renvoi_lecon": 3 },
+    { "question": "Un appareil électronique qui a besoin de continu :", "choix": ["ne peut pas être branché", "redresse l'alternatif de la prise en continu", "fonctionne en statique", "refuse le 230 V"], "bonne": 1, "explication": "Son alimentation (redresseur) transforme l'alternatif de la prise en continu.", "renvoi_lecon": 3 },
+    { "question": "La fréquence du réseau français est :", "choix": ["60 Hz", "50 Hz", "100 Hz", "230 Hz"], "bonne": 1, "explication": "50 Hz en France (60 Hz dans d'autres pays).", "renvoi_lecon": 4 },
+    { "question": "La période du réseau (50 Hz) vaut :", "choix": ["50 ms", "20 ms", "2 ms", "0,5 s"], "bonne": 1, "explication": "T = 1/f = 1/50 = 0,02 s = 20 ms.", "renvoi_lecon": 4 },
+    { "question": "La relation entre période et fréquence est :", "choix": ["f = T", "f = 1/T", "f = T²", "f = 2T"], "bonne": 1, "explication": "f = 1/T : ce sont deux grandeurs inverses.", "renvoi_lecon": 4 },
+    { "question": "Une période de 10 ms correspond à :", "choix": ["50 Hz", "100 Hz", "10 Hz", "1 000 Hz"], "bonne": 1, "explication": "f = 1/T = 1/0,01 = 100 Hz.", "renvoi_lecon": 4 },
+    { "question": "Les « 230 V » du réseau sont :", "choix": ["la valeur de crête", "la valeur moyenne", "la valeur efficace", "la tension entre deux phases"], "bonne": 2, "explication": "230 V est la valeur efficace ; la crête vaut ~325 V.", "renvoi_lecon": 4 },
+    { "question": "La valeur de crête de la tension domestique vaut environ :", "choix": ["230 V", "245 V", "325 V", "400 V"], "bonne": 2, "explication": "Û = U × √2 = 230 × 1,414 ≈ 325 V.", "renvoi_lecon": 4 },
+    { "question": "La valeur efficace, c'est la tension continue qui :", "choix": ["donne la même crête", "produit le même échauffement", "a la même période", "coûte le même prix"], "bonne": 1, "explication": "Définition de la valeur efficace : même effet thermique qu'un continu de cette valeur.", "renvoi_lecon": 4 },
+    { "question": "À 50 Hz, le courant change de sens :", "choix": ["50 fois par seconde", "100 fois par seconde", "1 fois par seconde", "jamais"], "bonne": 1, "explication": "50 cycles complets = 100 changements de sens par seconde.", "renvoi_lecon": 4 },
+    { "question": "Quelle formule appartient au module 2 (les calculs) ?", "choix": ["Re = R1 + R2", "P = U × I", "f = 1/T", "1/Re = 1/R1 + 1/R2"], "bonne": 1, "explication": "P = U × I est une formule du module 2. Les autres relèvent des modules 4.", "renvoi_lecon": 5 },
+    { "question": "Lire un circuit (générateur, protection, commande, récepteur, conducteurs), c'était le module :", "choix": ["1", "2", "3", "4"], "bonne": 2, "explication": "Les 5 familles d'un circuit, c'est le module 3.", "renvoi_lecon": 5 },
+    { "question": "Combiner les récepteurs en série et en parallèle, c'est le module :", "choix": ["1", "2", "3", "4"], "bonne": 3, "explication": "Série, parallèle et alternatif : c'est ce module 4.", "renvoi_lecon": 5 },
+    { "question": "Après le bloc 1, le bloc 2 traite :", "choix": ["la domotique", "la sécurité et la protection des personnes", "le photovoltaïque", "l'éclairage"], "bonne": 1, "explication": "Le bloc 2 est consacré à la sécurité électrique et la protection des personnes.", "renvoi_lecon": 5 },
+    { "question": "Les unités de base vues au bloc 1 sont :", "choix": ["m, kg, s", "V, A, Ω, W", "Pa, °C", "Hz uniquement"], "bonne": 1, "explication": "Volt, ampère, ohm, watt : les unités de base de l'électricien.", "renvoi_lecon": 5 }
   ],
   "jeu": {
     "type": "vrai-faux-rapide",
