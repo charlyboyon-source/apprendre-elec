@@ -1,0 +1,240 @@
+/* Atelier dépannage — styles. Réutilise les variables de theme.css.
+   Mobile-first : tout empilé proprement ; colonnes à partir du desktop. */
+
+:root {
+  --c-phase: #c2561e;   /* phase : brun-rouge */
+  --c-neutre: #4aa3e8;  /* neutre : bleu */
+  --c-terre: #5bb318;   /* terre : vert (liseré jaune) */
+}
+
+.atelier {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: var(--esp-4) var(--esp-3) 64px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+.at-message { text-align: center; color: var(--texte-2); padding: var(--esp-5); }
+
+/* ---------- en-tête du scénario ---------- */
+.at-entete { text-align: center; }
+.at-kicker { color: var(--orange); font-size: 0.72rem; letter-spacing: 0.08em; font-weight: 700; margin: 0 0 var(--esp-1); }
+.at-entete h1 { margin: 0 0 var(--esp-2); font-size: 1.4rem; }
+.at-enonce { color: var(--texte-2); margin: 0; }
+
+/* ---------- contrôles ---------- */
+.at-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  justify-content: center;
+}
+.at-bouton {
+  background: var(--fond-3);
+  color: var(--texte);
+  border: 1.5px solid var(--bordure);
+  border-radius: 999px;
+  padding: 10px var(--esp-3);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.at-bouton:hover { border-color: var(--jaune); }
+.at-bouton--plein { background: var(--jaune); color: var(--texte-sur-jaune); border-color: var(--jaune); }
+.at-bouton--plein:hover { box-shadow: var(--lueur-jaune); }
+.at-bouton--lien { background: none; border: none; color: var(--jaune); padding: 4px 0; border-radius: 0; }
+.at-bouton--mini { padding: 6px 12px; font-size: 0.78rem; font-weight: 600; }
+.at-bouton[disabled] { opacity: 0.45; cursor: default; }
+
+.at-toggle {
+  background: var(--fond-3);
+  border: 1.5px solid var(--jaune);
+  color: var(--jaune);
+  border-radius: 999px;
+  padding: 10px var(--esp-3);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.at-toggle.is-consigne { border-color: var(--c-neutre); color: var(--c-neutre); }
+
+/* ---------- grille ---------- */
+.at-grid { display: flex; flex-direction: column; gap: var(--esp-4); }
+.at-col { display: flex; flex-direction: column; gap: var(--esp-4); min-width: 0; }
+
+@media (min-width: 860px) {
+  .at-grid { flex-direction: row; align-items: flex-start; }
+  .at-col--visuel { flex: 1 1 0; position: sticky; top: calc(var(--entete-h, 64px) + 16px); }
+  .at-col--outils { flex: 1 1 0; }
+}
+
+/* ---------- cartes (les 5 étapes) ---------- */
+.at-carte {
+  background: var(--fond-2);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+.at-carte-tete {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-3);
+  border-bottom: 1px solid var(--bordure);
+}
+.at-num {
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--jaune-doux);
+  color: var(--jaune);
+  border: 1.5px solid var(--jaune);
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 0.82rem;
+}
+.at-carte-tete h2 { margin: 0; font-size: 0.98rem; }
+.at-carte-corps { padding: var(--esp-3); display: flex; flex-direction: column; gap: var(--esp-3); }
+.at-aide { color: var(--texte-2); font-size: 0.82rem; margin: 0; }
+
+/* ---------- scène & inspection ---------- */
+.at-scene, .at-inspection { background: var(--fond); border-radius: var(--rayon); padding: var(--esp-2); }
+.at-scene svg, .at-inspection svg { width: 100%; height: auto; display: block; max-width: 520px; margin: 0 auto; }
+
+/* décor scène */
+.sol { fill: #20252d; stroke: var(--bordure); stroke-width: 1.4; }
+.mur { fill: #272d36; stroke: var(--bordure); stroke-width: 1.4; }
+.mur--droit { fill: #222831; }
+.fil { stroke: var(--texte-2); stroke-width: 1.6; }
+.abat-jour { fill: var(--fond-3); stroke: var(--bordure); stroke-width: 1.4; }
+.ampoule-off { fill: #3a4150; stroke: var(--bordure); stroke-width: 1.4; }
+.objet { fill: var(--fond-3); stroke: var(--bordure); stroke-width: 1.4; }
+.objet-trait { stroke: var(--texte-2); stroke-width: 1.4; }
+
+.hotspot { cursor: pointer; }
+.hotspot-halo { fill: var(--jaune); opacity: 0.2; animation: at-pulse 1.9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hotspot-coeur { fill: var(--jaune); }
+.hotspot-label { fill: var(--texte); font-size: 11px; font-weight: 700; }
+.hotspot:hover .hotspot-halo { opacity: 0.4; }
+@keyframes at-pulse { 0%,100% { opacity: 0.18; } 50% { opacity: 0.45; } }
+
+/* éléments d'inspection */
+.rail { stroke: var(--texte-2); stroke-width: 4; stroke-linecap: round; }
+.module { fill: var(--fond-3); stroke: var(--bordure); stroke-width: 1.6; }
+.module-txt { fill: var(--texte-2); font-size: 9px; font-weight: 600; }
+.manette { fill: var(--ok); stroke: #1c1f24; stroke-width: 1; }
+.manette.is-bas { fill: var(--erreur); }
+.liaison { stroke: var(--texte-2); stroke-width: 1.6; }
+.barre { stroke: #1c1f24; stroke-width: 1; }
+.barre--N { fill: var(--c-neutre); }
+.barre--PE { fill: var(--c-terre); }
+.barre-txt { fill: var(--texte-2); font-size: 9px; font-weight: 600; }
+.boitier, .dcl { fill: var(--fond-3); stroke: var(--bordure); stroke-width: 1.6; }
+.boitier-txt { fill: var(--texte-2); font-size: 10px; font-weight: 600; }
+.bascule { stroke: var(--texte); stroke-width: 3; stroke-linecap: round; }
+.vis { fill: var(--texte-2); }
+.at-aide-svg { fill: var(--texte-2); font-size: 9px; }
+
+/* bornes */
+.borne { cursor: pointer; }
+.borne circle { stroke: var(--fond); stroke-width: 2; transition: stroke 0.12s ease; }
+.borne text { fill: var(--texte); font-size: 9.5px; font-weight: 600; }
+.borne--L circle { fill: var(--c-phase); }
+.borne--N circle { fill: var(--c-neutre); }
+.borne--PE circle { fill: var(--c-terre); }
+.borne:hover circle { stroke: var(--texte); }
+.borne.sel-rouge circle { stroke: #ff4d4d; stroke-width: 4.5; }
+.borne.sel-noir circle { stroke: #e8eaed; stroke-width: 4.5; }
+
+/* légende */
+.at-legende { display: flex; flex-wrap: wrap; gap: var(--esp-3); list-style: none; margin: 0; padding: 0; font-size: 0.78rem; color: var(--texte-2); }
+.at-legende li { display: flex; align-items: center; gap: 6px; }
+.pastille { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.pastille--L { background: var(--c-phase); }
+.pastille--N { background: var(--c-neutre); }
+.pastille--PE { background: var(--c-terre); }
+
+/* ---------- multimètre ---------- */
+.multi { display: flex; flex-direction: column; gap: var(--esp-3); }
+.multi-ecran {
+  background: #0c1410;
+  border: 1px solid #14241a;
+  border-radius: 8px;
+  padding: var(--esp-3);
+  text-align: center;
+}
+.multi-valeur {
+  font-family: "SFMono-Regular", "Consolas", monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7cffb2;
+  letter-spacing: 0.04em;
+}
+.multi-ecran.is-ohm .multi-valeur { color: var(--jaune); }
+.multi-select { display: flex; gap: var(--esp-2); }
+.multi-select button {
+  flex: 1;
+  background: var(--fond-3);
+  border: 1.5px solid var(--bordure);
+  color: var(--texte);
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 700;
+}
+.multi-select button.is-actif { background: var(--jaune); color: var(--texte-sur-jaune); border-color: var(--jaune); }
+.multi-sondes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2); }
+.sonde {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--fond-3);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+.sonde--rouge { border-color: #ff4d4d; }
+.sonde--noir { border-color: #aeb6c2; }
+.multi-message { font-size: 0.82rem; color: var(--orange); margin: 0; line-height: 1.45; }
+
+/* ---------- journal ---------- */
+.journal { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--esp-1); }
+.journal li {
+  background: var(--fond-3);
+  border-left: 3px solid var(--jaune);
+  border-radius: 6px;
+  padding: 8px var(--esp-2);
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+.journal-vide { color: var(--texte-2); font-size: 0.84rem; margin: 0; }
+
+/* ---------- diagnostic ---------- */
+.diag-choix-zone { display: flex; flex-direction: column; gap: var(--esp-2); }
+.diag-choix {
+  text-align: left;
+  background: var(--fond-3);
+  border: 1.5px solid var(--bordure);
+  color: var(--texte);
+  border-radius: 9px;
+  padding: 11px var(--esp-3);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.diag-choix:hover { border-color: var(--jaune); }
+.diag-choix.is-bon { border-color: var(--ok); background: rgba(76, 217, 123, 0.14); }
+.diag-choix.is-mauvais { border-color: var(--erreur); background: rgba(255, 92, 92, 0.12); }
+.diag-feedback { border-radius: 9px; padding: var(--esp-3); font-size: 0.86rem; line-height: 1.5; }
+.diag-feedback.ok { background: rgba(76, 217, 123, 0.12); border: 1px solid var(--ok); }
+.diag-feedback.ko { background: rgba(255, 140, 43, 0.1); border: 1px solid var(--orange); }
+.diag-verdict { margin: 0 0 var(--esp-2); font-weight: 700; }
+.diag-raison { margin: 0; color: var(--texte); }
+
+/* ---------- glossaire (repris de l'identité Atelier) ---------- */
+.terme { color: var(--jaune); border-bottom: 1.5px dashed var(--jaune); cursor: pointer; font-weight: 600; }
+.popover-fond { position: fixed; inset: 0; background: rgba(10, 13, 17, 0.7); display: flex; align-items: flex-end; justify-content: center; z-index: 60; }
+.popover-glossaire { background: var(--fond-3); border: 1px solid var(--bordure); border-radius: 18px 18px 0 0; max-width: 560px; width: 100%; padding: var(--esp-4) var(--esp-3); }
+.popover-glossaire h5 { color: var(--jaune); margin: 0 0 var(--esp-2); font-size: 0.95rem; }
+.popover-glossaire p { font-size: 0.86rem; line-height: 1.5; margin: 0; }
+.popover-glossaire a { display: inline-block; margin-top: var(--esp-2); font-size: 0.82rem; }
+.popover-glossaire button { margin-top: var(--esp-3); width: 100%; background: var(--fond-2); border: 1.5px solid var(--bordure); color: var(--texte); border-radius: 9px; padding: 11px; font-weight: 700; }
+
+@media (min-width: 560px) {
+  .popover-glossaire { border-radius: 18px; margin-bottom: var(--esp-5); }
+}

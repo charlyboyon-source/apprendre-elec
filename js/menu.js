@@ -18,6 +18,7 @@ export function brancherMenu(onChangement) {
   const actif = (cond) => (cond ? " actif" : "");
   const surParcours = page === "" || page === "index.html";
   const surBiblio = page === "bibliotheque.html";
+  const surAtelier = page === "atelier-depannage.html";
 
   drawer.innerHTML = `
     <div class="menu-tete">
@@ -29,6 +30,8 @@ export function brancherMenu(onChangement) {
       <a class="menu-lien${actif(surBiblio && type === "lecon")}" href="bibliotheque.html?type=lecon">📖 Toutes les leçons</a>
       <a class="menu-lien${actif(surBiblio && type === "quiz")}" href="bibliotheque.html?type=quiz">🎯 Tous les quiz</a>
       <a class="menu-lien${actif(surBiblio && type === "jeu")}" href="bibliotheque.html?type=jeu">🎮 Tous les jeux</a>
+      <div class="menu-sep"></div>
+      <a class="menu-lien${actif(surAtelier)}" href="atelier-depannage.html">🔧 Atelier dépannage</a>
     </nav>
     <div class="menu-sep"></div>
     <label class="menu-reglage">

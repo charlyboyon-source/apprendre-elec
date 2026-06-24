@@ -1,0 +1,61 @@
+{
+  "id": "01-point-lumineux",
+  "titre": "Le point lumineux qui ne s'allume plus",
+  "niveau": "debutant",
+  "scene": "chambre",
+  "enonce": "La lampe ne s'allume pas. Trouve la panne.",
+  "circuit": {
+    "sourceL": "L",
+    "sourceN": "N",
+    "segmentsL": [
+      {"de":"L","a":"Pdif","coupePar":"diff"},
+      {"de":"Pdif","a":"Pdj","coupePar":"disj"},
+      {"de":"Pdj","a":"Pint","coupePar":"inter"},
+      {"de":"Pint","a":"LampP","coupePar":"phase"}
+    ],
+    "segmentsN": [
+      {"de":"N","a":"tab","coupePar":"diff"},
+      {"de":"tab","a":"LampN","coupePar":"neutre"}
+    ],
+    "continuite": {"bornes":["Lp","Np"], "coupeSi":"lamp", "label":"ampoule"}
+  },
+  "pointsIntervention": [
+    { "id": "tableau",     "label": "Tableau électrique",
+      "bornes": [
+        {"id":"Ldiff","conducteur":"L","node":"Pdif","label":"L aval différentiel"},
+        {"id":"Lecl","conducteur":"L","node":"Pdj","label":"L aval disj. éclairage"},
+        {"id":"N","conducteur":"N","node":"tab","label":"répartiteur N"},
+        {"id":"PE","conducteur":"PE","node":"pe","label":"répartiteur Terre"}
+      ]},
+    { "id": "interrupteur","label": "Interrupteur déposé",
+      "bornes": [
+        {"id":"in","conducteur":"L","node":"Pdj","label":"entrée"},
+        {"id":"out","conducteur":"L","node":"Pint","label":"sortie"},
+        {"id":"Nb","conducteur":"N","node":"tab","label":"N en attente"},
+        {"id":"PEb","conducteur":"PE","node":"pe","label":"Terre"}
+      ]},
+    { "id": "plafonnier",  "label": "Plafonnier (boîte DCL)",
+      "bornes": [
+        {"id":"Lp","conducteur":"L","node":"LampP","label":"L"},
+        {"id":"Np","conducteur":"N","node":"LampN","label":"N"},
+        {"id":"PEp","conducteur":"PE","node":"pe","label":"Terre"}
+      ],
+      "ampoule": true }
+  ],
+  "pannes": [
+    {"id":"diff",  "label":"Différentiel 30 mA déclenché","visible":true,
+      "explication":"Au tableau, la manette du [[DDR|différentiel]] 30 mA est en position basse : il a déclenché. À la mesure, « L aval différentiel ↔ Terre » donne 0 V — plus rien n'est vivant en aval. On cherche d'abord la cause du défaut, puis on réarme."},
+    {"id":"disj",  "label":"Disjoncteur éclairage déclenché ou borne desserrée","visible":true,
+      "explication":"Au tableau, la manette du disjoncteur éclairage est basse (ou une borne est desserrée). À la mesure : « L aval différentiel ↔ N » = 230 V, mais « L aval disj. éclairage ↔ N » = 0 V. La tension s'arrête au disjoncteur : c'est lui."},
+    {"id":"inter", "label":"Interrupteur défectueux","visible":false,
+      "explication":"Rien d'anormal au tableau. À l'[[interrupteur]] déposé : « entrée ↔ N » = 230 V, mais « sortie ↔ N » = 0 V quel que soit le bouton. La phase entre mais ne ressort pas : le contact est défectueux."},
+    {"id":"phase", "label":"Fil de phase coupé dans la boîte du plafonnier","visible":false,
+      "explication":"Au plafonnier, « L ↔ Terre » = 0 V : pas de phase. Pourtant « sortie ↔ N » à l'interrupteur donnait 230 V. La phase est présente jusqu'à l'interrupteur mais coupée dans la boîte du plafonnier."},
+    {"id":"neutre","label":"Conducteur neutre coupé au plafonnier","visible":false,
+      "explication":"Au plafonnier, « L ↔ Terre » = 230 V (la phase arrive bien) mais « L ↔ N » = 0 V. C'est le neutre qui manque : le conducteur neutre est coupé au plafonnier."},
+    {"id":"lamp",  "label":"Ampoule grillée","visible":false,
+      "explication":"Toutes les tensions sont bonnes : au plafonnier « L ↔ N » = 230 V. La panne n'est pas en amont. Après [[consignation]] et [[VAT|vérification d'absence de tension]], on teste la continuité de l'ampoule : ∞ Ω = filament coupé, l'ampoule est grillée."}
+  ],
+  "outils": ["multimetre"],
+  "securite": { "consignationRequisePourContinuite": true }
+}
