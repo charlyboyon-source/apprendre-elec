@@ -1,13 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="170" viewBox="0 0 300 170" role="img" aria-label="Seuils d'intensité et effets sur le corps">
-  <g font-family="monospace" font-size="9">
-  <text x="10" y="16" fill="#7e8a98">INTENSITÉ (50 Hz)</text><text x="165" y="16" fill="#7e8a98">EFFET SUR LE CORPS</text>
-  <line x1="10" y1="22" x2="290" y2="22" stroke="#2d323b"/>
-  <text x="10" y="40" fill="#4cd97b" font-weight="bold">0,5 mA</text><text x="165" y="40" fill="#9aa6b3">seuil de perception</text>
-  <text x="10" y="62" fill="#e9c50e" font-weight="bold">10 mA</text><text x="165" y="62" fill="#9aa6b3">non-lâcher (tétanisation)</text>
-  <text x="10" y="84" fill="#e8744f" font-weight="bold">30 mA</text><text x="165" y="84" fill="#e8ecf0">paralysie respiratoire</text>
-  <text x="10" y="106" fill="#e85b50" font-weight="bold">75 mA</text><text x="165" y="106" fill="#e85b50">fibrillation ventriculaire</text>
-  <text x="10" y="128" fill="#e85b50" font-weight="bold">1 A et +</text><text x="165" y="128" fill="#e85b50">arrêt cardiaque, brûlures</text>
-  <line x1="10" y1="138" x2="290" y2="138" stroke="#2d323b"/>
-  <text x="10" y="156" fill="#ffd23f">⚡ Le DDR coupe dès 30 mA</text>
-  <text x="10" y="168" fill="#5b6775" font-size="7.5">Valeurs pour un courant alternatif, trajet main-pied</text>
-  </g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Échelle des seuils de courant : 0,5 mA perception, 10 mA non-lâcher, 30 mA paralysie respiratoire, 75 mA fibrillation ventriculaire, 1 A arrêt cardiaque">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Les seuils de courant : du picotement à l'arrêt cardiaque</text>
+<polygon points="18.0,124.0 42.0,135.0 42.0,151.0 18.0,140.0" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="18.0,124.0 42.0,135.0 42.0,151.0 18.0,140.0" fill="#4cd97b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="42.0,135.0 70.0,124.0 70.0,140.0 42.0,151.0" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="42.0,135.0 70.0,124.0 70.0,140.0 42.0,151.0" fill="#4cd97b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="18.0,124.0 46.0,113.0 70.0,124.0 42.0,135.0" fill="#4cd97b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="44" y="107" text-anchor="middle" font-size="10" fill="#4cd97b" font-weight="bold">0,5 mA</text>
+<text x="44" y="166" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">perception</text>
+<polygon points="76.0,106.0 100.0,117.0 100.0,151.0 76.0,140.0" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="76.0,106.0 100.0,117.0 100.0,151.0 76.0,140.0" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="100.0,117.0 128.0,106.0 128.0,140.0 100.0,151.0" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="100.0,117.0 128.0,106.0 128.0,140.0 100.0,151.0" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="76.0,106.0 104.0,95.0 128.0,106.0 100.0,117.0" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="102" y="89" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">10 mA</text>
+<text x="102" y="166" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">non-lâcher</text>
+<text x="102" y="176" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">(tétanisation)</text>
+<polygon points="134.0,88.0 158.0,99.0 158.0,151.0 134.0,140.0" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134.0,88.0 158.0,99.0 158.0,151.0 134.0,140.0" fill="#ff8c2b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158.0,99.0 186.0,88.0 186.0,140.0 158.0,151.0" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158.0,99.0 186.0,88.0 186.0,140.0 158.0,151.0" fill="#ff8c2b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134.0,88.0 162.0,77.0 186.0,88.0 158.0,99.0" fill="#ff8c2b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="160" y="71" text-anchor="middle" font-size="10" fill="#ff8c2b" font-weight="bold">30 mA</text>
+<text x="160" y="166" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">paralysie</text>
+<text x="160" y="176" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">respiratoire</text>
+<polygon points="192.0,70.0 216.0,81.0 216.0,151.0 192.0,140.0" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="192.0,70.0 216.0,81.0 216.0,151.0 192.0,140.0" fill="#e85b50" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="216.0,81.0 244.0,70.0 244.0,140.0 216.0,151.0" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="216.0,81.0 244.0,70.0 244.0,140.0 216.0,151.0" fill="#e85b50" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="192.0,70.0 220.0,59.0 244.0,70.0 216.0,81.0" fill="#e85b50" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="218" y="53" text-anchor="middle" font-size="10" fill="#e85b50" font-weight="bold">75 mA</text>
+<text x="218" y="166" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">fibrillation</text>
+<text x="218" y="176" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">ventriculaire</text>
+<polygon points="250.0,52.0 274.0,63.0 274.0,151.0 250.0,140.0" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="250.0,52.0 274.0,63.0 274.0,151.0 250.0,140.0" fill="#e85b50" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="274.0,63.0 302.0,52.0 302.0,140.0 274.0,151.0" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="274.0,63.0 302.0,52.0 302.0,140.0 274.0,151.0" fill="#e85b50" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="250.0,52.0 278.0,41.0 302.0,52.0 274.0,63.0" fill="#e85b50" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="276" y="35" text-anchor="middle" font-size="10" fill="#e85b50" font-weight="bold">1 A</text>
+<text x="276" y="166" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">arrêt</text>
+<text x="276" y="176" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">cardiaque</text>
+<text x="14" y="42" text-anchor="start" font-size="8" fill="#ff8c2b" font-weight="normal">30 mA : seuil retenu pour</text>
+<text x="14" y="52" text-anchor="start" font-size="8" fill="#ff8c2b" font-weight="normal">protéger les personnes (DDR)</text>
+<line x1="136" y1="50.5" x2="146" y2="60" stroke="#ff8c2b" stroke-width="1.2" stroke-linecap="round"/>
+<text x="160" y="193" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Courant alternatif 50 Hz · trajet main-pied</text>
+</svg>

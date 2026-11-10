@@ -1,15 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="178" viewBox="0 0 300 178" role="img" aria-label="Trajet du courant dans le corps humain">
-  <circle cx="150" cy="30" r="14" fill="none" stroke="#e8ecf0" stroke-width="2"/>
-  <line x1="150" y1="44" x2="150" y2="110" stroke="#e8ecf0" stroke-width="2"/>
-  <line x1="150" y1="58" x2="108" y2="86" stroke="#e8ecf0" stroke-width="2"/>
-  <line x1="150" y1="58" x2="210" y2="64" stroke="#e8ecf0" stroke-width="2"/>
-  <line x1="150" y1="110" x2="132" y2="156" stroke="#e8ecf0" stroke-width="2"/>
-  <line x1="150" y1="110" x2="168" y2="156" stroke="#e8ecf0" stroke-width="2"/>
-  <path d="M210 64 q-30 6 -52 18 q-12 8 -10 30 q2 24 -16 44" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-dasharray="5 4"/>
-  <circle cx="158" cy="78" r="9" fill="#e85b50" opacity="0.9"/>
-  <text x="158" y="81" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">♥</text>
-  <text x="215" y="58" font-size="9" fill="#ffd23f" font-weight="bold">⚡ main</text>
-  <text x="120" y="172" font-size="8.5" fill="#5ab0f0">pied → terre</text>
-  <text x="150" y="100" text-anchor="middle" font-size="7.5" fill="#e85b50">le cœur sur le trajet</text>
-  <text x="150" y="14" text-anchor="middle" font-size="8" fill="#9aa6b3" font-family="monospace">main → pied : le pire trajet</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Deux trajets du courant dans le corps : main-pied et main-main, tous deux à travers le thorax">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le trajet du courant dans le corps</text>
+<line x1="160" y1="28" x2="160" y2="176" stroke="#2d323b" stroke-width="1.2"/>
+<text x="88" y="34" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">MAIN → PIED</text>
+<line x1="54" y1="160" x2="122" y2="160" stroke="#5a626e" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="82.5" y1="110" x2="79" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
+<line x1="93.5" y1="110" x2="97" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
+<line x1="79" y1="68" x2="46" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
+<line x1="97" y1="68" x2="104" y2="106" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
+<rect x="77" y="62" width="22" height="52" rx="8" fill="#566176"/>
+<circle cx="88" cy="50" r="9.5" fill="#566176"/>
+<ellipse cx="88" cy="82" rx="9.5" ry="14" fill="#e85b50" opacity="0.28"/>
+<line x1="42" y1="64" x2="42" y2="106" stroke="#e85b50" stroke-width="4" stroke-linecap="round"/>
+<text x="42" y="119" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="normal">phase</text>
+<polygon points="30,66 23,77 27,77 24,87 32,74 28,74" fill="#ffd23f"/>
+<path d="M46,86 L79,68 C86,66 90,72 91,80 L93,110 L97,154 L97,166" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="65.0,75.6 58.3,75.8 61.2,81.1" fill="#ffd23f"/>
+<polygon points="95.6,139.0 98.0,132.8 92.1,133.3" fill="#ffd23f"/>
+<line x1="90" y1="166.0" x2="104" y2="166.0" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
+<line x1="92.5" y1="169.6" x2="101.5" y2="169.6" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
+<line x1="95" y1="173.2" x2="99" y2="173.2" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
+<text x="109" y="172" text-anchor="start" font-size="7.5" fill="#4cd97b" font-weight="normal">terre</text>
+<path d="M91,85.5 C83.0,79.5 86.5,74.0 91,78.2 C95.5,74.0 99.0,79.5 91,85.5 Z" fill="#e85b50" stroke="#1c1f24" stroke-width="0.8" stroke-linejoin="round"/>
+<text x="232" y="34" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">MAIN → MAIN</text>
+<line x1="198" y1="160" x2="266" y2="160" stroke="#5a626e" stroke-width="1.4" stroke-linecap="round"/>
+<line x1="226.5" y1="110" x2="223" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
+<line x1="237.5" y1="110" x2="241" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
+<line x1="223" y1="68" x2="190" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
+<line x1="241" y1="68" x2="274" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
+<rect x="221" y="62" width="22" height="52" rx="8" fill="#566176"/>
+<circle cx="232" cy="50" r="9.5" fill="#566176"/>
+<ellipse cx="232" cy="82" rx="9.5" ry="14" fill="#e85b50" opacity="0.28"/>
+<line x1="186" y1="64" x2="186" y2="106" stroke="#e85b50" stroke-width="4" stroke-linecap="round"/>
+<text x="186" y="119" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="normal">phase</text>
+<line x1="278" y1="64" x2="278" y2="106" stroke="#5ab0f0" stroke-width="4" stroke-linecap="round"/>
+<text x="278" y="119" text-anchor="middle" font-size="7.5" fill="#5ab0f0" font-weight="normal">neutre</text>
+<polygon points="174,66 167,77 171,77 168,87 176,74 172,74" fill="#ffd23f"/>
+<path d="M190,86 L223,68 C229,66 233,72 235,80 C236,72 238,67 241,68 L274,86" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="209.0,75.6 202.3,75.8 205.2,81.1" fill="#ffd23f"/>
+<polygon points="261.0,78.9 257.2,73.4 254.3,78.7" fill="#ffd23f"/>
+<path d="M235,85.5 C227.0,79.5 230.5,74.0 235,78.2 C239.5,74.0 243.0,79.5 235,85.5 Z" fill="#e85b50" stroke="#1c1f24" stroke-width="0.8" stroke-linejoin="round"/>
+<text x="160" y="192" text-anchor="middle" font-size="8.5" fill="#e85b50" font-weight="normal">Dans les deux cas, le courant traverse le thorax : cœur et poumons</text>
 </svg>
