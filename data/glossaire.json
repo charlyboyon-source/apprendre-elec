@@ -317,5 +317,25 @@
     "nom": "Norme NF C 18-510",
     "definition": "Norme de prévention du risque électrique lors des opérations sur les installations : habilitations, consignation, zones d'environnement, EPI. À distinguer de la NF C 15-100, qui régit la conception des installations.",
     "niveau_associe": 9
+  },
+  "conducteur de terre": {
+    "nom": "Conducteur de terre",
+    "definition": "Conducteur qui relie la prise de terre à la borne principale de terre. En cuivre nu, sa section est de 25 mm².",
+    "niveau_associe": 6
+  },
+  "borne principale de terre": {
+    "nom": "Borne principale de terre",
+    "definition": "Point de raccordement où arrivent le conducteur de terre, le conducteur principal de protection et la liaison équipotentielle principale. Sa barrette de coupure, démontable, permet d'isoler la prise de terre pour mesurer sa résistance.",
+    "niveau_associe": 6
+  },
+  "conducteur principal de protection": {
+    "nom": "Conducteur principal de protection",
+    "definition": "Conducteur vert/jaune de 16 mm² qui relie la borne principale de terre au bornier de terre du tableau, d'où partent les conducteurs de protection de tous les circuits.",
+    "niveau_associe": 6
+  },
+  "liaison équipotentielle principale": {
+    "nom": "Liaison équipotentielle principale",
+    "definition": "Conducteur qui relie à la borne principale de terre les canalisations métalliques entrant dans le bâtiment (eau, gaz…) et les éléments métalliques de sa structure, pour que tout soit au même potentiel.",
+    "niveau_associe": 6
   }
 }

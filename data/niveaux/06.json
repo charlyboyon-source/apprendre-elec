@@ -2,114 +2,116 @@
   "id": 6,
   "bloc": 2,
   "titre": "La protection des personnes",
-  "objectif": "Comprendre comment terre, régime TT et DDR protègent des contacts dangereux",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · DEUX DANGERS",
-      "titre": "Contact direct, contact indirect",
-      "svg": "contacts.svg",
-      "contenu": "On distingue deux façons de se faire électriser. Le [[contact direct]] : on touche une pièce <b>normalement sous tension</b> — un conducteur dénudé, une borne, une broche de fiche. Le [[contact indirect]] : on touche une [[masse]] (une carcasse métallique, normalement hors tension) qui s'est retrouvée <b>sous tension à cause d'un défaut</b> — un fil de [[phase]] qui touche la carrosserie du lave-linge, par exemple. Contre le contact direct : isolation, capots, éloignement. Contre le contact indirect : c'est tout l'objet de ce niveau — relier les masses à la terre et couper automatiquement.",
-      "memo": "Contact direct = pièce normalement sous tension. Contact indirect = masse mise sous tension par un défaut."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · LA TERRE",
-      "titre": "La prise de terre et le conducteur PE",
-      "svg": "boucle-defaut.svg",
-      "contenu": "La pierre angulaire de la sécurité, c'est la [[prise de terre]] : un piquet enfoncé dans le sol ou une boucle de cuivre noyée en fond de fouille, qui offre au courant un chemin vers la terre. De là part le [[conducteur de protection]] (PE), vert/jaune, qui relie <b>toutes les masses</b> de l'installation à cette prise de terre via le bornier de terre du tableau. Ainsi, si une masse est mise sous tension par un défaut, le courant s'écoule vers la terre par le PE plutôt que d'attendre la main de l'utilisateur. La [[terre]] ne sert donc jamais à faire fonctionner un appareil : c'est uniquement un conducteur de sécurité.",
-      "memo": "Prise de terre + conducteur PE (vert/jaune) = on relie toutes les masses à la terre. Sécurité, jamais alimentation."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · LE RÉGIME TT",
-      "titre": "Le régime de neutre TT du logement",
-      "svg": "boucle-defaut.svg",
-      "contenu": "La façon dont le neutre de la source et les masses sont reliés à la terre s'appelle le [[régime de neutre]]. Celui des logements alimentés par le réseau public est le [[régime TT]]. Les deux lettres se lisent : <b>premier T</b> = le neutre du transformateur est relié à la Terre (côté distributeur) ; <b>deuxième T</b> = les masses de l'installation sont reliées à la Terre (chez toi), par une prise de terre <b>distincte</b>. Deux prises de terre séparées, donc, reliées seulement par le sol. Cette particularité a une conséquence majeure, que montre l'écran suivant.",
-      "memo": "TT : neutre à la Terre côté EDF, masses à la Terre chez toi — deux prises de terre distinctes."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · LA BOUCLE",
-      "titre": "La boucle de défaut",
-      "svg": "boucle-defaut.svg",
-      "contenu": "Quand un [[défaut d'isolement]] met une masse sous tension, un courant de défaut s'établit : il part de la phase, traverse le défaut jusqu'à la masse, descend par le PE, rejoint la prise de terre des masses, passe par le sol, remonte à la prise de terre du neutre et retourne au transformateur. C'est la [[boucle de défaut]]. En régime TT, cette boucle traverse <b>deux prises de terre</b> : sa résistance est élevée, donc le courant de défaut reste faible — souvent <b>trop faible pour faire déclencher le disjoncteur</b>. La tension qui apparaît sur la masse vaut Uc = R(terre) × I(défaut). Il faut donc un autre gardien, sensible aux petits courants : le DDR.",
-      "memo": "En TT, la boucle passe par 2 terres : courant de défaut faible, le disjoncteur ne suffit pas. Il faut le DDR."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · LE DDR",
-      "titre": "Le DDR : principe et sensibilités",
-      "svg": "ddr-principe.svg",
-      "contenu": "Le [[DDR]] enferme la phase et le neutre dans un même tore magnétique. En fonctionnement normal, tout ce qui entre par la phase ressort par le neutre : les deux courants sont égaux, le flux dans le tore est nul. Si une partie du courant <b>fuit</b> vers la terre (à travers une masse ou un corps), il manque au retour : phase et neutre ne sont plus égaux, un flux apparaît et déclenche la coupure. Sa [[sensibilité]] IΔn fixe le seuil : <b>30 mA</b> (haute sensibilité) pour protéger les <b>personnes</b> — c'est obligatoire sur tous les circuits du logement ; <b>300 ou 500 mA</b> (moyenne sensibilité) pour limiter les courants de fuite et prévenir l'<b>incendie</b>.",
-      "memo": "DDR : compare phase et neutre, coupe si fuite. 30 mA → personnes. 300/500 mA → incendie."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · LE BON DUO",
-      "titre": "Disjoncteur et DDR : complémentaires",
-      "svg": "ddr-principe.svg",
-      "contenu": "Ne confonds jamais leurs rôles. Le [[disjoncteur]] surveille l'<b>intensité</b> et protège les <b>conducteurs</b> : il coupe en cas de [[surcharge]] ou de [[court-circuit]]. Il se calibre en ampères (10, 16, 20, 32 A…). Le [[DDR]] surveille la <b>différence</b> entre phase et neutre et protège les <b>personnes</b> : il coupe en cas de fuite à la terre. Il se calibre en milliampères. Un [[interrupteur différentiel]] seul ne protège donc PAS contre une surcharge — il doit toujours commander des disjoncteurs en aval. Quand un seul appareil réunit les deux fonctions, on parle de [[disjoncteur différentiel]]. Dans un tableau, on place en tête de rangée un interrupteur différentiel 30 mA, suivi des disjoncteurs de chaque circuit.",
-      "memo": "Disjoncteur = ampères, conducteurs, surcharge/court-circuit. DDR = milliampères, personnes, fuite à la terre."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Toucher la carcasse métallique d'un appareil mise sous tension par un fil décollé, c'est un :",
-      "svg": "contacts.svg",
-      "choix": ["Contact direct", "Contact indirect", "Court-circuit", "Contact de phase"],
-      "bonne": 1,
-      "explication": "Contact indirect : la masse n'est normalement pas sous tension, elle l'est devenue à cause d'un défaut. Le contact direct, c'est toucher une pièce normalement sous tension.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "À quoi sert le conducteur de protection (PE) vert/jaune ?",
-      "svg": "boucle-defaut.svg",
-      "choix": ["À alimenter les appareils en secours", "À relier les masses à la prise de terre", "À transporter le courant de retour", "À réduire la consommation"],
-      "bonne": 1,
-      "explication": "Le PE relie toutes les masses à la prise de terre. Il ne sert qu'à la sécurité, jamais à alimenter un appareil.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "Dans le régime de neutre TT, les deux T signifient :",
-      "svg": "boucle-defaut.svg",
-      "choix": ["Triphasé et Terre", "Neutre à la Terre et masses à la Terre", "Tension et Temps", "Deux transformateurs"],
-      "bonne": 1,
-      "explication": "Premier T : neutre du transfo relié à la terre. Deuxième T : masses de l'installation reliées à la terre, par une prise distincte.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "En régime TT, pourquoi le disjoncteur ne suffit-il pas à protéger des contacts indirects ?",
-      "svg": "boucle-defaut.svg",
-      "choix": ["Il est trop lent", "Le courant de défaut est trop faible pour le faire déclencher", "Il ne fonctionne qu'en triphasé", "Il protège déjà contre les fuites"],
-      "bonne": 1,
-      "explication": "La boucle de défaut traverse deux prises de terre : sa résistance élevée limite le courant, souvent sous le seuil de déclenchement du disjoncteur. D'où la nécessité du DDR.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "Comment le DDR détecte-t-il une fuite ?",
-      "svg": "ddr-principe.svg",
-      "choix": ["Il mesure la tension du neutre", "Il compare le courant de la phase et celui du neutre", "Il mesure la température des câbles", "Il compte les court-circuits"],
-      "bonne": 1,
-      "explication": "Phase et neutre passent dans un même tore. S'ils ne sont plus égaux, c'est qu'une partie du courant fuit ailleurs : le DDR coupe.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Quelle sensibilité de DDR protège les personnes ?",
-      "svg": "ddr-principe.svg",
-      "choix": ["30 mA", "300 mA", "500 mA", "30 A"],
-      "bonne": 0,
-      "explication": "30 mA (haute sensibilité) pour les personnes. 300/500 mA (moyenne sensibilité) servent à prévenir l'incendie, pas à protéger directement les personnes.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Le disjoncteur et le DDR :",
-      "svg": "ddr-principe.svg",
-      "choix": ["Font exactement le même travail", "Protègent l'un les conducteurs, l'autre les personnes", "Se calibrent tous deux en ampères", "Sont interdits sur le même circuit"],
-      "bonne": 1,
-      "explication": "Le disjoncteur (ampères) protège les conducteurs contre surcharge et court-circuit ; le DDR (milliampères) protège les personnes contre les fuites à la terre. Complémentaires.",
-      "renvoi_lecon": 5
-    }
+  "objectif": "Comprendre comment la terre, le régime TT et le différentiel protègent des contacts indirects — et ne jamais confondre disjoncteur et DDR",
+  "cours": {
+    "intro": "Deuxième module du bloc 2. Au module précédent, on a vu comment le courant blesse et tue. Ici, on apprend comment on s'en protège dans un logement — pas avec de la chance, mais avec une chaîne d'éléments qui travaillent ensemble : la terre, le régime de neutre, et le dispositif différentiel. C'est le cœur du métier. À l'examen comme sur le chantier, il faut savoir pourquoi chaque fil vert/jaune est là, et pourquoi un disjoncteur ne suffit jamais à protéger une personne.",
+    "sections": [
+      {
+        "titre": "1. Contact direct, contact indirect",
+        "svg": "c6-contacts.svg",
+        "contenu": "<p>Il y a deux façons de se faire électriser, et tout le reste du module découle de cette distinction.</p><p>Le [[contact direct]] : on touche une pièce <b>normalement sous tension</b> — un conducteur dénudé, une borne, une broche de fiche, l'intérieur d'une douille. Le danger est « normal », prévisible : c'est pour ça qu'on l'enferme derrière de l'[[isolant]], des capots et des couvercles, et qu'on reste à l'écart.</p><p>Le [[contact indirect]] : on touche une [[masse]] — une carcasse métallique <b>normalement hors tension</b> — qui s'est retrouvée <b>sous tension à cause d'un défaut</b>. Un fil de [[phase]] dont l'isolant a vieilli vient toucher la carrosserie du lave-linge : la machine a l'air parfaitement normale, mais sa coque est maintenant dangereuse. C'est sournois, parce que rien ne prévient.</p><p>Contre le contact direct : isolation, éloignement, et en dernier rempart un [[DDR]] 30 mA. Contre le contact indirect : c'est tout l'objet de ce module — relier les masses à la [[terre]] et couper automatiquement avant que ce ne soit mortel.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "La question réflexe devant une carcasse métallique : est-elle bien reliée à la terre ? Un appareil de classe I (lave-linge, four) sans terre, c'est un contact indirect qui attend sa victime. On ne met jamais une telle machine en service sans avoir vérifié la continuité du fil vert/jaune." },
+        "memo": "Contact direct = pièce normalement sous tension. Contact indirect = masse mise sous tension par un défaut. Le second est le plus sournois : rien ne prévient."
+      },
+      {
+        "titre": "2. Les masses et le conducteur de protection PE",
+        "svg": "c6-pe-masses.svg",
+        "contenu": "<p>Une masse, c'est toute partie métallique d'un appareil qu'on peut toucher et qui est normalement hors tension : la carcasse du four, la cuve du lave-linge, le corps d'un chauffe-eau, un châssis. Normalement hors tension… sauf en cas de défaut.</p><p>Pour que ce défaut ne soit jamais dangereux, on relie toutes les masses entre elles et à la terre par le [[conducteur de protection]] (PE), reconnaissable à sa gaine <b>vert/jaune</b>. Si une masse est mise sous tension, le courant trouve aussitôt un chemin par le PE vers la terre, au lieu d'attendre la main de l'utilisateur.</p><p>Retiens bien : le PE ne sert <b>jamais</b> à faire fonctionner un appareil. C'est un conducteur de <b>sécurité</b>, pas d'alimentation. Il ne transporte du courant qu'au moment d'un défaut — le reste du temps, il ne « passe » rien. C'est pour ça qu'on ne le compte jamais parmi les conducteurs actifs, qui sont la phase et le [[neutre]].</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le vert/jaune est une couleur réservée : on ne l'utilise JAMAIS pour autre chose que la terre, et on ne fait jamais passer de courant actif dedans. Un fil vert/jaune raccordé sur une phase, c'est une faute grave qui peut tuer le prochain intervenant." },
+        "memo": "Masse = partie métallique touchable, normalement hors tension. Le PE (vert/jaune) relie toutes les masses à la terre. Sécurité, jamais alimentation."
+      },
+      {
+        "titre": "3. La prise de terre et le circuit de terre",
+        "svg": "c6-circuit-terre.svg",
+        "contenu": "<p>Tout commence sous tes pieds, avec la [[prise de terre]] : un élément métallique en contact avec le sol, qui offre au courant de défaut un chemin vers la terre. On la réalise de <b>quatre façons</b> : un <b>piquet</b> enfoncé (pointe à <b>2 m</b> de profondeur au moins), une <b>boucle à fond de fouille</b> noyée sous les fondations, un <b>conducteur en tranchée</b>, ou une <b>plaque</b>. La <b>boucle à fond de fouille</b> est la meilleure : grande surface de contact, résistance basse et durable.</p><p>De la prise de terre part le [[conducteur de terre]], en <b>cuivre nu de 25 mm²</b>, qui remonte jusqu'à la [[borne principale de terre]]. Là se trouve une pièce démontable, la <b>barrette de coupure</b> : en l'ouvrant, on isole la prise de terre pour <b>mesurer sa résistance</b> au telluromètre.</p><p>De cette borne repart le [[conducteur principal de protection]], en <b>16 mm²</b>, vers le <b>bornier de terre</b> du tableau, d'où partent les PE de tous les circuits. À la borne principale arrive aussi la [[liaison équipotentielle principale]], qui relie les grosses canalisations métalliques (eau, gaz) et la structure du bâtiment, pour que tout soit au même potentiel.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "La barrette de coupure n'est pas un détail : sans elle, impossible de mesurer la prise de terre seule. Avant un Consuel, on l'ouvre, on mesure, on referme. Et on connaît les sections les yeux fermés : 25 mm² cuivre nu pour le conducteur de terre, 16 mm² pour le conducteur principal de protection." },
+        "memo": "Prise de terre (piquet 2 m, ou boucle à fond de fouille = la meilleure) → conducteur de terre 25 mm² cuivre nu → borne principale (barrette de coupure pour mesurer) → conducteur principal de protection 16 mm² → bornier du tableau."
+      },
+      {
+        "titre": "4. Le régime de neutre TT",
+        "svg": "c6-regime-tt.svg",
+        "contenu": "<p>La façon dont le neutre de la source et les masses de l'installation sont reliés à la terre porte un nom : le [[régime de neutre]]. Il en existe trois (TT, TN, IT), mais celui de <b>tous les logements</b> raccordés au réseau public est le [[régime TT]].</p><p>Les deux lettres se lisent de gauche à droite. <b>Premier T</b> : le neutre du transformateur du distributeur est relié à la <b>T</b>erre, côté réseau. <b>Deuxième T</b> : les masses de ton installation sont reliées à la <b>T</b>erre, chez toi, par une prise de terre <b>distincte</b>.</p><p>Le point clé, celui qui change tout : ce sont <b>deux prises de terre séparées</b> — l'une au poste de distribution, l'autre chez l'usager — reliées seulement par le sol entre elles. Cette séparation rend le régime TT simple à installer… mais c'est elle aussi qui oblige à utiliser un différentiel, comme le montre la section suivante.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "En TT, tu n'as pas la main sur la terre du distributeur — seulement sur la tienne. Ta garantie de sécurité, c'est TA prise de terre ET le différentiel. Les deux ensemble, jamais l'un sans l'autre." },
+        "memo": "TT : neutre à la Terre côté distributeur (1er T), masses à la Terre chez l'usager (2e T), par deux prises de terre distinctes. C'est le régime de tous les logements."
+      },
+      {
+        "titre": "5. La boucle de défaut et la tension de contact",
+        "svg": "c6-boucle-defaut.svg",
+        "contenu": "<p>Voyons ce qui se passe à l'instant du défaut. Un [[défaut d'isolement]] met une masse sous tension ; un courant s'établit alors en boucle : il part de la phase, traverse le défaut jusqu'à la masse, descend par le PE, rejoint la prise de terre des masses, passe par le <b>sol</b>, remonte à la prise de terre du neutre et retourne au transformateur. C'est la [[boucle de défaut]].</p><p>En régime TT, cette boucle traverse <b>deux prises de terre</b> en série : sa résistance est <b>élevée</b>, donc le courant de défaut reste <b>faible</b> — souvent bien trop faible pour faire déclencher le disjoncteur, qui, lui, attend des dizaines d'ampères. Pendant ce temps, une tension dangereuse apparaît sur la masse : la [[tension de contact]], égale à <b>Uc = R(terre) × I(défaut)</b>.</p><p>D'où la règle d'or : la tension de contact ne doit jamais dépasser la [[tension limite de sécurité|tension limite de sécurité UL]] (50 V). On y arrive en maîtrisant la résistance de la prise de terre, avec la relation à connaître : <b>R ≤ UL / IΔn</b>. Avec un différentiel de 500 mA : R ≤ 50 / 0,5 = <b>100 Ω</b>. C'est la valeur repère d'une bonne prise de terre. Avec un 30 mA, la terre tolérée serait bien plus élevée — mais on vise toujours la résistance la plus basse possible.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Retiens le trio : 50 V (UL) / 0,5 A (500 mA) / 100 Ω. C'est le calcul type de l'examen : 50 ÷ 0,5 = 100. Et rappelle-toi pourquoi le disjoncteur est aveugle au défaut en TT : le courant de boucle est trop petit pour lui. Seul le différentiel le voit." },
+        "memo": "Boucle de défaut en TT = 2 terres en série → courant faible, le disjoncteur ne déclenche pas. Uc = R(terre) × I(défaut). R ≤ UL/IΔn : 50 V / 0,5 A = 100 Ω."
+      },
+      {
+        "titre": "6. Le DDR : principe et sensibilités",
+        "svg": "c6-ddr-principe.svg",
+        "contenu": "<p>Le gardien du contact indirect, c'est le DDR, le dispositif différentiel à courant résiduel. Son principe est d'une élégance simple : il enferme la phase et le neutre dans un même <b>tore magnétique</b>. En fonctionnement normal, tout le courant qui entre par la phase ressort par le neutre : les deux sont <b>égaux</b>, leurs effets s'annulent, le tore ne « voit » rien.</p><p>Mais si une partie du courant <b>fuit</b> vers la terre — à travers une masse en défaut ou un corps humain — il manque au retour : phase et neutre ne sont plus égaux. Ce <b>courant résiduel</b> crée un déséquilibre dans le tore, qui déclenche la coupure en une fraction de seconde.</p><p>Le seuil de fuite qui fait déclencher s'appelle la [[sensibilité]], notée IΔn, et elle se compte en <b>milliampères</b> — à ne jamais confondre avec le calibre, qui est en ampères. <b>30 mA</b> : c'est la <b>haute sensibilité</b> (on parle de DDRHS), obligatoire sur tous les circuits du logement pour protéger les <b>personnes</b>. <b>300 ou 500 mA</b> : la moyenne sensibilité, pour limiter les courants de fuite et prévenir l'<b>incendie</b>, pas pour protéger directement une personne.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Ne confonds jamais calibre et sensibilité. Un différentiel « 40 A / 30 mA », c'est 40 A de calibre (le courant qu'il laisse passer) et 30 mA de sensibilité (la fuite qui le fait couper). On dit « sensibilité 30 mA », jamais « calibre 30 mA »." },
+        "memo": "DDR : phase et neutre dans un tore ; il coupe si elles diffèrent (fuite). Sensibilité IΔn en mA. 30 mA (haute sensibilité) → personnes. 300/500 mA → incendie."
+      },
+      {
+        "titre": "7. Les types de DDR : AC, A, F, B",
+        "svg": "c6-types-ddr.svg",
+        "contenu": "<p>Tous les différentiels ne détectent pas les mêmes formes de courant de fuite. Avec l'électronique moderne (variateurs, plaques à induction, informatique, recharge de voiture), la fuite n'est plus toujours un beau courant alternatif sinusoïdal : elle peut contenir des composantes continues qui « aveuglent » un différentiel de base. D'où <b>quatre types</b>, du plus simple au plus complet, chacun englobant le précédent.</p><p><b>Type AC</b> : détecte seulement les fuites <b>alternatives sinusoïdales</b>. C'est le type de base, pour l'éclairage et les prises ordinaires.<br><b>Type A</b> : en plus, les fuites à <b>composante continue pulsée</b>. Obligatoire pour la <b>plaque de cuisson</b>, le <b>lave-linge</b> et les circuits à électronique de puissance.<br><b>Type F</b> : un type A renforcé, pour les circuits à <b>fréquences mélangées</b> (derrière un variateur de vitesse).<br><b>Type B</b> : détecte en plus les fuites en <b>courant continu lisse</b> — on le rencontre par exemple sur certaines bornes de recharge de véhicule et certaines installations photovoltaïques.</p><p>Règle minimale d'un tableau de logement : au moins <b>deux interrupteurs différentiels</b>, dont <b>un type AC et un type A</b>. Les circuits sensibles (plaque, lave-linge) passent obligatoirement sous le type A.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Un moyen de retenir : A comme « Appareils électroménagers » (plaque, lave-linge → type A). Mettre une plaque à induction derrière un simple type AC, c'est une non-conformité classique au Consuel." },
+        "memo": "Types de DDR, du plus simple au plus complet : AC (alternatif seul) ⊂ A (+ continu pulsé : plaque, lave-linge) ⊂ F (+ fréquences mixtes) ⊂ B (+ continu lisse). Tableau : au moins 1 type AC + 1 type A."
+      },
+      {
+        "titre": "8. Disjoncteur, interrupteur différentiel, disjoncteur différentiel",
+        "svg": "c6-tableau-duo.svg",
+        "contenu": "<p>Pour finir, ne confonds jamais trois appareils qui se ressemblent dans le tableau mais ne font pas le même travail.</p><p>Le [[disjoncteur]] surveille l'<b>intensité</b> et protège les <b>conducteurs</b> : il coupe en cas de [[surcharge]] ou de [[court-circuit]]. Il se calibre en <b>ampères</b> (10, 16, 20, 32 A…). Il ne voit aucune fuite à la terre.</p><p>L'[[interrupteur différentiel]] surveille la <b>différence</b> entre phase et neutre et protège les <b>personnes</b> : il coupe sur fuite à la terre, mais <b>ne protège pas</b> contre la surcharge ni le court-circuit. Il doit donc <b>toujours</b> commander des disjoncteurs placés en aval. Dans le tableau, on le place en <b>tête de rangée</b>, suivi des disjoncteurs de chaque circuit.</p><p>Quand un seul appareil réunit les deux fonctions — protection contre les surintensités <b>et</b> protection différentielle contre les fuites — on parle de [[disjoncteur différentiel]]. Dans le tableau, il protège le plus souvent un seul circuit, par exemple un circuit spécialisé.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le piège de l'examen : « un interrupteur différentiel protège-t-il contre la surcharge ? » Non. Il ne voit que les fuites. Sans disjoncteurs en aval, un court-circuit derrière un inter différentiel n'est coupé par rien. Disjoncteur = ampères ; différentiel = milliampères." },
+        "memo": "Disjoncteur = ampères, conducteurs, surcharge/court-circuit. Interrupteur différentiel = mA, personnes, fuite — mais pas la surcharge, il commande des disjoncteurs. Disjoncteur différentiel = les deux fonctions réunies."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Toucher un conducteur dénudé normalement sous tension, c'est un :", "choix": ["Contact direct", "Contact indirect", "Court-circuit", "Défaut d'isolement"], "bonne": 0, "explication": "Contact direct : on touche une pièce normalement sous tension. Le contact indirect, c'est toucher une masse mise sous tension par un défaut.", "renvoi_lecon": 0 },
+    { "question": "Toucher la carcasse d'un lave-linge mise sous tension par un fil décollé, c'est un :", "choix": ["Contact direct", "Contact indirect", "Court-circuit", "Contact de neutre"], "bonne": 1, "explication": "Contact indirect : la masse n'est normalement pas sous tension, elle l'est devenue à cause d'un défaut d'isolement.", "renvoi_lecon": 0 },
+    { "question": "Qu'est-ce qui caractérise le contact indirect ?", "choix": ["On touche une pièce normalement sous tension", "On relie deux phases entre elles", "On touche une masse mise sous tension par un défaut", "On touche volontairement le neutre"], "bonne": 2, "explication": "Le contact indirect, c'est le contact avec une masse devenue dangereuse à la suite d'un défaut d'isolement.", "renvoi_lecon": 0 },
+    { "question": "Contre le contact direct, la protection de base est :", "choix": ["la mise à la terre des masses", "le différentiel 500 mA", "le conducteur de terre 25 mm²", "l'isolation, les capots et l'éloignement"], "bonne": 3, "explication": "On se protège du contact direct en enfermant les pièces sous tension derrière de l'isolant et des capots, et en restant à l'écart. Le DDR 30 mA n'est qu'un complément.", "renvoi_lecon": 0 },
+    { "question": "Pourquoi le contact indirect est-il particulièrement sournois ?", "choix": ["rien ne prévient : la masse a l'air normale", "il ne peut jamais être mortel", "il n'arrive qu'en haute tension", "il se voit de loin"], "bonne": 0, "explication": "La carcasse paraît parfaitement normale alors qu'elle est sous tension : aucun signe avant le contact.", "renvoi_lecon": 0 },
+    { "question": "Une masse, en électricité, c'est :", "choix": ["un conducteur actif", "une partie métallique touchable, normalement hors tension", "le neutre de l'installation", "un matériau isolant"], "bonne": 1, "explication": "Une masse est une partie conductrice d'un matériel (une carcasse) normalement hors tension, mais susceptible d'être touchée.", "renvoi_lecon": 1 },
+    { "question": "De quelle couleur est le conducteur de protection PE ?", "choix": ["rouge", "bleu clair", "vert/jaune", "noir"], "bonne": 2, "explication": "Le PE est toujours vert/jaune. Cette couleur est réservée à la terre : on ne l'utilise jamais pour autre chose.", "renvoi_lecon": 1 },
+    { "question": "À quoi sert le conducteur de protection (PE) ?", "choix": ["à alimenter les appareils en secours", "à transporter le courant de retour", "à réduire la consommation", "à relier les masses à la prise de terre"], "bonne": 3, "explication": "Le PE relie toutes les masses à la prise de terre. Il ne sert qu'à la sécurité, jamais à alimenter un appareil.", "renvoi_lecon": 1 },
+    { "question": "Quand le conducteur de protection transporte-t-il du courant ?", "choix": ["seulement au moment d'un défaut", "en permanence", "jamais, en aucun cas", "uniquement la nuit"], "bonne": 0, "explication": "En fonctionnement normal le PE ne « passe » rien ; il n'écoule un courant qu'à l'instant d'un défaut d'isolement.", "renvoi_lecon": 1 },
+    { "question": "Peut-on utiliser un fil vert/jaune comme phase ou comme neutre ?", "choix": ["oui, si on manque de fil", "non, jamais : couleur réservée à la terre", "oui, mais pour le neutre seulement", "oui, en triphasé"], "bonne": 1, "explication": "Le vert/jaune est strictement réservé au conducteur de protection. L'utiliser comme actif est une faute grave et dangereuse.", "renvoi_lecon": 1 },
+    { "question": "Quelle est la meilleure prise de terre ?", "choix": ["le piquet", "la plaque", "la boucle à fond de fouille", "le conducteur en tranchée"], "bonne": 2, "explication": "La boucle à fond de fouille, noyée sous les fondations, offre une grande surface de contact et une résistance basse et durable.", "renvoi_lecon": 2 },
+    { "question": "Un piquet de terre doit avoir sa pointe enfoncée à au moins :", "choix": ["50 cm", "1 m", "10 m", "2 m"], "bonne": 3, "explication": "La pointe d'un piquet de terre doit descendre à 2 m de profondeur au minimum, pour atteindre une terre stable et humide.", "renvoi_lecon": 2 },
+    { "question": "Le conducteur de terre, de la prise de terre à la borne principale, est en :", "choix": ["cuivre nu de 25 mm²", "cuivre isolé de 1,5 mm²", "aluminium de 10 mm²", "vert/jaune de 6 mm²"], "bonne": 0, "explication": "Le conducteur de terre est en cuivre nu de 25 mm². Il relie la prise de terre à la borne principale de terre.", "renvoi_lecon": 2 },
+    { "question": "La section du conducteur principal de protection est de :", "choix": ["1,5 mm²", "16 mm²", "6 mm²", "25 mm²"], "bonne": 1, "explication": "Le conducteur principal de protection fait 16 mm² : il relie la borne principale de terre au bornier de terre du tableau.", "renvoi_lecon": 2 },
+    { "question": "À quoi sert la barrette de coupure de la borne principale de terre ?", "choix": ["à couper le courant du logement", "à relier deux phases", "à isoler la prise de terre pour mesurer sa résistance", "à protéger contre la foudre"], "bonne": 2, "explication": "En ouvrant la barrette de coupure, on isole la prise de terre pour mesurer sa seule résistance, au telluromètre.", "renvoi_lecon": 2 },
+    { "question": "La liaison équipotentielle principale relie à la borne de terre :", "choix": ["seulement les prises de courant", "uniquement les lampes", "le compteur du distributeur", "les grosses canalisations métalliques (eau, gaz) et la structure"], "bonne": 3, "explication": "Elle met au même potentiel les canalisations métalliques et les éléments de structure du bâtiment, reliés à la borne principale de terre.", "renvoi_lecon": 2 },
+    { "question": "Le régime de neutre de tous les logements raccordés au réseau public est :", "choix": ["le TT", "le TN", "l'IT", "le TBTS"], "bonne": 0, "explication": "Les logements raccordés au réseau de distribution sont en régime TT.", "renvoi_lecon": 3 },
+    { "question": "Dans le sigle TT, le premier T signifie :", "choix": ["Triphasé", "neutre du transformateur relié à la Terre", "Temps de coupure", "Tension nominale"], "bonne": 1, "explication": "Premier T : le neutre du transformateur du distributeur est relié à la terre, côté réseau.", "renvoi_lecon": 3 },
+    { "question": "Dans le sigle TT, le deuxième T signifie :", "choix": ["la Terre du voisin", "deux Transformateurs", "les masses reliées à la Terre chez l'usager", "une Terre unique pour tous"], "bonne": 2, "explication": "Deuxième T : les masses de l'installation sont reliées à la terre chez l'usager, par une prise de terre distincte.", "renvoi_lecon": 3 },
+    { "question": "En régime TT, combien y a-t-il de prises de terre ?", "choix": ["une seule, commune", "aucune", "trois", "deux distinctes : distributeur et usager"], "bonne": 3, "explication": "Deux prises de terre séparées : celle du neutre au poste de distribution, celle des masses chez l'usager.", "renvoi_lecon": 3 },
+    { "question": "Les deux prises de terre du régime TT sont reliées entre elles par :", "choix": ["le sol", "un câble du distributeur", "le conducteur neutre", "le PE du tableau"], "bonne": 0, "explication": "Elles ne sont reliées que par le sol : c'est ce qui donne à la boucle de défaut sa résistance élevée.", "renvoi_lecon": 3 },
+    { "question": "En régime TT, la sécurité des personnes repose sur :", "choix": ["le seul disjoncteur", "la prise de terre ET le différentiel", "le conducteur neutre", "le fusible de branchement"], "bonne": 1, "explication": "En TT, la terre seule ne suffit pas : il faut la prise de terre ET le différentiel, toujours ensemble.", "renvoi_lecon": 3 },
+    { "question": "La boucle de défaut, c'est :", "choix": ["le circuit d'éclairage de la pièce", "un court-circuit entre deux phases", "le chemin du courant de défaut, de la phase à la masse puis par la terre jusqu'à la source", "la mise à la terre du neutre au poste"], "bonne": 2, "explication": "C'est le trajet complet du courant de défaut : phase → défaut → masse → PE → prise de terre → sol → prise de terre du neutre → source.", "renvoi_lecon": 4 },
+    { "question": "En régime TT, le courant de défaut est :", "choix": ["très fort, comme un court-circuit", "toujours nul", "égal au courant nominal", "faible, car la boucle traverse deux terres"], "bonne": 3, "explication": "La boucle traverse deux prises de terre en série : sa résistance élevée limite le courant de défaut.", "renvoi_lecon": 4 },
+    { "question": "Pourquoi le disjoncteur ne coupe-t-il pas sur un contact indirect en TT ?", "choix": ["le courant de défaut est trop faible pour le faire déclencher", "il est trop lent", "il protège déjà les personnes", "il ne fonctionne qu'en courant continu"], "bonne": 0, "explication": "Le disjoncteur attend des dizaines d'ampères ; le courant de défaut en TT est bien plus faible. D'où la nécessité du différentiel.", "renvoi_lecon": 4 },
+    { "question": "La tension de contact se calcule par :", "choix": ["Uc = U × I", "Uc = R(terre) × I(défaut)", "Uc = R + I", "Uc = P / U"], "bonne": 1, "explication": "La tension qui apparaît sur la masse vaut Uc = R(terre) × I(défaut).", "renvoi_lecon": 4 },
+    { "question": "La tension de contact doit rester inférieure à :", "choix": ["230 V", "1 000 V", "la tension limite de sécurité UL (50 V)", "100 V"], "bonne": 2, "explication": "Elle ne doit jamais dépasser la tension limite de sécurité UL, soit 50 V en milieu sec.", "renvoi_lecon": 4 },
+    { "question": "Pour un différentiel de 500 mA et UL = 50 V, la prise de terre doit être au plus de :", "choix": ["10 Ω", "500 Ω", "1 000 Ω", "100 Ω"], "bonne": 3, "explication": "R ≤ UL / IΔn = 50 / 0,5 = 100 Ω. C'est la valeur repère d'une bonne prise de terre.", "renvoi_lecon": 4 },
+    { "question": "La relation qui limite la résistance de la prise de terre est :", "choix": ["R ≤ UL / IΔn", "R = U × I", "R ≤ P / U", "R = UL × IΔn"], "bonne": 0, "explication": "R ≤ UL / IΔn : la résistance de terre doit être assez basse pour que la tension de contact reste sous UL.", "renvoi_lecon": 4 },
+    { "question": "Comment le DDR détecte-t-il une fuite ?", "choix": ["il mesure la tension du neutre", "il compare les courants de la phase et du neutre", "il mesure la température des câbles", "il compte les courts-circuits"], "bonne": 1, "explication": "Phase et neutre passent dans un même tore. S'ils ne sont plus égaux, c'est qu'une partie du courant fuit : le DDR coupe.", "renvoi_lecon": 5 },
+    { "question": "Dans un DDR en fonctionnement normal, les courants de phase et de neutre :", "choix": ["sont différents", "sont coupés en permanence", "sont égaux et s'annulent dans le tore", "sont inversés l'un par rapport à l'autre"], "bonne": 2, "explication": "Tout ce qui entre par la phase ressort par le neutre : les deux s'équilibrent, le tore ne voit rien.", "renvoi_lecon": 5 },
+    { "question": "La sensibilité d'un DDR se mesure en :", "choix": ["ampères", "volts", "ohms", "milliampères"], "bonne": 3, "explication": "La sensibilité IΔn est un courant de fuite, exprimé en milliampères (30, 300, 500 mA). À ne pas confondre avec le calibre, en ampères.", "renvoi_lecon": 5 },
+    { "question": "Quelle sensibilité de différentiel protège les personnes ?", "choix": ["30 mA", "300 mA", "500 mA", "30 A"], "bonne": 0, "explication": "30 mA (haute sensibilité) pour protéger les personnes. 300/500 mA servent à prévenir l'incendie, pas à protéger directement une personne.", "renvoi_lecon": 5 },
+    { "question": "Les sensibilités 300 et 500 mA servent surtout à :", "choix": ["protéger directement les personnes", "prévenir l'incendie en limitant les courants de fuite", "mesurer la résistance de terre", "couper les surcharges"], "bonne": 1, "explication": "La moyenne sensibilité (300/500 mA) limite les courants de fuite et prévient l'incendie ; elle ne protège pas une personne.", "renvoi_lecon": 5 },
+    { "question": "Sur un différentiel marqué « 40 A / 30 mA », qu'est-ce qui le fait déclencher sur une fuite ?", "choix": ["le 40 A (le calibre)", "les deux à la fois", "le 30 mA (la sensibilité)", "aucun des deux"], "bonne": 2, "explication": "Le 30 mA est la sensibilité : c'est elle qui provoque la coupure sur fuite. Le 40 A est le calibre, le courant qu'il laisse passer.", "renvoi_lecon": 5 },
+    { "question": "On écrit correctement :", "choix": ["« calibre 30 mA »", "« tension 30 mA »", "« puissance 30 mA »", "« sensibilité 30 mA »"], "bonne": 3, "explication": "30 mA est une sensibilité, pas un calibre. Le calibre est en ampères, la sensibilité en milliampères.", "renvoi_lecon": 5 },
+    { "question": "Le type de différentiel de base, pour l'éclairage et les prises ordinaires, est le type :", "choix": ["AC", "A", "F", "B"], "bonne": 0, "explication": "Le type AC détecte les fuites alternatives sinusoïdales : c'est le type de base.", "renvoi_lecon": 6 },
+    { "question": "Quel type de différentiel est obligatoire pour une plaque de cuisson et un lave-linge ?", "choix": ["AC", "A", "F", "B"], "bonne": 1, "explication": "Le type A détecte en plus les composantes continues pulsées : il est obligatoire pour ces circuits à électronique de puissance.", "renvoi_lecon": 6 },
+    { "question": "Un tableau de logement comporte au minimum :", "choix": ["un seul différentiel", "uniquement des type B", "au moins deux interrupteurs différentiels, dont un AC et un A", "aucun différentiel"], "bonne": 2, "explication": "La règle : au moins deux interrupteurs différentiels, dont un type AC et un type A.", "renvoi_lecon": 6 },
+    { "question": "Le type A détecte, en plus de l'alternatif sinusoïdal :", "choix": ["rien de plus", "la haute tension", "la foudre", "les composantes continues pulsées"], "bonne": 3, "explication": "Le type A ajoute la détection des fuites à composante continue pulsée, produites par l'électronique de puissance.", "renvoi_lecon": 6 },
+    { "question": "Le type B se distingue parce qu'il détecte aussi :", "choix": ["le courant continu lisse", "uniquement l'alternatif", "les surcharges", "les courts-circuits"], "bonne": 0, "explication": "Le type B est le plus complet : il détecte même les fuites en courant continu lisse.", "renvoi_lecon": 6 },
+    { "question": "Le disjoncteur protège :", "choix": ["les personnes contre les fuites", "les conducteurs contre la surcharge et le court-circuit", "la prise de terre", "le conducteur neutre"], "bonne": 1, "explication": "Le disjoncteur surveille l'intensité et protège les conducteurs contre surcharge et court-circuit. Il ne voit pas les fuites.", "renvoi_lecon": 7 },
+    { "question": "Un interrupteur différentiel protège-t-il contre la surcharge ?", "choix": ["oui, toujours", "oui, en triphasé seulement", "non : il ne voit que les fuites", "oui, s'il est en 30 mA"], "bonne": 2, "explication": "Non : l'interrupteur différentiel ne détecte que les fuites à la terre. Contre la surcharge, il faut des disjoncteurs en aval.", "renvoi_lecon": 7 },
+    { "question": "Un interrupteur différentiel doit toujours :", "choix": ["être seul sur sa rangée", "remplacer le disjoncteur de branchement", "être réglé sur 500 mA", "commander des disjoncteurs placés en aval"], "bonne": 3, "explication": "Ne protégeant pas contre les surintensités, il doit toujours commander des disjoncteurs en aval, qui s'en chargent.", "renvoi_lecon": 7 },
+    { "question": "L'appareil qui réunit protection différentielle ET protection contre les surintensités est :", "choix": ["le disjoncteur différentiel", "l'interrupteur différentiel", "le fusible", "le sectionneur"], "bonne": 0, "explication": "Le disjoncteur différentiel combine les deux fonctions dans un seul appareil.", "renvoi_lecon": 7 },
+    { "question": "Le disjoncteur se calibre en ……, le différentiel se repère en …… :", "choix": ["milliampères puis ampères", "ampères puis milliampères", "volts puis ampères", "ohms puis volts"], "bonne": 1, "explication": "Disjoncteur = ampères (calibre). Différentiel = milliampères (sensibilité). Ne jamais inverser.", "renvoi_lecon": 7 },
+    { "question": "Dans un tableau, l'interrupteur différentiel se place :", "choix": ["en bout de rangée", "après les disjoncteurs", "en tête de rangée, devant les disjoncteurs", "à l'extérieur du tableau"], "bonne": 2, "explication": "On le place en tête de rangée ; il est suivi des disjoncteurs de chaque circuit qu'il protège.", "renvoi_lecon": 7 }
   ],
   "jeu": {
     "type": "vrai-faux-rapide",
