@@ -1,28 +1,41 @@
 // Moteur de quiz : tirage de 15 questions au hasard dans une banque
 // (niveau.banque) — chaque tentative redonne un tirage différent. Si la
 // source compte 15 questions ou moins (niveau.quiz des modules 2-9), on
-// prend tout. Correction EN FIN DE SÉRIE + renvoi vers le cours.
+// prend tout. L'ordre des choix est mélangé à chaque tentative, pour que la
+// bonne réponse ne tombe pas toujours sur la même lettre.
+// Correction EN FIN DE SÉRIE + renvoi vers le cours.
 
 import { activerTermes, brancherTermes } from "./glossaire.js";
 
 const NB_TIRAGE = 15;
 
-// Mélange (Fisher-Yates) puis prend n ; si la source est ≤ n, on garde tout dans l'ordre.
+// Mélange en place (Fisher-Yates) et renvoie le tableau.
+function melanger(tableau) {
+  for (let i = tableau.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tableau[i], tableau[j]] = [tableau[j], tableau[i]];
+  }
+  return tableau;
+}
+
+// Mélange puis prend n ; si la source est ≤ n, on garde tout dans l'ordre.
 function tirer(source, n) {
   if (source.length <= n) return source.slice();
-  const copie = source.slice();
-  for (let i = copie.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copie[i], copie[j]] = [copie[j], copie[i]];
-  }
-  return copie.slice(0, n);
+  return melanger(source.slice()).slice(0, n);
+}
+
+// Copie de la question avec ses choix dans un ordre aléatoire ; `bonne` suit
+// la bonne réponse. Le JSON d'origine n'est pas modifié.
+function melangerChoix(q) {
+  const ordre = melanger(q.choix.map((_, k) => k));
+  return { ...q, choix: ordre.map((k) => q.choix[k]), bonne: ordre.indexOf(q.bonne) };
 }
 
 // Options :
 //   onFin(score, total)       : appelé à l'affichage des résultats
 //   onRevoirLecon(indexSection) : renvoi vers le cours depuis une erreur
 export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
-  const questions = tirer(niveau.banque || niveau.quiz, NB_TIRAGE);
+  const questions = tirer(niveau.banque || niveau.quiz, NB_TIRAGE).map(melangerChoix);
   const reponses = Array(questions.length).fill(null);
   let index = 0;
 
