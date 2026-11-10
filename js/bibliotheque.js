@@ -21,7 +21,7 @@ export async function afficherBibliotheque(conteneur, type) {
   // Charge les niveaux disponibles (blocs non "à venir") pour afficher les compteurs.
   const data = {};
   await Promise.all(
-    parcours.blocs.filter((b) => !b.aVenir).flatMap((b) => b.niveaux).map(async (n) => {
+    parcours.blocs.filter((b) => !b.aVenir).flatMap((b) => b.niveaux).filter((n) => !n.aVenir).map(async (n) => {
       try {
         const r = await fetch(`data/niveaux/${String(n.id).padStart(2, "0")}.json`);
         if (r.ok) data[n.id] = await r.json();
@@ -62,8 +62,8 @@ export async function afficherBibliotheque(conteneur, type) {
   function ligne(niveau, bloc, T, etat) {
     const descr = data[niveau.id] ? T.descr(data[niveau.id]) : "";
 
-    // Bloc à venir : non cliquable.
-    if (bloc.aVenir) {
+    // Bloc ou niveau à venir : non cliquable.
+    if (bloc.aVenir || niveau.aVenir) {
       return `
         <div class="biblio-item a-venir" aria-disabled="true">
           <span class="biblio-num">${niveau.id}</span>

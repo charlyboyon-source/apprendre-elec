@@ -45,7 +45,7 @@ export async function afficherCarte(conteneur) {
     for (const niveau of bloc.niveaux) {
       const ligne = document.createElement("div");
       ligne.className = "bulle-ligne";
-      ligne.appendChild(creerBulle(niveau, etat, bloc.aVenir));
+      ligne.appendChild(creerBulle(niveau, etat, bloc.aVenir || niveau.aVenir));
       bulles.appendChild(ligne);
     }
     sectionBloc.appendChild(bulles);
