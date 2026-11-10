@@ -2,114 +2,107 @@
   "id": 9,
   "bloc": 2,
   "titre": "Travailler en sécurité",
-  "objectif": "Connaître l'habilitation, la consignation en 4 étapes, la VAT et les EPI imposés par la NF C 18-510",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · LE CADRE",
-      "titre": "L'habilitation électrique",
-      "svg": "habilitation.svg",
-      "contenu": "Travailler près de l'électricité ne s'improvise pas : c'est encadré par la norme [[NF C 18-510]]. L'[[habilitation électrique]] est la reconnaissance, <b>par l'employeur</b>, qu'une personne est capable d'accomplir en sécurité des tâches données sur ou au voisinage d'installations électriques. Elle est délivrée après une <b>formation</b> à la prévention du risque électrique (théorie + pratique), et fait l'objet d'un recyclage périodique. Point capital : l'habilitation n'est <b>pas</b> une compétence métier — un excellent technicien non habilité n'a pas le droit d'intervenir, et un habilité reste tenu de savoir faire son travail.",
-      "memo": "Habilitation = l'employeur reconnaît, après formation, qu'on peut travailler en sécurité. Obligatoire, à recycler."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · LIRE LE SYMBOLE",
-      "titre": "Décoder une habilitation",
-      "svg": "habilitation.svg",
-      "contenu": "Un symbole d'habilitation se lit caractère par caractère. La <b>1re lettre</b> donne le domaine de tension : <b>B</b> = basse tension, <b>H</b> = haute tension. Le <b>2e caractère</b> donne le rôle : <b>0</b> = travaux d'ordre non électrique, <b>1</b> = exécutant d'opérations électriques, <b>2</b> = chargé de travaux, <b>R</b> = chargé d'intervention générale (dépannage), <b>S</b> = chargé d'intervention élémentaire, <b>C</b> = chargé de consignation. Une lettre <b>V</b> ajoutée signifie « au [[voisinage]] » de pièces nues sous tension. Ainsi B1V se lit : basse tension, exécutant, au voisinage.",
-      "memo": "1re lettre = tension (B/H). 2e = rôle (0,1,2,R,S,C). V = au voisinage."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · QUELQUES TITRES",
-      "titre": "Les habilitations qu'on croise le plus",
-      "svg": "habilitation.svg",
-      "contenu": "Quatre titres reviennent sans cesse. <b>B0</b> : non-électricien travaillant dans un local électrique (peintre, maçon) — il ne touche à aucun ouvrage sous tension. <b>BS</b> : chargé d'intervention <b>élémentaire</b>, pour des opérations simples et hors tension (remplacer à l'identique une prise, un interrupteur, une lampe, réarmer un disjoncteur). <b>BR</b> : chargé d'intervention <b>générale</b> en basse tension — le dépanneur, qui recherche les pannes, mesure, raccorde. <b>BC</b> : chargé de [[consignation]], celui qui met l'installation en sécurité pour qu'un autre y travaille. Chacun n'agit que dans le périmètre exact de son titre.",
-      "memo": "B0 non-électricien · BS petites interventions hors tension · BR dépannage général · BC consignation."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · CONSIGNER",
-      "titre": "La consignation en 4 étapes",
-      "svg": "consignation.svg",
-      "contenu": "Avant de travailler hors tension, on <b>consigne</b> l'installation, dans un ordre strict — retiens S.C.I.V. <b>1. Séparer</b> : isoler l'ouvrage de toute source, de façon visible ou certaine (ouvrir le disjoncteur, retirer les fusibles). <b>2. Condamner</b> : bloquer l'organe de coupure en position ouverte par un cadenas et poser une pancarte « ne pas manœuvrer », pour empêcher toute remise sous tension. <b>3. Identifier</b> : s'assurer qu'on travaille bien sur le bon ouvrage (plans, repérage). <b>4. Vérifier l'absence de tension</b> (VAT). Sauter une étape, c'est risquer sa vie ou celle d'un collègue.",
-      "memo": "Consignation = Séparer · Condamner · Identifier · Vérifier (VAT). Dans cet ordre, sans en sauter une."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · LA VAT",
-      "titre": "La vérification d'absence de tension",
-      "svg": "consignation.svg",
-      "contenu": "La 4e étape mérite son écran. La [[VAT]] se fait avec un <b>vérificateur d'absence de tension</b> dédié — surtout pas un multimètre ordinaire, qui peut tomber en panne sans qu'on le sache. La règle d'or : on teste le bon fonctionnement du VAT <b>immédiatement avant ET immédiatement après</b> la vérification, sur une source connue. La VAT se fait <b>au plus près de la zone de travail</b> et entre <b>tous</b> les conducteurs (phases, neutre, et par rapport à la terre). Ce n'est qu'une fois l'absence de tension confirmée qu'on peut considérer l'installation comme sûre — et, en haute tension, qu'on procède à la mise à la terre et en court-circuit.",
-      "memo": "VAT : appareil dédié, testé avant ET après, au plus près du chantier, sur tous les conducteurs."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · SE PROTÉGER",
-      "titre": "Les EPI et l'esprit de la norme",
-      "svg": "consignation.svg",
-      "contenu": "Même installation consignée, on garde ses [[EPI]] (équipements de protection individuelle) : gants isolants adaptés à la tension et vérifiés, écran facial ou lunettes contre l'arc électrique, casque isolant, chaussures de sécurité, vêtements adaptés. Ils complètent les protections collectives (nappes isolantes, balisage, cadenas de condamnation). Tout cela découle de la [[NF C 18-510]], qui régit la prévention du risque électrique lors des <b>opérations</b> — à ne pas confondre avec la [[NF C 15-100]], qui régit la <b>conception</b> des installations. L'une dit comment installer, l'autre comment intervenir sans se blesser. Les deux sont le quotidien de l'électricien.",
-      "memo": "EPI : gants isolants, écran facial, casque, chaussures. NF C 18-510 = opérer ; NF C 15-100 = installer."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "Qui délivre l'habilitation électrique ?",
-      "svg": "habilitation.svg",
-      "choix": ["L'organisme de formation", "L'employeur", "Le fabricant du matériel", "Le distributeur d'électricité"],
-      "bonne": 1,
-      "explication": "C'est l'employeur qui habilite, après s'être assuré (notamment par une formation) que la personne sait travailler en sécurité.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Dans un symbole d'habilitation, la lettre B indique :",
-      "svg": "habilitation.svg",
-      "choix": ["La basse tension", "Un chargé de travaux", "Le voisinage", "Une opération de base"],
-      "bonne": 0,
-      "explication": "1re lettre = domaine de tension : B = basse tension, H = haute tension. Le rôle vient ensuite.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "L'habilitation BS correspond à :",
-      "svg": "habilitation.svg",
-      "choix": ["Un chargé de consignation", "Des interventions élémentaires hors tension", "Des travaux en haute tension", "Un non-électricien"],
-      "bonne": 1,
-      "explication": "BS = chargé d'intervention élémentaire : opérations simples et hors tension (remplacement à l'identique, réarmement). Le dépannage général, c'est le BR.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Quel est le bon ordre de la consignation ?",
-      "svg": "consignation.svg",
-      "choix": ["Identifier, Vérifier, Séparer, Condamner", "Séparer, Condamner, Identifier, Vérifier", "Condamner, Séparer, Vérifier, Identifier", "Vérifier, Séparer, Identifier, Condamner"],
-      "bonne": 1,
-      "explication": "S.C.I.V. : Séparer, Condamner, Identifier, Vérifier (VAT). L'ordre n'est pas négociable.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "La condamnation d'un organe de coupure sert à :",
-      "svg": "consignation.svg",
-      "choix": ["Mesurer la tension restante", "Empêcher toute remise sous tension", "Identifier le circuit", "Décharger les condensateurs"],
-      "bonne": 1,
-      "explication": "Condamner = bloquer en position ouverte (cadenas) + pancarte, pour que personne ne puisse réenclencher pendant les travaux.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "Pour réaliser une VAT, on utilise :",
-      "svg": "consignation.svg",
-      "choix": ["N'importe quel multimètre", "Un vérificateur d'absence de tension dédié, testé avant et après", "Un simple tournevis testeur de poche", "Le voyant du disjoncteur"],
-      "bonne": 1,
-      "explication": "Un VAT dédié, dont on contrôle le bon fonctionnement immédiatement avant ET après, sur tous les conducteurs.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Quelle est la différence entre NF C 18-510 et NF C 15-100 ?",
-      "svg": "consignation.svg",
-      "choix": ["Aucune, ce sont deux noms de la même norme", "La 18-510 régit les opérations en sécurité, la 15-100 la conception des installations", "La 18-510 ne concerne que la haute tension", "La 15-100 traite des EPI uniquement"],
-      "bonne": 1,
-      "explication": "NF C 18-510 = prévention du risque lors des opérations (habilitation, consignation, EPI). NF C 15-100 = conception et réalisation des installations BT.",
-      "renvoi_lecon": 5
-    }
+  "objectif": "Connaître l'habilitation, la consignation en 4 étapes, la VAT, les EPI et les règles du travail en hauteur",
+  "cours": {
+    "intro": "Dernier module du bloc 2. Tu sais maintenant comment une installation protège ses utilisateurs. Reste à te protéger toi, pendant que tu y travailles : qui a le droit d'intervenir, comment mettre un ouvrage hors tension sans se faire piéger, comment prouver qu'il n'y a plus de tension, avec quels équipements. Ici, rien n'est une formalité : chaque étape existe parce qu'un accident l'a rendue nécessaire.",
+    "sections": [
+      {
+        "titre": "1. L'habilitation électrique",
+        "svg": "c9-habilitation.svg",
+        "contenu": "<p>Travailler sur une installation électrique, ou près d'elle, ne s'improvise pas : c'est encadré par la norme [[NF C 18-510]]. Elle régit la prévention du risque électrique pendant les <b>opérations</b>. Ne la confonds pas avec la [[NF C 15-100]], qui régit la <b>conception</b> des installations : l'une dit comment installer, l'autre comment intervenir sans se blesser.</p><p>L'[[habilitation électrique]] est la reconnaissance, <b>par l'employeur</b>, qu'une personne est capable d'accomplir en sécurité des tâches précises sur ou au voisinage d'une installation électrique. Elle est délivrée après une <b>formation</b> à la prévention du risque électrique, théorique et pratique, et elle est matérialisée par un <b>titre d'habilitation</b> remis au salarié. Un <b>recyclage</b> est recommandé tous les <b>3 ans</b>.</p><p>Point capital : l'habilitation n'est <b>pas une compétence métier</b>. Un excellent technicien non habilité n'a pas le droit d'intervenir ; et une personne habilitée reste tenue de savoir faire son travail.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "L'organisme de formation ne t'habilite pas : il forme et donne un avis. C'est ton employeur qui signe le titre. Si tu changes d'entreprise, le nouveau patron doit t'habiliter à son tour." },
+        "memo": "Habilitation = l'EMPLOYEUR reconnaît, après formation, qu'on peut travailler en sécurité. Titre d'habilitation, recyclage recommandé tous les 3 ans. NF C 18-510 = intervenir ; NF C 15-100 = installer."
+      },
+      {
+        "titre": "2. Lire un symbole d'habilitation",
+        "svg": "c9-symbole.svg",
+        "contenu": "<p>Un symbole d'habilitation se lit caractère par caractère.</p><p>La <b>première lettre</b> donne le domaine de tension : <b>B</b> = basse tension (jusqu'à 1 000 V en alternatif), <b>H</b> = haute tension.</p><p>Le <b>deuxième caractère</b> donne le rôle : <b>0</b> = travaux d'ordre non électrique, <b>1</b> = exécutant d'opérations électriques, <b>2</b> = chargé de travaux, <b>R</b> = chargé d'intervention générale (le dépannage), <b>S</b> = chargé d'intervention élémentaire, <b>C</b> = chargé de consignation, <b>E</b> = opérations spécifiques (essais, mesures, vérifications, manœuvres).</p><p>Une lettre peut s'ajouter à la fin : <b>V</b> signifie « au [[voisinage]] » de pièces nues sous tension, <b>T</b> signifie travaux sous tension. Ainsi <b>B1V</b> se lit : basse tension, exécutant, au voisinage.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Ton titre d'habilitation liste précisément tes symboles. Si on te demande une opération qui n'y figure pas — consigner alors que tu n'es pas BC, par exemple — tu refuses : c'est ta sécurité et ta responsabilité." },
+        "memo": "1re lettre = tension (B basse, H haute). 2e caractère = rôle (0, 1, 2, R, S, C, E). Lettre finale : V = au voisinage, T = sous tension. B1V = basse tension, exécutant, au voisinage."
+      },
+      {
+        "titre": "3. Les habilitations qu'on croise le plus",
+        "svg": "c9-titres.svg",
+        "contenu": "<p>Sur un chantier de bâtiment, quelques titres reviennent sans cesse.</p><p><b>B0</b> : le non-électricien qui travaille dans un local électrique ou à proximité (peintre, maçon). Il ne touche à aucun ouvrage électrique.</p><p><b>BS</b> : chargé d'intervention <b>élémentaire</b>. Des opérations simples, <b>hors tension</b> : remplacer à l'identique une prise, un interrupteur, une lampe ou un fusible, réarmer un dispositif de protection.</p><p><b>BR</b> : chargé d'intervention <b>générale</b> en basse tension. C'est le dépanneur : il recherche les pannes, mesure, raccorde.</p><p><b>BC</b> : chargé de [[consignation]]. Il met l'installation en sécurité pour que d'autres y travaillent.</p><p><b>B1</b> et <b>B2</b> : l'exécutant électricien et le chargé de travaux qui le dirige. Chacun n'agit que dans le périmètre exact de son titre.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "BS et BR ne se valent pas. Le BS remplace à l'identique, hors tension, et s'arrête là. Rechercher une panne, c'est déjà du BR. Beaucoup d'accidents viennent d'un « petit dépannage » fait avec la mauvaise habilitation." },
+        "memo": "B0 non-électricien · BS interventions élémentaires hors tension · BR dépannage général · BC consignation · B1 exécutant · B2 chargé de travaux."
+      },
+      {
+        "titre": "4. La consignation en 4 étapes",
+        "svg": "c9-consignation.svg",
+        "contenu": "<p>Avant de travailler hors tension, on <b>consigne</b> l'ouvrage, dans un ordre strict. Retiens <b>S.C.I.V.</b></p><p><b>1. Séparer</b> : isoler l'ouvrage de toute source d'énergie, de façon certaine — ouvrir le disjoncteur ou le sectionneur, retirer les fusibles.</p><p><b>2. Condamner</b> : la [[condamnation]] bloque l'organe de coupure en position ouverte, par un <b>cadenas</b>, avec une <b>pancarte</b> « ne pas manœuvrer ». Personne ne peut plus remettre sous tension pendant les travaux.</p><p><b>3. Identifier</b> : s'assurer, sur place, qu'on va bien travailler sur l'ouvrage qui vient d'être séparé et condamné (plans, repérage).</p><p><b>4. Vérifier l'absence de tension</b> : c'est la [[VAT]], qui fait l'objet de la section suivante.</p><p>Sauter une étape, c'est risquer sa vie ou celle d'un collègue.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "La clé du cadenas reste dans ta poche, pas sur le tableau. Tant que tu travailles, toi seul peux rendre le courant. Un simple « je l'ai coupé, touche à rien » dit à un collègue n'est pas une condamnation." },
+        "memo": "Consignation = Séparer · Condamner (cadenas + pancarte) · Identifier · Vérifier l'absence de tension. Dans cet ordre, sans en sauter une."
+      },
+      {
+        "titre": "5. La vérification d'absence de tension",
+        "svg": "c9-vat.svg",
+        "contenu": "<p>La quatrième étape est celle qui te sauve quand les trois autres ont été mal faites. La VAT se réalise avec un <b>vérificateur d'absence de tension</b> dédié — surtout pas un multimètre ordinaire, qui peut être en panne ou mal réglé sans qu'on le sache.</p><p>La règle d'or tient en trois temps : on <b>teste</b> le vérificateur sur une source connue, on <b>vérifie</b> l'ouvrage, puis on <b>reteste</b> le vérificateur aussitôt après. Le test d'avant prouve qu'il fonctionne ; le test d'après prouve qu'il n'est pas tombé en panne pendant la mesure.</p><p>La VAT se fait <b>au plus près de la zone de travail</b> et entre <b>tous les conducteurs</b> : chaque phase, le neutre, et par rapport à la terre. Ce n'est qu'une fois l'absence de tension confirmée qu'on peut considérer l'ouvrage comme sûr.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Tant que la VAT n'est pas faite, l'ouvrage est considéré sous tension : tu portes tes EPI pour la réaliser. Et tu la refais si tu quittes le chantier et que tu reviens." },
+        "memo": "VAT : vérificateur DÉDIÉ, testé avant ET après, au plus près de la zone de travail, entre tous les conducteurs et par rapport à la terre."
+      },
+      {
+        "titre": "6. Les EPI et les protections collectives",
+        "svg": "c9-epi.svg",
+        "contenu": "<p>Les [[EPI]], équipements de protection individuelle, sont la dernière barrière entre toi et l'accident : <b>gants isolants</b> adaptés à la tension, <b>écran facial</b> contre l'arc électrique, <b>casque isolant</b>, <b>chaussures de sécurité</b>, vêtements couvrants.</p><p>Un EPI ne protège que s'il est en bon état. Les gants isolants se <b>vérifient avant chaque usage</b> : un gant percé ou craquelé ne vaut plus rien, on l'écarte immédiatement.</p><p>Les EPI <b>complètent</b> les protections collectives, ils ne les remplacent pas : nappes isolantes posées sur les pièces voisines restées sous tension, <b>balisage</b> de la zone de travail, cadenas et pancartes de condamnation. On commence toujours par protéger tout le monde, puis chacun se protège.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Les gants isolants se contrôlent en les gonflant d'air : la moindre fuite, et ils partent au rebut. Range-les à plat, à l'abri, jamais en vrac au fond de la caisse avec les tournevis." },
+        "memo": "EPI : gants isolants vérifiés avant chaque usage, écran facial, casque isolant, chaussures de sécurité. Ils complètent les protections collectives (nappes, balisage, condamnation)."
+      },
+      {
+        "titre": "7. Travailler en hauteur",
+        "svg": "c9-hauteur.svg",
+        "contenu": "<p>L'électricien travaille souvent en hauteur : plafonniers, chemins de câbles, façades. La chute est l'autre grand risque du métier.</p><p>Première règle : <b>une échelle n'est pas un poste de travail</b>. C'est un moyen d'accès. Pour travailler en hauteur, on utilise une plateforme ou un échafaudage.</p><p>Quand on appuie une échelle, son <b>pied</b> s'écarte du mur d'<b>un quart de la hauteur</b>. Pour un appui à 4 m de haut, le pied est donc à 4 / 4 = <b>1 m</b> du mur. Plus près, l'échelle bascule en arrière ; plus loin, elle glisse.</p><p>L'<b>échafaudage roulant</b> a une hauteur limitée : <b>8 m en extérieur</b>, <b>12 m en intérieur</b>. La limite est plus basse dehors parce que le vent s'ajoute au risque de renversement.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Avant de monter sur un échafaudage roulant : roues bloquées, sol plan, garde-corps en place. Et on ne le déplace jamais avec quelqu'un dessus." },
+        "memo": "Une échelle n'est pas un poste de travail. Pied d'échelle à 1/4 de la hauteur (4 m → 1 m). Échafaudage roulant : 8 m en extérieur, 12 m en intérieur."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Qui délivre l'habilitation électrique ?", "choix": ["l'organisme de formation", "le fabricant du matériel", "l'employeur", "le distributeur d'électricité"], "bonne": 2, "explication": "C'est l'employeur qui habilite, après s'être assuré, notamment par une formation, que la personne sait travailler en sécurité.", "renvoi_lecon": 0 },
+    { "question": "Quelle norme encadre la prévention du risque électrique lors des opérations ?", "choix": ["la NF C 15-100", "la NF C 18-510", "la NF C 14-100", "aucune norme"], "bonne": 1, "explication": "La NF C 18-510 : habilitations, consignation, EPI. La NF C 15-100 régit la conception des installations.", "renvoi_lecon": 0 },
+    { "question": "Que doit avoir suivi une personne avant d'être habilitée ?", "choix": ["une formation à la prévention du risque électrique", "un stage de secourisme uniquement", "dix ans d'expérience", "aucune formation particulière"], "bonne": 0, "explication": "L'habilitation est délivrée après une formation théorique et pratique à la prévention du risque électrique.", "renvoi_lecon": 0 },
+    { "question": "Un excellent électricien qui n'est pas habilité :", "choix": ["peut intervenir s'il est prudent", "peut intervenir en basse tension", "peut intervenir s'il a un diplôme", "n'a pas le droit d'intervenir"], "bonne": 3, "explication": "L'habilitation n'est pas une compétence métier : sans elle, on n'a pas le droit d'intervenir, quel que soit son niveau.", "renvoi_lecon": 0 },
+    { "question": "Quelle périodicité de recyclage est recommandée pour l'habilitation ?", "choix": ["tous les 6 mois", "tous les 10 ans", "tous les 3 ans", "jamais, elle est acquise à vie"], "bonne": 2, "explication": "Un recyclage est recommandé tous les 3 ans.", "renvoi_lecon": 0 },
+    { "question": "Quelle est la différence entre la NF C 18-510 et la NF C 15-100 ?", "choix": ["aucune, ce sont deux noms de la même norme", "la 18-510 régit les opérations en sécurité, la 15-100 la conception des installations", "la 18-510 ne concerne que la haute tension", "la 15-100 ne traite que des EPI"], "bonne": 1, "explication": "NF C 18-510 = comment intervenir sans se blesser. NF C 15-100 = comment concevoir et réaliser l'installation.", "renvoi_lecon": 0 },
+    { "question": "Dans un symbole d'habilitation, la lettre B en première position indique :", "choix": ["la basse tension", "un chargé de travaux", "le voisinage", "un chargé de consignation"], "bonne": 0, "explication": "1re lettre = domaine de tension : B = basse tension, H = haute tension.", "renvoi_lecon": 1 },
+    { "question": "Dans un symbole d'habilitation, la lettre H en première position indique :", "choix": ["un travail en hauteur", "une habilitation provisoire", "un exécutant", "la haute tension"], "bonne": 3, "explication": "H = haute tension. B = basse tension.", "renvoi_lecon": 1 },
+    { "question": "Dans un symbole d'habilitation, le chiffre 1 désigne :", "choix": ["un non-électricien", "un chargé de travaux", "un exécutant d'opérations électriques", "un chargé de consignation"], "bonne": 2, "explication": "1 = exécutant. 0 = travaux non électriques, 2 = chargé de travaux.", "renvoi_lecon": 1 },
+    { "question": "Dans un symbole d'habilitation, le chiffre 2 désigne :", "choix": ["un exécutant", "un chargé de travaux", "un non-électricien", "un chargé d'intervention élémentaire"], "bonne": 1, "explication": "2 = chargé de travaux : il dirige les travaux et les exécutants.", "renvoi_lecon": 1 },
+    { "question": "Dans un symbole d'habilitation, le chiffre 0 désigne :", "choix": ["des travaux d'ordre non électrique", "des travaux sous tension", "le dépannage", "la consignation"], "bonne": 0, "explication": "0 = travaux d'ordre non électrique (peintre, maçon dans un local électrique).", "renvoi_lecon": 1 },
+    { "question": "La lettre V ajoutée à la fin d'un symbole signifie :", "choix": ["vérificateur", "valable à vie", "sous très basse tension", "au voisinage de pièces nues sous tension"], "bonne": 3, "explication": "V = au voisinage : l'opération se déroule près de pièces nues sous tension.", "renvoi_lecon": 1 },
+    { "question": "Dans un symbole d'habilitation, la lettre C en deuxième position désigne :", "choix": ["un chargé de chantier", "un contrôleur", "un chargé de consignation", "un chef d'équipe"], "bonne": 2, "explication": "C = chargé de consignation, comme dans BC.", "renvoi_lecon": 1 },
+    { "question": "Comment se lit le symbole B1V ?", "choix": ["basse tension, chargé de travaux, vérificateur", "basse tension, exécutant, au voisinage", "haute tension, exécutant, au voisinage", "basse tension, non-électricien, au voisinage"], "bonne": 1, "explication": "B = basse tension, 1 = exécutant, V = au voisinage.", "renvoi_lecon": 1 },
+    { "question": "L'habilitation BS correspond à :", "choix": ["des interventions élémentaires, hors tension", "la consignation", "des travaux en haute tension", "un non-électricien"], "bonne": 0, "explication": "BS = chargé d'intervention élémentaire : des opérations simples, hors tension.", "renvoi_lecon": 2 },
+    { "question": "L'habilitation BR correspond à :", "choix": ["le remplacement d'une lampe uniquement", "la consignation pour les autres", "des travaux non électriques", "l'intervention générale : le dépannage"], "bonne": 3, "explication": "BR = chargé d'intervention générale en basse tension : recherche de panne, mesures, raccordements.", "renvoi_lecon": 2 },
+    { "question": "L'habilitation B0 concerne :", "choix": ["un dépanneur", "un chargé de consignation", "un non-électricien travaillant dans un local électrique", "un chargé de travaux électriques"], "bonne": 2, "explication": "B0 : peintre, maçon… Il travaille près des ouvrages sans y toucher.", "renvoi_lecon": 2 },
+    { "question": "Qui met l'installation en sécurité pour que d'autres y travaillent ?", "choix": ["le B0", "le chargé de consignation (BC)", "le BS", "n'importe quel exécutant"], "bonne": 1, "explication": "C'est le rôle du BC, chargé de consignation.", "renvoi_lecon": 2 },
+    { "question": "Laquelle de ces opérations relève du BS ?", "choix": ["remplacer à l'identique une prise, hors tension", "rechercher une panne sous tension", "consigner un tableau pour une autre équipe", "diriger une équipe d'exécutants"], "bonne": 0, "explication": "Le BS remplace à l'identique, hors tension. La recherche de panne relève du BR, la consignation pour autrui du BC.", "renvoi_lecon": 2 },
+    { "question": "Un titulaire du BS travaille :", "choix": ["sous tension", "indifféremment sous ou hors tension", "uniquement en haute tension", "hors tension"], "bonne": 3, "explication": "Les interventions élémentaires du BS se font hors tension.", "renvoi_lecon": 2 },
+    { "question": "Qui est habilité à rechercher une panne et à faire des mesures en basse tension ?", "choix": ["le B0", "le BS", "le BR", "personne"], "bonne": 2, "explication": "Le dépannage, avec recherche de panne et mesures, relève du BR.", "renvoi_lecon": 2 },
+    { "question": "Quel est le bon ordre de la consignation ?", "choix": ["Identifier, Vérifier, Séparer, Condamner", "Séparer, Condamner, Identifier, Vérifier", "Condamner, Séparer, Vérifier, Identifier", "Vérifier, Séparer, Identifier, Condamner"], "bonne": 1, "explication": "S.C.I.V. : Séparer, Condamner, Identifier, Vérifier l'absence de tension.", "renvoi_lecon": 3 },
+    { "question": "Quelle est la première étape de la consignation ?", "choix": ["séparer l'ouvrage de toute source", "vérifier l'absence de tension", "poser un cadenas", "identifier l'ouvrage"], "bonne": 0, "explication": "On commence par séparer : ouvrir le disjoncteur ou le sectionneur, retirer les fusibles.", "renvoi_lecon": 3 },
+    { "question": "La condamnation d'un organe de coupure sert à :", "choix": ["mesurer la tension restante", "identifier le circuit", "protéger contre la foudre", "empêcher toute remise sous tension"], "bonne": 3, "explication": "Condamner = bloquer en position ouverte, pour que personne ne puisse réenclencher pendant les travaux.", "renvoi_lecon": 3 },
+    { "question": "Avec quoi réalise-t-on la condamnation ?", "choix": ["un morceau de ruban adhésif", "un simple mot dit aux collègues", "un cadenas et une pancarte", "un multimètre"], "bonne": 2, "explication": "Un cadenas qui bloque l'organe ouvert, et une pancarte « ne pas manœuvrer ».", "renvoi_lecon": 3 },
+    { "question": "L'étape « Identifier » consiste à :", "choix": ["noter le nom de l'intervenant", "s'assurer qu'on travaille bien sur le bon ouvrage", "mesurer l'intensité", "repeindre les repères"], "bonne": 1, "explication": "On vérifie sur place, avec les plans et le repérage, que l'ouvrage est bien celui qui a été séparé et condamné.", "renvoi_lecon": 3 },
+    { "question": "Quelle est la dernière étape de la consignation ?", "choix": ["la vérification d'absence de tension", "la séparation", "la condamnation", "l'identification"], "bonne": 0, "explication": "La VAT clôt la consignation : sans elle, rien ne prouve que l'ouvrage est hors tension.", "renvoi_lecon": 3 },
+    { "question": "Pour réaliser une VAT, on utilise :", "choix": ["n'importe quel multimètre", "un tournevis testeur de poche", "le voyant du disjoncteur", "un vérificateur d'absence de tension dédié"], "bonne": 3, "explication": "Un vérificateur dédié, dont on contrôle le bon fonctionnement avant et après.", "renvoi_lecon": 4 },
+    { "question": "Quand teste-t-on le bon fonctionnement du vérificateur ?", "choix": ["seulement avant", "seulement après", "immédiatement avant ET immédiatement après la vérification", "une fois par an"], "bonne": 2, "explication": "Avant : il fonctionne. Après : il n'est pas tombé en panne pendant la mesure.", "renvoi_lecon": 4 },
+    { "question": "Où réalise-t-on la VAT ?", "choix": ["au compteur uniquement", "au plus près de la zone de travail", "à l'autre bout du bâtiment", "n'importe où sur le circuit"], "bonne": 1, "explication": "Au plus près de l'endroit où l'on va travailler.", "renvoi_lecon": 4 },
+    { "question": "Entre quels conducteurs vérifie-t-on l'absence de tension ?", "choix": ["entre tous les conducteurs, et par rapport à la terre", "entre la phase et le neutre seulement", "sur la phase seulement", "sur le conducteur de protection seulement"], "bonne": 0, "explication": "Chaque phase, le neutre, et par rapport à la terre : tous les conducteurs.", "renvoi_lecon": 4 },
+    { "question": "Pourquoi ne fait-on pas une VAT avec un multimètre ordinaire ?", "choix": ["il est trop précis", "il est interdit sur les chantiers", "il ne mesure que le courant continu", "il peut être en panne ou mal réglé sans qu'on le sache"], "bonne": 3, "explication": "Un multimètre mal réglé ou défaillant peut afficher zéro alors que la tension est présente.", "renvoi_lecon": 4 },
+    { "question": "À quoi sert le test du vérificateur APRÈS la mesure ?", "choix": ["à recharger sa pile", "à effacer sa mémoire", "à prouver qu'il n'est pas tombé en panne pendant la mesure", "à mesurer l'intensité"], "bonne": 2, "explication": "S'il ne réagit plus après, le « zéro » qu'il vient d'afficher ne prouve rien.", "renvoi_lecon": 4 },
+    { "question": "Que signifie le sigle EPI ?", "choix": ["éléments de protection de l'installation", "équipements de protection individuelle", "essai préalable d'isolement", "équipement de première intervention"], "bonne": 1, "explication": "EPI = équipements de protection individuelle : gants, écran facial, casque, chaussures…", "renvoi_lecon": 5 },
+    { "question": "Quand vérifie-t-on ses gants isolants ?", "choix": ["avant chaque usage", "une fois par an", "seulement à l'achat", "jamais"], "bonne": 0, "explication": "Avant chaque usage : un gant percé ou craquelé ne protège plus.", "renvoi_lecon": 5 },
+    { "question": "Quel EPI protège le visage contre l'arc électrique ?", "choix": ["les chaussures de sécurité", "les gants isolants", "le harnais", "l'écran facial"], "bonne": 3, "explication": "L'écran facial protège le visage et les yeux du rayonnement et des projections de l'arc.", "renvoi_lecon": 5 },
+    { "question": "Des gants isolants percés :", "choix": ["peuvent servir en basse tension", "peuvent servir une dernière fois", "sont à écarter immédiatement", "se réparent avec du ruban adhésif"], "bonne": 2, "explication": "Un EPI défectueux ne protège plus : on l'écarte.", "renvoi_lecon": 5 },
+    { "question": "Lequel de ces éléments est une protection collective ?", "choix": ["une paire de gants isolants", "une nappe isolante posée sur des pièces sous tension", "un écran facial", "un casque isolant"], "bonne": 1, "explication": "La nappe isolante et le balisage protègent tout le monde ; gants, écran et casque sont individuels.", "renvoi_lecon": 5 },
+    { "question": "Pendant la VAT, les EPI sont :", "choix": ["obligatoires : l'absence de tension n'est pas encore prouvée", "inutiles, puisque le disjoncteur est ouvert", "facultatifs en basse tension", "interdits"], "bonne": 0, "explication": "Tant que la VAT n'est pas faite, l'ouvrage est considéré comme sous tension.", "renvoi_lecon": 5 },
+    { "question": "Quelle est la hauteur maximale d'un échafaudage roulant en extérieur ?", "choix": ["4 m", "12 m", "20 m", "8 m"], "bonne": 3, "explication": "8 m en extérieur, 12 m en intérieur.", "renvoi_lecon": 6 },
+    { "question": "Quelle est la hauteur maximale d'un échafaudage roulant en intérieur ?", "choix": ["6 m", "8 m", "12 m", "25 m"], "bonne": 2, "explication": "12 m en intérieur, 8 m en extérieur.", "renvoi_lecon": 6 },
+    { "question": "De combien écarte-t-on du mur le pied d'une échelle ?", "choix": ["de la moitié de la hauteur", "d'un quart de la hauteur", "de la hauteur entière", "de 10 cm, toujours"], "bonne": 1, "explication": "Le pied s'écarte du mur d'un quart de la hauteur.", "renvoi_lecon": 6 },
+    { "question": "Une échelle est appuyée à 4 m de haut. À quelle distance du mur place-t-on son pied ?", "choix": ["1 m", "0,5 m", "2 m", "4 m"], "bonne": 0, "explication": "Un quart de la hauteur : 4 / 4 = 1 m.", "renvoi_lecon": 6 },
+    { "question": "Une échelle est :", "choix": ["un poste de travail comme un autre", "interdite sur les chantiers", "réservée aux travaux sous tension", "un moyen d'accès, pas un poste de travail"], "bonne": 3, "explication": "On y monte pour accéder ; pour travailler en hauteur, on utilise une plateforme ou un échafaudage.", "renvoi_lecon": 6 },
+    { "question": "Pourquoi la limite d'un échafaudage roulant est-elle plus basse en extérieur ?", "choix": ["à cause de la pluie sur les roues", "parce que le sol y est toujours plat", "à cause du vent", "parce qu'il fait plus froid"], "bonne": 2, "explication": "Dehors, le vent augmente le risque de renversement : 8 m au lieu de 12 m.", "renvoi_lecon": 6 }
   ],
   "jeu": {
     "type": "trouve-erreur",

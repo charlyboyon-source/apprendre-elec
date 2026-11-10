@@ -342,5 +342,10 @@
     "nom": "Appareillage",
     "definition": "Appareils qui servent à commander ou à connecter un circuit : interrupteurs, prises de courant, boîtes de connexion… À distinguer du matériel d'utilisation (luminaire, chauffe-eau, pompe). Dans une salle de bain, la différence est décisive : l'appareillage est interdit dans le volume caché.",
     "niveau_associe": 7
+  },
+  "condamnation": {
+    "nom": "Condamnation",
+    "definition": "Deuxième étape de la consignation : on bloque l'organe de coupure en position ouverte, par un cadenas, et on pose une pancarte interdisant la manœuvre. Elle empêche toute remise sous tension pendant les travaux.",
+    "niveau_associe": 9
   }
 }
