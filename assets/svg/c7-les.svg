@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Liaison équipotentielle supplémentaire : canalisations, huisserie métallique et baignoire en métal reliées entre elles et au conducteur de protection. 2,5 mm² si protégée mécaniquement, 4 mm² sinon. Jamais de classe II">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">LES : tout au même potentiel</text>
+<text x="50" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">canalisations</text>
+<polygon points="24,60 48,71 48,99 24,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="24,60 48,71 48,99 24,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="48,71 76,60 76,88 48,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="48,71 76,60 76,88 48,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="24,60 52,49 76,60 48,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="48,99 48,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="48,99 48,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
+<text x="144" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">huisserie métal</text>
+<polygon points="118,60 142,71 142,99 118,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="118,60 142,71 142,99 118,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="142,71 170,60 170,88 142,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="142,71 170,60 170,88 142,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="118,60 146,49 170,60 142,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="142,99 142,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="142,99 142,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
+<text x="238" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">baignoire métal</text>
+<polygon points="212,60 236,71 236,99 212,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="212,60 236,71 236,99 212,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="236,71 264,60 264,88 236,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="236,71 264,60 264,88 236,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="212,60 240,49 264,60 236,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="236,99 236,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="236,99 236,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
+<polyline points="48,132 304,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="48,132 304,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
+<polygon points="313,132 305,128 305,136" fill="#4cd97b"/>
+<text x="312" y="124" text-anchor="end" font-size="8" fill="#4cd97b" font-weight="bold">vers le PE</text>
+<rect x="14" y="146" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<text x="85.0" y="162.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">2,5 mm²</tspan> si protégée</text>
+<rect x="164" y="146" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<text x="235.0" y="162.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">4 mm²</tspan> sinon</text>
+<text x="160" y="188" text-anchor="middle" font-size="7.8" fill="#e85b50" font-weight="normal">Jamais raccordée à un appareil de classe II</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Volume 0 : l'intérieur de la baignoire ou du receveur. Matériel IPX7, TBTS 12 V uniquement, transformateur hors de tous les volumes">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Volume 0 : l'intérieur de la baignoire</text>
+<polygon points="40,96 80,114.33333333333333 80,136.33333333333331 40,118" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,96 80,114.33333333333333 80,136.33333333333331 40,118" fill="#5aa9e6" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="80,114.33333333333333 190,71.11904761904762 190,93.11904761904762 80,136.33333333333331" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="80,114.33333333333333 190,71.11904761904762 190,93.11904761904762 80,136.33333333333331" fill="#5aa9e6" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,96 150,52.785714285714285 190,71.11904761904762 80,114.33333333333333" fill="#5aa9e6" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="206" y="96" text-anchor="start" font-size="10.5" fill="#5aa9e6" font-weight="bold">VOLUME 0</text>
+<text x="206" y="108" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">l'intérieur de la</text>
+<text x="206" y="118" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">baignoire ou du receveur</text>
+<rect x="14" y="148" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<text x="85.0" y="164.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#5aa9e6" font-weight="bold" font-size="10">IPX7</tspan> : immersion</text>
+<rect x="164" y="148" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<text x="235.0" y="164.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">TBTS 12 V</tspan> uniquement</text>
+<text x="160" y="184" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Transformateur toujours hors de tous les volumes</text>
+</svg>

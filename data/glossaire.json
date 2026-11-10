@@ -337,5 +337,10 @@
     "nom": "Liaison équipotentielle principale",
     "definition": "Conducteur qui relie à la borne principale de terre les canalisations métalliques entrant dans le bâtiment (eau, gaz…) et les éléments métalliques de sa structure, pour que tout soit au même potentiel.",
     "niveau_associe": 6
+  },
+  "appareillage": {
+    "nom": "Appareillage",
+    "definition": "Appareils qui servent à commander ou à connecter un circuit : interrupteurs, prises de courant, boîtes de connexion… À distinguer du matériel d'utilisation (luminaire, chauffe-eau, pompe). Dans une salle de bain, la différence est décisive : l'appareillage est interdit dans le volume caché.",
+    "niveau_associe": 7
   }
 }
