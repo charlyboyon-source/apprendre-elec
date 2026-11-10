@@ -347,5 +347,43 @@
     "nom": "Condamnation",
     "definition": "Deuxième étape de la consignation : on bloque l'organe de coupure en position ouverte, par un cadenas, et on pose une pancarte interdisant la manœuvre. Elle empêche toute remise sous tension pendant les travaux.",
     "niveau_associe": 9
+  },
+  "surintensité": {
+    "nom": "Surintensité",
+    "definition": "Courant supérieur à celui que le circuit est prévu pour supporter. Elle prend deux formes : la surcharge (un peu trop, longtemps) et le court-circuit (énorme, instantané).",
+    "niveau_associe": 10
+  },
+  "calibre": {
+    "nom": "Calibre (In)",
+    "definition": "Courant, en ampères, qu'un appareil de protection laisse passer en permanence sans déclencher (10, 16, 20, 32 A…). À ne pas confondre avec la sensibilité d'un différentiel, en milliampères.",
+    "niveau_associe": 10
+  },
+  "pouvoir de coupure": {
+    "nom": "Pouvoir de coupure",
+    "definition": "Plus fort courant de court-circuit qu'un appareil de protection peut couper sans se détruire. 3 000 A au minimum en domestique, 4 500 A en petit tertiaire (moins de 36 kVA).",
+    "niveau_associe": 10
+  },
+  "disjoncteur magnétothermique": {
+    "nom": "Disjoncteur magnétothermique",
+    "definition": "Disjoncteur à deux déclencheurs : un thermique (bilame) contre la surcharge, un magnétique (électroaimant) contre le court-circuit.",
+    "niveau_associe": 10
+  },
+  "bilame": {
+    "nom": "Bilame",
+    "definition": "Deux lames de métaux différents soudées ensemble. En chauffant, elles ne se dilatent pas autant : le bilame se courbe et fait déclencher le disjoncteur. C'est le déclencheur thermique, contre la surcharge."
+  },
+  "courbe de déclenchement": {
+    "nom": "Courbe de déclenchement",
+    "definition": "Lettre qui fixe le seuil du déclencheur magnétique d'un disjoncteur, en multiples du calibre In : B = 3 à 5 In, C = 5 à 10 In, D = 10 à 20 In.",
+    "niveau_associe": 10
+  },
+  "AGCP": {
+    "nom": "Appareil Général de Commande et de Protection (AGCP)",
+    "definition": "Le disjoncteur de branchement, en tête de l'installation : un disjoncteur différentiel qui permet la coupure générale. Il sépare le branchement (NF C 14-100, distributeur) de l'installation intérieure (NF C 15-100, électricien).",
+    "niveau_associe": 10
+  },
+  "NF C 14-100": {
+    "nom": "Norme NF C 14-100",
+    "definition": "Norme des branchements basse tension : la partie située entre le réseau public et l'AGCP. Elle relève du distributeur. En aval de l'AGCP, c'est la NF C 15-100."
   }
 }

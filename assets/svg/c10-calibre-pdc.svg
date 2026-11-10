@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le calibre est le courant que l'appareil laisse passer en permanence, en ampères. Le pouvoir de coupure est le plus fort courant de court-circuit qu'il peut couper : 3 000 A au minimum en domestique, 4 500 A en petit tertiaire">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Calibre et pouvoir de coupure</text>
+<rect x="12" y="30" width="144" height="112" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="84" y="48" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">LE CALIBRE (In)</text>
+<text x="84" y="68" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">le courant admis</text>
+<text x="84" y="80" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">en permanence</text>
+<text x="84" y="104" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">10 · 16 · 20 · 32 A</text>
+<text x="84" y="128" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">en ampères</text>
+<rect x="164" y="30" width="144" height="112" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="236" y="48" text-anchor="middle" font-size="9" fill="#e85b50" font-weight="bold">POUVOIR DE COUPURE</text>
+<text x="236" y="66" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">le plus fort court-circuit</text>
+<text x="236" y="77" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">qu'il sait couper</text>
+<text x="236" y="98" text-anchor="middle" font-size="12" fill="#e85b50" font-weight="bold">3 000 A</text>
+<text x="236" y="109" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">minimum en domestique</text>
+<text x="236" y="125" text-anchor="middle" font-size="12" fill="#e85b50" font-weight="bold">4 500 A</text>
+<text x="236" y="136" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">petit tertiaire, moins de 36 kVA</text>
+<text x="160" y="166" text-anchor="middle" font-size="7.6" fill="#e8eaed" font-weight="bold">Le calibre dit quand il coupe ; le pouvoir de coupure, s'il y survit</text>
+</svg>

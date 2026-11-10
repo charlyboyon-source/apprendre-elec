@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Deux surintensités : la surcharge, un courant un peu trop fort qui dure et échauffe les conducteurs ; le court-circuit, un courant énorme et instantané">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Deux surintensités à ne pas confondre</text>
+<rect x="12" y="28" width="144" height="148" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#ff8c2b" font-weight="bold">SURCHARGE</text>
+<text x="84" y="68" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">un peu trop de courant</text>
+<text x="84" y="83" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">pendant longtemps</text>
+<text x="84" y="98" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="113" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">les conducteurs chauffent</text>
+<text x="84" y="128" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">l'isolant se dégrade</text>
+<text x="84" y="143" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="158" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">trop d'appareils</text>
+<text x="84" y="173" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">sur le même circuit</text>
+<rect x="164" y="28" width="144" height="148" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#e85b50" font-weight="bold">COURT-CIRCUIT</text>
+<text x="236" y="68" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">un courant énorme</text>
+<text x="236" y="83" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">en une fraction de seconde</text>
+<text x="236" y="98" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="113" text-anchor="middle" font-size="8.2" fill="#e85b50" font-weight="bold">il faut couper tout de suite</text>
+<text x="236" y="128" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">arc, fusion, incendie</text>
+<text x="236" y="143" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="158" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">phase et neutre</text>
+<text x="236" y="173" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">en contact direct</text>
+</svg>

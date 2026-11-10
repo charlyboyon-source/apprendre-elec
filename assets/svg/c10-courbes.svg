@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Courbes de déclenchement magnétique : courbe B entre 3 et 5 fois In, courbe C entre 5 et 10 fois In, courbe D entre 10 et 20 fois In">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Courbes B, C, D : le seuil magnétique</text>
+<polygon points="40,104 64,115 64,135 40,124" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,104 64,115 64,135 40,124" fill="#4cd97b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="64,115 92,104 92,124 64,135" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="64,115 92,104 92,124 64,135" fill="#4cd97b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,104 68,93 92,104 64,115" fill="#4cd97b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="66" y="87" text-anchor="middle" font-size="13" fill="#4cd97b" font-weight="bold">B</text>
+<text x="66" y="154" text-anchor="middle" font-size="10" fill="#e8eaed" font-weight="bold">3 à 5 In</text>
+<text x="66" y="167" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">longues</text>
+<text x="66" y="177" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">lignes</text>
+<polygon points="134,84 158,95 158,135 134,124" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,84 158,95 158,135 134,124" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,95 186,84 186,124 158,135" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,95 186,84 186,124 158,135" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,84 162,73 186,84 158,95" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="160" y="67" text-anchor="middle" font-size="13" fill="#ffd23f" font-weight="bold">C</text>
+<text x="160" y="154" text-anchor="middle" font-size="10" fill="#e8eaed" font-weight="bold">5 à 10 In</text>
+<text x="160" y="167" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">usage</text>
+<text x="160" y="177" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">général</text>
+<polygon points="228,56 252,67 252,135 228,124" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="228,56 252,67 252,135 228,124" fill="#e85b50" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="252,67 280,56 280,124 252,135" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="252,67 280,56 280,124 252,135" fill="#e85b50" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="228,56 256,45 280,56 252,67" fill="#e85b50" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="254" y="39" text-anchor="middle" font-size="13" fill="#e85b50" font-weight="bold">D</text>
+<text x="254" y="154" text-anchor="middle" font-size="10" fill="#e8eaed" font-weight="bold">10 à 20 In</text>
+<text x="254" y="167" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">forts appels</text>
+<text x="254" y="177" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">de courant</text>
+<text x="160" y="191" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">In = le calibre du disjoncteur</text>
+</svg>

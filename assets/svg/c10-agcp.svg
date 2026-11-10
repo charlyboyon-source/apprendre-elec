@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="L'AGCP, disjoncteur de branchement, marque la frontière : en amont le réseau du distributeur, norme NF C 14-100 ; en aval l'installation de l'électricien, norme NF C 15-100">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">L'AGCP : la frontière de l'installation</text>
+<polyline points="30,92 126,92" fill="none" stroke="#9aa6b3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="194,92 290,92" fill="none" stroke="#ffd23f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="134,66 158,77 158,117 134,106" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,66 158,77 158,117 134,106" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,77 186,66 186,106 158,117" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,77 186,66 186,106 158,117" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,66 162,55 186,66 158,77" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="160" y="48" text-anchor="middle" font-size="12" fill="#ffd23f" font-weight="bold">AGCP</text>
+<text x="72" y="74" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="bold">AMONT</text>
+<text x="72" y="112" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">NF C 14-100</text>
+<text x="72" y="125" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">raccordé par Enedis</text>
+<text x="250" y="74" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">AVAL</text>
+<text x="250" y="112" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">NF C 15-100</text>
+<text x="250" y="125" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">posé par l'électricien</text>
+<text x="160" y="138" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">disjoncteur</text>
+<text x="160" y="148" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">de branchement</text>
+<text x="160" y="172" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">Type 1 : dans le logement (moins de 30 m)</text>
+<text x="160" y="184" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">Type 2 : en limite de propriété (plus de 30 m)</text>
+</svg>
