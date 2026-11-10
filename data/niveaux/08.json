@@ -3,121 +3,106 @@
   "bloc": 2,
   "titre": "Le matériel et son environnement",
   "objectif": "Choisir un matériel selon sa classe de protection et selon les contraintes du local (IP, IK)",
-  "lecon": [
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 1/6 · DEUX QUESTIONS",
-      "titre": "Comment se protège-t-il, où va-t-il vivre ?",
-      "svg": "classes-materiel.svg",
-      "contenu": "Devant un matériel électrique, l'électricien se pose deux questions. <b>Comment se protège-t-il contre les chocs électriques ?</b> → c'est sa <b>classe</b> (I, II ou III). <b>Quelles agressions de son environnement va-t-il subir ?</b> → ce sont ses indices <b>IP</b> (poussière et eau) et <b>IK</b> (chocs mécaniques). Ces repères figurent sur la plaque signalétique de tout appareil. Les confondre est une faute classique : la classe parle de sécurité électrique, l'IP et l'IK parlent de résistance physique. Ce niveau décode les deux.",
-      "memo": "Classe = protection contre les chocs électriques. IP / IK = résistance à l'environnement (eau, poussière, chocs)."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 2/6 · CLASSES I ET II",
-      "titre": "Classe I : la terre. Classe II : la double isolation",
-      "svg": "classes-materiel.svg",
-      "contenu": "Le matériel de [[classe I]] possède une isolation principale <b>et</b> une borne de terre obligatoire : sa masse métallique est reliée au [[conducteur de protection]] PE. Sa sécurité repose sur la mise à la terre — en cas de défaut, le DDR coupe. Exemples : lave-linge, four, réfrigérateur à carcasse métallique. Le matériel de [[classe II]] mise sur une [[double isolation]] (ou une isolation renforcée), signalée par le symbole <b>double carré</b>. Il n'a <b>pas</b> de borne de terre et on ne le relie jamais au PE : sa protection ne dépend pas de la terre. Exemples : perceuse, sèche-cheveux, la plupart des luminaires modernes.",
-      "memo": "Classe I = isolation + TERRE obligatoire. Classe II = double isolation, PAS de terre (double carré)."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 3/6 · CLASSE III & TBTS",
-      "titre": "Classe III : la très basse tension",
-      "svg": "classes-materiel.svg",
-      "contenu": "Le matériel de [[classe III]] est conçu pour être alimenté en [[TBTS]] : il ne peut donc recevoir qu'une tension inférieure ou égale à <b>50 V en alternatif</b> (120 V en continu lisse), trop faible pour provoquer un choc dangereux. Son symbole est un losange contenant <b>III</b>. La [[TBTS]] (Très Basse Tension de Sécurité) est produite par une <b>source de sécurité</b> — typiquement un transformateur de sécurité — et ses circuits sont <b>séparés de la terre</b> et des autres circuits. C'est la protection des spots 12 V de salle de bain, du rasoir, des jouets. À noter : la classe 0 (ni terre, ni double isolation) est <b>interdite</b> en France.",
-      "memo": "Classe III = alimenté en TBTS (≤ 50 V AC), source de sécurité, séparé de la terre. Classe 0 interdite."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 4/6 · L'INDICE IP",
-      "titre": "L'indice IP : solides et eau",
-      "svg": "indice-ip.svg",
-      "contenu": "L'[[indice IP]] (Indice de Protection) compte deux chiffres. Le <b>premier chiffre (0 à 6)</b> note la protection contre les corps solides et l'accès aux parties dangereuses : 2 = un doigt (12,5 mm), 4 = un fil (1 mm), 5 = protégé contre la poussière, 6 = totalement étanche à la poussière. Le <b>deuxième chiffre (0 à 8)</b> note la protection contre l'eau : 1 = gouttes verticales, 4 = projections de toutes directions, 5 = jets à la lance, 7 = immersion temporaire jusqu'à 1 m. Quand un chiffre n'est pas spécifié, on écrit un <b>X</b> (par exemple IPX4, courant en salle de bain : on ne qualifie que l'eau).",
-      "memo": "IP = solides (1er, 0→6) + eau (2e, 0→8). Ex : IP55 = poussière + jets. X = non précisé."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 5/6 · L'INDICE IK",
-      "titre": "L'indice IK : les chocs mécaniques",
-      "svg": "indice-ip.svg",
-      "contenu": "Là où l'IP parle de poussière et d'eau, l'[[indice IK]] note la résistance aux <b>chocs mécaniques</b>, exprimée en énergie d'impact (joules). L'échelle va de <b>IK00</b> (aucune protection) à <b>IK10</b> (20 joules, un choc sévère). Quelques repères utiles : <b>IK07 = 2 J</b>, <b>IK08 = 5 J</b>, <b>IK10 = 20 J</b>. On l'exige élevé partout où le matériel risque les coups : parkings, gymnases, locaux publics exposés au vandalisme, ateliers. Un appareil peut donc cumuler plusieurs indices, par exemple « IP66 IK08 » : étanche à la poussière, résistant aux jets puissants, et encaissant un choc de 5 joules.",
-      "memo": "IK = chocs, en joules. IK07 = 2 J · IK08 = 5 J · IK10 = 20 J. Élevé là où ça cogne."
-    },
-    {
-      "type": "texte",
-      "kicker": "ÉCRAN 6/6 · SUR LE TERRAIN",
-      "titre": "Choisir selon le local",
-      "svg": "indice-ip.svg",
-      "contenu": "Tout se joue à la pose : on choisit classe, IP et IK selon le lieu. Un <b>salon sec</b> : un IP20 suffit, pas d'eau ni de poussière à craindre. Une <b>salle de bain</b> : selon le volume, IPX4 voire IPX7, souvent en [[classe II]]. Un <b>extérieur</b> : IP44 au minimum (projections, pluie) et un IK correct contre la grêle et les chocs. Un <b>atelier poussiéreux</b> : IP5x ou IP6x. Un <b>parking ou un local public</b> : IK élevé contre les coups. La règle d'or : on ne sous-classe jamais un matériel par rapport à son environnement — un appareil prévu pour le sec installé dehors devient un piège.",
-      "memo": "Sec → IP20. SDB → IPX4/7 classe II. Dehors → IP44+ & IK. Poussière → IP5x/6x. Public → IK élevé."
-    }
-  ],
-  "quiz": [
-    {
-      "question": "La classe d'un matériel indique :",
-      "svg": "classes-materiel.svg",
-      "choix": ["Sa résistance à l'eau", "Sa façon de protéger contre les chocs électriques", "Sa puissance maximale", "Son année de fabrication"],
-      "bonne": 1,
-      "explication": "La classe (I, II, III) décrit comment le matériel se protège contre les chocs électriques. L'eau et les chocs mécaniques, c'est l'IP et l'IK.",
-      "renvoi_lecon": 0
-    },
-    {
-      "question": "Un matériel de classe I se caractérise par :",
-      "svg": "classes-materiel.svg",
-      "choix": ["Une double isolation, sans terre", "Une borne de terre obligatoire", "Une alimentation en 12 V", "L'absence de toute isolation"],
-      "bonne": 1,
-      "explication": "Classe I = isolation principale + borne de terre obligatoire. La double isolation sans terre, c'est la classe II.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "Le symbole « double carré » désigne un matériel de :",
-      "svg": "classes-materiel.svg",
-      "choix": ["Classe I", "Classe II", "Classe III", "Classe 0"],
-      "bonne": 1,
-      "explication": "Le double carré = classe II (double isolation). On ne le relie jamais à la terre.",
-      "renvoi_lecon": 1
-    },
-    {
-      "question": "Un matériel de classe III est alimenté en :",
-      "svg": "classes-materiel.svg",
-      "choix": ["230 V avec terre", "400 V triphasé", "TBTS, au plus 50 V alternatif", "Courant continu uniquement"],
-      "bonne": 2,
-      "explication": "Classe III = alimenté en TBTS (≤ 50 V AC), tension trop faible pour un choc dangereux. Source de sécurité, séparée de la terre.",
-      "renvoi_lecon": 2
-    },
-    {
-      "question": "Dans l'indice IP, le premier chiffre concerne :",
-      "svg": "indice-ip.svg",
-      "choix": ["L'eau", "Les corps solides et la poussière", "Les chocs", "La tension"],
-      "bonne": 1,
-      "explication": "1er chiffre (0-6) = solides et poussière ; 2e chiffre (0-8) = eau. Les chocs, c'est l'indice IK.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "Que protège un indice IPX7 ?",
-      "svg": "indice-ip.svg",
-      "choix": ["Contre la poussière fine", "Contre l'immersion temporaire jusqu'à 1 m", "Contre les chocs de 20 J", "Contre les UV"],
-      "bonne": 1,
-      "explication": "2e chiffre 7 = immersion temporaire (jusqu'à 1 m). Le X signifie que la protection contre les solides n'est pas spécifiée.",
-      "renvoi_lecon": 3
-    },
-    {
-      "question": "L'indice IK mesure :",
-      "svg": "indice-ip.svg",
-      "choix": ["La résistance aux chocs mécaniques", "L'étanchéité à l'eau", "La classe d'isolation", "Le courant de fuite"],
-      "bonne": 0,
-      "explication": "L'IK note la résistance aux chocs, en joules : IK07 = 2 J, IK08 = 5 J, IK10 = 20 J.",
-      "renvoi_lecon": 4
-    },
-    {
-      "question": "Pour un luminaire installé dehors, exposé pluie et chocs, on vise :",
-      "svg": "indice-ip.svg",
-      "choix": ["IP20, classe 0", "IP44 minimum avec un bon IK", "IPX0 sans IK", "N'importe quel matériel d'intérieur"],
-      "bonne": 1,
-      "explication": "Dehors : IP44 au minimum (projections, pluie) et un IK correct contre la grêle et les chocs. On ne sous-classe jamais le matériel par rapport au local.",
-      "renvoi_lecon": 5
-    }
+  "cours": {
+    "intro": "Quatrième module du bloc 2. Jusqu'ici, on a protégé les personnes par l'installation : la terre, le différentiel, les volumes. Ici, on regarde le matériel lui-même. Chaque appareil porte sur sa plaque des repères qui disent deux choses : comment il protège contre les chocs électriques, et quelles agressions il peut supporter. Savoir les lire, c'est savoir si un matériel a le droit d'être posé là où on te demande de le poser.",
+    "sections": [
+      {
+        "titre": "1. Deux questions devant un matériel",
+        "svg": "c8-deux-questions.svg",
+        "contenu": "<p>Devant un matériel électrique, l'électricien se pose toujours deux questions.</p><p><b>Comment protège-t-il contre les chocs électriques ?</b> C'est sa <b>classe</b> : I, II ou III. Elle dit sur quoi repose la sécurité de l'utilisateur : la terre, une double isolation, ou une tension trop faible pour être dangereuse.</p><p><b>Quelles agressions de son environnement peut-il subir ?</b> Ce sont ses deux indices : l'<b>IP</b> pour la poussière et l'eau, l'<b>IK</b> pour les chocs mécaniques.</p><p>Ces repères figurent sur la <b>plaque signalétique</b> de l'appareil. Les confondre est une faute classique : la classe parle de <b>sécurité électrique</b>, l'IP et l'IK parlent de <b>résistance physique</b>. Un matériel très étanche n'est pas forcément de classe II, et un matériel de classe II n'est pas forcément étanche.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Avant de poser un appareil, retourne-le et lis sa plaque : symbole de classe, indice IP, parfois IK, tension et puissance. Trente secondes de lecture évitent de poser un matériel d'intérieur dans un local humide." },
+        "memo": "Classe (I, II, III) = protection contre les chocs électriques. IP et IK = résistance à l'environnement (eau, poussière, chocs). Tout se lit sur la plaque signalétique."
+      },
+      {
+        "titre": "2. La classe I : la sécurité par la terre",
+        "svg": "c8-classe1.svg",
+        "contenu": "<p>Le matériel de [[classe I]] possède une isolation principale <b>et</b> une <b>borne de terre obligatoire</b> : sa masse métallique est reliée au [[conducteur de protection]] (PE). Son symbole est celui de la terre, placé près de la borne.</p><p>Sa sécurité repose donc entièrement sur la <b>mise à la terre</b>. Si l'isolation principale lâche et qu'un conducteur actif touche la carcasse, le courant de défaut s'écoule par le PE et le différentiel coupe, comme on l'a vu au module 6.</p><p>Conséquence directe : un matériel de classe I <b>sans terre raccordée</b> n'est plus protégé du tout. Au premier défaut, sa carcasse reste sous tension et attend qu'on la touche. Exemples de classe I : le lave-linge, le four, le réfrigérateur à carcasse métallique, le chauffe-eau.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Un appareil de classe I branché sur une vieille prise sans terre, ou avec une rallonge à deux conducteurs, perd sa protection. En rénovation, c'est l'un des dangers les plus fréquents : on contrôle la continuité de la terre jusqu'à la prise." },
+        "memo": "Classe I = isolation principale + borne de terre OBLIGATOIRE, masse reliée au PE. Sans terre raccordée, plus de protection."
+      },
+      {
+        "titre": "3. La classe II : la double isolation",
+        "svg": "c8-classe2.svg",
+        "contenu": "<p>Le matériel de [[classe II]] ne compte pas sur la terre. Il mise sur une [[double isolation]] : à l'isolation principale s'ajoute une isolation supplémentaire (ou une isolation renforcée équivalente), si bien qu'un seul défaut ne peut pas mettre l'enveloppe sous tension.</p><p>Son symbole est le <b>double carré</b> : un carré dans un carré. Il n'a <b>pas de borne de terre</b>, sa fiche n'a que deux broches, et on ne le relie <b>jamais</b> au PE. Exemples : la perceuse, le sèche-cheveux, la plupart des luminaires modernes, les chargeurs.</p><p>Un mot sur la <b>classe 0</b> : un matériel qui n'aurait ni borne de terre, ni double isolation. Sa seule protection serait son isolation principale. Elle est <b>interdite</b> en France.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Ne « rajoute » jamais une terre à un appareil de classe II, même si un fil vert/jaune arrive dans la boîte : on le laisse en attente, isolé. C'est pour cette raison que la classe II est si présente en salle de bain." },
+        "memo": "Classe II = double isolation, symbole du double carré, PAS de terre, jamais reliée au PE. Classe 0 (ni terre ni double isolation) : interdite."
+      },
+      {
+        "titre": "4. La classe III : la très basse tension",
+        "svg": "c8-classe3.svg",
+        "contenu": "<p>Le matériel de [[classe III]] est conçu pour être alimenté en [[TBTS]], la très basse tension de sécurité. Il ne reçoit donc qu'une tension inférieure ou égale à <b>50 V en alternatif</b> (120 V en continu lisse) : trop faible pour provoquer un choc dangereux en milieu sec. Son symbole est un <b>losange contenant III</b>.</p><p>La TBTS ne vaut que par sa source. Elle est produite par une <b>source de sécurité</b> — le plus souvent un transformateur de sécurité — et ses circuits sont <b>séparés de la terre</b> et des autres circuits. Un matériel de classe III n'a donc pas de borne de terre.</p><p>C'est la protection des spots 12 V de salle de bain et des jouets. Souviens-toi du module 7 : dans les volumes de la salle de bain, la limite descend à 12 V, parce que le corps mouillé supporte bien moins.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Un spot 12 V n'est sûr que si son transformateur est un vrai transformateur de sécurité. Le remplacer par une alimentation quelconque « qui sort du 12 V », c'est perdre la séparation qui fait toute la protection." },
+        "memo": "Classe III = alimentée en TBTS : 50 V au plus en alternatif, 120 V en continu lisse. Source de sécurité, circuits séparés de la terre. Symbole : losange III."
+      },
+      {
+        "titre": "5. L'indice IP : les solides et l'eau",
+        "svg": "c8-indice-ip.svg",
+        "contenu": "<p>L'[[indice IP]] compte <b>deux chiffres</b>, toujours dans le même ordre.</p><p>Le <b>premier chiffre</b>, de 0 à 6, note la protection contre les <b>corps solides</b> et l'accès aux parties dangereuses : <b>2</b> = un doigt (12,5 mm), <b>4</b> = un fil (1 mm), <b>5</b> = protégé contre la poussière, <b>6</b> = totalement étanche à la poussière.</p><p>Le <b>deuxième chiffre</b> note la protection contre l'<b>eau</b> : <b>1</b> = gouttes verticales, <b>4</b> = projections de toutes directions, <b>5</b> = jets, <b>7</b> = immersion temporaire, <b>8</b> = immersion prolongée.</p><p>Quand un chiffre n'est pas précisé, on écrit un <b>X</b> à sa place. IPX4, courant en salle de bain, ne qualifie que l'eau. Et IP55 se lit en deux temps : protégé contre la poussière, protégé contre les jets d'eau.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Un IP ne se lit pas comme un nombre : IP44 n'est pas « plus petit » que IP65 en bloc, on compare chiffre par chiffre. Et un X ne veut pas dire zéro : il veut dire « non précisé »." },
+        "memo": "IP = 1er chiffre solides (0 à 6) + 2e chiffre eau. Repères eau : 4 projections, 5 jets, 7 immersion temporaire. X = chiffre non précisé."
+      },
+      {
+        "titre": "6. L'indice IK : les chocs mécaniques",
+        "svg": "c8-indice-ik.svg",
+        "contenu": "<p>Là où l'IP parle de poussière et d'eau, l'[[indice IK]] note la résistance aux <b>chocs mécaniques</b>. Il s'exprime par l'énergie du choc que l'enveloppe encaisse, en <b>joules</b>.</p><p>L'échelle va de <b>IK00</b> (aucune protection) à <b>IK10</b>. Trois repères suffisent : <b>IK07 = 2 J</b>, <b>IK08 = 5 J</b>, <b>IK10 = 20 J</b>.</p><p>On exige un IK élevé partout où le matériel risque les coups : parkings, gymnases, ateliers, locaux publics exposés au vandalisme. Un appareil peut donc cumuler plusieurs indices. « IP66 IK08 » se lit : étanche à la poussière, résistant aux jets puissants, et encaissant un choc de 5 joules.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Dans un garage ou un local à vélos, un hublot ordinaire ne tient pas longtemps. On regarde l'IK avant le prix : remplacer trois fois un luminaire cassé coûte plus cher qu'un IK10 posé une fois." },
+        "memo": "IK = résistance aux chocs, en joules. IK00 aucune protection · IK07 = 2 J · IK08 = 5 J · IK10 = 20 J. Élevé là où ça cogne."
+      },
+      {
+        "titre": "7. Choisir selon le local",
+        "svg": "c8-locaux.svg",
+        "contenu": "<p>Tout se joue à la pose : on choisit la classe, l'IP et l'IK selon le lieu.</p><p>Un <b>salon sec</b> : un IP20 suffit, il n'y a ni eau ni poussière à craindre. Une <b>salle de bain</b> : selon le volume, IPX4 ou IPX7, souvent en classe II. Un <b>extérieur</b> exposé à la pluie : on retient en pratique IP44 au minimum, avec un IK correct contre la grêle et les chocs. Un <b>atelier poussiéreux</b> : IP5X ou IP6X. Un <b>parking</b> ou un local public : un IK élevé contre les coups.</p><p>La règle d'or : on ne <b>sous-classe jamais</b> un matériel par rapport à son environnement. Un appareil prévu pour l'intérieur sec et installé dehors devient un piège : l'eau entre, l'isolation se dégrade, et le défaut arrive.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Quand tu hésites entre deux références, prends celle qui correspond au pire moment du local : le jour de pluie battante, le jour du nettoyage au jet, le jour où quelqu'un cogne dedans avec une échelle." },
+        "memo": "Sec → IP20. Salle de bain → IPX4 ou IPX7 selon le volume. Dehors → IP44 ou plus et un bon IK. Poussière → IP5X ou IP6X. Public → IK élevé. Jamais sous-classer."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "La classe d'un matériel indique :", "choix": ["sa résistance à l'eau", "sa puissance maximale", "sa façon de protéger contre les chocs électriques", "sa résistance aux chocs mécaniques"], "bonne": 2, "explication": "La classe (I, II, III) décrit comment le matériel protège contre les chocs électriques. L'eau et les chocs mécaniques, c'est l'IP et l'IK.", "renvoi_lecon": 0 },
+    { "question": "Les indices IP et IK décrivent :", "choix": ["la protection contre les chocs électriques", "la résistance du matériel à son environnement", "la consommation de l'appareil", "la tension d'alimentation"], "bonne": 1, "explication": "IP (poussière, eau) et IK (chocs mécaniques) notent la résistance physique du matériel, pas sa sécurité électrique.", "renvoi_lecon": 0 },
+    { "question": "Où lit-on la classe et les indices d'un appareil ?", "choix": ["sur sa plaque signalétique", "sur le disjoncteur du circuit", "sur le compteur", "sur la prise de courant"], "bonne": 0, "explication": "Classe, IP, IK, tension et puissance figurent sur la plaque signalétique de l'appareil.", "renvoi_lecon": 0 },
+    { "question": "Quel indice concerne les chocs mécaniques ?", "choix": ["l'indice IP", "la classe II", "la sensibilité IΔn", "l'indice IK"], "bonne": 3, "explication": "L'IK note la résistance aux chocs mécaniques. L'IP concerne la poussière et l'eau.", "renvoi_lecon": 0 },
+    { "question": "Quelle association est correcte ?", "choix": ["classe → eau ; IP → chocs électriques", "classe → chocs mécaniques ; IK → eau", "classe → sécurité électrique ; IP → poussière et eau", "classe → poussière ; IK → tension"], "bonne": 2, "explication": "La classe parle de sécurité électrique ; l'IP de poussière et d'eau ; l'IK de chocs mécaniques.", "renvoi_lecon": 0 },
+    { "question": "Un matériel de classe I se caractérise par :", "choix": ["une double isolation, sans terre", "une isolation principale et une borne de terre obligatoire", "une alimentation en 12 V", "l'absence de toute isolation"], "bonne": 1, "explication": "Classe I = isolation principale + borne de terre obligatoire. La double isolation sans terre, c'est la classe II.", "renvoi_lecon": 1 },
+    { "question": "La masse d'un matériel de classe I est reliée :", "choix": ["au conducteur de protection (PE)", "au conducteur neutre", "au conducteur de phase", "à rien du tout"], "bonne": 0, "explication": "Sa masse métallique est reliée au PE : c'est ce qui permet au différentiel de couper en cas de défaut.", "renvoi_lecon": 1 },
+    { "question": "Lequel de ces appareils est typiquement de classe I ?", "choix": ["une perceuse marquée du double carré", "un spot 12 V", "un chargeur de téléphone", "un lave-linge à carcasse métallique"], "bonne": 3, "explication": "Lave-linge, four, réfrigérateur à carcasse métallique : classe I, avec terre obligatoire.", "renvoi_lecon": 1 },
+    { "question": "Un défaut d'isolement survient sur un matériel de classe I bien relié à la terre. Que se passe-t-il ?", "choix": ["il ne se passe rien, jamais", "la tension du réseau double", "le différentiel coupe", "le neutre devient la phase"], "bonne": 2, "explication": "Le courant de défaut s'écoule par le PE et le différentiel coupe le circuit.", "renvoi_lecon": 1 },
+    { "question": "Un matériel de classe I dont la terre n'est pas raccordée :", "choix": ["reste aussi sûr qu'avant", "n'est plus protégé : sa sécurité repose sur la terre", "devient un matériel de classe II", "devient un matériel de classe III"], "bonne": 1, "explication": "Sans terre, un défaut laisse la carcasse sous tension. La classe I ne vaut que par sa mise à la terre.", "renvoi_lecon": 1 },
+    { "question": "Quel symbole repère la borne de terre d'un matériel de classe I ?", "choix": ["le symbole de la terre", "le double carré", "le losange III", "aucun symbole n'existe"], "bonne": 0, "explication": "Le symbole de la terre, près de la borne. Le double carré est celui de la classe II, le losange III celui de la classe III.", "renvoi_lecon": 1 },
+    { "question": "Le symbole « double carré » désigne un matériel de :", "choix": ["classe I", "classe III", "classe 0", "classe II"], "bonne": 3, "explication": "Le double carré = classe II (double isolation). On ne le relie jamais à la terre.", "renvoi_lecon": 2 },
+    { "question": "La sécurité d'un matériel de classe II repose sur :", "choix": ["la mise à la terre de sa carcasse", "une alimentation en TBTS", "une double isolation (ou une isolation renforcée)", "un différentiel 300 mA"], "bonne": 2, "explication": "La classe II ajoute une isolation supplémentaire à l'isolation principale ; elle ne dépend pas de la terre.", "renvoi_lecon": 2 },
+    { "question": "Un matériel de classe II et le conducteur de protection :", "choix": ["on le relie toujours au PE", "on ne le relie jamais au PE", "on le relie seulement en salle de bain", "on le relie si son enveloppe est métallique"], "bonne": 1, "explication": "Il n'a pas de borne de terre et on ne le relie jamais au PE : sa protection ne dépend pas de la terre.", "renvoi_lecon": 2 },
+    { "question": "Lequel de ces appareils est typiquement de classe II ?", "choix": ["une perceuse portative marquée du double carré", "un four encastrable", "un lave-linge", "un chauffe-eau à cuve métallique"], "bonne": 0, "explication": "L'outillage portatif, le sèche-cheveux et la plupart des luminaires modernes sont de classe II.", "renvoi_lecon": 2 },
+    { "question": "La classe 0 (ni terre, ni double isolation) est :", "choix": ["réservée aux cuisines", "obligatoire à l'extérieur", "équivalente à la classe II", "interdite en France"], "bonne": 3, "explication": "Un matériel de classe 0 n'aurait que son isolation principale : elle est interdite en France.", "renvoi_lecon": 2 },
+    { "question": "La fiche d'un appareil de classe II comporte :", "choix": ["deux broches et un contact de terre", "cinq broches", "deux broches, sans contact de terre", "une seule broche"], "bonne": 2, "explication": "Pas de borne de terre, donc pas de contact de terre sur la fiche : deux broches seulement.", "renvoi_lecon": 2 },
+    { "question": "Un matériel de classe III est alimenté :", "choix": ["en 230 V avec terre", "en TBTS", "en 400 V triphasé", "en 230 V à double isolation"], "bonne": 1, "explication": "Classe III = alimentée en très basse tension de sécurité (TBTS).", "renvoi_lecon": 3 },
+    { "question": "En alternatif, la TBTS ne dépasse pas :", "choix": ["50 V", "12 V", "120 V", "230 V"], "bonne": 0, "explication": "50 V en alternatif. Le 12 V est la limite particulière des volumes de salle de bain.", "renvoi_lecon": 3 },
+    { "question": "En courant continu lisse, la TBTS ne dépasse pas :", "choix": ["50 V", "24 V", "230 V", "120 V"], "bonne": 3, "explication": "120 V en continu lisse, contre 50 V en alternatif.", "renvoi_lecon": 3 },
+    { "question": "Le symbole d'un matériel de classe III est :", "choix": ["un double carré", "le symbole de la terre", "un losange contenant III", "un triangle avec un éclair"], "bonne": 2, "explication": "Le losange contenant III. Le double carré désigne la classe II.", "renvoi_lecon": 3 },
+    { "question": "La TBTS est produite par :", "choix": ["n'importe quel autotransformateur", "une source de sécurité, comme un transformateur de sécurité", "le différentiel 30 mA", "un variateur de lumière"], "bonne": 1, "explication": "La TBTS ne vaut que par sa source de sécurité, le plus souvent un transformateur de sécurité.", "renvoi_lecon": 3 },
+    { "question": "Les circuits TBTS sont :", "choix": ["séparés de la terre et des autres circuits", "reliés à la terre par le PE", "reliés au neutre de l'installation", "reliés à la phase par un fusible"], "bonne": 0, "explication": "Séparés de la terre et des autres circuits : c'est cette séparation qui fait la sécurité.", "renvoi_lecon": 3 },
+    { "question": "Dans l'indice IP, le premier chiffre concerne :", "choix": ["l'eau", "les chocs mécaniques", "la tension", "les corps solides et la poussière"], "bonne": 3, "explication": "1er chiffre = solides et poussière ; 2e chiffre = eau. Les chocs, c'est l'indice IK.", "renvoi_lecon": 4 },
+    { "question": "Dans l'indice IP, le deuxième chiffre concerne :", "choix": ["la poussière", "les chocs mécaniques", "l'eau", "la température"], "bonne": 2, "explication": "Le 2e chiffre note la protection contre l'eau.", "renvoi_lecon": 4 },
+    { "question": "Dans IPX4, que signifie le X ?", "choix": ["la protection contre les solides est nulle", "le chiffre des solides n'est pas précisé", "le matériel est interdit en extérieur", "le matériel est de classe II"], "bonne": 1, "explication": "Le X remplace un chiffre non précisé. Il ne veut pas dire zéro.", "renvoi_lecon": 4 },
+    { "question": "Que garantit le 4 de IPX4 ?", "choix": ["la protection contre les projections d'eau de toutes directions", "la protection contre l'immersion", "la protection contre les jets à la lance", "la protection contre la poussière"], "bonne": 0, "explication": "2e chiffre 4 = projections d'eau de toutes directions.", "renvoi_lecon": 4 },
+    { "question": "Un premier chiffre 2 (IP2X) signifie que le matériel est protégé contre :", "choix": ["l'accès d'un fil de 1 mm", "toute pénétration de poussière", "l'immersion", "l'accès d'un doigt (12,5 mm)"], "bonne": 3, "explication": "1er chiffre 2 = corps solides de 12,5 mm : le doigt ne peut pas atteindre les parties dangereuses.", "renvoi_lecon": 4 },
+    { "question": "Un deuxième chiffre 5 signifie : protégé contre", "choix": ["les gouttes verticales", "l'immersion temporaire", "les jets d'eau", "la poussière"], "bonne": 2, "explication": "2e chiffre 5 = jets d'eau. 4 = projections, 7 = immersion temporaire.", "renvoi_lecon": 4 },
+    { "question": "Un deuxième chiffre 7 signifie : protégé contre", "choix": ["les projections d'eau", "l'immersion temporaire", "les jets d'eau", "les gouttes verticales"], "bonne": 1, "explication": "2e chiffre 7 = immersion temporaire. C'est l'exigence du volume 0 de la salle de bain.", "renvoi_lecon": 4 },
+    { "question": "Un premier chiffre 6 (IP6X) signifie :", "choix": ["totalement étanche à la poussière", "protégé contre un doigt", "protégé contre un fil de 1 mm", "aucune protection"], "bonne": 0, "explication": "6 est le maximum pour les solides : totalement étanche à la poussière.", "renvoi_lecon": 4 },
+    { "question": "Comment se lit IP55 ?", "choix": ["protégé contre un doigt et contre les gouttes", "étanche à la poussière et immergeable", "résistant à un choc de 5 joules", "protégé contre la poussière et contre les jets d'eau"], "bonne": 3, "explication": "1er chiffre 5 = protégé contre la poussière ; 2e chiffre 5 = protégé contre les jets d'eau.", "renvoi_lecon": 4 },
+    { "question": "L'indice IK mesure :", "choix": ["l'étanchéité à l'eau", "la classe d'isolation", "la résistance aux chocs mécaniques", "le courant de fuite"], "bonne": 2, "explication": "L'IK note la résistance de l'enveloppe aux chocs mécaniques.", "renvoi_lecon": 5 },
+    { "question": "L'énergie de choc associée à un indice IK s'exprime en :", "choix": ["ampères", "joules", "volts", "ohms"], "bonne": 1, "explication": "L'IK correspond à une énergie d'impact, en joules.", "renvoi_lecon": 5 },
+    { "question": "IK07 correspond à un choc de :", "choix": ["2 J", "0,5 J", "5 J", "20 J"], "bonne": 0, "explication": "IK07 = 2 J. IK08 = 5 J, IK10 = 20 J.", "renvoi_lecon": 5 },
+    { "question": "IK08 correspond à un choc de :", "choix": ["1 J", "2 J", "20 J", "5 J"], "bonne": 3, "explication": "IK08 = 5 J. IK07 = 2 J, IK10 = 20 J.", "renvoi_lecon": 5 },
+    { "question": "IK10 correspond à un choc de :", "choix": ["2 J", "5 J", "20 J", "10 J"], "bonne": 2, "explication": "IK10 = 20 J, un choc sévère.", "renvoi_lecon": 5 },
+    { "question": "Que signifie IK00 ?", "choix": ["la meilleure protection contre les chocs", "aucune protection contre les chocs", "un matériel étanche", "un matériel de classe 0"], "bonne": 1, "explication": "IK00 est le bas de l'échelle : aucune protection particulière contre les chocs.", "renvoi_lecon": 5 },
+    { "question": "Dans lequel de ces lieux exige-t-on un IK élevé ?", "choix": ["un parking", "une chambre", "un placard", "un salon"], "bonne": 0, "explication": "Parkings, gymnases, ateliers, locaux publics : partout où le matériel risque les coups.", "renvoi_lecon": 5 },
+    { "question": "Dans un salon sec, quel indice de protection suffit ?", "choix": ["IP44", "IP55", "IP67", "IP20"], "bonne": 3, "explication": "Ni eau ni poussière à craindre : un IP20 suffit.", "renvoi_lecon": 6 },
+    { "question": "Pour un luminaire extérieur exposé à la pluie, on retient en pratique au minimum :", "choix": ["IP20", "IP21", "IP44", "IP00"], "bonne": 2, "explication": "Dehors, on retient en pratique IP44 au minimum, avec un IK correct.", "renvoi_lecon": 6 },
+    { "question": "Dans un atelier très poussiéreux, on choisit un matériel :", "choix": ["IP2X", "IP5X ou IP6X", "IPX0", "IP1X"], "bonne": 1, "explication": "Le premier chiffre 5 ou 6 protège contre la poussière.", "renvoi_lecon": 6 },
+    { "question": "Quelle est la règle d'or du choix du matériel ?", "choix": ["ne jamais sous-classer un matériel par rapport à son environnement", "toujours prendre le matériel le moins cher", "choisir uniquement selon la puissance", "toujours prendre de la classe I"], "bonne": 0, "explication": "Un matériel prévu pour le sec installé dehors devient un piège : on ne sous-classe jamais.", "renvoi_lecon": 6 },
+    { "question": "Que signifie le marquage « IP66 IK08 » ?", "choix": ["protégé contre un doigt, immergeable, choc de 20 J", "classe II, étanche, choc de 2 J", "protégé contre les gouttes, choc de 8 J", "étanche à la poussière, résistant aux jets puissants, choc de 5 J"], "bonne": 3, "explication": "IP66 : étanche à la poussière et résistant aux jets puissants. IK08 : choc de 5 joules.", "renvoi_lecon": 6 },
+    { "question": "Quel indice exige le volume 0 d'une salle de bain ?", "choix": ["IPX4", "IP20", "IPX7", "IPX1"], "bonne": 2, "explication": "Le volume 0, c'est dans l'eau : IPX7, protégé contre l'immersion temporaire.", "renvoi_lecon": 6 }
   ],
   "jeu": {
     "type": "vrai-faux-rapide",
