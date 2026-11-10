@@ -1,9 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif">
-<text x="160" y="20" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La pile : une tension entre ses deux bornes</text>
-<polygon points="78.0,120.0 138.0,146.0 138.0,202.0 78.0,176.0" fill="#2f343d" stroke="#5a626e" stroke-width="1.6" stroke-linejoin="round"/><polygon points="138.0,146.0 288.0,106.0 288.0,162.0 138.0,202.0" fill="#262a32" stroke="#5a626e" stroke-width="1.6" stroke-linejoin="round"/><polygon points="78.0,120.0 228.0,80.0 288.0,106.0 138.0,146.0" fill="#4a515c" stroke="#5a626e" stroke-width="1.6" stroke-linejoin="round"/>
-<rect x="119.0" y="112.2" width="14" height="14" rx="2" fill="#3a4250" stroke="#ffd23f" stroke-width="2"/><text x="126" y="123.19999999999999" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">+</text>
-<rect x="233.0" y="81.8" width="14" height="14" rx="2" fill="#3a4250" stroke="#5ab0f0" stroke-width="2"/><text x="240" y="92.8" text-anchor="middle" font-size="11" fill="#5ab0f0" font-weight="bold">−</text>
-<line x1="126.0" y1="106.2" x2="240.0" y2="75.8" stroke="#9aa6b3" stroke-width="1.3"/>
-<text x="160" y="52" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">tension U (volts)</text>
-<text x="160" y="192" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="normal">c'est la « pression » qui pousse le courant</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="La tension est la pression qui pousse les électrons, en volts ; le voltmètre se branche en parallèle, aux bornes ; une prise délivre 230 V">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La tension : une pression, en volts</text>
+<polygon points="50,70 74,81 74,119 50,108" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="50,70 74,81 74,119 50,108" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="74,81 102,70 102,108 74,119" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="74,81 102,70 102,108 74,119" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="50,70 78,59 102,70 74,81" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="64" y="60" text-anchor="middle" font-size="13" fill="#e85b50" font-weight="bold">+</text>
+<text x="90" y="60" text-anchor="middle" font-size="13" fill="#5aa9e6" font-weight="bold">−</text>
+<polyline points="50,90 28,90 28,146 76,146" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<polyline points="102,90 124,90 124,146 100,146" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<circle cx="88" cy="146" r="11" fill="#24282f" stroke="#ffd23f" stroke-width="2.2"/>
+<text x="88" y="150" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">V</text>
+<text x="150" y="66" text-anchor="start" font-size="9" fill="#ffd23f" font-weight="bold">voltmètre EN PARALLÈLE</text>
+<text x="150" y="79" text-anchor="start" font-size="7.8" fill="#e8eaed" font-weight="normal">branché aux bornes</text>
+<text x="150" y="104" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">U</tspan> : la tension, en <tspan fill="#ffd23f" font-weight="bold" font-size="10">volts (V)</tspan></text>
+<text x="150" y="132" text-anchor="start" font-size="14" fill="#4cd97b" font-weight="bold">230 V</text>
+<text x="196" y="132" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">à une prise</text>
+<text x="160" y="178" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">La tension pousse ; sans elle, pas de courant</text>
 </svg>

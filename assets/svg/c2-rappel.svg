@@ -1,19 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" font-family="'Segoe UI',system-ui,sans-serif">
-<text x="160" y="20" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Trois grandeurs liées</text>
-<text x="60" y="52" text-anchor="middle" font-size="20" fill="#ffd23f" font-weight="bold">U</text>
-<line x1="34" y1="78" x2="86" y2="78" stroke="#ffd23f" stroke-width="2" stroke-linecap="round"/><polygon points="86,78 80.6,80.6 80.6,75.4" fill="#ffd23f"/>
-<text x="60" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">pousse</text>
-<text x="60" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">volts (V)</text>
-<text x="160" y="52" text-anchor="middle" font-size="20" fill="#5ab0f0" font-weight="bold">I</text>
-<circle cx="140" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
-<circle cx="154" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
-<circle cx="168" cy="78" r="4.5" fill="none" stroke="#5ab0f0" stroke-width="1.6"/>
-<line x1="176" y1="78" x2="190" y2="78" stroke="#5ab0f0" stroke-width="2" stroke-linecap="round"/><polygon points="190,78 184.6,80.6 184.6,75.4" fill="#5ab0f0"/>
-<text x="160" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">circule</text>
-<text x="160" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ampères (A)</text>
-<text x="260" y="52" text-anchor="middle" font-size="20" fill="#ff8c2b" font-weight="bold">R</text>
-<path d="M232 78 L236.7 71 L246.0 85 L255.3 71 L264.7 85 L274.0 71 L283.3 85 L288 78" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linejoin="round"/>
-<text x="260" y="98" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="normal">freine</text>
-<text x="260" y="114" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ohms (Ω)</text>
-<text x="160" y="142" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="normal">Augmente U → I monte. Augmente R → I baisse.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Rappel : U la tension en volts pousse, I l'intensité en ampères circule, R la résistance en ohms freine">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">U pousse, I circule, R freine</text>
+<polygon points="40,80 64,91 64,117 40,106" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,80 64,91 64,117 40,106" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="64,91 92,80 92,106 64,117" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="64,91 92,80 92,106 64,117" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="40,80 68,69 92,80 64,91" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="66" y="56" text-anchor="middle" font-size="18" fill="#ffd23f" font-weight="bold">U</text>
+<text x="66" y="138" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">tension</text>
+<text x="66" y="151" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">volts (V)</text>
+<polygon points="134,80 158,91 158,117 134,106" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,80 158,91 158,117 134,106" fill="#5aa9e6" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,91 186,80 186,106 158,117" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,91 186,80 186,106 158,117" fill="#5aa9e6" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,80 162,69 186,80 158,91" fill="#5aa9e6" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="160" y="56" text-anchor="middle" font-size="18" fill="#5aa9e6" font-weight="bold">I</text>
+<text x="160" y="138" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">intensité</text>
+<text x="160" y="151" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ampères (A)</text>
+<polygon points="228,80 252,91 252,117 228,106" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="228,80 252,91 252,117 228,106" fill="#ff8c2b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="252,91 280,80 280,106 252,117" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="252,91 280,80 280,106 252,117" fill="#ff8c2b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="228,80 256,69 280,80 252,91" fill="#ff8c2b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="254" y="56" text-anchor="middle" font-size="18" fill="#ff8c2b" font-weight="bold">R</text>
+<text x="254" y="138" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">résistance</text>
+<text x="254" y="151" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">ohms (Ω)</text>
+<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Trois grandeurs liées : place aux formules</text>
 </svg>
