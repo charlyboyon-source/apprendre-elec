@@ -121,22 +121,33 @@ json.dump({str(k): v for k, v in pages.items()}, open("data/pages-cours.json", "
 # ---------- Lexique
 cle_tri = lambda kv: slug(kv[1]["nom"])
 entrees = []
+lettres_presentes = set()
 for cle, e in sorted(glossaire.items(), key=cle_tri):
+    lettre = slug(e["nom"])[:1].upper()
+    if not lettre.isalpha(): lettre = "#"
+    lettres_presentes.add(lettre)
     lien = f' <a class="lexique-lien" href="{pages[e["niveau_associe"]]}">Voir le cours →</a>' if e.get("niveau_associe") in pages else ""
-    entrees.append(f'''      <section class="lexique-entree" id="{slug(cle)}" data-recherche="{html.escape(slug(cle + ' ' + e['nom']).replace('-', ' '))}">
+    entrees.append(f'''      <section class="lexique-entree" id="{slug(cle)}" data-lettre="{lettre}" data-recherche="{html.escape(slug(cle + ' ' + e['nom']).replace('-', ' '))}">
         <h2>{e["nom"]}</h2>
         <p>{e["definition"]}{lien}</p>
       </section>''')
+molette = chr(10).join(
+    f'      <button type="button" data-lettre="{l}"{"" if l in lettres_presentes else " disabled"}>{l}</button>'
+    for l in (["#"] if "#" in lettres_presentes else []) + list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 lex = tete("Lexique de l'électricien — les mots du métier expliqués | ApprendreElec",
            f"{len(glossaire)} termes de l'électricité du bâtiment expliqués simplement : DDR, AGCP, ICTA, régime TT, calibre, sensibilité, GTL…", "lexique.html")
 lex += f'''  <main class="niveau page-lexique">
     <h1>Lexique de l'électricien</h1>
-    <p class="niveau-objectif">{len(glossaire)} mots du métier, expliqués simplement. Tape quelques lettres pour trouver un terme.</p>
+    <p class="niveau-objectif">{len(glossaire)} mots du métier, expliqués simplement. Tape quelques lettres, ou touche une lettre sur le côté pour y aller directement.</p>
     <input class="lexique-recherche" type="search" placeholder="Chercher un terme…" aria-label="Chercher un terme">
     <p class="lexique-vide" hidden>Aucun terme ne correspond.</p>
     <div class="lexique-liste">
 {chr(10).join(entrees)}
     </div>
+    <nav class="lexique-molette" aria-label="Aller à une lettre">
+{molette}
+    </nav>
+    <div class="lexique-bulle" hidden></div>
   </main>
 ''' + PIED.replace('js/page.js', 'js/lexique.js')
 open("lexique.html", "w", encoding="utf-8").write(lex)

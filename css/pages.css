@@ -27,6 +27,29 @@
 .lexique-entree:target, .lexique-entree.cible { border-color: var(--jaune); box-shadow: var(--lueur-jaune); }
 .lexique-lien { white-space: nowrap; font-size: 0.82rem; }
 .lexique-vide { color: var(--texte-2); }
+.page-lexique { padding-right: 34px; }
+.lexique-molette {
+  position: fixed; right: 4px; top: 50%; transform: translateY(-50%); z-index: 20;
+  display: flex; flex-direction: column; justify-content: space-between;
+  height: min(72vh, 540px); padding: 6px 2px; border-radius: 14px;
+  background: var(--fond-2); border: 1px solid var(--bordure);
+  touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.lexique-molette button {
+  flex: 1; min-height: 0; width: 22px; padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--texte); font: 700 0.68rem/1 inherit; font-family: inherit; border-radius: 6px;
+}
+.lexique-molette button:disabled { color: var(--texte-2); opacity: 0.35; cursor: default; }
+.lexique-molette button:not(:disabled):hover, .lexique-molette button.actif { color: var(--jaune); }
+.lexique-molette button.actif { background: rgba(255, 255, 255, 0.08); }
+.lexique-bulle {
+  position: fixed; right: 44px; top: 50%; transform: translateY(-50%); z-index: 21;
+  width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--jaune); color: #111; font-size: 2rem; font-weight: 800; pointer-events: none;
+}
+.lexique-bulle[hidden] { display: none; }
+@media (min-width: 900px) { .lexique-molette { right: max(12px, calc(50vw - 430px)); } .lexique-molette button { width: 26px; font-size: 0.74rem; } .lexique-bulle { right: calc(max(12px, 50vw - 430px) + 44px); } }
+@media print { .lexique-molette, .lexique-bulle { display: none; } }
 
 /* Outils : examen, erreurs, fiches, listes */
 .outil-carte { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: var(--rayon); padding: var(--esp-3); margin-bottom: var(--esp-3); }

@@ -16,3 +16,33 @@ champ.addEventListener("input", () => {
   }
   vide.hidden = visibles > 0;
 });
+
+// Molette de lettres sur le côté : un appui (ou un glissement du doigt) amène au premier terme de la lettre.
+const molette = document.querySelector(".lexique-molette");
+const bulle = document.querySelector(".lexique-bulle");
+let derniere = null, glisse = false, minuterieBulle = null;
+
+function allerA(lettre) {
+  if (!lettre || lettre === derniere) return;
+  const bouton = molette.querySelector(`button[data-lettre="${lettre}"]`);
+  if (!bouton || bouton.disabled) return;
+  derniere = lettre;
+  if (champ.value) { champ.value = ""; champ.dispatchEvent(new Event("input")); }
+  const cible = entrees.find((e) => e.dataset.lettre === lettre);
+  if (!cible) return;
+  cible.scrollIntoView({ block: "start", behavior: glisse ? "auto" : "smooth" });
+  for (const b of molette.children) b.classList.toggle("actif", b === bouton);
+  bulle.textContent = lettre;
+  bulle.hidden = false;
+  clearTimeout(minuterieBulle);
+  minuterieBulle = setTimeout(() => { bulle.hidden = true; }, 700);
+}
+
+const lettreSous = (ev) => document.elementFromPoint(ev.clientX, ev.clientY)?.closest?.(".lexique-molette button")?.dataset.lettre;
+
+molette.addEventListener("pointerdown", (ev) => { glisse = true; derniere = null; allerA(lettreSous(ev)); });
+molette.addEventListener("pointermove", (ev) => { if (glisse && ev.buttons) allerA(lettreSous(ev)); });
+window.addEventListener("pointerup", () => { glisse = false; derniere = null; });
+window.addEventListener("pointercancel", () => { glisse = false; derniere = null; });
+// Clavier (Entrée / Espace sur une lettre)
+molette.addEventListener("click", (ev) => { if (ev.detail === 0) { derniere = null; allerA(ev.target.dataset?.lettre); derniere = null; } });
