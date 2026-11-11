@@ -385,5 +385,19 @@
   "NF C 14-100": {
     "nom": "Norme NF C 14-100",
     "definition": "Norme des branchements basse tension : la partie située entre le réseau public et l'AGCP. Elle relève du distributeur. En aval de l'AGCP, c'est la NF C 15-100."
+  },
+  "tableau de répartition": {
+    "nom": "Tableau de répartition",
+    "definition": "Coffret d'où partent tous les circuits du logement. Il reçoit l'énergie de l'AGCP et la répartit, en plaçant sur chaque circuit ses protections : interrupteurs différentiels et disjoncteurs divisionnaires.",
+    "niveau_associe": 11
+  },
+  "disjoncteur divisionnaire": {
+    "nom": "Disjoncteur divisionnaire",
+    "definition": "Disjoncteur placé dans le tableau, en tête d'un circuit, pour protéger ses conducteurs contre la surcharge et le court-circuit. Il y en a un par circuit.",
+    "niveau_associe": 11
+  },
+  "peigne d'alimentation": {
+    "nom": "Peigne d'alimentation",
+    "definition": "Barre conductrice à dents qui alimente d'un coup tous les appareils d'une rangée du tableau, à la place de pontages en fil."
   }
 }

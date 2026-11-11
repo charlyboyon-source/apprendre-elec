@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le tableau de répartition : des rangées de modules sur rail, avec en tête de chaque rangée un interrupteur différentiel suivi de ses disjoncteurs">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le tableau : des rangées de modules</text>
+<rect x="50" y="30" width="220" height="128" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<polyline points="60,66 260,66" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="62" y="40" width="30" height="26" rx="3" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/><rect x="74.0" y="46.0" width="6" height="14" rx="1.5" fill="#ffd23f"/>
+<rect x="98" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="103.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="118" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="123.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="138" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="143.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="158" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="163.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="178" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="183.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="198" y="40" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="203.0" y="46.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<text x="240" y="56" text-anchor="middle" font-size="7.5" fill="#ffd23f" font-weight="bold">type A</text>
+<polyline points="60,106 260,106" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="62" y="80" width="30" height="26" rx="3" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/><rect x="74.0" y="86.0" width="6" height="14" rx="1.5" fill="#ffd23f"/>
+<rect x="98" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="103.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="118" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="123.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="138" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="143.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="158" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="163.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="178" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="183.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="198" y="80" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="203.0" y="86.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<text x="240" y="96" text-anchor="middle" font-size="7.5" fill="#ffd23f" font-weight="bold">type AC</text>
+<polyline points="60,146 260,146" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="62" y="120" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="67.0" y="126.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="82" y="120" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="87.0" y="126.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="102" y="120" width="16" height="26" rx="3" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/><rect x="107.0" y="126.0" width="6" height="14" rx="1.5" fill="#9aa6b3"/>
+<rect x="124" y="120" width="134" height="26" rx="3" fill="none" stroke="#4cd97b" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="191" y="136" text-anchor="middle" font-size="8" fill="#4cd97b" font-weight="bold">réserve</text>
+<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Un interrupteur différentiel en tête, ses disjoncteurs à la suite</text>
+</svg>
