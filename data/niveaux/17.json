@@ -1,0 +1,121 @@
+{
+  "id": 17,
+  "bloc": 4,
+  "titre": "Va-et-vient et permutateur",
+  "objectif": "Comprendre, dessiner et câbler la commande d'un point lumineux depuis deux ou trois endroits",
+  "cours": {
+    "intro": "Dans un couloir, un escalier ou une chambre, on veut allumer en entrant et éteindre en sortant par l'autre bout. Le simple allumage ne le permet pas : il faut un montage où deux interrupteurs agissent sur la même lampe. C'est le va-et-vient. Et quand deux endroits ne suffisent plus, on lui ajoute un permutateur.",
+    "sections": [
+      {
+        "titre": "1. Commander depuis deux endroits",
+        "svg": "c17-besoin.svg",
+        "contenu": "<p>Avec un simple allumage, une lampe se commande d'un seul endroit. C'est gênant dès qu'une pièce a deux accès : on allume à l'entrée du couloir, on le traverse, et il faut revenir sur ses pas pour éteindre.</p><p>Le [[va-et-vient]] résout ce problème : il permet de commander <b>un même point lumineux depuis deux endroits</b>. Chaque interrupteur peut allumer ou éteindre, quelle que soit la position de l'autre.</p><p>On le rencontre partout : aux deux bouts d'un <b>couloir</b>, en haut et en bas d'un <b>escalier</b>, à l'entrée d'une <b>chambre</b> et à la tête du lit, dans une pièce à <b>deux portes</b>.</p><p>Conséquence pratique : avec un va-et-vient, la position de la bascule ne dit plus si la lampe est allumée ou éteinte. « En haut » ne veut pas dire « allumé ».</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Sur un plan, dès qu'une pièce de passage a deux accès, propose un va-et-vient. C'est un confort que le client ne pense pas toujours à demander, et qu'il regrette dès la première semaine s'il n'y est pas." },
+        "memo": "Va-et-vient : un point lumineux commandé depuis deux endroits. Chaque interrupteur agit quelle que soit la position de l'autre."
+      },
+      {
+        "titre": "2. L'interrupteur va-et-vient",
+        "svg": "c17-inverseur.svg",
+        "contenu": "<p>Un interrupteur simple ouvre ou ferme un contact. L'interrupteur va-et-vient fait autre chose : c'est un <b>inverseur</b>. Il n'est jamais « ouvert » : il aiguille le courant vers une sortie ou vers l'autre.</p><p>Il possède <b>trois bornes</b>. Une borne <b>commune</b>, souvent repérée L. Et deux bornes de [[navette]], souvent repérées 1 et 2.</p><p>Dans une position, le commun est relié à la navette 1. Dans l'autre position, il est relié à la navette 2. Jamais aux deux à la fois, jamais à aucune.</p><p>Les <b>navettes</b> sont les deux conducteurs qui relient entre eux les deux va-et-vient. Elles ne vont nulle part ailleurs : ni au tableau, ni à la lampe.</p><p>Bon à savoir : un va-et-vient peut servir d'interrupteur simple. Il suffit d'utiliser le commun et une seule navette. C'est pourquoi beaucoup d'interrupteurs vendus aujourd'hui sont des va-et-vient.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Avant de câbler, cherche le repère de la borne commune : L, ou une flèche, ou une borne d'une autre couleur. Si rien n'est lisible, un contrôle de continuité, hors tension, te le dira : le commun est la borne qui est reliée à l'une puis à l'autre quand tu bascules." },
+        "memo": "Va-et-vient = inverseur à 3 bornes : 1 commun (L) + 2 navettes (1 et 2). Le commun est relié à l'une ou à l'autre navette, jamais aux deux."
+      },
+      {
+        "titre": "3. Le principe du montage",
+        "svg": "c17-principe.svg",
+        "contenu": "<p>Le montage utilise <b>deux</b> interrupteurs va-et-vient, reliés entre eux par <b>deux navettes</b>.</p><p>Suivons le courant sur le [[schéma développé]]. La <b>phase</b> arrive sur le <b>commun</b> du premier va-et-vient, S1. Selon sa position, S1 l'envoie sur la navette 1 ou sur la navette 2. À l'autre bout, le second va-et-vient, S2, est lui aussi branché sur l'une des deux navettes. De son <b>commun</b> repart le <b>retour lampe</b>, vers la lampe ; et la lampe est reliée au neutre.</p><p>La règle de fonctionnement est simple. Si S1 et S2 sont sur la <b>même navette</b>, le chemin est continu : la lampe est <b>allumée</b>. S'ils sont sur des <b>navettes différentes</b>, le chemin est coupé : la lampe est <b>éteinte</b>.</p><p>Manœuvrer n'importe lequel des deux interrupteurs fait donc passer d'une situation à l'autre : chaque action <b>inverse</b> l'état de la lampe.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Pour comprendre une fois pour toutes, dessine le montage quatre fois, avec les quatre combinaisons de positions. Deux allument, deux éteignent. Tu ne l'oublieras plus." },
+        "memo": "2 va-et-vient reliés par 2 navettes. Phase → commun de S1 ; commun de S2 → retour lampe → lampe → neutre. Même navette : allumé. Navettes différentes : éteint."
+      },
+      {
+        "titre": "4. Câbler le va-et-vient",
+        "svg": "c17-cablage.svg",
+        "contenu": "<p>Passons aux fils, tous en 1,5 mm².</p><p>Au <b>premier va-et-vient</b> : la <b>phase</b>, sur la borne commune ; et le départ des <b>deux navettes</b>, sur les bornes 1 et 2. Trois fils.</p><p>Au <b>second va-et-vient</b> : l'arrivée des <b>deux navettes</b>, sur les bornes 1 et 2 ; et le <b>retour lampe</b>, sur la borne commune. Trois fils.</p><p>À la <b>lampe</b> : le <b>retour lampe</b>, le <b>neutre</b> et le <b>conducteur de protection</b>. Trois fils, comme pour un simple allumage. Le neutre et le conducteur de protection y vont directement, sans passer par les interrupteurs.</p><p>Un détail qui simplifie la vie : les deux navettes sont interchangeables. Si on les croise entre les deux appareils, le montage fonctionne quand même — seules les positions « allumé » des bascules changent. Ce qui ne pardonne pas, c'est de confondre un <b>commun</b> avec une <b>navette</b>.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Donne aux navettes une couleur qui ne sert à rien d'autre dans la boîte, la même pour les deux. En ouvrant l'interrupteur dans dix ans, on saura tout de suite que ces deux fils-là filent vers l'autre va-et-vient." },
+        "memo": "1er va-et-vient : phase (commun) + 2 navettes. 2e va-et-vient : 2 navettes + retour lampe (commun). Lampe : retour, neutre, protection. Les navettes sont interchangeables, pas le commun."
+      },
+      {
+        "titre": "5. Trois endroits : le permutateur",
+        "svg": "c17-permutateur.svg",
+        "contenu": "<p>Dans un grand couloir à trois portes, ou un escalier desservant trois niveaux, deux points de commande ne suffisent plus. On ajoute alors un [[permutateur]].</p><p>Le permutateur possède <b>quatre bornes</b> : deux pour les navettes qui arrivent, deux pour les navettes qui repartent. Il a deux positions. Dans l'une, il transmet les navettes <b>tout droit</b>. Dans l'autre, il les <b>croise</b>.</p><p>On l'insère <b>entre les deux va-et-vient</b>, sur les navettes. Le montage devient : va-et-vient — permutateur — va-et-vient.</p><p>Son effet : manœuvrer le permutateur revient à échanger les deux navettes. Si la lampe était allumée, les deux va-et-vient ne sont plus sur la même navette : elle s'éteint. Et inversement. Le permutateur inverse donc l'état de la lampe, exactement comme le font les va-et-vient.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le permutateur se place toujours au milieu, jamais en bout de montage : il n'a ni borne pour la phase, ni borne pour le retour lampe. Aux deux extrémités, ce sont toujours des va-et-vient." },
+        "memo": "Permutateur : 4 bornes, inséré sur les navettes entre les deux va-et-vient. Il transmet les navettes tout droit ou les croise. 3 endroits = 2 va-et-vient + 1 permutateur."
+      },
+      {
+        "titre": "6. Combien d'appareils ?",
+        "svg": "c17-nombre.svg",
+        "contenu": "<p>La règle se généralise. Les deux extrémités du montage sont <b>toujours des va-et-vient</b> ; tous les points intermédiaires sont des <b>permutateurs</b>.</p><p><b>2 endroits</b> : 2 va-et-vient.<br><b>3 endroits</b> : 2 va-et-vient + 1 permutateur.<br><b>4 endroits</b> : 2 va-et-vient + 2 permutateurs.</p><p>On peut continuer ainsi, mais le montage devient vite lourd : deux navettes à tirer d'un bout à l'autre, quatre fils dans chaque boîte de permutateur, et un dépannage délicat.</p><p>C'est pourquoi, <b>à partir de trois points de commande</b>, on préfère généralement un autre montage, plus simple à câbler et à étendre : le <b>télérupteur</b>, commandé par des boutons-poussoirs. C'est l'objet du module suivant.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le permutateur se pose encore, surtout en rénovation, quand deux va-et-vient existent déjà et qu'on veut ajouter un troisième point sans tout recâbler. En neuf, pour trois commandes ou plus, pense télérupteur." },
+        "memo": "Extrémités : toujours 2 va-et-vient. Points intermédiaires : des permutateurs. 3 endroits = 2 va-et-vient + 1 permutateur ; 4 endroits = 2 + 2. Au-delà de 2 endroits, le télérupteur est plus simple."
+      },
+      {
+        "titre": "7. Les erreurs de câblage",
+        "svg": "c17-pannes.svg",
+        "contenu": "<p>Le va-et-vient a une panne bien à lui : le montage qui <b>ne fonctionne qu'à moitié</b>. La lampe s'allume et s'éteint depuis un interrupteur, mais seulement si l'autre est dans une certaine position.</p><p>La cause est presque toujours la même : sur l'un des deux appareils, un <b>commun</b> et une <b>navette</b> ont été inversés. La phase — ou le retour lampe — est raccordée sur une borne de navette, et une navette occupe la borne commune.</p><p>Le remède : hors tension, on identifie la borne commune de chaque va-et-vient, et on vérifie que la <b>phase</b> est sur le commun de l'un, le <b>retour lampe</b> sur le commun de l'autre, et que les deux navettes ne relient que des bornes de navette.</p><p>Les autres pannes sont celles de tout allumage : ampoule grillée, disjoncteur ouvert, connexion desserrée, neutre coupé à la lampe.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Quand un client te dit « ça marche, mais pas toujours », pense d'abord au commun inversé. Fais le test : mets un interrupteur dans une position, manœuvre l'autre ; change la position du premier, recommence. Si un des deux cas ne répond pas, tu as ton diagnostic." },
+        "memo": "Va-et-vient qui ne marche que dans certaines positions : un commun et une navette inversés. Phase sur un commun, retour lampe sur l'autre, navettes sur les bornes 1 et 2."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Que permet le va-et-vient ?", "choix": ["commander deux points lumineux séparément", "allumer une lampe pendant un temps réglé", "commander un point lumineux depuis deux endroits", "protéger le circuit d'éclairage"], "bonne": 2, "explication": "Un même point lumineux, deux points de commande.", "renvoi_lecon": 0 },
+    { "question": "Où pose-t-on typiquement un va-et-vient ?", "choix": ["dans un placard à une seule porte", "aux deux bouts d'un couloir", "au tableau", "sur un circuit de prises"], "bonne": 1, "explication": "Couloir, escalier, chambre, pièce à deux portes.", "renvoi_lecon": 0 },
+    { "question": "Dans un va-et-vient, la position de la bascule indique-t-elle si la lampe est allumée ?", "choix": ["non", "oui, toujours", "oui, en haut c'est allumé", "oui, en bas c'est allumé"], "bonne": 0, "explication": "L'état de la lampe dépend des deux interrupteurs.", "renvoi_lecon": 0 },
+    { "question": "Dans un va-et-vient, un interrupteur peut éteindre la lampe :", "choix": ["seulement si l'autre est en haut", "seulement si l'autre est en bas", "jamais", "quelle que soit la position de l'autre"], "bonne": 3, "explication": "Chaque interrupteur agit indépendamment de l'autre.", "renvoi_lecon": 0 },
+    { "question": "Pourquoi un simple allumage ne suffit-il pas dans un couloir ?", "choix": ["il consomme trop", "il n'accepte qu'une ampoule", "il faudrait revenir sur ses pas pour éteindre", "il est interdit"], "bonne": 2, "explication": "On veut allumer à un bout et éteindre à l'autre.", "renvoi_lecon": 0 },
+    { "question": "Combien de bornes possède un interrupteur va-et-vient ?", "choix": ["deux", "trois", "quatre", "une"], "bonne": 1, "explication": "Un commun et deux navettes.", "renvoi_lecon": 1 },
+    { "question": "Comment s'appellent les deux bornes de sortie d'un va-et-vient ?", "choix": ["les navettes", "les neutres", "les terres", "les retours"], "bonne": 0, "explication": "Souvent repérées 1 et 2.", "renvoi_lecon": 1 },
+    { "question": "Un va-et-vient est :", "choix": ["un simple contact ouvert ou fermé", "un bouton-poussoir", "un disjoncteur", "un inverseur"], "bonne": 3, "explication": "Il aiguille le commun vers une navette ou vers l'autre.", "renvoi_lecon": 1 },
+    { "question": "Dans une position donnée, le commun d'un va-et-vient est relié :", "choix": ["aux deux navettes à la fois", "à aucune navette", "à une seule des deux navettes", "au neutre"], "bonne": 2, "explication": "À la navette 1 ou à la navette 2, jamais aux deux.", "renvoi_lecon": 1 },
+    { "question": "Comment repère-t-on souvent la borne commune ?", "choix": ["par la lettre N", "par la lettre L", "par le symbole de la terre", "par le chiffre 2"], "bonne": 1, "explication": "L, ou une flèche, ou une borne d'une autre couleur.", "renvoi_lecon": 1 },
+    { "question": "Où vont les navettes ?", "choix": ["d'un va-et-vient à l'autre, et nulle part ailleurs", "au tableau", "à la lampe", "à la prise de terre"], "bonne": 0, "explication": "Elles relient uniquement les deux va-et-vient.", "renvoi_lecon": 1 },
+    { "question": "Peut-on utiliser un va-et-vient comme interrupteur simple ?", "choix": ["non, jamais", "oui, avec les deux navettes", "oui, sans le commun", "oui, avec le commun et une seule navette"], "bonne": 3, "explication": "C'est pourquoi beaucoup d'interrupteurs vendus sont des va-et-vient.", "renvoi_lecon": 1 },
+    { "question": "Combien de va-et-vient comporte le montage de base ?", "choix": ["un", "trois", "deux", "quatre"], "bonne": 2, "explication": "Deux va-et-vient reliés par deux navettes.", "renvoi_lecon": 2 },
+    { "question": "Combien de navettes relient les deux va-et-vient ?", "choix": ["une", "deux", "trois", "quatre"], "bonne": 1, "explication": "Deux navettes.", "renvoi_lecon": 2 },
+    { "question": "Où arrive la phase dans un montage va-et-vient ?", "choix": ["sur le commun du premier va-et-vient", "sur une navette", "directement à la lampe", "sur le commun des deux va-et-vient"], "bonne": 0, "explication": "La phase alimente le commun du premier.", "renvoi_lecon": 2 },
+    { "question": "D'où part le retour lampe ?", "choix": ["d'une navette", "du premier va-et-vient", "du tableau", "du commun du second va-et-vient"], "bonne": 3, "explication": "Le commun du second va-et-vient alimente la lampe.", "renvoi_lecon": 2 },
+    { "question": "Les deux va-et-vient sont sur la même navette. La lampe est :", "choix": ["éteinte", "en court-circuit", "allumée", "à moitié allumée"], "bonne": 2, "explication": "Le chemin est continu de la phase à la lampe.", "renvoi_lecon": 2 },
+    { "question": "Les deux va-et-vient sont sur des navettes différentes. La lampe est :", "choix": ["allumée", "éteinte", "en surcharge", "allumée faiblement"], "bonne": 1, "explication": "Le chemin est coupé.", "renvoi_lecon": 2 },
+    { "question": "Que provoque la manœuvre de l'un des deux va-et-vient ?", "choix": ["elle inverse l'état de la lampe", "elle allume toujours", "elle éteint toujours", "rien"], "bonne": 0, "explication": "Allumée, elle s'éteint ; éteinte, elle s'allume.", "renvoi_lecon": 2 },
+    { "question": "Combien de fils arrivent au premier va-et-vient ?", "choix": ["deux", "quatre", "un", "trois : la phase et deux navettes"], "bonne": 3, "explication": "La phase sur le commun, les deux navettes sur 1 et 2.", "renvoi_lecon": 3 },
+    { "question": "Combien de fils arrivent au second va-et-vient ?", "choix": ["deux", "quatre", "trois : deux navettes et le retour lampe", "cinq"], "bonne": 2, "explication": "Les navettes sur 1 et 2, le retour lampe sur le commun.", "renvoi_lecon": 3 },
+    { "question": "Quels fils arrivent à la lampe ?", "choix": ["la phase et les deux navettes", "le retour lampe, le neutre et le conducteur de protection", "les deux navettes et le neutre", "la phase et le neutre"], "bonne": 1, "explication": "Comme pour un simple allumage.", "renvoi_lecon": 3 },
+    { "question": "Dans un va-et-vient, le neutre passe-t-il par les interrupteurs ?", "choix": ["non, il va directement à la lampe", "oui, par le premier", "oui, par le second", "oui, par les deux"], "bonne": 0, "explication": "Le neutre ne passe jamais par la commande.", "renvoi_lecon": 3 },
+    { "question": "On a croisé les deux navettes entre les deux appareils. Le montage :", "choix": ["ne fonctionne plus du tout", "fait déclencher le disjoncteur", "brûle l'ampoule", "fonctionne quand même"], "bonne": 3, "explication": "Les navettes sont interchangeables ; seules les positions « allumé » changent.", "renvoi_lecon": 3 },
+    { "question": "Quelle section utilise-t-on pour les navettes ?", "choix": ["0,5 mm²", "2,5 mm²", "1,5 mm²", "6 mm²"], "bonne": 2, "explication": "Tout le circuit d'éclairage est en 1,5 mm².", "renvoi_lecon": 3 },
+    { "question": "Quelle erreur de câblage ne pardonne pas dans un va-et-vient ?", "choix": ["croiser les deux navettes", "confondre un commun avec une navette", "utiliser du fil rigide", "repérer les fils"], "bonne": 1, "explication": "Le montage ne fonctionne alors que dans certaines positions.", "renvoi_lecon": 3 },
+    { "question": "Quel appareil ajoute-t-on pour commander depuis un troisième endroit ?", "choix": ["un permutateur", "un troisième va-et-vient", "un disjoncteur", "une minuterie"], "bonne": 0, "explication": "Le permutateur s'insère entre les deux va-et-vient.", "renvoi_lecon": 4 },
+    { "question": "Combien de bornes possède un permutateur ?", "choix": ["deux", "trois", "six", "quatre"], "bonne": 3, "explication": "Deux pour les navettes qui arrivent, deux pour celles qui repartent.", "renvoi_lecon": 4 },
+    { "question": "Où place-t-on le permutateur ?", "choix": ["avant le premier va-et-vient, sur la phase", "après le second, sur le retour lampe", "entre les deux va-et-vient, sur les navettes", "au tableau"], "bonne": 2, "explication": "Va-et-vient — permutateur — va-et-vient.", "renvoi_lecon": 4 },
+    { "question": "Que fait un permutateur ?", "choix": ["il coupe la phase", "il transmet les navettes tout droit ou il les croise", "il coupe le neutre", "il allume une seconde lampe"], "bonne": 1, "explication": "Deux positions : direct ou croisé.", "renvoi_lecon": 4 },
+    { "question": "Pourquoi ne peut-on pas placer un permutateur en bout de montage ?", "choix": ["il n'a de borne ni pour la phase ni pour le retour lampe", "il est trop gros", "il consomme trop", "il est interdit en logement"], "bonne": 0, "explication": "Aux extrémités, ce sont toujours des va-et-vient.", "renvoi_lecon": 4 },
+    { "question": "Que provoque la manœuvre du permutateur ?", "choix": ["elle coupe le disjoncteur", "elle ne fait rien", "elle double la tension", "elle inverse l'état de la lampe"], "bonne": 3, "explication": "Croiser les navettes revient à changer la navette utilisée.", "renvoi_lecon": 4 },
+    { "question": "Pour commander depuis 3 endroits, il faut :", "choix": ["3 va-et-vient", "1 va-et-vient et 2 permutateurs", "2 va-et-vient et 1 permutateur", "3 permutateurs"], "bonne": 2, "explication": "Deux va-et-vient aux extrémités, un permutateur au milieu.", "renvoi_lecon": 5 },
+    { "question": "Pour commander depuis 4 endroits, il faut :", "choix": ["4 va-et-vient", "2 va-et-vient et 2 permutateurs", "3 va-et-vient et 1 permutateur", "4 permutateurs"], "bonne": 1, "explication": "Toujours deux va-et-vient ; les points intermédiaires sont des permutateurs.", "renvoi_lecon": 5 },
+    { "question": "Pour commander depuis 2 endroits, il faut :", "choix": ["2 va-et-vient", "1 va-et-vient et 1 permutateur", "2 permutateurs", "2 interrupteurs simples"], "bonne": 0, "explication": "Le montage de base.", "renvoi_lecon": 5 },
+    { "question": "Quels appareils trouve-t-on aux deux extrémités du montage ?", "choix": ["des permutateurs", "des interrupteurs simples", "des boutons-poussoirs", "des va-et-vient"], "bonne": 3, "explication": "Toujours des va-et-vient.", "renvoi_lecon": 5 },
+    { "question": "À partir de trois points de commande, quel montage préfère-t-on en général ?", "choix": ["le double allumage", "le simple allumage", "le télérupteur", "plusieurs interrupteurs en série"], "bonne": 2, "explication": "Plus simple à câbler et à étendre, avec des boutons-poussoirs.", "renvoi_lecon": 5 },
+    { "question": "Pourquoi le montage à permutateurs devient-il lourd ?", "choix": ["il faut un disjoncteur par permutateur", "deux navettes à tirer partout et quatre fils par permutateur", "il n'accepte pas les ampoules LED", "il exige du 6 mm²"], "bonne": 1, "explication": "Plus il y a de points, plus le câblage et le dépannage se compliquent.", "renvoi_lecon": 5 },
+    { "question": "Un va-et-vient ne fonctionne que dans certaines positions. Cause la plus probable :", "choix": ["un commun et une navette inversés", "une ampoule grillée", "un disjoncteur trop petit", "une prise de terre absente"], "bonne": 0, "explication": "La phase ou le retour lampe est sur une borne de navette.", "renvoi_lecon": 6 },
+    { "question": "Où doit être raccordée la phase ?", "choix": ["sur une navette", "sur les deux communs", "sur le permutateur", "sur le commun d'un des deux va-et-vient"], "bonne": 3, "explication": "Phase sur un commun, retour lampe sur l'autre.", "renvoi_lecon": 6 },
+    { "question": "Où doit être raccordé le retour lampe ?", "choix": ["sur une navette", "sur le même commun que la phase", "sur le commun de l'autre va-et-vient", "au neutre"], "bonne": 2, "explication": "Le commun du second va-et-vient.", "renvoi_lecon": 6 },
+    { "question": "Comment identifie-t-on la borne commune d'un va-et-vient sans repère lisible ?", "choix": ["en le mettant sous tension et en touchant", "par un contrôle de continuité, hors tension", "au hasard", "à sa couleur seulement"], "bonne": 1, "explication": "Le commun est relié à une navette puis à l'autre quand on bascule.", "renvoi_lecon": 6 },
+    { "question": "Dans quelles conditions corrige-t-on le câblage ?", "choix": ["hors tension, absence de tension vérifiée", "sous tension, avec précaution", "interrupteurs éteints seulement", "ampoule retirée seulement"], "bonne": 0, "explication": "Comme pour toute intervention.", "renvoi_lecon": 6 }
+  ],
+  "jeu": {
+    "type": "vrai-faux-rapide",
+    "config": {
+      "affirmations": [
+        { "affirmation": "Le va-et-vient commande un point lumineux depuis deux endroits.", "vrai": true, "explication": "Chaque interrupteur agit quelle que soit la position de l'autre." },
+        { "affirmation": "Un interrupteur va-et-vient possède deux bornes.", "vrai": false, "explication": "Trois : un commun et deux navettes." },
+        { "affirmation": "La phase se raccorde sur une borne de navette.", "vrai": false, "explication": "Sur le commun du premier va-et-vient." },
+        { "affirmation": "La lampe est allumée quand les deux va-et-vient sont sur la même navette.", "vrai": true, "explication": "Le chemin est alors continu." },
+        { "affirmation": "Croiser les deux navettes empêche le montage de fonctionner.", "vrai": false, "explication": "Les navettes sont interchangeables." },
+        { "affirmation": "Un permutateur possède quatre bornes.", "vrai": true, "explication": "Deux navettes qui arrivent, deux qui repartent." },
+        { "affirmation": "Pour commander de 3 endroits, il faut 3 va-et-vient.", "vrai": false, "explication": "2 va-et-vient et 1 permutateur." },
+        { "affirmation": "Le permutateur se place entre les deux va-et-vient.", "vrai": true, "explication": "Jamais en bout de montage." }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

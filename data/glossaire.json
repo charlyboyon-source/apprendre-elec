@@ -500,5 +500,19 @@
   "DCL": {
     "nom": "Dispositif de Connexion pour Luminaire (DCL)",
     "definition": "Socle fixé au point lumineux, qui permet de brancher et débrancher un luminaire sans toucher aux conducteurs. Il reçoit le retour lampe, le neutre et le conducteur de protection."
+  },
+  "va-et-vient": {
+    "nom": "Va-et-vient",
+    "definition": "Montage qui commande un point lumineux depuis deux endroits, avec deux interrupteurs inverseurs reliés par deux navettes. La phase arrive sur le commun de l'un, le retour lampe part du commun de l'autre.",
+    "niveau_associe": 17
+  },
+  "navette": {
+    "nom": "Navette",
+    "definition": "Chacun des deux conducteurs qui relient entre eux les deux interrupteurs d'un va-et-vient. Elles ne vont ni au tableau, ni à la lampe."
+  },
+  "permutateur": {
+    "nom": "Permutateur",
+    "definition": "Appareil à quatre bornes inséré sur les navettes, entre deux va-et-vient, pour ajouter un point de commande. Il transmet les navettes tout droit ou les croise.",
+    "niveau_associe": 17
   }
 }

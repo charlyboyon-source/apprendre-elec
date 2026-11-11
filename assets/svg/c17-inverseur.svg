@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="L'interrupteur va-et-vient est un inverseur à trois bornes : une borne commune et deux bornes de navette ; le commun est relié à l'une ou à l'autre">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le va-et-vient : un inverseur à 3 bornes</text>
+<rect x="12" y="30" width="144" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<polyline points="32,78 62,78" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="82" cy="68" r="2.4" fill="#b48cf2"/>
+<circle cx="82" cy="88" r="2.4" fill="#b48cf2"/>
+<circle cx="62" cy="78" r="2.6" fill="#e8eaed"/>
+<polyline points="62,78 81,68" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="82,68 136,68" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="82,88 136,88" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="46" y="70" text-anchor="middle" font-size="7" fill="#e8eaed" font-weight="bold">commun</text>
+<text x="130" y="61" text-anchor="end" font-size="7" fill="#b48cf2" font-weight="bold">navette 1</text>
+<text x="130" y="102" text-anchor="end" font-size="7" fill="#b48cf2" font-weight="bold">navette 2</text>
+<text x="84" y="118" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">position 1</text>
+<rect x="164" y="30" width="144" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<polyline points="184,78 214,78" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="234" cy="68" r="2.4" fill="#b48cf2"/>
+<circle cx="234" cy="88" r="2.4" fill="#b48cf2"/>
+<circle cx="214" cy="78" r="2.6" fill="#e8eaed"/>
+<polyline points="214,78 233,88" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="234,68 288,68" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="234,88 288,88" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="198" y="70" text-anchor="middle" font-size="7" fill="#e8eaed" font-weight="bold">commun</text>
+<text x="282" y="61" text-anchor="end" font-size="7" fill="#b48cf2" font-weight="bold">navette 1</text>
+<text x="282" y="102" text-anchor="end" font-size="7" fill="#b48cf2" font-weight="bold">navette 2</text>
+<text x="236" y="118" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">position 2</text>
+<text x="160" y="146" text-anchor="middle" font-size="9.5" fill="#e8eaed" font-weight="bold">1 borne commune + 2 bornes de navette</text>
+<text x="160" y="166" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le commun n'est jamais relié aux deux navettes à la fois</text>
+</svg>

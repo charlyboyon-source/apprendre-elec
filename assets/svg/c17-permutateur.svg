@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Pour commander de trois endroits, on insère un permutateur entre les deux va-et-vient, sur les navettes : il les transmet tout droit ou il les croise">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Trois endroits : le permutateur</text>
+<polyline points="20,82 46,82" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="66" cy="72" r="2.4" fill="#b48cf2"/>
+<circle cx="66" cy="92" r="2.4" fill="#b48cf2"/>
+<circle cx="46" cy="82" r="2.6" fill="#e8eaed"/>
+<polyline points="46,82 65,72" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="66,72 126,72" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="66,92 126,92" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="126" y="56" width="68" height="52" rx="5" fill="#24282f" stroke="#ffd23f" stroke-width="1.8"/>
+<polyline points="134,72 186,92" fill="none" stroke="#b48cf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="134,92 186,72" fill="none" stroke="#b48cf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="194,72 254,72" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="194,92 254,92" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="254" cy="72" r="2.4" fill="#b48cf2"/>
+<circle cx="254" cy="92" r="2.4" fill="#b48cf2"/>
+<circle cx="274" cy="82" r="2.6" fill="#e8eaed"/>
+<polyline points="274,82 255,92" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="274,82 300,82" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="46" y="50" text-anchor="middle" font-size="7.5" fill="#ff8c2b" font-weight="bold">va-et-vient</text>
+<text x="160" y="48" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">PERMUTATEUR</text>
+<text x="274" y="50" text-anchor="middle" font-size="7.5" fill="#ff8c2b" font-weight="bold">va-et-vient</text>
+<text x="160" y="122" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">4 bornes</text>
+<text x="160" y="148" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">Il laisse passer les navettes tout droit, ou il les croise</text>
+<text x="160" y="168" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Il se place toujours entre les deux va-et-vient</text>
+</svg>

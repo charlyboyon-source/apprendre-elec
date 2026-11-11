@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma développé du va-et-vient : la phase arrive au commun du premier va-et-vient ; deux navettes relient les deux appareils ; du commun du second part le retour lampe ; la lampe s'allume quand les deux va-et-vient sont sur la même navette">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Va-et-vient : le schéma développé</text>
+<polyline points="24,40 296,40" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="18" y="34" text-anchor="start" font-size="7.5" fill="#e85b50" font-weight="bold">phase</text>
+<polyline points="24,160 296,160" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="18" y="174" text-anchor="start" font-size="7.5" fill="#5aa9e6" font-weight="bold">neutre</text>
+<polyline points="70,40 70,90" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="90" cy="80" r="2.4" fill="#b48cf2"/>
+<circle cx="90" cy="100" r="2.4" fill="#b48cf2"/>
+<circle cx="70" cy="90" r="2.6" fill="#e8eaed"/>
+<polyline points="70,90 89,80" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="90,80 190,80" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="90,100 190,100" fill="none" stroke="#b48cf2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="190" cy="80" r="2.4" fill="#b48cf2"/>
+<circle cx="190" cy="100" r="2.4" fill="#b48cf2"/>
+<circle cx="210" cy="90" r="2.6" fill="#e8eaed"/>
+<polyline points="210,90 191,80" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="210,90 250,90 250,120" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="250" cy="130" r="9" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
+<polyline points="243.7,123.7 256.3,136.3" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="243.7,136.3 256.3,123.7" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="250,140 250,160" fill="none" stroke="#5aa9e6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="58" y="112" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">S1</text>
+<text x="222" y="112" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">S2</text>
+<text x="140" y="73" text-anchor="middle" font-size="7.5" fill="#b48cf2" font-weight="bold">2 navettes</text>
+<text x="268" y="112" text-anchor="middle" font-size="7" fill="#ff8c2b" font-weight="bold">retour</text>
+<text x="268" y="134" text-anchor="start" font-size="8" fill="#ffd23f" font-weight="bold">E1</text>
+<text x="140" y="128" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">même navette : allumé</text>
+<text x="140" y="142" text-anchor="middle" font-size="8.5" fill="#e85b50" font-weight="bold">navettes différentes : éteint</text>
+<text x="160" y="190" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Chaque interrupteur inverse l'état de la lampe</text>
+</svg>

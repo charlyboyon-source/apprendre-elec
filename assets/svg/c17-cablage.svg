@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du va-et-vient : au premier interrupteur, la phase et deux navettes ; au second, deux navettes et le retour lampe ; à la lampe, le retour, le neutre et le conducteur de protection">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Va-et-vient : combien de fils ?</text>
+<rect x="12" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="57" y="47" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">VA-ET-VIENT 1</text>
+<text x="57" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
+<text x="57" y="96" text-anchor="middle" font-size="8" fill="#e85b50" font-weight="bold">1 phase</text>
+<text x="57" y="110" text-anchor="middle" font-size="8" fill="#b48cf2" font-weight="bold">2 navettes</text>
+<rect x="115" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="160" y="47" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">VA-ET-VIENT 2</text>
+<text x="160" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
+<text x="160" y="96" text-anchor="middle" font-size="8" fill="#b48cf2" font-weight="bold">2 navettes</text>
+<text x="160" y="110" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">1 retour lampe</text>
+<rect x="218" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="263" y="47" text-anchor="middle" font-size="8" fill="#ffd23f" font-weight="bold">LAMPE</text>
+<text x="263" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
+<text x="263" y="96" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">1 retour lampe</text>
+<text x="263" y="110" text-anchor="middle" font-size="8" fill="#5aa9e6" font-weight="bold">1 neutre</text>
+<text x="263" y="124" text-anchor="middle" font-size="8" fill="#4cd97b" font-weight="bold">1 protection</text>
+<text x="160" y="162" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Phase sur le commun du 1er, retour lampe sur le commun du 2e</text>
+<text x="160" y="180" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le neutre va directement à la lampe</text>
+</svg>
