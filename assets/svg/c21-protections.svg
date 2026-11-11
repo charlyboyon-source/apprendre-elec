@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Les protections d'une installation photovoltaïque : côté continu, un coffret avec interrupteur-sectionneur et parafoudre ; l'onduleur ; côté alternatif, un coffret avec disjoncteur et différentiel ; les cadres reliés à la terre ; une signalisation des deux sources de tension">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Protéger des deux côtés de l'onduleur</text>
+<rect x="12" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#5aa9e6" stroke-width="1.2" />
+<text x="57" y="51" text-anchor="middle" font-size="8.5" fill="#5aa9e6" font-weight="bold">CÔTÉ CONTINU</text>
+<text x="57" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">sectionneur continu</text>
+<text x="57" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">parafoudre</text>
+<polyline points="105,61.0 110,61.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="116,61.0 108,57.0 108,65.0" fill="#9aa6b3"/>
+<rect x="115" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="160" y="51" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">ONDULEUR</text>
+<text x="160" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">conversion</text>
+<text x="160" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">et découplage</text>
+<polyline points="208,61.0 213,61.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="219,61.0 211,57.0 211,65.0" fill="#9aa6b3"/>
+<rect x="218" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="263" y="51" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">CÔTÉ ALTERNATIF</text>
+<text x="263" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">disjoncteur</text>
+<text x="263" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">différentiel</text>
+<rect x="12" y="100" width="144" height="36" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="84" y="115" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">TERRE</text>
+<text x="84" y="128" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">cadres et structure reliés</text>
+<rect x="164" y="100" width="144" height="36" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="236" y="115" text-anchor="middle" font-size="8.5" fill="#e85b50" font-weight="bold">SIGNALISATION</text>
+<text x="236" y="128" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">deux sources de tension</text>
+<text x="160" y="160" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">Couper l'AGCP ne met pas les panneaux hors tension</text>
+<text x="160" y="178" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Avant toute intervention : les deux côtés, absence de tension vérifiée</text>
+</svg>

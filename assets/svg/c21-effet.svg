@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="L'effet photovoltaïque : la lumière du soleil frappe une cellule en silicium, qui produit directement un courant continu">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">De la lumière au courant</text>
+<rect x="12" y="40" width="90" height="50" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="57" y="55" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">LUMIÈRE</text>
+<text x="57" y="68" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">le soleil éclaire</text>
+<text x="57" y="78" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">la cellule</text>
+<polyline points="105,65.0 110,65.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="116,65.0 108,61.0 108,69.0" fill="#9aa6b3"/>
+<rect x="115" y="40" width="90" height="50" rx="9" fill="#24282f" stroke="#5aa9e6" stroke-width="1.2" />
+<text x="160" y="55" text-anchor="middle" font-size="8.5" fill="#5aa9e6" font-weight="bold">CELLULE</text>
+<text x="160" y="68" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">en silicium :</text>
+<text x="160" y="78" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">effet photovoltaïque</text>
+<polyline points="208,65.0 213,65.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="219,65.0 211,61.0 211,69.0" fill="#9aa6b3"/>
+<rect x="218" y="40" width="90" height="50" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="263" y="55" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">COURANT</text>
+<text x="263" y="68" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">continu</text>
+<text x="263" y="78" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">un + et un −</text>
+<text x="160" y="118" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">Pas de pièce en mouvement, pas de bruit, pas de combustible</text>
+<text x="160" y="142" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">Du courant CONTINU, comme une pile</text>
+<text x="160" y="162" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Dès qu'il y a de la lumière, il y a de la tension</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Modules en série : les tensions s'additionnent, 8 modules de 40 V donnent 320 V. Modules en parallèle : les courants s'additionnent, la tension reste la même">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Série ou parallèle : rappel du bloc 1</text>
+<rect x="12" y="28" width="144" height="128" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#e85b50" font-weight="bold">EN SÉRIE</text>
+<text x="84" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">les tensions s'additionnent</text>
+<text x="84" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="98" text-anchor="middle" font-size="11" fill="#e85b50" font-weight="bold">8 × 40 V</text>
+<text x="84" y="113" text-anchor="middle" font-size="14" fill="#e85b50" font-weight="bold">= 320 V</text>
+<text x="84" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">le même courant partout</text>
+<rect x="164" y="28" width="144" height="128" rx="9" fill="#24282f" stroke="#5aa9e6" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#5aa9e6" font-weight="bold">EN PARALLÈLE</text>
+<text x="236" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">les courants s'additionnent</text>
+<text x="236" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="98" text-anchor="middle" font-size="11" fill="#5aa9e6" font-weight="bold">2 × 10 A</text>
+<text x="236" y="113" text-anchor="middle" font-size="14" fill="#5aa9e6" font-weight="bold">= 20 A</text>
+<text x="236" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">la même tension pour tous</text>
+<text x="160" y="174" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Une suite de modules en série s'appelle une chaîne</text>
+</svg>

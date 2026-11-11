@@ -570,5 +570,27 @@
   "délestage": {
     "nom": "Délestage",
     "definition": "Coupure momentanée d'un appareil non prioritaire quand la puissance appelée approche de celle du contrat, pour éviter que le disjoncteur de branchement déclenche."
+  },
+  "effet photovoltaïque": {
+    "nom": "Effet photovoltaïque",
+    "definition": "Production directe d'électricité par une cellule de silicium éclairée. Le courant obtenu est continu, et il apparaît dès que la cellule reçoit de la lumière.",
+    "niveau_associe": 21
+  },
+  "watt-crête": {
+    "nom": "Watt-crête (Wc)",
+    "definition": "Unité de puissance d'un module photovoltaïque : la puissance qu'il fournit dans des conditions d'essai de référence, proches du plein soleil. C'est un maximum."
+  },
+  "chaîne photovoltaïque": {
+    "nom": "Chaîne photovoltaïque",
+    "definition": "Suite de modules reliés en série. Leurs tensions s'additionnent : une chaîne atteint couramment plusieurs centaines de volts en courant continu."
+  },
+  "onduleur": {
+    "nom": "Onduleur",
+    "definition": "Appareil qui transforme le courant continu des panneaux en courant alternatif 230 V 50 Hz, synchronisé avec le réseau. Il s'arrête si le réseau disparaît : c'est le découplage.",
+    "niveau_associe": 21
+  },
+  "autoconsommation": {
+    "nom": "Autoconsommation",
+    "definition": "Fait de consommer soi-même l'électricité produite par ses panneaux. Le surplus peut être vendu ; le réseau fournit le complément quand la production ne suffit pas."
   }
 }

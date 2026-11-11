@@ -59,7 +59,7 @@
       "niveaux": [
         { "id": 19, "titre": "Eau chaude et heures creuses" },
         { "id": 20, "titre": "Recharge de véhicule et domotique" },
-        { "id": 21, "titre": "Le photovoltaïque", "aVenir": true }
+        { "id": 21, "titre": "Le photovoltaïque" }
       ]
     }
   ]
