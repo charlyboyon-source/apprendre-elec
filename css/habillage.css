@@ -37,3 +37,7 @@
 /* Lecture plus confortable sur grand écran */
 .niveau { max-width: 760px; }
 .lecon-memo { color: var(--texte); font-weight: 600; background: #e6f6ec; }
+
+/* Scène du jeu « Trouve l'erreur » : dessinée pour un fond sombre */
+.jeu-scene { background: #1c2530; border-color: #1c2530; }
+.jeu-item:hover .cible { stroke: var(--accent); }
