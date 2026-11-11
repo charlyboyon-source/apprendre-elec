@@ -1,0 +1,122 @@
+{
+  "id": 12,
+  "bloc": 3,
+  "titre": "Conducteurs et câbles",
+  "objectif": "Savoir nommer, lire et choisir un conducteur : âme, désignation, couleurs, section et chute de tension",
+  "cours": {
+    "intro": "Les appareils de protection sont au tableau ; les récepteurs sont dans les pièces. Entre les deux, il y a des dizaines de mètres de conducteurs. Ce module t'apprend à les nommer, à lire ce qui est écrit dessus, à reconnaître leurs couleurs et à choisir leur section. Un fil mal choisi ne se voit pas une fois le mur refermé — mais il chauffe pendant des années.",
+    "sections": [
+      {
+        "titre": "1. Conducteur isolé ou câble ?",
+        "svg": "c12-anatomie.svg",
+        "contenu": "<p>Deux mots que l'on mélange dans la vie courante, mais pas dans le métier.</p><p>Un [[conducteur]] isolé, c'est une [[âme]] métallique — presque toujours du cuivre — recouverte d'une enveloppe [[isolant|isolante]]. Un seul chemin pour le courant. On dit couramment « un fil ».</p><p>Un [[câble]], c'est <b>plusieurs conducteurs isolés</b> réunis sous une <b>gaine</b> commune, qui les protège mécaniquement. Le câble d'un four, d'une rallonge ou d'une alimentation extérieure en sont des exemples.</p><p>La différence compte au moment de la pose : les conducteurs isolés doivent toujours être protégés par un conduit ou une goulotte, parce que leur seule enveloppe est leur isolant. Le câble, lui, possède déjà sa gaine de protection.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Quand tu commandes du matériel, sois précis : « du fil de 2,5 » désigne des conducteurs isolés à tirer dans un conduit ; « du câble 3G2,5 » désigne un câble à trois conducteurs sous gaine. Ce n'est ni le même produit, ni la même pose." },
+        "memo": "Conducteur isolé = une âme + son isolant. Câble = plusieurs conducteurs isolés sous une gaine commune. Les conducteurs isolés se posent toujours sous conduit ou goulotte."
+      },
+      {
+        "titre": "2. L'âme : rigide ou souple",
+        "svg": "c12-ame.svg",
+        "contenu": "<p>L'âme est la partie métallique qui conduit le courant. Sa grosseur s'exprime par sa <b>section</b>, en millimètres carrés (mm²) : 1,5 mm², 2,5 mm², 6 mm²… C'est la surface du cuivre si on coupe le fil bien droit.</p><p>À section égale, l'âme peut être fabriquée de trois façons. <b>Rigide massive</b> : un seul brin de cuivre. C'est le fil des tableaux et des conduits, qui garde la forme qu'on lui donne. <b>Rigide câblée</b> : quelques gros brins torsadés, pour les grosses sections, trop raides en un seul brin. <b>Souple</b> : de nombreux brins fins, pour ce qui doit bouger ou se plier souvent.</p><p>Le courant admis ne dépend pas de la fabrication, seulement de la section. En revanche, une âme souple ne se serre pas telle quelle dans une borne à vis : ses brins s'écartent et le contact devient mauvais. On la termine par un <b>embout</b> serti.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Un brin souple qui dépasse d'une borne est un court-circuit en attente. Embout serti sur chaque extrémité souple, et on tire sur le fil après serrage pour vérifier qu'il tient." },
+        "memo": "Âme = le cuivre qui conduit, mesurée par sa section en mm². Rigide massive (1 brin), rigide câblée (gros brins), souple (brins fins, à terminer par un embout)."
+      },
+      {
+        "titre": "3. Lire une désignation : H07V-U",
+        "svg": "c12-h07vu.svg",
+        "contenu": "<p>Le conducteur le plus courant du bâtiment s'appelle [[H07V-U]]. Ce n'est pas un code obscur : chaque caractère se lit.</p><p><b>H</b> : conducteur <b>harmonisé</b>, conforme aux normes européennes.<br><b>07</b> : sa tension nominale, <b>450/750 V</b>.<br><b>V</b> : son isolant est en <b>PVC</b>.<br><b>U</b> : son âme est <b>rigide massive</b>.</p><p>La dernière lettre change avec le type d'âme : <b>H07V-R</b> pour une âme rigide câblée, <b>H07V-K</b> pour une âme souple.</p><p>Sur un chantier de logement, le H07V-U est le fil que l'on tire dans les conduits, pour les petites sections ; pour les grosses sections, on trouve surtout du H07V-R.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "La désignation est imprimée tout le long de l'isolant, avec la section. Avant de tirer une couronne entière, lis-la : un 1,5 et un 2,5 de la même couleur se ressemblent beaucoup dans une cave mal éclairée." },
+        "memo": "H07V-U : H harmonisé · 07 = 450/750 V · V isolant PVC · U âme rigide massive. H07V-R : rigide câblée. H07V-K : souple."
+      },
+      {
+        "titre": "4. Lire un câble : 3G2,5 et 5G1,5",
+        "svg": "c12-3g25.svg",
+        "contenu": "<p>Pour un câble, on indique en plus sa composition. Elle tient en trois informations, toujours dans le même ordre.</p><p>Dans <b>3G2,5</b> : <b>3</b> est le nombre de conducteurs ; <b>G</b> signifie que l'un d'eux est le conducteur de protection <b>vert/jaune</b> ; <b>2,5</b> est la section de chaque conducteur, en mm². Un câble 3G2,5 contient donc une phase, un neutre et une terre, en 2,5 mm².</p><p>De même, <b>5G1,5</b> : cinq conducteurs dont le vert/jaune, en 1,5 mm².</p><p>Si la lettre est un <b>X</b> au lieu du G, le câble ne contient <b>pas</b> de vert/jaune : un 2X1,5 a deux conducteurs, sans terre.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "G ou X : un seul caractère, et le câble a une terre ou n'en a pas. Avant de dérouler vingt mètres, vérifie que tu n'as pas pris un X pour alimenter un appareil de classe I." },
+        "memo": "3G2,5 = 3 conducteurs, dont le vert/jaune (G), en 2,5 mm². 5G1,5 = 5 conducteurs dont le vert/jaune, en 1,5 mm². X à la place de G = pas de vert/jaune."
+      },
+      {
+        "titre": "5. Les couleurs des conducteurs",
+        "svg": "c12-couleurs.svg",
+        "contenu": "<p>La couleur de l'isolant n'est pas décorative : elle dit à quoi sert le conducteur, à toi et à celui qui passera après toi.</p><p>Deux couleurs sont <b>réservées</b> et ne servent jamais à autre chose : le <b>bleu clair</b> pour le [[neutre]], et le <b>vert/jaune</b> pour le [[conducteur de protection]].</p><p>La [[phase]] prend toute autre couleur ; en pratique le <b>rouge</b>, le <b>marron</b> ou le <b>noir</b>.</p><p>Pour s'y retrouver dans les circuits d'éclairage, on donne souvent une couleur différente au fil qui va de l'interrupteur à la lampe — le retour lampe — par exemple l'orange. C'est une bonne habitude de chantier ; elle ne change rien à la règle : ni bleu clair, ni vert/jaune pour un conducteur qui n'est pas un neutre ou une terre.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Ne te fie jamais à la couleur seule dans une installation que tu n'as pas faite. Un ancien a pu utiliser un bleu comme retour lampe. La couleur donne une indication ; c'est la vérification d'absence de tension qui donne la certitude." },
+        "memo": "Bleu clair = neutre (réservé). Vert/jaune = protection (réservé). Phase = rouge, marron ou noir. La couleur renseigne, la mesure confirme."
+      },
+      {
+        "titre": "6. La section et le courant",
+        "svg": "c12-sections.svg",
+        "contenu": "<p>Pourquoi ne pas tout câbler en fil fin ? À cause de l'[[effet Joule]]. Un conducteur a une résistance ; traversé par un courant, il chauffe. Plus il est fin, plus il résiste, et plus il chauffe pour un même courant. Au-delà d'une certaine température, l'isolant se dégrade.</p><p>À chaque section correspond donc un courant à ne pas dépasser, et un <b>calibre maximal</b> pour le disjoncteur qui la protège. On l'a vu au module 10 : <b>1,5 mm² → 16 A</b> · <b>2,5 mm² → 20 A</b> · <b>6 mm² → 32 A</b> · <b>10 mm² → 40 A</b> · <b>16 mm² → 63 A</b>.</p><p>Trois sections reviennent sans cesse dans un logement : le <b>1,5 mm²</b> pour l'éclairage, le <b>2,5 mm²</b> pour les prises de courant, le <b>6 mm²</b> pour la plaque de cuisson.</p><p>Et dans un même circuit, tous les conducteurs ont la <b>même section</b> : la phase, le neutre et le conducteur de protection.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "On ne « finit » jamais un circuit avec une chute de fil plus fin parce qu'il manquait deux mètres. Le circuit vaut ce que vaut son tronçon le plus faible, et c'est lui qui chauffera." },
+        "memo": "Plus le courant est fort, plus la section est grosse. 1,5 mm² → 16 A · 2,5 → 20 A · 6 → 32 A · 10 → 40 A · 16 → 63 A. Éclairage 1,5 · prises 2,5 · plaque 6."
+      },
+      {
+        "titre": "7. La chute de tension",
+        "svg": "c12-chute.svg",
+        "contenu": "<p>La résistance d'un conducteur a un second effet : elle fait perdre un peu de tension en route. C'est la [[chute de tension]]. D'après la [[loi d'Ohm]], elle vaut U = R × I : elle augmente avec le courant, et avec la résistance du fil — donc avec sa <b>longueur</b>, et d'autant plus que sa section est <b>petite</b>.</p><p>Sur quelques mètres, elle est négligeable. Sur une longue ligne — un abri de jardin au fond du terrain, un portail à cinquante mètres — elle peut devenir gênante : lampes qui éclairent moins, moteurs qui peinent à démarrer.</p><p>La norme fixe des limites : la chute de tension ne doit pas dépasser <b>3 %</b> pour l'éclairage et <b>5 %</b> pour les autres usages. Sous 230 V, cela fait 230 × 0,03 = <b>6,9 V</b> et 230 × 0,05 = <b>11,5 V</b>.</p><p>Le remède est simple : sur une grande longueur, on choisit la <b>section supérieure</b>. Une section plus grosse résiste moins, donc perd moins.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Dès qu'une ligne dépasse quelques dizaines de mètres, pose-toi la question de la chute de tension avant de commander le câble. Passer de 2,5 à 4 ou 6 mm² coûte peu au moment de la pose, et très cher une fois la tranchée rebouchée." },
+        "memo": "Chute de tension = tension perdue dans le fil ; elle augmente avec la longueur et le courant, diminue avec la section. Limites : 3 % en éclairage (6,9 V), 5 % ailleurs (11,5 V). Longue ligne → section supérieure."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Qu'est-ce qu'un conducteur isolé ?", "choix": ["plusieurs fils sous une gaine commune", "un tube qui protège les fils", "une âme métallique recouverte d'un isolant", "un appareil de protection"], "bonne": 2, "explication": "Une âme et son isolant : un seul chemin pour le courant.", "renvoi_lecon": 0 },
+    { "question": "Qu'est-ce qu'un câble ?", "choix": ["une âme nue sans isolant", "plusieurs conducteurs isolés sous une gaine commune", "un conducteur de forte section uniquement", "un conduit rempli de fils"], "bonne": 1, "explication": "Le câble réunit plusieurs conducteurs isolés sous une gaine qui les protège.", "renvoi_lecon": 0 },
+    { "question": "De quel métal est presque toujours faite l'âme d'un conducteur de logement ?", "choix": ["le cuivre", "le fer", "le plomb", "le zinc"], "bonne": 0, "explication": "Le cuivre, très bon conducteur.", "renvoi_lecon": 0 },
+    { "question": "Comment pose-t-on des conducteurs isolés ?", "choix": ["directement dans le plâtre, nus", "agrafés à même le mur", "sans aucune protection", "toujours sous conduit ou goulotte"], "bonne": 3, "explication": "Leur seule enveloppe est leur isolant : il leur faut une protection mécanique.", "renvoi_lecon": 0 },
+    { "question": "À quoi sert la gaine d'un câble ?", "choix": ["à conduire le courant", "à remplacer le conducteur de protection", "à protéger mécaniquement les conducteurs qu'elle réunit", "à augmenter la section"], "bonne": 2, "explication": "La gaine regroupe et protège les conducteurs isolés.", "renvoi_lecon": 0 },
+    { "question": "Dans un câble 3G2,5, combien y a-t-il d'âmes en cuivre ?", "choix": ["1", "3", "2", "5"], "bonne": 1, "explication": "Un câble contient autant d'âmes que de conducteurs : ici 3.", "renvoi_lecon": 0 },
+    { "question": "En quelle unité exprime-t-on la section d'un conducteur ?", "choix": ["en millimètres carrés (mm²)", "en millimètres (mm)", "en ampères (A)", "en ohms (Ω)"], "bonne": 0, "explication": "La section est une surface : celle du cuivre, en mm².", "renvoi_lecon": 1 },
+    { "question": "Une âme rigide massive est faite :", "choix": ["de nombreux brins fins", "de deux métaux différents", "d'aluminium et de PVC", "d'un seul brin"], "bonne": 3, "explication": "Un seul brin de cuivre, qui garde la forme qu'on lui donne.", "renvoi_lecon": 1 },
+    { "question": "Une âme souple est faite :", "choix": ["d'un seul brin", "d'un tube creux", "de nombreux brins fins", "d'un brin d'acier"], "bonne": 2, "explication": "De nombreux brins fins, pour ce qui doit bouger ou se plier.", "renvoi_lecon": 1 },
+    { "question": "Avant de serrer une âme souple dans une borne à vis, on :", "choix": ["la torsade très fort", "la termine par un embout serti", "la brûle au briquet", "la coupe en biais"], "bonne": 1, "explication": "Sans embout, les brins s'écartent et le contact est mauvais.", "renvoi_lecon": 1 },
+    { "question": "À section égale, le courant admis dépend-il du type d'âme (rigide ou souple) ?", "choix": ["non, seulement de la section", "oui, le souple admet deux fois plus", "oui, le rigide admet deux fois plus", "oui, le souple n'admet aucun courant"], "bonne": 0, "explication": "C'est la section de cuivre qui compte, pas la façon dont l'âme est fabriquée.", "renvoi_lecon": 1 },
+    { "question": "Pourquoi utilise-t-on une âme rigide câblée pour les grosses sections ?", "choix": ["pour qu'elle chauffe davantage", "pour réduire sa section", "pour changer sa couleur", "un seul gros brin serait trop raide"], "bonne": 3, "explication": "Quelques gros brins torsadés restent maniables là où un brin unique ne le serait plus.", "renvoi_lecon": 1 },
+    { "question": "Dans H07V-U, que signifie le H ?", "choix": ["haute tension", "conducteur pour locaux humides", "conducteur harmonisé (normes européennes)", "conducteur horizontal"], "bonne": 2, "explication": "H = harmonisé.", "renvoi_lecon": 2 },
+    { "question": "Dans H07V-U, que signifie 07 ?", "choix": ["une section de 0,7 mm²", "une tension nominale de 450/750 V", "sept conducteurs", "un courant de 7 A"], "bonne": 1, "explication": "07 désigne la tension nominale 450/750 V.", "renvoi_lecon": 2 },
+    { "question": "Dans H07V-U, que signifie le V ?", "choix": ["un isolant en PVC", "un conducteur vert/jaune", "une tension en volts", "une âme en verre"], "bonne": 0, "explication": "V = isolant en PVC.", "renvoi_lecon": 2 },
+    { "question": "Dans H07V-U, que signifie le U ?", "choix": ["une âme souple", "un usage universel", "un conducteur unipolaire", "une âme rigide massive"], "bonne": 3, "explication": "U = âme rigide massive, un seul brin.", "renvoi_lecon": 2 },
+    { "question": "Quelle désignation correspond à une âme souple ?", "choix": ["H07V-U", "H07V-R", "H07V-K", "H07V-G"], "bonne": 2, "explication": "K = âme souple. U = rigide massive, R = rigide câblée.", "renvoi_lecon": 2 },
+    { "question": "Quelle désignation correspond à une âme rigide câblée ?", "choix": ["H07V-U", "H07V-R", "H07V-K", "H07V-X"], "bonne": 1, "explication": "R = rigide câblée.", "renvoi_lecon": 2 },
+    { "question": "Où trouve-t-on la désignation d'un conducteur ?", "choix": ["imprimée le long de son isolant", "uniquement sur la facture", "sur le disjoncteur", "sur la prise"], "bonne": 0, "explication": "Elle est marquée tout le long de l'isolant, avec la section.", "renvoi_lecon": 2 },
+    { "question": "Dans 3G2,5, que signifie le 3 ?", "choix": ["la section en mm²", "la tension en kV", "le nombre de câbles dans la couronne", "le nombre de conducteurs"], "bonne": 3, "explication": "Le premier chiffre donne le nombre de conducteurs.", "renvoi_lecon": 3 },
+    { "question": "Dans 3G2,5, que signifie le G ?", "choix": ["le câble est gris", "le câble est gainé", "l'un des conducteurs est le vert/jaune", "le câble est garanti"], "bonne": 2, "explication": "G : le câble comporte un conducteur de protection vert/jaune.", "renvoi_lecon": 3 },
+    { "question": "Dans 3G2,5, que signifie 2,5 ?", "choix": ["le diamètre du câble en cm", "la section de chaque conducteur, en mm²", "la longueur en mètres", "le courant maximal en ampères"], "bonne": 1, "explication": "2,5 mm² de section pour chaque conducteur.", "renvoi_lecon": 3 },
+    { "question": "Que contient un câble 5G1,5 ?", "choix": ["5 conducteurs dont le vert/jaune, en 1,5 mm²", "1 conducteur de 5 mm²", "5 conducteurs sans terre, en 1,5 mm²", "15 conducteurs"], "bonne": 0, "explication": "5 conducteurs, G donc avec vert/jaune, section 1,5 mm².", "renvoi_lecon": 3 },
+    { "question": "Un câble marqué 2X1,5 :", "choix": ["a deux conducteurs de protection", "a une section de 2 mm²", "est interdit", "n'a pas de conducteur vert/jaune"], "bonne": 3, "explication": "X à la place de G : pas de vert/jaune.", "renvoi_lecon": 3 },
+    { "question": "Quel câble contient une phase, un neutre et une terre en 2,5 mm² ?", "choix": ["2X2,5", "5G1,5", "3G2,5", "3G1,5"], "bonne": 2, "explication": "3 conducteurs dont le vert/jaune, en 2,5 mm².", "renvoi_lecon": 3 },
+    { "question": "Quelle couleur est réservée au neutre ?", "choix": ["le rouge", "le bleu clair", "le noir", "le marron"], "bonne": 1, "explication": "Le bleu clair ne sert qu'au neutre.", "renvoi_lecon": 4 },
+    { "question": "Quelle couleur est réservée au conducteur de protection ?", "choix": ["le vert/jaune", "le bleu clair", "le rouge", "l'orange"], "bonne": 0, "explication": "Le vert/jaune ne sert qu'à la terre.", "renvoi_lecon": 4 },
+    { "question": "Quelles couleurs utilise-t-on en pratique pour la phase ?", "choix": ["le bleu clair", "le vert/jaune", "uniquement le blanc", "le rouge, le marron ou le noir"], "bonne": 3, "explication": "Toute couleur sauf les deux réservées ; en pratique rouge, marron ou noir.", "renvoi_lecon": 4 },
+    { "question": "Peut-on utiliser un fil bleu clair comme retour lampe ?", "choix": ["oui, c'est conseillé", "oui, s'il est court", "non : le bleu clair est réservé au neutre", "oui, en va-et-vient"], "bonne": 2, "explication": "Les deux couleurs réservées ne servent jamais à autre chose.", "renvoi_lecon": 4 },
+    { "question": "Dans une installation ancienne, peut-on se fier à la seule couleur des fils ?", "choix": ["oui, toujours", "non : on vérifie l'absence de tension", "oui, si les fils sont propres", "oui, sauf pour le rouge"], "bonne": 1, "explication": "La couleur renseigne ; seule la vérification d'absence de tension donne la certitude.", "renvoi_lecon": 4 },
+    { "question": "Pourquoi un fil trop fin est-il dangereux ?", "choix": ["il chauffe trop par effet Joule", "il conduit trop bien", "il augmente la tension", "il supprime le neutre"], "bonne": 0, "explication": "Plus il est fin, plus il résiste et plus il chauffe pour un même courant.", "renvoi_lecon": 5 },
+    { "question": "Quelle section utilise-t-on couramment pour l'éclairage ?", "choix": ["6 mm²", "10 mm²", "16 mm²", "1,5 mm²"], "bonne": 3, "explication": "Le 1,5 mm², protégé par 16 A au maximum.", "renvoi_lecon": 5 },
+    { "question": "Quelle section utilise-t-on couramment pour la plaque de cuisson ?", "choix": ["1,5 mm²", "2,5 mm²", "6 mm²", "0,75 mm²"], "bonne": 2, "explication": "Le 6 mm², protégé par 32 A au maximum.", "renvoi_lecon": 5 },
+    { "question": "Quel est le calibre maximal du disjoncteur pour du 2,5 mm² ?", "choix": ["16 A", "20 A", "32 A", "40 A"], "bonne": 1, "explication": "2,5 mm² → 20 A au maximum.", "renvoi_lecon": 5 },
+    { "question": "Dans un même circuit, la phase, le neutre et le conducteur de protection ont :", "choix": ["la même section", "des sections différentes", "une section plus petite pour le neutre", "une section plus petite pour la terre"], "bonne": 0, "explication": "Tous les conducteurs d'un circuit ont la même section.", "renvoi_lecon": 5 },
+    { "question": "Il manque deux mètres de 2,5 mm² pour finir un circuit. Que fait-on ?", "choix": ["on termine en 1,5 mm²", "on termine en fil souple de 0,75 mm²", "on supprime le conducteur de protection", "on va chercher du 2,5 mm²"], "bonne": 3, "explication": "Le circuit vaut ce que vaut son tronçon le plus faible : pas de section plus petite en bout.", "renvoi_lecon": 5 },
+    { "question": "Quand le courant à transporter augmente, la section doit :", "choix": ["diminuer", "rester la même", "augmenter", "dépendre de la couleur"], "bonne": 2, "explication": "Plus de courant, plus de cuivre.", "renvoi_lecon": 5 },
+    { "question": "Qu'est-ce que la chute de tension ?", "choix": ["une coupure du courant", "la tension perdue le long du conducteur", "une fuite à la terre", "une surtension due à la foudre"], "bonne": 1, "explication": "La résistance du fil fait perdre un peu de tension entre le tableau et le récepteur.", "renvoi_lecon": 6 },
+    { "question": "La chute de tension augmente quand :", "choix": ["la ligne s'allonge", "la section augmente", "le courant diminue", "on change la couleur du fil"], "bonne": 0, "explication": "Plus le fil est long, plus il résiste, plus il fait perdre de tension.", "renvoi_lecon": 6 },
+    { "question": "Quelle est la chute de tension maximale admise pour l'éclairage ?", "choix": ["1 %", "5 %", "10 %", "3 %"], "bonne": 3, "explication": "3 % pour l'éclairage, 5 % pour les autres usages.", "renvoi_lecon": 6 },
+    { "question": "Quelle est la chute de tension maximale admise pour les autres usages ?", "choix": ["3 %", "8 %", "5 %", "15 %"], "bonne": 2, "explication": "5 % pour les usages autres que l'éclairage.", "renvoi_lecon": 6 },
+    { "question": "Sous 230 V, à combien de volts correspond une chute de 3 % ?", "choix": ["3 V", "6,9 V", "11,5 V", "23 V"], "bonne": 1, "explication": "230 × 0,03 = 6,9 V.", "renvoi_lecon": 6 },
+    { "question": "Sous 230 V, à combien de volts correspond une chute de 5 % ?", "choix": ["11,5 V", "5 V", "6,9 V", "46 V"], "bonne": 0, "explication": "230 × 0,05 = 11,5 V.", "renvoi_lecon": 6 },
+    { "question": "Comment réduire la chute de tension sur une longue ligne ?", "choix": ["en choisissant une section plus petite", "en changeant la couleur du fil", "en augmentant le calibre du disjoncteur", "en choisissant la section supérieure"], "bonne": 3, "explication": "Une section plus grosse résiste moins, donc perd moins de tension.", "renvoi_lecon": 6 }
+  ],
+  "jeu": {
+    "type": "vrai-faux-rapide",
+    "config": {
+      "affirmations": [
+        { "affirmation": "Un câble réunit plusieurs conducteurs isolés sous une gaine commune.", "vrai": true, "explication": "C'est sa définition ; le conducteur isolé, lui, n'a qu'une âme et son isolant." },
+        { "affirmation": "Dans H07V-U, le U signifie que l'âme est souple.", "vrai": false, "explication": "U = rigide massive. L'âme souple, c'est K." },
+        { "affirmation": "Un câble 3G2,5 contient un conducteur vert/jaune.", "vrai": true, "explication": "Le G l'indique. Avec un X, il n'y en aurait pas." },
+        { "affirmation": "Le bleu clair peut servir de phase si on manque de fil rouge.", "vrai": false, "explication": "Le bleu clair est réservé au neutre, sans exception." },
+        { "affirmation": "Un conducteur de 1,5 mm² se protège par un disjoncteur de 16 A au maximum.", "vrai": true, "explication": "1,5 mm² → 16 A · 2,5 mm² → 20 A · 6 mm² → 32 A." },
+        { "affirmation": "Plus un fil est fin, moins il chauffe.", "vrai": false, "explication": "C'est l'inverse : plus il est fin, plus il résiste et plus il chauffe." },
+        { "affirmation": "La chute de tension augmente avec la longueur de la ligne.", "vrai": true, "explication": "Plus le fil est long, plus sa résistance est grande." },
+        { "affirmation": "La chute de tension admise pour l'éclairage est de 10 %.", "vrai": false, "explication": "3 % pour l'éclairage, 5 % pour les autres usages." }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

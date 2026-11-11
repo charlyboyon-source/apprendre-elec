@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="La chute de tension : plus la ligne est longue et le fil fin, plus la tension baisse à l'arrivée. Limites : 3 % pour l'éclairage, 5 % pour les autres usages">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La chute de tension : attention aux longueurs</text>
+<polygon points="20,70 36,81 36,111 20,100" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="20,70 36,81 36,111 20,100" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="36,81 58,70 58,100 36,111" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="36,81 58,70 58,100 36,111" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="20,70 42,59 58,70 36,81" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="39" y="56" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">230 V</text>
+<polyline points="60,92 250,92" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="155" y="84" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">longue ligne, fil trop fin</text>
+<polygon points="256,70 272,81 272,111 256,100" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="256,70 272,81 272,111 256,100" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="272,81 294,70 294,100 272,111" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="272,81 294,70 294,100 272,111" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="256,70 278,59 294,70 272,81" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="275" y="56" text-anchor="middle" font-size="10" fill="#e85b50" font-weight="bold">moins</text>
+<rect x="12" y="128" width="144" height="36" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="84" y="143" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">ÉCLAIRAGE</text>
+<text x="84" y="157" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">3 % au maximum</text>
+<rect x="164" y="128" width="144" height="36" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="236" y="143" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">AUTRES USAGES</text>
+<text x="236" y="157" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">5 % au maximum</text>
+<text x="160" y="180" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Ligne très longue : on passe à la section supérieure</text>
+</svg>

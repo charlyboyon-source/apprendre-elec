@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Un conducteur isolé : une âme en cuivre entourée d'un isolant. Un câble : plusieurs conducteurs isolés réunis sous une gaine commune">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Conducteur isolé ou câble ?</text>
+<rect x="12" y="28" width="144" height="148" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">CONDUCTEUR ISOLÉ</text>
+<circle cx="84" cy="100" r="30" fill="#e85b50" fill-opacity="0.35" stroke="#e85b50" stroke-width="2"/><circle cx="84" cy="100" r="15" fill="#ff8c2b"/>
+<text x="84" y="146" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">l'âme en cuivre</text>
+<text x="84" y="158" text-anchor="middle" font-size="8" fill="#e85b50" font-weight="bold">+ son isolant</text>
+<text x="84" y="170" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">un seul conducteur</text>
+<rect x="164" y="28" width="144" height="148" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">CÂBLE</text>
+<circle cx="236" cy="100" r="36" fill="#24282f" stroke="#9aa6b3" stroke-width="3"/>
+<circle cx="236.0" cy="83.0" r="12" fill="#e85b50" fill-opacity="0.4" stroke="#e85b50" stroke-width="1.6"/><circle cx="236.0" cy="83.0" r="5.5" fill="#ff8c2b"/>
+<circle cx="221.3" cy="108.5" r="12" fill="#5aa9e6" fill-opacity="0.4" stroke="#5aa9e6" stroke-width="1.6"/><circle cx="221.3" cy="108.5" r="5.5" fill="#ff8c2b"/>
+<circle cx="250.7" cy="108.5" r="12" fill="#4cd97b" fill-opacity="0.4" stroke="#4cd97b" stroke-width="1.6"/><circle cx="250.7" cy="108.5" r="5.5" fill="#ff8c2b"/>
+<text x="236" y="152" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">plusieurs conducteurs</text>
+<text x="236" y="164" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="bold">sous une gaine commune</text>
+</svg>

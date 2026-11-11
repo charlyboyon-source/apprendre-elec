@@ -399,5 +399,25 @@
   "peigne d'alimentation": {
     "nom": "Peigne d'alimentation",
     "definition": "Barre conductrice à dents qui alimente d'un coup tous les appareils d'une rangée du tableau, à la place de pontages en fil."
+  },
+  "âme": {
+    "nom": "Âme",
+    "definition": "Partie métallique d'un conducteur, celle qui transporte le courant. Presque toujours en cuivre. Elle peut être rigide massive (un brin), rigide câblée (quelques gros brins) ou souple (nombreux brins fins).",
+    "niveau_associe": 12
+  },
+  "câble": {
+    "nom": "Câble",
+    "definition": "Ensemble de plusieurs conducteurs isolés réunis sous une gaine commune qui les protège. Exemple : un câble 3G2,5 contient trois conducteurs de 2,5 mm², dont le vert/jaune.",
+    "niveau_associe": 12
+  },
+  "H07V-U": {
+    "nom": "H07V-U",
+    "definition": "Désignation du conducteur rigide courant du bâtiment : H = harmonisé, 07 = tension 450/750 V, V = isolant PVC, U = âme rigide massive. Variantes : H07V-R (rigide câblée), H07V-K (souple).",
+    "niveau_associe": 12
+  },
+  "chute de tension": {
+    "nom": "Chute de tension",
+    "definition": "Tension perdue le long d'un conducteur à cause de sa résistance. Elle augmente avec la longueur et le courant, diminue quand la section augmente. Limites : 3 % pour l'éclairage, 5 % pour les autres usages.",
+    "niveau_associe": 12
   }
 }
