@@ -17,11 +17,12 @@
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/carte.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
 </head>
 <body>
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
-    <span class="titre-site">⚡ ApprendreElec</span>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
 
@@ -29,14 +30,34 @@
 
   <main class="accueil">
     <section class="hero">
-      <div class="hero-logo">⚡ ApprendreElec</div>
-      <p class="hero-phrase">Apprends l'électricité du bâtiment, du débutant à l'examen — gratuitement</p>
-      <p class="hero-public">Pour les curieux, les candidats au TP Électricien et les pros en révision.</p>
+      <div>
+        <h1>Apprends l'électricité du bâtiment, <em>comme sur un chantier</em>.</h1>
+        <p class="hero-phrase">21 cours illustrés, des quiz corrigés et un examen blanc pour préparer le titre professionnel d'électricien. Gratuit, sans inscription.</p>
+        <div class="hero-actions">
+          <a class="plein" href="niveau.html?id=1">Commencer le premier cours</a>
+          <a class="creux" href="cours.html">Voir tous les cours</a>
+        </div>
+        <div class="hero-preuves"><span><b>21</b>cours</span><span><b>944</b>questions corrigées</span><span><b>129</b>mots du métier expliqués</span></div>
+      </div>
+      <figure class="hero-image">
+        <img src="assets/svg/accueil-tableau.svg" width="640" height="400" alt="Rangée de tableau électrique : un interrupteur différentiel 40 A, sensibilité 30 mA, suivi de trois disjoncteurs 10 A, 16 A et 20 A">
+      </figure>
     </section>
 
+    <h2 class="accueil-titre">Que veux-tu faire ?</h2>
+    <p class="accueil-sous">Pour les curieux, les candidats au TP Électricien et les pros en révision.</p>
+    <div class="entrees">
+      <a class="entree" href="cours.html"><i>1</i><b>Apprendre</b><span>21 cours illustrés, du plus simple au plus technique.</span><em>Ouvrir les cours →</em></a>
+      <a class="entree" href="examen.html"><i>2</i><b>M'entraîner</b><span>Un quiz par cours, un examen blanc noté sur 20, et la reprise de mes erreurs.</span><em>Ouvrir l'examen blanc →</em></a>
+      <a class="entree" href="fiche.html"><i>3</i><b>Réviser vite</b><span>Les fiches mémo et le lexique des 129 mots du métier.</span><em>Ouvrir les fiches →</em></a>
+      <a class="entree" href="atelier-depannage.html"><i>4</i><b>Pratiquer</b><span>L'atelier dépannage : trouve la panne sur une installation.</span><em>Ouvrir l'atelier →</em></a>
+    </div>
+
+    <h2 class="accueil-titre" id="parcours">Le parcours</h2>
+    <p class="accueil-sous">Cinq blocs, dans l'ordre où on apprend le métier. Chaque cours se termine par un quiz.</p>
     <div class="progression-bandeau" aria-label="Ta progression"></div>
 
-    <div class="carte" aria-label="Carte des niveaux"></div>
+    <div class="carte" aria-label="Le parcours, bloc par bloc"></div>
   </main>
 
   <footer class="pied">

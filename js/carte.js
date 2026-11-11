@@ -118,6 +118,7 @@ function creerBulle(niveau, etat, aVenir) {
   const libelle = document.createElement("span");
   libelle.className = "bulle-label";
   libelle.textContent = label;
+  if (!aVenir) libelle.addEventListener("click", () => bulle.click());
   item.appendChild(libelle);
   return item;
 }

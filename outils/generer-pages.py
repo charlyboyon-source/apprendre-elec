@@ -51,6 +51,7 @@ def tete(titre, description, chemin, base=""):
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/lecon.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
 </head>
 <body>
   <header class="entete">

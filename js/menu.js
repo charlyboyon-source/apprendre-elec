@@ -1,4 +1,4 @@
-// Menu ☰ : tiroir latéral avec le réglage "Navigation libre".
+// Menu : onglets visibles dans l'en-tête + tiroir ☰ (autres pages et réglage "Navigation libre").
 
 import { navigationLibre, definirNavigationLibre } from "./progression.js";
 
@@ -51,6 +51,25 @@ export function brancherMenu(onChangement) {
 
   document.body.appendChild(dimmer);
   document.body.appendChild(drawer);
+
+  // Menu toujours visible dans l'en-tête : les mêmes onglets sur toutes les pages.
+  const entete = document.querySelector(".entete");
+  if (entete && !entete.querySelector(".nav-haut")) {
+    const surCours = page === "cours.html" || location.pathname.includes("/cours/") || (surBiblio && type === "lecon");
+    const haut = document.createElement("nav");
+    haut.className = "nav-haut";
+    haut.setAttribute("aria-label", "Rubriques");
+    haut.innerHTML = `
+      <a class="${actif(surParcours).trim()}" href="index.html">Accueil</a>
+      <a class="${actif(surCours).trim()}" href="cours.html">Cours</a>
+      <a class="${actif(surBiblio && type === "quiz").trim()}" href="bibliotheque.html?type=quiz">Quiz</a>
+      <a class="${actif(page === "examen.html").trim()}" href="examen.html">Examen blanc</a>
+      <a class="${actif(page === "fiche.html").trim()}" href="fiche.html">Fiches mémo</a>
+      <a class="${actif(surAtelier).trim()}" href="atelier-depannage.html">Atelier</a>
+      <a class="${actif(page === "lexique.html").trim()}" href="lexique.html">Lexique</a>`;
+    entete.appendChild(haut);
+    haut.querySelector(".actif")?.scrollIntoView({ block: "nearest", inline: "center" });
+  }
 
   const bascule = drawer.querySelector(".menu-bascule");
   bascule.checked = navigationLibre();

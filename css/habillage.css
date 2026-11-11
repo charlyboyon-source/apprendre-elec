@@ -1,0 +1,39 @@
+/* Habillage commun : en-tête avec menu visible, cadres d'images, retouches du thème clair.
+   Chargé en dernier sur toutes les pages. */
+
+.entete { background: var(--fond-2); flex-wrap: wrap; gap: 6px 18px; padding: 10px 20px; justify-content: flex-start; }
+.entete .titre-site { order: 1; color: var(--texte); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; text-decoration: none; }
+.nav-haut { order: 2; margin-left: auto; display: flex; gap: 20px; font-weight: 600; font-size: 0.92rem; }
+.nav-haut a { color: var(--texte); text-decoration: none; padding: 8px 0 5px; border-bottom: 3px solid transparent; white-space: nowrap; }
+.nav-haut a:hover, .nav-haut a.actif { border-bottom-color: var(--accent); }
+.compteur-electrons { order: 3; border-color: var(--accent); color: var(--texte); font-size: 0.85rem; }
+.entete .bouton-sons { order: 3; }
+.bouton-burger { order: 4; }
+@media (max-width: 980px) {
+  .entete .titre-site { margin-right: auto; }
+  .entete { gap: 4px 8px; padding: 8px 14px; }
+  .entete .titre-site { font-size: 1.05rem; }
+  .entete .bouton-sons, .entete .bouton-burger { padding: 4px 6px; }
+  .compteur-electrons { padding: 2px 10px; font-size: 0.8rem; }
+  .nav-haut { order: 5; width: 100%; margin-left: 0; gap: 18px; overflow-x: auto; scrollbar-width: none; }
+  .nav-haut::-webkit-scrollbar { display: none; }
+}
+@media print { .nav-haut { display: none; } }
+
+.menu-tete { color: var(--texte); }
+.menu-lien.actif { border-color: var(--accent); }
+
+/* Les illustrations actuelles sont dessinées pour un fond sombre : on les pose sur une ardoise. */
+.lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image {
+  background: #1c2530; border-radius: 12px; padding: 10px;
+}
+.fiche-carte-image { border-radius: 0; border-bottom: 0; }
+
+/* Textes clairs prévus pour le fond sombre */
+.cours-chantier p, .jeu-retour.gagne, .jeu-retour.perdu { color: var(--texte); }
+
+.pied { color: var(--texte-2); }
+
+/* Lecture plus confortable sur grand écran */
+.niveau { max-width: 760px; }
+.lecon-memo { color: var(--texte); font-weight: 600; background: #e6f6ec; }

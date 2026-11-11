@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Rangée de tableau électrique : un interrupteur différentiel 40 A, sensibilité 30 mA, type A, suivi de trois disjoncteurs 10 A, 16 A et 20 A">
+<defs>
+<linearGradient id="g-corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f4f5f6"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#e3e5e8"/></linearGradient>
+<linearGradient id="g-nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eceef0"/></linearGradient>
+<linearGradient id="g-rail" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9ced4"/><stop offset=".5" stop-color="#eef0f2"/><stop offset="1" stop-color="#aab0b8"/></linearGradient>
+<linearGradient id="g-manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="g-vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<filter id="ombre" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#1b2430" flood-opacity=".28"/></filter>
+<g id="borne"><rect x="-13" y="-13" width="26" height="26" rx="4" fill="#2b3036"/><circle r="8.5" fill="url(#g-vis)"/><rect x="-6.5" y="-1.3" width="13" height="2.6" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<!-- fond de coffret -->
+<rect x="20" y="40" width="600" height="300" rx="14" fill="#eef1f4" stroke="#d3d8de"/>
+<!-- rail -->
+<rect x="30" y="172" width="580" height="36" fill="url(#g-rail)" stroke="#9aa1a9"/>
+<g fill="#8f969e"><rect x="60" y="184" width="22" height="12" rx="6"/><rect x="540" y="184" width="22" height="12" rx="6"/></g>
+<!-- conducteurs d'arrivée et de départ -->
+<g fill="none" stroke-linecap="round" stroke-width="9">
+<path d="M155 40 V92" stroke="#d92b2b"/><path d="M225 40 V92" stroke="#2166d1"/>
+<path d="M290 340 V288" stroke="#2166d1"/><path d="M320 340 V288" stroke="#d92b2b"/>
+<path d="M360 340 V288" stroke="#2166d1"/><path d="M390 340 V288" stroke="#d92b2b"/>
+<path d="M430 340 V288" stroke="#2166d1"/><path d="M460 340 V288" stroke="#d92b2b"/>
+</g>
+<!-- interrupteur différentiel (2 modules) -->
+<g filter="url(#ombre)">
+<rect x="120" y="70" width="140" height="240" rx="6" fill="url(#g-corps)" stroke="#b9bfc6"/>
+<rect x="120" y="130" width="140" height="120" fill="url(#g-nez)" stroke="#c5cad0"/>
+<use href="#borne" x="155" y="100"/><use href="#borne" x="225" y="100"/><use href="#borne" x="155" y="280"/><use href="#borne" x="225" y="280"/>
+<rect x="140" y="150" width="34" height="62" rx="4" fill="#d9dde1" stroke="#b3b9c0"/><rect x="144" y="150" width="26" height="34" rx="4" fill="url(#g-manette)"/>
+<rect x="196" y="150" width="46" height="24" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="219" y="167" text-anchor="middle" font-size="13" font-weight="800" fill="#3a2a00">TEST</text>
+<text x="219" y="196" text-anchor="middle" font-size="17" font-weight="800" fill="#1c2530">40 A</text>
+<text x="219" y="216" text-anchor="middle" font-size="15" font-weight="800" fill="#1d5bd8">30 mA</text>
+<rect x="140" y="222" width="34" height="20" rx="3" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M144 236 q4 -10 8 0 t8 0" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M162 236 h8" stroke="#1c2530" stroke-width="1.4"/>
+<text x="219" y="238" text-anchor="middle" font-size="11" fill="#5b6673">type A · 230 V~</text>
+</g>
+<!-- trois disjoncteurs phase + neutre (1 module chacun) -->
+<g id="disj" filter="url(#ombre)">
+<rect x="270" y="70" width="70" height="240" rx="6" fill="url(#g-corps)" stroke="#b9bfc6"/>
+<rect x="270" y="130" width="70" height="120" fill="url(#g-nez)" stroke="#c5cad0"/>
+<use href="#borne" x="290" y="280"/><use href="#borne" x="320" y="280"/>
+<rect x="282" y="76" width="46" height="34" rx="3" fill="#2b3036"/><g fill="#c98a3a"><rect x="288" y="82" width="6" height="22"/><rect x="316" y="82" width="6" height="22"/></g>
+<rect x="288" y="150" width="34" height="62" rx="4" fill="#d9dde1" stroke="#b3b9c0"/><rect x="292" y="150" width="26" height="34" rx="4" fill="url(#g-manette)"/>
+</g>
+<use href="#disj" x="70"/><use href="#disj" x="140"/>
+<g text-anchor="middle" font-weight="800" fill="#1c2530" font-size="16">
+<text x="305" y="234">C10</text><text x="375" y="234">C16</text><text x="445" y="234">C20</text>
+</g>
+<!-- repères -->
+<g font-size="13" fill="#1c2530" font-weight="700">
+<text x="155" y="30" text-anchor="middle" fill="#d92b2b">phase</text><text x="225" y="30" text-anchor="middle" fill="#2166d1">neutre</text>
+<text x="190" y="366" text-anchor="middle">Interrupteur différentiel</text><text x="190" y="384" text-anchor="middle" font-weight="500" fill="#5b6673">protège les personnes</text>
+<text x="375" y="366" text-anchor="middle">Disjoncteurs</text><text x="375" y="384" text-anchor="middle" font-weight="500" fill="#5b6673">protègent les circuits</text>
+<path d="M520 128 H500 L474 160" fill="none" stroke="#5b6673"/><text x="524" y="124">manette</text><text x="524" y="141" font-weight="500" fill="#5b6673">levée = fermé</text>
+<path d="M520 252 H500 L466 232" fill="none" stroke="#5b6673"/><text x="524" y="256">calibre</text><text x="524" y="273" font-weight="500" fill="#5b6673">en ampères</text>
+</g>
+</svg>

@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const conteneurNiveau = document.querySelector(".niveau");
-  if (conteneurNiveau) initNiveau(conteneurNiveau);
+  if (conteneurNiveau) { brancherMenu(); mesurerEntete(); initNiveau(conteneurNiveau); }
 });
 
 // La barre d'onglets de l'activité se cale juste sous le header du site :

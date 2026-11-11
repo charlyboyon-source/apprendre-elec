@@ -1,32 +1,35 @@
-/* ApprendreElec — Thème sombre "Atelier"
-   Fond anthracite, accents jaune/orange électrique. */
+/* ApprendreElec — Thème clair "Papier"
+   Fond papier chaud, encre noire, accent jaune électrique. */
 
 :root {
-  /* Couleurs — fonds */
-  --fond: #1c1f24;            /* anthracite profond */
-  --fond-2: #24282f;          /* panneaux, cartes */
-  --fond-3: #2d323b;          /* éléments surélevés, popovers */
-  --bordure: #3a404b;
+  /* Couleurs — fonds (papier chaud) */
+  --fond: #faf6ef;
+  --fond-2: #ffffff;          /* panneaux, cartes */
+  --fond-3: #f3ede2;          /* éléments surélevés, survols */
+  --bordure: #e3dccf;
 
-  /* Couleurs — accents électriques */
-  --jaune: #ffd23f;           /* accent principal (électrons, actions) */
-  --orange: #ff8c2b;          /* accent secondaire (badges, alertes douces) */
-  --jaune-doux: rgba(255, 210, 63, 0.15);
+  /* Couleurs — encre et accent.
+     --jaune garde son nom historique mais désigne maintenant la couleur
+     principale (encre noire : boutons, titres forts). Le vrai jaune est --accent. */
+  --jaune: #1c2530;
+  --accent: #ffc21a;
+  --orange: #b85a08;
+  --jaune-doux: #fff1c2;
 
   /* Couleurs — états */
-  --ok: #4cd97b;
-  --erreur: #ff5c5c;
-  --verrou: #565d69;          /* niveaux verrouillés */
+  --ok: #1e9e5a;
+  --erreur: #d63b3b;
+  --verrou: #a2a9b2;
 
   /* Texte */
-  --texte: #e8eaed;
-  --texte-2: #9aa3b0;
-  --texte-sur-jaune: #1c1f24;
+  --texte: #1c2530;
+  --texte-2: #5b6673;
+  --texte-sur-jaune: #ffffff;
 
   /* Typo */
-  --police: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --police: "Inter", "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
   --police-titres: var(--police);
-  --taille-base: 16px;
+  --taille-base: 17px;
 
   /* Espacements */
   --esp-1: 4px;
@@ -38,8 +41,8 @@
   /* Rayons & ombres */
   --rayon: 12px;
   --rayon-bulle: 50%;
-  --ombre: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --lueur-jaune: 0 0 14px rgba(255, 210, 63, 0.45);
+  --ombre: 0 14px 34px -20px rgba(20, 30, 50, 0.4);
+  --lueur-jaune: 0 0 0 3px rgba(255, 194, 26, 0.5);
 }
 
 * { box-sizing: border-box; }
