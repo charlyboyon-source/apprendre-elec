@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>La loi d&#x27;Ohm et la puissance — cours d&#x27;électricité gratuit | ApprendreElec</title>
+  <meta name="description" content="Relier U, R et I — puis calculer une puissance et une énergie sans hésiter. Cours complet, illustré, avec quiz de 46 questions.">
+  <link rel="canonical" href="https://charlyboyon-source.github.io/apprendre-elec/cours/02-la-loi-d-ohm-et-la-puissance.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="La loi d&#x27;Ohm et la puissance — cours d&#x27;électricité gratuit | ApprendreElec">
+  <meta property="og:description" content="Relier U, R et I — puis calculer une puissance et une énergie sans hésiter. Cours complet, illustré, avec quiz de 46 questions.">
+  <meta property="og:url" content="https://charlyboyon-source.github.io/apprendre-elec/cours/02-la-loi-d-ohm-et-la-puissance.html">
+  <meta property="og:image" content="https://charlyboyon-source.github.io/apprendre-elec/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-cours">
+    <p class="lecon-kicker">BLOC 1 · LES BASES DE L'ÉLECTRICITÉ · MODULE 2</p>
+    <h1>La loi d'Ohm et la puissance</h1>
+    <p class="niveau-objectif">Relier U, R et I — puis calculer une puissance et une énergie sans hésiter</p>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=2&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=2&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=2">🖨 Fiche mémo</a>
+    </div>
+    <article class="cours">
+      <p class="cours-intro">Au module 1, tu as appris à nommer le courant (I), la tension (U) et la résistance (R). Place maintenant aux chiffres : ce module te donne les quatre formules qui reviennent sans arrêt, à l'examen comme sur le chantier. Rien de sorcier — juste un peu de méthode et d'entraînement.</p>
+      <section class="cours-section">
+        <h2 class="cours-titre">1. Rappel express : U pousse, I circule, R freine</h2>
+        <div class="lecon-figure"><img src="assets/svg/c2-rappel.svg" alt="1. Rappel express : U pousse, I circule, R freine" loading="lazy"></div>
+        <div class="cours-texte"><p>Trois grandeurs, une seule image — le circuit d'eau. La <a class="terme-lien" href="lexique.html#tension">tension</a> U <b>pousse</b> (comme une pression) : elle se mesure en <b>volts (V)</b>. L'<a class="terme-lien" href="lexique.html#intensite">intensité</a> I <b>circule</b> (comme un débit) : en <b>ampères (A)</b>. La <a class="terme-lien" href="lexique.html#resistance">résistance</a> R <b>freine</b> (comme un étranglement) : en <b>ohms (Ω)</b>.</p><p>Tu sens déjà qu'elles sont liées : pousse plus fort, le débit monte ; resserre le passage, le débit baisse. Ce module met enfin des chiffres sur cette intuition.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant tout calcul, repère les unités : V pour la tension, A pour l'intensité, Ω pour la résistance, W pour la puissance. Une grandeur, un symbole, une unité — on ne mélange jamais.</p></aside>
+        <div class="lecon-memo">◆ U pousse (V) · I circule (A) · R freine (Ω). Trois grandeurs liées : place aux formules.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">2. La loi d'Ohm : U = R × I</h2>
+        <div class="lecon-figure"><img src="assets/svg/n2-triangle.svg" alt="2. La loi d&#x27;Ohm : U = R × I" loading="lazy"></div>
+        <div class="cours-texte"><p>La relation reine, c'est la <a class="terme-lien" href="lexique.html#loi-d-ohm">loi d'Ohm</a> : <b>U = R × I</b>. La tension aux bornes d'une résistance (en volts) est égale à sa résistance (en ohms) multipliée par l'intensité qui la traverse (en ampères).</p><p>Le moyen mnémotechnique du métier, c'est le <b>triangle</b> : U tout en haut, R et I en bas. Tu caches du doigt la grandeur cherchée, et le triangle te donne la formule : cache U → il reste R × I ; cache R → il reste U / I ; cache I → il reste U / R.</p><p>Trois écritures, une seule loi : <b>U = R × I</b>, <b>R = U / I</b>, <b>I = U / R</b>. Selon ce que tu connais et ce que tu cherches, tu choisis la bonne.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>C'est surtout I = U / R qui sert : tu connais la tension (230 V) et la résistance d'un appareil, tu en déduis le courant qu'il appellera — donc le calibre de sa protection.</p></aside>
+        <div class="lecon-memo">◆ U = R × I. Le triangle : cache la grandeur cherchée, lis la formule. U=RI · R=U/I · I=U/R.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">3. La loi d'Ohm en chiffres</h2>
+        <div class="lecon-figure"><img src="assets/svg/n2-calcul.svg" alt="3. La loi d&#x27;Ohm en chiffres" loading="lazy"></div>
+        <div class="cours-texte"><p>Rien ne remplace le calcul à la main. Trois cas types, tous vérifiables.</p><p><b>Je cherche I.</b> Un radiateur de résistance 23 Ω sous 230 V : I = U / R = 230 / 23 = <b>10 A</b>.</p><p><b>Je cherche R.</b> Une lampe traversée par 0,5 A sous 230 V : R = U / I = 230 / 0,5 = <b>460 Ω</b>.</p><p><b>Je cherche U.</b> Une résistance de 6 Ω parcourue par 2 A : U = R × I = 6 × 2 = <b>12 V</b>.</p><p>Le réflexe avant de taper sur la calculette : vérifier que tout est en V, Ω et A. Pas de millivolts ni de milliampères qui traînent, sinon le résultat part à l'ouest.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Garde des ordres de grandeur en tête : sous 230 V, un appareil de quelques centaines d'ohms tire de l'ordre de l'ampère, un appareil de quelques dizaines d'ohms tire plusieurs ampères. Si tu trouves 0,001 A ou 5 000 A, c'est une erreur d'unité.</p></aside>
+        <div class="lecon-memo">◆ 230 / 23 = 10 A · 230 / 0,5 = 460 Ω · 6 × 2 = 12 V. Toujours en V, Ω, A.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">4. La puissance : P = U × I</h2>
+        <div class="lecon-figure"><img src="assets/svg/c2-iso-plaque.svg" alt="4. La puissance : P = U × I" loading="lazy"></div>
+        <div class="cours-texte"><p>La <a class="terme-lien" href="lexique.html#puissance">puissance</a> mesure ce qu'un appareil consomme à chaque instant : symbole <b>P</b>, unité le <b>watt (W)</b>. La formule reine : <b>P = U × I</b>.</p><p>Exemple : une bouilloire qui tire 8,7 A sous 230 V développe P = 230 × 8,7 ≈ <b>2 000 W</b>, soit 2 kW (1 kilowatt = 1 000 watts).</p><p>Mais le plus souvent, sur le chantier, c'est l'inverse qui sert : tu lis la <b>plaque signalétique</b> de l'appareil — elle indique sa tension et sa puissance — et tu en déduis le courant qu'il va appeler avec <b>I = P / U</b>. Un four de 2 300 W sous 230 V : I = 2300 / 230 = <b>10 A</b>. C'est ce courant qui décide du calibre du disjoncteur et de la section du câble.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Toujours lire la plaque : « 230 V ~ 2300 W » te donne tout. C'est le courant I = P/U = 10 A, et pas la puissance seule, qui fixe le calibre du disjoncteur et la section du câble (détail au bloc 3).</p></aside>
+        <div class="lecon-memo">◆ P = U × I (watts). Et surtout I = P / U pour trouver le courant d'un appareil : 2300 W sous 230 V = 10 A.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">5. La puissance dissipée et l'effet Joule</h2>
+        <div class="lecon-figure"><img src="assets/svg/c2-joule.svg" alt="5. La puissance dissipée et l&#x27;effet Joule" loading="lazy"></div>
+        <div class="cours-texte"><p>En remplaçant U par R × I dans P = U × I, on obtient une autre forme très utile : <b>P = R × I²</b>. La puissance « perdue » dans une résistance dépend du <b>carré</b> du courant.</p><p>Le carré, ça change tout : si le courant double, la puissance dissipée est multipliée par <b>quatre</b> (2² = 4). Cette puissance se transforme en chaleur : c'est l'<a class="terme-lien" href="lexique.html#effet-joule">effet Joule</a>.</p><p>L'effet Joule est ton <b>allié</b> dans un radiateur, un grille-pain ou un chauffe-eau (on veut de la chaleur). Il est ton <b>ennemi</b> dans un conducteur sous-dimensionné : un fil trop fin pour le courant qu'il transporte chauffe, son isolant se dégrade, et c'est le départ d'incendie. D'où l'obsession du métier : la bonne section de câble pour le bon courant.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Une rallonge laissée enroulée qui alimente une grosse charge chauffe (R × I² sur toute la longueur bobinée). On déroule TOUJOURS complètement un enrouleur quand il débite.</p></aside>
+        <div class="lecon-memo">◆ P = R × I². Courant ×2 → chaleur ×4. Effet Joule : utile dans un radiateur, dangereux dans un fil trop fin.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">6. L'énergie : E = P × t</h2>
+        <div class="lecon-figure"><img src="assets/svg/c2-iso-compteur.svg" alt="6. L&#x27;énergie : E = P × t" loading="lazy"></div>
+        <div class="cours-texte"><p>La puissance, c'est l'instant ; l'<a class="terme-lien" href="lexique.html#energie-electrique">énergie électrique</a>, c'est ce qui s'accumule dans le temps — et ce que tu paies. Formule : <b>E = P × t</b> (puissance × durée).</p><p>L'unité légale est le joule, mais ton compteur, lui, compte en <b>kilowattheures (kWh)</b> : 1 kWh = un appareil de 1 000 W qui fonctionne pendant 1 heure.</p><p>Exemples concrets. Un radiateur de 2 kW allumé 5 heures : E = 2 × 5 = <b>10 kWh</b>. Une box internet de 10 W laissée allumée 24 h : E = 0,01 kW × 24 h = <b>0,24 kWh</b> par jour — minuscule à l'unité, mais 365 jours par an et multiplié par tous les petits appareils, ça finit par compter.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Le compteur (le Linky, par exemple) totalise les kWh : c'est lui qui fait la facture. Forte puissance + longue durée = grosse conso. Le chauffage électrique cumule les deux : c'est le premier poste d'une facture.</p></aside>
+        <div class="lecon-memo">◆ E = P × t, comptée en kWh (1 kWh = 1 000 W pendant 1 h). Radiateur 2 kW × 5 h = 10 kWh.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">7. Les 4 formules et la méthode</h2>
+        <div class="lecon-figure"><img src="assets/svg/n2-formules.svg" alt="7. Les 4 formules et la méthode" loading="lazy"></div>
+        <div class="cours-texte"><p>Tu tiens le kit complet du calcul électrique :</p><p><b>U = R × I</b> (loi d'Ohm) · <b>P = U × I</b> (puissance) · <b>P = R × I²</b> (puissance dissipée, effet Joule) · <b>E = P × t</b> (énergie).</p><p>Avec ces quatre relations, tu traites la quasi-totalité des applications numériques de l'examen. La méthode est toujours la même : <b>1)</b> repère les grandeurs données et leurs unités ; <b>2)</b> repère la grandeur cherchée ; <b>3)</b> choisis LA formule qui les relie ; <b>4)</b> calcule, puis vérifie que l'ordre de grandeur est plausible (une lampe ne tire pas 50 A, un four ne tire pas 0,01 A).</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>À l'examen, écris la formule AVANT de remplacer par les chiffres : le correcteur valorise la démarche, et tu repères tes erreurs d'unité bien plus facilement.</p></aside>
+        <div class="lecon-memo">◆ U=R×I · P=U×I · P=R×I² · E=P×t. Méthode : données → cherchée → formule → ordre de grandeur.</div>
+      </section>
+    </article>
+    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=2&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=2&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=2">🖨 Fiche mémo</a>
+    </div>
+    <nav class="page-voisins"><a href="cours/01-la-nature-de-l-electricite.html">← La nature de l'électricité</a><a href="cours/03-le-circuit-electrique.html">Le circuit électrique →</a></nav>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

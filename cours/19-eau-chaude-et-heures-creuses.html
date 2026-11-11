@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Eau chaude et heures creuses — cours d&#x27;électricité gratuit | ApprendreElec</title>
+  <meta name="description" content="Connaître les types de chauffe-eau, leur circuit, et le câblage du contacteur heures creuses. Cours complet, illustré, avec quiz de 45 questions.">
+  <link rel="canonical" href="https://charlyboyon-source.github.io/apprendre-elec/cours/19-eau-chaude-et-heures-creuses.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Eau chaude et heures creuses — cours d&#x27;électricité gratuit | ApprendreElec">
+  <meta property="og:description" content="Connaître les types de chauffe-eau, leur circuit, et le câblage du contacteur heures creuses. Cours complet, illustré, avec quiz de 45 questions.">
+  <meta property="og:url" content="https://charlyboyon-source.github.io/apprendre-elec/cours/19-eau-chaude-et-heures-creuses.html">
+  <meta property="og:image" content="https://charlyboyon-source.github.io/apprendre-elec/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-cours">
+    <p class="lecon-kicker">BLOC 5 · APPLICATIONS MODERNES · MODULE 19</p>
+    <h1>Eau chaude et heures creuses</h1>
+    <p class="niveau-objectif">Connaître les types de chauffe-eau, leur circuit, et le câblage du contacteur heures creuses</p>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=19&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=19&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=19">🖨 Fiche mémo</a>
+    </div>
+    <article class="cours">
+      <p class="cours-intro">Premier module du bloc 5 : les applications. Le chauffe-eau est le plus gros consommateur d'électricité de bien des logements — et l'un des rares appareils que l'on peut faire fonctionner quand on veut, puisqu'il stocke ce qu'il produit. D'où une idée simple : le faire chauffer la nuit, quand l'électricité coûte moins cher. Ce module te présente les types de chauffe-eau, leur circuit, et le contacteur qui leur donne l'ordre de démarrer.</p>
+      <section class="cours-section">
+        <h2 class="cours-titre">1. L'eau chaude sanitaire</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-types.svg" alt="1. L&#x27;eau chaude sanitaire" loading="lazy"></div>
+        <div class="cours-texte"><p>L'<a class="terme-lien" href="lexique.html#ecs">ECS</a>, l'eau chaude sanitaire, c'est l'eau chaude des robinets, de la douche et de la baignoire — à ne pas confondre avec l'eau du chauffage, qui circule en circuit fermé dans les radiateurs.</p><p>Il existe <b>quatre types</b> de production d'eau chaude à connaître.</p><p>L'<b>instantané</b> : l'eau est chauffée au moment où elle passe, sans aucune réserve.<br>L'<b>accumulation</b> : l'eau est chauffée à l'avance et stockée dans une cuve isolée. C'est le « cumulus » classique.<br>Le <b>thermodynamique</b> : une cuve, elle aussi, mais chauffée par une pompe à chaleur qui prend les calories de l'air.<br>Le <b>solaire</b> : des capteurs exposés au soleil chauffent l'eau, avec un appoint pour les jours sans soleil.</p><p>Pour l'électricien, les quatre ont un point commun : il leur faut un circuit, une protection et, souvent, une commande.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Quand un client veut remplacer son chauffe-eau, la première question n'est pas électrique : combien de personnes dans le logement ? C'est elle qui fixe la capacité de la cuve, donc la puissance, donc ce que ton circuit doit alimenter.</p></aside>
+        <div class="lecon-memo">◆ ECS = eau chaude sanitaire. 4 types : instantané (au passage), accumulation (cuve), thermodynamique (pompe à chaleur), solaire (capteurs + appoint).</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">2. Instantané ou accumulation</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-instant-accu.svg" alt="2. Instantané ou accumulation" loading="lazy"></div>
+        <div class="cours-texte"><p>Les deux principes s'opposent, et le choix a des conséquences directes sur l'installation électrique.</p><p>Le chauffe-eau <b>instantané</b> ne stocke rien. Il doit donc amener l'eau à bonne température pendant les quelques secondes où elle le traverse. Pour y arriver, il lui faut une <b>forte puissance</b>, mais seulement pendant qu'un robinet est ouvert. Avantages : peu encombrant, pas d'eau maintenue chaude pour rien. Inconvénient : un appel de puissance important, qui demande une ligne en conséquence.</p><p>Le chauffe-eau à <b>accumulation</b> fait l'inverse. Il chauffe <b>lentement</b>, pendant plusieurs heures, une réserve d'eau qu'il garde au chaud dans une <b>cuve isolée</b>. Sa puissance est <b>modérée</b>. Inconvénient : quand la réserve est vide, il faut attendre. Avantage décisif : comme il stocke, on peut choisir <b>quand</b> il chauffe.</p><p>C'est cet avantage qui permet de le faire fonctionner pendant les heures creuses — on y vient à la section 6.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Souviens-toi du module 7 : en salle de bain, l'instantané est admis en volumes 1 et 2 ; le chauffe-eau à accumulation se place de préférence hors volume. Avant de parler de puissance, regarde où l'appareil sera posé.</p></aside>
+        <div class="lecon-memo">◆ Instantané : pas de réserve, forte puissance pendant le puisage. Accumulation : une cuve isolée, puissance modérée pendant des heures — et on peut choisir quand il chauffe.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">3. Le chauffe-eau à accumulation</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-cumulus.svg" alt="3. Le chauffe-eau à accumulation" loading="lazy"></div>
+        <div class="cours-texte"><p>Ouvrons le plus répandu. Un chauffe-eau à accumulation réunit quatre éléments.</p><p>La <b>cuve</b>, entourée d'un isolant, garde l'eau chaude pendant des heures. L'eau chaude, plus légère, se rassemble <b>en haut</b> : c'est là qu'on la prélève. L'eau froide arrive <b>par le bas</b>.</p><p>La <b>résistance</b> chauffante plonge dans le bas de la cuve. Par <a class="terme-lien" href="lexique.html#effet-joule">effet Joule</a>, elle transforme l'énergie électrique en chaleur.</p><p>Le <b>thermostat</b> surveille la température. Quand l'eau a atteint la valeur réglée, il coupe l'alimentation de la résistance ; quand elle a refroidi, il la rétablit. Il comporte aussi une sécurité qui coupe tout en cas de surchauffe anormale.</p><p>Le <a class="terme-lien" href="lexique.html#groupe-de-securite">groupe de sécurité</a>, posé sur l'arrivée d'eau froide, est un organe de plomberie, mais tu dois le connaître : en chauffant, l'eau se dilate et la pression monte ; le groupe de sécurité laisse alors s'échapper un peu d'eau. Sans lui, la cuve pourrait éclater.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un chauffe-eau qui goutte par son groupe de sécurité pendant la chauffe, c'est normal : il fait son travail. Un chauffe-eau qui ne chauffe plus, c'est souvent le thermostat qui s'est mis en sécurité, ou la résistance : on mesure, hors tension, avant de tout remplacer.</p></aside>
+        <div class="lecon-memo">◆ Chauffe-eau à accumulation : cuve isolée (eau chaude en haut, froide en bas) + résistance (effet Joule) + thermostat (coupe à la température réglée) + groupe de sécurité (limite la pression).</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">4. Thermodynamique et solaire</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-thermo-solaire.svg" alt="4. Thermodynamique et solaire" loading="lazy"></div>
+        <div class="cours-texte"><p>Chauffer de l'eau avec une résistance consomme beaucoup. Deux solutions vont chercher une partie de la chaleur ailleurs.</p><p>Le chauffe-eau <b>thermodynamique</b> contient une petite <b>pompe à chaleur</b>. Elle capte les calories présentes dans l'air — celui du local, ou l'air extérieur — et les transfère à l'eau de la cuve. L'électricité ne sert plus à produire la chaleur, mais à la déplacer : pour la même quantité d'eau chaude, l'appareil consomme environ <b>trois fois moins</b> qu'un chauffe-eau à résistance. Il conserve une résistance d'<b>appoint</b>, pour les grands froids ou les besoins exceptionnels.</p><p>Le chauffe-eau <b>solaire</b> fait circuler un fluide dans des <b>capteurs</b> posés sur le toit. Chauffé par le soleil, ce fluide réchauffe à son tour l'eau de la cuve. L'énergie est gratuite, mais elle dépend du temps : un <b>appoint</b>, souvent électrique, prend le relais quand le soleil manque.</p><p>Ne confonds pas ces capteurs avec des panneaux photovoltaïques : ils produisent de la <b>chaleur</b>, pas de l'électricité.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un thermodynamique a besoin d'air : il se pose dans un local assez grand et non chauffé — garage, cellier, buanderie — ou avec des gaines vers l'extérieur. Coincé dans un placard fermé, il refroidit son propre air et ne rend plus rien.</p></aside>
+        <div class="lecon-memo">◆ Thermodynamique : une pompe à chaleur prend les calories de l'air, environ 3 fois moins d'électricité. Solaire : des capteurs chauffent l'eau, avec un appoint. Les deux gardent un appoint électrique.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">5. Le circuit du chauffe-eau</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-circuit.svg" alt="5. Le circuit du chauffe-eau" loading="lazy"></div>
+        <div class="cours-texte"><p>Côté tableau, le chauffe-eau a droit à un <a class="terme-lien" href="lexique.html#circuit-specialise">circuit spécialisé</a> : une ligne pour lui seul.</p><p>Les valeurs à connaître : des conducteurs de <b>2,5 mm²</b>, protégés par un disjoncteur de <b>20 A</b>, derrière un interrupteur différentiel de sensibilité <b>30 mA</b>, comme tous les circuits du logement.</p><p>Vérifions avec un exemple. Un chauffe-eau de <b>2 300 W</b> sous 230 V appelle un courant I = P / U = 2 300 / 230 = <b>10 A</b>. Le disjoncteur de 20 A et le 2,5 mm² conviennent largement.</p><p>Le chauffe-eau ne se branche pas sur une prise de courant : il se raccorde à poste fixe, par une <b>sortie de câble</b> ou une boîte de connexion.</p><p>Souviens-toi aussi du module 11 : dans la méthode aval, le calibre du disjoncteur du chauffe-eau compte <b>en entier</b> pour le choix de l'interrupteur différentiel, parce qu'il chauffe longtemps à plein régime.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant d'ouvrir le capot d'un chauffe-eau : disjoncteur ouvert, absence de tension vérifiée sur le bornier. Le thermostat n'est pas un organe de coupure — résistance froide ne veut pas dire appareil hors tension.</p></aside>
+        <div class="lecon-memo">◆ Chauffe-eau : circuit spécialisé en 2,5 mm², disjoncteur 20 A, différentiel 30 mA. Raccordement fixe, sans prise. Exemple : 2 300 W / 230 V = 10 A.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">6. Les heures creuses et le contacteur</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-contacteur.svg" alt="6. Les heures creuses et le contacteur" loading="lazy"></div>
+        <div class="cours-texte"><p>Certains contrats d'électricité proposent deux prix : les <b>heures pleines</b> et les <a class="terme-lien" href="lexique.html#heures-creuses">heures creuses</a>, moins chères, placées surtout la nuit. Un chauffe-eau à accumulation, qui peut chauffer quand on veut, a tout intérêt à ne fonctionner que pendant les heures creuses.</p><p>Pour cela, on place sur son circuit un <a class="terme-lien" href="lexique.html#contacteur-heures-creuses">contacteur heures creuses</a>, aussi appelé contacteur jour/nuit. C'est un interrupteur commandé à distance. Comme le télérupteur du module 18, il a une <b>bobine</b> (bornes A1-A2) et un <b>contact de puissance</b>, placé en série avec le chauffe-eau. Mais il n'est pas bistable : son contact reste fermé <b>tant que la bobine est alimentée</b>, et s'ouvre dès qu'elle ne l'est plus.</p><p>C'est le <b>compteur</b> qui alimente la bobine, au début des heures creuses, et qui cesse de l'alimenter à la fin.</p><p>En façade, une manette à <b>trois positions</b>. <b>Auto</b> : le contacteur suit le signal du compteur. <b>0</b> : arrêt, le chauffe-eau est coupé. <b>I</b> : marche forcée, le chauffe-eau chauffe tout de suite, quelle que soit l'heure.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>La marche forcée sert quand la famille s'agrandit pour le week-end et que l'eau chaude manque en fin de journée. Rappelle à ton client de revenir sur Auto : un contacteur oublié sur I fait chauffer en heures pleines pendant des mois sans que personne s'en aperçoive.</p></aside>
+        <div class="lecon-memo">◆ Contacteur heures creuses : bobine A1-A2 + contact de puissance en série avec le chauffe-eau. Le contact est fermé tant que la bobine est alimentée par le compteur. 3 positions : Auto, 0 (arrêt), I (marche forcée).</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">7. Câbler le contacteur heures creuses</h2>
+        <div class="lecon-figure"><img src="assets/svg/c19-cablage.svg" alt="7. Câbler le contacteur heures creuses" loading="lazy"></div>
+        <div class="cours-texte"><p>Comme pour le télérupteur, on distingue deux circuits.</p><p><b>Le circuit de commande.</b> Le compteur possède un contact, entre deux bornes repérées <b>C1</b> et <b>C2</b>. Il se ferme pendant les heures creuses. On câble : la phase, protégée par un disjoncteur de <b>2 A</b>, va à la borne <b>C1</b> ; de la borne <b>C2</b>, on rejoint la borne <b>A1</b> de la bobine ; la borne <b>A2</b> est reliée au neutre. Quand le contact C1-C2 se ferme, la bobine est alimentée.</p><p><b>Le circuit de puissance.</b> Du disjoncteur de <b>20 A</b>, la phase et le neutre traversent les contacts de puissance du contacteur, puis vont au chauffe-eau, en 2,5 mm². Le conducteur de protection, lui, va directement au chauffe-eau.</p><p>Deux disjoncteurs, donc : le <b>2 A</b> pour la commande, le <b>20 A</b> pour la puissance. Si le chauffe-eau ne chauffe plus la nuit mais fonctionne en marche forcée, c'est le circuit de commande qu'il faut contrôler.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Le diagnostic en trois gestes. En marche forcée, le chauffe-eau chauffe ? Alors la puissance est bonne. En Auto pendant les heures creuses, il ne chauffe pas ? Regarde le disjoncteur 2 A, puis le signal aux bornes C1-C2.</p></aside>
+        <div class="lecon-memo">◆ Commande : phase → disjoncteur 2 A → C1 ; C2 → A1 ; A2 → neutre. Puissance : disjoncteur 20 A → contacts du contacteur → chauffe-eau, en 2,5 mm². Le contact C1-C2 du compteur se ferme en heures creuses.</div>
+      </section>
+    </article>
+    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=19&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=19&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=19">🖨 Fiche mémo</a>
+    </div>
+    <nav class="page-voisins"><a href="cours/18-telerupteur-et-minuterie.html">← Télérupteur et minuterie</a><a href="cours/20-recharge-de-vehicule-et-domotique.html">Recharge de véhicule et domotique →</a></nav>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

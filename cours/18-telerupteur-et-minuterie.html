@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Télérupteur et minuterie — cours d&#x27;électricité gratuit | ApprendreElec</title>
+  <meta name="description" content="Comprendre, dessiner et câbler un télérupteur en 3 fils et en 4 fils, et une minuterie. Cours complet, illustré, avec quiz de 44 questions.">
+  <link rel="canonical" href="https://charlyboyon-source.github.io/apprendre-elec/cours/18-telerupteur-et-minuterie.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Télérupteur et minuterie — cours d&#x27;électricité gratuit | ApprendreElec">
+  <meta property="og:description" content="Comprendre, dessiner et câbler un télérupteur en 3 fils et en 4 fils, et une minuterie. Cours complet, illustré, avec quiz de 44 questions.">
+  <meta property="og:url" content="https://charlyboyon-source.github.io/apprendre-elec/cours/18-telerupteur-et-minuterie.html">
+  <meta property="og:image" content="https://charlyboyon-source.github.io/apprendre-elec/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-cours">
+    <p class="lecon-kicker">BLOC 4 · SCHÉMAS ET MONTAGES D'ÉCLAIRAGE · MODULE 18</p>
+    <h1>Télérupteur et minuterie</h1>
+    <p class="niveau-objectif">Comprendre, dessiner et câbler un télérupteur en 3 fils et en 4 fils, et une minuterie</p>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=18&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=18&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=18">🖨 Fiche mémo</a>
+    </div>
+    <article class="cours">
+      <p class="cours-intro">Dernier module du bloc 4. Au-delà de deux points de commande, le va-et-vient et ses permutateurs deviennent lourds. On change alors de principe : au lieu de faire passer le courant de la lampe par les interrupteurs, on confie l'allumage à un appareil placé au tableau, et on se contente de lui envoyer des ordres avec de simples boutons-poussoirs. C'est le télérupteur — et sa cousine qui éteint toute seule, la minuterie.</p>
+      <section class="cours-section">
+        <h2 class="cours-titre">1. Des boutons-poussoirs à la place des interrupteurs</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-bp.svg" alt="1. Des boutons-poussoirs à la place des interrupteurs" loading="lazy"></div>
+        <div class="cours-texte"><p>Pour commander une lampe depuis trois, quatre ou dix endroits, il existe un montage bien plus simple que les permutateurs : le <a class="terme-lien" href="lexique.html#telerupteur">télérupteur</a>.</p><p>L'idée : la lampe n'est plus commandée directement par les appareils du mur. Elle est commandée par le télérupteur, un appareil placé le plus souvent au tableau. Sur les murs, on pose de simples <a class="terme-lien" href="lexique.html#bouton-poussoir">boutons-poussoirs</a>, qui ne font qu'envoyer une brève <b>impulsion</b> au télérupteur.</p><p>À chaque impulsion, le télérupteur change d'état : un appui <b>allume</b>, l'appui suivant <b>éteint</b>, d'où que vienne l'appui.</p><p>Un bouton-poussoir n'est pas un interrupteur : il ne reste pas enfoncé. Il ferme son contact tant qu'on appuie, puis revient au repos tout seul.</p><p>Tous les boutons-poussoirs sont branchés <b>en parallèle</b>. Pour ajouter un point de commande, il suffit d'en ajouter un : deux fils, repris sur le bouton-poussoir voisin.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>C'est l'argument à donner au client : avec un télérupteur, ajouter un point de commande dans cinq ans coûte un bouton-poussoir et deux fils. Avec des va-et-vient et des permutateurs, il faudrait reprendre tout le câblage.</p></aside>
+        <div class="lecon-memo">◆ Télérupteur : la lampe est commandée par un appareil au tableau ; sur les murs, des boutons-poussoirs en parallèle envoient des impulsions. Un appui allume, le suivant éteint.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">2. Le télérupteur, de l'intérieur</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-telerupteur.svg" alt="2. Le télérupteur, de l&#x27;intérieur" loading="lazy"></div>
+        <div class="cours-texte"><p>Le télérupteur réunit deux parties, qu'il faut bien distinguer.</p><p>La <b>bobine</b>, entre les bornes <b>A1</b> et <b>A2</b>. Quand un bouton-poussoir est enfoncé, elle est alimentée un bref instant et actionne un mécanisme.</p><p>Le <b>contact</b>, entre les bornes <b>1</b> et <b>2</b>. C'est lui qui laisse passer ou coupe le courant des lampes. À chaque impulsion sur la bobine, il <b>change d'état</b> : ouvert, il se ferme ; fermé, il s'ouvre.</p><p>Le point essentiel : entre deux impulsions, le contact <b>garde sa position</b>, sans que la bobine soit alimentée. On dit que le télérupteur est <b>bistable</b> — il a deux états stables.</p><p>D'où deux circuits. Le <b>circuit de commande</b> : les boutons-poussoirs et la bobine. Le <b>circuit de puissance</b> : le contact et les lampes.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Les repères sont gravés sur l'appareil : A1 et A2 pour la bobine, 1 et 2 pour le contact. Si tu raccordes un bouton-poussoir sur la borne 1 ou une lampe sur A1, rien ne fonctionne. Lis les repères avant de serrer.</p></aside>
+        <div class="lecon-memo">◆ Télérupteur = une bobine (A1-A2, circuit de commande) + un contact (1-2, circuit de puissance). Le contact change d'état à chaque impulsion et garde sa position entre deux : il est bistable.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">3. Le schéma développé</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-dev.svg" alt="3. Le schéma développé" loading="lazy"></div>
+        <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#schema-developpe">schéma développé</a> se lit en deux colonnes, une par circuit.</p><p><b>Le circuit de commande.</b> De la phase, on arrive aux boutons-poussoirs, dessinés côte à côte : ils sont en parallèle. Leurs sorties se rejoignent et vont à la borne <b>A1</b> de la bobine. La borne <b>A2</b> est reliée au neutre. Quand on appuie sur n'importe lequel des boutons-poussoirs, la bobine se retrouve entre phase et neutre : elle est alimentée.</p><p><b>Le circuit de puissance.</b> De la phase, on arrive à la borne <b>1</b> du contact. De la borne <b>2</b> part le <b>retour lampe</b>, jusqu'à la lampe, elle-même reliée au neutre. Quand le contact est fermé, la lampe est allumée.</p><p>On retrouve la règle de tous les montages : dans chaque circuit, la <b>commande est du côté de la phase</b> et le <b>récepteur est relié au neutre</b>. Ici, la bobine est un récepteur comme un autre.</p><p>Le conducteur qui va des boutons-poussoirs à la bobine s'appelle le <b>retour bouton-poussoir</b>. Sur ce site, on le dessine en <b>blanc</b>.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Quand tu dépannes un télérupteur, sépare les deux circuits dans ta tête. Tu entends le « clac » à chaque appui mais la lampe ne s'allume pas ? La commande est bonne, cherche côté puissance. Pas de « clac » ? Cherche côté commande.</p></aside>
+        <div class="lecon-memo">◆ Commande : phase → boutons-poussoirs en parallèle → A1 ; A2 → neutre. Puissance : phase → borne 1 ; borne 2 → retour lampe → lampe → neutre. Retour bouton-poussoir en blanc.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">4. Le montage 3 fils</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-3fils.svg" alt="4. Le montage 3 fils" loading="lazy"></div>
+        <div class="cours-texte"><p>Le montage le plus courant en logement est le <b>montage 3 fils</b>. Sa particularité : la commande et la puissance utilisent la <b>même phase</b>.</p><p>Au télérupteur, les raccordements sont les suivants. La <b>phase</b> arrive sur la borne <b>1</b>, et elle repart aussi vers les boutons-poussoirs. Le <b>retour des boutons-poussoirs</b> revient sur la borne <b>A1</b>. La borne <b>A2</b> est reliée au <b>neutre</b>. De la borne <b>2</b> part le <b>retour lampe</b>.</p><p>On l'appelle « 3 fils » parce que trois conducteurs relient le télérupteur au reste de l'installation : la <b>phase</b> qui va aux boutons-poussoirs, le <b>retour bouton-poussoir</b>, et le <b>retour lampe</b>.</p><p>À chaque bouton-poussoir, on ne trouve que <b>deux fils</b> : la phase et le retour bouton-poussoir. Aux lampes, comme toujours : le retour lampe, le neutre et le conducteur de protection.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Dans une boîte de bouton-poussoir, repère tout de suite la phase et le retour. Les deux fils se ressemblent, mais l'un est sous tension en permanence et l'autre seulement pendant l'appui. Une couleur par rôle, et la même dans toutes les boîtes.</p></aside>
+        <div class="lecon-memo">◆ Montage 3 fils : une seule phase pour la commande et la puissance. Phase → borne 1 et boutons-poussoirs ; retour BP → A1 ; A2 → neutre ; borne 2 → retour lampe. 2 fils par bouton-poussoir.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">5. Le montage 4 fils</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-4fils.svg" alt="5. Le montage 4 fils" loading="lazy"></div>
+        <div class="cours-texte"><p>Dans le <b>montage 4 fils</b>, le circuit de commande est <b>séparé</b> du circuit de puissance. Ils ne partagent plus la même phase.</p><p>Quatre conducteurs relient alors le télérupteur à l'installation : <b>deux pour la commande</b> — l'alimentation des boutons-poussoirs et leur retour — et <b>deux pour la puissance</b> — la phase et le retour lampe.</p><p>À quoi cela sert-il ? À alimenter la commande autrement que la puissance. Par exemple avec une protection distincte, ou sous une tension différente : certains télérupteurs ont une bobine en très basse tension, et leurs boutons-poussoirs ne sont alors reliés qu'à ce circuit, sans jamais voir le 230 V.</p><p>Pour le reste, le fonctionnement est identique : boutons-poussoirs en parallèle, une impulsion pour allumer, une impulsion pour éteindre.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant de remplacer un télérupteur, lis la tension de sa bobine, gravée sur l'appareil. Une bobine prévue pour 24 V branchée en 230 V ne survit pas au premier appui ; l'inverse ne déclenchera jamais.</p></aside>
+        <div class="lecon-memo">◆ Montage 4 fils : commande et puissance séparées. 2 conducteurs pour la commande, 2 pour la puissance. Utile quand la commande a sa propre alimentation.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">6. La minuterie</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-minuterie.svg" alt="6. La minuterie" loading="lazy"></div>
+        <div class="cours-texte"><p>Dans une cage d'escalier ou un couloir d'immeuble, personne ne pense à éteindre en partant. La <a class="terme-lien" href="lexique.html#minuterie">minuterie</a> le fait à la place des gens.</p><p>Son montage ressemble à celui du télérupteur : des <b>boutons-poussoirs en parallèle</b> envoient une impulsion à un appareil qui commande les lampes. La différence est dans ce qui se passe ensuite. Un appui <b>allume</b> ; puis, sans que personne n'intervienne, l'appareil <b>éteint tout seul</b> au bout d'une <b>durée réglée</b>.</p><p>Cette durée se règle sur l'appareil, de quelques dizaines de secondes à plusieurs minutes, selon le temps qu'il faut pour traverser les lieux.</p><p>On la rencontre dans les <b>parties communes</b> des immeubles, les escaliers, les couloirs, les caves, les locaux à vélos — partout où un éclairage risque de rester allumé pour rien.</p><p>La plupart des minuteries ont une position <b>marche permanente</b>, utile pour un ménage ou un déménagement : les lampes restent allumées jusqu'à ce qu'on revienne en position automatique.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Règle la durée en parcourant toi-même le trajet le plus long, au pas d'une personne chargée, et ajoute une marge. Une minuterie trop courte dans un escalier, c'est quelqu'un dans le noir entre deux étages.</p></aside>
+        <div class="lecon-memo">◆ Minuterie : des boutons-poussoirs en parallèle ; un appui allume, l'appareil éteint seul après la durée réglée. Pour les escaliers, couloirs et parties communes.</div>
+      </section>
+      <section class="cours-section">
+        <h2 class="cours-titre">7. Choisir le bon montage</h2>
+        <div class="lecon-figure"><img src="assets/svg/c18-choix.svg" alt="7. Choisir le bon montage" loading="lazy"></div>
+        <div class="cours-texte"><p>Tu connais maintenant tous les montages d'éclairage courants. Le choix dépend du besoin, en deux questions : depuis <b>combien d'endroits</b> commande-t-on, et l'extinction doit-elle être <b>automatique</b> ?</p><p><b>Un seul endroit</b> : le simple allumage — ou le double allumage, pour deux points lumineux commandés du même endroit.<br><b>Deux endroits</b> : le va-et-vient.<br><b>Trois endroits ou plus</b> : le télérupteur.<br><b>Extinction automatique</b> : la minuterie.</p><p>Deux précautions valent pour le télérupteur comme pour la minuterie. Le nombre de boutons-poussoirs <b>lumineux</b>, ceux qui portent un petit voyant, est limité : chaque voyant laisse passer un très faible courant, et trop de voyants finissent par faire réagir la bobine. Et, comme toujours, on intervient <b>hors tension</b>, absence de tension vérifiée — y compris sur le circuit de commande.</p></div>
+        <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Si un télérupteur « bourdonne », reste collé ou s'enclenche tout seul après la pose de boutons-poussoirs lumineux, compte les voyants avant d'accuser l'appareil. La notice indique combien il en accepte.</p></aside>
+        <div class="lecon-memo">◆ 1 endroit : simple (ou double) allumage · 2 endroits : va-et-vient · 3 endroits et plus : télérupteur · extinction automatique : minuterie. Nombre de boutons-poussoirs lumineux limité.</div>
+      </section>
+    </article>
+    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
+    <div class="page-actions">
+      <a class="bouton-plein" href="niveau.html?id=18&module=quiz&libre=1">🎯 Faire le quiz</a>
+      <a class="bouton-creux" href="niveau.html?id=18&module=jeu&libre=1">🎮 Jouer</a>
+      <a class="bouton-creux" href="fiche.html?id=18">🖨 Fiche mémo</a>
+    </div>
+    <nav class="page-voisins"><a href="cours/17-va-et-vient-et-permutateur.html">← Va-et-vient et permutateur</a><a href="cours/19-eau-chaude-et-heures-creuses.html">Eau chaude et heures creuses →</a></nav>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>
