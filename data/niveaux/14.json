@@ -1,0 +1,123 @@
+{
+  "id": 14,
+  "bloc": 3,
+  "titre": "La GTL et les circuits du logement",
+  "objectif": "Savoir où et comment installer la GTL, et connaître les règles des circuits d'éclairage, de prises et spécialisés",
+  "cours": {
+    "intro": "Dernier module du bloc 3 : on assemble tout. Où installer le tableau, à quelle hauteur, à quelle distance de l'eau et du gaz ? Combien de prises sur un circuit, combien de points lumineux, quels appareils ont droit à leur propre ligne ? Ce module est une suite de valeurs à connaître par cœur : ce sont celles qu'on te demande à l'examen, et celles que vérifie le Consuel.",
+    "sections": [
+      {
+        "titre": "1. La GTL et l'ETEL",
+        "svg": "c14-gtl.svg",
+        "contenu": "<p>Dans un logement, tout ce qui arrive de l'extérieur — l'électricité, le téléphone, internet, la télévision — est regroupé en un seul endroit. On parle de [[GTL]], la gaine technique logement, et de l'emplacement qui lui est réservé : l'[[ETEL]], l'espace technique électrique du logement.</p><p>On y trouve, de haut en bas ou côte à côte : le [[panneau de contrôle]], qui porte le compteur et l'[[AGCP]] ; le [[tableau de répartition]], avec toutes les protections ; et le <b>tableau de communication</b>, d'où partent les prises de téléphone, de réseau et de télévision.</p><p>L'intérêt est double. Pour l'occupant : un seul endroit où couper le courant et réarmer une protection. Pour l'électricien : toutes les arrivées et tous les départs au même point, donc une installation lisible et facile à faire évoluer.</p><p>La GTL est obligatoire dans tous les logements neufs. Elle se place près d'une entrée — entrée principale, entrée de service, ou garage — et jamais dans une pièce d'eau.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Sur un plan, repère la GTL avant tout le reste : tous tes conduits en partent. Mal placée, elle rallonge chaque circuit de plusieurs mètres ; bien placée, elle fait gagner du câble et des heures." },
+        "memo": "GTL / ETEL : l'endroit unique où arrivent courant fort et communication. On y trouve le panneau de contrôle (compteur + AGCP), le tableau de répartition et le tableau de communication."
+      },
+      {
+        "titre": "2. Les dimensions et les distances de l'ETEL",
+        "svg": "c14-etel.svg",
+        "contenu": "<p>L'ETEL n'est pas un simple coin de mur : c'est un volume réservé, aux dimensions minimales précises. <b>60 cm de large</b>, <b>25 cm de profondeur</b>, et il court <b>du sol au plafond</b>. Rien d'étranger à l'installation ne doit l'occuper : ni canalisation d'eau, ni conduit de gaz, ni rangement.</p><p>Il doit aussi se tenir à distance de ce qui pourrait l'endommager ou le rendre dangereux. Trois valeurs à retenir :</p><p><b>10 cm</b> au moins d'une <b>canalisation de gaz</b> ;<br><b>40 cm</b> au moins d'une <b>source de chaleur</b> (radiateur, chaudière, plaque de cuisson) ;<br><b>60 cm</b> au moins d'un <b>point d'eau</b> (évier, lavabo).</p><p>La logique est simple : l'électricité ne voisine ni avec le gaz, ni avec la chaleur, ni avec l'eau.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Dans un petit logement, la place manque et la tentation est de « gagner » sur ces distances. Mesure avant de tracer : un tableau posé à 30 cm d'un évier, c'est une installation à déplacer après le passage du Consuel." },
+        "memo": "ETEL : 60 cm de large, 25 cm de profondeur, du sol au plafond. Distances : 10 cm du gaz, 40 cm d'une source de chaleur, 60 cm d'un point d'eau."
+      },
+      {
+        "titre": "3. Les hauteurs de pose",
+        "svg": "c14-hauteurs.svg",
+        "contenu": "<p>Un appareil de coupure ne sert à rien si on ne peut pas l'atteindre. La hauteur des <b>organes de manœuvre</b> — les manettes de l'AGCP, des interrupteurs différentiels et des disjoncteurs — est donc réglementée. Elle se mesure depuis le <b>sol fini</b>.</p><p>La règle générale : les organes de manœuvre du panneau de contrôle se trouvent à <b>1,80 m au maximum</b>. Plus haut, il faudrait une chaise pour couper le courant.</p><p>Quand le logement doit être accessible aux <b>personnes à mobilité réduite</b> (PMR), la plage se resserre : entre <b>0,90 m</b> et <b>1,30 m</b>. Une personne en fauteuil roulant doit pouvoir atteindre les manettes sans aide.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Pense aussi à ce qu'il y a devant le tableau. Un tableau à la bonne hauteur mais caché derrière un meuble ou une porte qui s'ouvre dessus n'est pas accessible. On garde un dégagement devant." },
+        "memo": "Organes de manœuvre du panneau de contrôle : 1,80 m au maximum du sol fini. En accessibilité PMR : entre 0,90 m et 1,30 m."
+      },
+      {
+        "titre": "4. Les circuits d'éclairage",
+        "svg": "c14-eclairage.svg",
+        "contenu": "<p>Passons aux circuits. Un circuit, c'est l'ensemble des points alimentés par une même ligne et protégés par un même disjoncteur. La norme limite ce qu'on a le droit de mettre sur chacun.</p><p>Pour l'<b>éclairage</b> : des conducteurs de <b>1,5 mm²</b>, un disjoncteur de <b>16 A au maximum</b>, et <b>8 points lumineux au maximum</b> par circuit. Un point lumineux, c'est un emplacement où l'on raccorde un luminaire : une sortie au plafond, une applique.</p><p>Dans un logement de plus de <b>35 m²</b>, il faut <b>au moins deux circuits</b> d'éclairage. La raison est celle du module 11 : si l'un déclenche, l'autre continue d'éclairer une partie du logement.</p><p>Exemple : un logement compte 14 points lumineux. 14 dépasse 8 : un seul circuit ne suffit pas. Il en faut deux, par exemple 7 points sur chacun.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Répartis les deux circuits d'éclairage intelligemment : pas « l'étage » et « le rez-de-chaussée », mais en quinconce, pour qu'il reste toujours de la lumière à chaque niveau et dans l'escalier." },
+        "memo": "Éclairage : 1,5 mm², disjoncteur 16 A au maximum, 8 points lumineux au maximum par circuit. Au moins 2 circuits au-delà de 35 m²."
+      },
+      {
+        "titre": "5. Les circuits de prises de courant",
+        "svg": "c14-prises.svg",
+        "contenu": "<p>Pour les prises de courant 16 A, deux solutions existent, et le nombre de prises autorisé dépend de la section choisie.</p><p>En <b>1,5 mm²</b>, protégé par un disjoncteur de <b>16 A</b> : <b>8 prises au maximum</b> par circuit.</p><p>En <b>2,5 mm²</b>, protégé par un disjoncteur de <b>20 A</b> : <b>12 prises au maximum</b> par circuit.</p><p>La <b>cuisine</b> a sa règle propre, parce qu'on y branche beaucoup d'appareils puissants en même temps : un circuit dédié de <b>6 prises</b>, dont <b>4 au-dessus du plan de travail</b>, câblé en 2,5 mm² sous 20 A.</p><p>Exemple : 20 prises à alimenter en 2,5 mm². 20 dépasse 12 : il faut deux circuits. En 1,5 mm², 20 prises demanderaient trois circuits, puisque deux circuits n'en autorisent que 16.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Une prise double compte pour une seule dans le calcul, mais ne t'en sers pas pour entasser les prises sur un circuit : ce qui compte au quotidien, c'est ce que les gens brancheront dessus." },
+        "memo": "Prises 16 A : en 1,5 mm² sous 16 A → 8 prises au maximum ; en 2,5 mm² sous 20 A → 12 prises au maximum. Cuisine : circuit dédié de 6 prises, dont 4 au plan de travail."
+      },
+      {
+        "titre": "6. Les circuits spécialisés",
+        "svg": "c14-specialises.svg",
+        "contenu": "<p>Certains appareils consomment trop, ou trop longtemps, pour partager leur ligne. Chacun a droit à son [[circuit spécialisé]] : un circuit qui n'alimente <b>qu'un seul appareil</b>.</p><p>La <b>plaque de cuisson</b> : conducteurs de <b>6 mm²</b>, disjoncteur de <b>32 A</b>.</p><p>Le <b>lave-linge</b>, le <b>four</b>, le <b>lave-vaisselle</b>, le <b>sèche-linge</b>, le <b>chauffe-eau</b> : chacun son circuit en <b>2,5 mm²</b>, sous un disjoncteur de <b>20 A</b>.</p><p>La <b>VMC</b> (ventilation mécanique contrôlée) : un circuit en <b>1,5 mm²</b>, sous un disjoncteur de <b>2 A</b>. Elle tourne en permanence et ne doit pas être coupée par la panne d'un autre appareil.</p><p>Un logement comporte <b>au moins 4 circuits spécialisés</b> : celui de la plaque de cuisson, et au moins trois autres en 2,5 mm² sous 20 A.</p><p>Souviens-toi du module 11 : la plaque de cuisson et le lave-linge se raccordent derrière un interrupteur différentiel de <b>type A</b>.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Même si le client n'a pas encore de lave-vaisselle ou de sèche-linge, tu poses les circuits spécialisés prévus. Dans cinq ans il en achètera un, et il le branchera sur la prise la plus proche si la bonne n'existe pas." },
+        "memo": "Circuit spécialisé = un seul appareil. Plaque : 6 mm², 32 A. Lave-linge, four, lave-vaisselle, sèche-linge, chauffe-eau : 2,5 mm², 20 A. VMC : 1,5 mm², 2 A. Au moins 4 par logement."
+      },
+      {
+        "titre": "7. L'alimentation d'un chantier",
+        "svg": "c14-provisoire.svg",
+        "contenu": "<p>Avant que le logement ait son installation définitive, il faut bien alimenter les outils. Un chantier a sa propre alimentation, provisoire, et elle obéit aux mêmes exigences de sécurité — en plus sévère, car un chantier est un lieu humide, encombré, où le matériel souffre.</p><p>Le chantier est relié au réseau par un <b>coffret de branchement provisoire</b>, que le distributeur raccorde et met en service. Comme tout branchement, il relève de la [[NF C 14-100]].</p><p>En aval, l'entreprise installe son <b>coffret de chantier</b>. Il est équipé d'un <b>interrupteur différentiel de sensibilité 30 mA</b> : toutes les prises sur lesquelles on branche les outils et les rallonges sont ainsi protégées.</p><p>Rappelle-toi le module 5 : un chantier est un <b>milieu mouillé</b>, où la tension limite de sécurité n'est que de 25 V. La protection 30 mA n'y est pas un confort, c'est ce qui sépare un incident d'un accident.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Chaque matin : un coup d'œil au coffret de chantier, un appui sur le bouton test du différentiel, et un regard sur les rallonges. Une rallonge écrasée ou une prise fendue part à la benne, pas dans la caisse." },
+        "memo": "Chantier : coffret de branchement provisoire (NF C 14-100), puis coffret de chantier avec interrupteur différentiel 30 mA. Milieu mouillé : tension limite 25 V."
+      }
+    ]
+  },
+  "banque": [
+    { "question": "Que regroupe la GTL ?", "choix": ["uniquement les prises de la cuisine", "les canalisations d'eau et de gaz", "les arrivées et les départs du courant fort et de la communication", "les radiateurs du logement"], "bonne": 2, "explication": "La gaine technique logement regroupe en un seul endroit l'électricité et la communication.", "renvoi_lecon": 0 },
+    { "question": "Que signifie ETEL ?", "choix": ["équipement terminal d'éclairage", "espace technique électrique du logement", "ensemble des tableaux électriques", "étude technique d'électricité"], "bonne": 1, "explication": "L'ETEL est le volume réservé à la GTL.", "renvoi_lecon": 0 },
+    { "question": "Que porte le panneau de contrôle ?", "choix": ["le compteur et l'AGCP", "les interrupteurs de la pièce", "les prises de la cuisine", "le chauffe-eau"], "bonne": 0, "explication": "Le panneau de contrôle reçoit le compteur et le disjoncteur de branchement.", "renvoi_lecon": 0 },
+    { "question": "Lequel de ces éléments ne se trouve PAS dans l'ETEL ?", "choix": ["le tableau de répartition", "le tableau de communication", "le panneau de contrôle", "le chauffe-eau"], "bonne": 3, "explication": "L'ETEL est réservé à l'installation électrique et de communication.", "renvoi_lecon": 0 },
+    { "question": "Où place-t-on la GTL ?", "choix": ["dans la salle de bain", "dans une chambre, derrière le lit", "près d'une entrée ou dans le garage", "sous l'évier"], "bonne": 2, "explication": "Près d'une entrée (principale, de service) ou dans le garage ; jamais dans une pièce d'eau.", "renvoi_lecon": 0 },
+    { "question": "Que distribue le tableau de communication ?", "choix": ["le courant des prises", "le téléphone, le réseau et la télévision", "le chauffage", "l'eau chaude"], "bonne": 1, "explication": "Il regroupe les départs vers les prises de communication.", "renvoi_lecon": 0 },
+    { "question": "Quelle est la largeur minimale de l'ETEL ?", "choix": ["60 cm", "25 cm", "40 cm", "1 m"], "bonne": 0, "explication": "60 cm de large au minimum.", "renvoi_lecon": 1 },
+    { "question": "Quelle est la profondeur minimale de l'ETEL ?", "choix": ["10 cm", "60 cm", "50 cm", "25 cm"], "bonne": 3, "explication": "25 cm de profondeur au minimum.", "renvoi_lecon": 1 },
+    { "question": "Quelle est la hauteur de l'ETEL ?", "choix": ["1,80 m", "1,30 m", "du sol au plafond", "60 cm"], "bonne": 2, "explication": "Il court sur toute la hauteur, du sol au plafond.", "renvoi_lecon": 1 },
+    { "question": "À quelle distance minimale d'une canalisation de gaz se tient l'ETEL ?", "choix": ["40 cm", "10 cm", "60 cm", "1 m"], "bonne": 1, "explication": "10 cm au moins d'une canalisation de gaz.", "renvoi_lecon": 1 },
+    { "question": "À quelle distance minimale d'une source de chaleur se tient l'ETEL ?", "choix": ["40 cm", "10 cm", "60 cm", "5 cm"], "bonne": 0, "explication": "40 cm au moins d'une source de chaleur.", "renvoi_lecon": 1 },
+    { "question": "À quelle distance minimale d'un point d'eau se tient l'ETEL ?", "choix": ["10 cm", "40 cm", "25 cm", "60 cm"], "bonne": 3, "explication": "60 cm au moins d'un point d'eau.", "renvoi_lecon": 1 },
+    { "question": "Peut-on faire passer une canalisation d'eau dans l'ETEL ?", "choix": ["oui, si elle est en cuivre", "oui, si elle est isolée", "non : rien d'étranger à l'installation", "oui, en partie basse"], "bonne": 2, "explication": "L'ETEL est un volume réservé.", "renvoi_lecon": 1 },
+    { "question": "À quelle hauteur maximale se trouvent les organes de manœuvre du panneau de contrôle ?", "choix": ["1,30 m", "1,80 m", "2,25 m", "0,90 m"], "bonne": 1, "explication": "1,80 m au maximum, depuis le sol fini.", "renvoi_lecon": 2 },
+    { "question": "En accessibilité PMR, entre quelles hauteurs se trouvent les organes de manœuvre ?", "choix": ["entre 0,90 m et 1,30 m", "entre 0,25 m et 0,60 m", "entre 1,30 m et 1,80 m", "entre 1,80 m et 2,25 m"], "bonne": 0, "explication": "Entre 0,90 m et 1,30 m, pour être atteints depuis un fauteuil roulant.", "renvoi_lecon": 2 },
+    { "question": "D'où mesure-t-on ces hauteurs ?", "choix": ["depuis le plafond", "depuis la dalle brute", "depuis le dessus de la plinthe", "depuis le sol fini"], "bonne": 3, "explication": "Toujours depuis le sol fini.", "renvoi_lecon": 2 },
+    { "question": "Que signifie PMR ?", "choix": ["protection minimale réglementaire", "prise murale renforcée", "personnes à mobilité réduite", "puissance maximale de raccordement"], "bonne": 2, "explication": "Les logements accessibles aux personnes à mobilité réduite ont des hauteurs de pose adaptées.", "renvoi_lecon": 2 },
+    { "question": "Pourquoi limite-t-on la hauteur des organes de manœuvre ?", "choix": ["pour économiser du câble", "pour qu'on puisse les atteindre et couper le courant", "pour les protéger de la poussière", "pour faire joli"], "bonne": 1, "explication": "Un appareil de coupure inaccessible ne sert à rien.", "renvoi_lecon": 2 },
+    { "question": "Une manette placée à 1,50 m convient-elle en accessibilité PMR ?", "choix": ["non : elle dépasse 1,30 m", "oui, elle est sous 1,80 m", "oui, toujours", "oui, si elle est rouge"], "bonne": 0, "explication": "En PMR, la plage est 0,90 m à 1,30 m.", "renvoi_lecon": 2 },
+    { "question": "Quelle section utilise-t-on pour un circuit d'éclairage ?", "choix": ["2,5 mm²", "6 mm²", "0,75 mm²", "1,5 mm²"], "bonne": 3, "explication": "1,5 mm² pour l'éclairage.", "renvoi_lecon": 3 },
+    { "question": "Quel est le calibre maximal du disjoncteur d'un circuit d'éclairage ?", "choix": ["20 A", "32 A", "16 A", "2 A"], "bonne": 2, "explication": "16 A au maximum, en 1,5 mm².", "renvoi_lecon": 3 },
+    { "question": "Combien de points lumineux place-t-on au maximum sur un circuit ?", "choix": ["5", "8", "12", "16"], "bonne": 1, "explication": "8 points lumineux au maximum par circuit.", "renvoi_lecon": 3 },
+    { "question": "À partir de quelle surface faut-il au moins deux circuits d'éclairage ?", "choix": ["plus de 35 m²", "plus de 10 m²", "plus de 100 m²", "plus de 200 m²"], "bonne": 0, "explication": "Au-delà de 35 m², au moins deux circuits d'éclairage.", "renvoi_lecon": 3 },
+    { "question": "Un logement compte 14 points lumineux. Combien de circuits d'éclairage faut-il au minimum ?", "choix": ["1", "3", "14", "2"], "bonne": 3, "explication": "8 points au maximum par circuit : 14 points demandent 2 circuits.", "renvoi_lecon": 3 },
+    { "question": "Un logement compte 20 points lumineux. Combien de circuits d'éclairage faut-il au minimum ?", "choix": ["2", "4", "3", "1"], "bonne": 2, "explication": "Deux circuits n'en autorisent que 16 : il en faut 3.", "renvoi_lecon": 3 },
+    { "question": "En 1,5 mm² sous 16 A, combien de prises place-t-on au maximum sur un circuit ?", "choix": ["5", "8", "12", "16"], "bonne": 1, "explication": "8 prises au maximum en 1,5 mm².", "renvoi_lecon": 4 },
+    { "question": "En 2,5 mm² sous 20 A, combien de prises place-t-on au maximum sur un circuit ?", "choix": ["12", "8", "16", "20"], "bonne": 0, "explication": "12 prises au maximum en 2,5 mm².", "renvoi_lecon": 4 },
+    { "question": "Quel disjoncteur protège un circuit de prises câblé en 2,5 mm² ?", "choix": ["32 A", "40 A", "63 A", "20 A au maximum"], "bonne": 3, "explication": "2,5 mm² → 20 A au maximum.", "renvoi_lecon": 4 },
+    { "question": "Combien de prises comporte le circuit dédié de la cuisine ?", "choix": ["3", "12", "6", "2"], "bonne": 2, "explication": "6 prises, dont 4 au-dessus du plan de travail.", "renvoi_lecon": 4 },
+    { "question": "Combien de prises de la cuisine sont placées au-dessus du plan de travail ?", "choix": ["1", "4", "2", "6"], "bonne": 1, "explication": "4 des 6 prises du circuit dédié.", "renvoi_lecon": 4 },
+    { "question": "20 prises à alimenter en 2,5 mm². Combien de circuits faut-il au minimum ?", "choix": ["2", "1", "3", "4"], "bonne": 0, "explication": "12 prises au maximum par circuit : 20 prises demandent 2 circuits.", "renvoi_lecon": 4 },
+    { "question": "20 prises à alimenter en 1,5 mm². Combien de circuits faut-il au minimum ?", "choix": ["2", "1", "4", "3"], "bonne": 3, "explication": "8 prises au maximum par circuit : deux circuits n'en donnent que 16, il en faut 3.", "renvoi_lecon": 4 },
+    { "question": "Qu'est-ce qu'un circuit spécialisé ?", "choix": ["un circuit réservé à l'éclairage", "un circuit sans disjoncteur", "un circuit qui n'alimente qu'un seul appareil", "un circuit en courant continu"], "bonne": 2, "explication": "Un appareil, un circuit, une protection.", "renvoi_lecon": 5 },
+    { "question": "Comment câble-t-on le circuit de la plaque de cuisson ?", "choix": ["en 2,5 mm² sous 20 A", "en 6 mm² sous 32 A", "en 1,5 mm² sous 16 A", "en 1,5 mm² sous 2 A"], "bonne": 1, "explication": "Plaque de cuisson : 6 mm², disjoncteur 32 A.", "renvoi_lecon": 5 },
+    { "question": "Comment câble-t-on le circuit du lave-linge ?", "choix": ["en 2,5 mm² sous 20 A", "en 6 mm² sous 32 A", "en 1,5 mm² sous 10 A", "en 1,5 mm² sous 2 A"], "bonne": 0, "explication": "Lave-linge : circuit spécialisé en 2,5 mm² sous 20 A.", "renvoi_lecon": 5 },
+    { "question": "Comment protège-t-on le circuit de la VMC ?", "choix": ["par un disjoncteur de 32 A", "par un disjoncteur de 20 A", "par aucun disjoncteur", "par un disjoncteur de 2 A"], "bonne": 3, "explication": "VMC : 1,5 mm², disjoncteur 2 A.", "renvoi_lecon": 5 },
+    { "question": "Combien de circuits spécialisés un logement comporte-t-il au minimum ?", "choix": ["1", "2", "4", "10"], "bonne": 2, "explication": "Celui de la plaque de cuisson, et au moins trois autres en 2,5 mm² sous 20 A.", "renvoi_lecon": 5 },
+    { "question": "Peut-on brancher le lave-linge et le lave-vaisselle sur le même circuit spécialisé ?", "choix": ["oui, s'ils ne tournent pas ensemble", "non : un circuit par appareil", "oui, avec une multiprise", "oui, en 1,5 mm²"], "bonne": 1, "explication": "Un circuit spécialisé n'alimente qu'un seul appareil.", "renvoi_lecon": 5 },
+    { "question": "Derrière quel type d'interrupteur différentiel raccorde-t-on la plaque de cuisson ?", "choix": ["le type A", "le type AC", "aucun", "un 300 mA"], "bonne": 0, "explication": "Plaque de cuisson et lave-linge : type A, 30 mA.", "renvoi_lecon": 5 },
+    { "question": "De quelle norme relève le coffret de branchement provisoire d'un chantier ?", "choix": ["la NF C 15-100", "la NF C 18-510", "aucune", "la NF C 14-100"], "bonne": 3, "explication": "Comme tout branchement, il relève de la NF C 14-100.", "renvoi_lecon": 6 },
+    { "question": "De quoi est équipé le coffret de chantier ?", "choix": ["d'un différentiel 500 mA seulement", "d'aucune protection", "d'un interrupteur différentiel de sensibilité 30 mA", "d'un simple interrupteur"], "bonne": 2, "explication": "Toutes les prises du chantier sont protégées en 30 mA.", "renvoi_lecon": 6 },
+    { "question": "Qui raccorde au réseau le coffret de branchement provisoire ?", "choix": ["le maçon", "le distributeur", "le client", "personne, il n'est pas obligatoire"], "bonne": 1, "explication": "Le raccordement au réseau relève du distributeur.", "renvoi_lecon": 6 },
+    { "question": "Quelle est la tension limite de sécurité sur un chantier, milieu mouillé ?", "choix": ["25 V", "50 V", "120 V", "230 V"], "bonne": 0, "explication": "25 V en milieu mouillé, contre 50 V en milieu sec.", "renvoi_lecon": 6 },
+    { "question": "Que fait-on d'une rallonge de chantier à la gaine écrasée ?", "choix": ["on la répare avec du ruban adhésif", "on l'utilise à l'intérieur seulement", "on la garde pour les petits outils", "on la met au rebut"], "bonne": 3, "explication": "Un matériel abîmé ne se répare pas au ruban : il est retiré du chantier.", "renvoi_lecon": 6 },
+    { "question": "Pourquoi un chantier exige-t-il une protection 30 mA sur toutes ses prises ?", "choix": ["pour réduire la consommation", "pour alimenter plus d'outils", "c'est un milieu humide où le matériel souffre", "parce que la tension y est plus élevée"], "bonne": 2, "explication": "Humidité, encombrement, matériel malmené : le risque de défaut est élevé.", "renvoi_lecon": 6 }
+  ],
+  "jeu": {
+    "type": "vrai-faux-rapide",
+    "config": {
+      "affirmations": [
+        { "affirmation": "L'ETEL mesure au moins 60 cm de large et 25 cm de profondeur.", "vrai": true, "explication": "Et il court du sol au plafond." },
+        { "affirmation": "L'ETEL peut se trouver à 30 cm d'un point d'eau.", "vrai": false, "explication": "60 cm au moins d'un point d'eau." },
+        { "affirmation": "Les organes de manœuvre du panneau de contrôle sont à 1,80 m au maximum.", "vrai": true, "explication": "Et entre 0,90 m et 1,30 m en accessibilité PMR." },
+        { "affirmation": "Un circuit d'éclairage peut alimenter 12 points lumineux.", "vrai": false, "explication": "8 points lumineux au maximum." },
+        { "affirmation": "En 2,5 mm² sous 20 A, un circuit peut alimenter 12 prises.", "vrai": true, "explication": "8 prises en 1,5 mm² sous 16 A, 12 en 2,5 mm² sous 20 A." },
+        { "affirmation": "La plaque de cuisson se câble en 2,5 mm² sous 20 A.", "vrai": false, "explication": "6 mm² sous 32 A." },
+        { "affirmation": "Un circuit spécialisé n'alimente qu'un seul appareil.", "vrai": true, "explication": "Un appareil, un circuit, une protection." },
+        { "affirmation": "Le coffret de chantier est équipé d'un interrupteur différentiel 30 mA.", "vrai": true, "explication": "Toutes les prises du chantier sont protégées en 30 mA." }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

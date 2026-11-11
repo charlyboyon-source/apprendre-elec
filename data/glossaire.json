@@ -443,5 +443,24 @@
   "goulotte": {
     "nom": "Goulotte",
     "definition": "Profilé en plastique à couvercle, fixé en apparent au mur ou en plinthe, dans lequel on couche les conducteurs. Très utilisée en rénovation."
+  },
+  "GTL": {
+    "nom": "Gaine Technique Logement (GTL)",
+    "definition": "Emplacement unique du logement où sont regroupés les arrivées et les départs du courant fort et de la communication : panneau de contrôle, tableau de répartition, tableau de communication.",
+    "niveau_associe": 14
+  },
+  "ETEL": {
+    "nom": "Espace Technique Électrique du Logement (ETEL)",
+    "definition": "Volume réservé à la GTL : 60 cm de large, 25 cm de profondeur, du sol au plafond. À 10 cm au moins d'une canalisation de gaz, 40 cm d'une source de chaleur, 60 cm d'un point d'eau.",
+    "niveau_associe": 14
+  },
+  "panneau de contrôle": {
+    "nom": "Panneau de contrôle",
+    "definition": "Support qui porte le compteur et l'AGCP. Ses organes de manœuvre sont à 1,80 m au maximum du sol fini, et entre 0,90 m et 1,30 m en accessibilité PMR."
+  },
+  "circuit spécialisé": {
+    "nom": "Circuit spécialisé",
+    "definition": "Circuit qui n'alimente qu'un seul appareil : plaque de cuisson (6 mm², 32 A), lave-linge, four, lave-vaisselle, chauffe-eau (2,5 mm², 20 A)… Un logement en compte au moins 4.",
+    "niveau_associe": 14
   }
 }

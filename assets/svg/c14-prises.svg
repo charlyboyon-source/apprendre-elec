@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Circuits de prises de courant : en 1,5 mm² avec un disjoncteur de 16 A, 8 prises au maximum ; en 2,5 mm² avec un disjoncteur de 20 A, 12 prises au maximum">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Les circuits de prises 16 A</text>
+<rect x="12" y="28" width="144" height="104" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#ff8c2b" font-weight="bold">EN 1,5 mm²</text>
+<text x="84" y="68" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">disjoncteur 16 A</text>
+<text x="84" y="83" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="98" text-anchor="middle" font-size="14" fill="#ff8c2b" font-weight="bold">8 prises</text>
+<text x="84" y="113" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">au maximum</text>
+<rect x="164" y="28" width="144" height="104" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">EN 2,5 mm²</text>
+<text x="236" y="68" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">disjoncteur 20 A</text>
+<text x="236" y="83" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="98" text-anchor="middle" font-size="14" fill="#ffd23f" font-weight="bold">12 prises</text>
+<text x="236" y="113" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">au maximum</text>
+<rect x="12" y="140" width="296" height="36" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="160" y="155" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">Cuisine : un circuit dédié de 6 prises,</text>
+<text x="160" y="168" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">dont 4 au-dessus du plan de travail</text>
+</svg>
