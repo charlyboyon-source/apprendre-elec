@@ -547,5 +547,28 @@
     "nom": "Contacteur heures creuses",
     "definition": "Appareil modulaire qui met le chauffe-eau en service pendant les heures creuses. Sa bobine (A1-A2) est commandée par le contact C1-C2 du compteur, sous un disjoncteur de 2 A. Trois positions : Auto, 0 (arrêt), I (marche forcée).",
     "niveau_associe": 19
+  },
+  "IRVE": {
+    "nom": "Infrastructure de Recharge pour Véhicules Électriques (IRVE)",
+    "definition": "Ensemble qui sert à recharger un véhicule électrique : le circuit dédié, ses protections et le point de recharge (prise renforcée ou borne). L'installation d'une borne de plus de 3,7 kW exige une qualification.",
+    "niveau_associe": 20
+  },
+  "mode de charge": {
+    "nom": "Mode de charge",
+    "definition": "Façon de recharger un véhicule. Mode 2 : prise avec boîtier de contrôle sur le câble. Mode 3 : borne dédiée qui dialogue avec le véhicule. Mode 4 : charge rapide en courant continu.",
+    "niveau_associe": 20
+  },
+  "domotique": {
+    "nom": "Domotique",
+    "definition": "Techniques qui automatisent et pilotent les équipements d'un logement. Des capteurs informent, une commande décide, des actionneurs agissent.",
+    "niveau_associe": 20
+  },
+  "actionneur": {
+    "nom": "Actionneur",
+    "definition": "Élément d'un système domotique qui exécute un ordre : relais, variateur, moteur de volet, vanne. Il commande un circuit, il ne le protège pas."
+  },
+  "délestage": {
+    "nom": "Délestage",
+    "definition": "Coupure momentanée d'un appareil non prioritaire quand la puissance appelée approche de celle du contrat, pour éviter que le disjoncteur de branchement déclenche."
   }
 }

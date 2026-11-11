@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Deux façons de relier les éléments d'une installation domotique : par un câble dédié, le bus, fiable et prévu à la construction ; par radio, sans fil, facile à ajouter en rénovation">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Filaire ou radio ?</text>
+<rect x="12" y="28" width="144" height="140" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">FILAIRE (BUS)</text>
+<text x="84" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">un câble dédié relie</text>
+<text x="84" y="83" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">tous les éléments</text>
+<text x="84" y="98" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="113" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">fiable, sans piles</text>
+<text x="84" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">à prévoir</text>
+<text x="84" y="158" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">dès la construction</text>
+<rect x="164" y="28" width="144" height="140" rx="9" fill="#24282f" stroke="#5aa9e6" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#5aa9e6" font-weight="bold">RADIO</text>
+<text x="236" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">les éléments</text>
+<text x="236" y="83" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">communiquent sans fil</text>
+<text x="236" y="98" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="113" text-anchor="middle" font-size="9" fill="#5aa9e6" font-weight="bold">facile à ajouter</text>
+<text x="236" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">idéal en rénovation,</text>
+<text x="236" y="158" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">portée et piles à surveiller</text>
+</svg>
