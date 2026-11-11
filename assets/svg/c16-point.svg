@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Un point lumineux : une sortie de fils équipée d'un dispositif de connexion pour luminaire, commandée par un interrupteur placé entre 0,90 m et 1,30 m du sol">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le point lumineux et sa commande</text>
+<polyline points="30,36 290,36" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="30,36 30,166" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="30,166 290,166" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="150" y="36" width="24" height="10" rx="2" fill="#ffd23f"/>
+<polyline points="162,46 162,58" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="162" cy="68" r="10" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
+<polyline points="155.0,61.0 169.0,75.0" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="155.0,75.0 169.0,61.0" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="184" y="58" text-anchor="start" font-size="10" fill="#ffd23f" font-weight="bold">DCL</text>
+<text x="184" y="70" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">dispositif de connexion</text>
+<text x="184" y="80" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">pour luminaire</text>
+<rect x="30" y="92" width="8" height="26" rx="2" fill="#ff8c2b"/>
+<text x="46" y="102" text-anchor="start" font-size="9" fill="#ff8c2b" font-weight="bold">interrupteur</text>
+<text x="46" y="114" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">à l'entrée de la pièce</text>
+<polyline points="122,92 122,166" fill="none" stroke="#ffd23f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<polyline points="118,92 126,92" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="118,118 126,118" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="132" y="138" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">entre 0,90 m</text>
+<text x="132" y="150" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">et 1,30 m du sol</text>
+<text x="160" y="182" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Un point lumineux = un emplacement où l'on raccorde un luminaire</text>
+</svg>

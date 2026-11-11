@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du double allumage : à l'interrupteur arrivent trois fils, la phase commune et deux retours lampe ; chaque lampe reçoit son retour, le neutre et le conducteur de protection">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Double allumage : combien de fils ?</text>
+<rect x="12" y="30" width="144" height="112" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="84" y="48" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">À L'INTERRUPTEUR</text>
+<text x="84" y="76" text-anchor="middle" font-size="17" fill="#e8eaed" font-weight="bold">3 fils</text>
+<text x="84" y="98" text-anchor="middle" font-size="8.5" fill="#e85b50" font-weight="bold">1 phase (commune)</text>
+<text x="84" y="112" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">2 retours lampe</text>
+<text x="84" y="130" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">un retour par point lumineux</text>
+<rect x="164" y="30" width="144" height="112" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="236" y="48" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">À CHAQUE LAMPE</text>
+<text x="236" y="76" text-anchor="middle" font-size="17" fill="#e8eaed" font-weight="bold">3 fils</text>
+<text x="236" y="98" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">1 retour lampe</text>
+<text x="236" y="112" text-anchor="middle" font-size="8.5" fill="#5aa9e6" font-weight="bold">1 neutre</text>
+<text x="236" y="126" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">1 protection</text>
+<text x="160" y="164" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">Le neutre ne passe jamais par l'interrupteur</text>
+<text x="160" y="180" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Tout le circuit est en 1,5 mm²</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma développé du simple allumage : de la phase, l'interrupteur S1, puis la lampe E1, puis le neutre">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Simple allumage : le schéma développé</text>
+<polyline points="30,44 180,44" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="38" text-anchor="start" font-size="7.5" fill="#e85b50" font-weight="bold">phase</text>
+<polyline points="30,150 180,150" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="164" text-anchor="start" font-size="7.5" fill="#5aa9e6" font-weight="bold">neutre</text>
+<polyline points="105,44 105,66" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="105" cy="68" r="2.4" fill="#e8eaed"/><circle cx="105" cy="92" r="2.4" fill="#e8eaed"/>
+<polyline points="105,92 95,70" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="105,92 105,112" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="105" cy="122" r="9" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
+<polyline points="98.7,115.7 111.3,128.3" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="98.7,128.3 111.3,115.7" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="105,132 105,150" fill="none" stroke="#5aa9e6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="117" y="84" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="bold">S1</text>
+<text x="119" y="126" text-anchor="start" font-size="8" fill="#ffd23f" font-weight="bold">E1</text>
+<text x="196" y="62" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">1 interrupteur</text>
+<text x="196" y="74" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">1 point lumineux</text>
+<text x="196" y="102" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">S1 ouvert : éteint</text>
+<text x="196" y="114" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">S1 fermé : allumé</text>
+<text x="196" y="140" text-anchor="start" font-size="8" fill="#ff8c2b" font-weight="bold">en orange :</text>
+<text x="196" y="150" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">le retour lampe</text>
+<text x="160" y="178" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le courant traverse la commande avant le récepteur</text>
+</svg>

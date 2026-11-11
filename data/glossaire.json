@@ -482,5 +482,23 @@
     "nom": "Schéma développé",
     "definition": "Schéma de fonctionnement : la phase en haut, le neutre en bas, et entre les deux les éléments dans l'ordre où le courant les traverse. Il ne tient pas compte de l'emplacement des appareils.",
     "niveau_associe": 15
+  },
+  "simple allumage": {
+    "nom": "Simple allumage",
+    "definition": "Montage qui commande un point lumineux depuis un seul endroit : la phase va à l'interrupteur, le retour lampe va de l'interrupteur à la lampe, le neutre va directement à la lampe.",
+    "niveau_associe": 16
+  },
+  "double allumage": {
+    "nom": "Double allumage",
+    "definition": "Montage qui commande deux points lumineux séparément depuis un seul endroit, avec un interrupteur double : une phase commune, deux retours lampe.",
+    "niveau_associe": 16
+  },
+  "retour lampe": {
+    "nom": "Retour lampe",
+    "definition": "Conducteur qui relie l'appareil de commande à la lampe. C'est une phase commandée : il n'est sous tension que lorsque la commande est fermée."
+  },
+  "DCL": {
+    "nom": "Dispositif de Connexion pour Luminaire (DCL)",
+    "definition": "Socle fixé au point lumineux, qui permet de brancher et débrancher un luminaire sans toucher aux conducteurs. Il reçoit le retour lampe, le neutre et le conducteur de protection."
   }
 }

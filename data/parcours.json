@@ -46,7 +46,7 @@
       "badge": "bloc-4",
       "niveaux": [
         { "id": 15, "titre": "Lire un schéma électrique" },
-        { "id": 16, "titre": "Simple et double allumage", "aVenir": true },
+        { "id": 16, "titre": "Simple et double allumage" },
         { "id": 17, "titre": "Va-et-vient et permutateur", "aVenir": true },
         { "id": 18, "titre": "Télérupteur et minuterie", "aVenir": true }
       ]

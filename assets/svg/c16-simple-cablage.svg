@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du simple allumage : la phase arrive sur l'interrupteur ; le retour lampe, orange, part de l'interrupteur vers la lampe ; le neutre et le conducteur de protection vont directement à la lampe">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Simple allumage : le câblage</text>
+<rect x="20" y="78" width="40" height="46" rx="5" fill="#24282f" stroke="#9aa6b3" stroke-width="1.6"/>
+<text x="40" y="140" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">tableau</text>
+<rect x="126" y="130" width="44" height="40" rx="5" fill="#24282f" stroke="#ff8c2b" stroke-width="1.8"/>
+<text x="148" y="186" text-anchor="middle" font-size="7.5" fill="#ff8c2b" font-weight="bold">interrupteur</text>
+<circle cx="262" cy="62" r="12" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
+<polyline points="253.6,53.6 270.4,70.4" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="253.6,70.4 270.4,53.6" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="262" y="90" text-anchor="middle" font-size="7.5" fill="#ffd23f" font-weight="bold">lampe</text>
+<polyline points="60,112 140,112 140,130" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="156,130 156,112 240,112 250,70" fill="none" stroke="#ff8c2b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="60,90 230,90 250,62" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="60,84 200,84 222,48 258,48" fill="none" stroke="#4cd97b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="60,84 200,84 222,48 258,48" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-dasharray="4 5"/>
+<text x="92" y="124" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="bold">phase</text>
+<text x="196" y="124" text-anchor="middle" font-size="7.5" fill="#ff8c2b" font-weight="bold">retour lampe</text>
+<text x="110" y="70" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">neutre et protection : directs</text>
+<text x="232" y="150" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">2 fils à</text>
+<text x="232" y="161" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">l'interrupteur</text>
+<text x="232" y="172" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">phase + retour</text>
+</svg>
