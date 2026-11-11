@@ -1,6 +1,7 @@
 // Menu : onglets visibles dans l'en-tête + tiroir ☰ (autres pages et réglage "Navigation libre").
 
 import { navigationLibre, definirNavigationLibre } from "./progression.js";
+import "./mesure.js";
 
 // onChangement() : appelé quand un réglage change (pour rafraîchir la carte).
 export function brancherMenu(onChangement) {

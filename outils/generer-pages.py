@@ -62,7 +62,7 @@ def tete(titre, description, chemin, base=""):
 '''
 
 PIED = '''  <footer class="pied">
-    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a>
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
   <script type="module" src="js/page.js"></script>
 </body>
@@ -264,7 +264,8 @@ page("mentions-legales.html", "Mentions légales — ApprendreElec",
     <h2>Hébergeur</h2>
     <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
     <h2>Données personnelles</h2>
-    <p>Le site ne demande aucune inscription et ne collecte aucune donnée personnelle. Il n'utilise pas de cookies publicitaires ni de traceurs.</p>
+    <p>Le site ne demande aucune inscription. Il n'affiche aucune publicité et n'utilise pas de cookies publicitaires.</p>
+    <p><b>Mesure de fréquentation.</b> Pour savoir combien de personnes visitent le site et quelles pages sont utiles, le site utilise Google Analytics, un service de Google. Cet outil ne se charge que si tu cliques sur « Accepter » dans le bandeau affiché à ta première visite. Si tu refuses, rien n'est envoyé à Google et le site fonctionne de la même façon. Tu peux changer d'avis à tout moment : <a href="#" data-gerer-mesure>gérer les cookies</a>.</p>
     <p>Ta progression, tes électrons, tes réglages et la liste de tes erreurs sont enregistrés uniquement dans ton navigateur, sur ton appareil. Rien n'est envoyé à un serveur. Si tu effaces les données de navigation, ou si tu changes d'appareil, cette progression est perdue.</p>
     <h2>Propriété du contenu</h2>
     <p>Les textes, les questions et les illustrations sont des créations originales. Leur reproduction sans autorisation n'est pas permise.</p>
