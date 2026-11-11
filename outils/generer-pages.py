@@ -13,7 +13,7 @@ Le site lui-même n'a pas besoin de ce script pour fonctionner.
 """
 import json, re, unicodedata, datetime, html, os, glob
 
-SITE = "https://charlyboyon-source.github.io/apprendre-elec/"
+SITE = "https://apprendre-electricite.fr/"
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RACINE)
 
