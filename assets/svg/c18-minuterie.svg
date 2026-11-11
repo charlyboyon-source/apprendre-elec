@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="La minuterie : un appui sur un bouton-poussoir allume les lampes ; elles s'éteignent seules après la durée réglée">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La minuterie : elle éteint toute seule</text>
+<polyline points="30,110 290,110" fill="none" stroke="#5a626e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="70" y="70" width="150" height="40" rx="3" fill="#ffd23f" fill-opacity="0.25" stroke="#ffd23f" stroke-width="1.8"/>
+<polyline points="70,48 70,66" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="70,73 66,65 74,65" fill="#ff8c2b"/>
+<text x="70" y="42" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">appui</text>
+<text x="145" y="94" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">ALLUMÉ</text>
+<text x="256" y="94" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="bold">éteint</text>
+<text x="44" y="94" text-anchor="middle" font-size="8.5" fill="#9aa6b3" font-weight="bold">éteint</text>
+<polyline points="70,124 220,124" fill="none" stroke="#5aa9e6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="70,119 70,129" fill="none" stroke="#5aa9e6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="220,119 220,129" fill="none" stroke="#5aa9e6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="145" y="140" text-anchor="middle" font-size="9" fill="#5aa9e6" font-weight="bold">durée réglée</text>
+<text x="160" y="162" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">Escaliers, couloirs, parties communes</text>
+<text x="160" y="178" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Boutons-poussoirs en parallèle, comme pour un télérupteur</text>
+</svg>

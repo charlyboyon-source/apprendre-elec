@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Avec un télérupteur, on commande une lampe depuis autant d'endroits que l'on veut : tous les boutons-poussoirs sont branchés en parallèle">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Autant de points de commande qu'on veut</text>
+<rect x="38" y="60" width="24" height="24" rx="5" fill="#24282f" stroke="#ff8c2b" stroke-width="1.8"/><circle cx="50" cy="72" r="5" fill="#ff8c2b"/>
+<polyline points="50,84 50,104" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="98" y="60" width="24" height="24" rx="5" fill="#24282f" stroke="#ff8c2b" stroke-width="1.8"/><circle cx="110" cy="72" r="5" fill="#ff8c2b"/>
+<polyline points="110,84 110,104" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="158" y="60" width="24" height="24" rx="5" fill="#24282f" stroke="#ff8c2b" stroke-width="1.8"/><circle cx="170" cy="72" r="5" fill="#ff8c2b"/>
+<polyline points="170,84 170,104" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="50,104 230,104" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="239,104 231,100 231,108" fill="#e8eaed"/>
+<rect x="240" y="88" width="34" height="32" rx="4" fill="#24282f" stroke="#ffd23f" stroke-width="1.8"/>
+<text x="257" y="108" text-anchor="middle" font-size="12" fill="#ffd23f" font-weight="bold">T</text>
+<circle cx="296" cy="104" r="9" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
+<polyline points="289.7,97.7 302.3,110.3" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="289.7,110.3 302.3,97.7" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="110" y="48" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">boutons-poussoirs</text>
+<text x="257" y="80" text-anchor="middle" font-size="7.5" fill="#ffd23f" font-weight="bold">télérupteur</text>
+<text x="160" y="144" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">Tous les boutons-poussoirs sont en PARALLÈLE</text>
+<text x="160" y="164" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">Un appui allume, l'appui suivant éteint</text>
+</svg>

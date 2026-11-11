@@ -514,5 +514,19 @@
     "nom": "Permutateur",
     "definition": "Appareil à quatre bornes inséré sur les navettes, entre deux va-et-vient, pour ajouter un point de commande. Il transmet les navettes tout droit ou les croise.",
     "niveau_associe": 17
+  },
+  "télérupteur": {
+    "nom": "Télérupteur",
+    "definition": "Appareil commandé par des boutons-poussoirs : chaque impulsion sur sa bobine (bornes A1-A2) fait changer d'état son contact (bornes 1-2), qui garde ensuite sa position. Il permet de commander un éclairage depuis autant d'endroits qu'on veut.",
+    "niveau_associe": 18
+  },
+  "bouton-poussoir": {
+    "nom": "Bouton-poussoir",
+    "definition": "Appareil de commande qui ne ferme son contact que le temps de l'appui, puis revient seul au repos. Il envoie une impulsion à un télérupteur ou à une minuterie."
+  },
+  "minuterie": {
+    "nom": "Minuterie",
+    "definition": "Appareil commandé par des boutons-poussoirs, qui allume un éclairage puis l'éteint de lui-même après une durée réglée. Utilisée dans les escaliers, les couloirs et les parties communes.",
+    "niveau_associe": 18
   }
 }

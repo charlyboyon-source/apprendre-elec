@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Choisir le montage : un endroit, simple allumage ; deux endroits, va-et-vient ; trois endroits ou plus, télérupteur ; extinction automatique, minuterie">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Quel montage pour quel besoin ?</text>
+<rect x="12" y="30" width="296" height="28" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<rect x="12" y="35" width="4" height="18" rx="2" fill="#9aa6b3"/>
+<text x="24" y="47.0" text-anchor="start" font-size="8.5" fill="#9aa6b3" font-weight="bold">1 ENDROIT</text>
+<text x="140" y="47.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">simple allumage</text>
+<rect x="12" y="64" width="296" height="28" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<rect x="12" y="69" width="4" height="18" rx="2" fill="#4cd97b"/>
+<text x="24" y="81.0" text-anchor="start" font-size="8.5" fill="#4cd97b" font-weight="bold">2 ENDROITS</text>
+<text x="140" y="81.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">va-et-vient</text>
+<rect x="12" y="98" width="296" height="28" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<rect x="12" y="103" width="4" height="18" rx="2" fill="#ffd23f"/>
+<text x="24" y="115.0" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">3 ENDROITS ET PLUS</text>
+<text x="140" y="115.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">télérupteur</text>
+<rect x="12" y="132" width="296" height="28" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<rect x="12" y="137" width="4" height="18" rx="2" fill="#5aa9e6"/>
+<text x="24" y="149.0" text-anchor="start" font-size="8.5" fill="#5aa9e6" font-weight="bold">EXTINCTION AUTO</text>
+<text x="140" y="149.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">minuterie</text>
+<text x="160" y="180" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le besoin décide du montage, pas l'habitude</text>
+</svg>
