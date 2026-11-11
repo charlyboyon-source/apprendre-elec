@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Chauffe-eau instantané : il chauffe l'eau au moment où elle passe, sans réserve, avec une forte puissance. Chauffe-eau à accumulation : il chauffe lentement une réserve d'eau stockée dans une cuve isolée">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Chauffer au passage ou stocker ?</text>
+<rect x="12" y="28" width="144" height="140" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#e85b50" font-weight="bold">INSTANTANÉ</text>
+<text x="84" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">chauffe l'eau</text>
+<text x="84" y="83" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">au moment où elle passe</text>
+<text x="84" y="98" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="113" text-anchor="middle" font-size="9" fill="#e85b50" font-weight="bold">pas de réserve</text>
+<text x="84" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="84" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">forte puissance,</text>
+<text x="84" y="158" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">pendant peu de temps</text>
+<rect x="164" y="28" width="144" height="140" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#ff8c2b" font-weight="bold">ACCUMULATION</text>
+<text x="236" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">chauffe lentement</text>
+<text x="236" y="83" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">une réserve d'eau</text>
+<text x="236" y="98" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="113" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">une cuve isolée</text>
+<text x="236" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
+<text x="236" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">puissance modérée,</text>
+<text x="236" y="158" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">pendant des heures</text>
+</svg>

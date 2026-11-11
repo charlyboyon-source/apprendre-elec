@@ -57,7 +57,7 @@
       "description": "Eau chaude, domotique, recharge de voiture, photovoltaïque.",
       "badge": "bloc-5",
       "niveaux": [
-        { "id": 19, "titre": "Eau chaude et heures creuses", "aVenir": true },
+        { "id": 19, "titre": "Eau chaude et heures creuses" },
         { "id": 20, "titre": "Recharge de véhicule et domotique", "aVenir": true },
         { "id": 21, "titre": "Le photovoltaïque", "aVenir": true }
       ]

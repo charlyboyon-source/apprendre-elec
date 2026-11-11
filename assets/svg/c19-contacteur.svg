@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le contacteur heures creuses a trois positions : automatique, il suit le signal du compteur ; arrêt ; marche forcée, le chauffe-eau chauffe tout de suite">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le contacteur heures creuses : 3 positions</text>
+<rect x="12" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="57" y="58" text-anchor="middle" font-size="17" fill="#4cd97b" font-weight="bold">AUTO</text>
+<text x="57" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">il suit le signal</text>
+<text x="57" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">du compteur</text>
+<rect x="115" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#9aa6b3" stroke-width="1.2" />
+<text x="160" y="58" text-anchor="middle" font-size="17" fill="#9aa6b3" font-weight="bold">0</text>
+<text x="160" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">arrêt</text>
+<text x="160" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">chauffe-eau coupé</text>
+<rect x="218" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
+<text x="263" y="58" text-anchor="middle" font-size="17" fill="#e85b50" font-weight="bold">I</text>
+<text x="263" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">marche forcée</text>
+<text x="263" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">chauffe tout de suite</text>
+<rect x="12" y="108" width="296" height="30" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
+<text x="160" y="127" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">Bobine A1 – A2 · contact de puissance en série avec le chauffe-eau</text>
+<text x="160" y="160" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">Après une marche forcée, on revient toujours sur AUTO</text>
+</svg>

@@ -528,5 +528,24 @@
     "nom": "Minuterie",
     "definition": "Appareil commandé par des boutons-poussoirs, qui allume un éclairage puis l'éteint de lui-même après une durée réglée. Utilisée dans les escaliers, les couloirs et les parties communes.",
     "niveau_associe": 18
+  },
+  "ECS": {
+    "nom": "Eau Chaude Sanitaire (ECS)",
+    "definition": "Eau chaude des robinets, de la douche et de la baignoire. Quatre types de production : instantané, à accumulation, thermodynamique, solaire. Circuit spécialisé en 2,5 mm² sous 20 A.",
+    "niveau_associe": 19
+  },
+  "groupe de sécurité": {
+    "nom": "Groupe de sécurité",
+    "definition": "Organe de plomberie posé sur l'arrivée d'eau froide d'un chauffe-eau à accumulation. Il limite la pression dans la cuve en laissant s'échapper un peu d'eau pendant la chauffe."
+  },
+  "heures creuses": {
+    "nom": "Heures creuses",
+    "definition": "Plages horaires, surtout nocturnes, pendant lesquelles l'électricité coûte moins cher dans certains contrats. Le compteur les signale en fermant son contact C1-C2.",
+    "niveau_associe": 19
+  },
+  "contacteur heures creuses": {
+    "nom": "Contacteur heures creuses",
+    "definition": "Appareil modulaire qui met le chauffe-eau en service pendant les heures creuses. Sa bobine (A1-A2) est commandée par le contact C1-C2 du compteur, sous un disjoncteur de 2 A. Trois positions : Auto, 0 (arrêt), I (marche forcée).",
+    "niveau_associe": 19
   }
 }

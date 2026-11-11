@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le circuit du chauffe-eau : un circuit spécialisé en 2,5 mm², protégé par un disjoncteur de 20 A et un différentiel 30 mA. Exemple : 2 300 W sous 230 V, soit 10 A">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le circuit du chauffe-eau</text>
+<rect x="12" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="57" y="58" text-anchor="middle" font-size="15" fill="#ff8c2b" font-weight="bold">2,5 mm²</text>
+<text x="57" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">la section</text>
+<text x="57" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">des conducteurs</text>
+<rect x="115" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="160" y="58" text-anchor="middle" font-size="15" fill="#ffd23f" font-weight="bold">20 A</text>
+<text x="160" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">le disjoncteur</text>
+<text x="160" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">circuit spécialisé</text>
+<rect x="218" y="34" width="90" height="62" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="263" y="58" text-anchor="middle" font-size="15" fill="#4cd97b" font-weight="bold">30 mA</text>
+<text x="263" y="75" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">le différentiel</text>
+<text x="263" y="87" text-anchor="middle" font-size="7.3" fill="#9aa6b3" font-weight="normal">du logement</text>
+<rect x="40" y="108" width="240" height="30" rx="9" fill="#ffd23f" stroke="#ffd23f" stroke-width="1.2" fill-opacity="0.07"/>
+<text x="160" y="127" text-anchor="middle" font-size="10.5" fill="#ffd23f" font-weight="bold">2 300 W / 230 V = 10 A</text>
+<text x="160" y="160" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Un circuit pour lui seul, raccordé sans prise de courant</text>
+</svg>
