@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Trois méthodes d'encastrement : traditionnelle, les conduits passent par des boîtes de dérivation ; pieuvre, les conduits rayonnent depuis une boîte centrale ; tableau, chaque circuit repart directement du tableau">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Trois façons d'encastrer</text>
+<rect x="12" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
+<text x="57" y="51" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">TRADITIONNELLE</text>
+<text x="57" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">de boîte en boîte,</text>
+<text x="57" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">dans des saignées</text>
+<polyline points="105,61.0 110,61.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="116,61.0 108,57.0 108,65.0" fill="#9aa6b3"/>
+<rect x="115" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
+<text x="160" y="51" text-anchor="middle" font-size="8.5" fill="#ff8c2b" font-weight="bold">PIEUVRE</text>
+<text x="160" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">une boîte centrale,</text>
+<text x="160" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">des conduits en étoile</text>
+<polyline points="208,61.0 213,61.0" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="219,61.0 211,57.0 211,65.0" fill="#9aa6b3"/>
+<rect x="218" y="36" width="90" height="50" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
+<text x="263" y="51" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">TABLEAU</text>
+<text x="263" y="64" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">chaque circuit part</text>
+<text x="263" y="74" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">droit du tableau</text>
+<polyline points="21,124 93,124" fill="none" stroke="#ffd23f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="28" y="119" width="10" height="10" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="33,129 33,144" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="52" y="119" width="10" height="10" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="57,129 57,144" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="76" y="119" width="10" height="10" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="81,129 81,144" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 186.0,124.0" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 173.0,143.1" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 147.0,143.1" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 134.0,124.0" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 147.0,104.9" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="160,124 173.0,104.9" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="160" cy="124" r="7" fill="#24282f" stroke="#ff8c2b" stroke-width="1.8"/>
+<rect x="229" y="110" width="14" height="28" rx="2" fill="#24282f" stroke="#4cd97b" stroke-width="1.8"/>
+<polyline points="243,115 297,104.2" fill="none" stroke="#4cd97b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="243,121 297,117.4" fill="none" stroke="#4cd97b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="243,127 297,130.6" fill="none" stroke="#4cd97b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="243,133 297,143.8" fill="none" stroke="#4cd97b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="160" y="174" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Dans tous les cas : des tracés droits, horizontaux ou verticaux</text>
+</svg>

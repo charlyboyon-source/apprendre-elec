@@ -35,7 +35,7 @@
         { "id": 10, "titre": "Fusibles et disjoncteurs" },
         { "id": 11, "titre": "Le tableau électrique et ses différentiels" },
         { "id": 12, "titre": "Conducteurs et câbles" },
-        { "id": 13, "titre": "Conduits et modes de pose", "aVenir": true },
+        { "id": 13, "titre": "Conduits et modes de pose" },
         { "id": 14, "titre": "La GTL et les circuits du logement", "aVenir": true }
       ]
     },

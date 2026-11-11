@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Canalisation enterrée : le conduit TPC rouge est posé à 50 cm de profondeur au moins, 85 cm sous une voie accessible aux véhicules, avec un grillage avertisseur rouge 20 cm au-dessus">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le TPC : la canalisation enterrée</text>
+<polyline points="20,48 300,48" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="34" y="42" text-anchor="start" font-size="8" fill="#4cd97b" font-weight="bold">sol</text>
+<rect x="20" y="50" width="280" height="110" fill="#8a6a44" fill-opacity="0.18"/>
+<polyline points="60,96 190,96" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<text x="198" y="99" text-anchor="start" font-size="7.8" fill="#e85b50" font-weight="bold">grillage avertisseur rouge</text>
+<circle cx="124" cy="138" r="13" fill="#24282f" stroke="#e85b50" stroke-width="4"/><circle cx="124" cy="138" r="4.5" fill="#ff8c2b"/>
+<text x="198" y="136" text-anchor="start" font-size="9.5" fill="#e85b50" font-weight="bold">TPC rouge</text>
+<text x="198" y="148" text-anchor="start" font-size="7.8" fill="#e8eaed" font-weight="normal">courant fort</text>
+<polyline points="40,50 40,138" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="36,50 44,50" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="36,138 44,138" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="48" y="82" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">50 cm</text>
+<text x="48" y="124" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">au moins</text>
+<polyline points="150,96 150,125" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="156" y="116" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">20 cm</text>
+<text x="160" y="182" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">85 cm au moins sous une voie accessible aux véhicules</text>
+</svg>

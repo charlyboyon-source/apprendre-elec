@@ -419,5 +419,29 @@
     "nom": "Chute de tension",
     "definition": "Tension perdue le long d'un conducteur à cause de sa résistance. Elle augmente avec la longueur et le courant, diminue quand la section augmente. Limites : 3 % pour l'éclairage, 5 % pour les autres usages.",
     "niveau_associe": 12
+  },
+  "conduit": {
+    "nom": "Conduit",
+    "definition": "Tube dans lequel on fait passer les conducteurs pour les protéger mécaniquement et pouvoir les remplacer. Les trois familles courantes : ICTA (encastré), IRL (apparent), TPC (enterré).",
+    "niveau_associe": 13
+  },
+  "ICTA": {
+    "nom": "Conduit ICTA",
+    "definition": "Isolant, Cintrable, Transversalement élastique, Annelé : la gaine annelée de la pose encastrée. Diamètres de 16 à 63 mm. Remplissage : un tiers au maximum. Rayon de cintrage : au moins 6 fois le diamètre.",
+    "niveau_associe": 13
+  },
+  "IRL": {
+    "nom": "Conduit IRL",
+    "definition": "Isolant, Rigide, Lisse : le tube de la pose apparente, vendu en barres, fixé par des colliers et raccordé par des coudes et des manchons.",
+    "niveau_associe": 13
+  },
+  "TPC": {
+    "nom": "Conduit TPC",
+    "definition": "Tube de protection des câbles, pour les canalisations enterrées. Rouge pour le courant fort. Enterré à 50 cm au moins (85 cm sous une voie accessible aux véhicules), avec un grillage avertisseur 20 cm au-dessus.",
+    "niveau_associe": 13
+  },
+  "goulotte": {
+    "nom": "Goulotte",
+    "definition": "Profilé en plastique à couvercle, fixé en apparent au mur ou en plinthe, dans lequel on couche les conducteurs. Très utilisée en rénovation."
   }
 }
