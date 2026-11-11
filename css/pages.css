@@ -1,0 +1,63 @@
+/* Pages annexes : cours statiques, lexique, examen, erreurs, fiches, pages d'information. */
+.titre-site { color: inherit; text-decoration: none; }
+.page-cours h1, .page-simple h1, .page-lexique h1, .page-outil h1 { font-size: 1.5rem; margin: 6px 0 8px; }
+.page-sous-titre { font-size: 1.05rem; margin: var(--esp-4) 0 var(--esp-2); color: var(--jaune); }
+.page-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--esp-3) 0; }
+.bouton-plein, .bouton-creux {
+  display: inline-block; padding: 11px 16px; border-radius: var(--rayon); font-weight: 700;
+  font-size: 0.9rem; text-decoration: none; cursor: pointer; font-family: inherit; border: 1.5px solid var(--jaune);
+}
+.bouton-plein { background: var(--jaune); color: var(--texte-sur-jaune); }
+.bouton-creux { background: transparent; color: var(--jaune); }
+.page-voisins { display: flex; justify-content: space-between; gap: var(--esp-3); margin: var(--esp-4) 0; font-size: 0.85rem; }
+.page-voisins a:last-child { text-align: right; }
+.terme-lien { color: var(--jaune); text-decoration: underline dotted; text-underline-offset: 3px; }
+.pied { text-align: center; font-size: 0.8rem; color: var(--texte-2); padding: var(--esp-4) var(--esp-3) var(--esp-5); line-height: 2; }
+.pied a { color: var(--texte-2); }
+
+/* Lexique */
+.lexique-recherche {
+  width: 100%; padding: 12px 14px; border-radius: var(--rayon); border: 1.5px solid var(--bordure);
+  background: var(--fond-2); color: var(--texte); font-size: 1rem; font-family: inherit; margin: var(--esp-2) 0 var(--esp-3);
+}
+.lexique-recherche:focus { outline: none; border-color: var(--jaune); }
+.lexique-entree { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: var(--rayon); padding: 12px 14px; margin-bottom: 10px; scroll-margin-top: 90px; }
+.lexique-entree h2 { font-size: 0.98rem; margin: 0 0 4px; color: var(--jaune); }
+.lexique-entree p { margin: 0; font-size: 0.88rem; line-height: 1.55; }
+.lexique-entree:target, .lexique-entree.cible { border-color: var(--jaune); box-shadow: var(--lueur-jaune); }
+.lexique-lien { white-space: nowrap; font-size: 0.82rem; }
+.lexique-vide { color: var(--texte-2); }
+
+/* Outils : examen, erreurs, fiches, listes */
+.outil-carte { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: var(--rayon); padding: var(--esp-3); margin-bottom: var(--esp-3); }
+.outil-carte h2 { font-size: 1rem; margin: 0 0 6px; }
+.outil-carte p, .outil-carte li { font-size: 0.9rem; line-height: 1.55; }
+.outil-carte ul { margin: 6px 0 0; padding-left: 20px; }
+.examen-chrono {
+  position: sticky; top: var(--entete-h, 56px); z-index: 5; background: var(--fond); padding: 8px 0;
+  display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; border-bottom: 1px solid var(--bordure); margin-bottom: var(--esp-3);
+}
+.examen-chrono .temps { color: var(--jaune); font-variant-numeric: tabular-nums; }
+.examen-chrono .temps.presse { color: var(--erreur); }
+.examen-note { text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--jaune); margin: 4px 0; }
+.liste-modules { list-style: none; padding: 0; margin: 0; }
+.liste-modules li { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--bordure); font-size: 0.9rem; }
+.liste-modules li:last-child { border-bottom: 0; }
+.liste-modules .num { color: var(--texte-2); font-size: 0.8rem; margin-right: 6px; }
+.liste-modules .droite { white-space: nowrap; font-size: 0.82rem; color: var(--texte-2); }
+.fiche-section { border-left: 3px solid var(--jaune); padding: 2px 0 2px 12px; margin: 0 0 14px; }
+.fiche-section h2 { font-size: 0.95rem; margin: 0 0 3px; }
+.fiche-section p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+.page-simple h2 { font-size: 1.05rem; margin: var(--esp-4) 0 6px; color: var(--jaune); }
+.page-simple p, .page-simple li { font-size: 0.92rem; line-height: 1.6; }
+.note-affiliation { font-size: 0.8rem; color: var(--texte-2); border: 1px dashed var(--bordure); border-radius: var(--rayon); padding: 10px 12px; }
+
+@media print {
+  body { background: #fff; color: #000; }
+  .entete, .pied, .page-actions, .menu-drawer, .menu-dimmer, .non-imprime { display: none !important; }
+  .niveau { max-width: none; padding: 0; }
+  .fiche-section { border-left-color: #000; break-inside: avoid; }
+  .page-outil h1, .fiche-section h2 { color: #000; }
+  .niveau-objectif, .lecon-kicker { color: #333; }
+  a { color: #000; text-decoration: none; }
+}

@@ -6,6 +6,7 @@
 // Correction EN FIN DE SÉRIE + renvoi vers le cours.
 
 import { activerTermes, brancherTermes } from "./glossaire.js";
+import { noterReponse } from "./erreurs-store.js";
 
 const NB_TIRAGE = 15;
 
@@ -33,9 +34,13 @@ function melangerChoix(q) {
 
 // Options :
 //   onFin(score, total)       : appelé à l'affichage des résultats
-//   onRevoirLecon(indexSection) : renvoi vers le cours depuis une erreur
-export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
-  const questions = tirer(niveau.banque || niveau.quiz, NB_TIRAGE).map(melangerChoix);
+//   onRevoirLecon(indexSection, question) : renvoi vers le cours depuis une erreur
+//   nb                        : nombre de questions tirées (15 par défaut)
+// Une question peut porter `_module` (id de son module) quand la série
+// mélange plusieurs modules : examen blanc, révision des erreurs.
+// Renvoie { terminer() } pour afficher les résultats avant la fin (chrono).
+export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon, nb = NB_TIRAGE } = {}) {
+  const questions = tirer(niveau.banque || niveau.quiz, nb).map(melangerChoix);
   const reponses = Array(questions.length).fill(null);
   let index = 0;
 
@@ -89,22 +94,24 @@ export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon } = {}) {
     const liste = conteneur.querySelector(".quiz-resultats");
     questions.forEach((q, i) => {
       const ok = reponses[i] === q.bonne;
+      noterReponse(q._module ?? niveau.id, q.question, ok);
       const div = document.createElement("div");
       div.className = "resultat";
       div.innerHTML = `
         <div class="resultat-q"><span>${ok ? "✅" : "❌"}</span><span>Q${i + 1}. ${q.question}</span></div>
-        <div class="resultat-x">${ok ? "" : `Ta réponse : « ${q.choix[reponses[i]]} » — `}Bonne réponse : <b>${q.choix[q.bonne]}</b><br>${q.explication}</div>
-        ${ok ? "" : `<button class="revoir-lecon" data-ecran="${q.renvoi_lecon}">📖 Revoir la leçon</button>`}`;
+        <div class="resultat-x">${ok ? "" : reponses[i] === null ? "Pas de réponse — " : `Ta réponse : « ${q.choix[reponses[i]]} » — `}Bonne réponse : <b>${q.choix[q.bonne]}</b><br>${q.explication}</div>
+        ${ok ? "" : `<button class="revoir-lecon" data-ecran="${q.renvoi_lecon}" data-q="${i}">📖 Revoir la leçon</button>`}`;
       liste.appendChild(div);
     });
 
     liste.querySelectorAll(".revoir-lecon").forEach((btn) => {
-      btn.addEventListener("click", () => onRevoirLecon?.(Number(btn.dataset.ecran)));
+      btn.addEventListener("click", () => onRevoirLecon?.(Number(btn.dataset.ecran), questions[Number(btn.dataset.q)]));
     });
 
-    onFin?.(score, questions.length);
+    onFin?.(score, questions.length, { questions, reponses });
     window.scrollTo({ top: 0 });
   }
 
   rendreQuestion();
+  return { terminer: rendreResultats };
 }

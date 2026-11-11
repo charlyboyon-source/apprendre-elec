@@ -215,3 +215,6 @@ button {
   color: var(--jaune);
 }
 .menu-sep { height: 1px; background: var(--bordure); margin: var(--esp-2) 0; }
+
+/* Le menu peut dépasser la hauteur de l'écran : il défile. */
+.menu-drawer { overflow-y: auto; }

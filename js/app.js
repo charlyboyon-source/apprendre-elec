@@ -55,6 +55,8 @@ function mesurerEntete() {
 async function initNiveau(conteneur) {
   const id = Number(new URLSearchParams(location.search).get("id"));
   if (!id || id < 1 || id > 21) { location.href = "index.html"; return; }
+  // Arrivée depuis une page de cours (lien « Faire le quiz ») : pas de cadenas.
+  if (new URLSearchParams(location.search).get("libre") === "1") deverrouillerManuel(id);
   if (!niveauAccessible(id)) {
     conteneur.innerHTML = `
       <p class="niveau-message">🔒 Ce niveau fait partie d'un parcours progressif et n'est pas encore débloqué.</p>
@@ -75,6 +77,8 @@ async function initNiveau(conteneur) {
     conteneur.innerHTML = `<p class="niveau-message">Ce niveau arrive bientôt. ⚡</p>`;
     return;
   }
+
+  document.title = `${niveau.titre} — ApprendreElec`;
 
   // Lien profond depuis les bibliothèques : ouvrir directement le bon module.
   const module = new URLSearchParams(location.search).get("module");

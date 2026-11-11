@@ -31,7 +31,14 @@ export function brancherMenu(onChangement) {
       <a class="menu-lien${actif(surBiblio && type === "quiz")}" href="bibliotheque.html?type=quiz">🎯 Tous les quiz</a>
       <a class="menu-lien${actif(surBiblio && type === "jeu")}" href="bibliotheque.html?type=jeu">🎮 Tous les jeux</a>
       <div class="menu-sep"></div>
+      <a class="menu-lien${actif(page === "examen.html")}" href="examen.html">📝 Examen blanc</a>
+      <a class="menu-lien${actif(page === "erreurs.html")}" href="erreurs.html">🔁 Mes erreurs</a>
+      <a class="menu-lien${actif(page === "fiche.html")}" href="fiche.html">🖨 Fiches mémo</a>
+      <a class="menu-lien${actif(page === "lexique.html")}" href="lexique.html">📚 Lexique</a>
       <a class="menu-lien${actif(surAtelier)}" href="atelier-depannage.html">🔧 Atelier dépannage</a>
+      <div class="menu-sep"></div>
+      <a class="menu-lien${actif(page === "materiel.html")}" href="materiel.html">🧰 Le matériel de l'apprenti</a>
+      <a class="menu-lien${actif(page === "a-propos.html")}" href="a-propos.html">ℹ️ À propos</a>
     </nav>
     <div class="menu-sep"></div>
     <label class="menu-reglage">
