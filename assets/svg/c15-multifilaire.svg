@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le schéma multifilaire : chaque conducteur est dessiné, avec sa couleur ; il montre le câblage réel, borne par borne">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le schéma multifilaire : tous les fils</text>
+<polyline points="30,52 150,52 150,118.0" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="47" text-anchor="start" font-size="7" fill="#e85b50" font-weight="bold">phase</text>
+<polyline points="30,72 150,72 150,128.0" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="67" text-anchor="start" font-size="7" fill="#5aa9e6" font-weight="bold">neutre</text>
+<polyline points="30,92 150,92 150,138.0" fill="none" stroke="#4cd97b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="87" text-anchor="start" font-size="7" fill="#4cd97b" font-weight="bold">protection</text>
+<rect x="126" y="118" width="48" height="34" rx="5" fill="#24282f" stroke="#e8eaed" stroke-width="1.8"/>
+<text x="150" y="139" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">prise</text>
+<text x="196" y="60" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">un trait</text>
+<text x="196" y="72" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">par conducteur</text>
+<text x="196" y="98" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">chaque fil</text>
+<text x="196" y="108" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">à sa couleur</text>
+<text x="196" y="132" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">le câblage réel,</text>
+<text x="196" y="142" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">borne par borne</text>
+<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le schéma qu'on suit pour raccorder</text>
+</svg>

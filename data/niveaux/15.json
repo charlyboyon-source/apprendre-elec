@@ -1,0 +1,121 @@
+{
+  "id": 15,
+  "bloc": 4,
+  "titre": "Lire un schéma électrique",
+  "objectif": "Reconnaître les quatre types de schémas et savoir à quelle question chacun répond",
+  "cours": {
+    "intro": "Premier module du bloc 4. Avant de câbler un montage, il faut savoir le lire. L'électricien ne décrit pas une installation avec des phrases : il la dessine. Quatre types de schémas existent, et chacun répond à une question différente. Apprends à les reconnaître au premier coup d'œil : tous les montages des modules suivants s'appuieront dessus.",
+    "sections": [
+      {
+        "titre": "1. Le schéma, un langage commun",
+        "svg": "c15-langage.svg",
+        "contenu": "<p>Un schéma électrique est un dessin codé. Il permet à celui qui conçoit l'installation, à celui qui la réalise et à celui qui la dépannera dans vingt ans de se comprendre sans se parler.</p><p>Il repose sur trois éléments. Des <b>symboles</b> : chaque appareil est représenté par un dessin normalisé, le même pour tout le monde. Des <b>traits</b> : ils figurent les conducteurs qui relient les appareils. Des <b>repères</b> : chaque élément porte un nom court, lettre et numéro, que l'on retrouve sur le matériel lui-même.</p><p>Deux conventions valent pour tous les schémas. Les appareils sont dessinés <b>au repos</b> : un interrupteur est représenté ouvert, un bouton-poussoir relâché. Et l'installation est supposée <b>hors tension</b>.</p><p>Il existe quatre types de schémas : <b>architectural</b>, <b>unifilaire</b>, <b>multifilaire</b> et <b>développé</b>. Aucun n'est meilleur que les autres : chacun répond à une question.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Sur un chantier, le schéma à jour vaut de l'or. Si tu modifies quoi que ce soit — un circuit ajouté, un disjoncteur déplacé — tu corriges le schéma le jour même. Un schéma faux est pire que pas de schéma." },
+        "memo": "Schéma = symboles normalisés + traits (conducteurs) + repères. Appareils dessinés au repos, installation hors tension. 4 types : architectural, unifilaire, multifilaire, développé."
+      },
+      {
+        "titre": "2. Le schéma architectural",
+        "svg": "c15-architectural.svg",
+        "contenu": "<p>Le [[schéma architectural]] se dessine directement sur le <b>plan du logement</b>, vu de dessus. Il répond à la question : <b>où ?</b></p><p>On y place le symbole de chaque appareil à son emplacement réel : les points lumineux, les interrupteurs, les prises, le tableau. On y voit aussi <b>qui commande quoi</b> : un trait, souvent en pointillé, relie chaque interrupteur au point lumineux qu'il allume.</p><p>En revanche, il ne montre <b>pas le câblage</b> : ni le nombre de conducteurs, ni leur parcours exact, ni les raccordements. Le trait entre l'interrupteur et la lampe n'est pas un fil, c'est une liaison de commande.</p><p>C'est le schéma que l'on montre au client pour valider l'emplacement des prises et des interrupteurs, et celui que tu suis pour tracer et poser tes boîtes.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Fais valider le schéma architectural par le client avant de tracer la première saignée. Déplacer une prise sur le papier prend dix secondes ; la déplacer dans un mur fini prend une demi-journée." },
+        "memo": "Schéma architectural : sur le plan du logement, l'emplacement des appareils et les liaisons de commande. Il répond à « où ? » et ne montre pas le câblage."
+      },
+      {
+        "titre": "3. Le schéma unifilaire",
+        "svg": "c15-unifilaire.svg",
+        "contenu": "<p>Dans le [[schéma unifilaire]], chaque circuit est représenté par <b>un seul trait</b>, quel que soit le nombre de conducteurs qu'il contient. « Unifilaire » : un fil.</p><p>Pour ne pas perdre l'information, on barre ce trait de petits <b>traits obliques</b> : autant de traits obliques que de conducteurs. Trois traits obliques signifient trois conducteurs — phase, neutre et conducteur de protection.</p><p>C'est le schéma du <b>tableau</b>. On y lit, de haut en bas, toute l'organisation de l'installation : l'[[AGCP]], les interrupteurs différentiels avec leur type et leur calibre, puis chaque disjoncteur avec son calibre, la section des conducteurs qu'il protège et ce qu'il alimente.</p><p>Il répond à la question : <b>quels circuits, avec quelles protections ?</b> Il est compact : toute une maison tient sur une page.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Le schéma unifilaire du tableau fait partie du dossier remis avec l'installation. Colle-en un exemplaire dans la porte du tableau : celui qui interviendra après toi saura tout de suite ce que protège chaque appareil." },
+        "memo": "Schéma unifilaire : un seul trait par circuit, des traits obliques pour le nombre de conducteurs. C'est le schéma du tableau : protections, calibres, sections."
+      },
+      {
+        "titre": "4. Le schéma multifilaire",
+        "svg": "c15-multifilaire.svg",
+        "contenu": "<p>Le [[schéma multifilaire]] fait l'inverse : il dessine <b>chaque conducteur</b> par son propre trait. « Multifilaire » : plusieurs fils.</p><p>On y voit donc le câblage réel : quel conducteur arrive sur quelle borne de quel appareil. Les traits sont dessinés à la couleur des conducteurs — rouge pour la phase, bleu pour le neutre, vert/jaune pour le conducteur de protection, et une couleur distincte pour les retours, par exemple l'orange pour le fil qui va de l'interrupteur à la lampe.</p><p>Il répond à la question : <b>comment raccorder ?</b> C'est le schéma que l'on suit, tournevis en main, pour câbler un montage sans se tromper de borne.</p><p>Son défaut est sa taille : dès que l'installation grandit, il devient vite illisible. On le réserve donc à un montage ou à une partie de l'installation.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Quand tu apprends un nouveau montage, dessine toi-même son schéma multifilaire, avec les couleurs. Si tu sais le dessiner sans modèle, tu sais le câbler." },
+        "memo": "Schéma multifilaire : un trait par conducteur, à sa couleur. Il montre le câblage réel, borne par borne, et répond à « comment raccorder ? »."
+      },
+      {
+        "titre": "5. Le schéma développé",
+        "svg": "c15-developpe.svg",
+        "contenu": "<p>Le [[schéma développé]] ne se préoccupe ni de l'emplacement des appareils, ni du parcours des fils. Il montre le <b>fonctionnement</b>.</p><p>Sa disposition est toujours la même : la <b>phase</b> est une ligne horizontale en haut, le <b>neutre</b> une ligne horizontale en bas. Entre les deux, on dessine verticalement la suite des éléments que traverse le courant : la protection, la commande, puis le récepteur.</p><p>On lit alors le montage comme une phrase, de haut en bas : « le courant part de la phase, traverse l'interrupteur S1 s'il est fermé, puis la lampe E1, et revient au neutre ». On retrouve la règle du module 3 : la commande coupe la phase, et le récepteur est relié au neutre.</p><p>Il répond à la question : <b>comment ça fonctionne ?</b> C'est le schéma que l'on utilise pour comprendre un montage, et pour raisonner lors d'un dépannage.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "En dépannage, redessine le montage en schéma développé sur un coin de papier. Tu vois d'un coup la chaîne que le courant doit parcourir, et tu sais où mesurer pour trouver le maillon coupé." },
+        "memo": "Schéma développé : phase en haut, neutre en bas, les éléments entre les deux dans l'ordre où le courant les traverse. Il répond à « comment ça fonctionne ? »."
+      },
+      {
+        "titre": "6. Les symboles",
+        "svg": "c15-symboles.svg",
+        "contenu": "<p>Chaque appareil a son symbole normalisé. Il représente une <b>fonction</b>, pas l'apparence de l'appareil : un interrupteur à bascule et un interrupteur tactile ont le même symbole, parce qu'ils font la même chose.</p><p>Quelques symboles à reconnaître sans hésiter. La <b>lampe</b> : un cercle barré d'une croix. L'<b>interrupteur</b> : un contact, c'est-à-dire un trait mobile qui ouvre ou ferme le circuit, dessiné ouvert. Le <b>bouton-poussoir</b> : un contact surmonté de son poussoir, qui revient tout seul au repos. La <b>terre</b> : trois traits horizontaux de plus en plus courts.</p><p>Un même appareil peut avoir deux symboles, selon le schéma : un dessin simplifié sur le schéma architectural, un dessin qui montre ses contacts sur le schéma développé.</p><p>Tu n'as pas à tout connaître par cœur dès le premier jour : un plan sérieux comporte une <b>légende</b>, qui rappelle tous les symboles utilisés.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "Devant un plan inconnu, commence par la légende, pas par le dessin. Les bureaux d'études n'utilisent pas tous exactement les mêmes symboles ; deux minutes de lecture t'évitent de confondre une prise et un point lumineux." },
+        "memo": "Un symbole représente une fonction. Lampe : cercle + croix. Interrupteur : un contact, dessiné ouvert. Bouton-poussoir : contact à poussoir. Terre : trois traits. La légende rappelle les symboles du plan."
+      },
+      {
+        "titre": "7. Quel schéma pour quelle question ?",
+        "svg": "c15-quatre.svg",
+        "contenu": "<p>Retiens les quatre schémas par la question à laquelle chacun répond.</p><p><b>Architectural</b> — <b>où ?</b> L'emplacement des appareils sur le plan du logement, et qui commande quoi.<br><b>Unifilaire</b> — <b>quels circuits, quelles protections ?</b> Un trait par circuit ; le schéma du tableau.<br><b>Multifilaire</b> — <b>comment raccorder ?</b> Un trait par conducteur ; le câblage réel.<br><b>Développé</b> — <b>comment ça fonctionne ?</b> De la phase au neutre, dans l'ordre où le courant traverse les éléments.</p><p>Sur un chantier, ils se complètent. Le client valide l'architectural ; tu poses tes boîtes d'après lui ; tu câbles le tableau d'après l'unifilaire ; tu raccordes un montage délicat d'après le multifilaire ; et tu dépannes en raisonnant sur le développé.</p>",
+        "encadre": { "titre": "Sur le chantier", "texte": "À l'examen, on te donnera souvent un schéma en te demandant d'en produire un autre : passer de l'architectural au développé, ou du développé au multifilaire. C'est l'exercice à travailler dans les modules qui suivent." },
+        "memo": "Architectural : où ? · Unifilaire : quels circuits, quelles protections ? · Multifilaire : comment raccorder ? · Développé : comment ça fonctionne ?"
+      }
+    ]
+  },
+  "banque": [
+    { "question": "De quoi se compose un schéma électrique ?", "choix": ["de photos des appareils", "de phrases décrivant l'installation", "de symboles, de traits et de repères", "uniquement de chiffres"], "bonne": 2, "explication": "Des symboles normalisés, des traits pour les conducteurs, des repères pour nommer chaque élément.", "renvoi_lecon": 0 },
+    { "question": "Sur un schéma, comment un interrupteur est-il représenté ?", "choix": ["toujours fermé", "au repos, c'est-à-dire ouvert", "dans la position du jour", "à moitié fermé"], "bonne": 1, "explication": "Les appareils sont dessinés au repos.", "renvoi_lecon": 0 },
+    { "question": "Sur un schéma, l'installation est supposée :", "choix": ["hors tension", "sous tension", "en court-circuit", "en surcharge"], "bonne": 0, "explication": "Convention commune à tous les schémas : hors tension, appareils au repos.", "renvoi_lecon": 0 },
+    { "question": "Combien de types de schémas faut-il connaître ?", "choix": ["deux", "six", "un seul", "quatre"], "bonne": 3, "explication": "Architectural, unifilaire, multifilaire, développé.", "renvoi_lecon": 0 },
+    { "question": "À quoi sert un repère sur un schéma ?", "choix": ["à indiquer le prix", "à donner la couleur du mur", "à nommer chaque élément", "à mesurer la tension"], "bonne": 2, "explication": "Un nom court, lettre et numéro, que l'on retrouve sur le matériel.", "renvoi_lecon": 0 },
+    { "question": "On modifie un circuit sur le chantier. Que fait-on du schéma ?", "choix": ["on le laisse tel quel", "on le corrige le jour même", "on le jette", "on attend la fin du chantier"], "bonne": 1, "explication": "Un schéma faux est pire que pas de schéma.", "renvoi_lecon": 0 },
+    { "question": "Sur quoi se dessine le schéma architectural ?", "choix": ["sur le plan du logement", "sur la porte du tableau", "sur une feuille blanche, sans plan", "sur le compteur"], "bonne": 0, "explication": "Il se superpose au plan du logement, vu de dessus.", "renvoi_lecon": 1 },
+    { "question": "À quelle question répond le schéma architectural ?", "choix": ["comment raccorder les fils ?", "quel est le calibre du disjoncteur ?", "comment le courant circule-t-il ?", "où sont les appareils ?"], "bonne": 3, "explication": "Il montre l'emplacement des appareils.", "renvoi_lecon": 1 },
+    { "question": "Sur un schéma architectural, que représente le trait entre un interrupteur et une lampe ?", "choix": ["un conducteur de phase", "un conducteur de protection", "une liaison de commande", "une canalisation d'eau"], "bonne": 2, "explication": "Il indique qui commande quoi ; ce n'est pas un fil.", "renvoi_lecon": 1 },
+    { "question": "Le schéma architectural montre-t-il le nombre de conducteurs ?", "choix": ["oui, toujours", "non", "oui, pour les prises", "oui, par des traits obliques"], "bonne": 1, "explication": "Il ne montre pas le câblage.", "renvoi_lecon": 1 },
+    { "question": "À qui montre-t-on le schéma architectural pour valider les emplacements ?", "choix": ["au client", "au distributeur", "au fabricant", "à personne"], "bonne": 0, "explication": "C'est lui qui valide l'emplacement des prises et des interrupteurs.", "renvoi_lecon": 1 },
+    { "question": "Quel schéma suit-on pour poser les boîtes d'encastrement ?", "choix": ["le schéma développé", "le schéma unifilaire", "aucun", "le schéma architectural"], "bonne": 3, "explication": "Il donne l'emplacement réel de chaque appareil.", "renvoi_lecon": 1 },
+    { "question": "Dans un schéma unifilaire, un circuit est représenté par :", "choix": ["un trait par conducteur", "deux traits", "un seul trait", "un rectangle"], "bonne": 2, "explication": "Un seul trait par circuit, quel que soit le nombre de conducteurs.", "renvoi_lecon": 2 },
+    { "question": "Sur un schéma unifilaire, que signifient trois petits traits obliques ?", "choix": ["trois circuits", "trois conducteurs", "trois ampères", "trois lampes"], "bonne": 1, "explication": "Autant de traits obliques que de conducteurs.", "renvoi_lecon": 2 },
+    { "question": "Quel schéma est celui du tableau ?", "choix": ["le schéma unifilaire", "le schéma architectural", "le schéma développé", "aucun"], "bonne": 0, "explication": "Il montre les protections, les calibres et les sections.", "renvoi_lecon": 2 },
+    { "question": "Que lit-on sur le schéma unifilaire du tableau ?", "choix": ["la couleur des murs", "la position des meubles", "la marque des lampes", "les protections, les calibres et les sections"], "bonne": 3, "explication": "De l'AGCP à chaque disjoncteur, avec ce qu'il alimente.", "renvoi_lecon": 2 },
+    { "question": "Quel est l'avantage du schéma unifilaire ?", "choix": ["il montre chaque borne", "il se dessine sur le plan du logement", "il est compact : toute l'installation tient sur une page", "il montre le fonctionnement"], "bonne": 2, "explication": "Un trait par circuit : c'est le plus condensé.", "renvoi_lecon": 2 },
+    { "question": "Que signifie « unifilaire » ?", "choix": ["un seul circuit dans le logement", "un seul fil dessiné par circuit", "un seul disjoncteur", "un fil unique sans neutre"], "bonne": 1, "explication": "Un trait pour tout le circuit.", "renvoi_lecon": 2 },
+    { "question": "Où colle-t-on un exemplaire du schéma unifilaire ?", "choix": ["dans la porte du tableau", "sur le compteur", "sous l'évier", "dans la boîte aux lettres"], "bonne": 0, "explication": "Celui qui interviendra saura ce que protège chaque appareil.", "renvoi_lecon": 2 },
+    { "question": "Dans un schéma multifilaire, on dessine :", "choix": ["un seul trait par circuit", "uniquement les appareils", "uniquement le tableau", "chaque conducteur par son propre trait"], "bonne": 3, "explication": "Un trait par conducteur.", "renvoi_lecon": 3 },
+    { "question": "À quelle question répond le schéma multifilaire ?", "choix": ["où sont les appareils ?", "combien coûte l'installation ?", "comment raccorder ?", "quelle est la puissance du contrat ?"], "bonne": 2, "explication": "Il montre le câblage réel, borne par borne.", "renvoi_lecon": 3 },
+    { "question": "Sur un schéma multifilaire, de quelle couleur dessine-t-on le neutre ?", "choix": ["en rouge", "en bleu", "en vert/jaune", "en orange"], "bonne": 1, "explication": "Rouge = phase, bleu = neutre, vert/jaune = protection.", "renvoi_lecon": 3 },
+    { "question": "Sur un schéma multifilaire, de quelle couleur dessine-t-on la phase ?", "choix": ["en rouge", "en bleu", "en vert/jaune", "en gris"], "bonne": 0, "explication": "La phase en rouge.", "renvoi_lecon": 3 },
+    { "question": "Quel est le défaut du schéma multifilaire ?", "choix": ["il ne montre pas les conducteurs", "il ne montre pas les bornes", "il n'existe pas en couleur", "il devient vite illisible quand l'installation grandit"], "bonne": 3, "explication": "On le réserve à un montage ou à une partie de l'installation.", "renvoi_lecon": 3 },
+    { "question": "Quel schéma suit-on pour câbler un montage borne par borne ?", "choix": ["le schéma architectural", "le schéma unifilaire", "le schéma multifilaire", "aucun"], "bonne": 2, "explication": "Il montre quel conducteur arrive sur quelle borne.", "renvoi_lecon": 3 },
+    { "question": "Dans un schéma développé, où se trouve la phase ?", "choix": ["sur une ligne horizontale en bas", "sur une ligne horizontale en haut", "au centre", "elle n'est pas dessinée"], "bonne": 1, "explication": "Phase en haut, neutre en bas.", "renvoi_lecon": 4 },
+    { "question": "Dans un schéma développé, où se trouve le neutre ?", "choix": ["sur une ligne horizontale en bas", "sur une ligne horizontale en haut", "à gauche", "il n'est pas dessiné"], "bonne": 0, "explication": "Le neutre est la ligne du bas.", "renvoi_lecon": 4 },
+    { "question": "À quelle question répond le schéma développé ?", "choix": ["où sont les appareils ?", "quelle est la section des fils ?", "quelle est la hauteur des prises ?", "comment ça fonctionne ?"], "bonne": 3, "explication": "Il montre le fonctionnement du montage.", "renvoi_lecon": 4 },
+    { "question": "Le schéma développé tient-il compte de l'emplacement des appareils ?", "choix": ["oui, toujours", "oui, pour les lampes", "non", "oui, pour le tableau"], "bonne": 2, "explication": "Il ne s'occupe ni de l'emplacement, ni du parcours des fils.", "renvoi_lecon": 4 },
+    { "question": "Dans un schéma développé, dans quel ordre trouve-t-on les éléments, de la phase au neutre ?", "choix": ["le récepteur, puis la commande", "la commande, puis le récepteur", "le neutre, puis la phase", "il n'y a pas d'ordre"], "bonne": 1, "explication": "La commande coupe la phase ; le récepteur est relié au neutre.", "renvoi_lecon": 4 },
+    { "question": "Quel schéma utilise-t-on pour raisonner lors d'un dépannage ?", "choix": ["le schéma développé", "le schéma architectural", "aucun", "la facture"], "bonne": 0, "explication": "Il montre la chaîne que le courant doit parcourir.", "renvoi_lecon": 4 },
+    { "question": "Que représente un symbole ?", "choix": ["la marque de l'appareil", "la couleur de l'appareil", "le prix de l'appareil", "une fonction"], "bonne": 3, "explication": "Deux appareils qui font la même chose ont le même symbole.", "renvoi_lecon": 5 },
+    { "question": "Quel est le symbole de la lampe ?", "choix": ["un carré plein", "un triangle", "un cercle barré d'une croix", "trois traits horizontaux"], "bonne": 2, "explication": "Un cercle avec une croix.", "renvoi_lecon": 5 },
+    { "question": "Quel est le symbole de la terre ?", "choix": ["un cercle barré d'une croix", "trois traits horizontaux de plus en plus courts", "un rectangle", "une flèche"], "bonne": 1, "explication": "Trois traits de longueur décroissante.", "renvoi_lecon": 5 },
+    { "question": "Comment distingue-t-on le symbole d'un bouton-poussoir de celui d'un interrupteur ?", "choix": ["le contact est surmonté d'un poussoir", "il est dessiné fermé", "il est entouré d'un cercle", "il est en pointillé"], "bonne": 0, "explication": "Le poussoir rappelle qu'il revient tout seul au repos.", "renvoi_lecon": 5 },
+    { "question": "Où trouve-t-on la signification des symboles d'un plan ?", "choix": ["sur le compteur", "dans le tableau", "nulle part", "dans sa légende"], "bonne": 3, "explication": "La légende rappelle tous les symboles utilisés.", "renvoi_lecon": 5 },
+    { "question": "Un interrupteur à bascule et un interrupteur tactile ont-ils le même symbole ?", "choix": ["non, jamais", "seulement s'ils ont la même couleur", "oui : ils remplissent la même fonction", "seulement s'ils sont de la même marque"], "bonne": 2, "explication": "Le symbole représente la fonction, pas l'apparence.", "renvoi_lecon": 5 },
+    { "question": "Quel schéma répond à la question « où ? »", "choix": ["l'unifilaire", "l'architectural", "le multifilaire", "le développé"], "bonne": 1, "explication": "Le schéma architectural, sur le plan du logement.", "renvoi_lecon": 6 },
+    { "question": "Quel schéma répond à la question « quels circuits, quelles protections ? »", "choix": ["l'unifilaire", "l'architectural", "le multifilaire", "le développé"], "bonne": 0, "explication": "Le schéma unifilaire, celui du tableau.", "renvoi_lecon": 6 },
+    { "question": "Quel schéma répond à la question « comment raccorder ? »", "choix": ["l'architectural", "l'unifilaire", "le développé", "le multifilaire"], "bonne": 3, "explication": "Le schéma multifilaire, un trait par conducteur.", "renvoi_lecon": 6 },
+    { "question": "Quel schéma répond à la question « comment ça fonctionne ? »", "choix": ["l'architectural", "l'unifilaire", "le développé", "le multifilaire"], "bonne": 2, "explication": "Le schéma développé, de la phase au neutre.", "renvoi_lecon": 6 },
+    { "question": "Quel schéma dessine un trait par conducteur ?", "choix": ["l'unifilaire", "le multifilaire", "l'architectural", "aucun"], "bonne": 1, "explication": "Multifilaire : plusieurs fils.", "renvoi_lecon": 6 },
+    { "question": "Quel schéma dessine un seul trait par circuit ?", "choix": ["l'unifilaire", "le multifilaire", "le développé", "aucun"], "bonne": 0, "explication": "Unifilaire : un fil.", "renvoi_lecon": 6 }
+  ],
+  "jeu": {
+    "type": "vrai-faux-rapide",
+    "config": {
+      "affirmations": [
+        { "affirmation": "Sur un schéma, un interrupteur est dessiné ouvert.", "vrai": true, "explication": "Les appareils sont représentés au repos." },
+        { "affirmation": "Le schéma architectural montre le nombre de conducteurs de chaque circuit.", "vrai": false, "explication": "Il montre l'emplacement des appareils, pas le câblage." },
+        { "affirmation": "Dans un schéma unifilaire, un circuit est représenté par un seul trait.", "vrai": true, "explication": "Les traits obliques indiquent le nombre de conducteurs." },
+        { "affirmation": "Le schéma multifilaire dessine un trait par conducteur.", "vrai": true, "explication": "C'est le schéma du câblage réel." },
+        { "affirmation": "Dans un schéma développé, le neutre est dessiné en haut.", "vrai": false, "explication": "La phase en haut, le neutre en bas." },
+        { "affirmation": "Le schéma développé montre l'emplacement des appareils dans le logement.", "vrai": false, "explication": "Il montre le fonctionnement, pas l'emplacement." },
+        { "affirmation": "Le symbole de la lampe est un cercle barré d'une croix.", "vrai": true, "explication": "C'est l'un des symboles à reconnaître sans hésiter." },
+        { "affirmation": "Le schéma unifilaire est celui du tableau.", "vrai": true, "explication": "On y lit protections, calibres et sections." }
+      ]
+    }
+  },
+  "recompense": { "electrons": 50, "badge": null }
+}

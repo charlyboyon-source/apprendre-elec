@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le schéma unifilaire : un seul trait par circuit ; de petits traits obliques indiquent le nombre de conducteurs ; on y lit les protections, les sections, les calibres">
+<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le schéma unifilaire : un trait par circuit</text>
+<polyline points="40,40 150,40" fill="none" stroke="#e8eaed" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="60,40 60,150" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="53" y="58" width="14" height="22" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="54,106 66,98" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="54,112 66,104" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="54,118 66,110" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="60" y="166" text-anchor="middle" font-size="7" fill="#9aa6b3" font-weight="normal">éclairage</text>
+<polyline points="95,40 95,150" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="88" y="58" width="14" height="22" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="89,106 101,98" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="89,112 101,104" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="89,118 101,110" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="95" y="166" text-anchor="middle" font-size="7" fill="#9aa6b3" font-weight="normal">prises</text>
+<polyline points="130,40 130,150" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="123" y="58" width="14" height="22" rx="2" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
+<polyline points="124,106 136,98" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="124,112 136,104" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="124,118 136,110" fill="none" stroke="#ff8c2b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="130" y="166" text-anchor="middle" font-size="7" fill="#9aa6b3" font-weight="normal">plaque</text>
+<text x="176" y="62" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">un seul trait</text>
+<text x="176" y="74" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">par circuit</text>
+<text x="176" y="100" text-anchor="start" font-size="8" fill="#ff8c2b" font-weight="bold">3 traits obliques =</text>
+<text x="176" y="110" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">3 conducteurs</text>
+<text x="176" y="134" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">on y lit protections,</text>
+<text x="176" y="144" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">calibres et sections</text>
+<text x="160" y="184" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le schéma du tableau</text>
+</svg>

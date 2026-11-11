@@ -462,5 +462,25 @@
     "nom": "Circuit spécialisé",
     "definition": "Circuit qui n'alimente qu'un seul appareil : plaque de cuisson (6 mm², 32 A), lave-linge, four, lave-vaisselle, chauffe-eau (2,5 mm², 20 A)… Un logement en compte au moins 4.",
     "niveau_associe": 14
+  },
+  "schéma architectural": {
+    "nom": "Schéma architectural",
+    "definition": "Schéma dessiné sur le plan du logement : il montre l'emplacement des appareils et les liaisons de commande, pas le câblage. Il répond à la question « où ? ».",
+    "niveau_associe": 15
+  },
+  "schéma unifilaire": {
+    "nom": "Schéma unifilaire",
+    "definition": "Schéma où chaque circuit est représenté par un seul trait, barré d'autant de traits obliques qu'il compte de conducteurs. C'est le schéma du tableau : protections, calibres, sections.",
+    "niveau_associe": 15
+  },
+  "schéma multifilaire": {
+    "nom": "Schéma multifilaire",
+    "definition": "Schéma où chaque conducteur est dessiné par son propre trait, à sa couleur. Il montre le câblage réel, borne par borne.",
+    "niveau_associe": 15
+  },
+  "schéma développé": {
+    "nom": "Schéma développé",
+    "definition": "Schéma de fonctionnement : la phase en haut, le neutre en bas, et entre les deux les éléments dans l'ordre où le courant les traverse. Il ne tient pas compte de l'emplacement des appareils.",
+    "niveau_associe": 15
   }
 }

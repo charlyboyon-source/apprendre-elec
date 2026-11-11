@@ -44,12 +44,11 @@
       "titre": "Schémas et montages d'éclairage",
       "description": "Lire et câbler les montages courants du quotidien.",
       "badge": "bloc-4",
-      "aVenir": true,
       "niveaux": [
-        { "id": 15, "titre": "Niveau 15" },
-        { "id": 16, "titre": "Niveau 16" },
-        { "id": 17, "titre": "Niveau 17" },
-        { "id": 18, "titre": "Niveau 18" }
+        { "id": 15, "titre": "Lire un schéma électrique" },
+        { "id": 16, "titre": "Simple et double allumage", "aVenir": true },
+        { "id": 17, "titre": "Va-et-vient et permutateur", "aVenir": true },
+        { "id": 18, "titre": "Télérupteur et minuterie", "aVenir": true }
       ]
     },
     {
@@ -57,11 +56,10 @@
       "titre": "Applications modernes",
       "description": "Eau chaude, domotique, recharge de voiture, photovoltaïque.",
       "badge": "bloc-5",
-      "aVenir": true,
       "niveaux": [
-        { "id": 19, "titre": "Niveau 19" },
-        { "id": 20, "titre": "Niveau 20" },
-        { "id": 21, "titre": "Niveau 21" }
+        { "id": 19, "titre": "Eau chaude et heures creuses", "aVenir": true },
+        { "id": 20, "titre": "Recharge de véhicule et domotique", "aVenir": true },
+        { "id": 21, "titre": "Le photovoltaïque", "aVenir": true }
       ]
     }
   ]
