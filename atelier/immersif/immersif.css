@@ -26,7 +26,7 @@
 .im-bulle.danger { background: rgba(170, 25, 20, 0.95); }
 .im-bulle.mesure { background: rgba(30, 40, 30, 0.9); font-family: ui-monospace, Menlo, monospace; font-size: 0.9rem; }
 .im-voile { position: absolute; inset: 0; background: rgba(10, 14, 24, 0.55); display: flex; align-items: center; justify-content: center; padding: 14px; overflow: auto; }
-.im-panneau { background: #fffdf7; color: #1d2228; border-radius: 16px; padding: 18px 20px; width: min(560px, 100%); max-height: 100%; overflow: auto; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+.im-panneau { background: #fffdf7; color: #1d2228; border-radius: 16px; padding: 18px 20px; width: min(660px, 100%); max-height: 100%; overflow: auto; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
 .im-panneau h2 { margin: 0 0 10px; font-size: 1.15rem; }
 .im-panneau h3 { margin: 14px 0 6px; font-size: 1rem; }
 .im-panneau p { line-height: 1.5; }
