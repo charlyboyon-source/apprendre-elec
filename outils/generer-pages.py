@@ -75,6 +75,34 @@ blocs = {n["id"]: b for b in parcours["blocs"] for n in b["niveaux"]}
 modules = [json.load(open(f, encoding="utf-8")) for f in sorted(glob.glob("data/niveaux/*.json"))]
 pages = {m["id"]: f'cours/{m["id"]:02d}-{slug(m["titre"])}.html' for m in modules}
 
+# Titres pour Google (balise <title> et og:title ; le h1 affiché reste le titre du cours). 60 caractères au plus.
+TITRES = {
+    1: "Courant, tension, résistance : les bases de l'électricité",
+    2: "Loi d'Ohm et puissance électrique : cours et calculs",
+    3: "Le circuit électrique : phase, neutre, terre, protections",
+    4: "Série, parallèle et courant alternatif : cours gratuit",
+    5: "Électrisation, électrocution : les dangers du courant",
+    6: "Différentiel 30 mA, prise de terre, régime TT : le cours",
+    7: "Volumes de la salle de bain (NF C 15-100) : le cours",
+    8: "Indice IP, indice IK et classes de matériel électrique",
+    9: "Habilitation électrique, consignation, VAT : le cours",
+    10: "Disjoncteur et fusible : calibre, courbes B, C, D",
+    11: "Tableau électrique : interrupteurs différentiels, réserve",
+    12: "Section de câble, H07V-U, 3G2,5 : conducteurs et câbles",
+    13: "Gaine ICTA, tube IRL, TPC : conduits et modes de pose",
+    14: "GTL, ETEL et circuits du logement (NF C 15-100)",
+    15: "Lire un schéma électrique : unifilaire, développé",
+    16: "Simple allumage et double allumage : schéma et câblage",
+    17: "Va-et-vient et permutateur : schéma et câblage",
+    18: "Télérupteur et minuterie : schéma et câblage",
+    19: "Chauffe-eau et contacteur heures creuses : branchement",
+    20: "Borne de recharge (IRVE) et domotique : le cours",
+    21: "Installation photovoltaïque : principe et protections",
+}
+def description_cours(m):
+    d = f'{m["objectif"].rstrip(".")}. Cours illustré et quiz de {len(m["banque"])} questions.'
+    return d if len(d) <= 155 else m["objectif"].rstrip(".") + "."
+
 for f in glob.glob("cours/*.html"): os.remove(f)
 
 for i, m in enumerate(modules):
@@ -104,8 +132,7 @@ for i, m in enumerate(modules):
       </section>''')
     prec = f'<a href="{pages[modules[i-1]["id"]]}">← {modules[i-1]["titre"]}</a>' if i else "<span></span>"
     suiv = f'<a href="{pages[modules[i+1]["id"]]}">{modules[i+1]["titre"]} →</a>' if i < len(modules) - 1 else "<span></span>"
-    page = tete(f'{m["titre"]} — cours d\'électricité gratuit | ApprendreElec',
-                f'{m["objectif"]}. Cours complet, illustré, avec quiz de {len(m["banque"])} questions.', pages[n], base="../")
+    page = tete(TITRES[n], description_cours(m), pages[n], base="../")
     page += f'''  <main class="niveau page-cours" data-module="{n}">
     <p class="lecon-kicker">BLOC {bloc["id"]} · {bloc["titre"].upper()} · MODULE {n}</p>
     <h1>{m["titre"]}</h1>
@@ -159,7 +186,7 @@ for cle, e in sorted(glossaire.items(), key=cle_tri):
 molette = chr(10).join(
     f'      <button type="button" data-lettre="{l}"{"" if l in lettres_presentes else " disabled"}>{l}</button>'
     for l in (["#"] if "#" in lettres_presentes else []) + list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-lex = tete("Lexique de l'électricien — les mots du métier expliqués | ApprendreElec",
+lex = tete("Lexique de l'électricien : les mots du métier expliqués",
            f"{len(glossaire)} termes de l'électricité du bâtiment expliqués simplement : DDR, AGCP, ICTA, régime TT, calibre, sensibilité, GTL…", "lexique.html")
 lex += f'''  <main class="niveau page-lexique">
     <h1>Lexique de l'électricien</h1>
@@ -195,7 +222,7 @@ cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
         {f'<p class="actu-retenir"><b>À retenir :</b> {html.escape(a["a_retenir"])}</p>' if a.get("a_retenir") else ""}
         <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a></p>
       </article>''' for a in sorted(actu, key=lambda a: a["date"], reverse=True))
-page("actualites.html", "Actualités de l'électricité du bâtiment : normes, Consuel, matériel | ApprendreElec",
+page("actualites.html", "Actualités de l'électricien : normes, matériel",
      "Les nouveautés utiles aux électriciens et aux apprentis : normes, réglementation, Consuel, nouveau matériel. Chaque information est vérifiée et sourcée.",
      f'''    <h1>Actualités</h1>
     <p class="niveau-objectif">Normes, réglementation, nouveau matériel : ce qui change pour l'électricien. Chaque information est vérifiée sur une source officielle ou chez le fabricant, avec le lien pour aller plus loin.</p>
@@ -238,8 +265,8 @@ calc = "\n".join([
     12, "module 12, la chute de tension",
     '\n      <p class="calc-note">Hypothèses : cuivre en service (0,0225 Ω·mm²/m), circuit résistif (cos φ = 1). C\'est un ordre de grandeur pour apprendre, pas une note de calcul.</p>'),
 ])
-page("calculateurs.html", "Calculateurs d'électricité : consommation, courant, section, différentiel, chute de tension | ApprendreElec",
-     "Cinq calculateurs gratuits pour l'électricité du bâtiment : consommation et coût d'un appareil, courant appelé, section et calibre, calibre d'un interrupteur différentiel, chute de tension. Avec le calcul pas à pas.",
+page("calculateurs.html", "Calculateurs : section de câble, courant, chute de tension",
+     "Calculateurs gratuits : consommation d'un appareil, courant, section de câble et calibre, calibre du différentiel, chute de tension. Calcul pas à pas.",
      f'''    <h1>Calculateurs</h1>
     <p class="niveau-objectif">Tape tes valeurs : le résultat s'affiche tout de suite, avec le calcul détaillé et le lien vers le cours qui l'explique. Ces outils servent à apprendre et à vérifier un ordre de grandeur ; ils ne remplacent pas l'étude d'une installation.</p>
     <nav class="calc-sommaire"><a href="calculateurs.html#calc-energie">Consommation</a><a href="calculateurs.html#calc-courant">Courant</a><a href="calculateurs.html#calc-section">Section</a><a href="calculateurs.html#calc-differentiel">Différentiel</a><a href="calculateurs.html#calc-chute">Chute de tension</a></nav>
@@ -250,8 +277,8 @@ def ch(nom, label, v):
     return f'<label class="calc-champ"><span>{label}</span><span class="calc-entree"><input name="{nom}" inputmode="numeric" value="{v}"></span></label>'
 def cb(nom, label, on=False):
     return f'<label class="config-cb"><input type="checkbox" name="{nom}"{" checked" if on else ""}> {label}</label>'
-page("configurateur.html", "Configurateur de tableau électrique : composer son tableau selon la NF C 15-100 | ApprendreElec",
-     "Composez le tableau électrique d'un logement : circuits d'éclairage et de prises, circuits spécialisés, interrupteurs différentiels, calibres, rangées et réserve. Un outil pédagogique gratuit.",
+page("configurateur.html", "Configurateur de tableau électrique NF C 15-100",
+     "Compose le tableau électrique d'un logement : circuits, interrupteurs différentiels, calibres, rangées et réserve, selon la NF C 15-100. Outil gratuit.",
      f'''    <h1>Configurateur de tableau</h1>
     <p class="niveau-objectif">Décris le logement : l'outil compose le tableau en appliquant les règles des cours, et montre chaque vérification. C'est un outil pour apprendre et préparer un projet : les choix réels se font avec un professionnel, sur l'installation.</p>
     <div class="config">
@@ -283,13 +310,13 @@ for b in parcours["blocs"]:
     </section>
 '''
 nbq = sum(len(m["banque"]) for m in modules)
-page("cours.html", "Tous les cours d'électricité du bâtiment — ApprendreElec",
+page("cours.html", "Cours d'électricité du bâtiment : les 21 cours gratuits",
      f"Les {len(modules)} cours d'ApprendreElec, classés par bloc : bases, sécurité, tableau et conducteurs, montages d'éclairage, applications.",
      f'''    <h1>Tous les cours</h1>
     <p class="niveau-objectif">{len(modules)} cours illustrés, {nbq} questions. Chaque cours se lit sur une seule page, puis se vérifie par un quiz.</p>
 {par_bloc}''')
 
-page("examen.html", "Examen blanc d'électricité du bâtiment — 40 questions | ApprendreElec",
+page("examen.html", "Examen blanc d'électricité : 40 questions corrigées",
      "Entraîne-toi avec un examen blanc de 40 questions tirées au hasard dans les 21 modules, chronométré, avec ta note sur 20 et les modules à revoir.",
      '''    <h1>Examen blanc</h1>
     <p class="niveau-objectif">40 questions tirées au hasard dans tous les modules, en 40 minutes. À la fin : ta note sur 20 et les modules à revoir.</p>
@@ -307,17 +334,17 @@ page("examen.html", "Examen blanc d'électricité du bâtiment — 40 questions 
       </section>
     </div>''', script="js/examen.js")
 
-page("erreurs.html", "Mes erreurs — réviser les questions ratées | ApprendreElec",
+page("erreurs.html", "Mes erreurs : réviser les questions ratées",
      "Retrouve les questions que tu as ratées dans les quiz et l'examen blanc, et rejoue-les jusqu'à les réussir.",
      '''    <h1>Mes erreurs</h1>
     <p class="niveau-objectif">Les questions que tu as ratées sont gardées ici. Réponds juste, et elles disparaissent de la liste.</p>
     <div class="erreurs-zone"><p class="niveau-message">Chargement…</p></div>''', script="js/erreurs.js")
 
-page("fiche.html", "Fiches mémo d'électricité à imprimer — ApprendreElec",
+page("fiche.html", "Fiches mémo d'électricité à imprimer : les 21 cours",
      "L'essentiel de chaque cours en une page : les fiches mémo d'ApprendreElec, à relire avant un contrôle ou à imprimer.",
      '''    <div class="fiche-zone"><p class="niveau-message">Chargement…</p></div>''', script="js/fiche.js")
 
-page("materiel.html", "Le matériel de l'apprenti électricien — quoi acheter, quoi vérifier | ApprendreElec",
+page("materiel.html", "Outils de l'apprenti électricien : quoi acheter",
      "Les outils et les appareils de mesure à avoir pour débuter en électricité du bâtiment, et ce qu'il faut vérifier avant d'acheter.",
      '''    <h1>Le matériel de l'apprenti</h1>
     <p class="niveau-objectif">Ce qu'il faut avoir dans sa caisse pour débuter, et ce qu'il faut regarder avant d'acheter. Aucune marque imposée : des critères.</p>
@@ -350,7 +377,7 @@ page("materiel.html", "Le matériel de l'apprenti électricien — quoi acheter,
     </ul>
     <p class="note-affiliation">Cette page ne contient pour l'instant aucun lien commercial. Si des liens vers des boutiques y sont ajoutés un jour, ils seront signalés comme liens affiliés : ApprendreElec touchera alors une petite commission, sans surcoût pour toi, et les critères ci-dessus ne changeront pas.</p>''', classe="page-simple")
 
-page("a-propos.html", "À propos d'ApprendreElec",
+page("a-propos.html", "À propos d'ApprendreElec : qui écrit ce site",
      "ApprendreElec est un site gratuit pour apprendre l'électricité du bâtiment : qui l'a fait, pour qui, et comment s'en servir.",
      f'''    <h1>À propos</h1>
     <p>ApprendreElec est un site gratuit pour apprendre l'électricité du bâtiment, du tout premier circuit jusqu'au niveau attendu pour le titre professionnel d'Électricien d'Équipement du Bâtiment.</p>
@@ -369,7 +396,7 @@ page("a-propos.html", "À propos d'ApprendreElec",
     <p>ApprendreElec est un outil de révision. Il ne remplace ni une formation, ni un formateur, ni le texte des normes, qui évoluent. Une erreur a pu se glisser : en cas de doute, c'est la norme en vigueur et ton formateur qui font foi.</p>
     <p><b>On n'intervient jamais sur une installation électrique sans y être formé et habilité.</b> Toute intervention se fait hors tension, absence de tension vérifiée.</p>''', classe="page-simple")
 
-page("mentions-legales.html", "Mentions légales — ApprendreElec",
+page("mentions-legales.html", "Mentions légales | ApprendreElec",
      "Mentions légales du site ApprendreElec : éditeur, hébergeur, données personnelles, propriété du contenu.",
      '''    <h1>Mentions légales</h1>
     <h2>Éditeur</h2>
