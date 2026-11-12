@@ -56,3 +56,9 @@
 }
 .bandeau-mesure-actions button[data-v="oui"] { background: var(--jaune); color: #fff; }
 @media print { .bandeau-mesure { display: none; } }
+
+/* Images refaites en style réaliste (fond clair) : pas d'ardoise. Ajouter ici chaque module refait. */
+:is(.lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image):has(img[src*="/c10-"]) {
+  background: var(--fond-2); border: 1px solid var(--bordure);
+}
+.fiche-carte-image:has(img[src*="/c10-"]) { border-width: 0 0 1px; }

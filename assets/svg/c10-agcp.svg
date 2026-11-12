@@ -1,17 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="L'AGCP, disjoncteur de branchement, marque la frontière : en amont le réseau du distributeur, norme NF C 14-100 ; en aval l'installation de l'électricien, norme NF C 15-100">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">L'AGCP : la frontière de l'installation</text>
-<polyline points="30,92 126,92" fill="none" stroke="#9aa6b3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="194,92 290,92" fill="none" stroke="#ffd23f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polygon points="134,66 158,77 158,117 134,106" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,66 158,77 158,117 134,106" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,77 186,66 186,106 158,117" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="158,77 186,66 186,106 158,117" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="134,66 162,55 186,66 158,77" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="160" y="48" text-anchor="middle" font-size="12" fill="#ffd23f" font-weight="bold">AGCP</text>
-<text x="72" y="74" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="bold">AMONT</text>
-<text x="72" y="112" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">NF C 14-100</text>
-<text x="72" y="125" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">raccordé par Enedis</text>
-<text x="250" y="74" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">AVAL</text>
-<text x="250" y="112" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">NF C 15-100</text>
-<text x="250" y="125" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">posé par l'électricien</text>
-<text x="160" y="138" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">disjoncteur</text>
-<text x="160" y="148" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">de branchement</text>
-<text x="160" y="172" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">Type 1 : dans le logement (moins de 30 m)</text>
-<text x="160" y="184" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="normal">Type 2 : en limite de propriété (plus de 30 m)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="L'AGCP, disjoncteur de branchement, marque la frontière : en amont le réseau du distributeur, norme NF C 14-100 ; en aval l'installation de l'électricien, norme NF C 15-100">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">L'AGCP : la frontière de l'installation</text>
+<rect x="16" y="40" width="304" height="262" rx="14" fill="#eef3fb" stroke="#d5deee"/><rect x="320" y="40" width="304" height="262" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="120" y="64" text-anchor="middle" font-size="19.5" font-weight="800" fill="#2166d1">AMONT</text>
+<text x="120" y="86" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">NF C 14-100</text>
+<text x="120" y="107" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">raccordé par Enedis</text>
+<text x="520" y="64" text-anchor="middle" font-size="19.5" font-weight="800" fill="#b85a08">AVAL</text>
+<text x="520" y="86" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">NF C 15-100</text>
+<text x="520" y="107" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">posé par l'électricien</text>
+<path d="M150 196 H262" stroke="#d92b2b" stroke-width="8"/><path d="M378 196 H486" stroke="#d92b2b" stroke-width="8"/>
+<path d="M150 212 H262" stroke="#2166d1" stroke-width="8"/><path d="M378 212 H486" stroke="#2166d1" stroke-width="8"/>
+<g filter="url(#ombre)"><rect x="46" y="122" width="108" height="156" rx="12" fill="#c5d93a" stroke="#93a51f"/></g><rect x="62" y="146" width="76" height="34" rx="4" fill="#1f3a2a"/><text x="100" y="169" text-anchor="middle" font-size="13" font-weight="800" fill="#9be7a8" font-family="monospace">kWh</text><circle cx="80" cy="204" r="8" fill="#93a51f"/><circle cx="120" cy="204" r="8" fill="#93a51f"/><rect x="62" y="230" width="76" height="30" rx="4" fill="#b3c62c"/>
+<text x="100" y="296" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">compteur</text>
+<g filter="url(#ombre)"><rect x="258" y="116" width="124" height="172" rx="8" fill="url(#corps)" stroke="#b3b9c0"/></g><rect x="258" y="150" width="124" height="104" fill="url(#nez)" stroke="#c5cad0"/>
+<use href="#borne" x="284" y="133"/><use href="#borne" x="356" y="133"/><use href="#borne" x="284" y="271"/><use href="#borne" x="356" y="271"/>
+<rect x="296" y="166" width="48" height="72" rx="6" fill="#d5d9de" stroke="#b3b9c0"/><rect x="301" y="170" width="38" height="38" rx="5" fill="url(#manette)"/>
+<rect x="352" y="170" width="24" height="18" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="364" y="183" text-anchor="middle" font-size="11" font-weight="800" fill="#3a2a00">T</text>
+<text x="320" y="250" text-anchor="middle" font-size="12" font-weight="800" fill="#1c2530">AGCP</text>
+<path d="M320 44 V112 M320 292 V300" stroke="#1c2530" stroke-width="2" stroke-dasharray="6 5"/>
+<g filter="url(#ombre)"><rect x="486" y="126" width="108" height="150" rx="8" fill="#ffffff" stroke="#b3b9c0"/></g>
+<rect x="496" y="150" width="88" height="6" fill="url(#acierH)"/>
+<rect x="498" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="501" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="512" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="515" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="526" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="529" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="540" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="543" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="554" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="557" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="568" y="138" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="571" y="144" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="496" y="208" width="88" height="6" fill="url(#acierH)"/>
+<rect x="498" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="501" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="512" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="515" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="526" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="529" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="540" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="543" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="554" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="557" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<rect x="568" y="196" width="12" height="30" rx="2" fill="url(#corps)" stroke="#b3b9c0"/><rect x="571" y="202" width="6" height="9" rx="1" fill="#3a3f46"/>
+<text x="540" y="296" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">tableau</text>
+<text x="320" y="326" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">disjoncteur de branchement</text>
+<text x="320" y="356" text-anchor="middle" font-size="16.9" font-weight="500" fill="#1c2530">Type 1 : dans le logement (moins de 30 m)</text>
+<text x="320" y="380" text-anchor="middle" font-size="16.9" font-weight="500" fill="#1c2530">Type 2 : en limite de propriété (plus de 30 m)</text>
 </svg>
