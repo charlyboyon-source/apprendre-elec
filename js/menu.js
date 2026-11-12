@@ -39,6 +39,7 @@ export function brancherMenu(onChangement) {
       <a class="menu-lien${actif(surAtelier)}" href="atelier-depannage.html">🔧 Atelier dépannage</a>
       <div class="menu-sep"></div>
       <a class="menu-lien${actif(page === "calculateurs.html")}" href="calculateurs.html">🧮 Calculateurs</a>
+      <a class="menu-lien${actif(page === "configurateur.html")}" href="configurateur.html">🗄 Configurateur de tableau</a>
       <a class="menu-lien${actif(page === "actualites.html")}" href="actualites.html">📰 Actualités</a>
       <a class="menu-lien${actif(page === "materiel.html")}" href="materiel.html">🧰 Le matériel de l'apprenti</a>
       <a class="menu-lien${actif(page === "a-propos.html")}" href="a-propos.html">ℹ️ À propos</a>

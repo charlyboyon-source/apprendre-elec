@@ -216,3 +216,44 @@
 .calc-moins { margin-left: auto; border: 0; background: none; color: var(--texte-2); font-size: 1rem; cursor: pointer; }
 .calc-plus { grid-column: 1 / -1; justify-self: start; cursor: pointer; }
 .calc-champ[hidden] { display: none; }
+
+/* Configurateur de tableau */
+.page-outil:has(.config) { max-width: 1100px; }
+.config { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 20px; align-items: start; }
+.config-form { position: sticky; top: calc(var(--entete-h, 60px) + 12px); }
+.config-form h2 { font-size: 1.02rem; margin: 6px 0 10px; }
+.config-form .calc-champs { grid-template-columns: 1fr; margin-bottom: 14px; }
+.config-cbs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; font-size: 0.9rem; }
+.config-cb { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 10px; background: var(--fond); cursor: pointer; }
+.config-cb input { width: 18px; height: 18px; accent-color: var(--jaune); }
+.config-resultat { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 16px; padding: 18px; min-width: 0; }
+.config-resultat h3 { font-size: 1.02rem; margin: 20px 0 8px; }
+.config-chiffres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.config-chiffres div { background: var(--jaune-doux); border-radius: 12px; padding: 10px; text-align: center; }
+.config-chiffres b { display: block; font-size: 1.6rem; line-height: 1.1; }
+.config-chiffres span { font-size: 0.78rem; color: var(--texte-2); }
+.tab-coffret { background: #eef1f4; border: 1px solid #c5cad0; border-radius: 14px; padding: 12px 10px; display: flex; flex-direction: column; gap: 12px; overflow-x: auto; }
+.tab-rangee { display: flex; align-items: center; gap: 8px; min-width: 520px; }
+.tab-num { width: 18px; font-size: 0.75rem; font-weight: 800; color: var(--texte-2); }
+.tab-rail { flex: 1; display: grid; grid-template-columns: repeat(26, 1fr); gap: 3px; padding: 6px 4px; background: linear-gradient(transparent 44%, #aab1b9 44%, #aab1b9 56%, transparent 56%); }
+.tab-mod { min-height: 74px; border-radius: 5px; background: #fff; border: 1px solid #b3b9c0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; text-align: center; font-size: 0.68rem; line-height: 1.1; padding: 2px; overflow: hidden; }
+.tab-mod b { font-size: 0.78rem; }
+.tab-mod small { color: var(--texte-2); font-size: 0.62rem; }
+.tab-id { border-top: 5px solid #f2a20c; }
+.tab-id.t-A small:last-child { color: #2166d1; font-weight: 800; }
+.tab-dj { border-top: 4px solid #3a3f46; }
+.tab-dj.f-ecl { border-top-color: #e0a800; } .tab-dj.f-pr { border-top-color: #2166d1; } .tab-dj.f-spe { border-top-color: #b85a08; } .tab-dj.f-ve { border-top-color: #17804c; }
+.tab-prise span { width: 28px; height: 28px; border-radius: 50%; background: #e4e7ea; border: 2px solid #b3b9c0; position: relative; }
+.tab-libre { background: repeating-linear-gradient(45deg, #e6f6ec, #e6f6ec 6px, #d3eedd 6px, #d3eedd 12px); border: 1.5px dashed #17804c; }
+.tab-libre small { color: #17804c; font-weight: 700; }
+.config-verifs { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 4px; font-size: 0.9rem; }
+.config-verifs .ok { color: var(--ok); } .config-verifs .ko { color: var(--erreur); font-weight: 700; }
+.config-alerte { margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; background: #fdecea; color: #8e1414; font-size: 0.88rem; }
+.config-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.config-table th { text-align: left; font-size: 0.75rem; color: var(--texte-2); border-bottom: 2px solid var(--bordure); padding: 6px; }
+.config-table td { border-bottom: 1px solid var(--bordure); padding: 7px 6px; vertical-align: top; }
+.config-table td small { display: block; color: var(--texte-2); font-size: 0.75rem; }
+.config-calibres { margin: 0; padding-left: 18px; font-size: 0.88rem; line-height: 1.7; }
+.config-note { font-size: 0.85rem; color: var(--texte-2); }
+.config-vide { color: var(--texte-2); }
+@media (max-width: 900px) { .config { grid-template-columns: 1fr; } .config-form { position: static; } }

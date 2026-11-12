@@ -245,6 +245,29 @@ page("calculateurs.html", "Calculateurs d'électricité : consommation, courant,
     <nav class="calc-sommaire"><a href="calculateurs.html#calc-energie">Consommation</a><a href="calculateurs.html#calc-courant">Courant</a><a href="calculateurs.html#calc-section">Section</a><a href="calculateurs.html#calc-differentiel">Différentiel</a><a href="calculateurs.html#calc-chute">Chute de tension</a></nav>
 {calc}''', script="js/calculateurs.js")
 
+# ---------- Configurateur de tableau
+def ch(nom, label, v):
+    return f'<label class="calc-champ"><span>{label}</span><span class="calc-entree"><input name="{nom}" inputmode="numeric" value="{v}"></span></label>'
+def cb(nom, label, on=False):
+    return f'<label class="config-cb"><input type="checkbox" name="{nom}"{" checked" if on else ""}> {label}</label>'
+page("configurateur.html", "Configurateur de tableau électrique : composer son tableau selon la NF C 15-100 | ApprendreElec",
+     "Composez le tableau électrique d'un logement : circuits d'éclairage et de prises, circuits spécialisés, interrupteurs différentiels, calibres, rangées et réserve. Un outil pédagogique gratuit.",
+     f'''    <h1>Configurateur de tableau</h1>
+    <p class="niveau-objectif">Décris le logement : l'outil compose le tableau en appliquant les règles des cours, et montre chaque vérification. C'est un outil pour apprendre et préparer un projet : les choix réels se font avec un professionnel, sur l'installation.</p>
+    <div class="config">
+      <form class="config-form calc" onsubmit="return false">
+        <h2>Le logement</h2>
+        <div class="calc-champs">{ch("surface","Surface (m²)","70")}{ch("points","Points lumineux","12")}{ch("prises","Prises de courant (hors cuisine)","16")}
+          <label class="calc-champ"><span>Section des prises</span><select name="sectionPrises"><option value="2.5" selected>2,5 mm² (20 A, 12 prises max)</option><option value="1.5">1,5 mm² (16 A, 8 prises max)</option></select></label></div>
+        <h2>Les circuits spécialisés</h2>
+        <div class="config-cbs">{cb("cuisine","Prises de la cuisine",True)}{cb("plaque","Plaque de cuisson",True)}{cb("four","Four",True)}{cb("lavelinge","Lave-linge",True)}{cb("lavevaisselle","Lave-vaisselle",True)}{cb("sechelinge","Sèche-linge")}{cb("chauffeeau","Chauffe-eau",True)}{cb("vmc","VMC",True)}{cb("recharge","Prise renforcée pour véhicule")}</div>
+        <div class="calc-champs">{ch("agcp","Calibre de l'AGCP (facultatif)","")}</div>
+      </form>
+      <section class="config-resultat" aria-live="polite"></section>
+    </div>
+    <p class="calc-note">Règles utilisées (modules 11, 14 et 20) : éclairage 8 points max par circuit et 2 circuits au-delà de 35 m² ; prises 12 max en 2,5 mm² ou 8 max en 1,5 mm² ; au moins 2 différentiels 30 mA dont 1 type AC et 1 type A ; 8 disjoncteurs max par différentiel ; calibre par la méthode aval ; 20 % de réserve dont 6 modules consécutifs ; 2 prises modulaires (comptées 2,5 modules chacune, selon le modèle) ; rangées de 13 modules. Le chauffage électrique n'est pas pris en compte.</p>
+    <p class="calc-lien">Pour comprendre : <a href="{pages[11]}">module 11, le tableau et ses différentiels</a> · <a href="{pages[14]}">module 14, les circuits du logement</a></p>''', script="js/configurateur.js")
+
 par_bloc = ""
 for b in parcours["blocs"]:
     ids = [n["id"] for n in b["niveaux"]]
@@ -362,7 +385,7 @@ page("mentions-legales.html", "Mentions légales — ApprendreElec",
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
-urls = ["", "cours.html", "calculateurs.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
+urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes,", len(urls), "adresses dans le plan du site")
