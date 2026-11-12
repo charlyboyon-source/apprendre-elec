@@ -101,3 +101,8 @@
 .im-carte:hover { border-color: var(--jaune); }
 .im-carte span { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texte-2); }
 .im-carte b { font-size: 1.1rem; }
+.im-liste { padding-left: 18px; font-size: 0.9rem; line-height: 1.45; }
+.im-liste li { margin-bottom: 6px; }
+.im-liste li.ok b { color: #14703f; } .im-liste li.ko b { color: #b3261e; } .im-liste li.faux b { color: #7a4a00; }
+.im-liste small { color: #555; }
+.im-panneau ul { line-height: 1.5; }

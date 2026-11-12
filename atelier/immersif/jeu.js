@@ -11,6 +11,10 @@ import { sons } from "./sons.js";
 const CATALOGUE = [
   { id: "chambre", fichier: "./scenarios/chambre.js", titre: "La lumière de la chambre", lieu: "Maison" },
   { id: "bureaux", fichier: "./scenarios/bureaux.js", titre: "L'éclairage de l'open space", lieu: "Bureaux" },
+  { id: "consuel", fichier: "./scenarios/consuel.js", titre: "Le contrôle avant le Consuel", lieu: "Maison neuve" },
+  { id: "jardin", fichier: "./scenarios/jardin.js", titre: "La nuit, sous la pluie", lieu: "Jardin" },
+  { id: "borne", fichier: "./scenarios/borne.js", titre: "La voiture qui ne charge pas", lieu: "Garage" },
+  { id: "toit", fichier: "./scenarios/toit.js", titre: "Sur le toit", lieu: "Photovoltaïque" },
 ];
 const racine = document.querySelector(".im");
 const REPOS = { rouge: { x: 1085, y: 735 }, noir: { x: 1015, y: 735 } };
@@ -72,9 +76,10 @@ function nouvelle(id) {
     panne, app: {}, vue: S.vueDepart, outil: "main", calibre: "V", lecture: null,
     repare: false, fini: false, minutes: 0, pieces: [], piecesInutiles: 0,
     poses: [], humeur: 3, fautes: [], accident: false, verifies: new Set(), journal: [], bulle: null,
-    rouge: { ...REPOS.rouge }, noir: { ...REPOS.noir }, derniere: null, panneau: "client", debut: true, loose: panne.visible || null,
+    rouge: { ...REPOS.rouge }, noir: { ...REPOS.noir }, derniere: null, panneau: S.dialogue ? "client" : "intro", debut: true, loose: panne.visible || null,
+    curseur: { x: 600, y: 375 },
   };
-  for (const r of S.tableau.rangees) for (const a of r) if (a.type !== "tl") e.app[a.cle] = true;
+  for (const r of (S.tableau ? S.tableau.rangees : [])) for (const a of r) if (a.type !== "tl") e.app[a.cle] = true;
   Object.assign(e, S.etat ? S.etat(panne) : {});
   Object.assign(e.app, panne.depart || {});
   majApp();
@@ -149,7 +154,11 @@ function mesurer(compter = true) {
   const a = e.rouge.vis, b = e.noir.vis;
   if (!a || !b || a === b || e.calibre === "OFF") { e.lecture = null; return; }
   const pt = potentiels(), na = S.noeuds[a], nb = S.noeuds[b];
-  if (e.calibre === "Ω") {
+  const perso = S.mesure ? S.mesure(api(), a, b, e.calibre) : undefined;
+  if (perso !== undefined) {
+    if (perso === null) { e.lecture = null; return; }
+    e.lecture = perso;
+  } else if (e.calibre === "Ω") {
     if (pt.de(na) === 230 || pt.de(nb) === 230) {
       e.lecture = "Hi V"; sons.alarme();
       faute("Ohmmètre posé sur des bornes sous tension : une continuité se mesure circuit coupé, jamais sous tension.");
@@ -179,6 +188,7 @@ function mesurer(compter = true) {
 function verifierFin() {
   if (e.fini || !e.repare || !S.termine(api())) return;
   e.fini = true; sons.succes();
+  if (S.etoiles) { e.etoiles = S.etoiles(api()); crediterElectrons(e.etoiles * 15); e.panneau = "fin"; return; }
   let etoiles = 3;
   if (e.fautes.length) etoiles--;
   if (e.piecesInutiles) etoiles--;
@@ -202,7 +212,13 @@ function majPointes() {
 }
 function vueSVG() {
   const fn = S.vues[e.vue];
-  return `<svg class="im-scene" viewBox="0 0 ${W} ${H}" role="img" aria-label="${S.titre}">${DEFS}<g class="im-vue">${fn(e, api())}</g><g class="im-pointes">${pointes(e)}</g></svg>`;
+  const contenu = fn(e, api());
+  const nuit = S.frontale && S.frontale(e);
+  const frontale = nuit ? `<defs><radialGradient id="g-frontale"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".55" stop-color="#000" stop-opacity=".25"/><stop offset="1" stop-color="#000" stop-opacity=".93"/></radialGradient></defs>
+    <g class="im-nuit" pointer-events="none"><rect width="${W}" height="${H}" fill="#02040a" opacity=".93" mask="url(#m-frontale)"/>
+    <mask id="m-frontale"><rect width="${W}" height="${H}" fill="#fff"/><circle class="im-faisceau" cx="${e.curseur.x}" cy="${e.curseur.y}" r="${nuit.rayon || 170}" fill="#000"/></mask>
+    <circle class="im-halo" cx="${e.curseur.x}" cy="${e.curseur.y}" r="${nuit.rayon || 170}" fill="url(#g-frontale)"/></g>${nuit.lumieres || ""}` : "";
+  return `<svg class="im-scene" viewBox="0 0 ${W} ${H}" role="img" aria-label="${S.titre}">${DEFS}<g class="im-vue">${contenu}</g>${frontale}<g class="im-pointes">${S.sansMultimetre ? "" : pointes(e)}</g></svg>`;
 }
 const VISAGES = ["😠", "😕", "🙂", "😊"];
 function panneauClient() {
@@ -230,6 +246,10 @@ function panneauCamion() {
     <button type="button" class="im-lien" data-action="fermer">Refermer la camionnette</button></div>`;
 }
 function panneauFin() {
+  if (S.finHtml) return `<div class="im-panneau im-fin"><p class="im-etoiles">${"★".repeat(e.etoiles)}${"☆".repeat(3 - e.etoiles)}</p>${S.finHtml(api())}
+    <p class="im-petit">+${e.etoiles * 15} e⁻</p>
+    <button type="button" class="im-plein" data-action="suivante">Rejouer (autres défauts)</button>
+    <button type="button" class="im-lien" data-action="menu">Choisir une autre intervention</button></div>`;
   const f = facture();
   return `<div class="im-panneau im-fin">
     <p class="im-etoiles">${"★".repeat(e.etoiles)}${"☆".repeat(3 - e.etoiles)}</p>
@@ -262,11 +282,15 @@ function rendre() {
   if (!S) { menu(); return; }
   verifierFin();
   const f = facture();
-  const panneau = e.panneau === "client" ? panneauClient() : e.panneau === "camion" ? panneauCamion() : e.panneau === "fin" ? panneauFin() : "";
+  const perso = S.panneaux && S.panneaux[e.panneau];
+  const panneau = e.panneau === "client" ? panneauClient() : e.panneau === "camion" ? panneauCamion() : e.panneau === "fin" ? panneauFin()
+    : e.panneau === "intro" ? `<div class="im-panneau">${S.intro}<button type="button" class="im-plein" data-action="fermer">Commencer</button></div>`
+    : perso ? `<div class="im-panneau">${perso.rendu(api())}<button type="button" class="im-lien" data-action="fermer">Fermer</button></div>` : "";
+  const calibres = S.calibres || [["OFF", "Arrêt"], ["V", "V~"], ["Ω", "Ω"]];
   racine.innerHTML = `
     <div class="im-hud">
       <div class="im-titre"><b>${S.titre}</b><span>${S.lieu}</span></div>
-      <div class="im-compteurs"><span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span></div>
+      <div class="im-compteurs">${S.compteurs ? S.compteurs(api()) : `<span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span>`}</div>
     </div>
     <p class="im-paysage">📱 Tourne ton téléphone pour jouer en grand.</p>
     <div class="im-cadre ${e.outil === "tournevis" ? "outil-tournevis" : ""}">
@@ -277,19 +301,22 @@ function rendre() {
     <div class="im-barre">
       <div class="im-outils" role="group" aria-label="Outils">
         <button type="button" class="${e.outil === "main" ? "actif" : ""}" data-outil="main">✋ Main</button>
-        <button type="button" class="${e.outil === "tournevis" ? "actif" : ""}" data-outil="tournevis">🪛 Tournevis</button>
-        <button type="button" data-panneau="client">💬 ${S.client.court}</button>
-        <button type="button" data-panneau="camion">🚐 Camionnette</button>
+        ${S.sansTournevis ? "" : `<button type="button" class="${e.outil === "tournevis" ? "actif" : ""}" data-outil="tournevis">🪛 Tournevis</button>`}
+        ${(S.outils || []).map((o) => `<button type="button" class="${e.outil === o.id ? "actif" : ""}" data-outil="${o.id}">${o.label}</button>`).join("")}
+        ${S.dialogue ? `<button type="button" data-panneau="client">💬 ${S.client.court}</button>` : ""}
+        ${S.pieces && S.pieces.length ? `<button type="button" data-panneau="camion">🚐 Camionnette</button>` : ""}
+        ${Object.entries(S.panneaux || {}).filter(([, p]) => p.label).map(([id, p]) => `<button type="button" data-panneau="${id}">${p.label}</button>`).join("")}
       </div>
-      <div class="im-multimetre" aria-label="Multimètre">
-        <div class="im-calibres">${[["OFF", "Arrêt"], ["V", "V~"], ["Ω", "Ω"]].map(([c, l]) => `<button type="button" class="${e.calibre === c ? "actif" : ""}" data-calibre="${c}">${l}</button>`).join("")}</div>
+      ${S.sansMultimetre ? "" : `<div class="im-multimetre" aria-label="Multimètre">
+        <div class="im-calibres">${calibres.map(([c, l]) => `<button type="button" class="${e.calibre === c ? "actif" : ""}" data-calibre="${c}">${l}</button>`).join("")}</div>
         <output class="im-lcd">${lcd()}</output>
-      </div>
+      </div>`}
     </div>
+    ${S.sousBarre ? S.sousBarre(api()) : ""}
     <details class="im-carnet" ${e.journal.length ? "open" : ""}><summary>Carnet de mesures (${e.journal.length})</summary>
       ${e.journal.length ? `<ol>${e.journal.map((j) => `<li>${j}</li>`).join("")}</ol>` : `<p>Glisse les pointes rouge et noire (en bas à droite de l'image) sur deux vis ou bornes : la mesure s'inscrit ici.</p>`}
     </details>
-    <p class="im-astuce">Pointes : on les attrape et on les pose sur une vis. Tournevis : on touche la vis à serrer. Main : tout le reste. <button type="button" class="im-lien" data-action="menu">Changer d'intervention</button></p>`;
+    <p class="im-astuce">${S.astuce || "Pointes : on les attrape et on les pose sur une vis. Tournevis : on touche la vis à serrer. Main : tout le reste."} <button type="button" class="im-lien" data-action="menu">Changer d'intervention</button></p>`;
 }
 
 /* ---------- Événements ---------- */
@@ -305,6 +332,10 @@ racine.addEventListener("pointerdown", (ev) => {
   racine.setPointerCapture(ev.pointerId);
 });
 racine.addEventListener("pointermove", (ev) => {
+  if (!tenue && S && e && S.frontale && S.frontale(e) && ev.target.closest(".im-scene")) {
+    const p = point(ev); e.curseur = p;
+    racine.querySelectorAll(".im-faisceau, .im-halo").forEach((c) => { c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); });
+  }
   if (!tenue) return;
   const p = point(ev);
   e[tenue] = { x: Math.max(10, Math.min(W - 10, p.x)), y: Math.max(110, Math.min(H + 20, p.y)) };
@@ -320,7 +351,7 @@ racine.addEventListener("pointerup", () => {
 });
 racine.addEventListener("click", async (ev) => {
   if (tenue) return;
-  const t = ev.target.closest("[data-aller],[data-geste],[data-vis],[data-outil],[data-panneau],[data-calibre],[data-question],[data-piece],[data-action],[data-intervention]");
+  const t = ev.target.closest("[data-aller],[data-geste],[data-vis],[data-cible],[data-s],[data-outil],[data-panneau],[data-calibre],[data-question],[data-piece],[data-action],[data-intervention]");
   if (!t) return;
   const d = t.dataset;
   if (d.intervention) { await charger(d.intervention); return; }
@@ -332,6 +363,10 @@ racine.addEventListener("click", async (ev) => {
   } else if (d.geste) {
     if (e.outil === "tournevis" && !(S.gestesTournevis || []).includes(d.geste.split(":")[0])) e.outil = "main";
     geste(d.geste);
+  } else if (d.s) {
+    const [act, arg] = d.s.split(":"); S.action(api(), act, arg); majApp(); if (S.apres) S.apres(api());
+  } else if (d.cible || (d.vis && !["main", "tournevis"].includes(e.outil) && S.utiliser)) {
+    S.utiliser(api(), e.outil, d.cible || d.vis); majApp(); if (S.apres) S.apres(api());
   } else if (d.vis) {
     if (e.outil === "tournevis") tournevis(d.vis);
     else dire("Pour mesurer, attrape une pointe du multimètre et pose-la sur la vis. Pour serrer, prends le tournevis.", "info");
@@ -340,7 +375,7 @@ racine.addEventListener("click", async (ev) => {
   else if (d.calibre) { e.calibre = d.calibre; mesurer(); }
   else if (d.question) poser(d.question);
   else if (d.piece) piece(d.piece);
-  else if (d.action === "fermer") { if (e.debut) { e.debut = false; if (S.entree) S.entree(api()); } e.panneau = null; }
+  else if (d.action === "fermer") { if (e.debut) { e.debut = false; if (S.entree) S.entree(api()); } e.panneau = null; if (S.apres) S.apres(api()); }
   else if (d.action === "suivante") { nouvelle(); }
   rendre();
 });
