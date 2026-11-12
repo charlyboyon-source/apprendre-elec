@@ -6,6 +6,19 @@
 .nav-haut { order: 2; margin-left: auto; display: flex; gap: 20px; font-weight: 600; font-size: 0.92rem; }
 .nav-haut a { color: var(--texte); text-decoration: none; padding: 8px 0 5px; border-bottom: 3px solid transparent; white-space: nowrap; }
 .nav-haut a:hover, .nav-haut a.actif { border-bottom-color: var(--accent); }
+/* Rubriques avec menus déroulants */
+.nav-groupe { position: relative; }
+.nav-bouton { display: flex; align-items: center; gap: 4px; background: none; border: 0; border-bottom: 3px solid transparent; padding: 8px 0 5px; font: inherit; font-weight: 600; color: var(--texte); cursor: pointer; white-space: nowrap; }
+.nav-bouton span { font-size: 0.7em; opacity: 0.7; }
+.nav-bouton:hover, .nav-bouton.actif, .nav-bouton[aria-expanded="true"] { border-bottom-color: var(--accent); }
+.nav-panneau { position: absolute; top: 100%; left: -14px; z-index: 90; min-width: 320px; padding: 8px; background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; box-shadow: 0 14px 36px rgba(30, 25, 10, 0.18); }
+.nav-panneau[hidden] { display: none; }
+.nav-haut .nav-panneau a { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border: 0; border-radius: 10px; white-space: normal; color: var(--texte); text-decoration: none; }
+.nav-haut .nav-panneau a:hover, .nav-haut .nav-panneau a.actif { background: #fff3c4; }
+.nav-panneau i { font-style: normal; font-size: 1.35rem; line-height: 1.2; }
+.nav-panneau b { display: block; font-size: 0.95rem; }
+.nav-panneau small { display: block; margin-top: 2px; font-size: 0.8rem; font-weight: 500; color: var(--texte-2); }
+.menu-titre { margin: 12px 14px 2px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-2); }
 .compteur-electrons { order: 3; border-color: var(--accent); color: var(--texte); font-size: 0.85rem; }
 .entete .bouton-sons { order: 3; }
 .bouton-burger { order: 4; }
@@ -15,8 +28,9 @@
   .entete .titre-site { font-size: 1.05rem; }
   .entete .bouton-sons, .entete .bouton-burger { padding: 4px 6px; }
   .compteur-electrons { padding: 2px 10px; font-size: 0.8rem; }
-  .nav-haut { order: 5; width: 100%; margin-left: 0; gap: 18px; overflow-x: auto; scrollbar-width: none; }
+  .nav-haut { order: 5; width: 100%; margin-left: 0; gap: 6px; overflow-x: auto; scrollbar-width: none; font-size: 0.84rem; justify-content: space-between; }
   .nav-haut::-webkit-scrollbar { display: none; }
+  .nav-panneau { position: fixed; left: 10px; right: 10px; min-width: 0; }
 }
 @media print { .nav-haut { display: none; } }
 
