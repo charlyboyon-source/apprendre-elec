@@ -245,6 +245,28 @@ for i, m in enumerate(modules):
         {enc}
         {memo}
       </section>''')
+    PLUS_LOIN = {
+        2: [("calculateurs.html#calc-energie", "🧮 Calculer la consommation d'un appareil"), ("calculateurs.html#calc-courant", "🧮 Calculer le courant appelé (I = P / U)")],
+        3: [("atelier-depannage.html?i=chambre", "🔧 Atelier dépannage : la lumière de la chambre")],
+        6: [("atelier-depannage.html?i=jardin", "🔧 Atelier dépannage : un défaut d'isolement au jardin")],
+        9: [("atelier-depannage.html?i=chambre", "🔧 Atelier dépannage : consigner avant de réparer")],
+        10: [("configurateur.html", "🗄 Configurateur de tableau")],
+        11: [("configurateur.html", "🗄 Configurateur de tableau"), ("calculateurs.html#calc-differentiel", "🧮 Calculer le calibre d'un interrupteur différentiel")],
+        12: [("calculateurs.html#calc-section", "🧮 Section du câble et calibre du disjoncteur"), ("calculateurs.html#calc-chute", "🧮 Calculer une chute de tension")],
+        13: [("atelier-depannage.html?i=jardin", "🔧 Atelier dépannage : un câble enterré abîmé")],
+        14: [("configurateur.html", "🗄 Configurateur de tableau"), ("atelier-depannage.html?i=consuel", "🔧 Atelier : le contrôle avant le Consuel")],
+        16: [("atelier-schemas.html?m=simple", "🔌 Câbler un simple allumage"), ("atelier-schemas.html?m=double", "🔌 Câbler un double allumage"), ("atelier-depannage.html?i=chambre", "🔧 Atelier dépannage : la lumière de la chambre")],
+        17: [("atelier-schemas.html?m=vav", "🔌 Câbler un va-et-vient"), ("atelier-schemas.html?m=perm", "🔌 Câbler un va-et-vient avec permutateur")],
+        18: [("atelier-schemas.html?m=tl", "🔌 Câbler un télérupteur"), ("atelier-schemas.html?m=minuterie", "🔌 Câbler une minuterie"), ("atelier-depannage.html?i=bureaux", "🔧 Atelier dépannage : l'open space à télérupteur")],
+        19: [("atelier-schemas.html?m=hc", "🔌 Câbler le contacteur heures creuses")],
+        20: [("atelier-depannage.html?i=borne", "🔧 Atelier : la voiture qui ne charge pas"), ("configurateur.html", "🗄 Configurateur de tableau")],
+        21: [("atelier-depannage.html?i=toit", "🔧 Atelier : sur le toit, une installation photovoltaïque")],
+    }
+    lies = [x for x in (modules[i - 1] if i else None, modules[i + 1] if i < len(modules) - 1 else None) if x]
+    plus_loin = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in PLUS_LOIN.get(n, []))
+    plus_loin += f'<li><a href="{qcm_pages[n]}">✅ Le QCM corrigé de ce cours</a></li><li><a href="{fiche_pages[n]}">🖨 La fiche mémo de ce cours</a></li>'
+    plus_loin += "".join(f'<li><a href="{pages[x["id"]]}">📖 Module {x["id"]} : {x["titre"]}</a></li>' for x in lies)
+    bloc_plus_loin = f'<section class="plus-loin"><h2>Pour aller plus loin</h2><ul>{plus_loin}</ul></section>'
     prec = f'<a href="{pages[modules[i-1]["id"]]}">← {modules[i-1]["titre"]}</a>' if i else "<span></span>"
     suiv = f'<a href="{pages[modules[i+1]["id"]]}">{modules[i+1]["titre"]} →</a>' if i < len(modules) - 1 else "<span></span>"
     page = tete(TITRES[n], description_cours(m), pages[n], base="../")
@@ -284,7 +306,7 @@ for i, m in enumerate(modules):
       </div>
     </section>
     <p class="module-bravo" hidden>Module terminé : <b>+{m["recompense"]["electrons"]} e⁻</b>. Le suivant est débloqué.</p>
-    <p class="module-liens"><a href="{fiche_pages[n]}">🖨 La fiche mémo de ce cours</a></p>
+    {bloc_plus_loin}
     <nav class="page-voisins">{prec}{suiv}</nav>
   </main>
 ''' + PIED
@@ -657,6 +679,22 @@ page("mentions-legales.html", "Mentions légales | ApprendreElec",
     <p>Les textes, les questions et les illustrations sont des créations originales. Leur reproduction sans autorisation n'est pas permise.</p>
     <h2>Responsabilité</h2>
     <p>Le contenu est fourni à des fins pédagogiques. Il ne remplace ni une formation, ni les normes en vigueur, ni l'avis d'un professionnel qualifié. L'éditeur ne peut être tenu responsable de l'usage qui en est fait. Les travaux sur une installation électrique doivent être réalisés par des personnes formées et habilitées.</p>''', classe="page-simple")
+
+# ---------- Page d'erreur 404 (GitHub Pages la sert pour toute adresse inconnue)
+p404 = tete("Page introuvable | ApprendreElec", "Cette page n'existe pas ou a changé d'adresse. Retrouve les cours d'électricité, le lexique et les QCM corrigés d'ApprendreElec.", "404.html", base="/", robots="noindex")
+p404 += '''  <main class="niveau page-simple">
+    <h1>Cette page est introuvable</h1>
+    <p class="niveau-objectif">Le lien est peut-être ancien, ou l'adresse a été mal tapée. Pas de panique : tout le contenu est toujours là.</p>
+    <ul class="liste-404">
+      <li><a href="cours.html">📖 Tous les cours d'électricité du bâtiment</a></li>
+      <li><a href="qcm.html">✅ Les QCM corrigés</a></li>
+      <li><a href="lexique.html">📚 Le lexique de l'électricien</a></li>
+      <li><a href="atelier-schemas.html">🔌 L'atelier schémas</a> et l'<a href="atelier-depannage.html">atelier dépannage</a></li>
+      <li><a href="index.html">⚡ La page d'accueil</a></li>
+    </ul>
+  </main>
+''' + PIED
+open("404.html", "w", encoding="utf-8").write(p404)
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()

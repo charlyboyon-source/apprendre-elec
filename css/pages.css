@@ -283,3 +283,7 @@
 .ariane a { color: var(--texte-2); }
 .ariane span { color: var(--texte); font-weight: 600; }
 .maj { font-size: 0.82rem; color: var(--texte-2); margin: -4px 0 10px; }
+/* Pour aller plus loin, page 404 */
+.plus-loin { margin: 28px 0 10px; padding: 14px 18px; background: var(--fond-2); border: 1px solid var(--bordure); border-left: 6px solid var(--accent); border-radius: 14px; }
+.plus-loin h2 { margin: 0 0 8px; font-size: 1.05rem; }
+.plus-loin ul, .liste-404 { margin: 0; padding-left: 4px; list-style: none; line-height: 1.9; }
