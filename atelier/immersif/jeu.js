@@ -293,7 +293,6 @@ function rendre() {
       <div class="im-titre"><b>${S.titre}</b><span>${S.lieu}</span></div>
       <div class="im-compteurs">${S.compteurs ? S.compteurs(api()) : `<span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span>`}</div>
     </div>
-    <p class="im-paysage">📱 Tourne ton téléphone pour jouer en grand.</p>
     <div class="im-cadre ${e.outil === "tournevis" ? "outil-tournevis" : ""}">
       ${vueSVG()}
       ${e.bulle ? `<p class="im-bulle ${e.bulle.type}" role="status">${e.bulle.t}</p>` : ""}

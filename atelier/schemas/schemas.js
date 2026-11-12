@@ -476,10 +476,10 @@ function rendre() {
   racine.innerHTML = `
     <div class="im-hud"><div class="im-titre"><b>${m.titre}</b><span>${m.consigne}</span></div>
       <div class="im-compteurs"><span>${s.fils.length} fil${s.fils.length > 1 ? "s" : ""}</span><span>${s.sousTension ? "⚡ sous tension" : "🔒 hors tension"}</span></div></div>
-    <p class="im-paysage">📱 Tourne ton téléphone pour câbler en grand.</p>
     <div class="sc-zone">
     <div class="im-cadre sc-cadre">${svg}${s.message ? `<p class="im-bulle ${s.message.type}" role="status">${s.message.t}</p>` : ""}</div>
     <div class="im-barre sc-colonne">
+      ${s.hesitation ? `<div class="sc-hesite" role="group" aria-label="Quelle borne ?"><b>Quelle borne ?</b>${s.hesitation.map((id) => `<button type="button" data-hesite="${id}">${borne(id).label}</button>`).join("")}<button type="button" data-hesite="">Aucune</button></div>` : ""}
       <div class="sc-palette" role="group" aria-label="Couleur du fil">${COULEURS.map(([k, l, c]) => `<button type="button" class="sc-bobine ${s.couleur === k && s.outil === "fil" ? "actif" : ""}" data-couleur="${k}" title="${l}"><span style="background:${k === "terre" ? "repeating-linear-gradient(90deg,#3d9a3d 0 6px,#e8cf2c 6px 12px)" : c}"></span>${l}</button>`).join("")}</div>
       <div class="im-outils">
         <button type="button" class="${s.outil === "couper" ? "actif" : ""}" data-action="couper">✂️ Couper un fil</button>
@@ -514,8 +514,29 @@ function lireFaits() { try { return JSON.parse(localStorage.getItem(CLE)) || {};
 function noterFait(id, n) { try { const f = lireFaits(); f[id] = Math.max(f[id] || 0, n); localStorage.setItem(CLE, JSON.stringify(f)); } catch { /* stockage indisponible */ } }
 
 /* ---------- Événements ---------- */
+// Sur la platine, un toucher près d'une borne la choisit (la plus proche) : pas besoin de viser la vis au millimètre.
+function bornePres(ev) {
+  const svg = racine.querySelector(".sc-platine");
+  if (!svg || !m || s.outil !== "fil") return null;
+  const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+  const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+  const echelle = 1200 / svg.getBoundingClientRect().width;
+  const portee = Math.max(30, 24 * echelle);
+  const proches = bornes().map((b) => ({ id: b.id, d: Math.hypot(b.x - p.x, b.y - p.y) })).filter((b) => b.d < portee).sort((a, b) => a.d - b.d);
+  if (!proches.length) return null;
+  // Une seule borne sous le doigt, ou une nettement plus proche : on la prend. Sinon, on demande laquelle.
+  if (proches.length === 1 || proches[0].d < 0.5 * proches[1].d) return proches[0].id;
+  s.hesitation = proches.slice(0, 4).map((b) => b.id);
+  return "?";
+}
 racine.addEventListener("click", (ev) => {
-  const t = ev.target.closest("[data-b],[data-fil],[data-sw],[data-bp],[data-couleur],[data-action],[data-montage]");
+  let t = ev.target.closest("[data-b],[data-fil],[data-sw],[data-bp],[data-couleur],[data-action],[data-montage],[data-hesite]");
+  if (t && t.dataset.hesite !== undefined) { const id = t.dataset.hesite; s.hesitation = null; t = id ? { dataset: { b: id } } : null; if (!t) { rendre(); return; } }
+  if ((!t || t.dataset.fil !== undefined) && ev.target.closest(".sc-platine") && s && s.outil === "fil") {
+    const id = bornePres(ev);
+    if (id === "?") { rendre(); return; }
+    if (id) t = { dataset: { b: id } };
+  }
   if (!t) return;
   const d = t.dataset;
   if (d.montage) { ouvrir(d.montage); history.replaceState(null, "", `?m=${d.montage}`); rendre(); racine.scrollIntoView({ block: "start" }); return; }
