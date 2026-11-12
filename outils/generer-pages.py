@@ -62,7 +62,7 @@ def tete(titre, description, chemin, base=""):
 '''
 
 PIED = '''  <footer class="pied">
-    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
   <script type="module" src="js/page.js"></script>
 </body>
@@ -181,6 +181,25 @@ open("lexique.html", "w", encoding="utf-8").write(lex)
 def page(fichier, titre, description, corps, script="js/page.js", classe="page-outil"):
     open(fichier, "w", encoding="utf-8").write(tete(titre, description, fichier) + f'  <main class="niveau {classe}">\n{corps}\n  </main>\n' + PIED.replace("js/page.js", script))
 
+# ---------- Actualités
+actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
+MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+def date_fr(d):
+    a, m, j = d.split("-"); return f"{int(j)} {MOIS[int(m)-1]} {a}"
+cartes = "\n".join(f'''      <article class="actu">
+        <p class="actu-meta"><span class="actu-cat">{html.escape(a["categorie"])}</span> · {date_fr(a["date"])}</p>
+        <h2>{html.escape(a["titre"])}</h2>
+        <p>{html.escape(a["texte"])}</p>
+        {f'<p class="actu-retenir"><b>À retenir :</b> {html.escape(a["a_retenir"])}</p>' if a.get("a_retenir") else ""}
+        <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a></p>
+      </article>''' for a in sorted(actu, key=lambda a: a["date"], reverse=True))
+page("actualites.html", "Actualités de l'électricité du bâtiment : normes, Consuel, matériel | ApprendreElec",
+     "Les nouveautés utiles aux électriciens et aux apprentis : normes, réglementation, Consuel, nouveau matériel. Chaque information est vérifiée et sourcée.",
+     f'''    <h1>Actualités</h1>
+    <p class="niveau-objectif">Normes, réglementation, nouveau matériel : ce qui change pour l'électricien. Chaque information est vérifiée sur une source officielle ou chez le fabricant, avec le lien pour aller plus loin.</p>
+{cartes}
+    <p class="note-affiliation">Une information te semble fausse ou dépassée ? Elle est datée : la norme ou le texte cité fait toujours foi.</p>''')
+
 par_bloc = ""
 for b in parcours["blocs"]:
     ids = [n["id"] for n in b["niveaux"]]
@@ -298,7 +317,7 @@ page("mentions-legales.html", "Mentions légales — ApprendreElec",
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
-urls = ["", "cours.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
+urls = ["", "cours.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes,", len(urls), "adresses dans le plan du site")

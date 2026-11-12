@@ -1,0 +1,23 @@
+{
+  "regles": "Une actualité n'est publiée que si elle est vérifiée sur une source officielle ou sur le site du fabricant, citée avec son lien. Texte écrit avec nos mots, jamais recopié. Les plus récentes en premier.",
+  "actualites": [
+    {
+      "date": "2026-11-12",
+      "categorie": "Normes",
+      "titre": "NF C 15-100 : la série publiée en 2024 est désormais la seule référence",
+      "texte": "La norme des installations électriques basse tension a été entièrement refondue et publiée le 23 août 2024, sous la forme d'une série de 21 normes numérotées NF C 15-100-X. Pendant un an, l'ancienne version de 2002 et la nouvelle ont pu coexister. Cette période de transition s'est terminée fin août 2025 : pour un chantier d'aujourd'hui, c'est la série 2024 qui s'applique.",
+      "a_retenir": "Sur un dossier ancien, c'est la date de la demande d'attestation au Consuel qui dit quelle version s'applique.",
+      "source": "Legrand, « Révision de la norme NF C 15-100 »",
+      "url": "https://www.legrand.fr/pro/actualites/revision-de-la-norme-nf-c-15-100-quest-ce-qui-change"
+    },
+    {
+      "date": "2026-11-12",
+      "categorie": "Photovoltaïque",
+      "titre": "Onduleurs jusqu'à 36 kVA : le certificat NF EN 50549 doit suivre la norme d'essais",
+      "texte": "Depuis 2025, une installation photovoltaïque raccordée au réseau doit fournir un certificat de conformité de ses onduleurs à la norme NF EN 50549. Une dérogation laissait passer des certificats établis sans la norme d'essais NF EN 50549-10, le temps que les fabricants s'adaptent. Elle a pris fin le 1er juillet 2026 pour les installations de 36 kVA ou moins.",
+      "a_retenir": "Avant de poser un onduleur, demander au fournisseur le certificat établi selon la NF EN 50549-10 : le Consuel le vérifie.",
+      "source": "photovoltaique.info (site d'information soutenu par l'ADEME), 16 décembre 2025",
+      "url": "https://www.photovoltaique.info/fr/actualites/detail/raccordement-au-reseau-passage-a-la-nf-en50549-fin-de-derogation-pour-les-installations-36kva/"
+    }
+  ]
+}
