@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="16">
     <p class="lecon-kicker">BLOC 4 · SCHÉMAS ET MONTAGES D'ÉCLAIRAGE · MODULE 16</p>
     <h1>Simple et double allumage</h1>
     <p class="niveau-objectif">Comprendre, dessiner et câbler le simple allumage et le double allumage</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=16&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=16&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=16">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=16">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Le simple allumage est le premier montage que l'on apprend, et le plus posé dans un logement : un interrupteur, une lampe. Il paraît évident, mais il contient toutes les règles des montages suivants — la phase à la commande, le retour lampe, le neutre direct. Prends le temps de le maîtriser : le double allumage, le va-et-vient et le télérupteur n'en sont que des variations.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Le point lumineux et sa commande</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-point.svg" alt="1. Le point lumineux et sa commande" loading="lazy"></div>
         <div class="cours-texte"><p>Un <b>point lumineux</b>, c'est un emplacement où l'on raccorde un luminaire : une sortie de fils au plafond ou en applique. Il se termine par un <a class="terme-lien" href="lexique.html#dcl">DCL</a>, le dispositif de connexion pour luminaire : un petit socle fixé dans la boîte, avec une douille provisoire, qui permet de brancher et débrancher un luminaire sans toucher aux fils.</p><p>Sa <b>commande</b> est un interrupteur. On le place à l'<b>entrée de la pièce</b>, côté poignée de la porte, pour qu'on le trouve en entrant, sans chercher. Sa hauteur se situe entre <b>0,90 m et 1,30 m</b> du sol fini.</p><p>Le circuit d'éclairage se câble en <b>1,5 mm²</b>, sous un disjoncteur de 16 A au maximum, avec 8 points lumineux au plus — on l'a vu au module 14.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>L'interrupteur se pose du côté où la porte s'ouvre, pas derrière elle. Vérifie le sens d'ouverture sur le plan avant de sceller la boîte : un interrupteur caché derrière une porte ouverte, c'est une saignée à refaire.</p></aside>
         <div class="lecon-memo">◆ Point lumineux = emplacement de raccordement d'un luminaire, équipé d'un DCL. Interrupteur à l'entrée de la pièce, entre 0,90 m et 1,30 m. Circuit en 1,5 mm².</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. Le simple allumage : le principe</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-simple-dev.svg" alt="2. Le simple allumage : le principe" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#simple-allumage">simple allumage</a> permet de commander <b>un point lumineux depuis un seul endroit</b>. Un interrupteur, une lampe — ou plusieurs lampes qui s'allument ensemble.</p><p>Le <a class="terme-lien" href="lexique.html#schema-developpe">schéma développé</a> se lit en une phrase. De la phase, le courant traverse l'interrupteur <b>S1</b>. S'il est fermé, il continue jusqu'à la lampe <b>E1</b>, la traverse, et revient par le neutre. Si S1 est ouvert, la boucle est coupée : la lampe est éteinte.</p><p>Le conducteur qui relie l'interrupteur à la lampe porte un nom : le <a class="terme-lien" href="lexique.html#retour-lampe">retour lampe</a>. C'est une phase « commandée » — elle n'est sous tension que lorsque l'interrupteur est fermé. Sur ce site, on le dessine toujours en <b>orange</b>.</p><p>L'interrupteur simple possède <b>deux bornes</b> : une pour l'arrivée de la phase, une pour le départ du retour lampe.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Sur un interrupteur, la borne d'arrivée de phase est souvent repérée L. Sur un simple allumage, inverser les deux bornes ne change rien au fonctionnement — mais prends dès maintenant l'habitude de respecter le repère : sur les montages suivants, l'erreur ne pardonne plus.</p></aside>
         <div class="lecon-memo">◆ Simple allumage : 1 interrupteur, 1 point lumineux. Phase → interrupteur → retour lampe (orange) → lampe → neutre. L'interrupteur simple a 2 bornes.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Câbler le simple allumage</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-simple-cablage.svg" alt="3. Câbler le simple allumage" loading="lazy"></div>
         <div class="cours-texte"><p>Passons du schéma aux fils. Du tableau partent trois conducteurs de 1,5 mm² : la <b>phase</b>, le <b>neutre</b> et le <b>conducteur de protection</b>.</p><p>La <b>phase</b> va à l'<b>interrupteur</b>. De l'interrupteur repart le <b>retour lampe</b>, jusqu'à la lampe.</p><p>Le <b>neutre</b> va <b>directement à la lampe</b>, sans passer par l'interrupteur. Le <b>conducteur de protection</b> aussi : il se raccorde à la borne de terre du DCL.</p><p>Faisons le compte. À l'<b>interrupteur</b> : <b>deux fils</b>, la phase et le retour lampe. À la <b>lampe</b> : <b>trois fils</b>, le retour lampe, le neutre et le conducteur de protection.</p><p>Si plusieurs lampes doivent s'allumer ensemble, on les branche en <b>parallèle</b> : chacune reçoit le même retour lampe et le même neutre.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Même si le luminaire prévu est de classe II et n'a pas de borne de terre, le conducteur de protection arrive toujours jusqu'au DCL. Le prochain luminaire sera peut-être en métal.</p></aside>
         <div class="lecon-memo">◆ Phase → interrupteur. Retour lampe : de l'interrupteur à la lampe. Neutre et protection : directement à la lampe. 2 fils à l'interrupteur, 3 fils à la lampe.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. Pourquoi l'interrupteur coupe la phase</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-phase.svg" alt="4. Pourquoi l&#x27;interrupteur coupe la phase" loading="lazy"></div>
         <div class="cours-texte"><p>On pourrait éteindre la lampe en coupant le neutre : la boucle serait ouverte, et le courant ne passerait plus. Pourtant, c'est <b>interdit</b>. L'interrupteur coupe <b>toujours la phase</b>.</p><p>Compare les deux cas, interrupteur ouvert. Si l'interrupteur est sur la <b>phase</b> : plus rien n'arrive à la douille, elle est <b>hors tension</b>. Si l'interrupteur est sur le <b>neutre</b> : la lampe est éteinte, mais la phase arrive toujours à la douille. Elle est <b>sous tension</b>, et celui qui change l'ampoule en touchant le culot fait un <a class="terme-lien" href="lexique.html#contact-direct">contact direct</a>.</p><p>C'est la règle vue au module 3, et elle vaut pour tous les montages : <b>la commande coupe la phase, le récepteur est relié au neutre</b>.</p><p>Elle ne dispense de rien : avant d'intervenir sur un point lumineux, on coupe le <b>disjoncteur</b> du circuit et on vérifie l'absence de tension. L'interrupteur est un appareil de commande, pas un appareil de sécurité.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Dans l'ancien, tu trouveras des interrupteurs câblés sur le neutre. Le montage « marche », personne ne s'en est jamais plaint. C'est une raison de plus pour ne jamais se fier à l'interrupteur : disjoncteur ouvert, absence de tension vérifiée.</p></aside>
         <div class="lecon-memo">◆ L'interrupteur coupe toujours la phase : ouvert, la douille est hors tension. Sur le neutre, la lampe serait éteinte mais sous tension. Avant d'intervenir : disjoncteur ouvert et absence de tension vérifiée.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. Le double allumage : le principe</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-double-dev.svg" alt="5. Le double allumage : le principe" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#double-allumage">double allumage</a> permet de commander <b>deux points lumineux</b> — ou deux groupes de lampes — depuis <b>un seul endroit</b>, indépendamment l'un de l'autre. On le rencontre pour un lustre dont on allume la moitié ou la totalité des ampoules, ou pour le plafonnier et les appliques d'une même pièce.</p><p>Son appareil est l'<b>interrupteur double</b> : deux commandes dans un même boîtier. Sur le schéma développé, on voit deux contacts, <b>S1</b> et <b>S2</b>, alimentés par la <b>même phase</b>. S1 commande la lampe E1, S2 commande la lampe E2, et les deux lampes reviennent au même neutre.</p><p>En réalité, c'est simplement <b>deux simples allumages</b> réunis dans le même appareil, avec une phase commune.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Ne confonds pas l'interrupteur double avec deux interrupteurs simples côte à côte. Le double tient dans une seule boîte d'encastrement, et sa borne de phase est commune : une seule arrivée de phase alimente les deux commandes.</p></aside>
         <div class="lecon-memo">◆ Double allumage : 1 interrupteur double, 2 points lumineux indépendants, commandés du même endroit. Une phase commune, deux contacts, deux retours lampe.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. Câbler le double allumage</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-double-cablage.svg" alt="6. Câbler le double allumage" loading="lazy"></div>
         <div class="cours-texte"><p>L'interrupteur double possède <b>trois bornes</b> : une borne <b>commune</b>, pour l'arrivée de la phase, et <b>deux bornes de sortie</b>, une par commande.</p><p>Le câblage suit la même logique que le simple allumage. La <b>phase</b> arrive sur la borne commune. De chaque borne de sortie part un <b>retour lampe</b> : l'un vers le premier point lumineux, l'autre vers le second. Le <b>neutre</b> et le <b>conducteur de protection</b> vont directement aux deux points lumineux.</p><p>Faisons le compte. À l'<b>interrupteur</b> : <b>trois fils</b> — une phase et deux retours lampe. À <b>chaque lampe</b> : <b>trois fils</b> — son retour lampe, le neutre et le conducteur de protection.</p><p>Le piège classique : raccorder la phase sur une borne de sortie au lieu de la borne commune. Une des deux commandes allume alors les deux lampes à la fois, ou aucune.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Repère tes deux retours lampe dès le tirage, par deux couleurs différentes ou par un marquage. Une fois les fils coupés à la longueur dans la boîte, deux retours de la même couleur ne se distinguent plus qu'à l'essai.</p></aside>
         <div class="lecon-memo">◆ Interrupteur double : 3 bornes (1 commune + 2 sorties). 3 fils à l'interrupteur : 1 phase + 2 retours lampe. 3 fils à chaque lampe : retour, neutre, protection.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Dépanner un allumage</h2>
         <div class="lecon-figure"><img src="assets/svg/c16-pannes.svg" alt="7. Dépanner un allumage" loading="lazy"></div>
         <div class="cours-texte"><p>Un allumage qui ne fonctionne pas se dépanne avec méthode, en allant du plus simple au plus compliqué.</p><p><b>La lampe ne s'allume pas.</b> On commence par l'<b>ampoule</b> : c'est la cause la plus fréquente. Puis le <b>disjoncteur</b> du circuit. Ensuite seulement, on cherche une connexion desserrée ou un conducteur coupé : phase à l'interrupteur, retour lampe, neutre à la lampe.</p><p><b>La lampe reste allumée</b>, quelle que soit la position de l'interrupteur. Le courant arrive à la lampe sans passer par la commande : contact de l'interrupteur collé, ou phase et retour lampe reliés ensemble par erreur.</p><p><b>Le disjoncteur déclenche</b> à l'allumage. C'est un <a class="terme-lien" href="lexique.html#court-circuit">court-circuit</a> : la phase ou le retour lampe touche le neutre ou la terre. On ne réarme pas en boucle : on cherche.</p><p>Dans tous les cas, on travaille <b>hors tension</b>, absence de tension vérifiée.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Reprends le schéma développé et suis le chemin du courant : phase, interrupteur, retour lampe, lampe, neutre. La panne est forcément sur l'un de ces cinq maillons. Tu les contrôles un par un, sans rien supposer.</p></aside>
         <div class="lecon-memo">◆ Ne s'allume pas : ampoule, puis disjoncteur, puis connexions. Reste allumée : la commande est contournée. Ça disjoncte : court-circuit. Toujours hors tension, absence de tension vérifiée.</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=16&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=16&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=16">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 43. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=16">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/15-lire-un-schema-electrique.html">← Lire un schéma électrique</a><a href="cours/17-va-et-vient-et-permutateur.html">Va-et-vient et permutateur →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

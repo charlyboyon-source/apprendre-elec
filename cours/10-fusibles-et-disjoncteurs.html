@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="10">
     <p class="lecon-kicker">BLOC 3 · TABLEAU, CONDUCTEURS ET DIMENSIONNEMENT · MODULE 10</p>
     <h1>Fusibles et disjoncteurs</h1>
     <p class="niveau-objectif">Savoir ce que protège un fusible ou un disjoncteur, lire son calibre, sa courbe et son pouvoir de coupure</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=10&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=10&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=10">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=10">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Premier module du bloc 3 : on ouvre le tableau. Au bloc 2, on a protégé les personnes. Ici, on protège l'installation elle-même — les conducteurs, qui chauffent quand on leur en demande trop, et qui peuvent mettre le feu au bâtiment. Fusible, disjoncteur, calibre, pouvoir de coupure, courbe : chaque mot de ce module est inscrit sur la face avant des appareils que tu poseras tous les jours.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Surcharge et court-circuit : deux surintensités</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-surintensites.svg" alt="1. Surcharge et court-circuit : deux surintensités" loading="lazy"></div>
         <div class="cours-texte"><p>Une <a class="terme-lien" href="lexique.html#surintensite">surintensité</a>, c'est tout courant supérieur à celui que le circuit est prévu pour supporter. Il en existe deux, très différentes, et il faut savoir les distinguer.</p><p>La <a class="terme-lien" href="lexique.html#surcharge">surcharge</a> : le courant dépasse <b>un peu</b> la valeur prévue, mais <b>longtemps</b>. C'est la multiprise sur laquelle on branche un radiateur, une bouilloire et un fer à repasser. Rien de spectaculaire : les conducteurs chauffent lentement par <a class="terme-lien" href="lexique.html#effet-joule">effet Joule</a>, l'isolant vieillit, durcit, puis fond. À la fin, c'est l'incendie.</p><p>Le <a class="terme-lien" href="lexique.html#court-circuit">court-circuit</a> : deux conducteurs à des potentiels différents se touchent — phase et neutre, par exemple. La résistance du circuit s'effondre et le courant devient <b>énorme</b>, en une <b>fraction de seconde</b> : des centaines, voire des milliers d'ampères. Il faut couper immédiatement.</p><p>Deux défauts, deux vitesses : la protection doit savoir attendre un peu devant une surcharge passagère, et réagir sans délai devant un court-circuit.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un disjoncteur qui saute au bout de vingt minutes quand le four et le lave-vaisselle tournent ensemble : surcharge. Un disjoncteur qui saute à l'instant où l'on branche un appareil : court-circuit. La façon dont ça saute te donne déjà le diagnostic.</p></aside>
         <div class="lecon-memo">◆ Surintensité = trop de courant. Surcharge : un peu trop, longtemps → échauffement. Court-circuit : énorme, instantané → coupure immédiate.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. Le fusible</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-fusible.svg" alt="2. Le fusible" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#fusible">fusible</a> est la protection la plus simple. Il contient un <b>élément fusible</b> : un fil ou une lame calibrés, placés en série dans le circuit. Tant que le courant reste normal, l'élément le laisse passer. Si le courant dépasse la valeur prévue, l'élément <b>fond</b> et ouvre le circuit.</p><p>Il protège contre les deux surintensités : il fond lentement sur une surcharge, très vite sur un court-circuit. Son <a class="terme-lien" href="lexique.html#calibre">calibre</a>, en ampères, est inscrit sur la cartouche.</p><p>Sa limite : il ne sert qu'une fois. Un fusible qui a fondu <b>se remplace</b> par un fusible neuf <b>de même calibre</b>. On ne le « répare » jamais avec un bout de fil ou du papier d'aluminium, et on ne le remplace jamais par un calibre supérieur : dans les deux cas, le circuit n'est plus protégé.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>En rénovation, tu trouveras encore des tableaux à fusibles. Vérifie toujours que le calibre de la cartouche correspond bien à la section du fil qui part derrière : les cartouches trop fortes « pour que ça arrête de sauter » sont un grand classique.</p></aside>
         <div class="lecon-memo">◆ Fusible : un élément calibré qui fond en cas de surintensité. Il protège contre la surcharge et le court-circuit, ne se réarme pas, et se remplace au même calibre.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Le disjoncteur magnétothermique</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-magnetothermique.svg" alt="3. Le disjoncteur magnétothermique" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#disjoncteur">disjoncteur</a> fait le même travail que le fusible, mais il se <b>réarme</b> d'un geste. Celui qu'on pose dans les tableaux est un <a class="terme-lien" href="lexique.html#disjoncteur-magnetothermique">disjoncteur magnétothermique</a> : il réunit deux déclencheurs, un pour chaque surintensité.</p><p>Le déclencheur <b>thermique</b>, c'est le <a class="terme-lien" href="lexique.html#bilame">bilame</a> : deux lames de métaux différents soudées ensemble. Traversé par le courant, il chauffe ; comme les deux métaux ne se dilatent pas autant, il se courbe, et finit par libérer le mécanisme. Il réagit à la <b>surcharge</b>, avec un retard : plus la surcharge est forte, plus il déclenche vite.</p><p>Le déclencheur <b>magnétique</b>, c'est un <b>électroaimant</b> : une bobine traversée par le courant. Lors d'un <b>court-circuit</b>, le courant est si fort que la bobine attire brutalement un noyau qui frappe le mécanisme. La coupure est quasi instantanée.</p><p>Dans un logement, le disjoncteur d'un circuit coupe à la fois la <b>phase et le neutre</b>.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un disjoncteur qui vient de déclencher sur surcharge ne se réarme pas tout de suite : son bilame est encore chaud. Ce n'est pas une panne. Profites-en pour chercher ce qui a provoqué la surcharge avant de le réenclencher.</p></aside>
         <div class="lecon-memo">◆ Magnétothermique = 2 déclencheurs. Thermique (bilame) → surcharge, temporisé. Magnétique (électroaimant) → court-circuit, instantané. Il se réarme.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. Calibre et pouvoir de coupure</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-calibre-pdc.svg" alt="4. Calibre et pouvoir de coupure" loading="lazy"></div>
         <div class="cours-texte"><p>Deux valeurs en ampères figurent sur un appareil de protection. Elles ne disent pas du tout la même chose.</p><p>Le calibre, noté <b>In</b>, est le courant que l'appareil laisse passer <b>en permanence</b> sans déclencher : 10 A, 16 A, 20 A, 32 A… C'est lui qu'on choisit en fonction du circuit à protéger.</p><p>Le <a class="terme-lien" href="lexique.html#pouvoir-de-coupure">pouvoir de coupure</a> est le <b>plus fort courant de court-circuit</b> que l'appareil est capable de couper sans se détruire. Il doit être au moins égal au courant de court-circuit qui peut apparaître à l'endroit où l'appareil est installé. Les valeurs à connaître : <b>3 000 A au minimum</b> en domestique, <b>4 500 A</b> en petit tertiaire (puissance inférieure à 36 kVA).</p><p>Un appareil dont le pouvoir de coupure est trop faible ne protège pas : face à un court-circuit violent, ses contacts peuvent se souder ou l'appareil se détruire, sans que le circuit soit coupé.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Sur la face avant d'un disjoncteur, le pouvoir de coupure est le nombre inscrit dans un petit rectangle : 3000, 4500, 6000. Le calibre, lui, suit la lettre de la courbe : « C16 » veut dire courbe C, calibre 16 A.</p></aside>
         <div class="lecon-memo">◆ Calibre (In) = courant admis en permanence. Pouvoir de coupure = plus fort court-circuit que l'appareil sait couper : 3 000 A mini en domestique, 4 500 A en petit tertiaire (< 36 kVA).</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. Les courbes B, C et D</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-courbes.svg" alt="5. Les courbes B, C et D" loading="lazy"></div>
         <div class="cours-texte"><p>Certains appareils appellent un courant très fort pendant un court instant au démarrage : un moteur, un transformateur. Ce n'est pas un court-circuit, et le disjoncteur ne doit pas déclencher. D'où la <a class="terme-lien" href="lexique.html#courbe-de-declenchement">courbe de déclenchement</a> : une lettre qui fixe le seuil du déclencheur <b>magnétique</b>, exprimé en multiples du calibre In.</p><p><b>Courbe B</b> : déclenchement magnétique entre <b>3 et 5 In</b>. Sensible : pour les circuits où le courant de court-circuit est faible, comme les très longues lignes.<br><b>Courbe C</b> : entre <b>5 et 10 In</b>. C'est la courbe d'usage général, celle des tableaux de logement.<br><b>Courbe D</b> : entre <b>10 et 20 In</b>. Pour les récepteurs à fort appel de courant : gros moteurs, transformateurs.</p><p>Exemple : un disjoncteur <b>C16</b> déclenche à coup sûr en magnétique à partir de 10 × 16 = <b>160 A</b>, et jamais en dessous de 5 × 16 = <b>80 A</b>. La courbe ne change rien au déclencheur thermique.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Dans un tableau de logement, tu poseras de la courbe C. Si un disjoncteur saute au démarrage d'un moteur, ne monte pas le calibre : demande-toi d'abord si une courbe D ne serait pas la bonne réponse.</p></aside>
         <div class="lecon-memo">◆ Courbe = seuil du déclencheur magnétique. B : 3 à 5 In · C : 5 à 10 In (usage général) · D : 10 à 20 In (forts appels de courant). C16 : entre 80 et 160 A.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. L'AGCP, le disjoncteur de branchement</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-agcp.svg" alt="6. L&#x27;AGCP, le disjoncteur de branchement" loading="lazy"></div>
         <div class="cours-texte"><p>En tête de toute installation de logement se trouve l'<a class="terme-lien" href="lexique.html#agcp">AGCP</a> : l'appareil général de commande et de protection. Dans le langage courant, c'est le <b>disjoncteur de branchement</b>. C'est un <b>disjoncteur différentiel</b> : il protège contre les surintensités et il détecte les fuites à la terre.</p><p>Il a trois rôles : couper toute l'installation d'un seul geste (la coupure d'urgence), limiter le courant à la puissance prévue au contrat, et assurer une protection différentielle générale.</p><p>Surtout, il marque une <b>frontière</b>. En <b>amont</b>, le branchement relève de la <a class="terme-lien" href="lexique.html#nf-c-14-100">NF C 14-100</a> et il est raccordé par le distributeur, Enedis. En <b>aval</b>, l'installation relève de la <a class="terme-lien" href="lexique.html#nf-c-15-100">NF C 15-100</a> : c'est le domaine de l'électricien.</p><p>Deux cas de figure : le branchement de <b>type 1</b>, où l'AGCP est <b>dans le logement</b> (liaison de moins de 30 m) ; et le branchement de <b>type 2</b>, où il est placé en <b>limite de propriété</b> (plus de 30 m).</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Tu n'interviens jamais en amont de l'AGCP : c'est le domaine du distributeur, et c'est plombé. Ton travail commence à ses bornes aval. Avant toute intervention dans le tableau, c'est lui qu'on ouvre en premier.</p></aside>
         <div class="lecon-memo">◆ AGCP = disjoncteur de branchement, un disjoncteur différentiel. Amont : NF C 14-100, Enedis. Aval : NF C 15-100, l'électricien. Type 1 : dans le logement (< 30 m). Type 2 : en limite de propriété (> 30 m).</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Choisir la protection d'un circuit</h2>
         <div class="lecon-figure"><img src="assets/svg/c10-sections.svg" alt="7. Choisir la protection d&#x27;un circuit" loading="lazy"></div>
         <div class="cours-texte"><p>Une idée à garder en tête : la protection est là pour protéger le <b>conducteur</b>. On ne choisit donc pas un disjoncteur d'après l'appareil branché au bout, mais d'après la <b>section</b> du fil qui y mène.</p><p>À chaque section correspond un <b>calibre maximal</b> de disjoncteur : <b>1,5 mm² → 16 A</b> · <b>2,5 mm² → 20 A</b> · <b>6 mm² → 32 A</b> · <b>10 mm² → 40 A</b> · <b>16 mm² → 63 A</b>.</p><p>On peut toujours protéger un conducteur par un calibre plus faible ; jamais par un calibre plus fort. Un fil de 1,5 mm² derrière un disjoncteur de 32 A peut chauffer jusqu'à fondre sans que rien ne coupe.</p><p>C'est pourquoi un disjoncteur qui déclenche souvent ne se remplace <b>jamais</b> par un plus gros. Il fait son travail : il signale que le circuit est trop chargé ou qu'il y a un défaut. On cherche la cause.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Le réflexe du tableau : pour chaque disjoncteur, regarde la section du fil qui en sort. 2,5 mm² sous un 32 A, 1,5 mm² sous un 20 A : ce sont des anomalies à signaler et à corriger, même si « ça marche comme ça depuis des années ».</p></aside>
         <div class="lecon-memo">◆ La protection protège le conducteur. Calibre maximal : 1,5 mm² → 16 A · 2,5 → 20 A · 6 → 32 A · 10 → 40 A · 16 → 63 A. Jamais de calibre plus fort pour « arrêter de sauter ».</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=10&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=10&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=10">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 47. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=10">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/09-travailler-en-securite.html">← Travailler en sécurité</a><a href="cours/11-le-tableau-electrique-et-ses-differentiels.html">Le tableau électrique et ses différentiels →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

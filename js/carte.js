@@ -17,9 +17,13 @@ function iconeBloc(id) {
   return `<svg class="bloc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONES_BLOC[id] || ""}</svg>`;
 }
 
+let PAGES = {};
+const lienCours = (id) => PAGES[id] || `niveau.html?id=${id}`;
+
 export async function afficherCarte(conteneur) {
   const reponse = await fetch("data/parcours.json");
   const parcours = await reponse.json();
+  PAGES = await fetch("data/pages-cours.json").then((r) => r.json()).catch(() => ({}));
   const etat = chargerProgression();
 
   majBandeauProgression(parcours, etat);
@@ -94,7 +98,7 @@ function creerBulle(niveau, etat, aVenir) {
       const etatClasse = termine ? "terminee" : prochain ? "debloquee" : "ouvert";
       bulle = document.createElement("a");
       bulle.className = "bulle " + etatClasse;
-      bulle.href = `niveau.html?id=${niveau.id}`;
+      bulle.href = lienCours(niveau.id);
       bulle.textContent = niveau.id;
       bulle.setAttribute("aria-label", `Niveau ${niveau.id} — ${niveau.titre}${termine ? " (terminé)" : ""}`);
       etatCls = termine ? "est-terminee" : prochain ? "est-prochain" : "est-ouvert";
@@ -106,7 +110,7 @@ function creerBulle(niveau, etat, aVenir) {
       bulle.textContent = niveau.id;
       bulle.setAttribute("aria-label", `Niveau ${niveau.id} — ${niveau.titre} (verrouillé — ouvrir quand même ?)`);
       bulle.appendChild(cadenasEl());
-      bulle.addEventListener("click", () => demanderOuverture(niveau, () => { location.href = `niveau.html?id=${niveau.id}`; }));
+      bulle.addEventListener("click", () => demanderOuverture(niveau, () => { location.href = lienCours(niveau.id); }));
       etatCls = "est-verrou";
     }
     label = niveau.titre;

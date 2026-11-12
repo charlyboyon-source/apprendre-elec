@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="20">
     <p class="lecon-kicker">BLOC 5 · APPLICATIONS MODERNES · MODULE 20</p>
     <h1>Recharge de véhicule et domotique</h1>
     <p class="niveau-objectif">Connaître les modes et les puissances de recharge, le circuit d'une borne, et les principes de la domotique</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=20&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=20&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=20">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=20">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Deuxième module du bloc 5. Deux usages récents transforment le métier. La voiture électrique, d'abord : c'est le plus gros récepteur qu'un logement ait jamais eu à alimenter, pendant des heures d'affilée. La domotique, ensuite : des commandes qui ne sont plus de simples interrupteurs, mais un système qui informe, décide et agit. Dans les deux cas, les règles apprises jusqu'ici restent valables — on leur ajoute quelques exigences.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Recharger un véhicule électrique</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-irve.svg" alt="1. Recharger un véhicule électrique" loading="lazy"></div>
         <div class="cours-texte"><p>On appelle <a class="terme-lien" href="lexique.html#irve">IRVE</a> — infrastructure de recharge pour véhicules électriques — tout ce qui sert à recharger un véhicule : le circuit qui part du tableau, ses protections, et le <b>point de recharge</b> lui-même, prise ou borne.</p><p>La batterie du véhicule stocke de l'énergie en courant continu. À la maison, le réseau fournit de l'alternatif : c'est le <b>chargeur embarqué</b> dans le véhicule qui fait la conversion. Le point de recharge, lui, fournit l'alternatif en toute sécurité.</p><p>Ce qui rend la recharge exigeante, ce n'est pas seulement sa puissance : c'est sa <b>durée</b>. Un four ou une bouilloire tirent fort pendant quelques minutes. Un véhicule tire fort pendant <b>des heures</b>, sans interruption. La moindre connexion un peu faible, le moindre conducteur un peu juste, a tout le temps de chauffer.</p><p>C'est pourquoi on ne recharge pas un véhicule « sur la prise du garage » sans s'être posé de questions.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Une prise ordinaire noircie ou déformée dans un garage, c'est presque toujours une recharge de véhicule ou un gros appareil branché des nuits entières. Si un client te dit qu'il recharge sur une rallonge, c'est le moment de lui parler d'un vrai circuit.</p></aside>
         <div class="lecon-memo">◆ IRVE = infrastructure de recharge pour véhicules électriques : circuit, protections, point de recharge. Une recharge tire fort pendant des heures : rien ne doit être sous-dimensionné.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. Les modes de charge</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-modes.svg" alt="2. Les modes de charge" loading="lazy"></div>
         <div class="cours-texte"><p>On distingue les façons de recharger par leur <a class="terme-lien" href="lexique.html#mode-de-charge">mode de charge</a>. Le numéro grandit avec le niveau de contrôle et de puissance.</p><p><b>Mode 1</b> : le véhicule est branché sur une prise ordinaire, sans aucun dispositif de contrôle. À proscrire pour une voiture.</p><p><b>Mode 2</b> : toujours une prise, mais le câble comporte un <b>boîtier de contrôle</b> qui surveille la charge et limite le courant. C'est la recharge d'appoint, lente, sur une prise ordinaire ou, mieux, sur une <b>prise renforcée</b> conçue pour cet usage.</p><p><b>Mode 3</b> : une <b>borne dédiée</b>, fixée au mur, qui dialogue avec le véhicule avant et pendant la charge. Elle ne met ses contacts sous tension que lorsque le véhicule est correctement branché. C'est la solution normale à domicile.</p><p><b>Mode 4</b> : la charge rapide en <b>courant continu</b>. La conversion se fait dans la borne, et non plus dans le véhicule. Ce sont les bornes rapides des stations et des aires d'autoroute.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>En pratique, à la maison, tu rencontreras deux demandes : une prise renforcée, pour qui roule peu ; une borne murale en mode 3, pour qui recharge tous les jours. Demande toujours au client combien de kilomètres il fait par jour avant de proposer une solution.</p></aside>
         <div class="lecon-memo">◆ Mode 1 : prise sans contrôle, à proscrire. Mode 2 : prise + boîtier de contrôle sur le câble. Mode 3 : borne dédiée qui dialogue avec le véhicule. Mode 4 : courant continu, charge rapide.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Les puissances de recharge</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-puissances.svg" alt="3. Les puissances de recharge" loading="lazy"></div>
         <div class="cours-texte"><p>La puissance de recharge se calcule comme toute puissance : <b>P = U × I</b>.</p><p>Sur une <b>prise ordinaire</b>, le courant est limité à <b>8 A</b> : 230 × 8 = 1 840 W, soit environ <b>1,8 kW</b>.</p><p>Sur une <b>prise renforcée</b>, on admet <b>14 A</b> : 230 × 14 = 3 220 W, soit environ <b>3,2 kW</b>.</p><p>Sur une <b>borne monophasée</b> de <b>32 A</b> : 230 × 32 = 7 360 W, soit environ <b>7,4 kW</b>.</p><p>En <b>triphasé</b>, les bornes atteignent <b>11 kW</b> ou <b>22 kW</b>.</p><p>Ce que cela change : le temps de charge. Pour remettre 50 kWh dans une batterie, il faut environ 50 / 7,4 ≈ <b>7 heures</b> sur une borne de 7,4 kW, et environ 50 / 1,8 ≈ <b>28 heures</b> sur une prise ordinaire.</p><p>Mais une borne puissante ne sert à rien si le contrat du logement ne suit pas : une borne de 7,4 kW ajoutée à un chauffage électrique peut faire déclencher l'<a class="terme-lien" href="lexique.html#agcp">AGCP</a> chaque soir.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant de chiffrer une borne, regarde la puissance du contrat et ce qui tourne déjà le soir : chauffage, chauffe-eau, cuisson. C'est souvent là que se décide la puissance de la borne, ou la nécessité de la piloter.</p></aside>
         <div class="lecon-memo">◆ P = U × I. Prise ordinaire : 8 A, 1,8 kW. Prise renforcée : 14 A, 3,2 kW. Borne monophasée 32 A : 7,4 kW. Triphasé : 11 ou 22 kW. 50 kWh : environ 7 h à 7,4 kW, 28 h à 1,8 kW.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. Le circuit et ses protections</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-circuit.svg" alt="4. Le circuit et ses protections" loading="lazy"></div>
         <div class="cours-texte"><p>Un point de recharge s'alimente par un <a class="terme-lien" href="lexique.html#circuit-specialise">circuit spécialisé</a> : un circuit <b>dédié</b>, qui ne sert qu'à lui, avec son propre disjoncteur.</p><p>La <b>section</b> suit la règle habituelle. Une prise renforcée : 2,5 mm² sous un disjoncteur de 20 A. Une borne de 32 A : 6 mm² au moins — et davantage si la ligne est longue, pour limiter la chute de tension, d'autant plus gênante que le courant passe pendant des heures.</p><p>La <b>protection différentielle</b> est de sensibilité <b>30 mA</b>, et elle est propre à ce circuit. Elle est <b>au minimum de type A</b>. L'électronique de charge peut produire des courants de fuite continus : selon la borne, un <b>type B</b> est exigé, ou bien la borne intègre elle-même la détection nécessaire. C'est la <b>notice du fabricant</b> qui tranche.</p><p>Souviens-toi du module 11 : dans la méthode aval, le calibre du circuit de recharge compte <b>en entier</b>.</p><p>Enfin, l'installation d'une borne de plus de <b>3,7 kW</b> est réservée aux professionnels titulaires d'une <b>qualification IRVE</b>.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Ne pose jamais une borne sans avoir lu sa notice jusqu'au chapitre « protection ». Deux bornes de même puissance peuvent demander deux différentiels différents, et c'est le point que le contrôle vérifie en premier.</p></aside>
         <div class="lecon-memo">◆ Recharge : circuit spécialisé dédié, différentiel 30 mA propre au circuit, type A au minimum (type B selon la notice de la borne). Borne de plus de 3,7 kW : qualification IRVE obligatoire.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. La domotique : informer, décider, agir</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-domotique.svg" alt="5. La domotique : informer, décider, agir" loading="lazy"></div>
         <div class="cours-texte"><p>La <a class="terme-lien" href="lexique.html#domotique">domotique</a> regroupe les techniques qui permettent d'automatiser et de piloter les équipements d'un logement : éclairage, volets roulants, chauffage, alarme, recharge du véhicule.</p><p>Tout système domotique repose sur trois familles d'éléments.</p><p>Les <b>capteurs</b> <b>informent</b> : un détecteur de présence, une sonde de température, un détecteur d'ouverture — mais aussi un simple bouton sur lequel on appuie.</p><p>La <b>commande</b> <b>décide</b> : une centrale, une « box », un module programmable. Elle reçoit les informations et applique les règles qu'on lui a données.</p><p>Les <a class="terme-lien" href="lexique.html#actionneur">actionneurs</a> <b>agissent</b> : un relais qui allume une lampe, un variateur, le moteur d'un volet, une vanne de radiateur.</p><p>La grande différence avec les montages du bloc 4 : le lien entre le bouton et la lampe n'est plus un fil. C'est une <b>règle programmée</b>. Le même bouton peut allumer une lampe aujourd'hui, et fermer tous les volets demain, sans toucher au câblage.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Pour l'électricien, un actionneur reste un appareil de commande classique : il coupe la phase d'un circuit de puissance, protégé au tableau comme n'importe quel autre. Ce qui change, c'est seulement d'où vient l'ordre.</p></aside>
         <div class="lecon-memo">◆ Domotique : des capteurs informent, une commande décide, des actionneurs agissent. Le lien entre le bouton et le récepteur n'est plus un fil, mais une règle programmée.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. Filaire ou radio, et les scénarios</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-liaisons.svg" alt="6. Filaire ou radio, et les scénarios" loading="lazy"></div>
         <div class="cours-texte"><p>Les éléments d'un système domotique doivent échanger des informations. Deux grandes solutions existent.</p><p>La solution <b>filaire</b> : un câble dédié, appelé <b>bus</b>, relie tous les éléments. Il ne transporte pas la puissance, seulement les informations. C'est une liaison fiable, sans piles et insensible aux obstacles, mais il faut la prévoir <b>dès la construction</b>, avec ses conduits.</p><p>La solution <b>radio</b> : les éléments communiquent sans fil. On peut l'ajouter dans un logement existant sans ouvrir les murs, ce qui en fait la solution de la <b>rénovation</b>. En contrepartie, il faut surveiller la portée, les obstacles et, pour certains capteurs, l'état des piles.</p><p>Dans les deux cas, on peut créer des <b>scénarios</b> : un seul ordre déclenche plusieurs actions. « Je pars » : toutes les lampes s'éteignent, les volets se ferment, le chauffage passe en réduit. « Soirée » : les volets descendent et deux lampes s'allument à mi-puissance.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Même dans une maison très automatisée, garde une commande locale simple pour chaque pièce : un bouton au mur qui allume la lumière, sans téléphone et sans réseau. Le jour où la box tombe en panne, le client doit pouvoir vivre chez lui.</p></aside>
         <div class="lecon-memo">◆ Filaire (bus) : fiable, à prévoir à la construction. Radio : facile à ajouter, idéale en rénovation. Scénario : un seul ordre, plusieurs actions. Toujours garder une commande locale.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Piloter l'énergie, sans oublier la sécurité</h2>
         <div class="lecon-figure"><img src="assets/svg/c20-energie.svg" alt="7. Piloter l&#x27;énergie, sans oublier la sécurité" loading="lazy"></div>
         <div class="cours-texte"><p>L'un des usages les plus utiles de la domotique est la gestion de l'énergie.</p><p>Le <a class="terme-lien" href="lexique.html#delestage">délestage</a> : quand la puissance appelée approche de celle du contrat, le système coupe momentanément un appareil <b>non prioritaire</b> — un radiateur, le chauffe-eau, la recharge du véhicule — puis le rétablit quand la consommation redescend. On évite ainsi que l'AGCP déclenche, sans augmenter le contrat.</p><p>La <b>programmation</b> : décaler les gros consommateurs vers les heures creuses. C'est ce que fait déjà le contacteur du module 19 pour le chauffe-eau ; la domotique l'étend à la recharge du véhicule ou au chauffage.</p><p>Le <b>suivi</b> : afficher ce que consomme chaque usage, pour savoir où agir.</p><p>Une limite à ne jamais perdre de vue : la domotique <b>commande</b>, elle ne <b>protège</b> pas. Un actionneur n'est ni un disjoncteur, ni un différentiel, ni un organe de coupure de sécurité. Les protections restent au tableau, dimensionnées comme pour toute installation. Et avant d'intervenir sur un circuit piloté, on le met hors tension au disjoncteur et on vérifie l'absence de tension : une lampe éteinte par un automatisme peut se rallumer toute seule.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Sur un circuit domotisé, méfie-toi doublement : l'ordre de remise sous tension peut venir d'une horloge, d'un capteur ou d'un téléphone à l'autre bout de la ville. Disjoncteur ouvert, condamné, absence de tension vérifiée.</p></aside>
         <div class="lecon-memo">◆ Délestage : couper un appareil non prioritaire pour ne pas dépasser la puissance du contrat. Programmation : décaler vers les heures creuses. La domotique commande, elle ne protège pas : les protections restent au tableau.</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=20&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=20&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=20">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 47. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=20">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/19-eau-chaude-et-heures-creuses.html">← Eau chaude et heures creuses</a><a href="cours/21-le-photovoltaique.html">Le photovoltaïque →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="21">
     <p class="lecon-kicker">BLOC 5 · APPLICATIONS MODERNES · MODULE 21</p>
     <h1>Le photovoltaïque</h1>
     <p class="niveau-objectif">Comprendre comment une installation photovoltaïque produit, convertit et injecte l'électricité, et connaître ses dangers propres</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=21&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=21&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=21">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=21">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Dernier module du parcours. Jusqu'ici, le logement recevait son électricité du réseau. Avec le photovoltaïque, il en produit lui-même. Tu retrouveras tout ce que tu as appris — le continu et l'alternatif du module 1, la série et le parallèle du module 4, les 120 V du module 5, les protections du bloc 3 — avec une nouveauté qui change les réflexes de sécurité : une source qu'on ne peut pas éteindre.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. L'effet photovoltaïque</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-effet.svg" alt="1. L&#x27;effet photovoltaïque" loading="lazy"></div>
         <div class="cours-texte"><p>Au module 1, on a vu quatre façons de produire l'électricité. Le photovoltaïque est l'une d'elles : il transforme directement la <b>lumière</b> en électricité.</p><p>L'élément de base est la <b>cellule</b>, une fine plaque de silicium. Quand la lumière la frappe, elle met des électrons en mouvement : une tension apparaît entre ses deux faces. C'est l'<a class="terme-lien" href="lexique.html#effet-photovoltaique">effet photovoltaïque</a>.</p><p>Ce courant est du <b>courant continu</b> : il circule toujours dans le même sens, d'une borne + vers une borne −, comme celui d'une pile. Rien à voir avec l'alternatif du réseau.</p><p>Pas de pièce en mouvement, pas de bruit, pas de combustible. Mais une conséquence à retenir dès maintenant : une cellule produit <b>dès qu'elle reçoit de la lumière</b>. On ne la met pas en marche, et on ne l'arrête pas.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un panneau posé au sol, face au ciel, encore dans son emballage ouvert, est déjà sous tension à ses bornes. Sur un chantier photovoltaïque, on manipule des générateurs en service dès la sortie du camion.</p></aside>
         <div class="lecon-memo">◆ Effet photovoltaïque : la lumière produit directement de l'électricité dans une cellule en silicium. C'est du courant continu, produit dès qu'il y a de la lumière.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. De la cellule à l'installation</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-wc.svg" alt="2. De la cellule à l&#x27;installation" loading="lazy"></div>
         <div class="cours-texte"><p>Une cellule seule produit très peu. On en assemble donc plusieurs dizaines, protégées par une vitre et un cadre : c'est le <b>module</b>, que tout le monde appelle le « panneau ». Plusieurs modules reliés entre eux forment un <b>champ</b> photovoltaïque.</p><p>La puissance d'un module s'exprime en <a class="terme-lien" href="lexique.html#watt-crete">watt-crête</a>, noté <b>Wc</b>. C'est la puissance qu'il fournit dans des conditions d'essai de référence, qui correspondent à un plein soleil. Un module courant fait par exemple <b>400 Wc</b>.</p><p>La puissance d'une installation est la somme de celles de ses modules. Avec 8 modules de 400 Wc : 8 × 400 = <b>3 200 Wc</b>, soit <b>3,2 kWc</b>.</p><p>Attention : le watt-crête est un maximum. La puissance réellement fournie change à chaque instant, avec l'ensoleillement, l'<b>orientation</b> et l'<b>inclinaison</b> des panneaux, la température — et l'<b>ombre</b> : un seul module à l'ombre peut faire chuter la production de tous ceux qui sont reliés avec lui.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant de promettre une production, monte regarder le toit à différentes heures. Une cheminée, une antenne, l'arbre du voisin : l'ombre portée de midi en décembre n'est pas celle de juin, et c'est elle qui décide de l'emplacement des panneaux.</p></aside>
         <div class="lecon-memo">◆ Cellule → module (le panneau) → champ. Puissance en watts-crête (Wc) : 8 × 400 Wc = 3,2 kWc. Le Wc est un maximum : la production dépend du soleil, de l'orientation et de l'ombre.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Les modules en série et en parallèle</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-serie.svg" alt="3. Les modules en série et en parallèle" loading="lazy"></div>
         <div class="cours-texte"><p>Les modules se relient entre eux exactement comme les générateurs et les récepteurs du module 4.</p><p>En <b>série</b>, on relie le + d'un module au − du suivant. Les <b>tensions s'additionnent</b>, et le même courant traverse tous les modules. Une suite de modules en série s'appelle une <a class="terme-lien" href="lexique.html#chaine-photovoltaique">chaîne</a>. Exemple : 8 modules de 40 V en série donnent 8 × 40 = <b>320 V</b> en courant continu.</p><p>En <b>parallèle</b>, on relie ensemble tous les + et ensemble tous les −. La tension reste celle d'une chaîne, et les <b>courants s'additionnent</b>. Exemple : deux chaînes de 10 A en parallèle fournissent 2 × 10 = <b>20 A</b>.</p><p>On comprend pourquoi le photovoltaïque demande du respect : en mettant simplement des panneaux bout à bout, on atteint très vite <b>plusieurs centaines de volts en continu</b>. Rappelle-toi le module 5 : en continu, la tension devient dangereuse au-delà de <b>120 V</b>.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Chaque module pris seul paraît inoffensif. C'est en branchant le dernier connecteur de la chaîne que tu fermes un générateur de plusieurs centaines de volts. Ce dernier branchement ne se fait jamais à la légère, ni les mains mouillées.</p></aside>
         <div class="lecon-memo">◆ Série : les tensions s'additionnent (8 × 40 V = 320 V) ; une suite de modules en série est une chaîne. Parallèle : les courants s'additionnent (2 × 10 A = 20 A). Une chaîne dépasse vite les 120 V du continu.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. L'onduleur</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-onduleur.svg" alt="4. L&#x27;onduleur" loading="lazy"></div>
         <div class="cours-texte"><p>Les panneaux produisent du continu ; le logement et le réseau fonctionnent en alternatif. Entre les deux, il faut un convertisseur : l'<a class="terme-lien" href="lexique.html#onduleur">onduleur</a>.</p><p>L'onduleur transforme le courant continu des panneaux en courant alternatif <b>230 V, 50 Hz</b>. Il ne se contente pas de convertir : il se <b>synchronise</b> sur le réseau, pour que sa sinusoïde se superpose exactement à celle du distributeur. Il ajuste aussi en permanence son fonctionnement pour tirer des panneaux le plus de puissance possible.</p><p>Il assure enfin une fonction de sécurité essentielle : le <b>découplage</b>. Si le réseau disparaît — une coupure, ou une mise hors tension volontaire pour travaux — l'onduleur <b>s'arrête</b> aussitôt d'injecter. Sans cela, l'installation continuerait d'alimenter une ligne que les agents du distributeur croient hors tension.</p><p>Une variante répandue : les <b>micro-onduleurs</b>, un petit onduleur fixé sous chaque panneau. Le courant redescend alors du toit déjà en alternatif.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Conséquence pour le client : une installation photovoltaïque classique ne l'alimente pas pendant une panne de courant. Le soleil brille, les panneaux sont sous tension, mais l'onduleur est à l'arrêt. Mieux vaut le lui dire avant qu'il le découvre.</p></aside>
         <div class="lecon-memo">◆ Onduleur : il convertit le continu en alternatif 230 V 50 Hz, synchronisé au réseau. Découplage : il s'arrête si le réseau disparaît. Micro-onduleurs : un par panneau.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. Autoconsommer ou vendre</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-usages.svg" alt="5. Autoconsommer ou vendre" loading="lazy"></div>
         <div class="cours-texte"><p>Que devient l'électricité produite ? Trois organisations sont possibles.</p><p>L'<a class="terme-lien" href="lexique.html#autoconsommation">autoconsommation</a> : le logement consomme lui-même ce que produisent ses panneaux. Quand la production ne suffit pas — la nuit, par temps couvert — le réseau fournit le complément.</p><p>L'autoconsommation avec <b>vente du surplus</b> : ce que le logement ne consomme pas à l'instant où c'est produit part sur le réseau, et il est vendu. Le compteur mesure l'énergie soutirée et l'énergie injectée.</p><p>La <b>vente totale</b> : toute la production est injectée sur le réseau, et le logement continue d'acheter toute son électricité.</p><p>La difficulté de l'autoconsommation tient au décalage des heures : les panneaux produisent surtout <b>en milieu de journée</b>, alors qu'un logement consomme surtout le <b>matin et le soir</b>. D'où l'intérêt de déplacer vers la journée ce qui peut l'être — le chauffe-eau, la recharge du véhicule — avec les moyens du module 20.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avec des panneaux, la logique des heures creuses s'inverse : le bon moment pour faire chauffer l'eau n'est plus la nuit, mais l'après-midi, quand le toit produit. Pense au pilotage du chauffe-eau dès l'étude.</p></aside>
         <div class="lecon-memo">◆ Autoconsommation : on consomme sa production. Vente du surplus : on vend ce qu'on ne consomme pas. Vente totale : tout part sur le réseau. Les panneaux produisent à midi, le logement consomme matin et soir.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. Les dangers propres au continu</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-dangers.svg" alt="6. Les dangers propres au continu" loading="lazy"></div>
         <div class="cours-texte"><p>Le photovoltaïque bouscule les réflexes de sécurité du bloc 2, pour trois raisons.</p><p><b>La source ne s'éteint pas.</b> Dans une installation ordinaire, on ouvre l'AGCP et tout est hors tension. Ici, les panneaux produisent tant qu'il fait jour. Entre les panneaux et l'onduleur, les câbles restent <b>sous tension</b>, quoi qu'on coupe en aval.</p><p><b>La tension est élevée.</b> Une chaîne atteint plusieurs centaines de volts, très au-delà des <b>120 V</b> qui marquent la limite du danger en continu.</p><p><b>L'arc ne s'éteint pas tout seul.</b> On l'a vu au module 4 : l'alternatif passe par zéro cent fois par seconde, ce qui aide à couper. Le continu, lui, ne passe <b>jamais par zéro</b>. Si on ouvre un circuit continu parcouru par un courant, un arc s'amorce et peut se maintenir, avec assez de chaleur pour fondre le métal et mettre le feu.</p><p>La règle qui en découle : on ne <b>débranche jamais un connecteur en charge</b>. On ouvre d'abord l'interrupteur-sectionneur prévu pour cela, qui est conçu pour couper du continu.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Les connecteurs des panneaux se clipsent à la main, et c'est ce qui les rend trompeurs. Les défaire alors que l'onduleur fonctionne, c'est tirer un arc entre ses doigts. Interrupteur-sectionneur continu ouvert d'abord, toujours.</p></aside>
         <div class="lecon-memo">◆ 3 dangers du photovoltaïque : la source ne s'éteint pas tant qu'il fait jour ; la tension continue dépasse largement 120 V ; un arc en continu ne s'éteint pas seul. Jamais de connecteur débranché en charge.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Les protections, et la fin du parcours</h2>
         <div class="lecon-figure"><img src="assets/svg/c21-protections.svg" alt="7. Les protections, et la fin du parcours" loading="lazy"></div>
         <div class="cours-texte"><p>Une installation photovoltaïque se protège des <b>deux côtés</b> de l'onduleur.</p><p>Côté <b>continu</b>, entre les panneaux et l'onduleur : un coffret avec un <b>interrupteur-sectionneur</b> capable de couper du courant continu, et un parafoudre.</p><p>Côté <b>alternatif</b>, entre l'onduleur et le tableau : un coffret avec un <b>disjoncteur</b> et une protection <b>différentielle</b>, comme pour tout circuit.</p><p>Les <b>cadres</b> des modules et leur structure métallique sont reliés à la <b>terre</b> : ce sont des masses, au sens du module 6.</p><p>Enfin, une <b>signalisation</b> avertit toute personne qui interviendra : l'installation comporte <b>deux sources de tension</b>, le réseau et les panneaux. Ouvrir l'AGCP ne suffit plus. Avant toute intervention, on sépare des deux côtés, on condamne, et on <b>vérifie l'absence de tension</b>.</p><p>C'est la dernière leçon du parcours, et elle résume toutes les autres : on ne suppose jamais qu'un conducteur est hors tension. On le vérifie.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Si tu interviens dans un logement que tu ne connais pas, lève les yeux vers le toit avant d'ouvrir le tableau. Des panneaux là-haut, et ta consignation ne se fait plus de la même façon.</p></aside>
         <div class="lecon-memo">◆ Protection des deux côtés : coffret continu (interrupteur-sectionneur, parafoudre), coffret alternatif (disjoncteur, différentiel). Cadres à la terre. Deux sources de tension : ouvrir l'AGCP ne suffit pas, on vérifie l'absence de tension.</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=21&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=21&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=21">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 46. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=21">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/20-recharge-de-vehicule-et-domotique.html">← Recharge de véhicule et domotique</a><span></span></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

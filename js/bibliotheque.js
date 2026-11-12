@@ -17,6 +17,7 @@ export async function afficherBibliotheque(conteneur, type) {
   document.title = `${TYPES[type].titre} — ApprendreElec`;
 
   const parcours = await fetch("data/parcours.json").then((r) => r.json());
+  PAGES = await fetch("data/pages-cours.json").then((r) => r.json()).catch(() => ({}));
 
   // Charge les niveaux disponibles (blocs non "à venir") pour afficher les compteurs.
   const data = {};
@@ -55,7 +56,7 @@ export async function afficherBibliotheque(conteneur, type) {
     conteneur.querySelectorAll(".biblio-item.verrou").forEach((el) => {
       const id = Number(el.dataset.id);
       const niveau = trouverNiveau(parcours, id);
-      el.addEventListener("click", () => demanderOuverture(niveau, () => { location.href = `niveau.html?id=${id}&module=${type}`; }));
+      el.addEventListener("click", () => demanderOuverture(niveau, () => { location.href = lienCours(id, type); }));
     });
   }
 
@@ -83,11 +84,17 @@ export async function afficherBibliotheque(conteneur, type) {
       ${indicateur}`;
 
     if (accessible) {
-      return `<a class="biblio-item${termine ? " terminee" : ""}" href="niveau.html?id=${niveau.id}&module=${type}">${corps}</a>`;
+      return `<a class="biblio-item${termine ? " terminee" : ""}" href="${lienCours(niveau.id, type)}">${corps}</a>`;
     }
     // Verrouillé : bouton qui déclenche la confirmation.
     return `<button class="biblio-item verrou" type="button" data-id="${niveau.id}">${corps}</button>`;
   }
+}
+
+let PAGES = {};
+function lienCours(id, type) {
+  const ancre = type === "quiz" ? "#quiz" : type === "jeu" ? "#jeu" : "";
+  return PAGES[id] ? PAGES[id] + ancre : `niveau.html?id=${id}&module=${type}`;
 }
 
 function trouverNiveau(parcours, id) {

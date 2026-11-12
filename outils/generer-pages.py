@@ -80,17 +80,22 @@ for f in glob.glob("cours/*.html"): os.remove(f)
 for i, m in enumerate(modules):
     n, c = m["id"], m["cours"]
     bloc = blocs[n]
-    actions = f'''<div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id={n}&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id={n}&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id={n}">🖨 Fiche mémo</a>
-    </div>'''
+    jeu_nom = {"trouve-erreur": "Trouve l'erreur", "vrai-faux-rapide": "Vrai ou faux"}[m["jeu"]["type"]]
+    jeu_desc = (f'{len(m["jeu"]["config"]["rounds"])} installations : trouve celle qui n\'est pas conforme' if m["jeu"]["type"] == "trouve-erreur"
+                else f'{len(m["jeu"]["config"]["affirmations"])} affirmations : vrai ou faux, réponds vite')
+    nbq = min(15, len(m["banque"]))
+    etapes = f'''<ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>{len(c["sections"])} parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>{nbq} questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : {jeu_nom}</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id={n}">🖨 La fiche mémo de ce cours</a></p>'''
     secs = []
-    for s in c["sections"]:
+    for k, s in enumerate(c["sections"]):
         fig = f'<div class="lecon-figure"><img src="assets/svg/{s["svg"]}" alt="{html.escape(texte_brut(s["titre"]))}" loading="lazy"></div>' if s.get("svg") else ""
         enc = f'<aside class="cours-chantier"><b>🔧 {s["encadre"].get("titre") or "Sur le chantier"}</b><p>{termes(s["encadre"]["texte"])}</p></aside>' if s.get("encadre") else ""
         memo = f'<div class="lecon-memo">◆ {termes(s["memo"])}</div>' if s.get("memo") else ""
-        secs.append(f'''      <section class="cours-section">
+        secs.append(f'''      <section class="cours-section" id="s{k+1}">
         <h2 class="cours-titre">{s["titre"]}</h2>
         {fig}
         <div class="cours-texte">{termes(s["contenu"])}</div>
@@ -101,20 +106,39 @@ for i, m in enumerate(modules):
     suiv = f'<a href="{pages[modules[i+1]["id"]]}">{modules[i+1]["titre"]} →</a>' if i < len(modules) - 1 else "<span></span>"
     page = tete(f'{m["titre"]} — cours d\'électricité gratuit | ApprendreElec',
                 f'{m["objectif"]}. Cours complet, illustré, avec quiz de {len(m["banque"])} questions.', pages[n], base="../")
-    page += f'''  <main class="niveau page-cours">
+    page += f'''  <main class="niveau page-cours" data-module="{n}">
     <p class="lecon-kicker">BLOC {bloc["id"]} · {bloc["titre"].upper()} · MODULE {n}</p>
     <h1>{m["titre"]}</h1>
     <p class="niveau-objectif">{m["objectif"]}</p>
-    {actions}
-    <article class="cours">
+    {etapes}
+    <article class="cours" id="cours">
       <p class="cours-intro">{termes(c["intro"])}</p>
 {chr(10).join(secs)}
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    {actions}
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>{nbq} questions tirées au hasard parmi {len(m["banque"])}. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : {jeu_nom}</h2>
+      <div class="activite-zone">
+        <p>{jeu_desc}.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+{m["recompense"]["electrons"]} e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id={n}">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins">{prec}{suiv}</nav>
   </main>
 ''' + PIED
+    page = page.replace('<span class="compteur-electrons">', '<button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>\n    <span class="compteur-electrons">', 1)
+    page = page.replace('src="js/page.js"', 'src="js/cours.js"')
     open(pages[n], "w", encoding="utf-8").write(page)
 
 json.dump({str(k): v for k, v in pages.items()}, open("data/pages-cours.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)

@@ -1,6 +1,7 @@
 // Jeu "Trouve l'erreur" : une scène SVG de salle de bain, 4 équipements,
 // un seul est non conforme. Sons discrets (uniquement ici, désactivables).
 
+import { remonter } from "../remonter.js";
 import { sonClac, sonVictoire, sonEchec } from "../audio.js";
 
 // Scène de fond : soit un SVG statique (config.fond), soit la coupe
@@ -54,7 +55,7 @@ export function demarrerJeu(config, conteneur, { onFin } = {}) {
         <button class="jeu-suivant">${index === rounds.length - 1 ? "Terminer le jeu ✓" : "Installation suivante →"}</button>
       </div>`;
 
-    window.scrollTo(0, 0); // chaque nouvelle installation repart en haut
+    remonter(conteneur); // chaque nouvelle installation repart en haut
 
     const retour = conteneur.querySelector(".jeu-retour");
     const suivant = conteneur.querySelector(".jeu-suivant");

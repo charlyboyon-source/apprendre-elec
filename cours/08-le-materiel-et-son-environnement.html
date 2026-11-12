@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="8">
     <p class="lecon-kicker">BLOC 2 · SÉCURITÉ ET PROTECTION DES PERSONNES · MODULE 8</p>
     <h1>Le matériel et son environnement</h1>
     <p class="niveau-objectif">Choisir un matériel selon sa classe de protection et selon les contraintes du local (IP, IK)</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=8&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=8&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=8">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=8">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Quatrième module du bloc 2. Jusqu'ici, on a protégé les personnes par l'installation : la terre, le différentiel, les volumes. Ici, on regarde le matériel lui-même. Chaque appareil porte sur sa plaque des repères qui disent deux choses : comment il protège contre les chocs électriques, et quelles agressions il peut supporter. Savoir les lire, c'est savoir si un matériel a le droit d'être posé là où on te demande de le poser.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Deux questions devant un matériel</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-deux-questions.svg" alt="1. Deux questions devant un matériel" loading="lazy"></div>
         <div class="cours-texte"><p>Devant un matériel électrique, l'électricien se pose toujours deux questions.</p><p><b>Comment protège-t-il contre les chocs électriques ?</b> C'est sa <b>classe</b> : I, II ou III. Elle dit sur quoi repose la sécurité de l'utilisateur : la terre, une double isolation, ou une tension trop faible pour être dangereuse.</p><p><b>Quelles agressions de son environnement peut-il subir ?</b> Ce sont ses deux indices : l'<b>IP</b> pour la poussière et l'eau, l'<b>IK</b> pour les chocs mécaniques.</p><p>Ces repères figurent sur la <b>plaque signalétique</b> de l'appareil. Les confondre est une faute classique : la classe parle de <b>sécurité électrique</b>, l'IP et l'IK parlent de <b>résistance physique</b>. Un matériel très étanche n'est pas forcément de classe II, et un matériel de classe II n'est pas forcément étanche.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Avant de poser un appareil, retourne-le et lis sa plaque : symbole de classe, indice IP, parfois IK, tension et puissance. Trente secondes de lecture évitent de poser un matériel d'intérieur dans un local humide.</p></aside>
         <div class="lecon-memo">◆ Classe (I, II, III) = protection contre les chocs électriques. IP et IK = résistance à l'environnement (eau, poussière, chocs). Tout se lit sur la plaque signalétique.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. La classe I : la sécurité par la terre</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-classe1.svg" alt="2. La classe I : la sécurité par la terre" loading="lazy"></div>
         <div class="cours-texte"><p>Le matériel de <a class="terme-lien" href="lexique.html#classe-i">classe I</a> possède une isolation principale <b>et</b> une <b>borne de terre obligatoire</b> : sa masse métallique est reliée au <a class="terme-lien" href="lexique.html#conducteur-de-protection">conducteur de protection</a> (PE). Son symbole est celui de la terre, placé près de la borne.</p><p>Sa sécurité repose donc entièrement sur la <b>mise à la terre</b>. Si l'isolation principale lâche et qu'un conducteur actif touche la carcasse, le courant de défaut s'écoule par le PE et le différentiel coupe, comme on l'a vu au module 6.</p><p>Conséquence directe : un matériel de classe I <b>sans terre raccordée</b> n'est plus protégé du tout. Au premier défaut, sa carcasse reste sous tension et attend qu'on la touche. Exemples de classe I : le lave-linge, le four, le réfrigérateur à carcasse métallique, le chauffe-eau.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un appareil de classe I branché sur une vieille prise sans terre, ou avec une rallonge à deux conducteurs, perd sa protection. En rénovation, c'est l'un des dangers les plus fréquents : on contrôle la continuité de la terre jusqu'à la prise.</p></aside>
         <div class="lecon-memo">◆ Classe I = isolation principale + borne de terre OBLIGATOIRE, masse reliée au PE. Sans terre raccordée, plus de protection.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. La classe II : la double isolation</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-classe2.svg" alt="3. La classe II : la double isolation" loading="lazy"></div>
         <div class="cours-texte"><p>Le matériel de <a class="terme-lien" href="lexique.html#classe-ii">classe II</a> ne compte pas sur la terre. Il mise sur une <a class="terme-lien" href="lexique.html#double-isolation">double isolation</a> : à l'isolation principale s'ajoute une isolation supplémentaire (ou une isolation renforcée équivalente), si bien qu'un seul défaut ne peut pas mettre l'enveloppe sous tension.</p><p>Son symbole est le <b>double carré</b> : un carré dans un carré. Il n'a <b>pas de borne de terre</b>, sa fiche n'a que deux broches, et on ne le relie <b>jamais</b> au PE. Exemples : la perceuse, le sèche-cheveux, la plupart des luminaires modernes, les chargeurs.</p><p>Un mot sur la <b>classe 0</b> : un matériel qui n'aurait ni borne de terre, ni double isolation. Sa seule protection serait son isolation principale. Elle est <b>interdite</b> en France.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Ne « rajoute » jamais une terre à un appareil de classe II, même si un fil vert/jaune arrive dans la boîte : on le laisse en attente, isolé. C'est pour cette raison que la classe II est si présente en salle de bain.</p></aside>
         <div class="lecon-memo">◆ Classe II = double isolation, symbole du double carré, PAS de terre, jamais reliée au PE. Classe 0 (ni terre ni double isolation) : interdite.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. La classe III : la très basse tension</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-classe3.svg" alt="4. La classe III : la très basse tension" loading="lazy"></div>
         <div class="cours-texte"><p>Le matériel de <a class="terme-lien" href="lexique.html#classe-iii">classe III</a> est conçu pour être alimenté en <a class="terme-lien" href="lexique.html#tbts">TBTS</a>, la très basse tension de sécurité. Il ne reçoit donc qu'une tension inférieure ou égale à <b>50 V en alternatif</b> (120 V en continu lisse) : trop faible pour provoquer un choc dangereux en milieu sec. Son symbole est un <b>losange contenant III</b>.</p><p>La TBTS ne vaut que par sa source. Elle est produite par une <b>source de sécurité</b> — le plus souvent un transformateur de sécurité — et ses circuits sont <b>séparés de la terre</b> et des autres circuits. Un matériel de classe III n'a donc pas de borne de terre.</p><p>C'est la protection des spots 12 V de salle de bain et des jouets. Souviens-toi du module 7 : dans les volumes de la salle de bain, la limite descend à 12 V, parce que le corps mouillé supporte bien moins.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un spot 12 V n'est sûr que si son transformateur est un vrai transformateur de sécurité. Le remplacer par une alimentation quelconque « qui sort du 12 V », c'est perdre la séparation qui fait toute la protection.</p></aside>
         <div class="lecon-memo">◆ Classe III = alimentée en TBTS : 50 V au plus en alternatif, 120 V en continu lisse. Source de sécurité, circuits séparés de la terre. Symbole : losange III.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. L'indice IP : les solides et l'eau</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-indice-ip.svg" alt="5. L&#x27;indice IP : les solides et l&#x27;eau" loading="lazy"></div>
         <div class="cours-texte"><p>L'<a class="terme-lien" href="lexique.html#indice-ip">indice IP</a> compte <b>deux chiffres</b>, toujours dans le même ordre.</p><p>Le <b>premier chiffre</b>, de 0 à 6, note la protection contre les <b>corps solides</b> et l'accès aux parties dangereuses : <b>2</b> = un doigt (12,5 mm), <b>4</b> = un fil (1 mm), <b>5</b> = protégé contre la poussière, <b>6</b> = totalement étanche à la poussière.</p><p>Le <b>deuxième chiffre</b> note la protection contre l'<b>eau</b> : <b>1</b> = gouttes verticales, <b>4</b> = projections de toutes directions, <b>5</b> = jets, <b>7</b> = immersion temporaire, <b>8</b> = immersion prolongée.</p><p>Quand un chiffre n'est pas précisé, on écrit un <b>X</b> à sa place. IPX4, courant en salle de bain, ne qualifie que l'eau. Et IP55 se lit en deux temps : protégé contre la poussière, protégé contre les jets d'eau.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Un IP ne se lit pas comme un nombre : IP44 n'est pas « plus petit » que IP65 en bloc, on compare chiffre par chiffre. Et un X ne veut pas dire zéro : il veut dire « non précisé ».</p></aside>
         <div class="lecon-memo">◆ IP = 1er chiffre solides (0 à 6) + 2e chiffre eau. Repères eau : 4 projections, 5 jets, 7 immersion temporaire. X = chiffre non précisé.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. L'indice IK : les chocs mécaniques</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-indice-ik.svg" alt="6. L&#x27;indice IK : les chocs mécaniques" loading="lazy"></div>
         <div class="cours-texte"><p>Là où l'IP parle de poussière et d'eau, l'<a class="terme-lien" href="lexique.html#indice-ik">indice IK</a> note la résistance aux <b>chocs mécaniques</b>. Il s'exprime par l'énergie du choc que l'enveloppe encaisse, en <b>joules</b>.</p><p>L'échelle va de <b>IK00</b> (aucune protection) à <b>IK10</b>. Trois repères suffisent : <b>IK07 = 2 J</b>, <b>IK08 = 5 J</b>, <b>IK10 = 20 J</b>.</p><p>On exige un IK élevé partout où le matériel risque les coups : parkings, gymnases, ateliers, locaux publics exposés au vandalisme. Un appareil peut donc cumuler plusieurs indices. « IP66 IK08 » se lit : étanche à la poussière, résistant aux jets puissants, et encaissant un choc de 5 joules.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Dans un garage ou un local à vélos, un hublot ordinaire ne tient pas longtemps. On regarde l'IK avant le prix : remplacer trois fois un luminaire cassé coûte plus cher qu'un IK10 posé une fois.</p></aside>
         <div class="lecon-memo">◆ IK = résistance aux chocs, en joules. IK00 aucune protection · IK07 = 2 J · IK08 = 5 J · IK10 = 20 J. Élevé là où ça cogne.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Choisir selon le local</h2>
         <div class="lecon-figure"><img src="assets/svg/c8-locaux.svg" alt="7. Choisir selon le local" loading="lazy"></div>
         <div class="cours-texte"><p>Tout se joue à la pose : on choisit la classe, l'IP et l'IK selon le lieu.</p><p>Un <b>salon sec</b> : un IP20 suffit, il n'y a ni eau ni poussière à craindre. Une <b>salle de bain</b> : selon le volume, IPX4 ou IPX7, souvent en classe II. Un <b>extérieur</b> exposé à la pluie : on retient en pratique IP44 au minimum, avec un IK correct contre la grêle et les chocs. Un <b>atelier poussiéreux</b> : IP5X ou IP6X. Un <b>parking</b> ou un local public : un IK élevé contre les coups.</p><p>La règle d'or : on ne <b>sous-classe jamais</b> un matériel par rapport à son environnement. Un appareil prévu pour l'intérieur sec et installé dehors devient un piège : l'eau entre, l'isolation se dégrade, et le défaut arrive.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Quand tu hésites entre deux références, prends celle qui correspond au pire moment du local : le jour de pluie battante, le jour du nettoyage au jet, le jour où quelqu'un cogne dedans avec une échelle.</p></aside>
         <div class="lecon-memo">◆ Sec → IP20. Salle de bain → IPX4 ou IPX7 selon le volume. Dehors → IP44 ou plus et un bon IK. Poussière → IP5X ou IP6X. Public → IK élevé. Jamais sous-classer.</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=8&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=8&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=8">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 45. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=8">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/07-l-electricite-dans-la-salle-de-bain.html">← L'électricité dans la salle de bain</a><a href="cours/09-travailler-en-securite.html">Travailler en sécurité →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

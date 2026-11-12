@@ -24,80 +24,95 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="15">
     <p class="lecon-kicker">BLOC 4 · SCHÉMAS ET MONTAGES D'ÉCLAIRAGE · MODULE 15</p>
     <h1>Lire un schéma électrique</h1>
     <p class="niveau-objectif">Reconnaître les quatre types de schémas et savoir à quelle question chacun répond</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=15&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=15&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=15">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>7 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=15">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Premier module du bloc 4. Avant de câbler un montage, il faut savoir le lire. L'électricien ne décrit pas une installation avec des phrases : il la dessine. Quatre types de schémas existent, et chacun répond à une question différente. Apprends à les reconnaître au premier coup d'œil : tous les montages des modules suivants s'appuieront dessus.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Le schéma, un langage commun</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-langage.svg" alt="1. Le schéma, un langage commun" loading="lazy"></div>
         <div class="cours-texte"><p>Un schéma électrique est un dessin codé. Il permet à celui qui conçoit l'installation, à celui qui la réalise et à celui qui la dépannera dans vingt ans de se comprendre sans se parler.</p><p>Il repose sur trois éléments. Des <b>symboles</b> : chaque appareil est représenté par un dessin normalisé, le même pour tout le monde. Des <b>traits</b> : ils figurent les conducteurs qui relient les appareils. Des <b>repères</b> : chaque élément porte un nom court, lettre et numéro, que l'on retrouve sur le matériel lui-même.</p><p>Deux conventions valent pour tous les schémas. Les appareils sont dessinés <b>au repos</b> : un interrupteur est représenté ouvert, un bouton-poussoir relâché. Et l'installation est supposée <b>hors tension</b>.</p><p>Il existe quatre types de schémas : <b>architectural</b>, <b>unifilaire</b>, <b>multifilaire</b> et <b>développé</b>. Aucun n'est meilleur que les autres : chacun répond à une question.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Sur un chantier, le schéma à jour vaut de l'or. Si tu modifies quoi que ce soit — un circuit ajouté, un disjoncteur déplacé — tu corriges le schéma le jour même. Un schéma faux est pire que pas de schéma.</p></aside>
         <div class="lecon-memo">◆ Schéma = symboles normalisés + traits (conducteurs) + repères. Appareils dessinés au repos, installation hors tension. 4 types : architectural, unifilaire, multifilaire, développé.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. Le schéma architectural</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-architectural.svg" alt="2. Le schéma architectural" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#schema-architectural">schéma architectural</a> se dessine directement sur le <b>plan du logement</b>, vu de dessus. Il répond à la question : <b>où ?</b></p><p>On y place le symbole de chaque appareil à son emplacement réel : les points lumineux, les interrupteurs, les prises, le tableau. On y voit aussi <b>qui commande quoi</b> : un trait, souvent en pointillé, relie chaque interrupteur au point lumineux qu'il allume.</p><p>En revanche, il ne montre <b>pas le câblage</b> : ni le nombre de conducteurs, ni leur parcours exact, ni les raccordements. Le trait entre l'interrupteur et la lampe n'est pas un fil, c'est une liaison de commande.</p><p>C'est le schéma que l'on montre au client pour valider l'emplacement des prises et des interrupteurs, et celui que tu suis pour tracer et poser tes boîtes.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Fais valider le schéma architectural par le client avant de tracer la première saignée. Déplacer une prise sur le papier prend dix secondes ; la déplacer dans un mur fini prend une demi-journée.</p></aside>
         <div class="lecon-memo">◆ Schéma architectural : sur le plan du logement, l'emplacement des appareils et les liaisons de commande. Il répond à « où ? » et ne montre pas le câblage.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Le schéma unifilaire</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-unifilaire.svg" alt="3. Le schéma unifilaire" loading="lazy"></div>
         <div class="cours-texte"><p>Dans le <a class="terme-lien" href="lexique.html#schema-unifilaire">schéma unifilaire</a>, chaque circuit est représenté par <b>un seul trait</b>, quel que soit le nombre de conducteurs qu'il contient. « Unifilaire » : un fil.</p><p>Pour ne pas perdre l'information, on barre ce trait de petits <b>traits obliques</b> : autant de traits obliques que de conducteurs. Trois traits obliques signifient trois conducteurs — phase, neutre et conducteur de protection.</p><p>C'est le schéma du <b>tableau</b>. On y lit, de haut en bas, toute l'organisation de l'installation : l'<a class="terme-lien" href="lexique.html#agcp">AGCP</a>, les interrupteurs différentiels avec leur type et leur calibre, puis chaque disjoncteur avec son calibre, la section des conducteurs qu'il protège et ce qu'il alimente.</p><p>Il répond à la question : <b>quels circuits, avec quelles protections ?</b> Il est compact : toute une maison tient sur une page.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Le schéma unifilaire du tableau fait partie du dossier remis avec l'installation. Colle-en un exemplaire dans la porte du tableau : celui qui interviendra après toi saura tout de suite ce que protège chaque appareil.</p></aside>
         <div class="lecon-memo">◆ Schéma unifilaire : un seul trait par circuit, des traits obliques pour le nombre de conducteurs. C'est le schéma du tableau : protections, calibres, sections.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. Le schéma multifilaire</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-multifilaire.svg" alt="4. Le schéma multifilaire" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#schema-multifilaire">schéma multifilaire</a> fait l'inverse : il dessine <b>chaque conducteur</b> par son propre trait. « Multifilaire » : plusieurs fils.</p><p>On y voit donc le câblage réel : quel conducteur arrive sur quelle borne de quel appareil. Les traits sont dessinés à la couleur des conducteurs — rouge pour la phase, bleu pour le neutre, vert/jaune pour le conducteur de protection, et une couleur distincte pour les retours, par exemple l'orange pour le fil qui va de l'interrupteur à la lampe.</p><p>Il répond à la question : <b>comment raccorder ?</b> C'est le schéma que l'on suit, tournevis en main, pour câbler un montage sans se tromper de borne.</p><p>Son défaut est sa taille : dès que l'installation grandit, il devient vite illisible. On le réserve donc à un montage ou à une partie de l'installation.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Quand tu apprends un nouveau montage, dessine toi-même son schéma multifilaire, avec les couleurs. Si tu sais le dessiner sans modèle, tu sais le câbler.</p></aside>
         <div class="lecon-memo">◆ Schéma multifilaire : un trait par conducteur, à sa couleur. Il montre le câblage réel, borne par borne, et répond à « comment raccorder ? ».</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. Le schéma développé</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-developpe.svg" alt="5. Le schéma développé" loading="lazy"></div>
         <div class="cours-texte"><p>Le <a class="terme-lien" href="lexique.html#schema-developpe">schéma développé</a> ne se préoccupe ni de l'emplacement des appareils, ni du parcours des fils. Il montre le <b>fonctionnement</b>.</p><p>Sa disposition est toujours la même : la <b>phase</b> est une ligne horizontale en haut, le <b>neutre</b> une ligne horizontale en bas. Entre les deux, on dessine verticalement la suite des éléments que traverse le courant : la protection, la commande, puis le récepteur.</p><p>On lit alors le montage comme une phrase, de haut en bas : « le courant part de la phase, traverse l'interrupteur S1 s'il est fermé, puis la lampe E1, et revient au neutre ». On retrouve la règle du module 3 : la commande coupe la phase, et le récepteur est relié au neutre.</p><p>Il répond à la question : <b>comment ça fonctionne ?</b> C'est le schéma que l'on utilise pour comprendre un montage, et pour raisonner lors d'un dépannage.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>En dépannage, redessine le montage en schéma développé sur un coin de papier. Tu vois d'un coup la chaîne que le courant doit parcourir, et tu sais où mesurer pour trouver le maillon coupé.</p></aside>
         <div class="lecon-memo">◆ Schéma développé : phase en haut, neutre en bas, les éléments entre les deux dans l'ordre où le courant les traverse. Il répond à « comment ça fonctionne ? ».</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. Les symboles</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-symboles.svg" alt="6. Les symboles" loading="lazy"></div>
         <div class="cours-texte"><p>Chaque appareil a son symbole normalisé. Il représente une <b>fonction</b>, pas l'apparence de l'appareil : un interrupteur à bascule et un interrupteur tactile ont le même symbole, parce qu'ils font la même chose.</p><p>Quelques symboles à reconnaître sans hésiter. La <b>lampe</b> : un cercle barré d'une croix. L'<b>interrupteur</b> : un contact, c'est-à-dire un trait mobile qui ouvre ou ferme le circuit, dessiné ouvert. Le <b>bouton-poussoir</b> : un contact surmonté de son poussoir, qui revient tout seul au repos. La <b>terre</b> : trois traits horizontaux de plus en plus courts.</p><p>Un même appareil peut avoir deux symboles, selon le schéma : un dessin simplifié sur le schéma architectural, un dessin qui montre ses contacts sur le schéma développé.</p><p>Tu n'as pas à tout connaître par cœur dès le premier jour : un plan sérieux comporte une <b>légende</b>, qui rappelle tous les symboles utilisés.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Devant un plan inconnu, commence par la légende, pas par le dessin. Les bureaux d'études n'utilisent pas tous exactement les mêmes symboles ; deux minutes de lecture t'évitent de confondre une prise et un point lumineux.</p></aside>
         <div class="lecon-memo">◆ Un symbole représente une fonction. Lampe : cercle + croix. Interrupteur : un contact, dessiné ouvert. Bouton-poussoir : contact à poussoir. Terre : trois traits. La légende rappelle les symboles du plan.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s7">
         <h2 class="cours-titre">7. Quel schéma pour quelle question ?</h2>
         <div class="lecon-figure"><img src="assets/svg/c15-quatre.svg" alt="7. Quel schéma pour quelle question ?" loading="lazy"></div>
         <div class="cours-texte"><p>Retiens les quatre schémas par la question à laquelle chacun répond.</p><p><b>Architectural</b> — <b>où ?</b> L'emplacement des appareils sur le plan du logement, et qui commande quoi.<br><b>Unifilaire</b> — <b>quels circuits, quelles protections ?</b> Un trait par circuit ; le schéma du tableau.<br><b>Multifilaire</b> — <b>comment raccorder ?</b> Un trait par conducteur ; le câblage réel.<br><b>Développé</b> — <b>comment ça fonctionne ?</b> De la phase au neutre, dans l'ordre où le courant traverse les éléments.</p><p>Sur un chantier, ils se complètent. Le client valide l'architectural ; tu poses tes boîtes d'après lui ; tu câbles le tableau d'après l'unifilaire ; tu raccordes un montage délicat d'après le multifilaire ; et tu dépannes en raisonnant sur le développé.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>À l'examen, on te donnera souvent un schéma en te demandant d'en produire un autre : passer de l'architectural au développé, ou du développé au multifilaire. C'est l'exercice à travailler dans les modules qui suivent.</p></aside>
         <div class="lecon-memo">◆ Architectural : où ? · Unifilaire : quels circuits, quelles protections ? · Multifilaire : comment raccorder ? · Développé : comment ça fonctionne ?</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=15&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=15&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=15">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 43. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=15">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/14-la-gtl-et-les-circuits-du-logement.html">← La GTL et les circuits du logement</a><a href="cours/16-simple-et-double-allumage.html">Simple et double allumage →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>

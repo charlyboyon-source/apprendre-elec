@@ -5,6 +5,7 @@
 // bonne réponse ne tombe pas toujours sur la même lettre.
 // Correction EN FIN DE SÉRIE + renvoi vers le cours.
 
+import { remonter } from "./remonter.js";
 import { activerTermes, brancherTermes } from "./glossaire.js";
 import { noterReponse } from "./erreurs-store.js";
 
@@ -63,7 +64,7 @@ export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon, nb = NB_
       </div>`;
 
     brancherTermes(conteneur);
-    window.scrollTo(0, 0); // chaque nouvelle question repart en haut
+    remonter(conteneur); // chaque nouvelle question repart en haut
 
     conteneur.querySelectorAll(".choix").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -109,7 +110,7 @@ export function demarrerQuiz(niveau, conteneur, { onFin, onRevoirLecon, nb = NB_
     });
 
     onFin?.(score, questions.length, { questions, reponses });
-    window.scrollTo({ top: 0 });
+    remonter(conteneur);
   }
 
   rendreQuestion();

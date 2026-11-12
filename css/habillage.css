@@ -56,3 +56,37 @@
 }
 .bandeau-mesure-actions button[data-v="oui"] { background: var(--jaune); color: #fff; }
 @media print { .bandeau-mesure { display: none; } }
+
+/* Page d'un cours : trois étapes, le quiz et le jeu sur la même page */
+.module-etapes { list-style: none; padding: 0; margin: var(--esp-3) 0 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.module-etape {
+  display: flex; align-items: center; gap: 10px; height: 100%; padding: 12px; border-radius: 12px;
+  background: var(--fond-2); border: 1px solid var(--bordure); color: var(--texte); text-decoration: none;
+}
+.module-etape:hover { border-color: var(--jaune); }
+.module-etape i {
+  flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  font-style: normal; font-weight: 800; background: var(--jaune-doux);
+}
+.module-etape b { display: block; font-size: 0.92rem; line-height: 1.25; }
+.module-etape small { display: block; font-size: 0.78rem; color: var(--texte-2); }
+.module-etape.faite { border-color: var(--ok); }
+.module-etape.faite i { background: var(--ok); color: #fff; font-size: 0; }
+.module-etape.faite i::after { content: "✓"; font-size: 0.95rem; }
+.module-liens { margin: 4px 0 var(--esp-3); font-size: 0.9rem; }
+.cours-fin { text-align: center; color: var(--texte-2); font-size: 0.9rem; margin: var(--esp-4) 0 0; }
+.module-activite {
+  scroll-margin-top: 110px; margin: var(--esp-4) 0; padding: 18px; border-radius: 16px;
+  background: var(--fond-2); border: 1px solid var(--bordure); border-top: 5px solid var(--accent);
+}
+.module-activite-num { margin: 0; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; color: var(--orange); }
+.module-activite h2 { margin: 2px 0 10px; font-size: 1.3rem; }
+.module-activite .activite-zone > p { margin: 0 0 14px; color: var(--texte-2); }
+.module-activite .bouton-plein { cursor: pointer; }
+.module-bravo { text-align: center; font-weight: 700; padding: 14px; border-radius: 12px; background: #e3f5ea; color: #14703f; }
+.module-bravo[hidden] { display: none; }
+@media (max-width: 600px) {
+  .module-etapes { grid-template-columns: 1fr; gap: 6px; }
+  .module-etape { padding: 10px 12px; }
+}
+@media print { .module-etapes, .module-activite, .module-bravo { display: none; } }

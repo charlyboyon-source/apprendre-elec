@@ -1,6 +1,7 @@
 // Jeu "Vrai / Faux rapide" : une série d'affirmations, on tranche vite.
 // Feedback immédiat avec explication, score final. Sons discrets désactivables.
 
+import { remonter } from "../remonter.js";
 import { sonClac, sonVictoire, sonEchec } from "../audio.js";
 
 // Options : onFin() appelé après la dernière affirmation.
@@ -26,7 +27,7 @@ export function demarrerJeu(config, conteneur, { onFin } = {}) {
         <button class="jeu-suivant">${index === affirmations.length - 1 ? "Voir mon score ✓" : "Affirmation suivante →"}</button>
       </div>`;
 
-    window.scrollTo(0, 0); // chaque nouvelle affirmation repart en haut
+    remonter(conteneur); // chaque nouvelle affirmation repart en haut
 
     const retour = conteneur.querySelector(".jeu-retour");
     const suivant = conteneur.querySelector(".jeu-suivant");
@@ -60,7 +61,7 @@ export function demarrerJeu(config, conteneur, { onFin } = {}) {
       </div>
       <button class="jeu-suivant visible vf-terminer">Terminer le jeu ✓</button>`;
     conteneur.querySelector(".vf-terminer").addEventListener("click", () => onFin?.());
-    window.scrollTo({ top: 0 });
+    remonter(conteneur);
   }
 
   rendre();

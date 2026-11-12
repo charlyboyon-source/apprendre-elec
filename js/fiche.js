@@ -18,12 +18,15 @@ function ecrireSues(d) {
 }
 
 let blocs = [];
+let PAGES = {};
 
 async function init() {
-  const [modules, parcours] = await Promise.all([
+  const [modules, parcours, pages] = await Promise.all([
     chargerModules(),
     fetch("data/parcours.json").then((r) => r.json()),
+    fetch("data/pages-cours.json").then((r) => r.json()).catch(() => ({})),
   ]);
+  PAGES = pages;
   blocs = parcours.blocs;
   const id = Number(new URLSearchParams(location.search).get("id"));
   const module = modules.find((m) => m.id === id);
@@ -76,7 +79,7 @@ function afficherFiche(m, modules) {
     </header>
     <div class="page-actions">
       <button class="bouton-plein fiche-imprimer" type="button">🖨 Imprimer ou enregistrer en PDF</button>
-      <a class="bouton-creux" href="niveau.html?id=${m.id}&module=lecon&libre=1">📖 Lire le cours</a>
+      <a class="bouton-creux" href="${PAGES[m.id] || `niveau.html?id=${m.id}`}">📖 Lire le cours</a>
       <a class="bouton-creux" href="fiche.html">Toutes les fiches</a>
     </div>
     <div class="fiche-cartes bloc-${bloc.id}">

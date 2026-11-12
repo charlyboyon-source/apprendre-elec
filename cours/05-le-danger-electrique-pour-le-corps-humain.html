@@ -24,73 +24,88 @@
   <header class="entete">
     <button class="bouton-burger" aria-label="Menu">☰</button>
     <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <button class="bouton-sons sndbtn" aria-label="Activer ou couper les sons des jeux">🔊</button>
     <span class="compteur-electrons">0 e⁻</span>
   </header>
-  <main class="niveau page-cours">
+  <main class="niveau page-cours" data-module="5">
     <p class="lecon-kicker">BLOC 2 · SÉCURITÉ ET PROTECTION DES PERSONNES · MODULE 5</p>
     <h1>Le danger électrique pour le corps humain</h1>
     <p class="niveau-objectif">Comprendre comment le courant blesse et tue — et savoir réagir, dans le bon ordre, face à une victime</p>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=5&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=5&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=5">🖨 Fiche mémo</a>
-    </div>
-    <article class="cours">
+    <ol class="module-etapes">
+      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>6 parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>15 questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : Vrai ou faux</b><small>pour ancrer</small></span></a></li>
+    </ol>
+    <p class="module-liens"><a href="fiche.html?id=5">🖨 La fiche mémo de ce cours</a></p>
+    <article class="cours" id="cours">
       <p class="cours-intro">Premier module du bloc 2, et le plus sérieux de toute la formation. On quitte la théorie pour parler de ce qui peut t'arriver, à toi ou à un collègue, sur un chantier. Le courant ne fait pas mal « comme une gifle » : il blesse selon des seuils précis, et il tue selon des règles qu'on connaît au milliampère près. Lis ce cours lentement — ici, chaque chiffre est exact et chaque chiffre compte.</p>
-      <section class="cours-section">
+      <section class="cours-section" id="s1">
         <h2 class="cours-titre">1. Électrisation ou électrocution ?</h2>
         <div class="lecon-figure"><img src="assets/svg/corps-courant.svg" alt="1. Électrisation ou électrocution ?" loading="lazy"></div>
         <div class="cours-texte"><p>Deux mots que le grand public confond, mais pas l'électricien. L'<a class="terme-lien" href="lexique.html#electrisation">électrisation</a> désigne <b>tout passage de courant à travers le corps</b>, quelle que soit sa gravité : un picotement dans le doigt est déjà une électrisation. L'<a class="terme-lien" href="lexique.html#electrocution">électrocution</a>, elle, est une électrisation qui <b>entraîne la mort</b>. Autrement dit : on est électrisé souvent, électrocuté une seule fois.</p><p>Pour blesser, le courant doit <b>traverser le corps</b> : il entre par un point de contact (le plus souvent la main) et ressort par un autre (souvent les pieds, vers la <a class="terme-lien" href="lexique.html#terre">terre</a>). Le chemin qu'il emprunte entre ces deux points fait toute la différence.</p><p>Le trajet le plus redouté est <b>main-pied</b> ou <b>main-main</b> : il traverse la cage thoracique, donc le <b>cœur</b> et les <b>poumons</b>. C'est ce trajet qui provoque les arrêts respiratoires et cardiaques. Un courant qui passerait d'un doigt à l'autre d'une même main serait bien moins grave : il ne touche pas les organes vitaux.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>C'est pour ça qu'on travaille « une main dans la poche » près d'une partie sous tension : on évite le trajet main-main qui traverse le thorax. Et de bonnes chaussures isolantes coupent le trajet main-pied vers la terre.</p></aside>
         <div class="lecon-memo">◆ Électrisation = passage de courant (quelconque). Électrocution = électrisation MORTELLE. Le pire trajet (main-pied / main-main) passe par le cœur.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s2">
         <h2 class="cours-titre">2. C'est l'intensité qui tue, pas la tension</h2>
         <div class="lecon-figure"><img src="assets/svg/c5-mouille.svg" alt="2. C&#x27;est l&#x27;intensité qui tue, pas la tension" loading="lazy"></div>
         <div class="cours-texte"><p>Phrase à graver : ce n'est pas la <a class="terme-lien" href="lexique.html#tension">tension</a> qui blesse, c'est l'<a class="terme-lien" href="lexique.html#intensite">intensité</a> qui traverse le corps. On meurt de quelques dizaines de milliampères, pas de « 230 volts » en soi.</p><p>Mais tension et courant sont liés par la <a class="terme-lien" href="lexique.html#loi-d-ohm">loi d'Ohm</a> : <b>I = U / R</b>. La tension <b>impose</b> le courant, à travers la <a class="terme-lien" href="lexique.html#resistance">résistance</a> du corps. Et cette résistance n'est pas fixe : peau <b>sèche</b>, elle vaut en moyenne <b>5 000 Ω</b> ; peau <b>mouillée</b> ou en sueur, elle s'effondre autour de <b>1 000 Ω</b>.</p><p>Le calcul qui fait froid dans le dos : 230 V appliqués à un corps mouillé de 1 000 Ω donnent I = 230 / 1 000 = <b>0,23 A, soit 230 mA</b>. On verra à la section suivante que dès 75 mA, on est en zone mortelle. La basse tension domestique n'a donc rien d'anodin : c'est elle qui fait le plus de victimes, justement parce qu'on s'en méfie moins.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Mains moites, sol humide, transpiration d'été : la résistance de ton corps peut être dix fois plus basse qu'au repos. Le même contact qui « pique » à peine en hiver peut devenir mortel sur un chantier détrempé.</p></aside>
         <div class="lecon-memo">◆ I = U / R. C'est l'intensité qui tue, mais la tension l'impose. Mouillé, R chute vers 1 000 Ω : 230 V / 1 000 Ω = 230 mA.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s3">
         <h2 class="cours-titre">3. Les seuils de courant et leurs effets</h2>
         <div class="lecon-figure"><img src="assets/svg/seuils-courant.svg" alt="3. Les seuils de courant et leurs effets" loading="lazy"></div>
         <div class="cours-texte"><p>Pour un courant alternatif à 50 Hz et un trajet main-pied, les effets sur le corps suivent une échelle connue et normalisée. Retiens ces cinq paliers, ils tombent à l'examen.</p><p><b>0,5 mA</b> — seuil de <b>perception</b> : on commence tout juste à sentir le courant.<br><b>10 mA</b> — seuil de <b>non-lâcher</b> : les muscles se crispent (<a class="terme-lien" href="lexique.html#tetanisation">tétanisation</a>) et la victime ne peut plus lâcher le conducteur qu'elle tient. Le contact se prolonge tout seul, ce qui aggrave tout.<br><b>30 mA</b> — <b>paralysie des muscles respiratoires</b> : asphyxie si le courant dure. C'est précisément le seuil retenu pour protéger les personnes.<br><b>75 mA</b> — <b>fibrillation ventriculaire</b> (<a class="terme-lien" href="lexique.html#fibrillation-ventriculaire">fibrillation</a>) : le cœur se met à battre de façon anarchique et n'assure plus la circulation du sang.<br><b>1 A et plus</b> — <b>arrêt cardiaque</b> et brûlures internes profondes.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Le seuil de 30 mA n'est pas un hasard : c'est la sensibilité des interrupteurs différentiels qui protègent les personnes dans un logement. En dessous de 30 mA pendant un temps très court, le cœur tient ; le rôle du différentiel est de couper avant que ce ne soit plus le cas.</p></aside>
         <div class="lecon-memo">◆ 0,5 mA perçu · 10 mA non-lâcher (tétanisation) · 30 mA paralysie respiratoire · 75 mA fibrillation · 1 A arrêt cardiaque.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s4">
         <h2 class="cours-titre">4. La durée de passage change tout</h2>
         <div class="lecon-figure"><img src="assets/svg/courbe-securite.svg" alt="4. La durée de passage change tout" loading="lazy"></div>
         <div class="cours-texte"><p>Un seuil de courant n'a de sens qu'associé à une <b>durée</b>. Le danger réel dépend du couple <b>intensité × temps</b> : un courant modéré devient mortel s'il dure, alors qu'un courant fort peut être supporté pendant une fraction de seconde sans dommage irréversible.</p><p>C'est pour ça que 30 mA, tolérables un très court instant, deviennent dangereux au bout de quelques secondes — et pourquoi un <a class="terme-lien" href="lexique.html#ddr">DDR</a> ne doit pas seulement détecter le défaut, mais <b>couper vite</b>.</p><p>La <a class="terme-lien" href="lexique.html#courbe-de-securite">courbe de sécurité</a> traduit exactement cette idée. Elle relie la <a class="terme-lien" href="lexique.html#tension-de-contact">tension de contact</a> (la tension qui apparaît sur la masse qu'on touche) au <b>temps maximal</b> pendant lequel le corps peut la subir sans danger. La lecture est simple : plus la tension de contact est élevée, plus le temps de coupure admissible est court. À tension de contact faible, on peut rester très longtemps ; à tension élevée, il faut couper en une fraction de seconde.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Détecter le défaut ne suffit pas : tout l'enjeu est la vitesse de coupure. Un différentiel qui « voit » la fuite mais coupe trop tard ne protège personne. C'est pourquoi on teste régulièrement le bouton T des différentiels.</p></aside>
         <div class="lecon-memo">◆ Danger = intensité × durée. La courbe de sécurité relie tension de contact et temps max. Plus la tension de contact monte, plus il faut couper vite.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s5">
         <h2 class="cours-titre">5. Tension limite de sécurité et brûlures</h2>
         <div class="lecon-figure"><img src="assets/svg/c5-ul-brulure.svg" alt="5. Tension limite de sécurité et brûlures" loading="lazy"></div>
         <div class="cours-texte"><p>En dessous d'une certaine tension de contact, le courant reste sous les seuils dangereux <b>quelle que soit la durée</b> : on peut la toucher indéfiniment sans risque. C'est la <a class="terme-lien" href="lexique.html#tension-limite-de-securite">tension limite de sécurité UL</a>.</p><p>En courant alternatif, elle vaut <b>50 V en milieu sec</b> et seulement <b>25 V en milieu mouillé</b> (salle de bain, chantier, extérieur, locaux humides) — la peau humide laissant passer beaucoup plus de courant. En courant <b>continu</b>, la limite est plus haute : <b>120 V</b> en milieu sec. Au-delà de UL, la coupure dans un délai imposé devient obligatoire.</p><p>N'oublie pas l'autre blessure : la <a class="terme-lien" href="lexique.html#brulure-electrique">brûlure électrique</a>. Par <a class="terme-lien" href="lexique.html#effet-joule">effet Joule</a>, le courant échauffe les tissus aux points d'entrée et de sortie <b>et tout le long de son trajet interne</b>. Ces brûlures sont souvent <b>profondes</b> et bien plus graves qu'elles n'en ont l'air en surface. L'arc électrique, lui, ajoute des brûlures par rayonnement thermique et des projections de métal en fusion, même sans contact direct.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>UL = 25 V dès qu'il y a de l'eau, et une salle de bain est un « milieu mouillé » permanent : c'est toute la logique des volumes de sécurité qu'on verra au module 7. Et une petite marque d'entrée sur un doigt peut cacher une brûlure interne grave : on fait toujours examiner.</p></aside>
         <div class="lecon-memo">◆ Tension limite UL = 50 V (milieu sec) / 25 V (milieu mouillé) en alternatif, 120 V en continu. Le courant brûle aussi, en profondeur, par effet Joule ; l'arc brûle même à distance.</div>
       </section>
-      <section class="cours-section">
+      <section class="cours-section" id="s6">
         <h2 class="cours-titre">6. Conduite à tenir face à une victime</h2>
         <div class="lecon-figure"><img src="assets/svg/c5-conduite.svg" alt="6. Conduite à tenir face à une victime" loading="lazy"></div>
         <div class="cours-texte"><p>Si quelqu'un est électrisé, l'ordre des gestes est <b>vital</b> — et il ne s'improvise pas. Quatre étapes, toujours dans cet ordre.</p><p><b>1. Protéger.</b> Ne <b>jamais</b> toucher une victime encore en contact avec le courant : tu deviendrais la deuxième victime. Coupe d'abord le courant (disjoncteur, prise, sectionneur). Si c'est impossible immédiatement, écarte la source avec un objet <b>isolant et sec</b> (manche en bois, balai).</p><p><b>2. Examiner.</b> Une fois le danger écarté : la victime parle-t-elle, répond-elle, respire-t-elle ?</p><p><b>3. Alerter</b> (ou faire alerter) les secours : <b>SAMU 15</b>, <b>pompiers 18</b>, <b>numéro d'urgence européen 112</b>.</p><p><b>4. Secourir</b> : appliquer les gestes de premiers secours ; en cas d'arrêt, massage cardiaque et défibrillateur (DAE) sans tarder.</p><p>Et une règle qui ne souffre aucune exception : <b>toute victime d'électrisation doit consulter un médecin</b>, même si elle semble aller parfaitement bien. Les lésions internes (cœur, brûlures profondes) ne se voient pas et peuvent se déclarer plus tard.</p></div>
         <aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>Mémorise l'ordre P-E-A-S : Protéger, Examiner, Alerter, Secourir. L'erreur mortelle classique, c'est de se précipiter pour tirer le collègue : on coupe le courant AVANT de toucher quoi que ce soit.</p></aside>
         <div class="lecon-memo">◆ Protéger (couper, ne pas toucher) · Examiner · Alerter (15 / 18 / 112) · Secourir. Et toujours : faire consulter, même si la victime va bien.</div>
       </section>
+      <p class="cours-fin">Fin du cours. Place à l'entraînement.</p>
     </article>
-    <h2 class="page-sous-titre">Tu as tout lu ? Vérifie que ça tient.</h2>
-    <div class="page-actions">
-      <a class="bouton-plein" href="niveau.html?id=5&module=quiz&libre=1">🎯 Faire le quiz</a>
-      <a class="bouton-creux" href="niveau.html?id=5&module=jeu&libre=1">🎮 Jouer</a>
-      <a class="bouton-creux" href="fiche.html?id=5">🖨 Fiche mémo</a>
-    </div>
+    <section class="module-activite" id="quiz">
+      <p class="module-activite-num">ÉTAPE 2</p>
+      <h2>Le quiz</h2>
+      <div class="activite-zone">
+        <p>15 questions tirées au hasard parmi 47. La correction arrive à la fin, avec un lien vers la partie du cours à revoir.</p>
+        <button class="bouton-plein" type="button" data-lancer="quiz">Commencer le quiz</button>
+      </div>
+    </section>
+    <section class="module-activite" id="jeu">
+      <p class="module-activite-num">ÉTAPE 3</p>
+      <h2>Le jeu : Vrai ou faux</h2>
+      <div class="activite-zone">
+        <p>8 affirmations : vrai ou faux, réponds vite.</p>
+        <button class="bouton-plein" type="button" data-lancer="jeu">Commencer le jeu</button>
+      </div>
+    </section>
+    <p class="module-bravo" hidden>Module terminé : <b>+50 e⁻</b>. Le suivant est débloqué.</p>
+    <p class="module-liens"><a href="fiche.html?id=5">🖨 La fiche mémo de ce cours</a></p>
     <nav class="page-voisins"><a href="cours/04-serie-parallele-et-courant-alternatif.html">← Série, parallèle et courant alternatif</a><a href="cours/06-la-protection-des-personnes.html">La protection des personnes →</a></nav>
   </main>
   <footer class="pied">
     <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
-  <script type="module" src="js/page.js"></script>
+  <script type="module" src="js/cours.js"></script>
 </body>
 </html>
