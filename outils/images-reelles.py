@@ -35,10 +35,10 @@ class S:
         svg=f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s.w} {s.h}" font-family="\'Segoe UI\',system-ui,sans-serif" role="img" aria-label="{e}">\n{DEFS}\n'+"\n".join(s.o)+"\n</svg>\n"
         open(OUT+nom,"w",encoding="utf-8").write(svg)
 
-def disj(s,x,y,k=1.0,marque="C16",boite=None,levee=True):
+def disj(s,x,y,k=1.0,marque="C16",boite=None,levee=True,ombre=True):
     """Disjoncteur phase + neutre, 1 module, vu de face. Origine en haut à gauche, 70 x 240 à l'échelle 1."""
     my=150 if levee else 178
-    g=[f'<g transform="translate({x} {y}) scale({k})" filter="url(#ombre)">',
+    g=[f'<g transform="translate({x} {y}) scale({k})"'+(' filter="url(#ombre)"' if ombre else '')+'>',
        '<rect width="70" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/>',
        '<rect y="60" width="70" height="120" fill="url(#nez)" stroke="#c5cad0"/>',
        '<use href="#borne" x="20" y="30"/><use href="#borne" x="50" y="30"/><use href="#borne" x="20" y="210"/><use href="#borne" x="50" y="210"/>',
@@ -211,4 +211,172 @@ s.t(320,337,"en bas la section du conducteur, en haut le calibre maximal",12,Fal
 s.a(f'<rect x="30" y="350" width="580" height="38" rx="10" fill="#fff1c2" stroke="{YEL}"/>')
 s.t(320,375,"Le disjoncteur protège le conducteur : jamais plus fort que lui",11.5,True)
 s.ecrire("c10-sections.svg")
-print("7 images écrites")
+print("module 10 : 7 images")
+
+# =====================================================================
+# MODULE 11 — le tableau électrique et ses différentiels
+# =====================================================================
+def idiff(s,x,y,k=1.0,cal="40 A",typ="A",ombre=True):
+    """Interrupteur différentiel 2 modules, vu de face : 140 x 240 à l'échelle 1."""
+    onde='<path d="M24 232 q4 -10 8 0 t8 0" fill="none" stroke="#1c2530" stroke-width="1.4"/>'
+    if typ=="A": onde+='<path d="M24 240 q4 -8 8 0 M40 240 h0" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M42 232 h8" stroke="#1c2530" stroke-width="1.4"/>'
+    g=[f'<g transform="translate({x} {y}) scale({k})"'+(' filter="url(#ombre)"' if ombre else '')+'>',
+       '<rect width="140" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/>',
+       '<rect y="60" width="140" height="120" fill="url(#nez)" stroke="#c5cad0"/>',
+       '<use href="#borne" x="35" y="30"/><use href="#borne" x="105" y="30"/><use href="#borne" x="35" y="210"/><use href="#borne" x="105" y="210"/>',
+       '<rect x="20" y="72" width="34" height="62" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="24" y="72" width="26" height="34" rx="4" fill="url(#manette)"/>',
+       '<rect x="76" y="72" width="46" height="24" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="99" y="89" text-anchor="middle" font-size="13" font-weight="800" fill="#3a2a00">TEST</text>',
+       f'<text x="99" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="{INK}">{cal}</text>',
+       f'<text x="99" y="141" text-anchor="middle" font-size="16" font-weight="800" fill="{BLUE}">30 mA</text>',
+       f'<g transform="translate(0 -84)"><rect x="18" y="222" width="38" height="24" rx="3" fill="none" stroke="{INK}" stroke-width="1.4"/>{onde}</g>',
+       f'<text x="99" y="166" text-anchor="middle" font-size="14" font-weight="800" fill="{INK}">type {typ}</text>',
+       '</g>']
+    s.a("".join(g))
+def agcp(s,x,y,k=1.0,texte="AGCP"):
+    """Disjoncteur de branchement, vu de face : 124 x 172 à l'échelle 1."""
+    s.a(f'<g transform="translate({x} {y}) scale({k})" filter="url(#ombre)"><rect width="124" height="172" rx="8" fill="url(#corps)" stroke="#b3b9c0"/>'
+        '<rect y="34" width="124" height="104" fill="url(#nez)" stroke="#c5cad0"/>'
+        '<use href="#borne" x="26" y="17"/><use href="#borne" x="98" y="17"/><use href="#borne" x="26" y="155"/><use href="#borne" x="98" y="155"/>'
+        '<rect x="38" y="46" width="48" height="66" rx="6" fill="#d5d9de" stroke="#b3b9c0"/><rect x="43" y="50" width="38" height="36" rx="5" fill="url(#manette)"/>'
+        '<rect x="94" y="50" width="24" height="18" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="106" y="63" text-anchor="middle" font-size="11" font-weight="800" fill="#3a2a00">T</text>'
+        f'<text x="62" y="131" text-anchor="middle" font-size="15" font-weight="800" fill="{INK}">{texte}</text></g>')
+def module_vide(s,x,y,k,n=1):
+    s.a(f'<g transform="translate({x} {y}) scale({k})"><rect width="{70*n}" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="{70*n}" height="120" fill="url(#nez)" stroke="#c5cad0"/></g>')
+def prise_mod(s,x,y,k):
+    s.a(f'<g transform="translate({x} {y}) scale({k})"><rect width="140" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="140" height="120" fill="url(#nez)" stroke="#c5cad0"/>'
+        '<circle cx="70" cy="120" r="48" fill="#e4e7ea" stroke="#b3b9c0" stroke-width="3"/><circle cx="50" cy="124" r="8" fill="#1f2428"/><circle cx="90" cy="124" r="8" fill="#1f2428"/><rect x="65" y="84" width="10" height="20" rx="5" fill="#c9a03a"/></g>')
+def libre(s,x,y,k,n=1):
+    s.a(f'<rect x="{x+1.5}" y="{y+1.5}" width="{70*n*k-3}" height="{240*k-3}" rx="4" fill="#e6f6ec" stroke="{GRN}" stroke-width="2" stroke-dasharray="6 4"/>')
+def rail(s,x,y,w,k):
+    s.a(f'<rect x="{x}" y="{y+102*k}" width="{w}" height="{36*k}" fill="url(#acierH)" stroke="#9aa1a9" stroke-width=".6"/>')
+def coffret(s,x,y,w,h):
+    s.a(f'<g filter="url(#ombre)"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#f7f8f9" stroke="#c5cad0"/></g>')
+
+# ---------- 11.1 le tableau de répartition
+s=S("Le tableau : des rangées de modules","Le tableau de répartition : des rangées de modules sur rail, avec en tête de chaque rangée un interrupteur différentiel suivi de ses disjoncteurs")
+K=0.3; M=70*K
+coffret(s,150,42,306,306)
+for r,(typ,nb,marques) in enumerate((("A",6,["C32","C20","C20","C16","C16","C10"]),("AC",7,["C10","C10","C16","C16","C16","C20","C2"]))):
+    y=58+r*96; rail(s,160,y,286,K)
+    idiff(s,166,y,K,"63 A",typ,False)
+    for i in range(nb): disj(s,166+2*M+i*M,y,K,marques[i],None,True,False)
+y=58+2*96; rail(s,160,y,286,K)
+for i in range(3): module_vide(s,166+i*M,y,K)
+libre(s,166+3*M,y,K,10)
+s.a(f'<text x="{166+8*M}" y="{y+41}" text-anchor="middle" font-size="16" font-weight="800" fill="{GRN}">réserve</text>')
+s.t(470,100,"type A",13,True,INK,"start"); s.t(470,196,"type AC",13,True,INK,"start"); s.t(470,292,"réserve",13,True,GRN,"start")
+s.t(8,84,"interrupteur",12,True,INK,"start"); s.t(8,105,"différentiel",12,True,INK,"start"); s.t(8,126,"en tête",12,False,GR,"start")
+s.a(f'<path d="M118 100 H160" stroke="{INK}" stroke-width="2"/><polygon points="158,94 170,100 158,106" fill="{INK}"/>')
+s.t(8,188,"ses",12,False,GR,"start"); s.t(8,209,"disjoncteurs",12,True,INK,"start"); s.t(8,230,"à la suite",12,False,GR,"start")
+s.a(f'<path d="M118 204 H200" stroke="{INK}" stroke-width="2"/><polygon points="198,198 210,204 198,210" fill="{INK}"/>')
+s.t(320,378,"Un interrupteur différentiel en tête, ses disjoncteurs à la suite",12,True)
+s.ecrire("c11-tableau.svg")
+
+# ---------- 11.2 de l'AGCP aux circuits
+s=S("De l'AGCP aux circuits","De l'AGCP aux circuits : le disjoncteur de branchement alimente les interrupteurs différentiels, qui alimentent chacun leurs disjoncteurs divisionnaires, d'où partent les circuits",640,430)
+def ligne(d):
+    s.a(f'<path d="{d}" fill="none" stroke="{RED}" stroke-width="4" stroke-linejoin="round"/><path d="{d}" fill="none" stroke="{BLUE}" stroke-width="4" stroke-linejoin="round" transform="translate(5 5)"/>')
+ligne("M330 112 V132 H170 V150"); ligne("M330 132 H480 V150")
+for cx in (170,480):
+    ligne(f"M{cx} 252 V268 H{cx-42} V282"); ligne(f"M{cx} 268 V282"); ligne(f"M{cx} 268 H{cx+42} V282")
+agcp(s,294,42,0.6,"AGCP")
+s.t(384,84,"AGCP",13,True,INK,"start")
+idiff(s,140,150,0.43,"40 A","AC"); idiff(s,450,150,0.43,"40 A","A")
+s.t(212,186,"interrupteur",12,True,INK,"start"); s.t(212,207,"différentiel",12,True,INK,"start"); s.t(212,229,"30 mA · type AC",11.5,False,GR,"start")
+s.t(628,186,"interrupteur",12,True,INK,"end"); s.t(628,207,"différentiel",12,True,INK,"end"); s.t(628,229,"30 mA · type A",11.5,False,GR,"end")
+for cx,ms in ((170,("C10","C16","C16")),(480,("C32","C20","C20"))):
+    for i,mq in enumerate(ms): disj(s,cx-42-13+i*42,282,0.37,mq)
+# conducteur de terre : il descend tout droit, sans appareil
+for i in range(15):
+    s.a(f'<rect x="38" y="{58+i*20}" width="8" height="20" fill="{"#2e9e4f" if i%2==0 else "#f2d21a"}"/>')
+s.a('<rect x="22" y="358" width="40" height="14" rx="3" fill="url(#cuivreH)" stroke="#8f4f17"/><circle cx="32" cy="365" r="3.5" fill="url(#vis)"/><circle cx="52" cy="365" r="3.5" fill="url(#vis)"/>')
+s.t(54,52,"terre",12,True,GRN,"start")
+s.t(340,392,"disjoncteurs divisionnaires : un par circuit",12,True)
+s.t(340,418,"La terre, elle, ne passe par aucun appareil de coupure",11.5,False,GR)
+s.ecrire("c11-arborescence.svg")
+
+# ---------- 11.3 combien et lesquels
+s=S("Au moins deux interrupteurs différentiels","Au moins deux interrupteurs différentiels 30 mA : un de type AC pour l'éclairage et les prises, un de type A pour la plaque de cuisson et le lave-linge")
+s.panneau(16,44,296,290); s.panneau(328,44,296,290)
+for px,typ,l1,l2,l3 in ((16,"AC","éclairage","prises de courant","circuits ordinaires"),(328,"A","plaque de cuisson","lave-linge","électronique de puissance")):
+    s.t(px+148,72,"TYPE "+typ,15,True,AMB if typ=="AC" else BLUE)
+    idiff(s,px+16,90,0.72,"40 A",typ)
+    s.t(px+134,128,"30 mA",15,True,BLUE,"start")
+    s.t(px+134,164,l1,12,False,INK,"start"); s.t(px+134,188,l2,12,False,INK,"start")
+    s.t(px+148,306,l3,12.5,False,GR)
+s.a(f'<rect x="90" y="346" width="460" height="42" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,374,"Minimum : 1 type AC + 1 type A",14,True)
+s.ecrire("c11-types.svg")
+
+# ---------- 11.4 huit disjoncteurs au maximum
+s=S("8 disjoncteurs au maximum par différentiel","Huit disjoncteurs au maximum derrière un même interrupteur différentiel")
+K=0.62; M=70*K; x0=320-(10*M)/2
+s.a(f'<rect x="{x0-22}" y="{66+102*K}" width="{10*M+44}" height="{36*K}" fill="url(#acierH)" stroke="#9aa1a9"/>')
+idiff(s,x0,66,K,"63 A","AC")
+for i,mq in enumerate(("C10","C10","C16","C16","C16","C16","C20","C20")):
+    disj(s,x0+2*M+i*M,66,K,mq)
+    s.t(round(x0+2*M+i*M+M/2,1),246,str(i+1),13,True)
+s.t(round(x0+M,1),246,"ID 30 mA",11,True,BLUE)
+bx=x0+2*M
+s.a(f'<path d="M{bx} 262 v10 H{bx+8*M} v-10" fill="none" stroke="{INK}" stroke-width="2.5"/>')
+s.t(round(bx+4*M,1),300,"8 disjoncteurs maximum",15,True)
+s.a(f'<rect x="40" y="330" width="560" height="50" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,351,"Répartis l'éclairage et les prises",12,True); s.t(320,372,"sur plusieurs différentiels",12,True)
+s.ecrire("c11-huit.svg")
+
+# ---------- 11.5 méthode amont
+s=S("Méthode amont : au moins le calibre de l'AGCP","Méthode amont : le calibre de l'interrupteur différentiel est au moins égal à celui du disjoncteur de branchement. Exemple : AGCP réglé sur 45 A, interrupteur différentiel de 63 A",640,420)
+agcp(s,84,70,1.0,"45 A"); s.t(146,60,"AGCP",13,True); s.t(146,274,"45 A",17,True)
+idiff(s,424,62,0.74,"63 A","A"); s.t(476,52,"interrupteur diff.",12,True); s.t(476,274,"63 A",17,True)
+for y,c in ((150,RED),(166,BLUE)):
+    s.a(f'<path d="M210 {y} H420" stroke="{c}" stroke-width="7"/>')
+s.a(f'<circle cx="316" cy="158" r="30" fill="#fff" stroke="{INK}" stroke-width="2.5"/><text x="316" y="172" text-anchor="middle" font-size="40" font-weight="800" fill="{INK}">≤</text>')
+s.a(f'<rect x="30" y="296" width="580" height="42" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,323,"calibre du différentiel ≥ calibre de l'AGCP",12.5,True)
+s.t(320,368,"Calibres courants : 25 A · 40 A · 63 A",13,True)
+s.t(320,396,"40 A serait trop faible pour un AGCP de 45 A",12.5,False,GR)
+s.ecrire("c11-amont.svg")
+
+# ---------- 11.6 méthode aval
+s=S("Méthode aval : la somme divisée par 2","Méthode aval : on additionne les calibres des disjoncteurs placés derrière l'interrupteur différentiel et on divise par deux ; le chauffage, le chauffe-eau et la recharge de véhicule comptent en entier. Exemple : 10 + 16 + 20 + 20 = 66, divisé par 2 = 33 A, donc un interrupteur différentiel de 40 A")
+for i,mq in enumerate(("C10","C16","C20","C20")):
+    disj(s,26+i*50,46,0.4,mq)
+    if i<3: s.a(f'<text x="{26+i*50+39}" y="100" text-anchor="middle" font-size="18" font-weight="800" fill="{INK}">+</text>')
+s.t(240,66,"1 · ADDITIONNER",13,True,AMB,"start"); s.t(240,94,"10 + 16 + 20 + 20 = 66 A",15,True,INK,"start"); s.t(240,118,"les calibres des disjoncteurs en aval",11.5,False,GR,"start")
+s.a(f'<path d="M20 152 H620" stroke="#e3dccf" stroke-width="2"/><path d="M20 246 H620" stroke="#e3dccf" stroke-width="2"/>')
+s.a(f'<circle cx="112" cy="199" r="34" fill="#fff1c2" stroke="{YEL}" stroke-width="2"/><text x="112" y="210" text-anchor="middle" font-size="30" font-weight="800" fill="{INK}">÷ 2</text>')
+s.t(240,178,"2 · DIVISER PAR 2",13,True,AMB,"start"); s.t(240,206,"66 / 2 = 33 A",15,True,INK,"start"); s.t(240,230,"tout ne fonctionne pas en même temps",11.5,False,GR,"start")
+idiff(s,84,254,0.37,"40 A","AC")
+s.t(240,272,"3 · CHOISIR",13,True,AMB,"start"); s.t(240,300,"interrupteur différentiel 40 A",14.5,True,INK,"start"); s.t(240,324,"le calibre courant juste au-dessus",11.5,False,GR,"start")
+s.a(f'<rect x="30" y="346" width="580" height="48" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,366,"Chauffage, chauffe-eau, recharge de véhicule :",11.5,True); s.t(320,386,"leur calibre compte EN ENTIER, sans diviser",11.5,True)
+s.ecrire("c11-aval.svg")
+
+# ---------- 11.7 la réserve
+s=S("Prévoir la suite : la réserve","Dans le tableau : 20 % de réserve, dont 6 modules libres consécutifs, et 2 prises de courant modulaires")
+K=0.335; M=70*K
+coffret(s,22,42,13*M+28,300)
+for r in range(3):
+    y=58+r*92; rail(s,30,y,13*M+12,K)
+    if r==0:
+        idiff(s,36,y,K,"63 A","A",False)
+        for i,mq in enumerate(("C32","C20","C20","C16","C16")): disj(s,36+(2+i)*M,y,K,mq,None,True,False)
+        idiff(s,36+7*M,y,K,"40 A","AC",False)
+        for i in range(4): disj(s,36+(9+i)*M,y,K,"C16",None,True,False)
+    elif r==1:
+        idiff(s,36,y,K,"63 A","AC",False)
+        for i,mq in enumerate(("C10","C10","C16","C16","C16","C16","C2")): disj(s,36+(2+i)*M,y,K,mq,None,True,False)
+        prise_mod(s,36+9*M,y,K); prise_mod(s,36+11*M,y,K)
+    else:
+        idiff(s,36,y,K,"40 A","AC",False)
+        for i,mq in enumerate(("C10","C10","C16")): disj(s,36+(2+i)*M,y,K,mq,None,True,False)
+        for i in range(8): libre(s,36+(5+i)*M,y,K)
+y=58+2*92
+s.a(f'<path d="M{36+7*M} {y+240*K+8} v8 H{36+13*M} v-8" fill="none" stroke="{GRN}" stroke-width="2.5"/>')
+s.t(374,94,"20 %",21,True,GRN,"start"); s.t(374,120,"de réserve au minimum",12,False,INK,"start")
+s.t(374,186,"2 PRISES",14,True,INK,"start"); s.t(374,210,"de courant modulaires",12,False,INK,"start")
+s.t(374,276,"6 MODULES",14,True,GRN,"start"); s.t(374,300,"libres consécutifs",12,False,INK,"start")
+s.t(320,362,"Exemple : 39 modules, donc 8 libres au minimum",12,False,GR)
+s.t(320,388,"Un tableau plein dès le premier jour est un tableau mal conçu",11.5,True)
+s.ecrire("c11-reserve.svg")
+print("module 11 : 7 images")
