@@ -25,9 +25,12 @@ def texte_brut(h):
     h = re.sub(r"\[\[(?:[^\]|]+\|)?([^\]]+)\]\]", r"\1", h)
     return html.unescape(re.sub(r"<[^>]+>", " ", h)).replace("  ", " ").strip()
 
+LEX_PAGES = set()  # clés du glossaire qui ont leur propre page lexique/<slug>.html
+def lien_terme(cle):
+    return f"lexique/{slug(cle)}.html" if cle in LEX_PAGES else f"lexique.html#{slug(cle)}"
 def termes(h):
     return re.sub(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]",
-                  lambda m: f'<a class="terme-lien" href="lexique.html#{slug(m.group(1))}">{m.group(2) or m.group(1)}</a>', h)
+                  lambda m: f'<a class="terme-lien" href="{lien_terme(m.group(1))}">{m.group(2) or m.group(1)}</a>', h)
 
 def tete(titre, description, chemin, base=""):
     e = html.escape
@@ -105,6 +108,80 @@ def description_cours(m):
 
 for f in glob.glob("cours/*.html"): os.remove(f)
 
+# ---------- Une page par terme du lexique (lexique/<slug>.html)
+PLUS = json.load(open("data/lexique-plus.json", encoding="utf-8"))
+os.makedirs("lexique", exist_ok=True)
+for f in glob.glob("lexique/*.html"): os.remove(f)
+def phrases_du_terme(cle, nom):
+    """Passages des cours où le terme apparaît : (module, n° de section, titre de section, phrase)."""
+    nom = re.sub(r"\s*\([^)]*\)", "", nom)
+    marque = re.compile(r"\[\[" + re.escape(cle) + r"(\||\]\])")
+    alternatives = [marque.pattern, r"\b" + re.escape(nom) + r"\b"]
+    if cle != nom: alternatives.append(r"\b" + re.escape(cle) + r"\b")
+    motif = re.compile("|".join(alternatives), re.I if len(cle) > 4 else 0)
+    courant = " " not in nom and "-" not in nom and len(nom) <= 10 and nom.lower() == nom.lower().strip()  # mot très courant : tension, terre, phase…
+    trouves, vus = [], set()
+    ordre = sorted(modules, key=lambda m: (m["id"] != glossaire[cle].get("niveau_associe"), m["id"]))
+    for m in ordre:
+        for k, sec in enumerate(m["cours"]["sections"]):
+            pris = False
+            for bloc in (sec["contenu"], sec.get("encadre", {}).get("texte", "")):
+                propre = re.sub(r"</?(p|li|ul|ol|br)[^>]*>", " . ", bloc)
+                for ph in re.split(r"(?<=[.!?])\s+", propre):
+                    if not motif.search(ph): continue
+                    if courant and m["id"] != glossaire[cle].get("niveau_associe") and not marque.search(ph): continue
+                    t = texte_brut(ph).strip(" .")
+                    if len(t.split()) < 10 or t in vus: continue
+                    vus.add(t); trouves.append((m, k, sec["titre"], t + ".")); pris = True
+                    break
+                if pris: break
+            if len(trouves) >= 4: return trouves
+    return trouves
+def mots(h): return len(re.findall(r"[A-Za-zÀ-ÿ0-9]+", html.unescape(re.sub(r"<[^>]+>", " ", h))))
+termes_pages = {}
+for cle, e in glossaire.items():
+    plus = PLUS.get(cle, {})
+    sigle = cle != e["nom"] and cle.upper() == cle and cle not in re.sub(r"\s*\(" + re.escape(cle) + r"\)", "", e["nom"])
+    nom_propre = re.sub(r"\s*\(" + re.escape(cle) + r"\)", "", e["nom"])
+    h1 = f'{cle} : {re.sub(r"(?<![A-Za-zÀ-ÿ])([A-ZÀ-Ý])([a-zà-ÿ]+)", lambda x: x.group(0).lower(), nom_propre)}' if sigle else e["nom"]
+    passages = phrases_du_terme(cle, e["nom"])
+    corps = f'<p class="niveau-objectif">{e["definition"]}</p>'
+    if plus.get("chantier"): corps += f'<aside class="cours-chantier"><b>🔧 Sur le chantier</b><p>{plus["chantier"]}</p></aside>'
+    if plus.get("confondre"):
+        corps += "<h2>À ne pas confondre avec</h2><ul>" + "".join(f"<li><b>{c}</b> : {t}</li>" for c, t in plus["confondre"]) + "</ul>"
+    if passages:
+        corps += "<h2>Dans les cours</h2>" + "".join(
+            f'<blockquote class="lexique-extrait"><p>{t}</p><cite><a href="{pages[m["id"]]}#s{k+1}">Module {m["id"]} · {texte_brut(tit)}</a></cite></blockquote>'
+            for m, k, tit, t in passages)
+    voisins = [v for v in plus.get("voisins", []) if v in glossaire]
+    mod = e.get("niveau_associe")
+    if len(voisins) < 3 and mod:
+        voisins += [k for k, x in glossaire.items() if k != cle and k not in voisins and x.get("niveau_associe") == mod][: 5 - len(voisins)]
+    termes_pages[cle] = (h1, corps, voisins[:5])
+for cle, (h1, corps, voisins) in termes_pages.items():
+    if mots(corps) >= 125: LEX_PAGES.add(cle)
+for cle in sorted(LEX_PAGES):
+    h1, corps, voisins = termes_pages[cle]
+    e = glossaire[cle]
+    if voisins:
+        corps += '<h2>Termes voisins</h2><p class="lexique-voisins">' + " · ".join(
+            f'<a href="{lien_terme(v)}">{v if v.upper() == v else glossaire[v]["nom"]}</a>' for v in voisins) + "</p>"
+    if e.get("niveau_associe") in pages:
+        mod = next(m for m in modules if m["id"] == e["niveau_associe"])
+        corps += f'<p class="module-liens"><a href="{pages[mod["id"]]}">📖 Lire le cours complet : module {mod["id"]}, {mod["titre"]}</a></p>'
+    corps += '<p class="module-liens"><a href="lexique.html">← Tout le lexique</a></p>'
+    nom_titre = cle if cle.upper() == cle else e["nom"]
+    titre = f"{nom_titre} : définition simple"
+    if len(titre) > 60: titre = f"{nom_titre} : définition"
+    if len(titre) > 60: titre = nom_titre[:60]
+    desc = e["definition"] if len(e["definition"]) <= 155 else e["definition"][:152].rsplit(" ", 1)[0] + "…"
+    chemin = f"lexique/{slug(cle)}.html"
+    contenu = (tete(titre, desc, chemin, base="../")
+        + '  <main class="niveau page-terme">\n    <p class="lecon-kicker">LEXIQUE DE L\'ÉLECTRICIEN</p>\n'
+        + f"    <h1>{h1}</h1>\n    {termes(corps)}\n  </main>\n" + PIED)
+    open(chemin, "w", encoding="utf-8").write(contenu)
+
+
 for i, m in enumerate(modules):
     n, c = m["id"], m["cours"]
     bloc = blocs[n]
@@ -178,7 +255,8 @@ for cle, e in sorted(glossaire.items(), key=cle_tri):
     lettre = slug(e["nom"])[:1].upper()
     if not lettre.isalpha(): lettre = "#"
     lettres_presentes.add(lettre)
-    lien = f' <a class="lexique-lien" href="{pages[e["niveau_associe"]]}">Voir le cours →</a>' if e.get("niveau_associe") in pages else ""
+    lien = (f' <a class="lexique-lien" href="lexique/{slug(cle)}.html">La fiche complète →</a>' if cle in LEX_PAGES
+             else f' <a class="lexique-lien" href="{pages[e["niveau_associe"]]}">Voir le cours →</a>' if e.get("niveau_associe") in pages else "")
     entrees.append(f'''      <section class="lexique-entree" id="{slug(cle)}" data-lettre="{lettre}" data-recherche="{html.escape(slug(cle + ' ' + e['nom']).replace('-', ' '))}">
         <h2>{e["nom"]}</h2>
         <p>{e["definition"]}{lien}</p>
@@ -414,7 +492,8 @@ page("mentions-legales.html", "Mentions légales | ApprendreElec",
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
-urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
+urls_lex = sorted(f"lexique/{slug(c)}.html" for c in LEX_PAGES)
+urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules] + urls_lex
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
-print(len(modules), "pages de cours,", len(glossaire), "termes,", len(urls), "adresses dans le plan du site")
+print(len(modules), "pages de cours,", len(glossaire), "termes dont", len(LEX_PAGES), "avec leur page,", len(urls), "adresses dans le plan du site")

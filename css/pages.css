@@ -263,3 +263,9 @@
 .tab-agcp p { margin: 0; font-size: 0.88rem; }
 .config-form, .config-form .calc-champs, .config-form .calc-champ { min-width: 0; }
 .config-form select { max-width: 100%; min-width: 0; width: 100%; }
+/* Pages de termes du lexique */
+.page-terme .niveau-objectif { font-size: 1.08rem; color: var(--texte); }
+.lexique-extrait { margin: 10px 0; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--fond-2); border-radius: 0 10px 10px 0; }
+.lexique-extrait p { margin: 0 0 4px; line-height: 1.5; }
+.lexique-extrait cite { font-style: normal; font-size: 0.85rem; }
+.lexique-voisins { line-height: 1.8; }

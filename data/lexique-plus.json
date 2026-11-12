@@ -1,0 +1,501 @@
+{
+  "DDR": {
+    "chantier": "Au tableau d'un logement, les DDR se présentent surtout comme des interrupteurs différentiels 30 mA en tête de rangée, avec leur bouton « T » de test. Quand un appareil a un défaut d'isolement, le DDR de sa rangée déclenche : on baisse alors tous les disjoncteurs de la rangée, on réarme le différentiel, puis on remonte les disjoncteurs un par un pour trouver le circuit en défaut.",
+    "confondre": [
+      [
+        "disjoncteur",
+        "le disjoncteur protège les fils contre la surcharge et le court-circuit ; le DDR protège les personnes contre les fuites de courant."
+      ],
+      [
+        "sensibilité",
+        "c'est la valeur en mA qui fait déclencher le DDR (30 mA), à ne pas appeler « calibre »."
+      ]
+    ],
+    "voisins": [
+      "interrupteur différentiel",
+      "disjoncteur différentiel",
+      "sensibilité",
+      "défaut d'isolement",
+      "régime TT"
+    ]
+  },
+  "AGCP": {
+    "chantier": "L'AGCP est le disjoncteur de branchement, sur le panneau de contrôle à côté du compteur. Son réglage dépend de la puissance souscrite. Il marque la frontière : en amont, c'est Enedis et la NF C 14-100 ; en aval, c'est l'électricien et la NF C 15-100.",
+    "confondre": [
+      [
+        "interrupteur différentiel",
+        "l'AGCP coupe tout le logement et protège l'installation ; les interrupteurs différentiels 30 mA du tableau protègent les personnes, rangée par rangée."
+      ]
+    ],
+    "voisins": [
+      "panneau de contrôle",
+      "NF C 14-100",
+      "NF C 15-100",
+      "tableau de répartition",
+      "disjoncteur différentiel"
+    ]
+  },
+  "disjoncteur différentiel": {
+    "chantier": "On le reconnaît à ses deux fonctions écrites sur la face avant : un calibre en ampères (protection des fils) et une sensibilité en mA (protection des personnes). L'AGCP d'un logement est un disjoncteur différentiel ; dans un tableau, on en pose parfois un pour protéger un seul circuit, comme une borne de recharge.",
+    "confondre": [
+      [
+        "interrupteur différentiel",
+        "l'interrupteur différentiel ne protège que contre les fuites : il lui faut des disjoncteurs en aval pour protéger les fils."
+      ]
+    ],
+    "voisins": [
+      "DDR",
+      "interrupteur différentiel",
+      "calibre",
+      "sensibilité",
+      "AGCP"
+    ]
+  },
+  "interrupteur différentiel": {
+    "chantier": "Il occupe en général deux modules, en tête de rangée, et alimente les disjoncteurs de la rangée par le peigne. Dans un logement, on en pose au moins deux de 30 mA (un type AC et un type A), avec au plus 8 disjoncteurs derrière chacun, et on teste chacun avec son bouton « T ».",
+    "confondre": [
+      [
+        "disjoncteur différentiel",
+        "le disjoncteur différentiel protège aussi contre les surintensités ; l'interrupteur différentiel, non."
+      ],
+      [
+        "disjoncteur divisionnaire",
+        "le divisionnaire protège un seul circuit contre la surcharge et le court-circuit."
+      ]
+    ],
+    "voisins": [
+      "DDR",
+      "sensibilité",
+      "tableau de répartition",
+      "disjoncteur divisionnaire",
+      "peigne d'alimentation"
+    ]
+  },
+  "disjoncteur divisionnaire": {
+    "chantier": "Un par circuit, placé derrière un interrupteur différentiel. Son calibre se choisit d'après la section des fils qu'il protège : 16 A au plus en 1,5 mm², 20 A au plus en 2,5 mm², 32 A en 6 mm² pour une plaque de cuisson. Quand il déclenche souvent, on cherche la cause : on ne le remplace jamais par un calibre plus fort.",
+    "confondre": [
+      [
+        "fusible",
+        "le fusible fond et se remplace ; le disjoncteur se réarme."
+      ],
+      [
+        "interrupteur différentiel",
+        "l'interrupteur différentiel surveille les fuites de toute une rangée."
+      ]
+    ],
+    "voisins": [
+      "disjoncteur",
+      "calibre",
+      "courbe de déclenchement",
+      "pouvoir de coupure",
+      "surcharge"
+    ]
+  },
+  "régime TT": {
+    "chantier": "Tous les logements raccordés au réseau public de distribution sont en régime TT : le neutre du transformateur est relié à la terre au poste, et les masses de la maison à la prise de terre de la maison. Le courant de défaut traverse les deux terres, il reste faible : c'est le différentiel qui doit couper, pas le disjoncteur.",
+    "confondre": [
+      [
+        "régime de neutre",
+        "c'est le nom général ; TT est le régime de neutre des logements."
+      ]
+    ],
+    "voisins": [
+      "régime de neutre",
+      "prise de terre",
+      "DDR",
+      "boucle de défaut",
+      "tension de contact"
+    ]
+  },
+  "prise de terre": {
+    "chantier": "Sur une construction neuve, la meilleure solution est la boucle en fond de fouille, posée avant de couler les fondations. Sinon, on enfonce un piquet. On mesure ensuite sa résistance en ouvrant la barrette de la borne principale de terre : avec des différentiels 30 mA, on vise 100 Ω au plus.",
+    "confondre": [
+      [
+        "conducteur de terre",
+        "c'est le fil (cuivre nu 25 mm² en fond de fouille) qui relie la prise de terre à la borne principale."
+      ]
+    ],
+    "voisins": [
+      "borne principale de terre",
+      "conducteur de terre",
+      "régime TT",
+      "conducteur de protection",
+      "terre"
+    ]
+  },
+  "conducteur de protection": {
+    "chantier": "C'est le fil vert-jaune qui accompagne chaque circuit jusqu'aux prises, aux DCL et aux appareils de classe I. Il a la même section que les conducteurs du circuit (2,5 mm² pour un circuit de prises en 2,5 mm²). Il ne passe jamais par un interrupteur ni par un disjoncteur.",
+    "confondre": [
+      [
+        "neutre",
+        "le neutre transporte le courant de retour en permanence ; le conducteur de protection ne transporte du courant qu'en cas de défaut."
+      ]
+    ],
+    "voisins": [
+      "terre",
+      "conducteur principal de protection",
+      "classe I",
+      "masse",
+      "prise de terre"
+    ]
+  },
+  "liaison équipotentielle principale": {
+    "chantier": "On relie à la borne principale de terre les grosses canalisations métalliques qui entrent dans le bâtiment (eau, gaz, chauffage) et les structures métalliques. Ainsi, en cas de défaut, deux éléments métalliques qu'on peut toucher en même temps restent au même potentiel.",
+    "confondre": [
+      [
+        "LES",
+        "la liaison équipotentielle supplémentaire, elle, est locale : elle relie les éléments conducteurs d'une salle de bain."
+      ]
+    ],
+    "voisins": [
+      "borne principale de terre",
+      "LES",
+      "masse",
+      "prise de terre",
+      "conducteur de protection"
+    ]
+  },
+  "GTL": {
+    "chantier": "Dans un logement neuf, la GTL regroupe au même endroit, du sol au plafond, le panneau de contrôle (compteur et AGCP), le tableau de répartition et le tableau de communication. On la place près d'une entrée ou dans le garage, jamais dans une salle de bain.",
+    "confondre": [
+      [
+        "ETEL",
+        "l'ETEL est l'espace réservé pour la GTL et ses équipements."
+      ]
+    ],
+    "voisins": [
+      "ETEL",
+      "panneau de contrôle",
+      "tableau de répartition",
+      "AGCP",
+      "NF C 15-100"
+    ]
+  },
+  "ETEL": {
+    "chantier": "L'espace technique électrique du logement fait 60 cm de large et 25 cm de profondeur au minimum, du sol au plafond. On le tient à distance d'une canalisation de gaz (10 cm), d'une source de chaleur (40 cm) et d'un point d'eau (60 cm), et on n'y fait passer rien d'étranger à l'installation électrique.",
+    "confondre": [
+      [
+        "GTL",
+        "la GTL est la gaine qui contient l'installation ; l'ETEL est l'emplacement réservé autour."
+      ]
+    ],
+    "voisins": [
+      "GTL",
+      "panneau de contrôle",
+      "tableau de répartition",
+      "NF C 15-100"
+    ]
+  },
+  "ICTA": {
+    "chantier": "C'est la gaine grise annelée qu'on noie dans les murs, les cloisons et les dalles. Elle existe du diamètre 16 mm au 63 mm. On ne la remplit qu'au tiers de sa section, et on respecte un rayon de cintrage d'au moins 6 fois son diamètre, sinon les fils ne coulissent plus.",
+    "confondre": [
+      [
+        "IRL",
+        "le tube IRL est lisse et rigide, pour la pose apparente."
+      ],
+      [
+        "TPC",
+        "le TPC rouge est fait pour être enterré."
+      ]
+    ],
+    "voisins": [
+      "conduit",
+      "IRL",
+      "TPC",
+      "goulotte"
+    ]
+  },
+  "IRL": {
+    "chantier": "Dans un garage ou un local technique, on pose les conducteurs dans du tube IRL fixé au mur par des colliers. Il est rigide : on change de direction avec des coudes, et on trace au niveau ou au cordeau pour que la pose apparente soit propre.",
+    "confondre": [
+      [
+        "ICTA",
+        "l'ICTA est annelé et cintrable, pour l'encastré."
+      ]
+    ],
+    "voisins": [
+      "conduit",
+      "ICTA",
+      "goulotte",
+      "TPC"
+    ]
+  },
+  "TPC": {
+    "chantier": "Pour alimenter un portail ou un éclairage de jardin, on enterre le câble dans un TPC rouge, à 50 cm de profondeur au moins en terrain ordinaire (85 cm sous une voie accessible aux véhicules), avec un grillage avertisseur rouge environ 20 cm au-dessus.",
+    "confondre": [
+      [
+        "ICTA",
+        "l'ICTA n'est pas fait pour être enterré."
+      ]
+    ],
+    "voisins": [
+      "conduit",
+      "ICTA",
+      "IRL",
+      "câble"
+    ]
+  },
+  "télérupteur": {
+    "chantier": "Dès qu'on commande un éclairage depuis trois endroits ou plus (un long couloir, une cage d'escalier), on pose un télérupteur au tableau et des boutons-poussoirs en parallèle. Chaque impulsion fait basculer son contact : on entend un « clac » au tableau. S'il ne claque plus, on regarde la commande ; s'il claque sans que la lumière vienne, la puissance.",
+    "confondre": [
+      [
+        "minuterie",
+        "la minuterie éteint seule après une durée réglée ; le télérupteur attend une nouvelle impulsion."
+      ],
+      [
+        "va-et-vient",
+        "le va-et-vient commande depuis deux endroits avec des interrupteurs, sans appareil au tableau."
+      ]
+    ],
+    "voisins": [
+      "bouton-poussoir",
+      "minuterie",
+      "va-et-vient",
+      "permutateur"
+    ]
+  },
+  "va-et-vient": {
+    "chantier": "C'est le montage des couloirs et des chambres à deux portes : deux interrupteurs va-et-vient reliés par deux navettes. La phase arrive sur la borne commune du premier, le retour lampe part de la borne commune du second. Croiser les deux navettes ne change rien au fonctionnement ; confondre une navette avec une borne commune, si.",
+    "confondre": [
+      [
+        "permutateur",
+        "le permutateur s'ajoute entre deux va-et-vient pour un troisième point de commande."
+      ]
+    ],
+    "voisins": [
+      "navette",
+      "permutateur",
+      "télérupteur",
+      "simple allumage"
+    ]
+  },
+  "permutateur": {
+    "chantier": "On le place entre les deux va-et-vient, sur les navettes, pour commander une lampe depuis un troisième endroit : deux va-et-vient et un permutateur pour trois points, deux va-et-vient et deux permutateurs pour quatre. Au-delà de trois points, le télérupteur devient en général plus simple à câbler.",
+    "confondre": [
+      [
+        "va-et-vient",
+        "le va-et-vient a trois bornes et se place aux extrémités ; le permutateur en a quatre."
+      ]
+    ],
+    "voisins": [
+      "va-et-vient",
+      "navette",
+      "télérupteur"
+    ]
+  },
+  "minuterie": {
+    "chantier": "Dans les parties communes d'un immeuble (escalier, couloir, cave), personne ne pense à éteindre : la minuterie le fait. Les boutons-poussoirs en parallèle donnent une impulsion, la lumière s'allume, puis s'éteint seule. On règle la durée d'après le trajet le plus long, avec une marge.",
+    "confondre": [
+      [
+        "télérupteur",
+        "le télérupteur ne s'éteint pas seul : il attend un deuxième appui."
+      ]
+    ],
+    "voisins": [
+      "bouton-poussoir",
+      "télérupteur"
+    ]
+  },
+  "contacteur heures creuses": {
+    "chantier": "Il sert surtout au chauffe-eau à accumulation. Le contact C1-C2 du compteur alimente sa bobine pendant les heures creuses, et ses contacts de puissance laissent passer le courant vers le chauffe-eau. Sa manette à trois positions permet aussi l'arrêt (0) et la marche forcée (I).",
+    "confondre": [
+      [
+        "télérupteur",
+        "le télérupteur est bistable (il garde sa position) ; le contacteur n'est fermé que tant que sa bobine est alimentée."
+      ]
+    ],
+    "voisins": [
+      "heures creuses",
+      "ECS",
+      "groupe de sécurité",
+      "circuit spécialisé"
+    ]
+  },
+  "indice IP": {
+    "chantier": "Sur une plaque signalétique, « IPX4 » veut dire : protection contre les solides non précisée (X), protégé contre les projections d'eau de toutes directions (4). Dans une salle de bain, on demande au moins IPX4 près de la douche et IPX7 dans le volume 0 ; dehors sous la pluie, on vise couramment IP44 ou mieux.",
+    "confondre": [
+      [
+        "indice IK",
+        "l'indice IK mesure la résistance aux chocs, pas à l'eau."
+      ],
+      [
+        "classe II",
+        "la classe dit comment l'appareil protège contre les chocs électriques."
+      ]
+    ],
+    "voisins": [
+      "indice IK",
+      "IPX4",
+      "IPX7",
+      "volume de sécurité",
+      "classe II"
+    ]
+  },
+  "indice IK": {
+    "chantier": "L'indice IK va de IK00 (aucune protection contre les chocs) à IK10. Chaque niveau correspond à une énergie de choc en joules que le matériel encaisse sans dommage : IK07 résiste à 2 joules, IK08 à 5 joules, IK10 à 20 joules. On le choisit d'après le risque de coups : un luminaire de parking, de gymnase ou de hall d'immeuble, à portée de main ou de ballon, demande un IK élevé. Dans une chambre ou un salon, la question ne se pose guère. On le lit sur la plaque signalétique, souvent à côté de l'indice IP : « IP66 IK08 » veut dire étanche à la poussière, protégé contre les jets puissants, et résistant à un choc de 5 joules.",
+    "confondre": [
+      [
+        "indice IP",
+        "l'indice IP concerne la poussière et l'eau, pas les chocs."
+      ],
+      [
+        "classe II",
+        "la classe dit comment l'appareil protège contre les chocs électriques, pas contre les coups."
+      ]
+    ],
+    "voisins": [
+      "indice IP",
+      "classe II"
+    ]
+  },
+  "classe II": {
+    "chantier": "On la reconnaît au symbole du double carré sur l'appareil, et à sa fiche sans contact de terre. Une perceuse portative, un sèche-cheveux, beaucoup de luminaires sont de classe II. On ne raccorde jamais un appareil de classe II au conducteur de protection, même si on en a un sous la main.",
+    "confondre": [
+      [
+        "classe I",
+        "un appareil de classe I doit être relié à la terre ; sa sécurité en dépend."
+      ],
+      [
+        "classe III",
+        "un appareil de classe III est alimenté en très basse tension de sécurité."
+      ]
+    ],
+    "voisins": [
+      "double isolation",
+      "classe I",
+      "classe III",
+      "indice IP"
+    ]
+  },
+  "TBTS": {
+    "chantier": "Dans le volume 0 d'une salle de bain, seul un matériel en TBTS 12 V alimenté par un transformateur de sécurité placé hors volume est admis. La TBTS ne dépasse pas 50 V en alternatif (120 V en continu lisse) et ses circuits sont séparés de la terre et des autres circuits.",
+    "confondre": [
+      [
+        "transformateur de séparation",
+        "il isole du réseau (prise rasoir), mais ne fournit pas forcément une très basse tension."
+      ]
+    ],
+    "voisins": [
+      "classe III",
+      "volume de sécurité",
+      "tension limite de sécurité",
+      "transformateur de séparation"
+    ]
+  },
+  "VAT": {
+    "chantier": "Avant de toucher un conducteur, on vérifie l'absence de tension avec un vérificateur dédié, au plus près de l'endroit où l'on travaille, entre tous les conducteurs et par rapport à la terre. On teste le vérificateur juste avant et juste après la mesure, pour prouver qu'il fonctionnait.",
+    "confondre": [
+      [
+        "multimètre",
+        "un multimètre mal réglé ou en panne peut afficher 0 V sur un conducteur sous tension : il ne remplace pas un VAT."
+      ]
+    ],
+    "voisins": [
+      "consignation",
+      "condamnation",
+      "habilitation électrique",
+      "EPI"
+    ]
+  },
+  "consignation": {
+    "chantier": "Quatre étapes, dans l'ordre : séparer l'ouvrage de toute source (on ouvre le disjoncteur), condamner (cadenas et pancarte), identifier (s'assurer que c'est le bon circuit), vérifier l'absence de tension avec un VAT. Tant que ces quatre étapes ne sont pas faites, on considère que c'est sous tension.",
+    "confondre": [
+      [
+        "condamnation",
+        "c'est une des étapes de la consignation : empêcher toute remise sous tension."
+      ]
+    ],
+    "voisins": [
+      "condamnation",
+      "VAT",
+      "habilitation électrique",
+      "NF C 18-510"
+    ]
+  },
+  "habilitation électrique": {
+    "chantier": "C'est l'employeur qui la délivre, après une formation à la prévention du risque électrique. Le symbole dit ce qu'on a le droit de faire : B pour la basse tension, 1 pour un exécutant, 2 pour un chargé de travaux, BR pour le dépannage, BC pour la consignation, V au voisinage. Sans habilitation, même un excellent électricien n'a pas le droit d'intervenir.",
+    "confondre": [
+      [
+        "NF C 18-510",
+        "c'est la norme qui encadre les opérations et l'habilitation ; la NF C 15-100, elle, encadre la conception des installations."
+      ]
+    ],
+    "voisins": [
+      "NF C 18-510",
+      "consignation",
+      "voisinage",
+      "VAT",
+      "EPI"
+    ]
+  },
+  "calibre": {
+    "chantier": "Le calibre s'écrit en ampères sur la face avant : C16 veut dire courbe C, 16 A. On le choisit d'après la section des fils : 16 A au plus en 1,5 mm², 20 A au plus en 2,5 mm², 32 A en 6 mm². Pour un différentiel, on parle de calibre (40 A) et de sensibilité (30 mA) : deux valeurs à ne jamais mélanger.",
+    "confondre": [
+      [
+        "sensibilité",
+        "la sensibilité est en mA et concerne les fuites : on dit « sensibilité 30 mA », jamais « calibre 30 mA »."
+      ],
+      [
+        "pouvoir de coupure",
+        "le pouvoir de coupure est le plus fort courant de court-circuit que l'appareil peut couper."
+      ]
+    ],
+    "voisins": [
+      "sensibilité",
+      "pouvoir de coupure",
+      "disjoncteur divisionnaire",
+      "courbe de déclenchement",
+      "fusible"
+    ]
+  },
+  "sensibilité": {
+    "chantier": "Sur un différentiel marqué « 40 A / 30 mA », c'est le 30 mA qui le fait déclencher sur une fuite. 30 mA protège les personnes ; 300 ou 500 mA limitent surtout le risque d'incendie (c'est la sensibilité habituelle d'un AGCP).",
+    "confondre": [
+      [
+        "calibre",
+        "le calibre est en ampères : c'est le courant que l'appareil laisse passer en permanence."
+      ]
+    ],
+    "voisins": [
+      "calibre",
+      "DDR",
+      "interrupteur différentiel",
+      "disjoncteur différentiel"
+    ]
+  },
+  "pouvoir de coupure": {
+    "chantier": "Il est écrit dans un petit rectangle sur la face avant d'un disjoncteur (par exemple 3000 ou 4500). En installation domestique, on demande au moins 3 000 A ; en petit tertiaire (moins de 36 kVA), on retient 4 500 A. Un appareil au pouvoir de coupure trop faible peut se détruire sans couper le court-circuit.",
+    "confondre": [
+      [
+        "calibre",
+        "le calibre est le courant normal ; le pouvoir de coupure, le courant de court-circuit maximal qu'il sait couper."
+      ]
+    ],
+    "voisins": [
+      "calibre",
+      "court-circuit",
+      "disjoncteur divisionnaire",
+      "fusible"
+    ]
+  },
+  "court-circuit": {
+    "chantier": "Une vis qui traverse une gaine, deux fils mal dénudés qui se touchent dans une boîte : la phase rejoint directement le neutre, le courant devient énorme en une fraction de seconde. C'est le déclencheur magnétique du disjoncteur qui coupe, presque instantanément. Avant de réarmer, on cherche et on supprime le défaut.",
+    "confondre": [
+      [
+        "surcharge",
+        "la surcharge est un courant un peu trop fort qui dure (trop d'appareils) ; c'est le bilame qui coupe."
+      ],
+      [
+        "défaut d'isolement",
+        "le défaut d'isolement envoie le courant vers la terre ; c'est le différentiel qui coupe."
+      ]
+    ],
+    "voisins": [
+      "surcharge",
+      "surintensité",
+      "pouvoir de coupure",
+      "disjoncteur magnétothermique",
+      "défaut d'isolement"
+    ]
+  }
+}
