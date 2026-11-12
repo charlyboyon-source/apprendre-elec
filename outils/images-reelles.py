@@ -14,6 +14,7 @@ DEFS='''<defs>
 <linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
 <linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
 <linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
 <filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
 <g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
 </defs>'''
@@ -380,3 +381,174 @@ s.t(320,362,"Exemple : 39 modules, donc 8 libres au minimum",12,False,GR)
 s.t(320,388,"Un tableau plein dès le premier jour est un tableau mal conçu",11.5,True)
 s.ecrire("c11-reserve.svg")
 print("module 11 : 7 images")
+
+# =====================================================================
+# VUE EN COUPE — le disjoncteur magnétothermique (remplace l'image 10.3)
+# =====================================================================
+s=S("Un disjoncteur, deux déclencheurs","Vue en coupe d'un disjoncteur magnétothermique : le courant traverse les contacts, puis l'électroaimant, magnétique, qui déclenche instantanément sur court-circuit, puis le bilame, thermique, qui déclenche après un temps sur surcharge",640,440)
+# boîtier
+s.a('<g filter="url(#ombre)"><path d="M186 66 H454 a8 8 0 0 1 8 8 V350 a8 8 0 0 1 -8 8 H186 a8 8 0 0 1 -8 -8 V232 h-10 v-44 h10 V74 a8 8 0 0 1 8 -8 Z" fill="#eef0f2" stroke="#b3b9c0" stroke-width="2"/></g>')
+s.a('<rect x="190" y="78" width="260" height="268" rx="6" fill="#fbfbfc" stroke="#d5d9de"/>')
+# bornes (cage en laiton + vis)
+for y in (86,296):
+    s.a(f'<rect x="198" y="{y}" width="58" height="42" rx="4" fill="#d9b25a" stroke="#8a6416"/><rect x="206" y="{y+12}" width="30" height="18" rx="2" fill="#5a4310"/><circle cx="244" cy="{y+21}" r="8" fill="url(#vis)" stroke="#6b7078"/><rect x="238" y="{y+19.8}" width="12" height="2.4" fill="#5a616a" transform="rotate(-25 244 {y+21})"/>')
+# contact fixe, contact mobile, tresse
+s.a('<path d="M256 100 H306 V118" fill="none" stroke="url(#cuivreH)" stroke-width="8" stroke-linejoin="round"/><rect x="299" y="116" width="14" height="8" rx="2" fill="#e8eaed" stroke="#8d949c"/>')
+s.a('<path d="M306 132 L376 158" stroke="url(#cuivreH)" stroke-width="9" stroke-linecap="round"/><rect x="299" y="125" width="14" height="8" rx="2" fill="#e8eaed" stroke="#8d949c"/><circle cx="376" cy="158" r="9" fill="url(#vis)" stroke="#6b7078"/>')
+s.a('<path d="M380 164 q14 6 10 18 q-3 8 6 14" fill="none" stroke="#c9782f" stroke-width="5" stroke-dasharray="3 2"/>')
+# manette et sa biellette
+s.a('<g transform="rotate(18 392 96)"><rect x="380" y="34" width="26" height="70" rx="7" fill="url(#manette)"/></g><circle cx="392" cy="98" r="7" fill="#7d858e"/><path d="M392 98 L376 158" stroke="#7d858e" stroke-width="3"/>')
+# électroaimant : bobine + noyau
+s.a('<rect x="352" y="206" width="92" height="14" rx="2" fill="url(#acierH)" stroke="#7d858e"/>')
+for i in range(7):
+    s.a(f'<rect x="{358+i*11.5:.1f}" y="190" width="10" height="46" rx="5" fill="url(#cuivreV)" stroke="#7a4513" stroke-width=".8"/>')
+s.a(f'<path d="M356 232 V262 H330" fill="none" stroke="url(#cuivreH)" stroke-width="6" stroke-linejoin="round"/>')
+# bilame (deux métaux) et liaison à la borne aval
+s.a('<path d="M330 259 Q290 256 250 268" fill="none" stroke="#aab1b9" stroke-width="5" stroke-linecap="round"/><path d="M330 264.5 Q290 261.5 251 273.5" fill="none" stroke="#c9782f" stroke-width="5" stroke-linecap="round"/><rect x="326" y="252" width="12" height="20" rx="2" fill="url(#acierH)" stroke="#7d858e"/>')
+s.a('<path d="M250 271 H232 V296" fill="none" stroke="url(#cuivreH)" stroke-width="6" stroke-linejoin="round"/>')
+for i in range(3):
+    s.a(f'<path d="M{268+i*22} 300 q4 -6 0 -11 q-4 -6 0 -11" fill="none" stroke="#e8590c" stroke-width="2" stroke-linecap="round"/>')
+# repères
+def repere(x1,y1,x2,y2,c=INK): s.a(f'<path d="M{x1} {y1} L{x2} {y2}" stroke="{c}" stroke-width="1.6"/><circle cx="{x1}" cy="{y1}" r="3" fill="{c}"/>')
+repere(402,60,476,60); s.t(482,65,"manette",11.5,True,INK,"start")
+repere(306,125,170,125); s.t(164,130,"contacts",11.5,True,INK,"end")
+repere(204,107,170,90); s.t(164,95,"borne",11.5,False,GR,"end")
+repere(204,330,170,348); s.t(164,353,"borne",11.5,False,GR,"end")
+repere(444,213,476,190,BLUE)
+s.t(482,176,"ÉLECTROAIMANT",11.5,True,BLUE,"start"); s.t(482,197,"magnétique :",11.5,False,INK,"start"); s.t(482,218,"court-circuit,",11.5,True,INK,"start"); s.t(482,239,"instantané",11.5,False,GR,"start")
+repere(262,268,170,232,AMB)
+s.t(164,222,"BILAME",11.5,True,AMB,"end"); s.t(164,243,"thermique :",11.5,False,INK,"end"); s.t(164,264,"surcharge,",11.5,True,INK,"end"); s.t(164,285,"temporisé",11.5,False,GR,"end")
+s.t(444,338,"vue en coupe",10,False,GR,"end")
+s.t(320,392,"L'un ou l'autre ouvre les contacts : le courant est coupé",11.5,False,GR)
+s.t(320,420,"Après un déclenchement : chercher la cause, puis réarmer",12.5,True)
+s.ecrire("c10-magnetothermique.svg")
+print("vue en coupe du disjoncteur")
+
+# =====================================================================
+# MODULE 12 — conducteurs et câbles
+# =====================================================================
+BLEU="#3d9be9"; MARRON="#7a4a22"; NOIR="#2b3036"
+def fil(s,x,y,L,d,coul,cu=44,dc=None,brins=0):
+    """Conducteur horizontal dénudé à droite. coul : couleur ou 'vj' (vert/jaune)."""
+    dc=dc or d*0.55; fill="url(#vj)" if coul=="vj" else coul
+    s.a(f'<rect x="{x+L-2}" y="{y-dc/2}" width="{cu}" height="{dc}" fill="url(#cuivreH)"/><ellipse cx="{x+L+cu-2}" cy="{y}" rx="{dc/5:.1f}" ry="{dc/2}" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>')
+    for i in range(brins):
+        yy=y-dc/2+dc*(i+1)/(brins+1)
+        s.a(f'<path d="M{x+L} {yy:.1f} H{x+L+cu-4}" stroke="#7a4513" stroke-width=".8" opacity=".7"/>')
+    s.a(f'<rect x="{x}" y="{y-d/2}" width="{L}" height="{d}" rx="{d/5:.1f}" fill="{fill}"/><rect x="{x}" y="{y-d/2+d*0.14:.1f}" width="{L}" height="{d*0.2:.1f}" fill="#fff" opacity=".28"/><ellipse cx="{x+L}" cy="{y}" rx="{d/6:.1f}" ry="{d/2}" fill="{fill}" stroke="#00000033"/>')
+def carte(s,x,y,w,h): s.a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>')
+def code(s,cx,y,txt,taille=46): s.a(f'<text x="{cx}" y="{y}" text-anchor="middle" font-size="{taille}" font-weight="800" fill="{INK}">{txt}</text>')
+
+# ---------- 12.1 conducteur isolé ou câble
+s=S("Conducteur isolé ou câble ?","Un conducteur isolé : une âme en cuivre entourée d'un isolant. Un câble : plusieurs conducteurs isolés réunis sous une gaine commune")
+s.panneau(16,44,296,340); s.panneau(328,44,296,340)
+s.t(164,72,"CONDUCTEUR ISOLÉ",14,True,AMB); s.t(476,72,"CÂBLE",14,True,BLUE)
+fil(s,40,150,170,34,RED,66,19)
+s.a(f'<path d="M244 140 V112" stroke="{INK}" stroke-width="1.6"/><circle cx="244" cy="141" r="3" fill="{INK}"/><path d="M120 167 V196" stroke="{INK}" stroke-width="1.6"/><circle cx="120" cy="166" r="3" fill="{INK}"/>')
+s.t(214,106,"l'âme en cuivre",12,True); s.t(120,216,"+ son isolant",12,True)
+s.t(164,300,"un seul conducteur",13,True)
+s.t(164,340,"toujours sous conduit",11.5,False,GR); s.t(164,360,"ou goulotte",11.5,False,GR)
+# câble : gaine + trois conducteurs
+for dy,c in ((-34,RED),(0,BLEU),(34,"vj")):
+    s.a(f'<path d="M470 150 C500 150 500 {150+dy} 524 {150+dy}" fill="none" stroke="{"url(#vj)" if c=="vj" else c}" stroke-width="15"/>')
+    fil(s,520,150+dy,40,15,c,30,8)
+s.a('<g filter="url(#ombre)"><rect x="344" y="118" width="134" height="64" rx="12" fill="#dfe2e6" stroke="#aab1b9"/></g><rect x="344" y="128" width="134" height="12" fill="#fff" opacity=".45"/><ellipse cx="478" cy="150" rx="9" ry="32" fill="#c3c8ce" stroke="#aab1b9"/>')
+s.a(f'<path d="M410 184 V208" stroke="{INK}" stroke-width="1.6"/><circle cx="410" cy="183" r="3" fill="{INK}"/>')
+s.t(410,228,"la gaine",12,True)
+s.t(476,300,"plusieurs conducteurs",13,True); s.t(476,324,"sous une gaine commune",12.5)
+s.ecrire("c12-anatomie.svg")
+
+# ---------- 12.2 l'âme
+s=S("Trois types d'âme","Trois types d'âme : rigide massive, un seul brin, lettre U ; rigide câblée, plusieurs gros brins, lettre R ; souple, de nombreux brins fins, lettre K")
+import math as _m
+def coupe(s,cx,cy,points,r):
+    s.a(f'<circle cx="{cx}" cy="{cy}" r="46" fill="{RED}"/><circle cx="{cx}" cy="{cy}" r="46" fill="none" stroke="#a81d1d" stroke-width="2"/><circle cx="{cx}" cy="{cy}" r="33" fill="#5a2a12"/>')
+    for (dx,dy) in points:
+        s.a(f'<circle cx="{cx+dx:.1f}" cy="{cy+dy:.1f}" r="{r}" fill="#e9a25f" stroke="#8f4f17" stroke-width=".8"/>')
+hexa=[(0,0)]+[(21*_m.cos(k*_m.pi/3),21*_m.sin(k*_m.pi/3)) for k in range(6)]
+fins=[(0,0)]+[(9*_m.cos(k*_m.pi/3),9*_m.sin(k*_m.pi/3)) for k in range(6)]+[(18*_m.cos(k*_m.pi/6),18*_m.sin(k*_m.pi/6)) for k in range(12)]+[(27*_m.cos(k*_m.pi/9+.17),27*_m.sin(k*_m.pi/9+.17)) for k in range(18)]
+for cx,lettre,pts,r,brins,l1,l2 in ((110,"U",[(0,0)],32,0,"rigide massive","un seul brin"),(320,"R",hexa,10.5,6,"rigide câblée","quelques gros brins"),(530,"K",fins,4,13,"souple","nombreux brins fins")):
+    s.a(f'<rect x="{cx-24}" y="46" width="48" height="40" rx="10" fill="{INK}"/><text x="{cx}" y="76" text-anchor="middle" font-size="26" font-weight="800" fill="#fff">{lettre}</text>')
+    coupe(s,cx,146,pts,r)
+    fil(s,cx-78,226,96,30,RED,56,17,brins)
+    s.t(cx,280,l1,13,True); s.t(cx,303,l2,12,False,GR)
+s.a(f'<rect x="30" y="330" width="580" height="50" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,351,"Même section, même courant admis :",12,True); s.t(320,372,"seule la souplesse change",12,True)
+s.ecrire("c12-ame.svg")
+
+# ---------- 12.3 H07V-U
+s=S("Lire une désignation : H07V-U","Lire H07V-U : H pour harmonisé, 07 pour une tension de 450/750 V, V pour un isolant en PVC, U pour une âme rigide massive")
+fil(s,60,78,440,36,RED,70,20)
+for x in (150,360):
+    s.a(f'<text x="{x}" y="85" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" letter-spacing="2">H07V-U</text>')
+for i,(c,cat,l1,l2) in enumerate((("H","NORME","harmonisée","européenne"),("07","TENSION","450 / 750 V",""),("V","ISOLANT","PVC",""),("U","ÂME","rigide","massive"))):
+    x=22+152*i; cx=x+70
+    carte(s,x,122,140,216); code(s,cx,182,c)
+    s.a(f'<path d="M{cx} 104 V120" stroke="{INK}" stroke-width="2"/>')
+    s.t(cx,222,cat,12.5,True,AMB); s.t(cx,256,l1,12,True if not l2 else False,INK)
+    if l2: s.t(cx,279,l2,12)
+s.t(320,374,"Le fil rigide des tableaux et des conduits",13,True)
+s.ecrire("c12-h07vu.svg")
+
+# ---------- 12.4 3G2,5
+s=S("Lire un câble : 3G2,5","Lire 3G2,5 : 3 conducteurs, G signifie que l'un d'eux est le vert-jaune, 2,5 est la section en millimètres carrés")
+for dy,c in ((-22,RED),(0,BLEU),(22,"vj")):
+    s.a(f'<path d="M402 78 C432 78 432 {78+dy} 452 {78+dy}" fill="none" stroke="{"url(#vj)" if c=="vj" else c}" stroke-width="13"/>')
+    fil(s,448,78+dy,56,13,c,36,7)
+s.a('<g filter="url(#ombre)"><rect x="70" y="52" width="340" height="52" rx="10" fill="#dfe2e6" stroke="#aab1b9"/></g><rect x="70" y="60" width="340" height="10" fill="#fff" opacity=".45"/><ellipse cx="410" cy="78" rx="8" ry="26" fill="#c3c8ce" stroke="#aab1b9"/>')
+s.a(f'<text x="230" y="86" text-anchor="middle" font-size="20" font-weight="800" fill="{INK}" letter-spacing="2">3G2,5</text>')
+for i,(c,cat,l1,l2) in enumerate((("3","NOMBRE","de conducteurs","dans le câble"),("G","TERRE","avec un","vert/jaune"),("2,5","SECTION","en mm²","de chaque âme"))):
+    x=24+202*i; cx=x+94
+    carte(s,x,124,188,190); code(s,cx,182,c)
+    s.t(cx,220,cat,12.5,True,AMB); s.t(cx,252,l1,12); s.t(cx,275,l2,12,i==1,GRN if i==1 else INK)
+s.a(f'<rect x="30" y="328" width="580" height="50" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,349,"5G1,5 : 5 conducteurs dont le vert/jaune,",12,True); s.t(320,370,"en 1,5 mm²",12,True)
+s.ecrire("c12-3g25.svg")
+
+# ---------- 12.5 couleurs
+s=S("Les couleurs ne se choisissent pas au hasard","Couleurs des conducteurs : phase en rouge, marron ou noir ; neutre toujours en bleu clair ; conducteur de protection toujours en vert-jaune")
+for r,(titre,coul,l1,l2,fils) in enumerate((("PHASE",RED,"rouge, marron ou noir","toute couleur sauf bleu clair et vert/jaune",(RED,MARRON,NOIR)),("NEUTRE",BLUE,"bleu clair","couleur réservée au neutre",(BLEU,)),("PROTECTION",GRN,"vert/jaune","couleur réservée à la terre",("vj",)))):
+    y=48+r*94; carte(s,16,y,608,84)
+    if len(fils)==3:
+        for i,c in enumerate(fils): fil(s,34,y+20+i*22,120,17,c,34,9)
+    else: fil(s,34,y+42,120,26,fils[0],34,14)
+    s.t(214,y+28,titre,13,True,coul,"start"); s.t(214,y+51,l1,12.5,True,INK,"start"); s.t(214,y+72,l2,10.5,False,GR,"start")
+s.a(f'<rect x="30" y="338" width="580" height="46" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,367,"Bleu clair et vert/jaune : jamais pour autre chose",12,True)
+s.ecrire("c12-couleurs.svg")
+
+# ---------- 12.6 sections
+s=S("Trois sections à connaître par cœur","Sections courantes : 1,5 mm² pour l'éclairage, disjoncteur 16 A au plus ; 2,5 mm² pour les prises, 20 A au plus ; 6 mm² pour la plaque de cuisson, 32 A au plus")
+for cx,sec,usage,cal,d in ((110,"1,5 mm²","éclairage","16 A maximum",11),(320,"2,5 mm²","prises de courant","20 A maximum",14),(530,"6 mm²","plaque de cuisson","32 A maximum",22)):
+    carte(s,cx-98,44,196,286)
+    if cx==110:   # ampoule
+        s.a(f'<circle cx="{cx}" cy="84" r="24" fill="#fff1c2" stroke="{YEL}" stroke-width="2.5"/><path d="M{cx-8} 92 q4 -12 8 0 q4 12 8 0" fill="none" stroke="#e8590c" stroke-width="2"/><rect x="{cx-11}" y="106" width="22" height="16" rx="3" fill="url(#acierH)" stroke="#7d858e"/>')
+    elif cx==320: # prise
+        s.a(f'<rect x="{cx-30}" y="58" width="60" height="60" rx="8" fill="url(#nez)" stroke="#b3b9c0"/><circle cx="{cx}" cy="88" r="22" fill="#e4e7ea" stroke="#b3b9c0"/><circle cx="{cx-9}" cy="90" r="3.6" fill="#1f2428"/><circle cx="{cx+9}" cy="90" r="3.6" fill="#1f2428"/><rect x="{cx-2.5}" y="71" width="5" height="10" rx="2.5" fill="#c9a03a"/>')
+    else:         # plaque de cuisson
+        s.a(f'<rect x="{cx-40}" y="58" width="80" height="62" rx="6" fill="#23272c" stroke="#000"/>'+"".join(f'<circle cx="{cx+dx}" cy="{89+dy}" r="{rr}" fill="none" stroke="#d9480f" stroke-width="2"/>' for dx,dy,rr in ((-19,-13,11),(19,-13,9),(-19,14,9),(19,14,11))))
+    g=d+10
+    s.a(f'<g filter="url(#ombre)"><rect x="{cx-g/2}" y="178" width="{g}" height="62" fill="url(#gaineV)"/></g><ellipse cx="{cx}" cy="178" rx="{g/2}" ry="{g/7:.1f}" fill="#f06a6a" stroke="#a81d1d" stroke-width=".8"/>'
+        f'<rect x="{cx-d/2}" y="140" width="{d}" height="38" fill="url(#cuivreV)"/><ellipse cx="{cx}" cy="178" rx="{d/2}" ry="{d/7:.1f}" fill="#9a5a1f"/><ellipse cx="{cx}" cy="140" rx="{d/2}" ry="{d/7:.1f}" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>')
+    s.t(cx,270,sec,15,True); s.t(cx,294,usage,12); s.t(cx,317,cal,12,True,AMB)
+s.t(320,366,"Plus le courant est fort, plus la section est grosse",13,True)
+s.ecrire("c12-sections.svg")
+
+# ---------- 12.7 chute de tension
+s=S("La chute de tension : attention aux longueurs","La chute de tension : plus la ligne est longue et le fil fin, plus la tension baisse à l'arrivée. Limites : 3 % pour l'éclairage, 5 % pour les autres usages")
+coffret(s,24,62,104,120)
+rail(s,32,84,88,0.3); idiff(s,36,84,0.3,"40 A","AC",False)
+for i in range(2): disj(s,36+42+i*21,84,0.3,"C10",None,True,False)
+s.t(76,208,"230 V",15,True)
+for y,c in ((116,RED),(126,BLEU)):
+    s.a(f'<path d="M128 {y} H180 q14 0 14 14 v14 q0 14 14 14 H430 q14 0 14 -14 v-14 q0 -14 14 -14 H520" fill="none" stroke="{c}" stroke-width="4"/>')
+s.a(f'<path d="M150 196 H500" stroke="{GR}" stroke-width="1.6"/><polygon points="150,191 140,196 150,201" fill="{GR}"/><polygon points="500,191 510,196 500,201" fill="{GR}"/>')
+s.t(326,222,"longue ligne, fil trop fin",12,False,GR)
+s.a(f'<circle cx="556" cy="112" r="30" fill="#fff6d6" stroke="#e0c25a" stroke-width="2.5"/><path d="M546 122 q5 -16 10 0 q5 16 10 0" fill="none" stroke="#b9882a" stroke-width="2"/><rect x="544" y="140" width="24" height="18" rx="3" fill="url(#acierH)" stroke="#7d858e"/>')
+s.t(556,208,"moins",15,True,AMB)
+carte(s,30,246,280,84); carte(s,330,246,280,84)
+s.t(170,278,"ÉCLAIRAGE",13,True,AMB); s.t(170,310,"3 % au maximum",15,True)
+s.t(470,278,"AUTRES USAGES",13,True,AMB); s.t(470,310,"5 % au maximum",15,True)
+s.t(320,372,"Ligne très longue : on passe à la section supérieure",12.5,True)
+s.ecrire("c12-chute.svg")
+print("module 12 : 7 images")

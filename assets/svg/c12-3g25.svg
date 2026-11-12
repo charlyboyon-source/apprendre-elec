@@ -1,19 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 170" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Lire 3G2,5 : 3 conducteurs, G signifie que l'un d'eux est le vert-jaune, 2,5 est la section en millimètres carrés">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Lire un câble : 3G2,5</text>
-<text x="58.666666666666664" y="62" text-anchor="middle" font-size="26" fill="#ffd23f" font-weight="bold">3</text>
-<rect x="12.0" y="82" width="93.33333333333333" height="58" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
-<text x="58.666666666666664" y="98" text-anchor="middle" font-size="8" fill="#ffd23f" font-weight="bold">NOMBRE</text>
-<text x="58.666666666666664" y="114" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">de conducteurs</text>
-<text x="58.666666666666664" y="126" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">dans le câble</text>
-<text x="160.0" y="62" text-anchor="middle" font-size="26" fill="#4cd97b" font-weight="bold">G</text>
-<rect x="113.33333333333333" y="82" width="93.33333333333333" height="58" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
-<text x="160.0" y="98" text-anchor="middle" font-size="8" fill="#4cd97b" font-weight="bold">TERRE</text>
-<text x="160.0" y="114" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">avec un</text>
-<text x="160.0" y="126" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">vert/jaune</text>
-<text x="261.3333333333333" y="62" text-anchor="middle" font-size="26" fill="#ff8c2b" font-weight="bold">2,5</text>
-<rect x="214.66666666666666" y="82" width="93.33333333333333" height="58" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
-<text x="261.3333333333333" y="98" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">SECTION</text>
-<text x="261.3333333333333" y="114" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">en mm²</text>
-<text x="261.3333333333333" y="126" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">de chaque âme</text>
-<text x="160" y="160" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">5G1,5 : 5 conducteurs dont le vert/jaune, en 1,5 mm²</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Lire 3G2,5 : 3 conducteurs, G signifie que l'un d'eux est le vert-jaune, 2,5 est la section en millimètres carrés">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Lire un câble : 3G2,5</text>
+<path d="M402 78 C432 78 432 56 452 56" fill="none" stroke="#d92b2b" stroke-width="13"/>
+<rect x="502" y="52.5" width="36" height="7" fill="url(#cuivreH)"/><ellipse cx="538" cy="56" rx="1.4" ry="3.5" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>
+<rect x="448" y="49.5" width="56" height="13" rx="2.6" fill="#d92b2b"/><rect x="448" y="51.3" width="56" height="2.6" fill="#fff" opacity=".28"/><ellipse cx="504" cy="56" rx="2.2" ry="6.5" fill="#d92b2b" stroke="#00000033"/>
+<path d="M402 78 C432 78 432 78 452 78" fill="none" stroke="#3d9be9" stroke-width="13"/>
+<rect x="502" y="74.5" width="36" height="7" fill="url(#cuivreH)"/><ellipse cx="538" cy="78" rx="1.4" ry="3.5" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>
+<rect x="448" y="71.5" width="56" height="13" rx="2.6" fill="#3d9be9"/><rect x="448" y="73.3" width="56" height="2.6" fill="#fff" opacity=".28"/><ellipse cx="504" cy="78" rx="2.2" ry="6.5" fill="#3d9be9" stroke="#00000033"/>
+<path d="M402 78 C432 78 432 100 452 100" fill="none" stroke="url(#vj)" stroke-width="13"/>
+<rect x="502" y="96.5" width="36" height="7" fill="url(#cuivreH)"/><ellipse cx="538" cy="100" rx="1.4" ry="3.5" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>
+<rect x="448" y="93.5" width="56" height="13" rx="2.6" fill="url(#vj)"/><rect x="448" y="95.3" width="56" height="2.6" fill="#fff" opacity=".28"/><ellipse cx="504" cy="100" rx="2.2" ry="6.5" fill="url(#vj)" stroke="#00000033"/>
+<g filter="url(#ombre)"><rect x="70" y="52" width="340" height="52" rx="10" fill="#dfe2e6" stroke="#aab1b9"/></g><rect x="70" y="60" width="340" height="10" fill="#fff" opacity=".45"/><ellipse cx="410" cy="78" rx="8" ry="26" fill="#c3c8ce" stroke="#aab1b9"/>
+<text x="230" y="86" text-anchor="middle" font-size="20" font-weight="800" fill="#1c2530" letter-spacing="2">3G2,5</text>
+<rect x="24" y="124" width="188" height="190" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="118" y="182" text-anchor="middle" font-size="46" font-weight="800" fill="#1c2530">3</text>
+<text x="118" y="220" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">NOMBRE</text>
+<text x="118" y="252" text-anchor="middle" font-size="15.6" font-weight="500" fill="#1c2530">de conducteurs</text>
+<text x="118" y="275" text-anchor="middle" font-size="15.6" font-weight="500" fill="#1c2530">dans le câble</text>
+<rect x="226" y="124" width="188" height="190" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="320" y="182" text-anchor="middle" font-size="46" font-weight="800" fill="#1c2530">G</text>
+<text x="320" y="220" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">TERRE</text>
+<text x="320" y="252" text-anchor="middle" font-size="15.6" font-weight="500" fill="#1c2530">avec un</text>
+<text x="320" y="275" text-anchor="middle" font-size="15.6" font-weight="800" fill="#17804c">vert/jaune</text>
+<rect x="428" y="124" width="188" height="190" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="522" y="182" text-anchor="middle" font-size="46" font-weight="800" fill="#1c2530">2,5</text>
+<text x="522" y="220" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">SECTION</text>
+<text x="522" y="252" text-anchor="middle" font-size="15.6" font-weight="500" fill="#1c2530">en mm²</text>
+<text x="522" y="275" text-anchor="middle" font-size="15.6" font-weight="500" fill="#1c2530">de chaque âme</text>
+<rect x="30" y="328" width="580" height="50" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="349" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">5G1,5 : 5 conducteurs dont le vert/jaune,</text>
+<text x="320" y="370" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">en 1,5 mm²</text>
 </svg>
