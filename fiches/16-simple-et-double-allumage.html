@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Fiche mémo simple et double allumage : l&#x27;essentiel</title>
+  <meta name="description" content="L&#x27;essentiel du cours « Simple et double allumage » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/fiches/16-simple-et-double-allumage.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Fiche mémo simple et double allumage : l&#x27;essentiel">
+  <meta property="og:description" content="L&#x27;essentiel du cours « Simple et double allumage » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/fiches/16-simple-et-double-allumage.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-fiche">
+    <p class="lecon-kicker">FICHE MÉMO · MODULE 16</p>
+    <h1>Fiche mémo : Simple et double allumage</h1>
+    <p class="niveau-objectif">Comprendre, dessiner et câbler le simple allumage et le double allumage</p>
+    <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
+      <a class="bouton-creux" href="fiche.html?id=16">Version à cocher, avec mini-test</a></div>
+    <div class="fiche-cartes">
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-point.svg" alt="1. Le point lumineux et sa commande" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">1</span>Le point lumineux et sa commande</h2>
+          <p class="fiche-carte-memo">Point lumineux = emplacement de raccordement d'un luminaire, équipé d'un DCL. Interrupteur à l'entrée de la pièce, entre 0,90 m et 1,30 m. Circuit en 1,5 mm².</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> L'interrupteur se pose du côté où la porte s'ouvre, pas derrière elle. Vérifie le sens d'ouverture sur le plan avant de sceller la boîte : un interrupteur caché derrière une porte ouverte, c'est une saignée à refaire.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-simple-dev.svg" alt="2. Le simple allumage : le principe" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">2</span>Le simple allumage : le principe</h2>
+          <p class="fiche-carte-memo">Simple allumage : 1 interrupteur, 1 point lumineux. Phase → interrupteur → retour lampe (orange) → lampe → neutre. L'interrupteur simple a 2 bornes.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Sur un interrupteur, la borne d'arrivée de phase est souvent repérée L. Sur un simple allumage, inverser les deux bornes ne change rien au fonctionnement — mais prends dès maintenant l'habitude de respecter le repère : sur les montages suivants, l'erreur ne pardonne plus.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-simple-cablage.svg" alt="3. Câbler le simple allumage" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">3</span>Câbler le simple allumage</h2>
+          <p class="fiche-carte-memo">Phase → interrupteur. Retour lampe : de l'interrupteur à la lampe. Neutre et protection : directement à la lampe. 2 fils à l'interrupteur, 3 fils à la lampe.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Même si le luminaire prévu est de classe II et n'a pas de borne de terre, le conducteur de protection arrive toujours jusqu'au DCL. Le prochain luminaire sera peut-être en métal.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-phase.svg" alt="4. Pourquoi l&#x27;interrupteur coupe la phase" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">4</span>Pourquoi l'interrupteur coupe la phase</h2>
+          <p class="fiche-carte-memo">L'interrupteur coupe toujours la phase : ouvert, la douille est hors tension. Sur le neutre, la lampe serait éteinte mais sous tension. Avant d'intervenir : disjoncteur ouvert et absence de tension vérifiée.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Dans l'ancien, tu trouveras des interrupteurs câblés sur le neutre. Le montage « marche », personne ne s'en est jamais plaint. C'est une raison de plus pour ne jamais se fier à l'interrupteur : disjoncteur ouvert, absence de tension vérifiée.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-double-dev.svg" alt="5. Le double allumage : le principe" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">5</span>Le double allumage : le principe</h2>
+          <p class="fiche-carte-memo">Double allumage : 1 interrupteur double, 2 points lumineux indépendants, commandés du même endroit. Une phase commune, deux contacts, deux retours lampe.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Ne confonds pas l'interrupteur double avec deux interrupteurs simples côte à côte. Le double tient dans une seule boîte d'encastrement, et sa borne de phase est commune : une seule arrivée de phase alimente les deux commandes.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-double-cablage.svg" alt="6. Câbler le double allumage" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">6</span>Câbler le double allumage</h2>
+          <p class="fiche-carte-memo">Interrupteur double : 3 bornes (1 commune + 2 sorties). 3 fils à l'interrupteur : 1 phase + 2 retours lampe. 3 fils à chaque lampe : retour, neutre, protection.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Repère tes deux retours lampe dès le tirage, par deux couleurs différentes ou par un marquage. Une fois les fils coupés à la longueur dans la boîte, deux retours de la même couleur ne se distinguent plus qu'à l'essai.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c16-pannes.svg" alt="7. Dépanner un allumage" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">7</span>Dépanner un allumage</h2>
+          <p class="fiche-carte-memo">Ne s'allume pas : ampoule, puis disjoncteur, puis connexions. Reste allumée : la commande est contournée. Ça disjoncte : court-circuit. Toujours hors tension, absence de tension vérifiée.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Reprends le schéma développé et suis le chemin du courant : phase, interrupteur, retour lampe, lampe, neutre. La panne est forcément sur l'un de ces cinq maillons. Tu les contrôles un par un, sans rien supposer.</p>
+        </div>
+      </section>
+    </div>
+    <p class="module-liens"><a href="cours/16-simple-et-double-allumage.html">📖 Le cours complet</a> · <a href="qcm/16-simple-et-double-allumage.html">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Fiche mémo série, parallèle, alternatif : l&#x27;essentiel</title>
+  <meta name="description" content="L&#x27;essentiel du cours « Série, parallèle et courant alternatif » en 6 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/fiches/04-serie-parallele-et-courant-alternatif.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Fiche mémo série, parallèle, alternatif : l&#x27;essentiel">
+  <meta property="og:description" content="L&#x27;essentiel du cours « Série, parallèle et courant alternatif » en 6 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/fiches/04-serie-parallele-et-courant-alternatif.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-fiche">
+    <p class="lecon-kicker">FICHE MÉMO · MODULE 4</p>
+    <h1>Fiche mémo : Série, parallèle et courant alternatif</h1>
+    <p class="niveau-objectif">Calculer une résistance équivalente — et lire le signal 230 V / 50 Hz comme un pro</p>
+    <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
+      <a class="bouton-creux" href="fiche.html?id=4">Version à cocher, avec mini-test</a></div>
+    <div class="fiche-cartes">
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n4-serie.svg" alt="1. En série : un seul chemin" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">1</span>En série : un seul chemin</h2>
+          <p class="fiche-carte-memo">Série = un seul chemin. Même I partout · les tensions s'additionnent · Re = R1 + R2. Un maillon lâche, tout s'arrête.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> C'est exactement pour ça qu'on ne câble PAS les prises et les lampes d'une maison en série : un grillage et tout tombe. Le logement se câble en parallèle (section suivante).</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n4-parallele.svg" alt="2. En parallèle : chacun sa dérivation" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">2</span>En parallèle : chacun sa dérivation</h2>
+          <p class="fiche-carte-memo">Parallèle (dérivation) = mêmes 2 points. Même U pour tous · les courants s'additionnent · 1/Re = 1/R1 + 1/R2. Deux R égales → R/2. C'est le montage du logement.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Brancher en parallèle = ajouter une dérivation = ajouter du courant dans le tronc commun. Empiler les multiprises sur une même ligne, c'est additionner les courants : gare à la surcharge du circuit.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n4-comparatif.svg" alt="3. Résistance équivalente : les pièges" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">3</span>Résistance équivalente : les pièges</h2>
+          <p class="fiche-carte-memo">Série 100+100 = 200 Ω · parallèle 100∥100 = 50 Ω. En parallèle, Re < la plus petite, et on inverse 1/Re à la fin.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Le test « Re < la plus petite » te sauve à chaque fois en parallèle. En série, c'est l'inverse : Re est plus grande que la plus grande. Deux réflexes opposés à ne pas confondre.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n4-sinus.svg" alt="4. Le courant alternatif" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">4</span>Le courant alternatif</h2>
+          <p class="fiche-carte-memo">Réseau = courant alternatif (sinusoïde). Les électrons oscillent sur place. Avantages : transformable + coupure facile au passage par zéro.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Tout le réseau, du barrage à ta prise, est alternatif. Les appareils qui ont besoin de continu (électronique, LED, recharge) embarquent un redresseur qui transforme l'alternatif en continu.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n4-sinus-cotee.svg" alt="5. Période, fréquence, valeur efficace" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">5</span>Période, fréquence, valeur efficace</h2>
+          <p class="fiche-carte-memo">T = 20 ms · f = 1/T = 50 Hz · 230 V = valeur EFFICACE · crête Û = 230 × √2 ≈ 325 V.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Quand tu lis « 230 V » sur une étiquette ou au multimètre, c'est toujours la valeur efficace. Mais les composants (isolants, condensateurs) doivent tenir la crête, ~325 V : c'est pour ça que le matériel est prévu plus large.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c4-iso-bloc1.svg" alt="6. Récap : le bloc 1 est bouclé" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">6</span>Récap : le bloc 1 est bouclé</h2>
+          <p class="fiche-carte-memo">Bloc 1 : 1 grandeurs · 2 calculs · 3 circuit · 4 série/parallèle & alternatif. Direction le bloc 2 : la sécurité.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Tu as posé toutes les bases. À partir d'ici, plus rien n'est « théorique » : chaque notion du bloc 2 s'appuie sur ce que tu viens d'apprendre — surtout la résistance du corps (module 1) et l'effet Joule (module 2).</p>
+        </div>
+      </section>
+    </div>
+    <p class="module-liens"><a href="cours/04-serie-parallele-et-courant-alternatif.html">📖 Le cours complet</a> · <a href="qcm/04-serie-parallele-et-courant-alternatif.html">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

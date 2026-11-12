@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Fiche mémo télérupteur et minuterie : l&#x27;essentiel</title>
+  <meta name="description" content="L&#x27;essentiel du cours « Télérupteur et minuterie » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/fiches/18-telerupteur-et-minuterie.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Fiche mémo télérupteur et minuterie : l&#x27;essentiel">
+  <meta property="og:description" content="L&#x27;essentiel du cours « Télérupteur et minuterie » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/fiches/18-telerupteur-et-minuterie.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-fiche">
+    <p class="lecon-kicker">FICHE MÉMO · MODULE 18</p>
+    <h1>Fiche mémo : Télérupteur et minuterie</h1>
+    <p class="niveau-objectif">Comprendre, dessiner et câbler un télérupteur en 3 fils et en 4 fils, et une minuterie</p>
+    <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
+      <a class="bouton-creux" href="fiche.html?id=18">Version à cocher, avec mini-test</a></div>
+    <div class="fiche-cartes">
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-bp.svg" alt="1. Des boutons-poussoirs à la place des interrupteurs" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">1</span>Des boutons-poussoirs à la place des interrupteurs</h2>
+          <p class="fiche-carte-memo">Télérupteur : la lampe est commandée par un appareil au tableau ; sur les murs, des boutons-poussoirs en parallèle envoient des impulsions. Un appui allume, le suivant éteint.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> C'est l'argument à donner au client : avec un télérupteur, ajouter un point de commande dans cinq ans coûte un bouton-poussoir et deux fils. Avec des va-et-vient et des permutateurs, il faudrait reprendre tout le câblage.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-telerupteur.svg" alt="2. Le télérupteur, de l&#x27;intérieur" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">2</span>Le télérupteur, de l'intérieur</h2>
+          <p class="fiche-carte-memo">Télérupteur = une bobine (A1-A2, circuit de commande) + un contact (1-2, circuit de puissance). Le contact change d'état à chaque impulsion et garde sa position entre deux : il est bistable.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Les repères sont gravés sur l'appareil : A1 et A2 pour la bobine, 1 et 2 pour le contact. Si tu raccordes un bouton-poussoir sur la borne 1 ou une lampe sur A1, rien ne fonctionne. Lis les repères avant de serrer.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-dev.svg" alt="3. Le schéma développé" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">3</span>Le schéma développé</h2>
+          <p class="fiche-carte-memo">Commande : phase → boutons-poussoirs en parallèle → A1 ; A2 → neutre. Puissance : phase → borne 1 ; borne 2 → retour lampe → lampe → neutre. Retour bouton-poussoir en blanc.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Quand tu dépannes un télérupteur, sépare les deux circuits dans ta tête. Tu entends le « clac » à chaque appui mais la lampe ne s'allume pas ? La commande est bonne, cherche côté puissance. Pas de « clac » ? Cherche côté commande.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-3fils.svg" alt="4. Le montage 3 fils" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">4</span>Le montage 3 fils</h2>
+          <p class="fiche-carte-memo">Montage 3 fils : une seule phase pour la commande et la puissance. Phase → borne 1 et boutons-poussoirs ; retour BP → A1 ; A2 → neutre ; borne 2 → retour lampe. 2 fils par bouton-poussoir.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Dans une boîte de bouton-poussoir, repère tout de suite la phase et le retour. Les deux fils se ressemblent, mais l'un est sous tension en permanence et l'autre seulement pendant l'appui. Une couleur par rôle, et la même dans toutes les boîtes.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-4fils.svg" alt="5. Le montage 4 fils" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">5</span>Le montage 4 fils</h2>
+          <p class="fiche-carte-memo">Montage 4 fils : commande et puissance séparées. 2 conducteurs pour la commande, 2 pour la puissance. Utile quand la commande a sa propre alimentation.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Avant de remplacer un télérupteur, lis la tension de sa bobine, gravée sur l'appareil. Une bobine prévue pour 24 V branchée en 230 V ne survit pas au premier appui ; l'inverse ne déclenchera jamais.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-minuterie.svg" alt="6. La minuterie" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">6</span>La minuterie</h2>
+          <p class="fiche-carte-memo">Minuterie : des boutons-poussoirs en parallèle ; un appui allume, l'appareil éteint seul après la durée réglée. Pour les escaliers, couloirs et parties communes.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Règle la durée en parcourant toi-même le trajet le plus long, au pas d'une personne chargée, et ajoute une marge. Une minuterie trop courte dans un escalier, c'est quelqu'un dans le noir entre deux étages.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c18-choix.svg" alt="7. Choisir le bon montage" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">7</span>Choisir le bon montage</h2>
+          <p class="fiche-carte-memo">1 endroit : simple (ou double) allumage · 2 endroits : va-et-vient · 3 endroits et plus : télérupteur · extinction automatique : minuterie. Nombre de boutons-poussoirs lumineux limité.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Si un télérupteur « bourdonne », reste collé ou s'enclenche tout seul après la pose de boutons-poussoirs lumineux, compte les voyants avant d'accuser l'appareil. La notice indique combien il en accepte.</p>
+        </div>
+      </section>
+    </div>
+    <p class="module-liens"><a href="cours/18-telerupteur-et-minuterie.html">📖 Le cours complet</a> · <a href="qcm/18-telerupteur-et-minuterie.html">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

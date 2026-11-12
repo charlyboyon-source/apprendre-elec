@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Fiche mémo protection des personnes : l&#x27;essentiel</title>
+  <meta name="description" content="L&#x27;essentiel du cours « La protection des personnes » en 8 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/fiches/06-la-protection-des-personnes.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Fiche mémo protection des personnes : l&#x27;essentiel">
+  <meta property="og:description" content="L&#x27;essentiel du cours « La protection des personnes » en 8 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/fiches/06-la-protection-des-personnes.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-fiche">
+    <p class="lecon-kicker">FICHE MÉMO · MODULE 6</p>
+    <h1>Fiche mémo : La protection des personnes</h1>
+    <p class="niveau-objectif">Comprendre comment la terre, le régime TT et le différentiel protègent des contacts indirects — et ne jamais confondre disjoncteur et DDR</p>
+    <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
+      <a class="bouton-creux" href="fiche.html?id=6">Version à cocher, avec mini-test</a></div>
+    <div class="fiche-cartes">
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-contacts.svg" alt="1. Contact direct, contact indirect" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">1</span>Contact direct, contact indirect</h2>
+          <p class="fiche-carte-memo">Contact direct = pièce normalement sous tension. Contact indirect = masse mise sous tension par un défaut. Le second est le plus sournois : rien ne prévient.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> La question réflexe devant une carcasse métallique : est-elle bien reliée à la terre ? Un appareil de classe I (lave-linge, four) sans terre, c'est un contact indirect qui attend sa victime. On ne met jamais une telle machine en service sans avoir vérifié la continuité du fil vert/jaune.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-pe-masses.svg" alt="2. Les masses et le conducteur de protection PE" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">2</span>Les masses et le conducteur de protection PE</h2>
+          <p class="fiche-carte-memo">Masse = partie métallique touchable, normalement hors tension. Le PE (vert/jaune) relie toutes les masses à la terre. Sécurité, jamais alimentation.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Le vert/jaune est une couleur réservée : on ne l'utilise JAMAIS pour autre chose que la terre, et on ne fait jamais passer de courant actif dedans. Un fil vert/jaune raccordé sur une phase, c'est une faute grave qui peut tuer le prochain intervenant.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-circuit-terre.svg" alt="3. La prise de terre et le circuit de terre" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">3</span>La prise de terre et le circuit de terre</h2>
+          <p class="fiche-carte-memo">Prise de terre (piquet 2 m, ou boucle à fond de fouille = la meilleure) → conducteur de terre 25 mm² cuivre nu → borne principale (barrette de coupure pour mesurer) → conducteur principal de protection (même section que l'arrivée : 16 mm² avec une arrivée en 16 mm²) → bornier du tableau.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> La barrette de coupure n'est pas un détail : sans elle, impossible de mesurer la prise de terre seule. Avant un Consuel, on l'ouvre, on mesure, on referme. Et on connaît les sections les yeux fermés : 25 mm² cuivre nu pour le conducteur de terre, 16 mm² pour le conducteur principal de protection quand l'arrivée est en 16 mm² (il suit la section de l'arrivée).</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-regime-tt.svg" alt="4. Le régime de neutre TT" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">4</span>Le régime de neutre TT</h2>
+          <p class="fiche-carte-memo">TT : neutre à la Terre côté distributeur (1er T), masses à la Terre chez l'usager (2e T), par deux prises de terre distinctes. C'est le régime de tous les logements.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> En TT, tu n'as pas la main sur la terre du distributeur — seulement sur la tienne. Ta garantie de sécurité, c'est TA prise de terre ET le différentiel. Les deux ensemble, jamais l'un sans l'autre.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-boucle-defaut.svg" alt="5. La boucle de défaut et la tension de contact" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">5</span>La boucle de défaut et la tension de contact</h2>
+          <p class="fiche-carte-memo">Boucle de défaut en TT = 2 terres en série → courant faible, le disjoncteur ne déclenche pas. Uc = R(terre) × I(défaut). R ≤ UL/IΔn : 50 V / 0,5 A = 100 Ω.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Retiens le trio : 50 V (UL) / 0,5 A (500 mA) / 100 Ω. C'est le calcul type de l'examen : 50 ÷ 0,5 = 100. Et rappelle-toi pourquoi le disjoncteur est aveugle au défaut en TT : le courant de boucle est trop petit pour lui. Seul le différentiel le voit.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-ddr-principe.svg" alt="6. Le DDR : principe et sensibilités" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">6</span>Le DDR : principe et sensibilités</h2>
+          <p class="fiche-carte-memo">DDR : phase et neutre dans un tore ; il coupe si elles diffèrent (fuite). Sensibilité IΔn en mA. 30 mA (haute sensibilité) → personnes. 300/500 mA → incendie.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Ne confonds jamais calibre et sensibilité. Un différentiel « 40 A / 30 mA », c'est 40 A de calibre (le courant qu'il laisse passer) et 30 mA de sensibilité (la fuite qui le fait couper). On dit « sensibilité 30 mA », jamais « calibre 30 mA ».</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-types-ddr.svg" alt="7. Les types de DDR : AC, A, F, B" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">7</span>Les types de DDR : AC, A, F, B</h2>
+          <p class="fiche-carte-memo">Types de DDR, du plus simple au plus complet : AC (alternatif seul) ⊂ A (+ continu pulsé : plaque, lave-linge) ⊂ F (+ fréquences mixtes) ⊂ B (+ continu lisse). Tableau : au moins 1 type AC + 1 type A.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Un moyen de retenir : A comme « Appareils électroménagers » (plaque, lave-linge → type A). Mettre une plaque à induction derrière un simple type AC, c'est une non-conformité classique au Consuel.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c6-tableau-duo.svg" alt="8. Disjoncteur, interrupteur différentiel, disjoncteur différentiel" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">8</span>Disjoncteur, interrupteur différentiel, disjoncteur différentiel</h2>
+          <p class="fiche-carte-memo">Disjoncteur = ampères, conducteurs, surcharge/court-circuit. Interrupteur différentiel = mA, personnes, fuite — mais pas la surcharge, il commande des disjoncteurs. Disjoncteur différentiel = les deux fonctions réunies.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Le piège de l'examen : « un interrupteur différentiel protège-t-il contre la surcharge ? » Non. Il ne voit que les fuites. Sans disjoncteurs en aval, un court-circuit derrière un inter différentiel n'est coupé par rien. Disjoncteur = ampères ; différentiel = milliampères.</p>
+        </div>
+      </section>
+    </div>
+    <p class="module-liens"><a href="cours/06-la-protection-des-personnes.html">📖 Le cours complet</a> · <a href="qcm/06-la-protection-des-personnes.html">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>Fiche mémo circuit électrique : l&#x27;essentiel</title>
+  <meta name="description" content="L&#x27;essentiel du cours « Le circuit électrique » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/fiches/03-le-circuit-electrique.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Fiche mémo circuit électrique : l&#x27;essentiel">
+  <meta property="og:description" content="L&#x27;essentiel du cours « Le circuit électrique » en 7 points illustrés, à relire avant un contrôle ou à imprimer.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/fiches/03-le-circuit-electrique.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-fiche">
+    <p class="lecon-kicker">FICHE MÉMO · MODULE 3</p>
+    <h1>Fiche mémo : Le circuit électrique</h1>
+    <p class="niveau-objectif">Identifier les 5 familles d'un circuit, le rôle de chacune et les règles d'or du câblage</p>
+    <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
+      <a class="bouton-creux" href="fiche.html?id=3">Version à cocher, avec mini-test</a></div>
+    <div class="fiche-cartes">
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n3-boucle.svg" alt="1. Un circuit est une boucle fermée" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">1</span>Un circuit est une boucle fermée</h2>
+          <p class="fiche-carte-memo">Circuit = boucle. Fermée → ça circule. Ouverte (interrupteur, fil coupé, fusible fondu) → rien ne passe.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Une lampe qui ne s'allume pas, ce n'est pas forcément la lampe : ampoule grillée, fil dévissé, interrupteur HS, protection déclenchée… autant d'endroits où la boucle peut être ouverte. On cherche méthodiquement, du tableau vers le point d'utilisation.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c3-familles.svg" alt="2. Les 5 familles de composants" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">2</span>Les 5 familles de composants</h2>
+          <p class="fiche-carte-memo">5 familles : générateur · protection · commande · récepteur · conducteurs. Le courant les traverse dans cet ordre.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Sur un schéma de tableau, tu retrouves toujours cet ordre, de gauche à droite : arrivée (générateur) → protections → départs vers les récepteurs. Savoir nommer chaque famille, c'est déjà savoir lire un schéma.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n3-source.svg" alt="3. Le générateur : la source" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">3</span>Le générateur : la source</h2>
+          <p class="fiche-carte-memo">Le générateur impose la tension. Logement : réseau, 230 V entre phase et neutre. Tout générateur réel a une résistance interne.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Le réseau impose 230 V, point. Si la tension chute nettement sous charge à un endroit de l'installation, ce n'est pas « le réseau » : cherche une mauvaise connexion ou une section de câble trop faible (la chute de tension, vue au bloc 3).</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n3-recepteurs.svg" alt="4. Les récepteurs : transformer l&#x27;énergie" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">4</span>Les récepteurs : transformer l'énergie</h2>
+          <p class="fiche-carte-memo">Récepteur = transforme l'énergie (lumière / chaleur / mouvement). Branché phase-neutre, JAMAIS phase-terre. Retour par le neutre.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Brancher un récepteur sur la terre au lieu du neutre, c'est la faute grave : ça fait circuler du courant dans le conducteur de protection, qui n'est pas fait pour ça — danger et déclenchement du DDR garantis.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n3-interrupteur.svg" alt="5. Les appareils de commande" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">5</span>Les appareils de commande</h2>
+          <p class="fiche-carte-memo">La commande ouvre/ferme la boucle et coupe LA PHASE. Sur le neutre seul : éteint mais toujours sous tension = danger.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Avant d'intervenir sur un point lumineux, ne te fie jamais à l'interrupteur seul : coupe le disjoncteur du circuit et vérifie l'absence de tension. « Éteint » ne veut pas dire « hors tension » si l'inter est mal câblé sur le neutre.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/c3-iso-fils.svg" alt="6. Les conducteurs : phase, neutre, terre" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">6</span>Les conducteurs : phase, neutre, terre</h2>
+          <p class="fiche-carte-memo">Phase = rouge/marron/noir. Neutre = bleu clair (réservé). Terre = vert-jaune (réservé). Section choisie selon le courant.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Le vert/jaune ne se coupe pas et ne se commande jamais : c'est un fil de sécurité, continu de la terre jusqu'à chaque masse. Si tu trouves du bleu clair employé comme phase sur une vieille installation, on remet aux normes — on ne perpétue pas l'erreur.</p>
+        </div>
+      </section>
+      <section class="fiche-carte">
+        <div class="fiche-carte-image"><img src="assets/svg/n3-protection.svg" alt="7. Les appareils de protection" loading="lazy"></div>
+        <div class="fiche-carte-corps">
+          <h2><span class="fiche-carte-num">7</span>Les appareils de protection</h2>
+          <p class="fiche-carte-memo">Surcharge + court-circuit → fusible / disjoncteur (l'installation). Fuite à la terre → DDR (les personnes). Toujours sur la phase, en amont.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Disjoncteur et DDR ne font pas le même travail : le disjoncteur protège les fils (ampères : surcharge et court-circuit), le DDR protège les gens (milliampères : fuite à la terre). Les deux sont nécessaires, jamais l'un à la place de l'autre.</p>
+        </div>
+      </section>
+    </div>
+    <p class="module-liens"><a href="cours/03-le-circuit-electrique.html">📖 Le cours complet</a> · <a href="qcm/03-le-circuit-electrique.html">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>
