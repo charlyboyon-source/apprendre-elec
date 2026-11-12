@@ -257,7 +257,7 @@ page("configurateur.html", "Configurateur de tableau électrique : composer son 
     <div class="config">
       <form class="config-form calc" onsubmit="return false">
         <h2>Le logement</h2>
-        <div class="calc-champs">{ch("surface","Surface (m²)","70")}{ch("points","Points lumineux","12")}{ch("prises","Prises de courant (hors cuisine)","16")}
+        <div class="calc-champs"><label class="calc-champ"><span>Type de logement</span><select name="logement"><option value="maison" selected>Maison individuelle</option><option value="appartement">Appartement</option></select></label>{ch("surface","Surface (m²)","70")}{ch("points","Points lumineux","12")}{ch("prises","Prises de courant (hors cuisine)","16")}
           <label class="calc-champ"><span>Section des prises</span><select name="sectionPrises"><option value="2.5" selected>2,5 mm² (20 A, 12 prises max)</option><option value="1.5">1,5 mm² (16 A, 8 prises max)</option></select></label></div>
         <h2>Les circuits spécialisés</h2>
         <div class="config-cbs">{cb("cuisine","Prises de la cuisine",True)}{cb("plaque","Plaque de cuisson",True)}{cb("four","Four",True)}{cb("lavelinge","Lave-linge",True)}{cb("lavevaisselle","Lave-vaisselle",True)}{cb("sechelinge","Sèche-linge")}{cb("chauffeeau","Chauffe-eau",True)}{cb("vmc","VMC",True)}{cb("recharge","Prise renforcée pour véhicule")}</div>
@@ -265,7 +265,7 @@ page("configurateur.html", "Configurateur de tableau électrique : composer son 
       </form>
       <section class="config-resultat" aria-live="polite"></section>
     </div>
-    <p class="calc-note">Règles utilisées (modules 11, 14 et 20) : éclairage 8 points max par circuit et 2 circuits au-delà de 35 m² ; prises 12 max en 2,5 mm² ou 8 max en 1,5 mm² ; au moins 2 différentiels 30 mA dont 1 type AC et 1 type A ; 8 disjoncteurs max par différentiel ; calibre par la méthode aval ; 20 % de réserve dont 6 modules consécutifs ; 2 prises modulaires (comptées 2,5 modules chacune, selon le modèle) ; rangées de 13 modules, sans rangée laissée vide. Le chauffage électrique et les appareils qui demandent un différentiel de type F (pompe à chaleur, climatisation, pompe de piscine) ne sont pas pris en compte.</p>
+    <p class="calc-note">Règles utilisées (modules 11, 14 et 20) : éclairage 8 points max par circuit et 2 circuits au-delà de 35 m² ; prises 12 max en 2,5 mm² ou 8 max en 1,5 mm² ; au moins 2 différentiels 30 mA dont 1 type AC et 1 type A ; 8 disjoncteurs max par différentiel ; calibre par la méthode aval ; réserve de 20 % en maison individuelle ou de 6 modules en appartement ; 2 prises modulaires (comptées 2,5 modules chacune, selon le modèle) ; rangées de 13 modules, sans rangée laissée vide. Le chauffage électrique et les appareils qui demandent un différentiel de type F (pompe à chaleur, climatisation, pompe de piscine) ne sont pas pris en compte.</p>
     <p class="calc-lien">Pour comprendre : <a href="{pages[11]}">module 11, le tableau et ses différentiels</a> · <a href="{pages[14]}">module 14, les circuits du logement</a></p>''', script="js/configurateur.js")
 
 par_bloc = ""

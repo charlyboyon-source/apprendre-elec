@@ -7,7 +7,8 @@
 //  - 8 disjoncteurs max par interrupteur différentiel ; éclairage et prises répartis ;
 //  - calibre du différentiel : méthode aval (somme / 2, chauffe-eau et recharge en entier), calibres 25, 40, 63 A ;
 //  - recharge de véhicule (prise renforcée 2,5 mm² / 20 A) : différentiel 30 mA type A propre au circuit ;
-//  - réserve : 20 % des emplacements dont 6 modules libres consécutifs ; 2 prises modulaires ; rangées de 13 modules.
+//  - réserve : 20 % des emplacements en maison individuelle, 6 modules libres en appartement, jamais de rangée vide ;
+//    2 prises modulaires ; rangées de 13 modules. (Vérifié sur les guides Legrand, novembre 2026.)
 import "./page.js";
 
 const MODULES_RANGEE = 13, MODULES_ID = 2, MODULES_PRISE = 2.5;
@@ -17,6 +18,7 @@ const sortie = document.querySelector(".config-resultat");
 const val = (n) => form.elements[n];
 const entier = (n) => Math.max(0, Math.floor(Number(String(val(n).value).replace(",", ".")) || 0));
 const coche = (n) => val(n).checked;
+const maison = () => val("logement").value === "maison";
 
 function circuits() {
   const liste = [];
@@ -89,7 +91,7 @@ function rangees(ids) {
   if (aPlacer) r.push({ id: null, prises: aPlacer, libres: MODULES_RANGEE - aPlacer * MODULES_PRISE });
   const ok = () => {
     const total = r.length * MODULES_RANGEE, libres = r.reduce((s, x) => s + x.libres, 0);
-    return libres >= 0.2 * total && r.some((x) => x.libres >= 6);
+    return maison() ? libres >= 0.2 * total : libres >= 6;
   };
   while (!ok()) r.push({ id: null, prises: 0, libres: MODULES_RANGEE });
   // Pas de rangée entièrement vide : on y déplace une prise modulaire.
@@ -133,8 +135,9 @@ function calculer() {
     [ids.some((i) => i.type === "AC") && ids.some((i) => i.type === "A" && !i.ve), "Au moins 1 type AC et 1 type A"],
     [ids.every((i) => i.circ.length <= 8), "8 disjoncteurs au maximum par différentiel"],
     [liste.filter((c) => c.typeA).every((c) => ids.some((i) => i.type === "A" && i.circ.includes(c))), "Plaque et lave-linge sous un type A"],
-    [libres >= 0.2 * total, `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (au moins 20 %)`],
-    [r.some((x) => x.libres >= 6), "6 modules libres consécutifs"],
+    maison()
+      ? [libres >= 0.2 * total, `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (au moins 20 % en maison individuelle)`]
+      : [libres >= 6, `Réserve : ${Math.round(libres * 10) / 10} modules libres (au moins 6 en appartement)`],
     [r.every((x) => x.id || x.prises), "Aucune rangée laissée entièrement vide"],
   ];
   sortie.innerHTML = `
