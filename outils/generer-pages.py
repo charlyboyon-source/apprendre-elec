@@ -85,9 +85,9 @@ for i, m in enumerate(modules):
                 else f'{len(m["jeu"]["config"]["affirmations"])} affirmations : vrai ou faux, réponds vite')
     nbq = min(15, len(m["banque"]))
     etapes = f'''<ol class="module-etapes">
-      <li><a class="module-etape" data-act="lecon" href="#cours"><i>1</i><span><b>Lire le cours</b><small>{len(c["sections"])} parties illustrées</small></span></a></li>
-      <li><a class="module-etape" data-act="quiz" href="#quiz"><i>2</i><span><b>Faire le quiz</b><small>{nbq} questions</small></span></a></li>
-      <li><a class="module-etape" data-act="jeu" href="#jeu"><i>3</i><span><b>Jouer : {jeu_nom}</b><small>pour ancrer</small></span></a></li>
+      <li><a class="module-etape" data-act="lecon" href="{pages[n]}#cours"><i>1</i><span><b>Lire le cours</b><small>{len(c["sections"])} parties illustrées</small></span></a></li>
+      <li><a class="module-etape" data-act="quiz" href="{pages[n]}#quiz"><i>2</i><span><b>Faire le quiz</b><small>{nbq} questions</small></span></a></li>
+      <li><a class="module-etape" data-act="jeu" href="{pages[n]}#jeu"><i>3</i><span><b>Jouer : {jeu_nom}</b><small>pour ancrer</small></span></a></li>
     </ol>
     <p class="module-liens"><a href="fiche.html?id={n}">🖨 La fiche mémo de ce cours</a></p>'''
     secs = []

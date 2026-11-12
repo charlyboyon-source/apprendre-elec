@@ -36,6 +36,13 @@ async function init() {
     window.addEventListener("scroll", verifier, { passive: true });
   }
 
+  // Les trois cases du haut : le cours défile jusqu'au début, le quiz et le jeu démarrent directement.
+  document.querySelectorAll(".module-etape").forEach((lien) => lien.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    if (lien.dataset.act === "lecon") remonter(document.getElementById("cours"));
+    else lancer(lien.dataset.act, niveau);
+  }));
+
   document.querySelectorAll("[data-lancer]").forEach((b) =>
     b.addEventListener("click", () => lancer(b.dataset.lancer, niveau)));
 
