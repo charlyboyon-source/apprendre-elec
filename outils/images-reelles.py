@@ -358,7 +358,7 @@ s.t(320,366,"Chauffage, chauffe-eau, recharge de véhicule :",11.5,True); s.t(32
 s.ecrire("c11-aval.svg")
 
 # ---------- 11.7 la réserve
-s=S("Prévoir la suite : la réserve","Dans le tableau : 20 % de réserve, dont 6 modules libres consécutifs, et 2 prises de courant modulaires")
+s=S("Prévoir la suite : la réserve","Dans le tableau d'une maison individuelle : au moins 20 % de réserve, répartie dans les rangées sans en laisser une vide, et 2 prises de courant modulaires")
 K=0.335; M=70*K
 coffret(s,22,42,13*M+28,300)
 for r in range(3):
@@ -378,9 +378,9 @@ for r in range(3):
         for i in range(8): libre(s,36+(5+i)*M,y,K)
 y=58+2*92
 s.a(f'<path d="M{36+7*M} {y+240*K+8} v8 H{36+13*M} v-8" fill="none" stroke="{GRN}" stroke-width="2.5"/>')
-s.t(374,94,"20 %",21,True,GRN,"start"); s.t(374,120,"de réserve au minimum",12,False,INK,"start")
+s.t(374,94,"20 %",21,True,GRN,"start"); s.t(374,120,"de réserve au minimum",12,False,INK,"start"); s.t(374,140,"en maison individuelle",10,False,GR,"start")
 s.t(374,186,"2 PRISES",14,True,INK,"start"); s.t(374,210,"de courant modulaires",12,False,INK,"start")
-s.t(374,276,"6 MODULES",14,True,GRN,"start"); s.t(374,300,"libres consécutifs",12,False,INK,"start")
+s.t(374,276,"AUCUNE RANGÉE",14,True,GRN,"start"); s.t(374,300,"laissée entièrement vide",12,False,INK,"start")
 s.t(320,362,"Exemple : 39 modules, donc 8 libres au minimum",12,False,GR)
 s.t(320,388,"Un tableau plein dès le premier jour est un tableau mal conçu",11.5,True)
 s.ecrire("c11-reserve.svg")
