@@ -9,8 +9,8 @@ fetch("data/actualites.json").then((r) => r.json()).then(({ actualites }) => {
   if (!zone || !liste.length) return;
   zone.innerHTML = liste.map((a) => {
     const [an, m, j] = a.date.split("-");
-    const id = "actu-" + slug(a.titre).slice(0, 60);
-    return `<a class="accueil-actu-item" href="actualites.html#${id}">
+    const page = "actualites/" + slug(a.titre).slice(0, 60).replace(/-+$/, "") + ".html";
+    return `<a class="accueil-actu-item" href="${page}">
       ${a.image ? `<img src="${esc(a.image)}" alt="" loading="lazy">` : ""}
       <span><small>${esc(a.categorie)} · ${Number(j)} ${MOIS[Number(m) - 1]} ${an}</small><b>${esc(a.titre)}</b></span>
     </a>`;

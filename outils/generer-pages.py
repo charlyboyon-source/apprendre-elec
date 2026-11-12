@@ -465,18 +465,53 @@ for m in modules:
     <p class="module-liens"><a href="{pages[n]}">📖 Le cours complet</a> · <a href="{qcm_pages[n]}">✅ Le QCM corrigé</a> · <a href="fiche.html">Toutes les fiches</a></p>'''
     open(fiche_pages[n], "w", encoding="utf-8").write(tete(titre, desc, fiche_pages[n], base="../") + f'  <main class="niveau page-fiche">\n{corps}\n  </main>\n' + PIED)
 
-# ---------- Actualités
+# ---------- Actualités : une page par actualité (actualites/<slug>.html) + la liste actualites.html
 actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
-
 def actu_id(a): return "actu-" + slug(a["titre"])[:60]
+def actu_page(a): return "actualites/" + slug(a["titre"])[:60].rstrip("-") + ".html"
+os.makedirs("actualites", exist_ok=True)
+for f in glob.glob("actualites/*.html"): os.remove(f)
+LIENS_ACTU = {
+    "Matériel": [("materiel.html", "🧰 Le matériel de l'apprenti électricien"), (pages[9], "📖 Module 9 : travailler en sécurité")],
+    "Normes": [(pages[14], "📖 Module 14 : la GTL et les circuits du logement"), (pages[11], "📖 Module 11 : le tableau et ses différentiels")],
+    "Photovoltaïque": [(pages[21], "📖 Module 21 : le photovoltaïque"), ("atelier-depannage.html?i=toit", "🔧 Atelier : sur le toit")],
+}
+def legende(a):
+    return '<p class="actu-legende">Image d\'illustration générée, non contractuelle.</p>' if a.get("image_generee") else ""
+actus_triees = sorted(actu, key=lambda a: a["date"], reverse=True)
+for i, a in enumerate(actus_triees):
+    chemin = actu_page(a)
+    titre = a["titre"] if len(a["titre"]) <= 60 else a["titre"][:59].rsplit(" ", 1)[0].rstrip(" :,") + "…"
+    desc = a["texte"] if len(a["texte"]) <= 155 else a["texte"][:152].rsplit(" ", 1)[0] + "…"
+    liens = LIENS_ACTU.get(a["categorie"], []) + [("actualites.html", "📰 Toutes les actualités")]
+    autres = [x for x in actus_triees if x is not a][:3]
+    li_autres = "".join('<li><a href="' + actu_page(x) + '">' + html.escape(x["titre"]) + "</a></li>" for x in autres)
+    bloc_autres = f'<section class="plus-loin"><h2>Les autres actualités</h2><ul>{li_autres}</ul></section>' if autres else ""
+    article = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["titre"][:110], "datePublished": a["date"], "dateModified": a["date"],
+               "description": desc, "inLanguage": "fr", "url": SITE + chemin, "image": [SITE + a["image"]] if a.get("image") else None,
+               "author": AUTEUR, "publisher": {"@type": "Organization", "name": "ApprendreElec", "url": SITE}, "citation": a["url"]}
+    corps = f'''    {ariane([("Accueil", ""), ("Actualités", "actualites.html"), (titre, None)])}
+    {ld(article)}
+    <article class="actu-article">
+      <p class="actu-meta"><span class="actu-cat">{html.escape(a["categorie"])}</span> · <time datetime="{a["date"]}">{date_fr(a["date"])}</time></p>
+      <h1>{html.escape(a["titre"])}</h1>
+      {f'<img class="actu-image" src="{a["image"]}" alt="{html.escape(a.get("image_alt", a["titre"]))}" width="960" height="540">' + legende(a) if a.get("image") else ""}
+      <p>{html.escape(a["texte"])}</p>
+      {f'<p class="actu-retenir"><b>À retenir :</b> {html.escape(a["a_retenir"])}</p>' if a.get("a_retenir") else ""}
+      <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a>. L'information est vérifiée sur cette source ; en cas de doute, c'est le texte officiel ou la documentation du fabricant qui fait foi.</p>
+    </article>
+    <section class="plus-loin"><h2>Pour aller plus loin</h2><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t in liens)}</ul></section>
+    {bloc_autres}'''
+    open(chemin, "w", encoding="utf-8").write(tete(titre, desc, chemin, base="../") + f'  <main class="niveau page-simple">\n{corps}\n  </main>\n' + PIED)
 cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
-        {f'<img class="actu-image" src="{a["image"]}" alt="{html.escape(a.get("image_alt", a["titre"]))}" width="1280" height="720"{"" if i == 0 else " loading=" + chr(34) + "lazy" + chr(34)}>' if a.get("image") else ""}
+        {f'<img class="actu-image" src="{a["image"]}" alt="{html.escape(a.get("image_alt", a["titre"]))}" width="960" height="540"{"" if i == 0 else " loading=" + chr(34) + "lazy" + chr(34)}>' if a.get("image") else ""}
         <p class="actu-meta"><span class="actu-cat">{html.escape(a["categorie"])}</span> · {date_fr(a["date"])}</p>
-        <h2>{html.escape(a["titre"])}</h2>
+        <h2><a href="{actu_page(a)}">{html.escape(a["titre"])}</a></h2>
         <p>{html.escape(a["texte"])}</p>
         {f'<p class="actu-retenir"><b>À retenir :</b> {html.escape(a["a_retenir"])}</p>' if a.get("a_retenir") else ""}
-        <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a></p>
-      </article>''' for i, a in enumerate(sorted(actu, key=lambda a: a["date"], reverse=True)))
+        <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a> · <a href="{actu_page(a)}">L'article</a></p>
+        {legende(a)}
+      </article>''' for i, a in enumerate(actus_triees))
 page("actualites.html", "Actualités de l'électricien : normes, matériel",
      "Les nouveautés utiles aux électriciens et aux apprentis : normes, réglementation, Consuel, nouveau matériel. Chaque information est vérifiée et sourcée.",
      f'''    <h1>Actualités</h1>
@@ -699,7 +734,7 @@ open("404.html", "w", encoding="utf-8").write(p404)
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
 urls_lex = sorted(f"lexique/{slug(c)}.html" for c in LEX_PAGES)
-urls = ["", "qcm.html"] + list(qcm_pages.values()) + list(fiche_pages.values()) + ["cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules] + urls_lex
+urls = ["", "qcm.html"] + [actu_page(a) for a in actus_triees] + list(qcm_pages.values()) + list(fiche_pages.values()) + ["cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules] + urls_lex
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes dont", len(LEX_PAGES), "avec leur page,", len(urls), "adresses dans le plan du site")
