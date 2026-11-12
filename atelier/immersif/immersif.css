@@ -86,3 +86,18 @@
 @media (max-width: 700px) and (orientation: portrait) {
   .im-paysage { display: block; margin: 0 0 8px; padding: 8px 12px; border-radius: 10px; background: #fff3c4; font-size: 0.85rem; font-weight: 600; }
 }
+.im-fil { max-height: 300px; overflow: auto; margin-bottom: 6px; }
+.im-moi { margin: 10px 0 2px auto; max-width: 85%; width: fit-content; background: #1d2228; color: #fff; border-radius: 12px 12px 2px 12px; padding: 7px 12px; font-size: 0.92rem; }
+.im-fil .im-r { max-width: 92%; border-radius: 12px 12px 12px 2px; }
+.im-humeur { margin-left: auto; font-size: 1.8rem; }
+.im-choix { margin-top: 4px; }
+.im-centre { text-align: center; font-weight: 700; }
+.im-menu { text-align: center; padding: 20px 8px; }
+.im-kicker { margin: 0; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; color: var(--orange, #c25b00); }
+.im-menu h1 { margin: 6px 0 10px; }
+.im-menu > p { max-width: 640px; margin: 0 auto 18px; line-height: 1.5; color: var(--texte-2); }
+.im-cartes { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; text-align: left; }
+.im-carte { border: 2px solid var(--bordure); background: var(--fond-2); border-radius: 16px; padding: 18px; cursor: pointer; color: var(--texte); min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; background-image: linear-gradient(135deg, rgba(242,194,48,.18), transparent 60%); }
+.im-carte:hover { border-color: var(--jaune); }
+.im-carte span { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texte-2); }
+.im-carte b { font-size: 1.1rem; }
