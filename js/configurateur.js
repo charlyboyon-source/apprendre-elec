@@ -92,6 +92,13 @@ function rangees(ids) {
     return libres >= 0.2 * total && r.some((x) => x.libres >= 6);
   };
   while (!ok()) r.push({ id: null, prises: 0, libres: MODULES_RANGEE });
+  // Pas de rangée entièrement vide : on y déplace une prise modulaire.
+  for (const vide of r.filter((x) => !x.id && !x.prises)) {
+    const source = r.find((x) => x.prises > (x.id ? 0 : 1));
+    if (!source) break;
+    source.prises--; source.libres += MODULES_PRISE;
+    vide.prises++; vide.libres -= MODULES_PRISE;
+  }
   return r;
 }
 
@@ -116,10 +123,10 @@ function calculer() {
   const ids = repartir(liste), r = rangees(ids);
   const total = r.length * MODULES_RANGEE, libres = r.reduce((s, x) => s + x.libres, 0);
   const nbSpe = liste.filter((c) => c.spe).length, plaque = coche("plaque");
-  const autres20 = liste.filter((c) => c.spe && c.cal === 20 && !c.ve).length;
+  const autres20 = ["four", "lavevaisselle", "lavelinge", "sechelinge"].filter(coche).length;
   const agcp = Number(String(val("agcp").value).replace(",", ".")) || 0;
   const alertes = [];
-  if (!(plaque && autres20 >= 3)) alertes.push("Un logement compte au moins 4 circuits spécialisés : la plaque de cuisson et au moins trois autres en 2,5 mm² sous 20 A.");
+  if (!(plaque && autres20 >= 3)) alertes.push("Un logement compte au moins 4 circuits spécialisés : la plaque de cuisson et au moins trois autres en 2,5 mm² sous 20 A, parmi le four, le lave-vaisselle, le lave-linge et le sèche-linge.");
   if (coche("recharge")) alertes.push("Recharge : vérifie dans la notice le type de différentiel exigé (type A au minimum, parfois type B). Une borne de plus de 3,7 kW demande la qualification IRVE.");
   const verifs = [
     [ids.filter((i) => !i.ve).length >= 2, "Au moins 2 interrupteurs différentiels 30 mA"],
@@ -128,6 +135,7 @@ function calculer() {
     [liste.filter((c) => c.typeA).every((c) => ids.some((i) => i.type === "A" && i.circ.includes(c))), "Plaque et lave-linge sous un type A"],
     [libres >= 0.2 * total, `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (au moins 20 %)`],
     [r.some((x) => x.libres >= 6), "6 modules libres consécutifs"],
+    [r.every((x) => x.id || x.prises), "Aucune rangée laissée entièrement vide"],
   ];
   sortie.innerHTML = `
     <div class="config-chiffres">
