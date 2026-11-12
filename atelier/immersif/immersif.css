@@ -106,3 +106,14 @@
 .im-liste li.ok b { color: #14703f; } .im-liste li.ko b { color: #b3261e; } .im-liste li.faux b { color: #7a4a00; }
 .im-liste small { color: #555; }
 .im-panneau ul { line-height: 1.5; }
+.im-linky { font: 700 1.25rem ui-monospace, Menlo, monospace; background: #28331a; color: #bde39b; border: 8px solid #d5e05b; border-radius: 12px; padding: 16px; text-align: center; }
+.im-reglage { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0; padding: 10px; border-radius: 10px; background: #f4eee0; }
+.im-reglage > span { flex: 1 1 100%; font-weight: 700; font-size: 0.9rem; }
+.im-reglage b { font-size: 1.4rem; min-width: 60px; text-align: center; }
+.im-reglage small { color: #555; }
+.im-pm { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1d2228; background: #fff; font-size: 1.3rem; font-weight: 800; cursor: pointer; }
+.im-reglage .im-question { flex: 1 1 200px; margin: 0; }
+.im-question.choisi { border-color: #1d2228; background: #fff3c4; font-weight: 700; }
+.im-graphe { width: 100%; height: auto; margin-top: 12px; }
+.im-panneau details { margin: 8px 0; font-size: 0.9rem; }
+.im-panneau summary { cursor: pointer; font-weight: 700; }
