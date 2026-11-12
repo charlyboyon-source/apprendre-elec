@@ -1,0 +1,19 @@
+/* Atelier schémas : platine de câblage */
+.sc { max-width: 1240px; margin: 0 auto; padding: 12px 12px 40px; }
+.sc-platine { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+.sc-borne { cursor: crosshair; }
+.sc-borne:hover circle:nth-of-type(3) { stroke: #f2c230; stroke-width: 3; }
+.sc-inter { cursor: pointer; }
+.sc-fil.coupable { cursor: pointer; }
+.sc-fil.coupable:hover path:first-child { stroke-dasharray: 8 6; }
+.sc-palette { display: flex; flex-wrap: wrap; gap: 6px; }
+.sc-bobine { display: flex; align-items: center; gap: 6px; border: 2px solid var(--bordure); background: var(--fond-2); color: var(--texte); border-radius: 999px; padding: 6px 12px 6px 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+.sc-bobine span { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(0,0,0,.25); }
+.sc-bobine.actif { border-color: var(--jaune); background: var(--accent); }
+.sc-aide { margin: 10px 0 0; padding: 10px 14px; border-radius: 12px; background: #fff3c4; line-height: 1.5; font-size: 0.92rem; }
+.sc-verif { margin-top: 12px; background: var(--fond-2); border: 1px solid var(--bordure); border-left: 6px solid var(--accent); border-radius: 14px; padding: 12px 16px; }
+.sc-verif h2 { margin: 0 0 8px; font-size: 1.1rem; }
+.sc-verif h3 { margin: 10px 0 4px; font-size: 0.95rem; }
+.sc-verif ul { margin: 0; padding-left: 4px; list-style: none; line-height: 1.5; font-size: 0.9rem; }
+.sc-verif li.ok { color: #14703f; } .sc-verif li.ko { color: #b3261e; }
+.sc-verif .im-plein { max-width: 300px; }

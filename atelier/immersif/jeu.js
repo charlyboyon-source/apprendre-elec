@@ -276,6 +276,7 @@ function menu() {
     <h1>Choisis ton intervention</h1>
     <p>Tu arrives sur place, tu écoutes le client, tu cherches, tu mesures, tu répares… et tu factures. Chaque intervention cache plusieurs pannes possibles, tirées au hasard.</p>
     <div class="im-cartes">${CATALOGUE.map((c) => `<button type="button" class="im-carte" data-intervention="${c.id}"><span>${c.lieu}</span><b>${c.titre}</b></button>`).join("")}</div>
+    <p class="im-petit"><a href="atelier-schemas.html">Et pour câbler toi-même les montages d'éclairage : l'atelier schémas →</a></p>
   </div>`;
 }
 function rendre() {

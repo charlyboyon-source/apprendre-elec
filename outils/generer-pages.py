@@ -361,7 +361,7 @@ page("a-propos.html", "À propos d'ApprendreElec",
       <li>{len(modules)} cours illustrés, en cinq blocs : <a href="cours.html">la liste complète</a>.</li>
       <li>{nbq} questions de quiz, tirées au hasard à chaque tentative.</li>
       <li>Un <a href="examen.html">examen blanc</a> chronométré, la révision de <a href="erreurs.html">tes erreurs</a>, et des <a href="fiche.html">fiches mémo</a> à imprimer.</li>
-      <li>Un <a href="atelier-depannage.html">atelier de dépannage</a> pour s'entraîner à chercher une panne.</li>
+      <li>Un <a href="atelier-depannage.html">atelier de dépannage</a> (six interventions) pour s'entraîner à chercher une panne, et un <a href="atelier-schemas.html">atelier schémas</a> pour câbler soi-même les montages d'éclairage.</li>
     </ul>
     <h2>Qui l'a fait ?</h2>
     <p>Le site est conçu par Charly, en formation au TP Électricien d'Équipement du Bâtiment. Tout le contenu est original : aucun cours n'est recopié.</p>
@@ -387,7 +387,7 @@ page("mentions-legales.html", "Mentions légales — ApprendreElec",
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
-urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
+urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes,", len(urls), "adresses dans le plan du site")
