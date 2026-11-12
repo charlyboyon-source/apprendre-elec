@@ -1,18 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Montage 4 fils : le circuit de commande est séparé du circuit de puissance ; deux conducteurs pour la commande, deux pour la puissance">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le montage 4 fils</text>
-<rect x="12" y="28" width="144" height="112" rx="9" fill="#24282f" stroke="#e8eaed" stroke-width="1.2" />
-<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#e8eaed" font-weight="bold">COMMANDE</text>
-<text x="84" y="68" text-anchor="middle" font-size="11" fill="#e8eaed" font-weight="bold">2 conducteurs</text>
-<text x="84" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="84" y="98" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">son alimentation</text>
-<text x="84" y="113" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">et le retour des</text>
-<text x="84" y="128" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">boutons-poussoirs</text>
-<rect x="164" y="28" width="144" height="112" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
-<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#ffd23f" font-weight="bold">PUISSANCE</text>
-<text x="236" y="68" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">2 conducteurs</text>
-<text x="236" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="236" y="98" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">la phase</text>
-<text x="236" y="113" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">et le retour lampe</text>
-<text x="160" y="160" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">Deux circuits séparés : 2 + 2 = 4 fils</text>
-<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Utile quand la commande a sa propre alimentation</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Montage 4 fils du télérupteur : la commande et la puissance sont deux circuits séparés, deux conducteurs pour chacun">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le montage 4 fils</text>
+<rect x="16" y="44" width="296" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="328" y="44" width="296" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="164" y="72" text-anchor="middle" font-size="18.2" font-weight="800" fill="#2166d1">COMMANDE</text>
+<text x="476" y="72" text-anchor="middle" font-size="18.2" font-weight="800" fill="#f28c28">PUISSANCE</text>
+<g filter="url(#ombre)"><rect x="64.0" y="124.0" width="52" height="52" rx="7.3" fill="url(#nez)" stroke="#b3b9c0"/></g>
+<rect x="73.4" y="133.4" width="33.3" height="33.3" rx="5" fill="#f4f5f7" stroke="#aab1b9"/><path d="M78.6 150.0 H101.4" stroke="#c5cad0"/>
+<path d="M122 140 H236" fill="none" stroke="#d92b2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M122 160 H236" fill="none" stroke="#8d949c" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M122 160 H236" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="236" y="118" width="54" height="62" rx="8" fill="#e8eaed" stroke="#7d858e"/>
+<text x="263" y="155" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">A1</text>
+<text x="164" y="214" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">2 conducteurs</text>
+<text x="164" y="238" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">son alimentation</text>
+<text x="164" y="258" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">et le retour des BP</text>
+<rect x="350" y="118" width="54" height="62" rx="8" fill="#e8eaed" stroke="#7d858e"/>
+<text x="377" y="155" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">1-2</text>
+<path d="M404 140 H520" fill="none" stroke="#d92b2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M404 160 H520" fill="none" stroke="#f28c28" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="534" y="96" width="52" height="14" rx="4" fill="#f4f5f7" stroke="#aab1b9"/>
+<circle cx="560" cy="151" r="15" fill="#ffd23f" stroke="#e0a800" stroke-width="2"/>
+<path d="M581.0 151.0 L588.0 151.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M574.8 165.8 L579.8 170.8" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M560.0 172.0 L560.0 179.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M545.2 165.8 L540.2 170.8" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M539.0 151.0 L532.0 151.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M545.2 136.2 L540.2 131.2" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M560.0 130.0 L560.0 123.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M574.8 136.2 L579.8 131.2" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="476" y="214" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">2 conducteurs</text>
+<text x="476" y="238" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">la phase</text>
+<text x="476" y="258" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">et le retour lampe</text>
+<text x="320" y="330" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Deux circuits séparés : 2 + 2 = 4 fils</text>
+<rect x="24" y="348" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="377.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Utile quand la commande a sa propre alimentation</text>
 </svg>

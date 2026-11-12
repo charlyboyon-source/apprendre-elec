@@ -1,26 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Travail en hauteur : le pied de l'échelle s'écarte du mur d'un quart de la hauteur ; échafaudage roulant limité à 8 m en extérieur et 12 m en intérieur ; une échelle n'est pas un poste de travail">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Travailler en hauteur</text>
-<polyline points="44,44 44,150" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="34,150 136,150" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="44,54 68,150" fill="none" stroke="#e8eaed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="43,70 53,70" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="47,86 57,86" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="51,102 61,102" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="55,118 65,118" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="59,134 69,134" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="30,54 30,150" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="22" y="106" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">H</text>
-<polyline points="44,160 68,160" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="56" y="174" text-anchor="middle" font-size="10" fill="#ffd23f" font-weight="bold">H / 4</text>
-<text x="104" y="92" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">pied écarté</text>
-<text x="104" y="102" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">du quart de</text>
-<text x="104" y="112" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">la hauteur</text>
-<text x="232" y="40" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">échafaudage roulant</text>
-<polygon points="176,86 200,97 200,137 176,126" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="176,86 200,97 200,137 176,126" fill="#ff8c2b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="200,97 228,86 228,126 200,137" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="200,97 228,86 228,126 200,137" fill="#ff8c2b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="176,86 204,75 228,86 200,97" fill="#ff8c2b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="202" y="70" text-anchor="middle" font-size="11" fill="#ff8c2b" font-weight="bold">8 m</text>
-<text x="202" y="156" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">extérieur</text>
-<polygon points="246,66 270,77 270,137 246,126" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="246,66 270,77 270,137 246,126" fill="#4cd97b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="270,77 298,66 298,126 270,137" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="270,77 298,66 298,126 270,137" fill="#4cd97b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="246,66 274,55 298,66 270,77" fill="#4cd97b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="272" y="50" text-anchor="middle" font-size="11" fill="#4cd97b" font-weight="bold">12 m</text>
-<text x="272" y="156" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal">intérieur</text>
-<text x="232" y="182" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="normal">Une échelle n'est pas un poste de travail</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Travail en hauteur : le pied de l'échelle s'écarte du quart de la hauteur ; une échelle n'est pas un poste de travail. Échafaudage roulant : 8 m au plus en extérieur, 12 m en intérieur">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Travailler en hauteur</text>
+<rect x="16" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="328" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="230" y="56" width="16" height="234" fill="#d5d9de"/><rect x="30" y="290" width="270" height="8" fill="#b9bfc6"/>
+<path d="M175.0 290 L226 70 M195.0 290 L240 92" stroke="#aab1b9" stroke-width="7" stroke-linecap="round"/>
+<path d="M181 266 L200 268" stroke="#7d858e" stroke-width="4"/>
+<path d="M186 241 L205 246" stroke="#7d858e" stroke-width="4"/>
+<path d="M192 217 L210 224" stroke="#7d858e" stroke-width="4"/>
+<path d="M198 192 L215 202" stroke="#7d858e" stroke-width="4"/>
+<path d="M203 168 L220 180" stroke="#7d858e" stroke-width="4"/>
+<path d="M209 143 L225 158" stroke="#7d858e" stroke-width="4"/>
+<path d="M215 119 L230 136" stroke="#7d858e" stroke-width="4"/>
+<path d="M220 94 L235 114" stroke="#7d858e" stroke-width="4"/>
+<path d="M140 70 V290" stroke="#1c2530" stroke-width="2"/><path d="M134 70 h12 M134 290 h12" stroke="#1c2530" stroke-width="2"/>
+<text x="130" y="186.0" text-anchor="end" font-size="19.5" font-weight="800" fill="#1c2530">H</text>
+<path d="M175.0 308 H230" stroke="#b85a08" stroke-width="2.4"/><path d="M175.0 302 v12 M230 302 v12" stroke="#b85a08" stroke-width="2.4"/>
+<text x="202.5" y="330" text-anchor="middle" font-size="14.3" font-weight="800" fill="#b85a08">H / 4</text>
+<text x="26" y="214" text-anchor="start" font-size="13.0" font-weight="800" fill="#b85a08">pied écarté</text>
+<text x="26" y="232" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">du quart de</text>
+<text x="26" y="250" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">la hauteur</text>
+<rect x="380" y="96" width="140" height="10" fill="#7d858e"/>
+<path d="M386 106 V166 M514 106 V166" stroke="#aab1b9" stroke-width="5"/><path d="M386 106 L514 166 M514 106 L386 166" stroke="#c5cad0" stroke-width="2.5"/><rect x="380" y="162" width="140" height="8" fill="#7d858e"/>
+<path d="M386 166 V226 M514 166 V226" stroke="#aab1b9" stroke-width="5"/><path d="M386 166 L514 226 M514 166 L386 226" stroke="#c5cad0" stroke-width="2.5"/><rect x="380" y="222" width="140" height="8" fill="#7d858e"/>
+<path d="M386 226 V286 M514 226 V286" stroke="#aab1b9" stroke-width="5"/><path d="M386 226 L514 286 M514 226 L386 286" stroke="#c5cad0" stroke-width="2.5"/><rect x="380" y="282" width="140" height="8" fill="#7d858e"/>
+<circle cx="392" cy="296" r="9" fill="#2b3036"/>
+<circle cx="508" cy="296" r="9" fill="#2b3036"/>
+<path d="M380 96 V70 M520 96 V70 M380 76 H520" stroke="#f2a20c" stroke-width="4"/>
+<text x="572" y="130" text-anchor="middle" font-size="20.8" font-weight="800" fill="#b85a08">8 m</text>
+<text x="572" y="152" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">extérieur</text>
+<text x="572" y="206" text-anchor="middle" font-size="20.8" font-weight="800" fill="#2166d1">12 m</text>
+<text x="572" y="228" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">intérieur</text>
+<text x="450" y="318" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">échafaudage roulant</text>
+<rect x="24" y="350" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="379.0" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Une échelle n'est pas un poste de travail</text>
 </svg>

@@ -1,16 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="La tension est la pression qui pousse les électrons, en volts ; le voltmètre se branche en parallèle, aux bornes ; une prise délivre 230 V">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La tension : une pression, en volts</text>
-<polygon points="50,70 74,81 74,119 50,108" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="50,70 74,81 74,119 50,108" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="74,81 102,70 102,108 74,119" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="74,81 102,70 102,108 74,119" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="50,70 78,59 102,70 74,81" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="64" y="60" text-anchor="middle" font-size="13" fill="#e85b50" font-weight="bold">+</text>
-<text x="90" y="60" text-anchor="middle" font-size="13" fill="#5aa9e6" font-weight="bold">−</text>
-<polyline points="50,90 28,90 28,146 76,146" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
-<polyline points="102,90 124,90 124,146 100,146" fill="none" stroke="#9aa6b3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
-<circle cx="88" cy="146" r="11" fill="#24282f" stroke="#ffd23f" stroke-width="2.2"/>
-<text x="88" y="150" text-anchor="middle" font-size="11" fill="#ffd23f" font-weight="bold">V</text>
-<text x="150" y="66" text-anchor="start" font-size="9" fill="#ffd23f" font-weight="bold">voltmètre EN PARALLÈLE</text>
-<text x="150" y="79" text-anchor="start" font-size="7.8" fill="#e8eaed" font-weight="normal">branché aux bornes</text>
-<text x="150" y="104" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">U</tspan> : la tension, en <tspan fill="#ffd23f" font-weight="bold" font-size="10">volts (V)</tspan></text>
-<text x="150" y="132" text-anchor="start" font-size="14" fill="#4cd97b" font-weight="bold">230 V</text>
-<text x="196" y="132" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">à une prise</text>
-<text x="160" y="178" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">La tension pousse ; sans elle, pas de courant</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="La tension est une pression, en volts. Le voltmètre se branche en parallèle, aux bornes de l'élément. À une prise de courant : 230 V">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">La tension : une pression, en volts</text>
+<rect x="16" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="328" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<g transform="translate(110 170) scale(1.2)" filter="url(#ombre)"><rect x="-22" y="-44" width="44" height="88" rx="8" fill="#2b3036"/><rect x="-22" y="-44" width="44" height="30" rx="8" fill="#f2a20c"/><rect x="-8" y="-52" width="16" height="9" rx="2" fill="#aab1b9"/><text x="0" y="-22" text-anchor="middle" font-size="18" font-weight="800" fill="#1c2530">+</text><text x="0" y="30" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">−</text></g>
+<g transform="translate(240 170) scale(0.9)" filter="url(#ombre)"><rect x="-34" y="-50" width="68" height="100" rx="10" fill="#f2b90c" stroke="#b98a05" stroke-width="2"/><rect x="-26" y="-42" width="52" height="24" rx="3" fill="#cfe3c6"/><text x="0" y="-24" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#1c2530">1,5</text><circle cx="0" cy="12" r="15" fill="#3a3f46"/><text x="0" y="17" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">V</text><circle cx="-14" cy="40" r="4" fill="#d92b2b"/><circle cx="14" cy="40" r="4" fill="#1c2530"/></g>
+<path d="M110 112 V84 H240 V118 M110 226 V256 H240 V222" fill="none" stroke="#1c2530" stroke-width="3"/>
+<path d="M110 112 V84 H240 V118" fill="none" stroke="#d92b2b" stroke-width="3"/>
+<text x="164" y="286" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">voltmètre EN PARALLÈLE</text>
+<text x="164" y="308" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">branché aux bornes</text>
+<rect x="385.0" y="125.0" width="90" height="90" rx="12.9" fill="url(#nez)" stroke="#b3b9c0"/><circle cx="430" cy="170" r="33.3" fill="#e4e7ea" stroke="#b3b9c0"/><circle cx="416.5" cy="173.6" r="5.4" fill="#1f2428"/><circle cx="443.5" cy="173.6" r="5.4" fill="#1f2428"/><rect x="426.4" y="144.8" width="7.2" height="15.3" rx="1.5" fill="#c9a03a"/>
+<g transform="translate(560 170) scale(0.8)" filter="url(#ombre)"><rect x="-34" y="-50" width="68" height="100" rx="10" fill="#f2b90c" stroke="#b98a05" stroke-width="2"/><rect x="-26" y="-42" width="52" height="24" rx="3" fill="#cfe3c6"/><text x="0" y="-24" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#1c2530">230</text><circle cx="0" cy="12" r="15" fill="#3a3f46"/><text x="0" y="17" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">V</text><circle cx="-14" cy="40" r="4" fill="#d92b2b"/><circle cx="14" cy="40" r="4" fill="#1c2530"/></g>
+<path d="M424 176 Q470 230 548 210" fill="none" stroke="#d92b2b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M438 176 Q480 250 572 210" fill="none" stroke="#1c2530" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="476" y="286" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">230 V</text>
+<text x="476" y="308" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">à une prise</text>
+<rect x="24" y="348" width="592" height="44" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="376.0" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">La tension pousse ; sans elle, pas de courant</text>
 </svg>

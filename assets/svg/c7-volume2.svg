@@ -1,14 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Volume 2 : bande de 60 cm autour du volume 1, même hauteur de 2,25 m, matériel IPX4 minimum. Une paroi fixe limite le volume mais il la contourne">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Volume 2 : 60 cm autour du volume 1</text>
-<polygon points="46,138 76,151.75 76,167.75 46,154" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="46,138 76,151.75 76,167.75 46,154" fill="#5aa9e6" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="76,151.75 152,121.89285714285714 152,137.89285714285714 76,167.75" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="76,151.75 152,121.89285714285714 152,137.89285714285714 76,167.75" fill="#5aa9e6" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="46,138 122,108.14285714285714 152,121.89285714285714 76,151.75" fill="#5aa9e6" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polygon points="46,68 76,81.75 76,151.75 46,138" fill="#ff8c2b" fill-opacity="0.22" stroke="#ff8c2b" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/><polygon points="76,81.75 152,51.89285714285714 152,121.89285714285714 76,151.75" fill="#ff8c2b" fill-opacity="0.12" stroke="#ff8c2b" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/><polygon points="46,68 122,38.14285714285714 152,51.89285714285714 76,81.75" fill="#ff8c2b" fill-opacity="0.32" stroke="#ff8c2b" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/>
-<polygon points="76,81.75 102,93.66666666666667 102,179.66666666666669 76,167.75" fill="#ffd23f" fill-opacity="0.22" stroke="#ffd23f" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/><polygon points="102,93.66666666666667 178,63.80952380952381 178,149.8095238095238 102,179.66666666666669" fill="#ffd23f" fill-opacity="0.12" stroke="#ffd23f" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/><polygon points="76,81.75 152,51.89285714285714 178,63.80952380952381 102,93.66666666666667" fill="#ffd23f" fill-opacity="0.32" stroke="#ffd23f" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="4 3"/>
-<polyline points="76,167.75 102,179.66666666666666" fill="none" stroke="#ffd23f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="8" y="104" text-anchor="start" font-size="7.5" fill="#ff8c2b" font-weight="bold">volume 1</text>
-<text x="196" y="66" text-anchor="start" font-size="10.5" fill="#ffd23f" font-weight="bold">VOLUME 2</text>
-<text x="196" y="106" text-anchor="start" font-size="13" fill="#ffd23f" font-weight="bold">60 cm</text>
-<text x="196" y="118" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">autour du volume 1</text>
-<text x="196" y="138" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">même hauteur : 2,25 m</text>
-<text x="196" y="156" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">IPX4 minimum</text>
-<text x="160" y="194" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Une paroi fixe limite le volume, mais il la contourne</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 410" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Volume 2 : une bande de 60 cm autour du volume 1, sur la même hauteur de 2,25 m. Matériel IPX4 minimum. Une paroi fixe limite le volume, mais il la contourne">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Volume 2 : 60 cm autour du volume 1</text>
+<rect x="40" y="330" width="560" height="8" fill="#b9bfc6"/><rect x="32" y="70" width="8" height="268" fill="#d5d9de"/>
+<rect x="320" y="105" width="60" height="225" fill="#fff1c2" stroke="#e0a800" stroke-dasharray="5 4"/>
+<rect x="150" y="105" width="170" height="167" fill="#dcebff" stroke="#2166d1" stroke-dasharray="5 4"/>
+<g filter="url(#ombre)"><path d="M150 272 H320 V322 q0 8 -8 8 H158 q-8 0 -8 -8 Z" fill="#fff" stroke="#8d949c" stroke-width="2.5"/></g><path d="M158 278 H312 V314 H158 Z" fill="#cfe3f7" stroke="#aab1b9"/>
+<path d="M158 278 H312 V314 H158 Z" fill="#2166d1" opacity=".55"/>
+<path d="M296 140 H314 V272" fill="none" stroke="#8d949c" stroke-width="5"/><circle cx="290" cy="140" r="9" fill="#aab1b9"/>
+<text x="235.0" y="180.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#2166d1">volume 1</text>
+<text x="350" y="150.0" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b07a00">V2</text>
+<path d="M320 90 H380" stroke="#1c2530" stroke-width="2"/><path d="M320 84 v12 M380 84 v12" stroke="#1c2530" stroke-width="2"/>
+<text x="350" y="80.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">60 cm</text>
+<path d="M110 105.0 V330" stroke="#1c2530" stroke-width="2"/><path d="M104 105.0 h12 M104 330 h12" stroke="#1c2530" stroke-width="2"/>
+<text x="100" y="222.5" text-anchor="end" font-size="14.3" font-weight="800" fill="#1c2530">2,25 m</text>
+<text x="500" y="110" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b07a00">VOLUME 2</text>
+<text x="500" y="134" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">60 cm autour du volume 1</text>
+<text x="500" y="156" text-anchor="middle" font-size="13.7" font-weight="500" fill="#1c2530">même hauteur : 2,25 m</text>
+<text x="500" y="190" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">IPX4 minimum</text>
+<rect x="24" y="354" width="592" height="40" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="380.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Une paroi fixe limite le volume, mais il la contourne</text>
 </svg>

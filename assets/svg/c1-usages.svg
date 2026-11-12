@@ -1,16 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Les quatre usages de l'électricité : chauffer, éclairer, mettre en mouvement (force motrice), communiquer">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">L'électricité sert à quatre choses</text>
-<polygon points="30,72 54,83 54,113 30,102" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="30,72 54,83 54,113 30,102" fill="#e85b50" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="54,83 82,72 82,102 54,113" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="54,83 82,72 82,102 54,113" fill="#e85b50" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="30,72 58,61 82,72 54,83" fill="#e85b50" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="56" y="134" text-anchor="middle" font-size="9" fill="#e85b50" font-weight="bold">chauffer</text>
-<text x="56" y="146" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">radiateur, four</text>
-<polygon points="102,72 126,83 126,113 102,102" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="102,72 126,83 126,113 102,102" fill="#ffd23f" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="126,83 154,72 154,102 126,113" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="126,83 154,72 154,102 126,113" fill="#ffd23f" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="102,72 130,61 154,72 126,83" fill="#ffd23f" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="128" y="134" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">éclairer</text>
-<text x="128" y="146" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">lampes</text>
-<polygon points="174,72 198,83 198,113 174,102" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="174,72 198,83 198,113 174,102" fill="#ff8c2b" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="198,83 226,72 226,102 198,113" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="198,83 226,72 226,102 198,113" fill="#ff8c2b" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="174,72 202,61 226,72 198,83" fill="#ff8c2b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="200" y="134" text-anchor="middle" font-size="9" fill="#ff8c2b" font-weight="bold">mouvoir</text>
-<text x="200" y="146" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">force motrice</text>
-<polygon points="246,72 270,83 270,113 246,102" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="246,72 270,83 270,113 246,102" fill="#5aa9e6" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="270,83 298,72 298,102 270,113" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="270,83 298,72 298,102 270,113" fill="#5aa9e6" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="246,72 274,61 298,72 270,83" fill="#5aa9e6" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<text x="272" y="134" text-anchor="middle" font-size="9" fill="#5aa9e6" font-weight="bold">communiquer</text>
-<text x="272" y="146" text-anchor="middle" font-size="7.5" fill="#e8eaed" font-weight="normal">réseaux, box</text>
-<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Chauffage · éclairage · force motrice · communication</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Les quatre usages de l'électricité : chauffer, avec un radiateur ou un four ; éclairer, avec des lampes ; mettre en mouvement, la force motrice ; communiquer, avec les réseaux et les box">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">L'électricité sert à quatre choses</text>
+<rect x="16" y="44" width="146" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="41" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="53" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="65" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="77" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="89" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="101" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="113" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<rect x="125" y="118.0" width="10" height="64" rx="4" fill="url(#nez)" stroke="#aab1b9"/>
+<path d="M69 112.0 q5 -7 0 -13 q-5 -7 0 -13" fill="none" stroke="#e8590c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M89 112.0 q5 -7 0 -13 q-5 -7 0 -13" fill="none" stroke="#e8590c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M109 112.0 q5 -7 0 -13 q-5 -7 0 -13" fill="none" stroke="#e8590c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="89" y="246" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b85a08">chauffer</text>
+<text x="89" y="270" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">radiateur, four</text>
+<rect x="170" y="44" width="146" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<circle cx="243" cy="130" r="30" fill="#fff1c2" stroke="#ffc21a" stroke-width="2.5"/><path d="M232.5 139.0 q5.1 -15.0 10.5 0 q5.1 15.0 10.5 0" fill="none" stroke="#e8590c" stroke-width="2"/><rect x="229.5" y="157.0" width="27.0" height="19.5" rx="3" fill="url(#acierH)" stroke="#7d858e"/>
+<text x="243" y="246" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b85a08">éclairer</text>
+<text x="243" y="270" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">lampes</text>
+<rect x="324" y="44" width="146" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<g filter="url(#ombre)"><rect x="355" y="124" width="62" height="52" rx="10" fill="#5b7fb3" stroke="#2c4f8a" stroke-width="2"/></g><path d="M360 128 V172" stroke="#2c4f8a" stroke-width="2"/><path d="M370 128 V172" stroke="#2c4f8a" stroke-width="2"/><path d="M379 128 V172" stroke="#2c4f8a" stroke-width="2"/><path d="M388 128 V172" stroke="#2c4f8a" stroke-width="2"/><path d="M398 128 V172" stroke="#2c4f8a" stroke-width="2"/><path d="M407 128 V172" stroke="#2c4f8a" stroke-width="2"/><rect x="418" y="145" width="16" height="10" fill="url(#acierH)" stroke="#7d858e"/>
+<text x="397" y="246" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b85a08">mouvoir</text>
+<text x="397" y="270" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">force motrice</text>
+<rect x="478" y="44" width="146" height="250" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<g filter="url(#ombre)"><rect x="511" y="142" width="80" height="36" rx="8" fill="#2b3036"/></g><circle cx="531" cy="160" r="3.5" fill="#1e9e5a"/><circle cx="543" cy="160" r="3.5" fill="#1e9e5a"/><circle cx="555" cy="160" r="3.5" fill="#3d9be9"/>
+<path d="M565 131 A14 14 0 0 1 581 131" fill="none" stroke="#3d9be9" stroke-width="2.4"/>
+<path d="M559 126 A24 24 0 0 1 587 126" fill="none" stroke="#3d9be9" stroke-width="2.4"/>
+<text x="551" y="246" text-anchor="middle" font-size="16.9" font-weight="800" fill="#b85a08">communiquer</text>
+<text x="551" y="270" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">réseaux, box</text>
+<rect x="24" y="314" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="343.0" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">Chauffage · éclairage · force motrice · communication</text>
 </svg>

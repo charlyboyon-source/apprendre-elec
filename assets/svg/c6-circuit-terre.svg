@@ -1,42 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 206" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Circuit de terre : prise de terre, conducteur de terre 25 mm² cuivre nu, borne principale de terre avec barrette de coupure, conducteur principal de protection 16 mm², bornier de terre du tableau">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le circuit de terre, du sol au tableau</text>
-<polyline points="160,54 160,88" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="160,54 160,88" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<polyline points="160,112 160,146" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="160,112 160,146" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<rect x="40" y="30" width="240" height="24" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="160" y="45.5" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Bornier de terre du tableau → PE des circuits</text>
-<rect x="40" y="88" width="240" height="24" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
-<text x="160" y="103.5" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">Borne principale de terre · barrette de coupure</text>
-<rect x="40" y="146" width="240" height="24" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="160" y="161.5" text-anchor="middle" font-size="7.3" fill="#e8eaed" font-weight="normal">Prise de terre : boucle à fond de fouille ou piquet (2 m)</text>
-<text x="150" y="74" text-anchor="end" font-size="7.5" fill="#9aa6b3" font-weight="normal">conducteur principal de protection</text>
-<text x="170" y="75" text-anchor="start" font-size="10" fill="#ffd23f" font-weight="bold">16 mm²</text>
-<text x="150" y="132" text-anchor="end" font-size="7.5" fill="#9aa6b3" font-weight="normal">conducteur de terre</text>
-<text x="170" y="133" text-anchor="start" font-size="10" fill="#ffd23f" font-weight="bold">25 mm² cuivre nu</text>
-<polyline points="20,180 300,180" fill="none" stroke="#5a626e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="26,186 31,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="38,186 43,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="50,186 55,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="62,186 67,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="74,186 79,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="86,186 91,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="98,186 103,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="110,186 115,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="122,186 127,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="134,186 139,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="146,186 151,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="158,186 163,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="170,186 175,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="182,186 187,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="194,186 199,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="206,186 211,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="218,186 223,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="230,186 235,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="242,186 247,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="254,186 259,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="266,186 271,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="278,186 283,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="290,186 295,181" fill="none" stroke="#5a626e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="160" y="199" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Barrette ouverte : on mesure la prise de terre seule</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le circuit de terre : la prise de terre, boucle à fond de fouille ou piquet de 2 m, puis le conducteur de terre en cuivre nu 25 mm², la borne principale de terre avec sa barrette de coupure, le conducteur principal de protection 16 mm², et le bornier de terre du tableau">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le circuit de terre, du sol au tableau</text>
+<rect x="24" y="300" width="592" height="120" fill="url(#terre)"/><rect x="24" y="300" width="592" height="4" fill="#8f6f45"/>
+<path d="M60 380 H400" stroke="url(#cuivreH)" stroke-width="5"/>
+<text x="170" y="404" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5e3b17">boucle à fond de fouille</text>
+<rect x="516" y="296" width="8" height="96" fill="url(#acierH)" stroke="#7d858e"/><path d="M516 392 L520 404 L524 392" fill="#9aa1a9"/>
+<text x="510" y="404" text-anchor="end" font-size="13.0" font-weight="500" fill="#5e3b17">ou piquet (2 m)</text>
+<path d="M250 380 V220" stroke="url(#cuivreV)" stroke-width="6"/>
+<g filter="url(#ombre)"><rect x="220" y="170" width="60" height="50" rx="6" fill="#f4f5f7" stroke="#8d949c" stroke-width="2"/></g><rect x="232" y="188" width="36" height="14" rx="3" fill="#d9b25a" stroke="#8a6416"/><circle cx="242" cy="195" r="3.5" fill="url(#vis)"/><circle cx="258" cy="195" r="3.5" fill="url(#vis)"/>
+<path d="M250 170 V90 H310" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M250 170 V90 H310" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<g filter="url(#ombre)"><rect x="310" y="52" width="110" height="110" rx="12" fill="#f7f8f9" stroke="#c5cad0"/></g>
+<rect x="322" y="132" width="86" height="14" rx="3" fill="#d9b25a" stroke="#8a6416"/>
+<circle cx="332" cy="139" r="3.5" fill="url(#vis)"/>
+<circle cx="349" cy="139" r="3.5" fill="url(#vis)"/>
+<circle cx="366" cy="139" r="3.5" fill="url(#vis)"/>
+<circle cx="383" cy="139" r="3.5" fill="url(#vis)"/>
+<circle cx="400" cy="139" r="3.5" fill="url(#vis)"/>
+<path d="M338 146 V176" fill="none" stroke="#2e9e4f" stroke-width="3" stroke-linejoin="round"/><path d="M338 146 V176" fill="none" stroke="#f2d21a" stroke-width="3" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M355 146 V176" fill="none" stroke="#2e9e4f" stroke-width="3" stroke-linejoin="round"/><path d="M355 146 V176" fill="none" stroke="#f2d21a" stroke-width="3" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M372 146 V176" fill="none" stroke="#2e9e4f" stroke-width="3" stroke-linejoin="round"/><path d="M372 146 V176" fill="none" stroke="#f2d21a" stroke-width="3" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M389 146 V176" fill="none" stroke="#2e9e4f" stroke-width="3" stroke-linejoin="round"/><path d="M389 146 V176" fill="none" stroke="#f2d21a" stroke-width="3" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M420 110 L440 110" stroke="#1c2530" stroke-width="1.5"/><circle cx="420" cy="110" r="3" fill="#1c2530"/>
+<text x="446" y="104" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">bornier de terre</text>
+<text x="446" y="122" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">du tableau</text>
+<text x="446" y="140" text-anchor="start" font-size="12.3" font-weight="500" fill="#5b6673">→ PE des circuits</text>
+<path d="M282 195 L440 214" stroke="#1c2530" stroke-width="1.5"/><circle cx="282" cy="195" r="3" fill="#1c2530"/>
+<text x="446" y="208" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">borne principale</text>
+<text x="446" y="226" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">de terre · barrette</text>
+<text x="446" y="244" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">de coupure</text>
+<path d="M246 130 L190 130" stroke="#1c2530" stroke-width="1.5"/><circle cx="246" cy="130" r="3" fill="#1c2530"/>
+<text x="184" y="124" text-anchor="end" font-size="12.3" font-weight="800" fill="#1c2530">conducteur principal</text>
+<text x="184" y="142" text-anchor="end" font-size="12.3" font-weight="800" fill="#17804c">de protection 16 mm²</text>
+<path d="M246 262 L190 262" stroke="#1c2530" stroke-width="1.5"/><circle cx="246" cy="262" r="3" fill="#1c2530"/>
+<text x="184" y="256" text-anchor="end" font-size="12.3" font-weight="800" fill="#1c2530">conducteur de terre</text>
+<text x="184" y="274" text-anchor="end" font-size="12.3" font-weight="800" fill="#b85a08">25 mm² cuivre nu</text>
+<text x="446" y="268" text-anchor="start" font-size="11.7" font-weight="500" fill="#5b6673">Barrette ouverte : on mesure</text>
+<text x="446" y="284" text-anchor="start" font-size="11.7" font-weight="500" fill="#5b6673">la prise de terre seule</text>
 </svg>

@@ -1,23 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le conducteur de protection PE, vert-jaune, relie les masses du four, du lave-linge et du chauffe-eau à la prise de terre">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le PE relie toutes les masses à la terre</text>
-<text x="56" y="44" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">four</text>
-<polygon points="30,62 54,73 54,103 30,92" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="30,62 54,73 54,103 30,92" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="54,73 82,62 82,92 54,103" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="54,73 82,62 82,92 54,103" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="30,62 58,51 82,62 54,73" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="54,103 54,140" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="54,103 54,140" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<text x="150" y="44" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">lave-linge</text>
-<polygon points="124,62 148,73 148,103 124,92" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="124,62 148,73 148,103 124,92" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="148,73 176,62 176,92 148,103" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="148,73 176,62 176,92 148,103" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="124,62 152,51 176,62 148,73" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="148,103 148,140" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="148,103 148,140" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<text x="244" y="44" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">chauffe-eau</text>
-<polygon points="218,62 242,73 242,103 218,92" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="218,62 242,73 242,103 218,92" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="242,73 270,62 270,92 242,103" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="242,73 270,62 270,92 242,103" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="218,62 246,51 270,62 242,73" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="242,103 242,140" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="242,103 242,140" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<polyline points="54,140 290,140 290,150" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="54,140 290,140 290,150" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<polyline points="280,152.0 300,152.0" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="283.5,156.5 296.5,156.5" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="287,161.0 293,161.0" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="101" y="133" text-anchor="middle" font-size="8.5" fill="#4cd97b" font-weight="bold">PE vert/jaune</text>
-<text x="312" y="174" text-anchor="end" font-size="7.5" fill="#e8eaed" font-weight="normal">prise de terre</text>
-<text x="130" y="184" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Le PE ne conduit du courant qu'en cas de défaut</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le conducteur de protection PE, vert et jaune, relie les masses du four, du lave-linge et du chauffe-eau à la prise de terre. Il ne conduit du courant qu'en cas de défaut">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le PE relie toutes les masses à la terre</text>
+<g filter="url(#ombre)"><rect x="60" y="80" width="96" height="96" rx="6" fill="#2b3036"/></g><rect x="72" y="100" width="72" height="48" rx="4" fill="#3a3f46" stroke="#5b6673"/><rect x="72" y="88" width="72" height="6" rx="2" fill="#8d949c"/>
+<rect x="228.0" y="77.6" width="84" height="100.8" rx="5" fill="url(#nez)" stroke="#aab1b9"/><rect x="232.0" y="81.6" width="76" height="9" rx="2" fill="#d5d9de"/><circle cx="302.0" cy="86.1" r="3" fill="#5b6673"/><circle cx="270" cy="134" r="26.9" fill="#cfe3f7" stroke="#7d858e" stroke-width="3"/>
+<g filter="url(#ombre)"><rect x="404" y="62" width="72" height="130" rx="21.6" fill="#f4f5f7" stroke="#8d949c" stroke-width="2"/></g>
+<path d="M108 180 V250" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M108 180 V250" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M270 180 V250" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M270 180 V250" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M440 194 V250" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M440 194 V250" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M108 250 H540 V286" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M108 250 H540 V286" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<rect x="480" y="286" width="140" height="60" fill="url(#terre)"/><rect x="480" y="286" width="140" height="4" fill="#8f6f45"/>
+<rect x="536" y="280" width="8" height="58" fill="url(#acierH)" stroke="#7d858e"/><path d="M536 338 L540 350 L544 338" fill="#9aa1a9"/>
+<text x="108" y="70" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">four</text>
+<text x="270" y="70" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">lave-linge</text>
+<text x="440" y="58" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">chauffe-eau</text>
+<text x="300" y="272" text-anchor="middle" font-size="15.6" font-weight="800" fill="#17804c">PE vert/jaune</text>
+<text x="560" y="372" text-anchor="end" font-size="14.3" font-weight="800" fill="#1c2530">prise de terre</text>
+<text x="240" y="340" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Le PE ne conduit du courant qu'en cas de défaut</text>
 </svg>

@@ -1,20 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Modules en série : les tensions s'additionnent, 8 modules de 40 V donnent 320 V. Modules en parallèle : les courants s'additionnent, la tension reste la même">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Série ou parallèle : rappel du bloc 1</text>
-<rect x="12" y="28" width="144" height="128" rx="9" fill="#24282f" stroke="#e85b50" stroke-width="1.2" />
-<text x="84" y="46" text-anchor="middle" font-size="9.5" fill="#e85b50" font-weight="bold">EN SÉRIE</text>
-<text x="84" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">les tensions s'additionnent</text>
-<text x="84" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="84" y="98" text-anchor="middle" font-size="11" fill="#e85b50" font-weight="bold">8 × 40 V</text>
-<text x="84" y="113" text-anchor="middle" font-size="14" fill="#e85b50" font-weight="bold">= 320 V</text>
-<text x="84" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="84" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">le même courant partout</text>
-<rect x="164" y="28" width="144" height="128" rx="9" fill="#24282f" stroke="#5aa9e6" stroke-width="1.2" />
-<text x="236" y="46" text-anchor="middle" font-size="9.5" fill="#5aa9e6" font-weight="bold">EN PARALLÈLE</text>
-<text x="236" y="68" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="normal">les courants s'additionnent</text>
-<text x="236" y="83" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="236" y="98" text-anchor="middle" font-size="11" fill="#5aa9e6" font-weight="bold">2 × 10 A</text>
-<text x="236" y="113" text-anchor="middle" font-size="14" fill="#5aa9e6" font-weight="bold">= 20 A</text>
-<text x="236" y="128" text-anchor="middle" font-size="6" fill="#e8eaed" font-weight="normal"></text>
-<text x="236" y="143" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">la même tension pour tous</text>
-<text x="160" y="174" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Une suite de modules en série s'appelle une chaîne</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Modules en série : les tensions s'additionnent, huit fois 40 V font 320 V, le même courant partout. En parallèle : les courants s'additionnent, deux fois 10 A font 20 A, la même tension pour tous">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Série ou parallèle : rappel du bloc 1</text>
+<rect x="16" y="44" width="296" height="318" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="328" y="44" width="296" height="318" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="164" y="72" text-anchor="middle" font-size="17.6" font-weight="800" fill="#b85a08">EN SÉRIE</text>
+<text x="476" y="72" text-anchor="middle" font-size="17.6" font-weight="800" fill="#2166d1">EN PARALLÈLE</text>
+<rect x="32" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="34.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="34.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="34.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="34.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="46.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="46.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="46.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="46.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M60 119 H65" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="65" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="67.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="67.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="67.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="67.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="79.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="79.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="79.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="79.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M93 119 H98" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="98" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="100.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="100.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="100.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="100.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="112.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="112.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="112.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="112.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M126 119 H131" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="131" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="133.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="133.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="133.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="133.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="145.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="145.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="145.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="145.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M159 119 H164" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="164" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="166.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="166.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="166.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="166.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="178.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="178.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="178.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="178.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M192 119 H197" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="197" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="199.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="199.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="199.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="199.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="211.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="211.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="211.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="211.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M225 119 H230" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="230" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="232.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="232.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="232.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="232.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="244.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="244.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="244.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="244.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M258 119 H263" stroke="#d92b2b" stroke-width="2.5"/>
+<rect x="263" y="96" width="28" height="46" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="265.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="265.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="265.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="265.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="277.6" y="98.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="277.6" y="109.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="277.6" y="119.6" width="10.8" height="9.3" fill="url(#cellule)"/>
+<rect x="277.6" y="130.1" width="10.8" height="9.3" fill="url(#cellule)"/>
+<path d="M32 119 V160 H70 M292 119 V160 H254" fill="none" stroke="#1c2530" stroke-width="2.5"/>
+<text x="164" y="164" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1c2530">8 × 40 V</text>
+<text x="164" y="196" text-anchor="middle" font-size="22.1" font-weight="800" fill="#d92b2b">= 320 V</text>
+<text x="164" y="234" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">les tensions s'additionnent</text>
+<text x="164" y="256" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5b6673">le même courant partout</text>
+<rect x="402" y="108" width="40" height="58" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="404.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="404.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="404.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="404.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="404.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="416.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="416.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="416.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="416.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="416.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="428.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="428.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="428.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="428.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="428.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<path d="M422 108 V96 M422 166 V178" stroke="#1c2530" stroke-width="2.5"/>
+<rect x="482" y="108" width="40" height="58" rx="2" fill="#c3c8ce" stroke="#7d858e"/>
+<rect x="484.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="484.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="484.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="484.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="484.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="496.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="496.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="496.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="496.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="496.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="508.6" y="110.6" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="508.6" y="121.4" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="508.6" y="132.2" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="508.6" y="143.0" width="10.8" height="9.6" fill="url(#cellule)"/>
+<rect x="508.6" y="153.8" width="10.8" height="9.6" fill="url(#cellule)"/>
+<path d="M502 108 V96 M502 166 V178" stroke="#1c2530" stroke-width="2.5"/>
+<path d="M422 96 H542 M422 178 H542" stroke="#1c2530" stroke-width="2.5"/>
+<text x="476" y="214" text-anchor="middle" font-size="19.5" font-weight="800" fill="#2166d1">2 × 10 A = 20 A</text>
+<text x="476" y="246" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">les courants s'additionnent</text>
+<text x="476" y="268" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5b6673">la même tension pour tous</text>
+<rect x="24" y="376" width="592" height="36" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="400.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Une suite de modules en série s'appelle une chaîne</text>
 </svg>

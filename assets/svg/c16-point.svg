@@ -1,23 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Un point lumineux : une sortie de fils équipée d'un dispositif de connexion pour luminaire, commandée par un interrupteur placé entre 0,90 m et 1,30 m du sol">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le point lumineux et sa commande</text>
-<polyline points="30,36 290,36" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="30,36 30,166" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="30,166 290,166" fill="none" stroke="#5a626e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="150" y="36" width="24" height="10" rx="2" fill="#ffd23f"/>
-<polyline points="162,46 162,58" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="162" cy="68" r="10" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
-<polyline points="155.0,61.0 169.0,75.0" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="155.0,75.0 169.0,61.0" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="184" y="58" text-anchor="start" font-size="10" fill="#ffd23f" font-weight="bold">DCL</text>
-<text x="184" y="70" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">dispositif de connexion</text>
-<text x="184" y="80" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">pour luminaire</text>
-<rect x="30" y="92" width="8" height="26" rx="2" fill="#ff8c2b"/>
-<text x="46" y="102" text-anchor="start" font-size="9" fill="#ff8c2b" font-weight="bold">interrupteur</text>
-<text x="46" y="114" text-anchor="start" font-size="7.5" fill="#e8eaed" font-weight="normal">à l'entrée de la pièce</text>
-<polyline points="122,92 122,166" fill="none" stroke="#ffd23f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
-<polyline points="118,92 126,92" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="118,118 126,118" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="132" y="138" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">entre 0,90 m</text>
-<text x="132" y="150" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">et 1,30 m du sol</text>
-<text x="160" y="182" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">Un point lumineux = un emplacement où l'on raccorde un luminaire</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le point lumineux, équipé d'un DCL au plafond, et son interrupteur placé à l'entrée de la pièce, entre 0,90 m et 1,30 m du sol">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le point lumineux et sa commande</text>
+<rect x="24" y="52" width="592" height="10" fill="#d5d9de"/><rect x="24" y="330" width="592" height="10" fill="#b9bfc6"/>
+<rect x="60" y="110" width="78" height="220" fill="#efe6d6" stroke="#c9bfa9"/><circle cx="126" cy="222" r="4" fill="#8d949c"/>
+<rect x="150" y="190" width="60" height="43" fill="#e3f5ea" stroke="#17804c" stroke-dasharray="5 4"/>
+<g filter="url(#ombre)"><rect x="163.0" y="194.2" width="34" height="34" rx="4.8" fill="url(#nez)" stroke="#b3b9c0"/></g>
+<rect x="169.1" y="200.3" width="21.8" height="21.8" rx="5" fill="#f4f5f7" stroke="#aab1b9"/><path d="M172.5 211.2 H187.5" stroke="#c5cad0"/>
+<path d="M214 190 H232" stroke="#17804c" stroke-width="2"/>
+<text x="236" y="194.6" text-anchor="start" font-size="13.7" font-weight="800" fill="#17804c">1,30 m</text>
+<path d="M214 233 H232" stroke="#17804c" stroke-width="2"/>
+<text x="236" y="237.8" text-anchor="start" font-size="13.7" font-weight="800" fill="#17804c">0,90 m</text>
+<rect x="414" y="56" width="52" height="14" rx="4" fill="#f4f5f7" stroke="#aab1b9"/>
+<path d="M440 70 V86" stroke="#5b6673" stroke-width="2.5"/><rect x="434" y="84" width="12" height="12" rx="2" fill="#d9b25a" stroke="#8a6416"/>
+<circle cx="440" cy="111" r="15" fill="#ffd23f" stroke="#e0a800" stroke-width="2"/>
+<path d="M461.0 111.0 L468.0 111.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M454.8 125.8 L459.8 130.8" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M440.0 132.0 L440.0 139.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M425.2 125.8 L420.2 130.8" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M419.0 111.0 L412.0 111.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M425.2 96.2 L420.2 91.2" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M440.0 90.0 L440.0 83.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M454.8 96.2 L459.8 91.2" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="478" y="84" text-anchor="start" font-size="16.9" font-weight="800" fill="#1c2530">DCL</text>
+<text x="478" y="106" text-anchor="start" font-size="12.3" font-weight="500" fill="#5b6673">dispositif de connexion</text>
+<text x="478" y="126" text-anchor="start" font-size="12.3" font-weight="500" fill="#5b6673">pour luminaire</text>
+<text x="300" y="190" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">interrupteur</text>
+<text x="300" y="212" text-anchor="start" font-size="13.7" font-weight="500" fill="#1c2530">à l'entrée de la pièce</text>
+<text x="300" y="252" text-anchor="start" font-size="15.6" font-weight="800" fill="#17804c">entre 0,90 m</text>
+<text x="300" y="274" text-anchor="start" font-size="14.3" font-weight="500" fill="#17804c">et 1,30 m du sol</text>
+<rect x="24" y="354" width="592" height="48" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="373.5" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">Un point lumineux = un emplacement</text>
+<text x="320" y="394.5" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">où l'on raccorde un luminaire</text>
 </svg>

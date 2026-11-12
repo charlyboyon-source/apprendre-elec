@@ -1,34 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du contacteur heures creuses. Commande : la phase, un disjoncteur de 2 A, le contact C1-C2 du compteur, la bobine A1-A2, le neutre. Puissance : la phase, le disjoncteur de 20 A, le contact du contacteur, le chauffe-eau, le neutre">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le contacteur heures creuses : le câblage</text>
-<polyline points="24,40 296,40" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="18" y="34" text-anchor="start" font-size="7.5" fill="#e85b50" font-weight="bold">phase</text>
-<polyline points="24,166 296,166" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="18" y="180" text-anchor="start" font-size="7.5" fill="#5aa9e6" font-weight="bold">neutre</text>
-<polyline points="82,40 82,52" fill="none" stroke="#e85b50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="65" y="52" width="34" height="18" rx="3" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
-<text x="82" y="64.5" text-anchor="middle" font-size="7" fill="#ffd23f" font-weight="bold">2 A</text>
-<polyline points="82,70 82,82" fill="none" stroke="#e85b50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="82" cy="84" r="2.4" fill="#ff8c2b"/><circle cx="82" cy="104" r="2.4" fill="#ff8c2b"/>
-<polyline points="82,104 72,86" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="82,104 82,118" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="65" y="118" width="34" height="18" rx="3" fill="#24282f" stroke="#e8eaed" stroke-width="1.6"/>
-<text x="82" y="130.5" text-anchor="middle" font-size="7" fill="#e8eaed" font-weight="bold">A1 A2</text>
-<polyline points="82,136 82,166" fill="none" stroke="#5aa9e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="96" y="98" text-anchor="start" font-size="7.5" fill="#ff8c2b" font-weight="bold">C1 – C2</text>
-<text x="96" y="108" text-anchor="start" font-size="6.8" fill="#9aa6b3" font-weight="normal">compteur</text>
-<polyline points="99,127 196,127" fill="none" stroke="#9aa6b3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
-<polyline points="210,40 210,52" fill="none" stroke="#e85b50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="193" y="52" width="34" height="18" rx="3" fill="#24282f" stroke="#ffd23f" stroke-width="1.6"/>
-<text x="210" y="64.5" text-anchor="middle" font-size="7" fill="#ffd23f" font-weight="bold">20 A</text>
-<polyline points="210,70 210,82" fill="none" stroke="#e85b50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="210" cy="84" r="2.4" fill="#ffd23f"/><circle cx="210" cy="104" r="2.4" fill="#ffd23f"/>
-<polyline points="210,104 200,86" fill="none" stroke="#ffd23f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="210,104 210,118" fill="none" stroke="#ff8c2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="193" y="118" width="34" height="18" rx="3" fill="#24282f" stroke="#e85b50" stroke-width="1.6"/>
-<text x="210" y="130.5" text-anchor="middle" font-size="7" fill="#e85b50" font-weight="bold">ECS</text>
-<polyline points="210,136 210,166" fill="none" stroke="#5aa9e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="224" y="98" text-anchor="start" font-size="7.5" fill="#ffd23f" font-weight="bold">contact</text>
-<text x="232" y="131" text-anchor="start" font-size="7" fill="#e85b50" font-weight="bold">chauffe-eau</text>
-<text x="82" y="194" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">COMMANDE</text>
-<text x="210" y="194" text-anchor="middle" font-size="8" fill="#ffd23f" font-weight="bold">PUISSANCE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du contacteur heures creuses : commande, la phase passe par un disjoncteur 2 A, le contact C1-C2 du compteur, puis la bobine A1-A2 ; puissance, un disjoncteur 20 A et le contact du contacteur alimentent le chauffe-eau">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le contacteur heures creuses : le câblage</text>
+<path d="M30 76 H600" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M30 320 H600" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="30" y="66" text-anchor="start" font-size="14.3" font-weight="800" fill="#d92b2b">phase</text>
+<text x="30" y="342" text-anchor="start" font-size="14.3" font-weight="800" fill="#2166d1">neutre</text>
+<path d="M140 76 V96" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(140 96) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6"/><path d="M-5 35 L5 45 M5 35 L-5 45" stroke="#1c2530" stroke-width="2.2"/></g>
+<text x="160" y="132" text-anchor="start" font-size="14.3" font-weight="800" fill="#1c2530">2 A</text>
+<path d="M140 156 V172" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="96" y="162" width="88" height="70" rx="8" fill="#c5d93a" opacity=".35" stroke="#93a51f" stroke-dasharray="5 4"/>
+<g transform="translate(140 170) rotate(0)"><path d="M0 0 V20 M0 40 V56" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="90" y="204" text-anchor="end" font-size="13.0" font-weight="500" fill="#5b6673">compteur</text>
+<text x="180" y="212" text-anchor="start" font-size="13.7" font-weight="800" fill="#1c2530">C1 – C2</text>
+<path d="M140 226 V246" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(140 246) rotate(0)"><rect x="-14" y="0" width="28" height="36" fill="#fff" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="166" y="258" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">A1</text>
+<text x="166" y="278" text-anchor="start" font-size="13.0" font-weight="800" fill="#1c2530">A2</text>
+<path d="M140 282 V320" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M440 76 V96" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(440 96) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6"/><path d="M-5 35 L5 45 M5 35 L-5 45" stroke="#1c2530" stroke-width="2.2"/></g>
+<text x="460" y="132" text-anchor="start" font-size="14.3" font-weight="800" fill="#1c2530">20 A</text>
+<path d="M440 156 V172" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(440 172) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="462" y="206" text-anchor="start" font-size="13.7" font-weight="800" fill="#1c2530">contact</text>
+<path d="M440 232 V246" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="418" y="246" width="44" height="44" rx="10" fill="#fff" stroke="#1c2530" stroke-width="2.6"/>
+<text x="440" y="274" text-anchor="middle" font-size="13.0" font-weight="800" fill="#1c2530">ECS</text>
+<text x="474" y="274" text-anchor="start" font-size="13.0" font-weight="500" fill="#5b6673">chauffe-eau</text>
+<path d="M440 290 V320" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M168 264 H300 V202 H452" fill="none" stroke="#5b6673" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="140" y="356" text-anchor="middle" font-size="16.2" font-weight="800" fill="#2166d1">COMMANDE</text>
+<text x="440" y="356" text-anchor="middle" font-size="16.2" font-weight="800" fill="#f28c28">PUISSANCE</text>
+<text x="320" y="396" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5b6673">Le contact C1-C2 du compteur se ferme en heures creuses</text>
 </svg>

@@ -1,43 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Deux trajets du courant dans le corps : main-pied et main-main, tous deux à travers le thorax">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le trajet du courant dans le corps</text>
-<line x1="160" y1="28" x2="160" y2="176" stroke="#2d323b" stroke-width="1.2"/>
-<text x="88" y="34" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">MAIN → PIED</text>
-<line x1="54" y1="160" x2="122" y2="160" stroke="#5a626e" stroke-width="1.4" stroke-linecap="round"/>
-<line x1="82.5" y1="110" x2="79" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
-<line x1="93.5" y1="110" x2="97" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
-<line x1="79" y1="68" x2="46" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
-<line x1="97" y1="68" x2="104" y2="106" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
-<rect x="77" y="62" width="22" height="52" rx="8" fill="#566176"/>
-<circle cx="88" cy="50" r="9.5" fill="#566176"/>
-<ellipse cx="88" cy="82" rx="9.5" ry="14" fill="#e85b50" opacity="0.28"/>
-<line x1="42" y1="64" x2="42" y2="106" stroke="#e85b50" stroke-width="4" stroke-linecap="round"/>
-<text x="42" y="119" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="normal">phase</text>
-<polygon points="30,66 23,77 27,77 24,87 32,74 28,74" fill="#ffd23f"/>
-<path d="M46,86 L79,68 C86,66 90,72 91,80 L93,110 L97,154 L97,166" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<polygon points="65.0,75.6 58.3,75.8 61.2,81.1" fill="#ffd23f"/>
-<polygon points="95.6,139.0 98.0,132.8 92.1,133.3" fill="#ffd23f"/>
-<line x1="90" y1="166.0" x2="104" y2="166.0" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
-<line x1="92.5" y1="169.6" x2="101.5" y2="169.6" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
-<line x1="95" y1="173.2" x2="99" y2="173.2" stroke="#4cd97b" stroke-width="1.8" stroke-linecap="round"/>
-<text x="109" y="172" text-anchor="start" font-size="7.5" fill="#4cd97b" font-weight="normal">terre</text>
-<path d="M91,85.5 C83.0,79.5 86.5,74.0 91,78.2 C95.5,74.0 99.0,79.5 91,85.5 Z" fill="#e85b50" stroke="#1c1f24" stroke-width="0.8" stroke-linejoin="round"/>
-<text x="232" y="34" text-anchor="middle" font-size="9" fill="#e8eaed" font-weight="bold">MAIN → MAIN</text>
-<line x1="198" y1="160" x2="266" y2="160" stroke="#5a626e" stroke-width="1.4" stroke-linecap="round"/>
-<line x1="226.5" y1="110" x2="223" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
-<line x1="237.5" y1="110" x2="241" y2="154" stroke="#566176" stroke-width="9" stroke-linecap="round"/>
-<line x1="223" y1="68" x2="190" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
-<line x1="241" y1="68" x2="274" y2="86" stroke="#566176" stroke-width="7" stroke-linecap="round"/>
-<rect x="221" y="62" width="22" height="52" rx="8" fill="#566176"/>
-<circle cx="232" cy="50" r="9.5" fill="#566176"/>
-<ellipse cx="232" cy="82" rx="9.5" ry="14" fill="#e85b50" opacity="0.28"/>
-<line x1="186" y1="64" x2="186" y2="106" stroke="#e85b50" stroke-width="4" stroke-linecap="round"/>
-<text x="186" y="119" text-anchor="middle" font-size="7.5" fill="#e85b50" font-weight="normal">phase</text>
-<line x1="278" y1="64" x2="278" y2="106" stroke="#5ab0f0" stroke-width="4" stroke-linecap="round"/>
-<text x="278" y="119" text-anchor="middle" font-size="7.5" fill="#5ab0f0" font-weight="normal">neutre</text>
-<polygon points="174,66 167,77 171,77 168,87 176,74 172,74" fill="#ffd23f"/>
-<path d="M190,86 L223,68 C229,66 233,72 235,80 C236,72 238,67 241,68 L274,86" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<polygon points="209.0,75.6 202.3,75.8 205.2,81.1" fill="#ffd23f"/>
-<polygon points="261.0,78.9 257.2,73.4 254.3,78.7" fill="#ffd23f"/>
-<path d="M235,85.5 C227.0,79.5 230.5,74.0 235,78.2 C239.5,74.0 243.0,79.5 235,85.5 Z" fill="#e85b50" stroke="#1c1f24" stroke-width="0.8" stroke-linejoin="round"/>
-<text x="160" y="192" text-anchor="middle" font-size="8.5" fill="#e85b50" font-weight="normal">Dans les deux cas, le courant traverse le thorax : cœur et poumons</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Deux trajets du courant dans le corps : main vers pied, entre une phase et la terre ; main vers main, entre une phase et le neutre. Dans les deux cas, le courant traverse le thorax, le cœur et les poumons">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le trajet du courant dans le corps</text>
+<rect x="16" y="44" width="296" height="310" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="328" y="44" width="296" height="310" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="164" y="72" text-anchor="middle" font-size="18.2" font-weight="800" fill="#b85a08">MAIN → PIED</text>
+<text x="476" y="72" text-anchor="middle" font-size="18.2" font-weight="800" fill="#b85a08">MAIN → MAIN</text>
+<rect x="30" y="316" width="268" height="18" fill="url(#terre)"/><rect x="30" y="316" width="268" height="4" fill="#8f6f45"/>
+<circle cx="150" cy="121" r="18" fill="#5b6673"/><path d="M125 146 q25 -8 50 0 v88 h-10 v80 h-11 v-78 h-8 v78 h-11 v-80 h-10 z" fill="#5b6673"/>
+<path d="M170 156 L233 112" stroke="#5b6673" stroke-width="14" stroke-linecap="round"/>
+<path d="M237 108 H290" fill="none" stroke="#d92b2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="286" y="99" text-anchor="end" font-size="14.3" font-weight="800" fill="#d92b2b">phase</text>
+<path d="M233 112 L166 148 L150 200 L146 314" fill="none" stroke="#f28c28" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".85" stroke-dasharray="2 10"/>
+<text x="64" y="334" text-anchor="start" font-size="14.3" font-weight="800" fill="#17804c">terre</text>
+<circle cx="476" cy="121" r="18" fill="#5b6673"/><path d="M451 146 q25 -8 50 0 v88 h-10 v80 h-11 v-78 h-8 v78 h-11 v-80 h-10 z" fill="#5b6673"/>
+<path d="M456 156 L389 117" stroke="#5b6673" stroke-width="14" stroke-linecap="round"/>
+<path d="M496 156 L563 117" stroke="#5b6673" stroke-width="14" stroke-linecap="round"/>
+<path d="M387 117 H344" fill="none" stroke="#d92b2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M565 117 H608" fill="none" stroke="#2166d1" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="352" y="105" text-anchor="start" font-size="14.3" font-weight="800" fill="#d92b2b">phase</text>
+<text x="604" y="105" text-anchor="end" font-size="14.3" font-weight="800" fill="#2166d1">neutre</text>
+<path d="M389 117 L476 150 L563 117" fill="none" stroke="#f28c28" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".85" stroke-dasharray="2 10"/>
+<path d="M162 156 c-6 -8 -16 -2 -10 6 l10 10 l10 -10 c6 -8 -4 -14 -10 -6z" fill="#d92b2b"/>
+<path d="M484 156 c-6 -8 -16 -2 -10 6 l10 10 l10 -10 c6 -8 -4 -14 -10 -6z" fill="#d92b2b"/>
+<rect x="24" y="366" width="592" height="44" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="394.0" text-anchor="middle" font-size="13.0" font-weight="800" fill="#1c2530">Dans les deux cas, le courant traverse le thorax : cœur et poumons</text>
 </svg>

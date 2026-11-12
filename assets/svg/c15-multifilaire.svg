@@ -1,18 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Le schéma multifilaire : chaque conducteur est dessiné, avec sa couleur ; il montre le câblage réel, borne par borne">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le schéma multifilaire : tous les fils</text>
-<polyline points="30,52 150,52 150,118.0" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="24" y="47" text-anchor="start" font-size="7" fill="#e85b50" font-weight="bold">phase</text>
-<polyline points="30,72 150,72 150,128.0" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="24" y="67" text-anchor="start" font-size="7" fill="#5aa9e6" font-weight="bold">neutre</text>
-<polyline points="30,92 150,92 150,138.0" fill="none" stroke="#4cd97b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="24" y="87" text-anchor="start" font-size="7" fill="#4cd97b" font-weight="bold">protection</text>
-<rect x="126" y="118" width="48" height="34" rx="5" fill="#24282f" stroke="#e8eaed" stroke-width="1.8"/>
-<text x="150" y="139" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">prise</text>
-<text x="196" y="60" text-anchor="start" font-size="9.5" fill="#ffd23f" font-weight="bold">un trait</text>
-<text x="196" y="72" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">par conducteur</text>
-<text x="196" y="98" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">chaque fil</text>
-<text x="196" y="108" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">à sa couleur</text>
-<text x="196" y="132" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">le câblage réel,</text>
-<text x="196" y="142" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">borne par borne</text>
-<text x="160" y="176" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le schéma qu'on suit pour raccorder</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire : un trait par conducteur, chacun à sa couleur, jusqu'aux bornes de l'appareil : ici la phase, le neutre et la protection d'une prise de courant">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le schéma multifilaire : tous les fils</text>
+<g filter="url(#ombre)"><rect x="26" y="60" width="120" height="170" rx="12" fill="#f7f8f9" stroke="#c5cad0"/></g>
+<rect x="34" y="109.69999999999999" width="104" height="12.6" fill="url(#acierH)" stroke="#9aa1a9" stroke-width=".6"/>
+<g transform="translate(48 74) scale(0.35)"><rect width="70" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="70" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="20" y="30"/><use href="#borne" x="50" y="30"/><use href="#borne" x="20" y="210"/><use href="#borne" x="50" y="210"/><rect x="18" y="72" width="34" height="56" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="22" y="72" width="26" height="30" rx="4" fill="url(#manette)"/><text x="35" y="150" text-anchor="middle" font-size="17" font-weight="800" fill="#1c2530">C20</text><text x="35" y="169" text-anchor="middle" font-size="9" font-weight="500" fill="#5b6673">230 V~</text></g>
+<g transform="translate(74 74) scale(0.35)"><rect width="140" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="140" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="35" y="30"/><use href="#borne" x="105" y="30"/><use href="#borne" x="35" y="210"/><use href="#borne" x="105" y="210"/><rect x="20" y="72" width="34" height="62" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="24" y="72" width="26" height="34" rx="4" fill="url(#manette)"/><rect x="76" y="72" width="46" height="24" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="99" y="89" text-anchor="middle" font-size="13" font-weight="800" fill="#3a2a00">TEST</text><text x="99" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="#1c2530">40 A</text><text x="99" y="141" text-anchor="middle" font-size="16" font-weight="800" fill="#2166d1">30 mA</text><g transform="translate(0 -84)"><rect x="18" y="222" width="38" height="24" rx="3" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M24 232 q4 -10 8 0 t8 0" fill="none" stroke="#1c2530" stroke-width="1.4"/></g><text x="99" y="166" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">type AC</text></g>
+<text x="86" y="252" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">tableau</text>
+<g filter="url(#ombre)"><rect x="430" y="64" width="170" height="130" rx="10" fill="#f4f5f7" stroke="#aab1b9"/></g>
+<text x="515.0" y="88" text-anchor="middle" font-size="13.7" font-weight="800" fill="#5b6673">prise, vue de dos</text>
+<path d="M470 180 V194" fill="none" stroke="#d92b2b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="457" y="158" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="470" cy="171" r="7" fill="url(#vis)"/>
+<text x="470" y="148" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">L</text>
+<path d="M515 180 V194" fill="none" stroke="#2166d1" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="502" y="158" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="515" cy="171" r="7" fill="url(#vis)"/>
+<text x="515" y="148" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">N</text>
+<path d="M560 180 V194" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M560 180 V194" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<rect x="547" y="158" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="560" cy="171" r="7" fill="url(#vis)"/>
+<text x="560" y="148" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">⏚</text>
+<path d="M146 150 H470 V180" fill="none" stroke="#d92b2b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="200" y="144" text-anchor="start" font-size="14.3" font-weight="800" fill="#d92b2b">phase</text>
+<path d="M146 172 H515 V180" fill="none" stroke="#2166d1" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="200" y="166" text-anchor="start" font-size="14.3" font-weight="800" fill="#2166d1">neutre</text>
+<path d="M146 194 H560 V180" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M146 194 H560 V180" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<text x="200" y="188" text-anchor="start" font-size="14.3" font-weight="800" fill="#17804c">protection</text>
+<rect x="24" y="250" width="188" height="72" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="118" y="280" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">un trait</text>
+<text x="118" y="302" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">par conducteur</text>
+<rect x="226" y="250" width="188" height="72" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="320" y="280" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">chaque fil</text>
+<text x="320" y="302" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">à sa couleur</text>
+<rect x="428" y="250" width="188" height="72" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="522" y="280" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">le câblage réel,</text>
+<text x="522" y="302" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">borne par borne</text>
+<rect x="24" y="338" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="367.0" text-anchor="middle" font-size="16.2" font-weight="800" fill="#1c2530">Le schéma qu'on suit pour raccorder</text>
 </svg>

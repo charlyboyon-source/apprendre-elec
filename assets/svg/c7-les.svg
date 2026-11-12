@@ -1,24 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Liaison équipotentielle supplémentaire : canalisations, huisserie métallique et baignoire en métal reliées entre elles et au conducteur de protection. 2,5 mm² si protégée mécaniquement, 4 mm² sinon. Jamais de classe II">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">LES : tout au même potentiel</text>
-<text x="50" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">canalisations</text>
-<polygon points="24,60 48,71 48,99 24,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="24,60 48,71 48,99 24,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="48,71 76,60 76,88 48,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="48,71 76,60 76,88 48,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="24,60 52,49 76,60 48,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="48,99 48,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="48,99 48,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<text x="144" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">huisserie métal</text>
-<polygon points="118,60 142,71 142,99 118,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="118,60 142,71 142,99 118,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="142,71 170,60 170,88 142,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="142,71 170,60 170,88 142,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="118,60 146,49 170,60 142,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="142,99 142,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="142,99 142,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<text x="238" y="42" text-anchor="middle" font-size="8.5" fill="#e8eaed" font-weight="bold">baignoire métal</text>
-<polygon points="212,60 236,71 236,99 212,88" fill="#262c34" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="212,60 236,71 236,99 212,88" fill="#5a626e" fill-opacity="0.3" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="236,71 264,60 264,88 236,99" fill="#1f242b" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="236,71 264,60 264,88 236,99" fill="#5a626e" fill-opacity="0.16" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/><polygon points="212,60 240,49 264,60 236,71" fill="#5a626e" stroke="#5a626e" stroke-width="1.4" stroke-linejoin="round"/>
-<polyline points="236,99 236,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="236,99 236,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<polyline points="48,132 304,132" fill="none" stroke="#4cd97b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="48,132 304,132" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 5" stroke-linejoin="round"/>
-<polygon points="313,132 305,128 305,136" fill="#4cd97b"/>
-<text x="312" y="124" text-anchor="end" font-size="8" fill="#4cd97b" font-weight="bold">vers le PE</text>
-<rect x="14" y="146" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="85.0" y="162.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">2,5 mm²</tspan> si protégée</text>
-<rect x="164" y="146" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="235.0" y="162.0" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ffd23f" font-weight="bold" font-size="10">4 mm²</tspan> sinon</text>
-<text x="160" y="188" text-anchor="middle" font-size="7.8" fill="#e85b50" font-weight="normal">Jamais raccordée à un appareil de classe II</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Liaison équipotentielle supplémentaire : les canalisations métalliques, l'huisserie métallique et la baignoire en métal sont reliées au conducteur de protection. Jamais raccordée à un appareil de classe II">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">LES : tout au même potentiel</text>
+<rect x="40" y="330" width="560" height="8" fill="#b9bfc6"/><rect x="32" y="70" width="8" height="268" fill="#d5d9de"/>
+<rect x="470" y="126" width="90" height="204" fill="none" stroke="#7d858e" stroke-width="7"/>
+<g filter="url(#ombre)"><path d="M150 272 H320 V322 q0 8 -8 8 H158 q-8 0 -8 -8 Z" fill="#fff" stroke="#8d949c" stroke-width="2.5"/></g><path d="M158 278 H312 V314 H158 Z" fill="#cfe3f7" stroke="#aab1b9"/>
+<path d="M80 80 V330" stroke="#c9782f" stroke-width="10"/>
+<path d="M100 80 V330" stroke="#7d858e" stroke-width="10"/>
+<path d="M90 230 H360" fill="none" stroke="#2e9e4f" stroke-width="4" stroke-linejoin="round"/><path d="M90 230 H360" fill="none" stroke="#f2d21a" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M235 230 V272" fill="none" stroke="#2e9e4f" stroke-width="4" stroke-linejoin="round"/><path d="M235 230 V272" fill="none" stroke="#f2d21a" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M360 230 H470" fill="none" stroke="#2e9e4f" stroke-width="4" stroke-linejoin="round"/><path d="M360 230 H470" fill="none" stroke="#f2d21a" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<rect x="330" y="216" width="36" height="28" rx="4" fill="#d9b25a" stroke="#8a6416"/>
+<path d="M348 244 V330" fill="none" stroke="#2e9e4f" stroke-width="4" stroke-linejoin="round"/><path d="M348 244 V330" fill="none" stroke="#f2d21a" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<circle cx="90" cy="230" r="5" fill="#2e9e4f" stroke="#fff" stroke-width="1.5"/>
+<circle cx="235" cy="272" r="5" fill="#2e9e4f" stroke="#fff" stroke-width="1.5"/>
+<circle cx="470" cy="230" r="5" fill="#2e9e4f" stroke="#fff" stroke-width="1.5"/>
+<text x="90" y="76.0" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">canalisations</text>
+<text x="515" y="116.0" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">huisserie métal</text>
+<text x="235" y="260" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">baignoire métal</text>
+<text x="348" y="358" text-anchor="middle" font-size="13.7" font-weight="800" fill="#17804c">vers le PE</text>
+<rect x="24" y="370" width="592" height="40" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="396.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Jamais raccordée à un appareil de classe II</text>
 </svg>

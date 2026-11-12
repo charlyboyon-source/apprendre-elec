@@ -1,34 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma développé du double allumage : la phase alimente deux contacts S1 et S2 ; chacun commande son point lumineux E1 ou E2 ; les deux lampes reviennent au même neutre">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Double allumage : le schéma développé</text>
-<polyline points="30,44 190,44" fill="none" stroke="#e85b50" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="24" y="38" text-anchor="start" font-size="7.5" fill="#e85b50" font-weight="bold">phase</text>
-<polyline points="30,150 190,150" fill="none" stroke="#5aa9e6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="24" y="164" text-anchor="start" font-size="7.5" fill="#5aa9e6" font-weight="bold">neutre</text>
-<polyline points="80,44 80,66" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="80" cy="68" r="2.4" fill="#e8eaed"/><circle cx="80" cy="92" r="2.4" fill="#e8eaed"/>
-<polyline points="80,92 70,70" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="80,92 80,112" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="80" cy="122" r="9" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
-<polyline points="73.7,115.7 86.3,128.3" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="73.7,128.3 86.3,115.7" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="80,132 80,150" fill="none" stroke="#5aa9e6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="92" y="84" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="bold">S1</text>
-<text x="94" y="126" text-anchor="start" font-size="8" fill="#ffd23f" font-weight="bold">E1</text>
-<polyline points="146,44 146,66" fill="none" stroke="#e85b50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="146" cy="68" r="2.4" fill="#e8eaed"/><circle cx="146" cy="92" r="2.4" fill="#e8eaed"/>
-<polyline points="146,92 136,70" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="146,92 146,112" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="146" cy="122" r="9" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
-<polyline points="139.7,115.7 152.3,128.3" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="139.7,128.3 152.3,115.7" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="146,132 146,150" fill="none" stroke="#5aa9e6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="158" y="84" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="bold">S2</text>
-<text x="160" y="126" text-anchor="start" font-size="8" fill="#ffd23f" font-weight="bold">E2</text>
-<text x="204" y="62" text-anchor="start" font-size="9" fill="#ffd23f" font-weight="bold">1 interrupteur</text>
-<text x="204" y="73" text-anchor="start" font-size="9" fill="#ffd23f" font-weight="bold">double</text>
-<text x="204" y="98" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">2 points lumineux</text>
-<text x="204" y="110" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">indépendants</text>
-<text x="204" y="136" text-anchor="start" font-size="8" fill="#e85b50" font-weight="normal">la phase est</text>
-<text x="204" y="146" text-anchor="start" font-size="8" fill="#e85b50" font-weight="normal">commune aux deux</text>
-<text x="160" y="178" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Deux simples allumages réunis dans le même appareil</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Double allumage : un interrupteur double commande deux points lumineux indépendants E1 et E2 ; la phase est commune aux deux contacts S1 et S2">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Double allumage : le schéma développé</text>
+<path d="M30 74 H380" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M30 300 H380" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="30" y="64" text-anchor="start" font-size="14.3" font-weight="800" fill="#d92b2b">phase</text>
+<text x="30" y="322" text-anchor="start" font-size="14.3" font-weight="800" fill="#2166d1">neutre</text>
+<path d="M200 74 V104" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M120 104 H280" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="96" y="90" width="210" height="80" rx="10" fill="none" stroke="#5b6673" stroke-width="1.6" stroke-dasharray="6 4"/>
+<g transform="translate(120 104) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L0 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="142" y="140" text-anchor="start" font-size="15.6" font-weight="800" fill="#1c2530">S1</text>
+<path d="M120 164 V214" fill="none" stroke="#f28c28" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(120 230) rotate(0)"><path d="M20.0 0.0 L26.0 0.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M14.1 14.1 L18.4 18.4" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M0.0 20.0 L0.0 26.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M-14.1 14.1 L-18.4 18.4" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M-20.0 0.0 L-26.0 0.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M-14.1 -14.1 L-18.4 -18.4" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M-0.0 -20.0 L-0.0 -26.0" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><path d="M14.1 -14.1 L18.4 -18.4" stroke="#f2a20c" stroke-width="2.4" stroke-linecap="round"/><circle r="15" fill="#ffd23f" stroke="#1c2530" stroke-width="2.6"/><path d="M-10.5 -10.5 L10.5 10.5 M10.5 -10.5 L-10.5 10.5" stroke="#1c2530" stroke-width="2.4"/></g>
+<text x="148" y="236" text-anchor="start" font-size="15.6" font-weight="800" fill="#1c2530">E1</text>
+<path d="M120 245 V300" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(280 104) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="302" y="140" text-anchor="start" font-size="15.6" font-weight="800" fill="#1c2530">S2</text>
+<path d="M280 164 V214" fill="none" stroke="#f28c28" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(280 230) rotate(0)"><circle r="15" fill="#ffffff" stroke="#1c2530" stroke-width="2.6"/><path d="M-10.5 -10.5 L10.5 10.5 M10.5 -10.5 L-10.5 10.5" stroke="#1c2530" stroke-width="2.4"/></g>
+<text x="308" y="236" text-anchor="start" font-size="15.6" font-weight="800" fill="#1c2530">E2</text>
+<path d="M280 245 V300" fill="none" stroke="#2166d1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="200" y="190" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5b6673">interrupteur double</text>
+<text x="420" y="104" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">1 interrupteur</text>
+<text x="420" y="126" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">double</text>
+<text x="420" y="176" text-anchor="start" font-size="15.6" font-weight="800" fill="#1c2530">2 points lumineux</text>
+<text x="420" y="198" text-anchor="start" font-size="15.0" font-weight="500" fill="#1c2530">indépendants</text>
+<text x="420" y="248" text-anchor="start" font-size="15.0" font-weight="500" fill="#1c2530">la phase est</text>
+<text x="420" y="270" text-anchor="start" font-size="15.0" font-weight="800" fill="#d92b2b">commune aux deux</text>
+<rect x="24" y="340" width="592" height="52" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="361.5" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">Deux simples allumages réunis</text>
+<text x="320" y="382.5" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">dans le même appareil</text>
 </svg>

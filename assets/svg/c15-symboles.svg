@@ -1,34 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Quelques symboles : la lampe, un cercle barré d'une croix ; l'interrupteur, un contact ouvert ; le bouton-poussoir, un contact avec son poussoir ; la terre, trois traits">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Quelques symboles à reconnaître</text>
-<rect x="12" y="34" width="68" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<circle cx="46" cy="74" r="12" fill="#1c1f24" stroke="#ffd23f" stroke-width="2"/>
-<polyline points="37.6,65.6 54.4,82.4" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="37.6,82.4 54.4,65.6" fill="none" stroke="#ffd23f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="46" y="108" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">lampe</text>
-<text x="46" y="120" text-anchor="middle" font-size="6.8" fill="#9aa6b3" font-weight="normal">cercle + croix</text>
-<rect x="88" y="34" width="68" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<polyline points="98,76 111,76" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="111" cy="76" r="2.4" fill="#e8eaed"/><circle cx="133" cy="76" r="2.4" fill="#e8eaed"/>
-<polyline points="111,76 132,66" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="133,76 146,76" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="122" y="108" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">interrupteur</text>
-<text x="122" y="120" text-anchor="middle" font-size="6.8" fill="#9aa6b3" font-weight="normal">contact</text>
-<rect x="164" y="34" width="68" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<polyline points="174,80 187,80" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="187" cy="80" r="2.4" fill="#e8eaed"/><circle cx="209" cy="80" r="2.4" fill="#e8eaed"/>
-<polyline points="187,80 208,70" fill="none" stroke="#e8eaed" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="198.0,74 198.0,65" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="192.0,65 204.0,65" fill="none" stroke="#e8eaed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="209,80 222,80" fill="none" stroke="#e8eaed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="198" y="108" text-anchor="middle" font-size="7" fill="#e8eaed" font-weight="bold">bouton-poussoir</text>
-<text x="198" y="120" text-anchor="middle" font-size="6.8" fill="#9aa6b3" font-weight="normal">contact à poussoir</text>
-<rect x="240" y="34" width="68" height="96" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<polyline points="274,58 274,72" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="264,74.0 284,74.0" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="267.5,78.5 280.5,78.5" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="271,83.0 277,83.0" fill="none" stroke="#4cd97b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="274" y="108" text-anchor="middle" font-size="7.8" fill="#e8eaed" font-weight="bold">terre</text>
-<text x="274" y="120" text-anchor="middle" font-size="6.8" fill="#9aa6b3" font-weight="normal">trois traits</text>
-<text x="160" y="152" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Un symbole désigne une fonction, pas une marque ni une forme</text>
-<text x="160" y="168" text-anchor="middle" font-size="7.5" fill="#9aa6b3" font-weight="normal">La légende du plan donne tous les symboles utilisés</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Quatre symboles à côté de l'objet réel : la lampe, un cercle et une croix ; l'interrupteur, un contact ; le bouton-poussoir, un contact à poussoir ; la terre, trois traits">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Quelques symboles à reconnaître</text>
+<rect x="16" y="44" width="146" height="280" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<circle cx="89" cy="90" r="22" fill="#fff1c2" stroke="#ffc21a" stroke-width="2.5"/><path d="M81.3 96.6 q3.7 -11.0 7.7 0 q3.7 11.0 7.7 0" fill="none" stroke="#e8590c" stroke-width="2"/><rect x="79.1" y="109.8" width="19.8" height="14.3" rx="3" fill="url(#acierH)" stroke="#7d858e"/>
+<path d="M32 158 H146" stroke="#e3dccf" stroke-width="2"/>
+<g transform="translate(89 206) rotate(0)"><circle r="15" fill="#ffffff" stroke="#1c2530" stroke-width="2.6"/><path d="M-10.5 -10.5 L10.5 10.5 M10.5 -10.5 L-10.5 10.5" stroke="#1c2530" stroke-width="2.4"/></g>
+<text x="89" y="270" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">lampe</text>
+<text x="89" y="294" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">cercle + croix</text>
+<rect x="170" y="44" width="146" height="280" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<g filter="url(#ombre)"><rect x="214.0" y="67.0" width="58" height="58" rx="8.1" fill="url(#nez)" stroke="#b3b9c0"/></g>
+<rect x="224.4" y="77.4" width="37.1" height="37.1" rx="5" fill="#f4f5f7" stroke="#aab1b9"/><path d="M230.2 96.0 H255.8" stroke="#c5cad0"/>
+<path d="M186 158 H300" stroke="#e3dccf" stroke-width="2"/>
+<g transform="translate(243 176) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="243" y="270" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">interrupteur</text>
+<text x="243" y="294" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">contact</text>
+<rect x="324" y="44" width="146" height="280" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<g filter="url(#ombre)"><rect x="368.0" y="67.0" width="58" height="58" rx="8.1" fill="url(#nez)" stroke="#b3b9c0"/></g>
+<circle cx="397" cy="96" r="17.4" fill="#f4f5f7" stroke="#aab1b9" stroke-width="1.5"/><circle cx="397" cy="96" r="5.8" fill="none" stroke="#f2a20c" stroke-width="2"/>
+<path d="M340 158 H454" stroke="#e3dccf" stroke-width="2"/>
+<g transform="translate(401 176) rotate(0)"><path d="M0 0 V20 M0 40 V60" stroke="#1c2530" stroke-width="2.6"/><path d="M0 20 L14 40" stroke="#1c2530" stroke-width="2.6" stroke-linecap="round"/><path d="M-5 40 H5" stroke="#1c2530" stroke-width="2.6"/><path d="M7 30 H-14" stroke="#1c2530" stroke-width="2" stroke-dasharray="3 2.5"/><path d="M-14 24 V36" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="397" y="270" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">bouton-poussoir</text>
+<text x="397" y="294" text-anchor="middle" font-size="12.3" font-weight="500" fill="#5b6673">contact à poussoir</text>
+<rect x="478" y="44" width="146" height="280" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="511" y="110" width="80" height="22" rx="4" fill="url(#terre)"/><rect x="547" y="64" width="8" height="70" fill="url(#acierH)" stroke="#7d858e"/><path d="M547 134 L551 146 L555 134" fill="#9aa1a9"/>
+<path d="M551 66 Q569 56 591 62" fill="none" stroke="#2e9e4f" stroke-width="4" stroke-linejoin="round"/><path d="M551 66 Q569 56 591 62" fill="none" stroke="#f2d21a" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<path d="M494 158 H608" stroke="#e3dccf" stroke-width="2"/>
+<g transform="translate(551 182) rotate(0)"><path d="M0 0 V14 M-14 14 H14 M-9 20 H9 M-4 26 H4" stroke="#1c2530" stroke-width="2.6"/></g>
+<text x="551" y="270" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">terre</text>
+<text x="551" y="294" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">trois traits</text>
+<text x="320" y="354" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Un symbole désigne une fonction, pas une marque ni une forme</text>
+<text x="320" y="384" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">La légende du plan donne tous les symboles utilisés</text>
 </svg>

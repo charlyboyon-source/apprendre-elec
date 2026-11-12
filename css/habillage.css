@@ -23,11 +23,11 @@
 .menu-tete { color: var(--texte); }
 .menu-lien.actif { border-color: var(--accent); }
 
-/* Les illustrations actuelles sont dessinées pour un fond sombre : on les pose sur une ardoise. */
+/* Illustrations (style réaliste, fond clair) : un cadre blanc. */
 .lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image {
-  background: #1c2530; border-radius: 12px; padding: 10px;
+  background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 12px; padding: 10px;
 }
-.fiche-carte-image { border-radius: 0; border-bottom: 0; }
+.fiche-carte-image { border-radius: 0; border-width: 0 0 1px; }
 
 /* Textes clairs prévus pour le fond sombre */
 .cours-chantier p, .jeu-retour.gagne, .jeu-retour.perdu { color: var(--texte); }
@@ -56,9 +56,3 @@
 }
 .bandeau-mesure-actions button[data-v="oui"] { background: var(--jaune); color: #fff; }
 @media print { .bandeau-mesure { display: none; } }
-
-/* Images refaites en style réaliste (fond clair) : pas d'ardoise. Ajouter ici chaque module refait. */
-:is(.lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image):has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"], img[src*="/c13-"], img[src*="/c14-"])) {
-  background: var(--fond-2); border: 1px solid var(--bordure);
-}
-.fiche-carte-image:has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"], img[src*="/c13-"], img[src*="/c14-"])) { border-width: 0 0 1px; }

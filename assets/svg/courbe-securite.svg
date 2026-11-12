@@ -1,22 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 186" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Courbe de sécurité : sous la tension limite UL (25 V mouillé, 50 V sec) la durée est illimitée ; au-delà, plus la tension de contact est élevée, plus le temps maximal est court">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">La courbe de sécurité : tension de contact et temps maximal</text>
-<rect x="50" y="40" width="25" height="110" fill="#4cd97b" opacity="0.13"/>
-<polygon points="100.0,40.0 102.5,53.4 105.0,63.9 107.5,72.4 110.0,79.3 112.5,85.1 115.0,90.0 117.5,94.2 120.0,97.9 122.5,101.1 125.0,104.0 127.5,106.5 130.0,108.8 132.5,110.8 135.0,112.6 137.5,114.3 140.0,115.9 150.0,120.9 160.0,124.6 170.0,127.5 180.0,129.8 190.0,131.7 200.0,133.2 210.0,134.5 220.0,135.7 230.0,136.6 240.0,137.5 250.0,138.2 260.0,138.9 270.0,139.5 280.0,140.0 290.0,140.5 300.0,140.9 300,40" fill="#e85b50" opacity="0.10"/>
-<text x="65.5" y="95" text-anchor="middle" font-size="7.5" fill="#4cd97b" font-weight="normal" transform="rotate(-90 65.5 95)">sans danger</text>
-<line x1="50" y1="150" x2="304" y2="150" stroke="#5a626e" stroke-width="1.4"/><polygon points="308.0,150.0 303.0,147.5 303.0,152.5" fill="#5a626e"/>
-<line x1="50" y1="150" x2="50" y2="34" stroke="#5a626e" stroke-width="1.4"/><polygon points="50.0,30.0 47.5,35.0 52.5,35.0" fill="#5a626e"/>
-<text x="20" y="95" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal" transform="rotate(-90 20 95)">temps maximal admissible</text>
-<text x="46" y="47" text-anchor="end" font-size="7" fill="#9aa6b3" font-weight="normal">long</text><text x="46" y="148" text-anchor="end" font-size="7" fill="#9aa6b3" font-weight="normal">court</text>
-<text x="176" y="178" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">tension de contact (V)</text>
-<line x1="75" y1="36" x2="75" y2="153" stroke="#5ab0f0" stroke-width="1.2" stroke-dasharray="4 3"/>
-<text x="75" y="162" text-anchor="middle" font-size="8.5" fill="#5ab0f0" font-weight="bold">25 V</text>
-<line x1="100" y1="36" x2="100" y2="153" stroke="#ffd23f" stroke-width="1.2" stroke-dasharray="4 3"/>
-<text x="100" y="162" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">50 V</text>
-<text x="50" y="162" text-anchor="middle" font-size="8" fill="#9aa6b3" font-weight="normal">0</text>
-<polyline points="75.0,40.0 77.5,62.0 80.0,76.7 82.5,87.1 85.0,95.0 87.5,101.1 90.0,106.0 92.5,110.0 95.0,113.3 97.5,116.2 100.0,118.6 102.5,120.7 105.0,122.5 107.5,124.1 110.0,125.6 112.5,126.8 115.0,128.0 125.0,131.7 135.0,134.3 145.0,136.2 155.0,137.8 165.0,139.0 175.0,140.0 185.0,140.8 195.0,141.5 205.0,142.1 215.0,142.7 225.0,143.1 235.0,143.5 245.0,143.9 255.0,144.2 265.0,144.5 275.0,144.8 285.0,145.0 295.0,145.2" fill="none" stroke="#5ab0f0" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="100.0,40.0 102.5,53.4 105.0,63.9 107.5,72.4 110.0,79.3 112.5,85.1 115.0,90.0 117.5,94.2 120.0,97.9 122.5,101.1 125.0,104.0 127.5,106.5 130.0,108.8 132.5,110.8 135.0,112.6 137.5,114.3 140.0,115.9 150.0,120.9 160.0,124.6 170.0,127.5 180.0,129.8 190.0,131.7 200.0,133.2 210.0,134.5 220.0,135.7 230.0,136.6 240.0,137.5 250.0,138.2 260.0,138.9 270.0,139.5 280.0,140.0 290.0,140.5 300.0,140.9" fill="none" stroke="#ffd23f" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-<line x1="158" y1="49" x2="174" y2="49" stroke="#ffd23f" stroke-width="2.2" stroke-linecap="round"/><text x="179" y="52" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">milieu sec : UL = 50 V</text>
-<line x1="158" y1="62" x2="174" y2="62" stroke="#5ab0f0" stroke-width="2.2" stroke-linecap="round"/><text x="179" y="65" text-anchor="start" font-size="8" fill="#e8eaed" font-weight="normal">milieu mouillé : UL = 25 V</text>
-<text x="158" y="92" text-anchor="start" font-size="8" fill="#e85b50" font-weight="normal">Plus la tension de contact monte,</text>
-<text x="158" y="103" text-anchor="start" font-size="8" fill="#e85b50" font-weight="bold">plus il faut couper vite.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Courbe de sécurité : en abscisse la tension de contact, en ordonnée le temps maximal admissible. Sous la tension limite, sans danger : 50 V en milieu sec, 25 V en milieu mouillé. Plus la tension de contact monte, plus il faut couper vite">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">La courbe de sécurité</text>
+<rect x="90" y="80" width="86" height="220" fill="#e3f5ea"/>
+<path d="M90 70 V300 H580" fill="none" stroke="#1c2530" stroke-width="2.4"/>
+<polyline points="176.4,80.0 183.0,94.3 189.5,107.6 196.1,120.0 202.6,131.6 209.2,142.4 215.8,152.4 222.3,161.8 228.9,170.6 235.4,178.7 242.0,186.3 248.6,193.4 255.1,200.0 261.7,206.2 268.2,211.9 274.8,217.3 281.4,222.3 287.9,226.9 294.5,231.3 301.0,235.3 307.6,239.1 314.2,242.6 320.7,245.9 327.3,249.0 333.8,251.8 340.4,254.5 347.0,257.0 353.5,259.3 360.1,261.5 366.6,263.5 373.2,265.3 379.8,267.1 386.3,268.7 392.9,270.2 399.4,271.7 406.0,273.0 412.6,274.2 419.1,275.4 425.7,276.4 432.2,277.4 438.8,278.4 445.4,279.2 451.9,280.0 458.5,280.8 465.0,281.5 471.6,282.1 478.2,282.8 484.7,283.3 491.3,283.9 497.8,284.4 504.4,284.8 511.0,285.3 517.5,285.7 524.1,286.0 530.6,286.4 537.2,286.7 543.8,287.0 550.3,287.3 556.9,287.6 563.4,287.8 570.0,288.0" fill="none" stroke="#d92b2b" stroke-width="4"/>
+<path d="M133 300 V80" stroke="#2166d1" stroke-width="2" stroke-dasharray="6 4"/><path d="M176 300 V80" stroke="#17804c" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="133.2" y="320" text-anchor="middle" font-size="14.3" font-weight="800" fill="#2166d1">25 V</text>
+<text x="176.39999999999998" y="320" text-anchor="middle" font-size="14.3" font-weight="800" fill="#17804c">50 V</text>
+<text x="90" y="320" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">0</text>
+<text x="134" y="110" text-anchor="middle" font-size="13.7" font-weight="800" fill="#17804c">sans</text>
+<text x="134" y="130" text-anchor="middle" font-size="13.7" font-weight="800" fill="#17804c">danger</text>
+<text x="82" y="90" text-anchor="end" font-size="13.0" font-weight="500" fill="#5b6673">long</text>
+<text x="82" y="294" text-anchor="end" font-size="13.0" font-weight="500" fill="#5b6673">court</text>
+<text x="390" y="120" text-anchor="middle" font-size="14.3" font-weight="800" fill="#d92b2b">temps maximal admissible</text>
+<text x="570" y="342" text-anchor="end" font-size="13.7" font-weight="500" fill="#5b6673">tension de contact (V)</text>
+<rect x="16" y="354" width="296" height="64" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="164" y="380" text-anchor="middle" font-size="14.3" font-weight="800" fill="#17804c">milieu sec : UL = 50 V</text>
+<text x="164" y="402" text-anchor="middle" font-size="14.3" font-weight="800" fill="#2166d1">milieu mouillé : UL = 25 V</text>
+<rect x="328" y="354" width="296" height="64" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="476" y="380" text-anchor="middle" font-size="13.0" font-weight="800" fill="#1c2530">Plus la tension de contact monte,</text>
+<text x="476" y="402" text-anchor="middle" font-size="13.0" font-weight="800" fill="#1c2530">plus il faut couper vite.</text>
 </svg>

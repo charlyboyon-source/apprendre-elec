@@ -1,23 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Principe du DDR : la phase et le neutre traversent un tore ; courants égaux, rien ne se passe ; s'ils diffèrent à cause d'une fuite vers la terre, le DDR coupe. Sensibilité 30 mA pour les personnes, 300 ou 500 mA contre l'incendie">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Le DDR compare la phase et le neutre</text>
-<polyline points="20,62 300,62" fill="none" stroke="#e85b50" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="20,92 300,92" fill="none" stroke="#5aa9e6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-<ellipse cx="130" cy="77" rx="14" ry="33" fill="none" stroke="#ffd23f" stroke-width="6"/>
-<polygon points="75,62 67,58 67,66" fill="#e85b50"/>
-<polygon points="65,92 73,88 73,96" fill="#5aa9e6"/>
-<text x="60" y="53" text-anchor="middle" font-size="8" fill="#e85b50" font-weight="bold">I phase</text>
-<text x="60" y="107" text-anchor="middle" font-size="8" fill="#5aa9e6" font-weight="bold">I neutre</text>
-<text x="130" y="124" text-anchor="middle" font-size="8.5" fill="#ffd23f" font-weight="bold">tore</text>
-<polyline points="252,62 252,112" fill="none" stroke="#ff8c2b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4"/>
-<polygon points="252,119 248,111 256,111" fill="#ff8c2b"/>
-<text x="244" y="112" text-anchor="end" font-size="7.5" fill="#ff8c2b" font-weight="normal">fuite vers la terre</text>
-<text x="252" y="53" text-anchor="middle" font-size="7.5" fill="#ff8c2b" font-weight="bold">défaut</text>
-<rect x="14" y="134" width="142" height="24" rx="9" fill="#24282f" stroke="#4cd97b" stroke-width="1.2" />
-<text x="85" y="149.5" text-anchor="middle" font-size="8" fill="#4cd97b" font-weight="normal">égaux : rien ne se passe</text>
-<rect x="164" y="134" width="142" height="24" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
-<text x="235" y="149.5" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">différents : il coupe</text>
-<rect x="14" y="166" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="85" y="183" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#4cd97b" font-weight="bold" font-size="10">30 mA</tspan> : les personnes</text>
-<rect x="164" y="166" width="142" height="26" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<text x="235" y="183" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="normal"><tspan fill="#ff8c2b" font-weight="bold" font-size="10">300 / 500 mA</tspan> : incendie</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Vue en coupe d'un dispositif différentiel : la phase et le neutre traversent un tore. Si leurs courants sont égaux, rien ne se passe ; s'ils diffèrent, à cause d'une fuite vers la terre, la bobine de détection fait déclencher l'appareil">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Le DDR compare la phase et le neutre</text>
+<g filter="url(#ombre)"><rect x="170" y="56" width="300" height="250" rx="12" fill="#eef0f2" stroke="#b3b9c0" stroke-width="2"/></g><rect x="180" y="66" width="280" height="230" rx="8" fill="#fbfbfc" stroke="#d5d9de"/>
+<ellipse cx="320" cy="180" rx="74" ry="64" fill="none" stroke="#7d858e" stroke-width="22"/><ellipse cx="320" cy="180" rx="74" ry="64" fill="none" stroke="#aab1b9" stroke-width="14"/>
+<rect x="245" y="146" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(290 250 158)"/>
+<rect x="249" y="139" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(297 254 151)"/>
+<rect x="254" y="132" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(304 259 144)"/>
+<rect x="259" y="126" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(311 264 138)"/>
+<rect x="265" y="120" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(318 270 132)"/>
+<rect x="273" y="116" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(325 278 128)"/>
+<rect x="280" y="111" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(332 285 123)"/>
+<rect x="288" y="108" width="10" height="24" rx="4" fill="url(#cuivreV)" transform="rotate(339 293 120)"/>
+<path d="M300 40 V330" fill="none" stroke="#d92b2b" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M340 40 V330" fill="none" stroke="#2166d1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M248 150 H214 V250" fill="none" stroke="url(#cuivreH)" stroke-width="3"/><rect x="198" y="246" width="32" height="32" rx="4" fill="#d5d9de" stroke="#7d858e"/>
+<text x="214" y="300" text-anchor="middle" font-size="12.3" font-weight="500" fill="#5b6673">relais</text>
+<text x="286" y="48" text-anchor="end" font-size="14.3" font-weight="800" fill="#d92b2b">I phase</text>
+<text x="354" y="48" text-anchor="start" font-size="14.3" font-weight="800" fill="#2166d1">I neutre</text>
+<path d="M398 180 H486" stroke="#1c2530" stroke-width="1.5"/><circle cx="398" cy="180" r="3" fill="#1c2530"/>
+<text x="492" y="186" text-anchor="start" font-size="15.0" font-weight="800" fill="#1c2530">tore</text>
+<path d="M224 230 H150" stroke="#1c2530" stroke-width="1.5"/><circle cx="224" cy="230" r="3" fill="#1c2530"/>
+<text x="144" y="224" text-anchor="end" font-size="13.0" font-weight="800" fill="#1c2530">bobine de</text>
+<text x="144" y="242" text-anchor="end" font-size="13.0" font-weight="800" fill="#1c2530">détection</text>
+<text x="450" y="290" text-anchor="end" font-size="12.3" font-weight="500" fill="#5b6673">vue en coupe</text>
+<rect x="16" y="322" width="296" height="62" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="164" y="348" text-anchor="middle" font-size="14.3" font-weight="800" fill="#17804c">égaux :</text>
+<text x="164" y="370" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">rien ne se passe</text>
+<rect x="328" y="322" width="296" height="62" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="476" y="348" text-anchor="middle" font-size="13.0" font-weight="800" fill="#d92b2b">différents (fuite vers la terre) :</text>
+<text x="476" y="370" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">il coupe</text>
+<text x="320" y="414" text-anchor="middle" font-size="12.3" font-weight="500" fill="#5b6673">Sensibilité IΔn : 30 mA pour les personnes ; 300/500 mA contre l'incendie</text>
 </svg>

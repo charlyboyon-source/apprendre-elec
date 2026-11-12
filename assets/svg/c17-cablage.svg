@@ -1,21 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du va-et-vient : au premier interrupteur, la phase et deux navettes ; au second, deux navettes et le retour lampe ; à la lampe, le retour, le neutre et le conducteur de protection">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Va-et-vient : combien de fils ?</text>
-<rect x="12" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
-<text x="57" y="47" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">VA-ET-VIENT 1</text>
-<text x="57" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
-<text x="57" y="96" text-anchor="middle" font-size="8" fill="#e85b50" font-weight="bold">1 phase</text>
-<text x="57" y="110" text-anchor="middle" font-size="8" fill="#b48cf2" font-weight="bold">2 navettes</text>
-<rect x="115" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ff8c2b" stroke-width="1.2" />
-<text x="160" y="47" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">VA-ET-VIENT 2</text>
-<text x="160" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
-<text x="160" y="96" text-anchor="middle" font-size="8" fill="#b48cf2" font-weight="bold">2 navettes</text>
-<text x="160" y="110" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">1 retour lampe</text>
-<rect x="218" y="30" width="90" height="112" rx="9" fill="#24282f" stroke="#ffd23f" stroke-width="1.2" />
-<text x="263" y="47" text-anchor="middle" font-size="8" fill="#ffd23f" font-weight="bold">LAMPE</text>
-<text x="263" y="74" text-anchor="middle" font-size="15" fill="#e8eaed" font-weight="bold">3 fils</text>
-<text x="263" y="96" text-anchor="middle" font-size="8" fill="#ff8c2b" font-weight="bold">1 retour lampe</text>
-<text x="263" y="110" text-anchor="middle" font-size="8" fill="#5aa9e6" font-weight="bold">1 neutre</text>
-<text x="263" y="124" text-anchor="middle" font-size="8" fill="#4cd97b" font-weight="bold">1 protection</text>
-<text x="160" y="162" text-anchor="middle" font-size="8" fill="#e8eaed" font-weight="bold">Phase sur le commun du 1er, retour lampe sur le commun du 2e</text>
-<text x="160" y="180" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le neutre va directement à la lampe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Câblage du va-et-vient : au premier, la phase sur le commun et les deux navettes ; au second, les deux navettes et le retour lampe sur le commun ; à la lampe, le retour lampe, le neutre et la protection">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Va-et-vient : combien de fils ?</text>
+<rect x="16" y="44" width="196" height="316" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="114" y="72" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">VA-ET-VIENT 1</text>
+<g filter="url(#ombre)"><rect x="34" y="86" width="160" height="90" rx="10" fill="#f4f5f7" stroke="#aab1b9"/></g>
+<path d="M64 162 V206" fill="none" stroke="#d92b2b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="51" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="64" cy="153" r="7" fill="url(#vis)"/>
+<text x="64" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">L</text>
+<path d="M114 162 V206" fill="none" stroke="#7b4fc9" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="101" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="114" cy="153" r="7" fill="url(#vis)"/>
+<text x="114" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">1</text>
+<path d="M164 162 V206" fill="none" stroke="#7b4fc9" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="151" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="164" cy="153" r="7" fill="url(#vis)"/>
+<text x="164" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">2</text>
+<text x="114" y="240" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1c2530">3 fils</text>
+<text x="114" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#d92b2b">1 phase</text>
+<text x="114" y="290" text-anchor="middle" font-size="14.3" font-weight="500" fill="#7b4fc9">2 navettes</text>
+<rect x="220" y="44" width="196" height="316" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="318" y="72" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">VA-ET-VIENT 2</text>
+<g filter="url(#ombre)"><rect x="238" y="86" width="160" height="90" rx="10" fill="#f4f5f7" stroke="#aab1b9"/></g>
+<path d="M268 162 V206" fill="none" stroke="#7b4fc9" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="255" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="268" cy="153" r="7" fill="url(#vis)"/>
+<text x="268" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">1</text>
+<path d="M318 162 V206" fill="none" stroke="#7b4fc9" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="305" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="318" cy="153" r="7" fill="url(#vis)"/>
+<text x="318" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">2</text>
+<path d="M368 162 V206" fill="none" stroke="#f28c28" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="355" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="368" cy="153" r="7" fill="url(#vis)"/>
+<text x="368" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">L</text>
+<text x="318" y="240" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1c2530">3 fils</text>
+<text x="318" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#7b4fc9">2 navettes</text>
+<text x="318" y="290" text-anchor="middle" font-size="14.3" font-weight="500" fill="#f28c28">1 retour lampe</text>
+<rect x="424" y="44" width="196" height="316" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<text x="522" y="72" text-anchor="middle" font-size="16.2" font-weight="800" fill="#b85a08">LAMPE</text>
+<g filter="url(#ombre)"><rect x="442" y="86" width="160" height="90" rx="10" fill="#f4f5f7" stroke="#aab1b9"/></g>
+<path d="M472 162 V206" fill="none" stroke="#f28c28" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="459" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="472" cy="153" r="7" fill="url(#vis)"/>
+<text x="472" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">L</text>
+<path d="M522 162 V206" fill="none" stroke="#2166d1" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="509" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="522" cy="153" r="7" fill="url(#vis)"/>
+<text x="522" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">N</text>
+<path d="M572 162 V206" fill="none" stroke="#2e9e4f" stroke-width="6" stroke-linejoin="round"/><path d="M572 162 V206" fill="none" stroke="#f2d21a" stroke-width="6" stroke-dasharray="6 6" stroke-linejoin="round"/>
+<rect x="559" y="140" width="26" height="26" rx="4" fill="#d9b25a" stroke="#8a6416"/><circle cx="572" cy="153" r="7" fill="url(#vis)"/>
+<text x="572" y="130" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">⏚</text>
+<text x="522" y="240" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1c2530">3 fils</text>
+<text x="522" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#f28c28">1 retour lampe</text>
+<text x="522" y="290" text-anchor="middle" font-size="14.3" font-weight="500" fill="#2166d1">1 neutre</text>
+<text x="522" y="312" text-anchor="middle" font-size="14.3" font-weight="500" fill="#17804c">1 protection</text>
+<text x="320" y="390" text-anchor="middle" font-size="13.7" font-weight="800" fill="#1c2530">Phase sur le commun du 1er, retour lampe sur le commun du 2e</text>
+<text x="320" y="418" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">Le neutre va directement à la lampe</text>
 </svg>
