@@ -36,7 +36,9 @@
           <label class="calc-champ"><span>Section des prises</span><select name="sectionPrises"><option value="2.5" selected>2,5 mm² (20 A, 12 prises max)</option><option value="1.5">1,5 mm² (16 A, 8 prises max)</option></select></label></div>
         <h2>Les circuits spécialisés</h2>
         <div class="config-cbs"><label class="config-cb"><input type="checkbox" name="cuisine" checked> Prises de la cuisine</label><label class="config-cb"><input type="checkbox" name="plaque" checked> Plaque de cuisson</label><label class="config-cb"><input type="checkbox" name="four" checked> Four</label><label class="config-cb"><input type="checkbox" name="lavelinge" checked> Lave-linge</label><label class="config-cb"><input type="checkbox" name="lavevaisselle" checked> Lave-vaisselle</label><label class="config-cb"><input type="checkbox" name="sechelinge"> Sèche-linge</label><label class="config-cb"><input type="checkbox" name="chauffeeau" checked> Chauffe-eau</label><label class="config-cb"><input type="checkbox" name="vmc" checked> VMC</label><label class="config-cb"><input type="checkbox" name="recharge"> Prise renforcée pour véhicule</label></div>
-        <div class="calc-champs"><label class="calc-champ"><span>Calibre de l'AGCP (facultatif)</span><span class="calc-entree"><input name="agcp" inputmode="numeric" value=""></span></label></div>
+        <h2>Le disjoncteur de branchement (AGCP)</h2>
+        <div class="calc-champs"><label class="calc-champ"><span>Réglage de l'AGCP</span><select name="agcp"><option value="">Je ne le connais pas</option><option value="15">15 A (abonnement 3 kVA)</option><option value="30">30 A (abonnement 6 kVA)</option><option value="45">45 A (abonnement 9 kVA)</option><option value="60">60 A (abonnement 12 kVA)</option></select></label>
+          <label class="calc-champ"><span>Calibre des différentiels</span><select name="methode"><option value="aval">Aval (d'après les disjoncteurs)</option><option value="amont">Amont (d'après l'AGCP)</option></select></label></div>
       </form>
       <section class="config-resultat" aria-live="polite"></section>
     </div>

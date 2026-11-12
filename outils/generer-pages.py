@@ -261,7 +261,9 @@ page("configurateur.html", "Configurateur de tableau électrique : composer son 
           <label class="calc-champ"><span>Section des prises</span><select name="sectionPrises"><option value="2.5" selected>2,5 mm² (20 A, 12 prises max)</option><option value="1.5">1,5 mm² (16 A, 8 prises max)</option></select></label></div>
         <h2>Les circuits spécialisés</h2>
         <div class="config-cbs">{cb("cuisine","Prises de la cuisine",True)}{cb("plaque","Plaque de cuisson",True)}{cb("four","Four",True)}{cb("lavelinge","Lave-linge",True)}{cb("lavevaisselle","Lave-vaisselle",True)}{cb("sechelinge","Sèche-linge")}{cb("chauffeeau","Chauffe-eau",True)}{cb("vmc","VMC",True)}{cb("recharge","Prise renforcée pour véhicule")}</div>
-        <div class="calc-champs">{ch("agcp","Calibre de l'AGCP (facultatif)","")}</div>
+        <h2>Le disjoncteur de branchement (AGCP)</h2>
+        <div class="calc-champs"><label class="calc-champ"><span>Réglage de l'AGCP</span><select name="agcp"><option value="">Je ne le connais pas</option><option value="15">15 A (abonnement 3 kVA)</option><option value="30">30 A (abonnement 6 kVA)</option><option value="45">45 A (abonnement 9 kVA)</option><option value="60">60 A (abonnement 12 kVA)</option></select></label>
+          <label class="calc-champ"><span>Calibre des différentiels</span><select name="methode"><option value="aval">Aval (d'après les disjoncteurs)</option><option value="amont">Amont (d'après l'AGCP)</option></select></label></div>
       </form>
       <section class="config-resultat" aria-live="polite"></section>
     </div>

@@ -19,6 +19,7 @@ const val = (n) => form.elements[n];
 const entier = (n) => Math.max(0, Math.floor(Number(String(val(n).value).replace(",", ".")) || 0));
 const coche = (n) => val(n).checked;
 const maison = () => val("logement").value === "maison";
+const methodeAmont = () => Number(val("agcp").value) > 0 && val("methode").value === "amont";
 
 function circuits() {
   const liste = [];
@@ -78,7 +79,9 @@ function repartir(liste) {
     (tri[0] || ajouterAC()).circ.push(c);
   }
   for (const c of liste.filter((x) => x.ve)) ids.push({ type: "A", circ: [c], ve: true });
-  for (const i of ids) i.cal = CAL_ID.find((v) => v >= besoin(i));
+  const agcp = Number(val("agcp").value) || 0;
+  const amont = agcp > 0 && val("methode").value === "amont";
+  for (const i of ids) i.cal = amont ? CAL_ID.find((v) => v >= agcp) : CAL_ID.find((v) => v >= besoin(i));
   return ids.filter((i) => i.circ.length || i.type === "A" || i.type === "AC");
 }
 
@@ -106,7 +109,9 @@ function rangees(ids) {
 
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 function dessin(r) {
-  return `<div class="tab-coffret">${r.map((row, k) => {
+  const agcp = Number(val("agcp").value) || 0;
+  const tete = agcp ? `<div class="tab-agcp"><div class="tab-agcp-app"><b>AGCP</b><span>${agcp} A</span></div><p>Disjoncteur de branchement réglé à <b>${agcp} A</b> (${agcp / 5} kVA), en amont du tableau</p></div>` : "";
+  return `${tete}<div class="tab-coffret">${r.map((row, k) => {
     const cases = [];
     if (row.id) {
       cases.push(`<div class="tab-mod tab-id t-${row.id.type}" style="grid-column: span ${MODULES_ID * 2}" title="Interrupteur différentiel ${row.id.cal} A, 30 mA, type ${row.id.type}"><b>${row.id.cal} A</b><small>30 mA</small><small>type ${row.id.type}</small></div>`);
@@ -126,7 +131,7 @@ function calculer() {
   const total = r.length * MODULES_RANGEE, libres = r.reduce((s, x) => s + x.libres, 0);
   const nbSpe = liste.filter((c) => c.spe).length, plaque = coche("plaque");
   const autres20 = ["four", "lavevaisselle", "lavelinge", "sechelinge"].filter(coche).length;
-  const agcp = Number(String(val("agcp").value).replace(",", ".")) || 0;
+  const agcp = Number(val("agcp").value) || 0;
   const alertes = [];
   if (!(plaque && autres20 >= 3)) alertes.push("Un logement compte au moins 4 circuits spécialisés : la plaque de cuisson et au moins trois autres en 2,5 mm² sous 20 A, parmi le four, le lave-vaisselle, le lave-linge et le sèche-linge.");
   if (coche("recharge")) alertes.push("Recharge : vérifie dans la notice le type de différentiel exigé (type A au minimum, parfois type B). Une borne de plus de 3,7 kW demande la qualification IRVE.");
@@ -153,15 +158,22 @@ function calculer() {
     <table class="config-table"><thead><tr><th>Circuit</th><th>Section</th><th>Disjoncteur</th><th>Différentiel</th></tr></thead><tbody>
       ${ids.map((i, k) => i.circ.map((c) => `<tr><td>${esc(c.nom)}<small>${esc(c.detail)}</small></td><td>${c.sec} mm²</td><td>${c.cal} A</td><td>n° ${k + 1} · ${i.cal} A type ${i.type}</td></tr>`).join("")).join("")}
     </tbody></table>
-    <h3>Le calibre des différentiels (méthode aval)</h3>
+    <h3>Le calibre des différentiels (${methodeAmont() ? "méthode amont" : "méthode aval"})</h3>
     <ul class="config-calibres">${ids.map((i, k) => {
       const div = i.circ.filter((c) => !c.plein).map((c) => c.cal), pl = i.circ.filter((c) => c.plein).map((c) => c.cal);
       const b = besoin(i);
       return `<li>n° ${k + 1}, type ${i.type}${i.ve ? " (dédié à la recharge)" : ""} : ${div.length ? `(${div.join(" + ")}) / 2` : "0"}${pl.length ? ` + ${pl.join(" + ")} en entier` : ""} = ${Math.round(b * 10) / 10} A → <b>${i.cal} A</b></li>`;
     }).join("")}</ul>
-    ${agcp > 0 ? `<p class="config-note">Méthode amont, avec ton AGCP de ${agcp} A : chaque interrupteur différentiel doit faire au moins ${CAL_ID.find((v) => v >= agcp) || "plus de 63"} A. L'une ou l'autre méthode suffit.</p>` : ""}`;
+    ${methodeAmont()
+      ? `<p class="config-note">Méthode amont : chaque interrupteur différentiel fait au moins le calibre de l'AGCP (${agcp} A), donc <b>${CAL_ID.find((v) => v >= agcp)} A</b>. Les calculs ci-dessus montrent ce que donnerait la méthode aval. L'une ou l'autre méthode suffit.</p>`
+      : agcp > 0 ? `<p class="config-note">Avec la méthode amont, chaque interrupteur différentiel ferait au moins ${CAL_ID.find((v) => v >= agcp)} A (AGCP de ${agcp} A). L'une ou l'autre méthode suffit.</p>` : ""}`;
 }
 
+form.addEventListener("change", (ev) => {
+  if (ev.target.name === "agcp") val("methode").value = ev.target.value ? "amont" : "aval";
+  val("methode").disabled = !val("agcp").value;
+});
+val("methode").disabled = !val("agcp").value;
 form.addEventListener("input", calculer);
 form.addEventListener("change", calculer);
 calculer();

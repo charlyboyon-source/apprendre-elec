@@ -257,3 +257,9 @@
 .config-note { font-size: 0.85rem; color: var(--texte-2); }
 .config-vide { color: var(--texte-2); }
 @media (max-width: 900px) { .config { grid-template-columns: 1fr; } .config-form { position: static; } }
+.tab-agcp { display: flex; align-items: center; gap: 12px; margin: 0 0 10px; padding: 10px 12px; border-radius: 12px; background: #f6f2ea; border: 1px solid var(--bordure); }
+.tab-agcp-app { flex: none; width: 74px; height: 70px; border-radius: 8px; background: #fff; border: 1px solid #b3b9c0; border-top: 5px solid #3a3f46; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; }
+.tab-agcp-app b { font-size: 0.78rem; } .tab-agcp-app span { font-size: 1.05rem; font-weight: 800; }
+.tab-agcp p { margin: 0; font-size: 0.88rem; }
+.config-form, .config-form .calc-champs, .config-form .calc-champ { min-width: 0; }
+.config-form select { max-width: 100%; min-width: 0; width: 100%; }
