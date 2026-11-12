@@ -17,3 +17,4 @@
 .sc-verif ul { margin: 0; padding-left: 4px; list-style: none; line-height: 1.5; font-size: 0.9rem; }
 .sc-verif li.ok { color: #14703f; } .sc-verif li.ko { color: #b3261e; }
 .sc-verif .im-plein { max-width: 300px; }
+.sc-dev { display: block; width: 100%; max-width: 760px; height: auto; margin: 10px auto 0; border: 1px solid #e3d9b8; border-radius: 10px; }

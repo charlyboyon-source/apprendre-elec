@@ -6,6 +6,7 @@ import { crediterElectrons } from "../../js/progression.js";
 import { brancherBoutonSons } from "../../js/audio.js";
 import { DEFS, vis, conducteur, texte } from "../immersif/commun.js";
 import { sons } from "../immersif/sons.js";
+import { DEVELOPPES } from "./developpes.js";
 
 const racine = document.querySelector(".sc");
 const COULEURS = [
@@ -83,6 +84,71 @@ const COMPOSANTS = {
       ${texte(c.x, c.y + 160, c.nom, 13, 800, "#3b3f44")}` };
   },
 };
+Object.assign(COMPOSANTS, {
+  prise(c) {
+    const b = [["L", -40], ["N", 0], ["PE", 40]].map(([k, dx]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + 92, label: `${c.nom}, borne ${k}` }));
+    return { bornes: b, dessin: (s) => {
+      const allume = s.resultat && s.resultat.lampes[c.id];
+      return `<rect x="${c.x - 50}" y="${c.y - 50}" width="100" height="100" rx="14" fill="url(#g-blanc)" stroke="#c8c1b4" stroke-width="2"/>
+        <circle cx="${c.x}" cy="${c.y}" r="34" fill="#f1efea" stroke="#c4bdb0"/><circle cx="${c.x - 13}" cy="${c.y + 3}" r="5" fill="#333"/><circle cx="${c.x + 13}" cy="${c.y + 3}" r="5" fill="#333"/>
+        <path d="M${c.x + 50} ${c.y + 10} C ${c.x + 90} ${c.y + 20} ${c.x + 110} ${c.y - 10} ${c.x + 130} ${c.y - 30}" stroke="#ddd" stroke-width="5" fill="none"/>
+        ${allume ? `<circle cx="${c.x + 140}" cy="${c.y - 50}" r="60" fill="url(#g-lumiere)"/>` : ""}
+        <path d="M${c.x + 120} ${c.y - 30} h40 l-8 -30 h-24 z" fill="${allume ? "#ffe680" : "#e8e1d0"}" stroke="#b9a988"/>
+        ${texte(c.x, c.y - 62, c.nom, 13, 800, "#3b3f44")}${texte(c.x + 140, c.y - 72, "lampe de chevet branchée", 10, 600, "#555")}
+        <rect x="${c.x - 62}" y="${c.y + 66}" width="124" height="44" rx="8" fill="#fbfbfa" stroke="#b5b8b8"/>
+        ${texte(c.x - 40, c.y + 124, "L", 11, 800)}${texte(c.x, c.y + 124, "N", 11, 800)}${texte(c.x + 40, c.y + 124, "⏚", 12, 800)}`;
+    } };
+  },
+  chauffeEau(c) {
+    const b = [["L", -40], ["N", 0], ["PE", 40]].map(([k, dx]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + 92, label: `${c.nom}, borne ${k}` }));
+    return { bornes: b, dessin: (s) => {
+      const chauffe = s.resultat && s.resultat.lampes[c.id];
+      return `<rect x="${c.x - 50}" y="${c.y - 70}" width="100" height="140" rx="40" fill="#f4f4f2" stroke="#b3b8bd" stroke-width="2"/>
+        <circle cx="${c.x}" cy="${c.y + 30}" r="8" fill="${chauffe ? "#ff6a3d" : "#9aa1a8"}"/>${texte(c.x, c.y - 10, chauffe ? "chauffe" : "à l'arrêt", 12, 800, chauffe ? "#c8322a" : "#7d858e")}
+        ${texte(c.x, c.y - 82, c.nom, 13, 800, "#3b3f44")}
+        <rect x="${c.x - 62}" y="${c.y + 70}" width="124" height="40" rx="8" fill="#fbfbfa" stroke="#b5b8b8"/>
+        ${texte(c.x - 40, c.y + 124, "L", 11, 800)}${texte(c.x, c.y + 124, "N", 11, 800)}${texte(c.x + 40, c.y + 124, "⏚", 12, 800)}`;
+    } };
+  },
+  minuterie(c) {
+    const b = [["L", -26, -110], ["N", 26, -110], ["BP", -26, 110], ["S", 26, 110]].map(([k, dx, dy]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + dy, label: `${c.nom}, borne ${k === "S" ? "sortie lampe" : k === "BP" ? "retour boutons" : k}` }));
+    return { bornes: b, dessin: (s) => `
+      <rect x="${c.x - 60}" y="${c.y - 130}" width="120" height="260" rx="10" fill="url(#g-module)" stroke="#b5b8b8" stroke-width="2"/>
+      ${texte(c.x, c.y - 56, "MIN", 20, 800)}${texte(c.x, c.y - 34, "minuterie", 11, 700, "#555")}
+      <circle cx="${c.x}" cy="${c.y + 14}" r="22" fill="#e9eef6" stroke="#7d8288"/><path d="M${c.x} ${c.y + 14} L${c.x + 12} ${c.y}" stroke="#333" stroke-width="3"/>
+      <circle cx="${c.x}" cy="${c.y + 52}" r="6" fill="${s.contacts[c.id] ? "#3d9a3d" : "#555"}"/>
+      ${texte(c.x - 26, c.y - 82, "L", 11, 800, "#555")}${texte(c.x + 26, c.y - 82, "N", 11, 800, "#555")}${texte(c.x - 26, c.y + 92, "BP", 11, 800, "#555")}${texte(c.x + 26, c.y + 92, "lampe", 10, 800, "#555")}
+      ${texte(c.x, c.y + 160, c.nom, 13, 800, "#3b3f44")}` };
+  },
+  detecteur(c) {
+    const b = [["L", -44], ["N", 0], ["S", 44]].map(([k, dx]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + 70, label: `${c.nom}, borne ${k === "S" ? "sortie lampe" : k}` }));
+    return { bornes: b, dessin: (s) => `
+      <rect x="${c.x - 70}" y="${c.y - 58}" width="140" height="104" rx="12" fill="url(#g-blanc)" stroke="#c8c1b4"/>
+      <g class="sc-inter" data-sw="${c.id}" role="button" tabindex="0" aria-label="Passer devant le détecteur">
+        <ellipse cx="${c.x}" cy="${c.y - 6}" rx="40" ry="30" fill="#f4f2ec" stroke="#b9b3a7" stroke-width="3"/><ellipse cx="${c.x}" cy="${c.y - 6}" rx="20" ry="14" fill="#d6d9de"/>
+        ${s.contacts[c.id] ? `<path d="M${c.x - 54} ${c.y - 6} q-10 -12 0 -24 M${c.x + 54} ${c.y - 6} q10 -12 0 -24" stroke="#e0a800" stroke-width="3" fill="none"/>` : ""}</g>
+      ${texte(c.x, c.y - 70, `${c.nom} · ${s.contacts[c.id] ? "quelqu'un passe" : "personne"}`, 13, 800, "#3b3f44")}${bornesTxt(c, ["L", "N", "lampe"], [-44, 0, 44])}` };
+  },
+  compteur(c) {
+    const b = [["C1", -26], ["C2", 26]].map(([k, dx]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + 80, label: `${c.nom}, borne ${k}` }));
+    return { bornes: b, dessin: (s) => `
+      <rect x="${c.x - 70}" y="${c.y - 70}" width="140" height="130" rx="14" fill="#d5e05b" stroke="#9fa743" stroke-width="2"/>
+      <rect x="${c.x - 52}" y="${c.y - 52}" width="104" height="34" rx="4" fill="#28331a"/>${texte(c.x, c.y - 29, s.contacts[c.id] ? "HEURES CREUSES" : "HEURES PLEINES", 10.5, 800, "#bde39b")}
+      <g class="sc-inter" data-sw="${c.id}" role="button" tabindex="0" aria-label="Changer de période tarifaire">
+        <rect x="${c.x - 52}" y="${c.y - 8}" width="104" height="30" rx="15" fill="${s.contacts[c.id] ? "#1d2228" : "#fff"}" stroke="#4b5320"/>${texte(c.x, c.y + 12, s.contacts[c.id] ? "passer en HP" : "passer en HC", 11, 800, s.contacts[c.id] ? "#fff" : "#4b5320")}</g>
+      ${texte(c.x, c.y - 82, c.nom, 13, 800, "#3b3f44")}${texte(c.x - 26, c.y + 112, "C1", 11, 800, "#555")}${texte(c.x + 26, c.y + 112, "C2", 11, 800, "#555")}` };
+  },
+  contacteur(c) {
+    const b = [["A1", -40, -110], ["1", 0, -110], ["3", 40, -110], ["A2", -40, 110], ["2", 0, 110], ["4", 40, 110]].map(([k, dx, dy]) => ({ id: `${c.id}-${k}`, x: c.x + dx, y: c.y + dy, label: `${c.nom}, borne ${k}` }));
+    return { bornes: b, dessin: (s) => `
+      <rect x="${c.x - 70}" y="${c.y - 130}" width="140" height="260" rx="10" fill="url(#g-module)" stroke="#b5b8b8" stroke-width="2"/>
+      ${texte(c.x, c.y - 56, "KM", 20, 800)}${texte(c.x, c.y - 34, "contacteur HC", 11, 700, "#555")}
+      <rect x="${c.x - 30}" y="${c.y - 14}" width="60" height="44" rx="6" fill="#2a2e33"/>${texte(c.x, c.y + 14, "AUTO", 11, 800, "#fff")}
+      <circle cx="${c.x}" cy="${c.y + 50}" r="6" fill="${s.contacts[c.id] ? "#3d9a3d" : "#555"}"/>
+      ${["A1", "1", "3"].map((k, i) => texte(c.x - 40 + i * 40, c.y - 82, k, 11, 800, "#555")).join("")}${["A2", "2", "4"].map((k, i) => texte(c.x - 40 + i * 40, c.y + 92, k, 11, 800, "#555")).join("")}
+      ${texte(c.x, c.y + 160, c.nom, 13, 800, "#3b3f44")}` };
+  },
+});
 function plaque(c, s, touches, perm = false) {
   const w = touches.length > 1 ? 150 : 120;
   return `<rect x="${c.x - w / 2}" y="${c.y - 58}" width="${w}" height="104" rx="12" fill="url(#g-blanc)" stroke="#c8c1b4"/>
@@ -125,8 +191,55 @@ const MONTAGES = [
     consigne: "Commander l'éclairage du couloir par un télérupteur et deux boutons-poussoirs.",
     aide: "La phase va à la borne 1 du télérupteur et aux deux boutons-poussoirs. Les boutons (en parallèle) renvoient le retour bouton-poussoir à A1. A2 va au neutre. La borne 2 envoie le retour lampe au DCL. Neutre et terre directement au DCL.",
     composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 300, y: 300, w: 520, n: 6 }, { type: "lampe", id: "lp", nom: "Lampe du couloir", x: 560, y: 60 }, { type: "tl", id: "t", nom: "Télérupteur", x: 1000, y: 330 }, { type: "bp", id: "b1", nom: "Bouton 1", x: 420, y: 620 }, { type: "bp", id: "b2", nom: "Bouton 2", x: 720, y: 620 }],
-    sequence: true },
+    dev: () => DEVELOPPES.tl(2),
+    sequence: [{ appui: "b1", attendu: { lp: true } }, { appui: "b2", attendu: { lp: false } }, { appui: "b1", attendu: { lp: true } }] },
+  { id: "deuxLampes", titre: "Deux lampes sur un interrupteur", niveau: 1,
+    consigne: "Allumer ensemble les deux lampes du salon depuis un seul interrupteur.",
+    aide: "La phase va à la borne L de l'interrupteur. Sa borne 1 envoie le retour lampe aux bornes L des deux DCL (les deux lampes sont en parallèle). Le neutre va aux bornes N des deux DCL, la terre à leurs bornes ⏚.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 300, y: 300, w: 560, n: 4 }, { type: "lampe", id: "lp1", nom: "Lampe 1", x: 470, y: 60 }, { type: "lampe", id: "lp2", nom: "Lampe 2", x: 800, y: 60 }, { type: "inter", id: "s1", nom: "Interrupteur", x: 600, y: 610 }],
+    essais: () => combinaisons(["s1"]).map((c) => ({ contacts: c, attendu: { lp1: c.s1, lp2: c.s1 }, texte: `interrupteur sur ${c.s1 ? "I" : "O"}` })) },
+  { id: "prise", titre: "Prise commandée", niveau: 1,
+    consigne: "Dans la chambre, l'interrupteur de l'entrée commande la prise où est branchée la lampe de chevet.",
+    aide: "Comme un simple allumage, mais le récepteur est une prise : la phase va à la borne L de l'interrupteur, sa borne 1 va à la borne L de la prise. Neutre à la borne N de la prise, terre à sa borne ⏚.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 300, y: 300, w: 560, n: 4 }, { type: "prise", id: "pr", nom: "Prise commandée", x: 700, y: 70 }, { type: "inter", id: "s1", nom: "Interrupteur", x: 520, y: 610 }],
+    essais: () => combinaisons(["s1"]).map((c) => ({ contacts: c, attendu: { pr: c.s1 }, texte: `interrupteur sur ${c.s1 ? "I" : "O"}` })) },
+  { id: "vav2", titre: "Va-et-vient, deux lampes", niveau: 2,
+    consigne: "Commander les deux lampes d'un long couloir depuis ses deux extrémités.",
+    aide: "Comme le va-et-vient : phase sur la commune du premier, deux navettes vers le second. La commune du second envoie le retour lampe aux deux DCL, en parallèle. Neutre et terre aux deux DCL.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 280, y: 300, w: 640, n: 6 }, { type: "lampe", id: "lp1", nom: "Lampe 1", x: 470, y: 60 }, { type: "lampe", id: "lp2", nom: "Lampe 2", x: 800, y: 60 }, { type: "vav", id: "v1", nom: "Va-et-vient 1", x: 400, y: 610 }, { type: "vav", id: "v2", nom: "Va-et-vient 2", x: 840, y: 610 }],
+    essais: () => combinaisons(["v1", "v2"]).map((c) => ({ contacts: c, attendu: { lp1: c.v1 === c.v2, lp2: c.v1 === c.v2 }, texte: `va-et-vient 1 sur ${c.v1 ? 2 : 1}, va-et-vient 2 sur ${c.v2 ? 2 : 1}` })),
+    inverse: true },
+  { id: "perm2", titre: "Quatre points de commande", niveau: 3,
+    consigne: "Commander la lampe d'un grand couloir depuis quatre endroits : deux va-et-vient aux bouts, deux permutateurs entre eux.",
+    aide: "Va-et-vient 1 : phase sur la commune, navettes vers les bornes 1 et 2 du permutateur 1. Ses bornes 3 et 4 vont aux bornes 1 et 2 du permutateur 2. Les bornes 3 et 4 du permutateur 2 vont aux bornes 1 et 2 du va-et-vient 2, dont la commune envoie le retour lampe. Neutre et terre au DCL.",
+    composants: [{ type: "alim", x: 20, y: 280 }, { type: "boite", x: 210, y: 300, w: 840, n: 8 }, { type: "lampe", id: "lp", nom: "Lampe du couloir", x: 640, y: 60 }, { type: "vav", id: "v1", nom: "Va-et-vient 1", x: 270, y: 610 }, { type: "perm", id: "p1", nom: "Permutateur 1", x: 510, y: 610 }, { type: "perm", id: "p2", nom: "Permutateur 2", x: 770, y: 610 }, { type: "vav", id: "v2", nom: "Va-et-vient 2", x: 1010, y: 610 }],
+    essais: () => combinaisons(["v1", "p1", "p2", "v2"]).map((c) => ({ contacts: c, attendu: { lp: ((c.v1 === c.v2) !== c.p1) !== c.p2 }, texte: `${c.v1 ? 2 : 1} · ${c.p1 ? "croisé" : "droit"} · ${c.p2 ? "croisé" : "droit"} · ${c.v2 ? 2 : 1}` })),
+    inverse: true },
+  { id: "tl3", titre: "Télérupteur, trois boutons", niveau: 2,
+    consigne: "Un long couloir avec trois portes : un bouton-poussoir à chaque porte commande l'éclairage par télérupteur.",
+    aide: "La phase va à la borne 1 du télérupteur et aux trois boutons-poussoirs. Les trois boutons, en parallèle, renvoient le retour bouton-poussoir à A1. A2 au neutre. La borne 2 envoie le retour lampe au DCL. Neutre et terre au DCL.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 260, y: 300, w: 600, n: 6 }, { type: "lampe", id: "lp", nom: "Lampe du couloir", x: 560, y: 60 }, { type: "tl", id: "t", nom: "Télérupteur", x: 1030, y: 330 }, { type: "bp", id: "b1", nom: "Bouton 1", x: 330, y: 620 }, { type: "bp", id: "b2", nom: "Bouton 2", x: 560, y: 620 }, { type: "bp", id: "b3", nom: "Bouton 3", x: 790, y: 620 }],
+    dev: () => DEVELOPPES.tl(3),
+    sequence: [{ appui: "b1", attendu: { lp: true } }, { appui: "b3", attendu: { lp: false } }, { appui: "b2", attendu: { lp: true } }, { appui: "b1", attendu: { lp: false } }] },
+  { id: "minuterie", titre: "Minuterie de cage d'escalier", niveau: 2,
+    consigne: "Dans l'escalier d'un immeuble, deux boutons-poussoirs allument la lumière, qui s'éteint toute seule après la durée réglée.",
+    aide: "La minuterie s'alimente : phase sur sa borne L, neutre sur sa borne N. La phase va aussi aux deux boutons-poussoirs, dont les retours (en parallèle) reviennent sur la borne BP. La sortie « lampe » de la minuterie envoie le retour lampe au DCL. Neutre et terre au DCL.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 280, y: 300, w: 560, n: 6 }, { type: "lampe", id: "lp", nom: "Lampe de l'escalier", x: 560, y: 60 }, { type: "minuterie", id: "mn", nom: "Minuterie", x: 1030, y: 330 }, { type: "bp", id: "b1", nom: "Bouton (rez-de-chaussée)", x: 420, y: 620 }, { type: "bp", id: "b2", nom: "Bouton (1er étage)", x: 720, y: 620 }],
+    sequence: [{ appui: "b1", attendu: { lp: true } }, { temps: true, attendu: { lp: false } }, { appui: "b2", attendu: { lp: true } }] },
+  { id: "detecteur", titre: "Détecteur de présence", niveau: 2,
+    consigne: "Le couloir s'éclaire tout seul quand quelqu'un passe, grâce à un détecteur de présence.",
+    aide: "Le détecteur est un appareil électronique : il lui faut la phase (borne L) ET le neutre (borne N) pour fonctionner. Sa borne de sortie envoie le retour lampe au DCL. Neutre et terre au DCL.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 300, y: 300, w: 560, n: 4 }, { type: "lampe", id: "lp", nom: "Lampe du couloir", x: 600, y: 60 }, { type: "detecteur", id: "dt", nom: "Détecteur", x: 600, y: 610 }],
+    essais: () => combinaisons(["dt"]).map((c) => ({ contacts: c, attendu: { lp: c.dt }, texte: c.dt ? "quelqu'un passe" : "personne" })) },
+  { id: "hc", titre: "Contacteur heures creuses", niveau: 3,
+    consigne: "Le chauffe-eau ne doit chauffer qu'en heures creuses, commandé par le contact C1-C2 du compteur.",
+    aide: "Commande : la phase va à C1 du compteur (en vrai, par un disjoncteur 2 A) ; C2 va à A1 de la bobine ; A2 au neutre. Puissance (en vrai, disjoncteur 20 A et 2,5 mm²) : phase sur la borne 1 du contacteur, borne 2 vers la borne L du chauffe-eau ; neutre sur la borne 3, borne 4 vers la borne N du chauffe-eau. La terre va directement au chauffe-eau.",
+    composants: [{ type: "alim", x: 30, y: 280 }, { type: "boite", x: 260, y: 300, w: 520, n: 6 }, { type: "chauffeEau", id: "ce", nom: "Chauffe-eau", x: 560, y: 90 }, { type: "compteur", id: "cpt", nom: "Compteur", x: 950, y: 110 }, { type: "contacteur", id: "km", nom: "Contacteur", x: 980, y: 520 }],
+    essais: () => combinaisons(["cpt"]).map((c) => ({ contacts: c, attendu: { ce: c.cpt }, texte: c.cpt ? "heures creuses" : "heures pleines" })) },
 ];
+MONTAGES.sort((a, b) => a.niveau - b.niveau);
+const DEV_PAR_ID = { simple: "simple", double: "double", vav: "vav", perm: "perm", deuxLampes: "deuxLampes", prise: "prise", vav2: "vav2", perm2: "perm2", minuterie: "minuterie", detecteur: "detecteur", hc: "hc" };
+const schemaDev = (m) => (m.dev ? m.dev() : DEVELOPPES[DEV_PAR_ID[m.id]]());
 function combinaisons(cles) {
   return Array.from({ length: 2 ** cles.length }, (_, n) => Object.fromEntries(cles.map((k, i) => [k, !!(n & (1 << i))])));
 }
@@ -142,13 +255,35 @@ function contactsFermes(m, contacts) {
     if (c.type === "perm") { if (contacts[c.id]) ar.push([k("1"), k("4")], [k("2"), k("3")]); else ar.push([k("1"), k("3")], [k("2"), k("4")]); }
     if (c.type === "bp" && contacts[c.id]) ar.push([k("1"), k("2")]);
     if (c.type === "tl" && contacts[c.id]) ar.push([k("1"), k("2")]);
+    if (c.type === "minuterie" && contacts[c.id]) ar.push([k("L"), k("S")]);
+    if (c.type === "compteur" && contacts[c.id]) ar.push([k("C1"), k("C2")]);
+    if (c.type === "detecteur" && contacts[`${c.id}:sortie`]) ar.push([k("L"), k("S")]);
+    if (c.type === "contacteur" && contacts[`${c.id}:ferme`]) ar.push([k("1"), k("2")], [k("3"), k("4")]);
   }
   return ar;
 }
 function charges(m) {
-  return m.composants.flatMap((c) => (c.type === "lampe" ? [[`${c.id}-L`, `${c.id}-N`, c.id]] : c.type === "tl" ? [[`${c.id}-A1`, `${c.id}-A2`, c.id + "-bobine"]] : []));
+  return m.composants.flatMap((c) => (["lampe", "prise", "chauffeEau"].includes(c.type) ? [[`${c.id}-L`, `${c.id}-N`, c.id]]
+    : ["tl", "contacteur"].includes(c.type) ? [[`${c.id}-A1`, `${c.id}-A2`, c.id + "-bobine"]]
+    : c.type === "minuterie" ? [[`${c.id}-BP`, `${c.id}-N`, c.id + "-bobine"], [`${c.id}-L`, `${c.id}-N`, c.id + "-bobine-alim"]]
+    : c.type === "detecteur" ? [[`${c.id}-L`, `${c.id}-N`, c.id + "-bobine"]] : []));
 }
 function simuler(m, fils, contacts) {
+  const derive = {};
+  let r = simuler1(m, fils, { ...contacts });
+  for (let i = 0; i < 4; i++) {
+    let change = false;
+    for (const c of m.composants) {
+      if (c.type === "contacteur") { const v = !!r.bobines[c.id]; if (derive[`${c.id}:ferme`] !== v) { derive[`${c.id}:ferme`] = v; change = true; } }
+      if (c.type === "detecteur") { const v = !!(contacts[c.id] && r.bobines[c.id]); if (derive[`${c.id}:sortie`] !== v) { derive[`${c.id}:sortie`] = v; change = true; } }
+    }
+    if (!change) break;
+    r = simuler1(m, fils, { ...contacts, ...derive });
+  }
+  r.derive = derive;
+  return r;
+}
+function simuler1(m, fils, contacts) {
   const parent = {};
   const f = (x) => (parent[x] === undefined || parent[x] === x ? (parent[x] = x) : (parent[x] = f(parent[x])));
   for (const w of fils) parent[f(w.a)] = f(w.b);
@@ -170,7 +305,10 @@ function simuler(m, fils, contacts) {
   }
   const alim = (a, b) => !court && !terre && ((pot[f(a)] === 230 && f(b) === f("alim-N")) || (pot[f(b)] === 230 && f(a) === f("alim-N")));
   const lampes = {}, bobines = {};
-  for (const [a, b, id] of charges(m)) (id.endsWith("-bobine") ? bobines : lampes)[id.replace("-bobine", "")] = alim(a, b);
+  for (const [a, b, id] of charges(m)) {
+    if (id.endsWith("-bobine-alim")) bobines[id.replace("-bobine-alim", "") + ":alim"] = alim(a, b);
+    else (id.endsWith("-bobine") ? bobines : lampes)[id.replace("-bobine", "")] = alim(a, b);
+  }
   return { court, terre, lampes, bobines, de: (n) => pot[f(n)] };
 }
 
@@ -180,10 +318,10 @@ function ouvrir(id) {
   m = MONTAGES.find((x) => x.id === id) || MONTAGES[0];
   const contacts = {};
   for (const c of m.composants) {
-    if (["inter", "vav", "perm", "bp", "tl"].includes(c.type)) contacts[c.id] = false;
+    if (["inter", "vav", "perm", "bp", "tl", "minuterie", "detecteur", "compteur", "contacteur"].includes(c.type)) contacts[c.id] = false;
     if (c.type === "double") { contacts[`${c.id}:a`] = false; contacts[`${c.id}:b`] = false; }
   }
-  s = { fils: [], couleur: "phase", choix: null, outil: "fil", sousTension: false, contacts, resultat: null, bobinePrec: {}, aide: false, verif: null, fautes: [], debut: Date.now(), message: null };
+  s = { fils: [], couleur: "phase", choix: null, outil: "fil", sousTension: false, contacts, resultat: null, bobinePrec: {}, aide: 0, verif: null, fautes: [], debut: Date.now(), message: null };
 }
 const bornes = () => m.composants.flatMap((c) => COMPOSANTS[c.type](c).bornes);
 const borne = (id) => bornes().find((b) => b.id === id);
@@ -192,10 +330,15 @@ function actualiser() {
   if (!s.sousTension) { s.resultat = null; return; }
   let r = simuler(m, s.fils, s.contacts);
   // télérupteur : front montant de la bobine
-  for (const c of m.composants.filter((x) => x.type === "tl")) {
-    const en = r.bobines[c.id];
-    if (en && !s.bobinePrec[c.id]) { s.contacts[c.id] = !s.contacts[c.id]; sons.disjoncteur(); r = simuler(m, s.fils, s.contacts); }
+  for (const c of m.composants.filter((x) => x.type === "tl" || x.type === "minuterie")) {
+    const en = r.bobines[c.id] && (c.type === "tl" || r.bobines[c.id + ":alim"]);
+    if (en && !s.bobinePrec[c.id]) { s.contacts[c.id] = c.type === "tl" ? !s.contacts[c.id] : true; sons.disjoncteur(); r = simuler(m, s.fils, s.contacts); }
     s.bobinePrec[c.id] = r.bobines[c.id];
+  }
+  for (const c of m.composants.filter((x) => x.type === "contacteur")) {
+    const v = !!(r.derive && r.derive[`${c.id}:ferme`]);
+    if (v !== !!s.contacts[c.id]) sons.disjoncteur();
+    s.contacts[c.id] = v;
   }
   s.resultat = r;
   if (r.court) { s.sousTension = false; s.resultat = null; sons.disjoncteur(); dire("Clac ! Court-circuit : la phase touche directement le neutre. Le disjoncteur a déclenché.", "danger"); }
@@ -203,24 +346,48 @@ function actualiser() {
 }
 
 /* ---------- Vérification complète ---------- */
+const RECEPTEURS = ["lampe", "prise", "chauffeEau"];
+// Joue une séquence d'actions (appuis sur boutons, temps qui passe, réglages) comme un vrai essai.
+function jouerSequence(etapes, contactsDepart) {
+  const contacts = { ...contactsDepart };
+  const prec = {};
+  const resultats = [];
+  const regler = () => {
+    let r = simuler(m, s.fils, contacts);
+    for (const c of m.composants.filter((x) => x.type === "tl" || x.type === "minuterie")) {
+      const en = r.bobines[c.id] && (c.type === "tl" || r.bobines[c.id + ":alim"]);
+      if (en && !prec[c.id]) { contacts[c.id] = c.type === "tl" ? !contacts[c.id] : true; r = simuler(m, s.fils, contacts); }
+      prec[c.id] = r.bobines[c.id];
+    }
+    return r;
+  };
+  regler();
+  for (const e of etapes) {
+    let r;
+    if (e.appui) { contacts[e.appui] = true; r = regler(); if (r.court || r.terre) { resultats.push({ e, r }); break; } contacts[e.appui] = false; r = regler(); }
+    else if (e.temps) { for (const c of m.composants.filter((x) => x.type === "minuterie")) contacts[c.id] = false; r = regler(); }
+    else { Object.assign(contacts, e.contacts || {}); r = regler(); }
+    resultats.push({ e, r });
+  }
+  return resultats;
+}
+const texteEtape = (e) => (e.appui ? `Appui sur « ${nomDe(e.appui)} »` : e.temps ? "Après la durée réglée" : e.texte);
 function verifier() {
   const lignes = [], fautes = [], remarques = [];
   let fonctionne = true;
+  const controlePhase = (r, attendu) => {
+    for (const id of Object.keys(attendu)) if (!r.lampes[id] && r.de(`${id}-L`) === 230 && !fautes.some((f) => f.startsWith(nomDe(id))))
+      fautes.push(`${nomDe(id)} : à l'arrêt, sa borne L reste sous tension. La commande coupe le neutre au lieu de la phase : danger pour qui intervient dessus.`);
+  };
+  const decrire = (r, attendu) => Object.keys(attendu).map((id) => `${nomDe(id)} : ${m.composants.find((c) => c.id === id).type === "chauffeEau" ? (r.lampes[id] ? "chauffe" : "à l'arrêt") : `lumière ${r.lampes[id] ? "allumée" : "éteinte"}`}`).join(", ");
   if (m.sequence) {
-    // télérupteur : appuis successifs sur les boutons
-    const contacts = { ...s.contacts, t: false, b1: false, b2: false };
-    let prec = false, ok = true;
-    const etapes = [["b1", true], ["b2", false], ["b1", true]];
-    for (const [bp, attendu] of etapes) {
-      contacts[bp] = true; let r = simuler(m, s.fils, contacts);
-      if (r.court || r.terre) { ok = false; lignes.push([false, `Appui sur ${bp === "b1" ? "le bouton 1" : "le bouton 2"} : ${r.court ? "court-circuit" : "phase à la terre"}`]); break; }
-      if (r.bobines.t && !prec) contacts.t = !contacts.t;
-      prec = r.bobines.t; contacts[bp] = false; r = simuler(m, s.fils, contacts); prec = r.bobines.t;
-      const allume = r.lampes.lp;
-      lignes.push([allume === attendu, `Appui sur ${bp === "b1" ? "le bouton 1" : "le bouton 2"} : lampe ${allume ? "allumée" : "éteinte"} (attendu : ${attendu ? "allumée" : "éteinte"})`]);
-      if (allume !== attendu) ok = false;
+    for (const { e, r } of jouerSequence(m.sequence, s.contacts)) {
+      if (r.court || r.terre) { fonctionne = false; lignes.push([false, `${texteEtape(e)} : ${r.court ? "court-circuit" : "phase reliée à la terre"}`]); break; }
+      const ok = Object.entries(e.attendu).every(([id, v]) => r.lampes[id] === v);
+      if (!ok) fonctionne = false;
+      lignes.push([ok, `${texteEtape(e)} : ${decrire(r, e.attendu)}`]);
+      controlePhase(r, e.attendu);
     }
-    fonctionne = ok;
   } else {
     const essais = m.essais(s);
     // Va-et-vient : deux sens de navettes sont justes ; on accepte la logique inverse si elle est cohérente.
@@ -233,31 +400,38 @@ function verifier() {
       if (r.court || r.terre) { fonctionne = false; lignes.push([false, `${e.texte} : ${r.court ? "court-circuit" : "phase reliée à la terre"}`]); continue; }
       const ok = Object.entries(e.attendu).every(([id, v]) => r.lampes[id] === v);
       if (!ok) fonctionne = false;
-      lignes.push([ok, `${e.texte} : ${Object.keys(e.attendu).map((id) => `${nomDe(id)} : lumière ${r.lampes[id] ? "allumée" : "éteinte"}`).join(", ")}`]);
-      // phase coupée : une lampe éteinte ne doit pas garder la phase sur sa borne L
-      for (const id of Object.keys(e.attendu)) if (!r.lampes[id] && r.de(`${id}-L`) === 230 && !fautes.some((f) => f.includes(nomDe(id))))
-        fautes.push(`${nomDe(id)} : éteinte, sa borne L reste sous tension. La commande coupe le neutre au lieu de la phase : danger pour qui change l'ampoule.`);
+      lignes.push([ok, `${e.texte} : ${decrire(r, e.attendu)}`]);
+      controlePhase(r, e.attendu);
     }
   }
-  // terre des DCL
-  const groupe = (a, b) => { const g = {}; const f = (x) => (g[x] === undefined || g[x] === x ? (g[x] = x) : (g[x] = f(g[x]))); for (const w of s.fils) g[f(w.a)] = f(w.b); return f(a) === f(b); };
-  for (const c of m.composants.filter((x) => x.type === "lampe")) if (!groupe(`${c.id}-PE`, "alim-PE")) fautes.push(`${c.nom} : la borne de terre du DCL n'est pas reliée au conducteur de protection.`);
-  // couleurs
-  const role = (w) => groupe(w.a, "alim-N") ? "neutre" : groupe(w.a, "alim-PE") ? "terre" : groupe(w.a, "alim-L") ? "phase" : "commande";
+  // groupes reliés par les fils (et, pour les rôles, par les pôles neutres des contacteurs)
+  const groupes = (avecPoles) => {
+    const g = {}; const f = (x) => (g[x] === undefined || g[x] === x ? (g[x] = x) : (g[x] = f(g[x])));
+    for (const w of s.fils) g[f(w.a)] = f(w.b);
+    if (avecPoles) for (const c of m.composants.filter((x) => x.type === "contacteur")) g[f(`${c.id}-3`)] = f(`${c.id}-4`);
+    return f;
+  };
+  const fFils = groupes(false), fRole = groupes(true);
+  for (const c of m.composants.filter((x) => RECEPTEURS.includes(x.type)))
+    if (fFils(`${c.id}-PE`) !== fFils("alim-PE")) fautes.push(`${c.nom} : sa borne de terre n'est pas reliée au conducteur de protection.`);
+  const role = (w) => fRole(w.a) === fRole("alim-N") ? "neutre" : fRole(w.a) === fRole("alim-PE") ? "terre" : fRole(w.a) === fRole("alim-L") ? "phase" : "commande";
   const lampesL = m.composants.filter((x) => x.type === "lampe").map((x) => `${x.id}-L`);
   for (const w of s.fils) {
     const r = role(w);
-    if (r === "neutre" && w.couleur !== "neutre") fautes.push(`Un fil du neutre n'est pas bleu : le bleu clair est réservé au neutre, et le neutre se repère toujours en bleu.`);
-    if (r !== "neutre" && w.couleur === "neutre") fautes.push(`Un fil bleu sert à autre chose que le neutre : le bleu clair est réservé au neutre.`);
-    if (r === "terre" && w.couleur !== "terre") fautes.push(`Un fil de terre n'est pas vert-jaune : le vert-jaune est obligatoire pour la protection.`);
-    if (r !== "terre" && w.couleur === "terre") fautes.push(`Un fil vert-jaune sert à autre chose que la terre : c'est interdit.`);
-    if (r === "commande" && lampesL.some((l) => groupe(w.a, l)) && w.couleur !== "retour") remarques.push("Retour lampe : sur ce site, on le câble en orange pour le reconnaître (convention, pas obligation de la norme).");
-    if (r === "commande" && m.composants.some((c) => c.type === "tl" && groupe(w.a, `${c.id}-A1`)) && w.couleur !== "blanc") remarques.push("Retour bouton-poussoir : sur ce site, on le câble en blanc pour le reconnaître (convention).");
+    if (r === "neutre" && w.couleur !== "neutre") fautes.push("Un fil du neutre n'est pas bleu : le bleu clair est réservé au neutre, et le neutre se repère toujours en bleu.");
+    if (r !== "neutre" && w.couleur === "neutre") fautes.push("Un fil bleu sert à autre chose que le neutre : le bleu clair est réservé au neutre.");
+    if (r === "terre" && w.couleur !== "terre") fautes.push("Un fil de terre n'est pas vert-jaune : le vert-jaune est obligatoire pour la protection.");
+    if (r !== "terre" && w.couleur === "terre") fautes.push("Un fil vert-jaune sert à autre chose que la terre : c'est interdit.");
+    if (r === "commande" && lampesL.some((l) => fFils(w.a) === fFils(l)) && w.couleur !== "retour") remarques.push("Retour lampe : sur ce site, on le câble en orange pour le reconnaître (convention, pas obligation de la norme).");
+    if (r === "commande" && m.composants.some((c) => (c.type === "tl" && fFils(w.a) === fFils(`${c.id}-A1`)) || (c.type === "minuterie" && fFils(w.a) === fFils(`${c.id}-BP`))) && w.couleur !== "blanc") remarques.push("Retour bouton-poussoir : sur ce site, on le câble en blanc pour le reconnaître (convention).");
   }
+  for (const c of m.composants.filter((x) => x.type === "contacteur"))
+    if (!s.fils.some((w) => [w.a, w.b].includes(`${c.id}-3`)) || !s.fils.some((w) => [w.a, w.b].includes(`${c.id}-4`)))
+      remarques.push("Le neutre du chauffe-eau devrait lui aussi traverser le contacteur (bornes 3 et 4), comme la phase : le contacteur coupe alors les deux conducteurs (voir le module 19).");
   const uniques = (t) => [...new Set(t)];
   s.verif = { lignes, fonctionne, fautes: uniques(fautes), remarques: uniques(remarques) };
   if (fonctionne && !s.verif.fautes.length) {
-    const etoiles = s.aide ? 2 : s.fautes.length ? 2 : 3;
+    const etoiles = Math.max(1, 3 - s.aide - (s.fautes.length ? 1 : 0));
     s.verif.etoiles = etoiles; sons.succes(); crediterElectrons(etoiles * 10);
   } else sons.rate();
 }
@@ -296,10 +470,12 @@ function rendre() {
         <button type="button" data-action="annuler">↩ Annuler</button>
         <button type="button" class="${s.sousTension ? "actif" : ""}" data-action="tension">${s.sousTension ? "🔒 Couper le courant" : "⚡ Mettre sous tension"}</button>
         <button type="button" data-action="verifier">🔍 Faire vérifier</button>
-        <button type="button" data-action="aide">${s.aide ? "📄 Masquer l'aide" : "📄 Aide (coûte une étoile)"}</button>
+        ${m.composants.some((c) => c.type === "minuterie") ? `<button type="button" data-action="temps">⏱ Laisser passer 3 minutes</button>` : ""}
+        <button type="button" data-action="aide">${s.aide === 0 ? "📐 Voir le schéma développé (−1 ★)" : s.aide === 1 ? "📝 Câblage pas à pas (−1 ★)" : "Aide complète affichée"}</button>
       </div>
     </div>
-    ${s.aide ? `<p class="sc-aide">${m.aide}</p>` : ""}
+    ${s.aide >= 1 ? `<div class="sc-aide"><b>Schéma développé</b> : phase en haut, neutre en bas, appareils au repos. Lis-le de haut en bas, comme le chemin du courant.${schemaDev(m)}</div>` : ""}
+    ${s.aide >= 2 ? `<p class="sc-aide"><b>Câblage pas à pas :</b> ${m.aide}</p>` : ""}
     ${v ? `<section class="sc-verif">
       <h2>${v.etoiles ? `${"★".repeat(v.etoiles)}${"☆".repeat(3 - v.etoiles)} Montage validé` : v.fonctionne ? "Ça fonctionne, mais il reste des fautes" : "Le montage ne fonctionne pas encore"}</h2>
       <ul>${v.lignes.map(([ok, t]) => `<li class="${ok ? "ok" : "ko"}">${ok ? "✔" : "✘"} ${t}</li>`).join("")}</ul>
@@ -352,7 +528,8 @@ racine.addEventListener("click", (ev) => {
   else if (d.action === "annuler") { if (s.sousTension) dire("Coupe le courant avant de toucher au câblage.", "info"); else { s.fils.pop(); s.verif = null; } }
   else if (d.action === "tension") { s.sousTension = !s.sousTension; sons.disjoncteur(); actualiser(); if (s.sousTension && !s.message) dire("Sous tension. Actionne les interrupteurs pour essayer.", "ok"); }
   else if (d.action === "verifier") { verifier(); if (s.verif.etoiles) noterFait(m.id, s.verif.etoiles); }
-  else if (d.action === "aide") s.aide = !s.aide;
+  else if (d.action === "aide") s.aide = Math.min(2, s.aide + 1);
+  else if (d.action === "temps") { for (const c of m.composants.filter((x) => x.type === "minuterie")) s.contacts[c.id] = false; actualiser(); dire("Trois minutes plus tard…", "info"); }
   else if (d.action === "suivant") { const i = MONTAGES.indexOf(m); ouvrir(MONTAGES[(i + 1) % MONTAGES.length].id); history.replaceState(null, "", `?m=${m.id}`); }
   rendre();
   if (d.action === "verifier") racine.querySelector(".sc-verif")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
