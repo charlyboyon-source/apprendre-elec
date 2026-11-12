@@ -1,61 +1,81 @@
 {
   "id": "01-point-lumineux",
-  "titre": "Le point lumineux qui ne s'allume plus",
-  "niveau": "debutant",
-  "scene": "chambre",
-  "enonce": "La lampe ne s'allume pas. Trouve la panne.",
-  "circuit": {
-    "sourceL": "L",
-    "sourceN": "N",
-    "segmentsL": [
-      {"de":"L","a":"Pdif","coupePar":"diff"},
-      {"de":"Pdif","a":"Pdj","coupePar":"disj"},
-      {"de":"Pdj","a":"Pint","coupePar":"inter"},
-      {"de":"Pint","a":"LampP","coupePar":"phase"}
-    ],
-    "segmentsN": [
-      {"de":"N","a":"tab","coupePar":"diff"},
-      {"de":"tab","a":"LampN","coupePar":"neutre"}
-    ],
-    "continuite": {"bornes":["Lp","Np"], "coupeSi":"lamp", "label":"ampoule"}
-  },
-  "pointsIntervention": [
-    { "id": "tableau",     "label": "Tableau électrique",
+  "titre": "La lampe de la chambre",
+  "decor": "chambre",
+  "client": "Mme Martin",
+  "lieu": "Chambre, maison individuelle",
+  "recepteur": { "nom": "la lampe", "a": "LampL", "b": "LampN", "allume": "La lampe éclaire.", "eteint": "La lampe reste éteinte." },
+  "commande": { "cle": "inter", "label": "interrupteur" },
+  "circuit": "dj",
+  "tableau": [
+    { "cle": "diff", "type": "id", "haut": "40 A", "bas": "30 mA · AC", "etiquette": "Différentiel 1" },
+    { "cle": "dj", "type": "dj", "haut": "C16", "etiquette": "Éclairage chambres" },
+    { "cle": "d2", "type": "dj", "haut": "C20", "etiquette": "Prises séjour" },
+    { "cle": "d3", "type": "dj", "haut": "C16", "etiquette": "Éclairage séjour" }
+  ],
+  "liaisons": [
+    { "a": "L", "b": "Ld", "si": "diff" },
+    { "a": "Ld", "b": "Ldj", "si": "dj" },
+    { "a": "Ldj", "b": "Lin", "coupePar": "fildj" },
+    { "a": "Lin", "b": "Lout", "si": "inter", "coupePar": "inter" },
+    { "a": "Lout", "b": "LampL", "coupePar": "retour" },
+    { "a": "LampL", "b": "LampN", "charge": 70, "coupePar": "lamp" },
+    { "a": "LampN", "b": "Ndj", "coupePar": "neutre" },
+    { "a": "Ndj", "b": "Nd", "si": "dj" },
+    { "a": "Nd", "b": "N", "si": "diff" },
+    { "a": "AmpA", "b": "AmpB", "charge": 70, "coupePar": "lamp" }
+  ],
+  "points": [
+    { "id": "tableau", "label": "Tableau électrique", "vue": "tableau",
       "bornes": [
-        {"id":"Ldiff","conducteur":"L","node":"Pdif","label":"L aval différentiel"},
-        {"id":"Lecl","conducteur":"L","node":"Pdj","label":"L aval disj. éclairage"},
-        {"id":"N","conducteur":"N","node":"tab","label":"répartiteur N"},
-        {"id":"PE","conducteur":"PE","node":"pe","label":"répartiteur Terre"}
-      ]},
-    { "id": "interrupteur","label": "Interrupteur déposé",
+        { "id": "tLd", "label": "sortie du différentiel (phase)", "noeud": "Ld", "fil": "phase", "sous": "diff" },
+        { "id": "tLdj", "label": "sortie du disjoncteur éclairage (phase)", "noeud": "Ldj", "fil": "phase", "sous": "dj" },
+        { "id": "tNdj", "label": "sortie du disjoncteur éclairage (neutre)", "noeud": "Ndj", "fil": "neutre", "sous": "dj" },
+        { "id": "tPE", "label": "barrette de terre", "noeud": "PE", "fil": "terre", "sous": "terre" }
+      ] },
+    { "id": "inter", "label": "Interrupteur", "vue": "inter", "demontage": true,
       "bornes": [
-        {"id":"in","conducteur":"L","node":"Pdj","label":"entrée"},
-        {"id":"out","conducteur":"L","node":"Pint","label":"sortie"},
-        {"id":"Nb","conducteur":"N","node":"tab","label":"N en attente"},
-        {"id":"PEb","conducteur":"PE","node":"pe","label":"Terre"}
-      ]},
-    { "id": "plafonnier",  "label": "Plafonnier (boîte DCL)",
+        { "id": "iE", "label": "borne d'entrée (phase)", "noeud": "Lin", "fil": "phase", "slot": "gauche" },
+        { "id": "iS", "label": "borne de sortie (retour lampe)", "noeud": "Lout", "fil": "retour", "slot": "droite" },
+        { "id": "iT", "label": "terre de la prise voisine", "noeud": "PE", "fil": "terre", "slot": "terre" }
+      ] },
+    { "id": "dcl", "label": "Plafonnier", "vue": "dcl", "demontage": true,
       "bornes": [
-        {"id":"Lp","conducteur":"L","node":"LampP","label":"L"},
-        {"id":"Np","conducteur":"N","node":"LampN","label":"N"},
-        {"id":"PEp","conducteur":"PE","node":"pe","label":"Terre"}
-      ],
-      "ampoule": true }
+        { "id": "pL", "label": "borne L du DCL (retour lampe)", "noeud": "LampL", "fil": "retour", "slot": "1" },
+        { "id": "pN", "label": "borne N du DCL", "noeud": "LampN", "fil": "neutre", "slot": "2" },
+        { "id": "pT", "label": "borne de terre du DCL", "noeud": "PE", "fil": "terre", "slot": "3" }
+      ] },
+    { "id": "ampoule", "label": "Ampoule déposée", "vue": "ampoule", "consignee": true,
+      "bornes": [
+        { "id": "aC", "label": "culot de l'ampoule", "noeud": "AmpA", "slot": "culot" },
+        { "id": "aP", "label": "plot de l'ampoule", "noeud": "AmpB", "slot": "plot" }
+      ] }
   ],
   "pannes": [
-    {"id":"diff",  "label":"Différentiel 30 mA déclenché","visible":true,
-      "explication":"Au tableau, la manette du [[DDR|différentiel]] 30 mA est en position basse : il a déclenché. À la mesure, « L aval différentiel ↔ Terre » donne 0 V — plus rien n'est vivant en aval. On cherche d'abord la cause du défaut, puis on réarme."},
-    {"id":"disj",  "label":"Disjoncteur éclairage déclenché ou borne desserrée","visible":true,
-      "explication":"Au tableau, la manette du disjoncteur éclairage est basse (ou une borne est desserrée). À la mesure : « L aval différentiel ↔ N » = 230 V, mais « L aval disj. éclairage ↔ N » = 0 V. La tension s'arrête au disjoncteur : c'est lui."},
-    {"id":"inter", "label":"Interrupteur défectueux","visible":false,
-      "explication":"Rien d'anormal au tableau. À l'[[interrupteur]] déposé : « entrée ↔ N » = 230 V, mais « sortie ↔ N » = 0 V quel que soit le bouton. La phase entre mais ne ressort pas : le contact est défectueux."},
-    {"id":"phase", "label":"Fil de phase coupé dans la boîte du plafonnier","visible":false,
-      "explication":"Au plafonnier, « L ↔ Terre » = 0 V : pas de phase. Pourtant « sortie ↔ N » à l'interrupteur donnait 230 V. La phase est présente jusqu'à l'interrupteur mais coupée dans la boîte du plafonnier."},
-    {"id":"neutre","label":"Conducteur neutre coupé au plafonnier","visible":false,
-      "explication":"Au plafonnier, « L ↔ Terre » = 230 V (la phase arrive bien) mais « L ↔ N » = 0 V. C'est le neutre qui manque : le conducteur neutre est coupé au plafonnier."},
-    {"id":"lamp",  "label":"Ampoule grillée","visible":false,
-      "explication":"Toutes les tensions sont bonnes : au plafonnier « L ↔ N » = 230 V. La panne n'est pas en amont. Après [[consignation]] et [[VAT|vérification d'absence de tension]], on teste la continuité de l'ampoule : ∞ Ω = filament coupé, l'ampoule est grillée."}
-  ],
-  "outils": ["multimetre"],
-  "securite": { "consignationRequisePourContinuite": true }
+    { "id": "diff", "label": "Défaut d'isolement sur le circuit éclairage chambres : le différentiel déclenche",
+      "client": "Plus de lumière dans la chambre, et les prises du séjour ne marchent plus non plus. J'ai remonté la grosse manette, mais elle redescend tout de suite.",
+      "declenche": "diff", "defautSur": "dj",
+      "explication": "Le différentiel 30 mA redéclenche dès qu'on le réarme : un courant fuit vers la terre quelque part en aval. Méthode : on baisse tous les disjoncteurs qu'il alimente, on réarme le différentiel (il tient), puis on remonte les disjoncteurs un par un. Celui qui le fait redéclencher alimente le circuit en défaut : ici l'éclairage des chambres.",
+      "reparation": "On consigne le circuit éclairage, on cherche le conducteur abîmé (souvent dans une boîte, un fil pincé ou dénudé qui touche la terre), on le remplace ou on refait la connexion, on contrôle l'isolement, puis on remet sous tension." },
+    { "id": "fildj", "label": "Phase desserrée à la sortie du disjoncteur éclairage",
+      "client": "La lampe de la chambre ne s'allume plus depuis ce matin. Le reste de la maison marche.",
+      "explication": "Au tableau, la sortie du disjoncteur éclairage donne bien 230 V par rapport à la terre. Mais à l'interrupteur, l'entrée ne donne plus rien par rapport à la terre de la prise voisine : la phase se perd entre les deux. Le conducteur de phase est desserré dans la borne de sortie du disjoncteur.",
+      "reparation": "Circuit consigné, on resserre la borne au bon couple et on vérifie que le fil est bien engagé (pas d'isolant sous la vis)." },
+    { "id": "inter", "label": "Interrupteur défectueux (le contact ne se ferme plus)",
+      "client": "La lampe de la chambre ne s'allume plus depuis ce matin. Le reste de la maison marche.",
+      "explication": "À l'interrupteur, la phase arrive bien (entrée ↔ terre = 230 V). Interrupteur sur « allumé », on mesure encore 230 V entre l'entrée et la sortie : le contact reste ouvert alors qu'il devrait être fermé. L'interrupteur est hors service.",
+      "reparation": "Circuit consigné, on remplace l'interrupteur par un modèle équivalent, en remettant la phase sur l'entrée et le retour lampe sur la sortie." },
+    { "id": "retour", "label": "Retour lampe desserré dans la boîte du plafonnier",
+      "client": "La lampe de la chambre ne s'allume plus depuis ce matin. Le reste de la maison marche.",
+      "explication": "Interrupteur allumé, la sortie de l'interrupteur donne 230 V par rapport à la terre : la phase quitte bien l'interrupteur. Mais au plafonnier, la borne L ne donne plus rien. Le retour lampe est coupé entre les deux, ici desserré dans la boîte du plafonnier.",
+      "reparation": "Circuit consigné, on refait la connexion du retour lampe dans la boîte (borne neuve si besoin), puis on remet sous tension." },
+    { "id": "neutre", "label": "Neutre desserré au plafonnier",
+      "client": "La lampe de la chambre ne s'allume plus depuis ce matin. Le reste de la maison marche.",
+      "explication": "Au plafonnier, interrupteur allumé : L ↔ terre = 230 V (la phase arrive), mais L ↔ N = 0 V. Et N ↔ terre donne 230 V : le neutre n'est plus relié au tableau, il « flotte » et prend la tension de la phase à travers l'ampoule. Le neutre est desserré au plafonnier. Attention : un neutre coupé peut être sous tension.",
+      "reparation": "Circuit consigné, on refait la connexion du neutre dans la borne du DCL, puis on remet sous tension." },
+    { "id": "lamp", "label": "Ampoule grillée",
+      "client": "La lampe de la chambre ne s'allume plus depuis ce matin. Le reste de la maison marche.",
+      "explication": "Toutes les tensions sont bonnes : au plafonnier, interrupteur allumé, L ↔ N = 230 V. Le circuit amène bien la tension, c'est le récepteur qui ne marche pas. Circuit consigné, l'ampoule déposée donne « OL » à l'ohmmètre (circuit ouvert) au lieu d'environ 70 Ω : le filament est coupé.",
+      "reparation": "On remplace l'ampoule par une ampoule de même culot et de puissance adaptée au luminaire." }
+  ]
 }

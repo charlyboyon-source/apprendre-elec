@@ -1,0 +1,62 @@
+/* Atelier dépannage : intervention guidée */
+.atelier { max-width: 1180px; margin: 0 auto; padding: 18px 16px 48px; }
+.dp-entete { text-align: center; margin-bottom: 14px; }
+.dp-kicker { margin: 0; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; color: var(--orange, #c25b00); }
+.dp-entete h1 { margin: 4px 0 12px; font-size: clamp(1.25rem, 3vw, 1.7rem); }
+.dp-scenarios, .dp-lieux { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.dp-lieux { justify-content: flex-start; margin-bottom: 10px; }
+.dp-chip { border: 2px solid var(--bordure); background: var(--fond-2); color: var(--texte); border-radius: 999px; padding: 7px 14px; font-weight: 700; font-size: 0.88rem; cursor: pointer; }
+.dp-chip.actif { border-color: var(--jaune); background: var(--accent); }
+.dp-bon { background: #fffdf5; border: 1px solid #e3d9b8; border-left: 6px solid var(--accent); border-radius: 12px; padding: 12px 16px; margin: 0 0 12px; box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+.dp-bon-tete { display: flex; justify-content: space-between; gap: 10px; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.06em; color: var(--texte-2); }
+.dp-bon-client { margin: 6px 0 4px; font-size: 1.02rem; line-height: 1.45; }
+.dp-bon-etat { margin: 0; font-weight: 700; font-size: 0.92rem; }
+.dp-message { margin: 0 0 12px; padding: 10px 14px; border-radius: 10px; font-weight: 600; line-height: 1.4; }
+.dp-message.danger { background: #fde4e1; color: #8a1c12; border: 1px solid #f2b3ab; }
+.dp-message.alerte { background: #fff1d6; color: #7a4a00; border: 1px solid #f0cf8a; }
+.dp-message.ok { background: #e3f5ea; color: #14703f; border: 1px solid #a9dcbd; }
+.dp-message.info { background: #e8f0fb; color: #1f4f8f; border: 1px solid #b8cdee; }
+.dp-grille { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
+.dp-vue { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; overflow: hidden; }
+.dp-svg { display: block; width: 100%; height: auto; }
+.dp-aide { font-size: 0.86rem; color: var(--texte-2); margin: 8px 2px 0; }
+.dp-outils { display: flex; flex-direction: column; gap: 12px; }
+.dp-carte { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; padding: 12px 14px; }
+.dp-carte h2 { margin: 0 0 8px; font-size: 0.95rem; }
+.dp-ligne { margin: 6px 0; font-size: 0.86rem; line-height: 1.4; }
+.dp-mm { max-width: 190px; margin: 0 auto 4px; }
+.pastille { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 2px; }
+.pastille.rouge { background: #d23a2e; } .pastille.noire { background: #1d2228; }
+.dp-carnet { margin: 0; padding-left: 18px; font-size: 0.8rem; line-height: 1.4; max-height: 220px; overflow: auto; }
+.dp-carnet li { margin-bottom: 4px; }
+.dp-bouton, .dp-bouton-plein, .dp-interrupteur { display: block; width: 100%; text-align: left; border-radius: 10px; padding: 9px 12px; font-size: 0.86rem; font-weight: 600; cursor: pointer; border: 2px solid var(--bordure); background: #fff; color: var(--texte); margin: 6px 0 0; }
+.dp-bouton:hover, .dp-interrupteur:hover { border-color: var(--jaune); }
+.dp-bouton-plein { text-align: center; background: var(--jaune); color: #fff; border-color: var(--jaune); font-weight: 700; }
+.dp-interrupteur.on { background: #e3f5ea; border-color: #2e9b5c; }
+.dp-lien { background: none; border: 0; color: var(--texte-2); text-decoration: underline; cursor: pointer; padding: 6px 0; font-size: 0.85rem; }
+.dp-methode { font-size: 0.85rem; background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; padding: 10px 14px; }
+.dp-methode summary { font-weight: 700; cursor: pointer; }
+.dp-methode ol { padding-left: 18px; margin: 8px 0 0; line-height: 1.45; }
+.dp-borne, .dp-manette, .dp-zone, .dp-bouton, .dp-calibre { cursor: pointer; }
+.dp-borne:hover circle:nth-of-type(2), .dp-borne:focus circle:nth-of-type(2) { fill: #fff3b0; }
+.dp-zone rect:first-child { animation: dp-pulse 2.4s ease-in-out infinite; }
+.dp-zone:hover rect:first-child { fill: rgba(242, 194, 48, 0.12); }
+@keyframes dp-pulse { 50% { stroke-opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .dp-zone rect:first-child { animation: none; } }
+.dp-manette:hover rect:first-child { fill: #454b52; }
+.dp-fin { text-align: center; background: #fffdf5; border: 2px solid var(--accent); border-radius: 16px; padding: 16px; margin: 0 0 14px; }
+.dp-fin h2 { margin: 2px 0 6px; }
+.dp-etoiles { font-size: 2rem; color: #e0a800; margin: 0; letter-spacing: 4px; }
+.dp-explication { text-align: left; font-size: 0.92rem; line-height: 1.5; max-width: 760px; margin: 8px auto; }
+.dp-fin .dp-bouton-plein { max-width: 280px; margin: 12px auto 0; }
+@media (max-width: 900px) {
+  .dp-grille { grid-template-columns: 1fr; }
+  .dp-mm { max-width: 160px; }
+}
+.dp-lecture { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center; margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: #2b2f34; color: #fff; }
+.dp-calibres { display: flex; gap: 6px; }
+.dp-calibres .dp-chip { padding: 5px 10px; font-size: 0.8rem; border-color: #555; background: #3a3f46; color: #fff; }
+.dp-calibres .dp-chip.actif { background: var(--accent); color: #1d2228; border-color: var(--accent); }
+.dp-lcd { margin: 0; justify-self: end; min-width: 120px; text-align: right; font: 700 1.6rem ui-monospace, Menlo, monospace; background: #c8d4b4; color: #1d2620; border-radius: 6px; padding: 2px 10px; }
+.dp-pointes { grid-column: 1 / -1; margin: 0; font-size: 0.82rem; line-height: 1.5; color: #e6e8ea; }
+@media (max-width: 900px) { .dp-carte-mm { display: none; } }
