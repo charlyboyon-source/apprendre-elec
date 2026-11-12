@@ -1,5 +1,5 @@
 {
-  "regles": "Une actualité n'est publiée que si elle est vérifiée sur une source officielle ou sur le site du fabricant, citée avec son lien. Texte écrit avec nos mots, jamais recopié. Les plus récentes en premier. Les images sont nos propres dessins : on ne reprend pas les photos des fabricants sans leur autorisation.",
+  "regles": "Une actualité n'est publiée que si elle est vérifiée sur une source officielle ou sur le site du fabricant, citée avec son lien. Texte écrit avec nos mots, jamais recopié. Les plus récentes en premier. Les images sont des photos générées par l'IA de Canva pour ce site (dossier assets/photos) : on ne reprend jamais les photos des fabricants ou d'autres sites.",
   "actualites": [
     {
       "date": "2026-11-12",
@@ -9,7 +9,7 @@
       "a_retenir": "Une pince isolée 1000 V reste un outil de protection : on vérifie son isolant avant chaque usage, et elle ne remplace jamais la consignation.",
       "source": "Blog officiel Knipex, « KNIPEXupdate Summer 2026 »",
       "url": "https://blog.knipex.com/en/en/blog/knipexupdate-summer-2026",
-      "image": "assets/svg/actu-pince.svg"
+      "image": "assets/photos/actu-pince.jpg"
     },
     {
       "date": "2026-11-12",
@@ -19,7 +19,7 @@
       "a_retenir": "Avant de percer un mur, on repère les canalisations électriques encastrées (zones de passage, détecteur) : un perforateur ne fait pas la différence avec une gaine.",
       "source": "Milwaukee, dossier de presse « Perforateurs M18 FUEL SDS-MAX », juillet 2026",
       "url": "https://fr.milwaukeetool.eu/NetC.MilwaukeeTools/media/Authorised-Distributor/MILWAUKEE_CP_PERFORATEUR_V3.pdf",
-      "image": "assets/svg/actu-perforateur.svg"
+      "image": "assets/photos/actu-perforateur.jpg"
     },
     {
       "date": "2026-11-12",
@@ -29,7 +29,7 @@
       "a_retenir": "Sur un dossier ancien, c'est la date de la demande d'attestation au Consuel qui dit quelle version s'applique.",
       "source": "Legrand, « Révision de la norme NF C 15-100 »",
       "url": "https://www.legrand.fr/pro/actualites/revision-de-la-norme-nf-c-15-100-quest-ce-qui-change",
-      "image": "assets/svg/actu-norme.svg"
+      "image": "assets/photos/actu-norme.jpg"
     },
     {
       "date": "2026-11-12",
@@ -39,7 +39,7 @@
       "a_retenir": "Avant de poser un onduleur, demander au fournisseur le certificat établi selon la NF EN 50549-10 : le Consuel le vérifie.",
       "source": "photovoltaique.info (site d'information soutenu par l'ADEME), 16 décembre 2025",
       "url": "https://www.photovoltaique.info/fr/actualites/detail/raccordement-au-reseau-passage-a-la-nf-en50549-fin-de-derogation-pour-les-installations-36kva/",
-      "image": "assets/svg/actu-onduleur.svg"
+      "image": "assets/photos/actu-onduleur.jpg"
     }
   ]
 }
