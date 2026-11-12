@@ -698,3 +698,159 @@ s.a(f'<rect x="30" y="338" width="580" height="46" rx="12" fill="#fff1c2" stroke
 s.t(320,367,"Le conduit se choisit avant le fil",13,True)
 s.ecrire("c13-choix.svg")
 print("module 13 : 7 images")
+
+# =====================================================================
+# MODULE 14 — GTL et circuits du logement
+# =====================================================================
+def ampoule(s,cx,cy,r=20):
+    s.a(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#fff1c2" stroke="{YEL}" stroke-width="2.5"/><path d="M{cx-r*.35:.1f} {cy+r*.3:.1f} q{r*.17:.1f} -{r*.5:.1f} {r*.35:.1f} 0 q{r*.17:.1f} {r*.5:.1f} {r*.35:.1f} 0" fill="none" stroke="#e8590c" stroke-width="2"/><rect x="{cx-r*.45:.1f}" y="{cy+r*.9:.1f}" width="{r*.9:.1f}" height="{r*.65:.1f}" rx="3" fill="url(#acierH)" stroke="#7d858e"/>')
+def prise_ic(s,cx,cy,t=30):
+    s.a(f'<rect x="{cx-t/2}" y="{cy-t/2}" width="{t}" height="{t}" rx="{t/7:.1f}" fill="url(#nez)" stroke="#b3b9c0"/><circle cx="{cx}" cy="{cy}" r="{t*.37:.1f}" fill="#e4e7ea" stroke="#b3b9c0"/><circle cx="{cx-t*.15:.1f}" cy="{cy+t*.04:.1f}" r="{t*.06:.1f}" fill="#1f2428"/><circle cx="{cx+t*.15:.1f}" cy="{cy+t*.04:.1f}" r="{t*.06:.1f}" fill="#1f2428"/><rect x="{cx-t*.04:.1f}" y="{cy-t*.28:.1f}" width="{t*.08:.1f}" height="{t*.17:.1f}" rx="1.5" fill="#c9a03a"/>')
+def plaque_ic(s,cx,cy,w=64):
+    h=w*.78
+    s.a(f'<rect x="{cx-w/2}" y="{cy-h/2}" width="{w}" height="{h}" rx="5" fill="#23272c" stroke="#000"/>'+"".join(f'<circle cx="{cx+dx*w:.1f}" cy="{cy+dy*h:.1f}" r="{rr*w:.1f}" fill="none" stroke="#d9480f" stroke-width="2"/>' for dx,dy,rr in ((-.24,-.21,.14),(.24,-.21,.11),(-.24,.23,.11),(.24,.23,.14))))
+def lavelinge_ic(s,cx,cy,w=52):
+    h=w*1.2
+    s.a(f'<rect x="{cx-w/2}" y="{cy-h/2}" width="{w}" height="{h}" rx="5" fill="url(#nez)" stroke="#aab1b9"/><rect x="{cx-w/2+4}" y="{cy-h/2+4}" width="{w-8}" height="9" rx="2" fill="#d5d9de"/><circle cx="{cx+w/2-10}" cy="{cy-h/2+8.5}" r="3" fill="#5b6673"/><circle cx="{cx}" cy="{cy+6}" r="{w*.32:.1f}" fill="#cfe3f7" stroke="#7d858e" stroke-width="3"/>')
+def vmc_ic(s,cx,cy,w=56):
+    s.a(f'<rect x="{cx-w/2}" y="{cy-w/2}" width="{w}" height="{w}" rx="8" fill="url(#nez)" stroke="#aab1b9"/><circle cx="{cx}" cy="{cy}" r="{w*.36:.1f}" fill="#eef0f2" stroke="#7d858e" stroke-width="2"/>'+"".join(f'<ellipse cx="{cx}" cy="{cy-w*.17:.1f}" rx="{w*.08:.1f}" ry="{w*.17:.1f}" fill="#7d858e" transform="rotate({a} {cx} {cy})"/>' for a in (0,72,144,216,288))+f'<circle cx="{cx}" cy="{cy}" r="4" fill="#3a3f46"/>')
+def linky(s,x,y,w,h):
+    s.a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{w*.1:.1f}" fill="#c5d93a" stroke="#93a51f"/><rect x="{x+w*.14:.1f}" y="{y+h*.14:.1f}" width="{w*.72:.1f}" height="{h*.24:.1f}" rx="3" fill="#1f3a2a"/><circle cx="{x+w*.32:.1f}" cy="{y+h*.56:.1f}" r="{w*.08:.1f}" fill="#93a51f"/><circle cx="{x+w*.68:.1f}" cy="{y+h*.56:.1f}" r="{w*.08:.1f}" fill="#93a51f"/><rect x="{x+w*.14:.1f}" y="{y+h*.72:.1f}" width="{w*.72:.1f}" height="{h*.18:.1f}" rx="3" fill="#b3c62c"/>')
+def bande(s,y,h,lignes,taille=12):
+    s.a(f'<rect x="24" y="{y}" width="592" height="{h}" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+    for i,l in enumerate(lignes): s.t(320,y+(h-21*(len(lignes)-1))/2+6+21*i,l,taille,True)
+
+# ---------- 14.1 la GTL
+s=S("Tout au même endroit : l'ETEL","L'espace technique électrique du logement regroupe le panneau de contrôle avec le compteur et l'AGCP, le tableau de répartition et le tableau de communication")
+s.a('<rect x="24" y="44" width="592" height="8" fill="#d5d9de"/><rect x="24" y="336" width="592" height="8" fill="#b9bfc6"/>')
+s.a('<g filter="url(#ombre)"><rect x="96" y="52" width="150" height="284" fill="#f4f5f7" stroke="#c5cad0"/></g>')
+# panneau de contrôle
+s.a('<rect x="108" y="64" width="126" height="84" rx="6" fill="#fff" stroke="#b3b9c0"/>'); linky(s,116,72,48,68)
+s.a('<rect x="174" y="76" width="50" height="60" rx="5" fill="url(#corps)" stroke="#b3b9c0"/><rect x="188" y="88" width="22" height="26" rx="4" fill="url(#manette)"/><rect x="214" y="80" width="8" height="7" rx="2" fill="#f2a20c"/>')
+# tableau de répartition
+s.a('<rect x="108" y="158" width="126" height="92" rx="6" fill="#fff" stroke="#b3b9c0"/>')
+for r in range(2):
+    y=166+r*40; rail(s,112,y,118,0.15)
+    idiff(s,114,y,0.15,"40 A","AC",False)
+    for i in range(8): disj(s,135+i*10.5,y,0.15,"",None,True,False)
+# tableau de communication
+s.a('<rect x="108" y="260" width="126" height="64" rx="6" fill="#fff" stroke="#b3b9c0"/><rect x="118" y="272" width="106" height="18" rx="3" fill="#3a3f46"/>')
+for i in range(8): s.a(f'<rect x="{122+i*12.6:.1f}" y="276" width="9" height="10" rx="1.5" fill="#9bd0ff"/>')
+s.a('<rect x="118" y="298" width="50" height="16" rx="3" fill="#e4e7ea" stroke="#aab1b9"/><circle cx="126" cy="306" r="2.5" fill="#1e9e5a"/><circle cx="134" cy="306" r="2.5" fill="#1e9e5a"/>')
+for y,t1,t2 in ((106,"panneau de contrôle","le compteur et l'AGCP"),(204,"tableau de répartition","les protections des circuits"),(292,"tableau de communication","téléphone, internet, télévision")):
+    s.a(f'<path d="M236 {y} H280" stroke="{INK}" stroke-width="1.8"/><circle cx="236" cy="{y}" r="3" fill="{INK}"/>')
+    s.t(288,y-3,t1,12.5,True,INK,"start"); s.t(288,y+18,t2,10.5,False,GR,"start")
+s.t(60,200,"ETEL",12,True,AMB); 
+bande(s,352,38,["Courant fort et communication, réunis"],12.5)
+s.ecrire("c14-gtl.svg")
+
+# ---------- 14.2 dimensions et distances de l'ETEL
+s=S("L'ETEL : ses dimensions, ses distances","Dimensions de l'ETEL : 60 cm de large, 25 cm de profondeur, du sol au plafond. Distances à respecter : 10 cm d'une canalisation de gaz, 40 cm d'une source de chaleur, 60 cm d'un point d'eau")
+s.panneau(16,44,296,340); s.panneau(328,44,296,340)
+# colonne en volume
+s.a('<rect x="24" y="74" width="280" height="6" fill="#c5cad0"/><rect x="24" y="334" width="280" height="6" fill="#aab1b9"/>')
+s.a('<polygon points="262,80 282,70 282,324 262,334" fill="#cfd4da" stroke="#aab1b9"/><g filter="url(#ombre)"><rect x="182" y="80" width="80" height="254" fill="#f7f8f9" stroke="#b3b9c0"/></g>')
+s.a('<rect x="192" y="96" width="60" height="44" rx="4" fill="#fff" stroke="#b3b9c0"/><rect x="192" y="150" width="60" height="50" rx="4" fill="#fff" stroke="#b3b9c0"/><rect x="192" y="210" width="60" height="34" rx="4" fill="#fff" stroke="#b3b9c0"/>')
+s.a(f'<path d="M182 62 H262" stroke="{AMB}" stroke-width="2.5"/><path d="M182 56 v12 M262 56 v12" stroke="{AMB}" stroke-width="2.5"/>')
+s.a(f'<path d="M266 64 L284 55" stroke="{BLUE}" stroke-width="2.5"/><path d="M263 59 l6 10 M281 50 l6 10" stroke="{BLUE}" stroke-width="2.5"/>')
+s.a(f'<path d="M296 80 V334" stroke="{GRN}" stroke-width="2.5"/><path d="M290 80 h12 M290 334 h12" stroke="{GRN}" stroke-width="2.5"/>')
+s.t(28,112,"60 cm",15,True,AMB,"start"); s.t(28,133,"de large",11,False,INK,"start"); s.t(28,152,"au minimum",11,False,GR,"start")
+s.t(28,196,"25 cm",15,True,BLUE,"start"); s.t(28,217,"de profondeur",11,False,INK,"start"); s.t(28,236,"au minimum",11,False,GR,"start")
+s.t(28,280,"toute",13,True,GRN,"start"); s.t(28,300,"la hauteur",13,True,GRN,"start"); s.t(28,321,"du sol au plafond",10.5,False,GR,"start")
+s.t(476,72,"Et il se tient à distance de :",11.5,True)
+# gaz
+s.a('<rect x="346" y="118" width="62" height="12" rx="3" fill="#f2c200" stroke="#b08900"/><rect x="368" y="110" width="16" height="28" rx="3" fill="#d9a900" stroke="#b08900"/><rect x="362" y="100" width="28" height="8" rx="3" fill="#d92b2b"/>')
+# radiateur
+for i in range(6): s.a(f'<rect x="{348+i*10}" y="192" width="8" height="50" rx="3" fill="url(#nez)" stroke="#aab1b9"/>')
+for i in range(3): s.a(f'<path d="M{358+i*18} 188 q4 -6 0 -11 q-4 -6 0 -10" fill="none" stroke="#e8590c" stroke-width="2" stroke-linecap="round"/>')
+# robinet
+s.a('<path d="M352 300 H386 a10 10 0 0 1 10 10 V322" fill="none" stroke="url(#acierH)" stroke-width="10"/><path d="M352 300 H386 a10 10 0 0 1 10 10 V322" fill="none" stroke="#7d858e" stroke-width="1"/><rect x="364" y="284" width="6" height="14" fill="#7d858e"/><rect x="356" y="280" width="22" height="6" rx="3" fill="#5b6673"/><path d="M396 332 q-7 10 0 14 q7 -4 0 -14" fill="#3d9be9"/>')
+for y,v,l in ((112,"10 cm","d'une canalisation de gaz"),(204,"40 cm","d'une source de chaleur"),(298,"60 cm","d'un point d'eau")):
+    s.t(424,y+8,v,15,True,INK,"start"); s.t(424,y+30,l,10.5,False,GR,"start")
+s.ecrire("c14-etel.svg")
+
+# ---------- 14.3 hauteurs de pose (1 m = 133 px)
+s=S("À quelle hauteur ? Il faut pouvoir l'atteindre","Hauteur des organes de manœuvre du panneau de contrôle : 1,80 m au maximum ; entre 0,90 m et 1,30 m quand l'accessibilité aux personnes à mobilité réduite est exigée",640,410)
+SOL=336; H=lambda m: SOL-m*133
+s.a(f'<rect x="96" y="{H(1.30):.0f}" width="230" height="{H(0.90)-H(1.30):.0f}" fill="#e3f5ea" stroke="{GRN}" stroke-dasharray="6 4"/>')
+s.a(f'<rect x="24" y="{SOL}" width="592" height="8" fill="#b9bfc6"/>')
+for m,lab in ((1.80,"1,80 m"),(1.30,"1,30 m"),(0.90,"0,90 m")):
+    s.a(f'<path d="M92 {H(m):.0f} H326" stroke="{INK}" stroke-width="1.6" stroke-dasharray="{"0" if m==1.8 else "5 4"}"/>')
+    s.t(86,H(m)+5,lab,11.5,True,INK,"end")
+s.t(86,SOL+2,"sol",11,False,GR,"end")
+s.a(f'<path d="M96 {SOL} V{H(1.8):.0f}" stroke="{INK}" stroke-width="2"/>')
+# panneau de contrôle : la manette de l'AGCP sous 1,80 m
+s.a('<g filter="url(#ombre)"><rect x="196" y="104" width="116" height="92" rx="6" fill="#fff" stroke="#b3b9c0"/></g>'); linky(s,204,112,44,72)
+s.a('<rect x="258" y="116" width="46" height="64" rx="5" fill="url(#corps)" stroke="#b3b9c0"/><rect x="270" y="126" width="22" height="26" rx="4" fill="url(#manette)"/>')
+# personne debout
+s.a('<circle cx="146" cy="126" r="15" fill="#5b6673"/><path d="M124 150 q22 -10 44 0 v84 h-10 v96 h-10 v-90 h-4 v90 h-10 v-96 h-10 z" fill="#5b6673"/><path d="M166 156 L206 136" stroke="#5b6673" stroke-width="10" stroke-linecap="round"/>')
+s.t(350,112,"1,80 m au maximum",13,True,INK,"start"); s.t(350,134,"dans tous les logements",11,False,GR,"start")
+s.t(350,190,"0,90 m à 1,30 m",13,True,GRN,"start"); s.t(350,212,"accessibilité aux personnes",11,False,GR,"start"); s.t(350,231,"à mobilité réduite (PMR)",11,False,GR,"start")
+bande(s,358,40,["Hauteur des organes de manœuvre, depuis le sol fini"],11.5)
+s.ecrire("c14-hauteurs.svg")
+
+# ---------- 14.4 circuit d'éclairage
+s=S("Le circuit d'éclairage","Un circuit d'éclairage : conducteurs de 1,5 mm², disjoncteur de 16 A au maximum, 8 points lumineux au maximum ; au moins deux circuits dans un logement de plus de 35 m²",640,420)
+for dy,c in ((0,RED),(6,BLEU)):
+    s.a(f'<path d="M60 {150+dy} V{68+dy} H580" fill="none" stroke="{c}" stroke-width="3.5" stroke-linejoin="round"/>')
+for i in range(8):
+    cx=146+62*i
+    s.a(f'<path d="M{cx-3} 70 V100" stroke="{RED}" stroke-width="3"/><path d="M{cx+3} 76 V100" stroke="{BLUE}" stroke-width="3"/>'); ampoule(s,cx,118,18)
+    s.t(cx,172,str(i+1),11.5,True)
+disj(s,34,84,0.5,"C16")
+for i,(v,l1,l2) in enumerate((("1,5 mm²","la section","des conducteurs"),("16 A","le disjoncteur","au maximum"),("8 points","lumineux","par circuit, au plus"))):
+    x=24+202*i; cx=x+94
+    carte(s,x,214,188,96); s.t(cx,246,v,16,True); s.t(cx,270,l1,11); s.t(cx,291,l2,11)
+bande(s,322,40,["Au moins 2 circuits au-delà de 35 m²"],12.5)
+s.t(320,386,"Un circuit en panne ne doit pas plonger",10.5,False,GR); s.t(320,405,"tout le logement dans le noir",10.5,False,GR)
+s.ecrire("c14-eclairage.svg")
+
+# ---------- 14.5 circuits de prises
+s=S("Les circuits de prises 16 A","Circuits de prises de courant : en 1,5 mm² avec un disjoncteur de 16 A, 8 prises au maximum ; en 2,5 mm² avec un disjoncteur de 20 A, 12 prises au maximum")
+for px,sec,mq,cal,nb,rangs in ((16,"EN 1,5 mm²","C16","disjoncteur 16 A","8 prises",2),(328,"EN 2,5 mm²","C20","disjoncteur 20 A","12 prises",3)):
+    s.panneau(px,44,296,268); s.t(px+148,72,sec,14,True,AMB)
+    disj(s,px+22,92,0.42,mq)
+    for r in range(rangs):
+        for c in range(4): prise_ic(s,px+100+c*46,104+r*40,32)
+    s.t(px+148,244,cal,12); s.t(px+148,272,nb,16,True); s.t(px+148,295,"au maximum",11,False,GR)
+bande(s,324,58,["Cuisine : un circuit dédié de 6 prises,","dont 4 au-dessus du plan de travail"],12)
+s.ecrire("c14-prises.svg")
+
+# ---------- 14.6 circuits spécialisés
+s=S("Les circuits spécialisés : un appareil, un circuit","Circuits spécialisés : plaque de cuisson en 6 mm² sous 32 A ; lave-linge, four, lave-vaisselle et chauffe-eau en 2,5 mm² sous 20 A chacun ; VMC en 1,5 mm² sous 2 A")
+for r,(titre,val,desc,mq) in enumerate((("PLAQUE DE CUISSON","6 mm² · disjoncteur 32 A","","C32"),("LAVE-LINGE, FOUR…","2,5 mm² · disjoncteur 20 A","lave-vaisselle, sèche-linge, chauffe-eau","C20"),("VMC","1,5 mm² · disjoncteur 2 A","","C2"))):
+    y=48+r*94; carte(s,16,y,608,84)
+    if r==0: plaque_ic(s,70,y+42,72)
+    elif r==1: lavelinge_ic(s,70,y+42,52)
+    else: vmc_ic(s,70,y+42,58)
+    s.a(f'<path d="M108 {y+42} H140" stroke="{RED}" stroke-width="{(7,5,3.5)[r]}"/>')
+    disj(s,140,y+7,0.29,mq,None,True,False)
+    dy=0 if desc else 9
+    s.t(182,y+27+dy,titre,12.5,True,AMB,"start"); s.t(182,y+50+dy,val,12.5,True,INK,"start")
+    if desc: s.t(182,y+71,desc,10.5,False,GR,"start")
+bande(s,338,46,["Au moins 4 circuits spécialisés par logement"],12)
+s.ecrire("c14-specialises.svg")
+
+# ---------- 14.7 alimentation d'un chantier
+s=S("Le courant sur un chantier","Alimentation d'un chantier : le coffret de branchement provisoire, qui relève de la NF C 14-100, alimente le coffret de chantier équipé d'un interrupteur différentiel 30 mA",640,410)
+# réseau : poteau et lignes
+s.a('<rect x="104" y="52" width="12" height="136" rx="2" fill="#8a5a2b" stroke="#5e3b17"/><rect x="74" y="64" width="72" height="8" rx="2" fill="#6b4520"/>')
+for x in (80,104,128,140): s.a(f'<rect x="{x}" y="56" width="5" height="9" rx="2" fill="#dfe3e7" stroke="#7d858e"/>')
+s.a(f'<path d="M30 60 Q70 70 82 58 M30 66 Q80 76 106 58" fill="none" stroke="{INK}" stroke-width="1.6"/><path d="M142 60 Q200 96 262 110" fill="none" stroke="{INK}" stroke-width="3"/>')
+# branchement provisoire : coffret gris sur pied
+s.a('<rect x="312" y="150" width="14" height="38" fill="#7d858e"/><g filter="url(#ombre)"><rect x="262" y="58" width="116" height="96" rx="6" fill="#e4e7ea" stroke="#9aa1a9"/></g>'); linky(s,272,68,42,62)
+s.a('<rect x="322" y="70" width="46" height="60" rx="5" fill="url(#corps)" stroke="#b3b9c0"/><rect x="334" y="80" width="22" height="24" rx="4" fill="url(#manette)"/>')
+s.a(f'<path d="M378 124 Q420 150 470 130" fill="none" stroke="{INK}" stroke-width="5"/>')
+# coffret de chantier : jaune, prises bleues, différentiel
+s.a('<rect x="516" y="158" width="10" height="30" fill="#5b6673"/><rect x="544" y="158" width="10" height="30" fill="#5b6673"/><g filter="url(#ombre)"><rect x="470" y="56" width="130" height="106" rx="8" fill="#f2b90c" stroke="#b98a05"/></g>')
+s.a('<rect x="480" y="66" width="110" height="38" rx="4" fill="#fff" stroke="#b3b9c0"/>'); idiff(s,484,69,0.135,"40 A","A",False)
+for i in range(5): disj(s,506+i*9.6,69,0.135,"",None,True,False)
+for i in range(3): s.a(f'<circle cx="{494+i*40}" cy="134" r="14" fill="#2f6fd0" stroke="#1d4a94" stroke-width="2"/><circle cx="{494+i*40}" cy="134" r="7" fill="#17376e"/>')
+s.a(f'<rect x="24" y="188" width="592" height="6" fill="#b9bfc6"/>')
+for cx,t,l1,l2,c in ((110,"RÉSEAU","le distributeur","alimente",INK),(320,"BRANCHEMENT","provisoire","NF C 14-100",BLUE),(535,"COFFRET","de chantier","différentiel 30 mA",AMB)):
+    s.t(cx,220,t,12.5,True,c); s.t(cx,241,l1,11); s.t(cx,261,l2,11,True if cx>200 else False)
+s.t(320,298,"Toutes les prises du chantier sont protégées en 30 mA",11.5,True)
+s.t(320,321,"Rallonges déroulées, matériel en bon état, à l'abri de l'eau",10.5,False,GR)
+bande(s,340,46,["Un chantier est un milieu mouillé : tension limite 25 V"],11.5)
+s.ecrire("c14-provisoire.svg")
+print("module 14 : 7 images")

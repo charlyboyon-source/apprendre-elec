@@ -1,18 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 196" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Circuits spécialisés : plaque de cuisson en 6 mm² sous 32 A ; lave-linge, four, lave-vaisselle et chauffe-eau en 2,5 mm² sous 20 A chacun ; VMC en 1,5 mm² sous 2 A">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">Les circuits spécialisés : un appareil, un circuit</text>
-<rect x="12" y="30" width="296" height="34" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="35" width="4" height="24" rx="2" fill="#e85b50"/>
-<text x="24" y="50.0" text-anchor="start" font-size="8.5" fill="#e85b50" font-weight="bold">PLAQUE DE CUISSON</text>
-<text x="132" y="50.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">6 mm² · disjoncteur 32 A</text>
-<rect x="12" y="70" width="296" height="34" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="75" width="4" height="24" rx="2" fill="#ff8c2b"/>
-<text x="24" y="90.0" text-anchor="start" font-size="8.5" fill="#ff8c2b" font-weight="bold">LAVE-LINGE, FOUR…</text>
-<text x="132" y="84.5" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">2,5 mm² · disjoncteur 20 A</text>
-<text x="132" y="96.5" text-anchor="start" font-size="7.8" fill="#9aa6b3" font-weight="normal">lave-vaisselle, sèche-linge, chauffe-eau</text>
-<rect x="12" y="110" width="296" height="34" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="115" width="4" height="24" rx="2" fill="#5aa9e6"/>
-<text x="24" y="130.0" text-anchor="start" font-size="8.5" fill="#5aa9e6" font-weight="bold">VMC</text>
-<text x="132" y="130.0" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">1,5 mm² · disjoncteur 2 A</text>
-<rect x="40" y="152" width="240" height="28" rx="9" fill="#ffd23f" stroke="#ffd23f" stroke-width="1.2" fill-opacity="0.07"/>
-<text x="160" y="170" text-anchor="middle" font-size="9" fill="#ffd23f" font-weight="bold">Au moins 4 circuits spécialisés par logement</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Circuits spécialisés : plaque de cuisson en 6 mm² sous 32 A ; lave-linge, four, lave-vaisselle et chauffe-eau en 2,5 mm² sous 20 A chacun ; VMC en 1,5 mm² sous 2 A">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Les circuits spécialisés : un appareil, un circuit</text>
+<rect x="16" y="48" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="34.0" y="61.92" width="72" height="56.160000000000004" rx="5" fill="#23272c" stroke="#000"/><circle cx="52.7" cy="78.2" r="10.1" fill="none" stroke="#d9480f" stroke-width="2"/><circle cx="87.3" cy="78.2" r="7.9" fill="none" stroke="#d9480f" stroke-width="2"/><circle cx="52.7" cy="102.9" r="7.9" fill="none" stroke="#d9480f" stroke-width="2"/><circle cx="87.3" cy="102.9" r="10.1" fill="none" stroke="#d9480f" stroke-width="2"/>
+<path d="M108 90 H140" stroke="#d92b2b" stroke-width="7"/>
+<g transform="translate(140 55) scale(0.29)"><rect width="70" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="70" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="20" y="30"/><use href="#borne" x="50" y="30"/><use href="#borne" x="20" y="210"/><use href="#borne" x="50" y="210"/><rect x="18" y="72" width="34" height="56" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="22" y="72" width="26" height="30" rx="4" fill="url(#manette)"/><text x="35" y="150" text-anchor="middle" font-size="17" font-weight="800" fill="#1c2530">C32</text><text x="35" y="169" text-anchor="middle" font-size="9" font-weight="500" fill="#5b6673">230 V~</text></g>
+<text x="182" y="84" text-anchor="start" font-size="16.2" font-weight="800" fill="#b85a08">PLAQUE DE CUISSON</text>
+<text x="182" y="107" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">6 mm² · disjoncteur 32 A</text>
+<rect x="16" y="142" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="44.0" y="152.8" width="52" height="62.4" rx="5" fill="url(#nez)" stroke="#aab1b9"/><rect x="48.0" y="156.8" width="44" height="9" rx="2" fill="#d5d9de"/><circle cx="86.0" cy="161.3" r="3" fill="#5b6673"/><circle cx="70" cy="190" r="16.6" fill="#cfe3f7" stroke="#7d858e" stroke-width="3"/>
+<path d="M108 184 H140" stroke="#d92b2b" stroke-width="5"/>
+<g transform="translate(140 149) scale(0.29)"><rect width="70" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="70" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="20" y="30"/><use href="#borne" x="50" y="30"/><use href="#borne" x="20" y="210"/><use href="#borne" x="50" y="210"/><rect x="18" y="72" width="34" height="56" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="22" y="72" width="26" height="30" rx="4" fill="url(#manette)"/><text x="35" y="150" text-anchor="middle" font-size="17" font-weight="800" fill="#1c2530">C20</text><text x="35" y="169" text-anchor="middle" font-size="9" font-weight="500" fill="#5b6673">230 V~</text></g>
+<text x="182" y="169" text-anchor="start" font-size="16.2" font-weight="800" fill="#b85a08">LAVE-LINGE, FOUR…</text>
+<text x="182" y="192" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">2,5 mm² · disjoncteur 20 A</text>
+<text x="182" y="213" text-anchor="start" font-size="13.7" font-weight="500" fill="#5b6673">lave-vaisselle, sèche-linge, chauffe-eau</text>
+<rect x="16" y="236" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="41.0" y="249.0" width="58" height="58" rx="8" fill="url(#nez)" stroke="#aab1b9"/><circle cx="70" cy="278" r="20.9" fill="#eef0f2" stroke="#7d858e" stroke-width="2"/><ellipse cx="70" cy="268.1" rx="4.6" ry="9.9" fill="#7d858e" transform="rotate(0 70 278)"/><ellipse cx="70" cy="268.1" rx="4.6" ry="9.9" fill="#7d858e" transform="rotate(72 70 278)"/><ellipse cx="70" cy="268.1" rx="4.6" ry="9.9" fill="#7d858e" transform="rotate(144 70 278)"/><ellipse cx="70" cy="268.1" rx="4.6" ry="9.9" fill="#7d858e" transform="rotate(216 70 278)"/><ellipse cx="70" cy="268.1" rx="4.6" ry="9.9" fill="#7d858e" transform="rotate(288 70 278)"/><circle cx="70" cy="278" r="4" fill="#3a3f46"/>
+<path d="M108 278 H140" stroke="#d92b2b" stroke-width="3.5"/>
+<g transform="translate(140 243) scale(0.29)"><rect width="70" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="70" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="20" y="30"/><use href="#borne" x="50" y="30"/><use href="#borne" x="20" y="210"/><use href="#borne" x="50" y="210"/><rect x="18" y="72" width="34" height="56" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="22" y="72" width="26" height="30" rx="4" fill="url(#manette)"/><text x="35" y="150" text-anchor="middle" font-size="17" font-weight="800" fill="#1c2530">C2</text><text x="35" y="169" text-anchor="middle" font-size="9" font-weight="500" fill="#5b6673">230 V~</text></g>
+<text x="182" y="272" text-anchor="start" font-size="16.2" font-weight="800" fill="#b85a08">VMC</text>
+<text x="182" y="295" text-anchor="start" font-size="16.2" font-weight="800" fill="#1c2530">1,5 mm² · disjoncteur 2 A</text>
+<rect x="24" y="338" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="367.0" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Au moins 4 circuits spécialisés par logement</text>
 </svg>
