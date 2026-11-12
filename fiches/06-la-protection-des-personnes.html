@@ -36,7 +36,7 @@
       <a class="bouton-creux" href="fiche.html?id=6">Version à cocher, avec mini-test</a></div>
     <div class="fiche-cartes">
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-contacts.svg" alt="1. Contact direct, contact indirect" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-contacts.svg" alt="Contact direct : on touche une pièce normalement sous tension. Contact indirect : on touche une masse mise sous tension par un défaut d&#x27;isolement" width="640" height="400"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">1</span>Contact direct, contact indirect</h2>
           <p class="fiche-carte-memo">Contact direct = pièce normalement sous tension. Contact indirect = masse mise sous tension par un défaut. Le second est le plus sournois : rien ne prévient.</p>
@@ -44,7 +44,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-pe-masses.svg" alt="2. Les masses et le conducteur de protection PE" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-pe-masses.svg" alt="Le conducteur de protection PE, vert et jaune, relie les masses du four, du lave-linge et du chauffe-eau à la prise de terre. Il ne conduit du courant qu&#x27;en cas de défaut" width="640" height="400" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">2</span>Les masses et le conducteur de protection PE</h2>
           <p class="fiche-carte-memo">Masse = partie métallique touchable, normalement hors tension. Le PE (vert/jaune) relie toutes les masses à la terre. Sécurité, jamais alimentation.</p>
@@ -52,7 +52,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-circuit-terre.svg" alt="3. La prise de terre et le circuit de terre" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-circuit-terre.svg" alt="Le circuit de terre : la prise de terre, boucle à fond de fouille ou piquet de 2 m, puis le conducteur de terre en cuivre nu 25 mm², la borne principale de terre avec sa barrette de coupure, le conducteur principal de protection 16 mm², et le bornier de terre du tableau" width="640" height="440" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">3</span>La prise de terre et le circuit de terre</h2>
           <p class="fiche-carte-memo">Prise de terre (piquet 2 m, ou boucle à fond de fouille = la meilleure) → conducteur de terre 25 mm² cuivre nu → borne principale (barrette de coupure pour mesurer) → conducteur principal de protection (même section que l'arrivée : 16 mm² avec une arrivée en 16 mm²) → bornier du tableau.</p>
@@ -60,7 +60,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-regime-tt.svg" alt="4. Le régime de neutre TT" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-regime-tt.svg" alt="Régime TT : côté distributeur, le neutre du transformateur est relié à une première prise de terre ; chez l&#x27;usager, les masses sont reliées à une deuxième prise de terre. Les deux terres ne sont reliées que par le sol" width="640" height="430" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">4</span>Le régime de neutre TT</h2>
           <p class="fiche-carte-memo">TT : neutre à la Terre côté distributeur (1er T), masses à la Terre chez l'usager (2e T), par deux prises de terre distinctes. C'est le régime de tous les logements.</p>
@@ -68,7 +68,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-boucle-defaut.svg" alt="5. La boucle de défaut et la tension de contact" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-boucle-defaut.svg" alt="Boucle de défaut en TT : le courant de défaut part de la phase, traverse la masse en défaut, le conducteur de protection, la prise de terre du logement, le sol, puis la prise de terre du neutre. Deux terres en série : courant faible. Tension de contact Uc égale R terre fois I défaut ; R inférieure ou égale à UL sur IΔn, 50 V sur 0,5 A, 100 Ω" width="640" height="440" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">5</span>La boucle de défaut et la tension de contact</h2>
           <p class="fiche-carte-memo">Boucle de défaut en TT = 2 terres en série → courant faible, le disjoncteur ne déclenche pas. Uc = R(terre) × I(défaut). R ≤ UL/IΔn : 50 V / 0,5 A = 100 Ω.</p>
@@ -76,7 +76,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-ddr-principe.svg" alt="6. Le DDR : principe et sensibilités" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-ddr-principe.svg" alt="Vue en coupe d&#x27;un dispositif différentiel : la phase et le neutre traversent un tore. Si leurs courants sont égaux, rien ne se passe ; s&#x27;ils diffèrent, à cause d&#x27;une fuite vers la terre, la bobine de détection fait déclencher l&#x27;appareil" width="640" height="430" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">6</span>Le DDR : principe et sensibilités</h2>
           <p class="fiche-carte-memo">DDR : phase et neutre dans un tore ; il coupe si elles diffèrent (fuite). Sensibilité IΔn en mA. 30 mA (haute sensibilité) → personnes. 300/500 mA → incendie.</p>
@@ -84,7 +84,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-types-ddr.svg" alt="7. Les types de DDR : AC, A, F, B" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-types-ddr.svg" alt="Types de dispositifs différentiels : AC, courant alternatif sinusoïdal ; A, en plus le continu pulsé ; F, en plus les fréquences mélangées ; B, en plus le continu lisse. Chaque type détecte aussi ce que voit le précédent" width="640" height="420" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">7</span>Les types de DDR : AC, A, F, B</h2>
           <p class="fiche-carte-memo">Types de DDR, du plus simple au plus complet : AC (alternatif seul) ⊂ A (+ continu pulsé : plaque, lave-linge) ⊂ F (+ fréquences mixtes) ⊂ B (+ continu lisse). Tableau : au moins 1 type AC + 1 type A.</p>
@@ -92,7 +92,7 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-tableau-duo.svg" alt="8. Disjoncteur, interrupteur différentiel, disjoncteur différentiel" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-tableau-duo.svg" alt="Une rangée de tableau : l&#x27;interrupteur différentiel 40 A, sensibilité 30 mA, en tête, puis les disjoncteurs des circuits, 10, 16, 20 et 32 A. Le disjoncteur se règle en ampères et protège les conducteurs ; le différentiel en milliampères et protège les personnes" width="640" height="440" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">8</span>Disjoncteur, interrupteur différentiel, disjoncteur différentiel</h2>
           <p class="fiche-carte-memo">Disjoncteur = ampères, conducteurs, surcharge/court-circuit. Interrupteur différentiel = mA, personnes, fuite — mais pas la surcharge, il commande des disjoncteurs. Disjoncteur différentiel = les deux fonctions réunies.</p>

@@ -44,6 +44,19 @@ def ariane(items):
 def date_maj(chemin):
     try: return subprocess.run(["git", "log", "-1", "--format=%cs", "--", chemin], capture_output=True, text=True).stdout.strip() or datetime.date.today().isoformat()
     except Exception: return datetime.date.today().isoformat()
+_svg_cache = {}
+def infos_svg(nom):
+    """(description, largeur, hauteur) lues dans l'image : son aria-label et son viewBox."""
+    if nom not in _svg_cache:
+        t = open(f"assets/svg/{nom}", encoding="utf-8").read()
+        lab = re.search(r'aria-label="([^"]+)"', t)
+        vb = re.search(r'viewBox="[-0-9.]+ [-0-9.]+ ([0-9.]+) ([0-9.]+)"', t)
+        _svg_cache[nom] = (html.unescape(lab.group(1)) if lab else "", int(float(vb.group(1))) if vb else 640, int(float(vb.group(2))) if vb else 400)
+    return _svg_cache[nom]
+def img_svg(nom, secours, premiere=False):
+    desc, w, h = infos_svg(nom)
+    paresseux = "" if premiere else ' loading="lazy"'
+    return f'<img src="assets/svg/{nom}" alt="{html.escape(desc or secours)}" width="{w}" height="{h}"{paresseux}>'
 AUTEUR = {"@type": "Person", "name": "Charly", "url": SITE + "a-propos.html"}
 LEX_PAGES = set()  # clés du glossaire qui ont leur propre page lexique/<slug>.html
 def lien_terme(cle):
@@ -222,7 +235,7 @@ for i, m in enumerate(modules):
     <p class="module-liens"><a href="{fiche_pages[n]}">🖨 La fiche mémo de ce cours</a> · <a href="{qcm_pages[n]}">✅ Le QCM corrigé (10 questions)</a></p>'''
     secs = []
     for k, s in enumerate(c["sections"]):
-        fig = f'<div class="lecon-figure"><img src="assets/svg/{s["svg"]}" alt="{html.escape(texte_brut(s["titre"]))}" loading="lazy"></div>' if s.get("svg") else ""
+        fig = f'<div class="lecon-figure">{img_svg(s["svg"], texte_brut(s["titre"]), premiere=(k == 0))}</div>' if s.get("svg") else ""
         enc = f'<aside class="cours-chantier"><b>🔧 {s["encadre"].get("titre") or "Sur le chantier"}</b><p>{termes(s["encadre"]["texte"])}</p></aside>' if s.get("encadre") else ""
         memo = f'<div class="lecon-memo">◆ {termes(s["memo"])}</div>' if s.get("memo") else ""
         secs.append(f'''      <section class="cours-section" id="s{k+1}">
@@ -404,7 +417,7 @@ for m in modules:
     n, c = m["id"], m["cours"]
     cartes = []
     for k, sec in enumerate(c["sections"]):
-        img = f'<div class="fiche-carte-image"><img src="assets/svg/{sec["svg"]}" alt="{html.escape(texte_brut(sec["titre"]))}" loading="lazy"></div>' if sec.get("svg") else ""
+        img = f'<div class="fiche-carte-image">{img_svg(sec["svg"], texte_brut(sec["titre"]), premiere=(k == 0))}</div>' if sec.get("svg") else ""
         enc = f'<p class="fiche-carte-chantier"><strong>{sec["encadre"].get("titre") or "Sur le chantier"}</strong> {termes(sec["encadre"]["texte"])}</p>' if sec.get("encadre") else ""
         cartes.append(f'''      <section class="fiche-carte">
         {img}
@@ -435,13 +448,13 @@ actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
 
 def actu_id(a): return "actu-" + slug(a["titre"])[:60]
 cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
-        {f'<img class="actu-image" src="{a["image"]}" alt="" loading="lazy">' if a.get("image") else ""}
+        {f'<img class="actu-image" src="{a["image"]}" alt="{html.escape(a.get("image_alt", a["titre"]))}" width="1280" height="720"{"" if i == 0 else " loading=" + chr(34) + "lazy" + chr(34)}>' if a.get("image") else ""}
         <p class="actu-meta"><span class="actu-cat">{html.escape(a["categorie"])}</span> · {date_fr(a["date"])}</p>
         <h2>{html.escape(a["titre"])}</h2>
         <p>{html.escape(a["texte"])}</p>
         {f'<p class="actu-retenir"><b>À retenir :</b> {html.escape(a["a_retenir"])}</p>' if a.get("a_retenir") else ""}
         <p class="actu-source">Source : <a href="{html.escape(a["url"])}" rel="noopener" target="_blank">{html.escape(a["source"])}</a></p>
-      </article>''' for a in sorted(actu, key=lambda a: a["date"], reverse=True))
+      </article>''' for i, a in enumerate(sorted(actu, key=lambda a: a["date"], reverse=True)))
 page("actualites.html", "Actualités de l'électricien : normes, matériel",
      "Les nouveautés utiles aux électriciens et aux apprentis : normes, réglementation, Consuel, nouveau matériel. Chaque information est vérifiée et sourcée.",
      f'''    <h1>Actualités</h1>
