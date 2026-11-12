@@ -25,6 +25,26 @@ def texte_brut(h):
     h = re.sub(r"\[\[(?:[^\]|]+\|)?([^\]]+)\]\]", r"\1", h)
     return html.unescape(re.sub(r"<[^>]+>", " ", h)).replace("  ", " ").strip()
 
+import subprocess
+MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+def date_fr(d):
+    a, m, j = d.split("-"); return f"{int(j)} {MOIS[int(m)-1]} {a}"
+def sans_vide(o):
+    if isinstance(o, dict): return {k: sans_vide(v) for k, v in o.items() if v not in (None, "", [])}
+    if isinstance(o, list): return [sans_vide(v) for v in o]
+    return o
+def ld(obj):
+    return '<script type="application/ld+json">' + json.dumps(sans_vide(obj), ensure_ascii=False).replace("</", "<\\/") + "</script>"
+def ariane(items):
+    """items : [(libellé, chemin ou None)] ; renvoie le fil visible + son BreadcrumbList."""
+    vis = " › ".join(f'<a href="{c}">{html.escape(l)}</a>' if c is not None else f'<span aria-current="page">{html.escape(l)}</span>' for l, c in items)
+    data = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": l, **({"item": SITE + c} if c is not None else {})} for i, (l, c) in enumerate(items)]}
+    return f'<nav class="ariane" aria-label="Fil d\'Ariane">{vis}</nav>\n    {ld(data)}'
+def date_maj(chemin):
+    try: return subprocess.run(["git", "log", "-1", "--format=%cs", "--", chemin], capture_output=True, text=True).stdout.strip() or datetime.date.today().isoformat()
+    except Exception: return datetime.date.today().isoformat()
+AUTEUR = {"@type": "Person", "name": "Charly", "url": SITE + "a-propos.html"}
 LEX_PAGES = set()  # clés du glossaire qui ont leur propre page lexique/<slug>.html
 def lien_terme(cle):
     return f"lexique/{slug(cle)}.html" if cle in LEX_PAGES else f"lexique.html#{slug(cle)}"
@@ -179,7 +199,10 @@ for cle in sorted(LEX_PAGES):
     desc = e["definition"] if len(e["definition"]) <= 155 else e["definition"][:152].rsplit(" ", 1)[0] + "…"
     chemin = f"lexique/{slug(cle)}.html"
     contenu = (tete(titre, desc, chemin, base="../")
-        + '  <main class="niveau page-terme">\n    <p class="lecon-kicker">LEXIQUE DE L\'ÉLECTRICIEN</p>\n'
+        + '  <main class="niveau page-terme">\n    ' + ariane([("Accueil", ""), ("Lexique", "lexique.html"), (nom_titre, None)])
+        + "\n    " + ld({"@context": "https://schema.org", "@type": "DefinedTerm", "name": h1, "alternateName": cle if cle != h1 else None, "description": e["definition"], "url": SITE + chemin,
+                       "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Lexique de l'électricien", "url": SITE + "lexique.html"}})
+        + '\n    <p class="lecon-kicker">LEXIQUE DE L\'ÉLECTRICIEN</p>\n'
         + f"    <h1>{h1}</h1>\n    {termes(corps)}\n  </main>\n" + PIED)
     open(chemin, "w", encoding="utf-8").write(contenu)
 
@@ -212,10 +235,19 @@ for i, m in enumerate(modules):
     prec = f'<a href="{pages[modules[i-1]["id"]]}">← {modules[i-1]["titre"]}</a>' if i else "<span></span>"
     suiv = f'<a href="{pages[modules[i+1]["id"]]}">{modules[i+1]["titre"]} →</a>' if i < len(modules) - 1 else "<span></span>"
     page = tete(TITRES[n], description_cours(m), pages[n], base="../")
+    maj = date_maj(f"data/niveaux/{n:02d}.json")
+    res = {"@context": "https://schema.org", "@type": "LearningResource", "name": m["titre"], "headline": TITRES[n],
+           "description": description_cours(m), "url": SITE + pages[n], "inLanguage": "fr", "isAccessibleForFree": True,
+           "learningResourceType": "cours", "educationalLevel": "Débutant à titre professionnel Électricien d'Équipement du Bâtiment",
+           "teaches": [texte_brut(x["titre"]).split(". ", 1)[-1] for x in c["sections"]], "dateModified": maj, "author": AUTEUR,
+           "publisher": {"@type": "Organization", "name": "ApprendreElec", "url": SITE}}
     page += f'''  <main class="niveau page-cours" data-module="{n}">
+    {ariane([("Accueil", ""), ("Cours", "cours.html"), (f"Bloc {bloc['id']}", "cours.html"), (m["titre"], None)])}
+    {ld(res)}
     <p class="lecon-kicker">BLOC {bloc["id"]} · {bloc["titre"].upper()} · MODULE {n}</p>
     <h1>{m["titre"]}</h1>
     <p class="niveau-objectif">{m["objectif"]}</p>
+    <p class="maj">Mis à jour le {date_fr(maj)}</p>
     {etapes}
     <article class="cours" id="cours">
       <p class="cours-intro">{termes(c["intro"])}</p>
@@ -331,7 +363,15 @@ for m in modules:
           <p class="qcm-renvoi">À revoir : <a href="{pages[n]}#s{q.get("renvoi_lecon", 0) + 1}">{texte_brut(sec["titre"])}</a></p>
         </details>
       </section>''')
-    corps = f'''    <p class="lecon-kicker">QCM CORRIGÉ · MODULE {n}</p>
+    quiz = {"@context": "https://schema.org", "@type": "Quiz", "name": f"QCM {THEMES[n]} : 10 questions corrigées", "inLanguage": "fr", "url": SITE + qcm_pages[n],
+            "about": {"@type": "Thing", "name": m["titre"]}, "educationalLevel": "Débutant à titre professionnel", "isAccessibleForFree": True,
+            "hasPart": [{"@type": "Question", "eduQuestionType": "Multiple choice", "text": texte_brut(q["question"]),
+                         "suggestedAnswer": [{"@type": "Answer", "text": texte_brut(x)} for i, x in enumerate(q["choix"]) if i != q["bonne"]],
+                         "acceptedAnswer": {"@type": "Answer", "text": texte_brut(q["choix"][q["bonne"]]), "answerExplanation": {"@type": "Comment", "text": texte_brut(q.get("explication", ""))}}} for q in qs]}
+    blocq = blocs[n]
+    corps = f'''    {ariane([("Accueil", ""), ("QCM corrigés", "qcm.html"), (f"Bloc {blocq['id']}", "qcm.html"), (f"QCM {THEMES[n]}", None)])}
+    {ld(quiz)}
+    <p class="lecon-kicker">QCM CORRIGÉ · MODULE {n}</p>
     <h1>QCM {THEMES[n]} : 10 questions corrigées</h1>
     <p class="niveau-objectif">Dix questions tirées du cours <a href="{pages[n]}">{m["titre"]}</a>, réparties sur toutes ses parties. Réponds de tête, puis ouvre « Voir la réponse » : la bonne réponse, l'explication et la partie du cours à revoir.</p>
 {chr(10).join(items)}
@@ -378,7 +418,8 @@ for m in modules:
     titre = f"Fiche mémo {theme} : l'essentiel"
     desc = f"L'essentiel du cours « {m['titre']} » en {len(c['sections'])} points illustrés, à relire avant un contrôle ou à imprimer."
     if len(desc) > 155: desc = f"L'essentiel du cours en {len(c['sections'])} points illustrés : {theme}. À relire avant un contrôle ou à imprimer."
-    corps = f'''    <p class="lecon-kicker">FICHE MÉMO · MODULE {n}</p>
+    corps = f'''    {ariane([("Accueil", ""), ("Fiches mémo", "fiche.html"), (f"Bloc {blocs[n]['id']}", "fiche.html"), (m["titre"], None)])}
+    <p class="lecon-kicker">FICHE MÉMO · MODULE {n}</p>
     <h1>Fiche mémo : {m["titre"]}</h1>
     <p class="niveau-objectif">{m["objectif"]}</p>
     <div class="page-actions"><button class="bouton-plein" type="button" onclick="window.print()">🖨 Imprimer ou enregistrer en PDF</button>
@@ -391,9 +432,7 @@ for m in modules:
 
 # ---------- Actualités
 actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
-MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
-def date_fr(d):
-    a, m, j = d.split("-"); return f"{int(j)} {MOIS[int(m)-1]} {a}"
+
 def actu_id(a): return "actu-" + slug(a["titre"])[:60]
 cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
         {f'<img class="actu-image" src="{a["image"]}" alt="" loading="lazy">' if a.get("image") else ""}

@@ -278,3 +278,8 @@
 .qcm-reponse[open] { background: #fffbe6; border-radius: 10px; padding: 6px 10px; }
 .qcm-reponse p { margin: 6px 0; line-height: 1.5; }
 .qcm-renvoi { font-size: 0.88rem; }
+/* Fil d'Ariane et date de mise à jour */
+.ariane { font-size: 0.82rem; color: var(--texte-2); margin: 0 0 10px; line-height: 1.6; }
+.ariane a { color: var(--texte-2); }
+.ariane span { color: var(--texte); font-weight: 600; }
+.maj { font-size: 0.82rem; color: var(--texte-2); margin: -4px 0 10px; }
