@@ -1,0 +1,14 @@
+# GitHub Pages : fichiers de travail à ne pas publier.
+exclude:
+  - outils/
+  - reference/
+  - rapports/
+  - PLAN-APPRENDRE-ELEC.md
+  - PLAN-CHANTIERS.md
+  - CHANTIER-REFERENCEMENT.md
+  - HISTORIQUE-CONVERSATION.md
+  - CLAUDE.md
+  - "RELECTURE-*.md"
+  - maquette.html
+  - atelier-proto.html
+  - README.md

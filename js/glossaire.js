@@ -3,6 +3,7 @@
 // (clé du glossaire | texte affiché).
 
 let GLOSSAIRE = null;
+let PAGES_COURS = null;
 
 export async function chargerGlossaire() {
   if (GLOSSAIRE) return GLOSSAIRE;
@@ -30,6 +31,7 @@ async function ouvrirPopover(cle) {
   const entree = glossaire[cle];
   if (!entree) return;
 
+  if (!PAGES_COURS) PAGES_COURS = await fetch("data/pages-cours.json").then((r) => r.json()).catch(() => ({}));
   fermerPopover();
   const fond = document.createElement("div");
   fond.className = "popover-fond";
@@ -37,7 +39,7 @@ async function ouvrirPopover(cle) {
     <div class="popover-glossaire" role="dialog" aria-modal="true">
       <h5>${entree.nom}</h5>
       <p>${entree.definition}</p>
-      ${entree.niveau_associe ? `<a href="niveau.html?id=${entree.niveau_associe}">→ Voir le niveau ${entree.niveau_associe}</a>` : ""}
+      ${entree.niveau_associe ? `<a href="${PAGES_COURS[entree.niveau_associe] || "cours.html"}">→ Voir le cours ${entree.niveau_associe}</a>` : ""}
       <button type="button">Compris ✓</button>
     </div>`;
   fond.addEventListener("click", (e) => {

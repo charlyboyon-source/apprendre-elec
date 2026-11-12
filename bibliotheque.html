@@ -3,23 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bibliothèque — ApprendreElec</title>
-  <meta name="description" content="Toutes les leçons, tous les quiz et tous les jeux d'ApprendreElec, classés par bloc et par niveau.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/carte.css">
-  <link rel="stylesheet" href="css/bibliotheque.css">
-  <link rel="stylesheet" href="css/habillage.css">
+  <meta name="robots" content="noindex">
+  <title>ApprendreElec</title>
+  <link rel="canonical" href="https://apprendre-electricite.fr/cours.html">
+  <script>location.replace(new URLSearchParams(location.search).get("type") === "quiz" ? "qcm.html" : "cours.html");</script>
+  <meta http-equiv="refresh" content="0; url=cours.html">
 </head>
 <body>
-  <header class="entete">
-    <button class="bouton-burger" aria-label="Menu">☰</button>
-    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
-    <span class="compteur-electrons">0 e⁻</span>
-  </header>
-
-  <main class="bibliotheque" aria-label="Bibliothèque"></main>
-
-  <script type="module" src="js/app.js"></script>
+  <p style="text-align:center;margin-top:40px">Cette page a déménagé : <a href="cours.html">tous les cours</a> · <a href="qcm.html">les QCM corrigés</a></p>
 </body>
 </html>
