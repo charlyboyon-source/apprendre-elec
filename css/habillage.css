@@ -58,7 +58,7 @@
 @media print { .bandeau-mesure { display: none; } }
 
 /* Images refaites en style réaliste (fond clair) : pas d'ardoise. Ajouter ici chaque module refait. */
-:is(.lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image):has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"])) {
+:is(.lecon-figure, .quiz-figure, .fiche-carte-image, .fiche-vignette-image):has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"], img[src*="/c13-"])) {
   background: var(--fond-2); border: 1px solid var(--bordure);
 }
-.fiche-carte-image:has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"])) { border-width: 0 0 1px; }
+.fiche-carte-image:has(:is(img[src*="/c10-"], img[src*="/c11-"], img[src*="/c12-"], img[src*="/c13-"])) { border-width: 0 0 1px; }

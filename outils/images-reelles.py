@@ -14,6 +14,10 @@ DEFS='''<defs>
 <linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
 <linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
 <linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
 <pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
 <filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
 <g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
@@ -552,3 +556,145 @@ s.t(470,278,"AUTRES USAGES",13,True,AMB); s.t(470,310,"5 % au maximum",15,True)
 s.t(320,372,"Ligne très longue : on passe à la section supérieure",12.5,True)
 s.ecrire("c12-chute.svg")
 print("module 12 : 7 images")
+
+# =====================================================================
+# MODULE 13 — conduits et modes de pose
+# =====================================================================
+def annele(s,x,y,L,d,grad="icta",pas=9):
+    for i in range(int(L/pas)):
+        s.a(f'<rect x="{x+i*pas}" y="{y-d/2}" width="{pas-1.3}" height="{d}" rx="3" fill="url(#{grad})" stroke="#00000022"/>')
+def annele_arc(s,cx,cy,R,a0,a1,d,grad="icta",pas=9):
+    n=int(abs(a1-a0)*math.pi/180*R/pas)
+    for i in range(n+1):
+        a=a0+(a1-a0)*i/n; px=cx+R*math.cos(math.radians(a)); py=cy+R*math.sin(math.radians(a))
+        s.a(f'<rect x="{-(pas-1.3)/2}" y="{-d/2}" width="{pas-1.3}" height="{d}" rx="3" fill="url(#{grad})" stroke="#00000022" transform="translate({px:.1f} {py:.1f}) rotate({a-90:.1f})"/>')
+def lisse(s,x,y,L,d):
+    s.a(f'<rect x="{x}" y="{y-d/2}" width="{L}" height="{d}" rx="2" fill="url(#irl)" stroke="#7d858e"/>')
+def collier(s,x,y,d):
+    s.a(f'<rect x="{x-7}" y="{y-d/2-5}" width="14" height="{d+10}" rx="4" fill="#5b6673"/><rect x="{x-12}" y="{y+d/2+3}" width="24" height="7" rx="2" fill="#5b6673"/><circle cx="{x}" cy="{y+d/2+6.5}" r="2.4" fill="#e8eaed"/>')
+def fleche(s,x1,y,x2,c=INK):
+    sg=1 if x2>x1 else -1
+    s.a(f'<path d="M{x1} {y} H{x2-sg*8}" stroke="{c}" stroke-width="3"/><polygon points="{x2-sg*10},{y-6} {x2},{y} {x2-sg*10},{y+6}" fill="{c}"/>')
+
+# ---------- 13.1 à quoi sert un conduit
+s=S("Un conduit : deux rôles","Un conduit a deux rôles : protéger mécaniquement les conducteurs, et permettre de les remplacer sans casser le mur")
+s.panneau(16,44,296,296); s.panneau(328,44,296,296)
+s.t(164,72,"PROTÉGER",15,True,AMB); s.t(476,72,"REMPLACER",15,True,BLUE)
+for dy,c in ((-12,RED),(0,BLEU),(12,"vj")): fil(s,214,162+dy,44,9,c,20,5)
+annele(s,36,162,186,40)
+s.a('<g transform="translate(150 132) rotate(38)"><rect x="-5" y="-46" width="10" height="40" rx="3" fill="#8a5a2b" stroke="#5e3b17"/><rect x="-16" y="-8" width="32" height="16" rx="3" fill="url(#acierH)" stroke="#6b7078"/></g>')
+s.a(f'<polygon points="{etoile(132,140,13,5,8,.2)}" fill="{YEL}" stroke="#e8590c" stroke-width="1.5"/>')
+s.t(164,222,"les conducteurs isolés",12,True); s.t(164,243,"n'ont que leur isolant",12)
+s.t(164,281,"le conduit encaisse",12,True); s.t(164,302,"les chocs et les frottements",11.5)
+# remplacer : un fil sort, un autre entre
+fil(s,560,150,36,10,MARRON,14,5); annele(s,376,150,186,40)
+s.a(f'<rect x="340" y="145" width="40" height="10" rx="3" fill="{RED}"/>')
+fleche(s,340,122,376,RED); fleche(s,566,122,606,MARRON)
+s.t(360,110,"neuf",11,True,RED); s.t(586,110,"usé",11,True,MARRON)
+s.t(476,222,"un fil abîmé ou trop fin",12,True); s.t(476,243,"doit pouvoir être retiré",12)
+s.t(476,281,"on le tire et on en repasse",12,True); s.t(476,302,"un autre, sans casser le mur",11.5)
+s.a(f'<rect x="24" y="350" width="592" height="40" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,376,"Des conducteurs isolés ne se posent jamais sans protection",11.5,True)
+s.ecrire("c13-role.svg")
+
+# ---------- 13.2 ICTA
+s=S("Le conduit ICTA, lettre par lettre","ICTA : Isolant, Cintrable, Transversalement élastique, Annelé. La gaine annelée que l'on encastre dans les murs et les dalles")
+for dy,c in ((-10,RED),(0,BLEU),(10,"vj")): fil(s,548,80+dy,40,8,c,18,4.5)
+annele(s,40,80,512,38)
+for i,(c,cat,l1,l2) in enumerate((("I","ISOLANT","en matière","plastique"),("C","CINTRABLE","se courbe","à la main"),("T","TRANSV.","reprend sa forme","après écrasement"),("A","ANNELÉ","paroi","en anneaux"))):
+    x=22+152*i; cx=x+70
+    carte(s,x,118,140,206); code(s,cx,176,c)
+    s.t(cx,214,cat,12.5,True,AMB); s.t(cx,248,l1,10.5); s.t(cx,270,l2,10.5)
+s.a(f'<rect x="24" y="336" width="592" height="52" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,358,"La « gaine annelée » des murs,",12,True); s.t(320,379,"des cloisons et des dalles",12,True)
+s.ecrire("c13-icta.svg")
+
+# ---------- 13.3 tiers et rayon de cintrage
+s=S("Remplissage et cintrage","Deux règles pour l'ICTA : les conducteurs occupent au plus un tiers de la section intérieure du conduit ; le rayon de cintrage vaut au moins six fois le diamètre du conduit",640,370)
+s.panneau(16,44,296,310); s.panneau(328,44,296,310)
+s.t(164,72,"REMPLISSAGE",15,True,AMB); s.t(476,72,"CINTRAGE",15,True,BLUE)
+s.a('<circle cx="164" cy="176" r="78" fill="url(#icta)" stroke="#6b727a" stroke-width="2"/><circle cx="164" cy="176" r="63" fill="#fbfbfc" stroke="#6b727a"/>')
+for cx,cy,c in ((143,216,RED),(185,216,BLEU),(164,180,"url(#vj)")):
+    s.a(f'<circle cx="{cx}" cy="{cy}" r="20" fill="{c}" stroke="#00000033"/><circle cx="{cx}" cy="{cy}" r="10" fill="#e9a25f" stroke="#8f4f17"/>')
+s.t(164,292,"1/3 maximum",15,True); s.t(164,316,"de la section intérieure",12,False,GR)
+# cintrage : R = 6 x diamètre (dessiné à l'échelle)
+annele(s,344,128,60,18,"icta",8); annele_arc(s,404,236,108,-90,0,18,"icta",8)
+for i in range(4): s.a(f'<rect x="503" y="{240+i*8}" width="18" height="6.7" rx="3" fill="url(#icta)" stroke="#00000022" transform="rotate(0)"/>')
+s.a(f'<path d="M404 236 L{404+108*math.cos(math.radians(-45)):.1f} {236+108*math.sin(math.radians(-45)):.1f}" stroke="{BLUE}" stroke-width="2.5"/><circle cx="404" cy="236" r="4" fill="{BLUE}"/>')
+s.a(f'<text x="428" y="196" font-size="22" font-weight="800" fill="{BLUE}">R</text>')
+s.t(476,300,"R ≥ 6 × diamètre",14,True); s.t(476,326,"ICTA 20 → 120 mm",12.5,True,BLUE)
+s.ecrire("c13-tiers.svg")
+
+# ---------- 13.4 IRL
+s=S("Le conduit IRL, lettre par lettre","IRL : Isolant, Rigide, Lisse. Le tube rigide de la pose apparente, fixé par des colliers")
+lisse(s,40,78,470,26); collier(s,150,78,26); collier(s,400,78,26)
+s.a('<path d="M510 65 H536 a26 26 0 0 1 26 26 V112 H536 V96 a5 5 0 0 0 -5 -5 H510 Z" fill="url(#irl)" stroke="#7d858e"/>')
+for i,(c,cat,l1,l2) in enumerate((("I","ISOLANT","en matière","plastique"),("R","RIGIDE","ne se courbe pas","à la main"),("L","LISSE","paroi","sans anneaux"))):
+    x=24+202*i; cx=x+94
+    carte(s,x,124,188,196); code(s,cx,182,c)
+    s.t(cx,220,cat,12.5,True,AMB); s.t(cx,254,l1,12); s.t(cx,277,l2,12)
+s.a(f'<rect x="24" y="334" width="592" height="52" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,356,"Le tube de la pose apparente :",12,True); s.t(320,377,"garage, cave, atelier",12,True)
+s.ecrire("c13-irl.svg")
+
+# ---------- 13.5 TPC enterré (coupe du sol, à l'échelle : 1 cm = 3,8 px)
+s=S("Le TPC : la canalisation enterrée","Canalisation enterrée : le conduit TPC rouge est posé à 50 cm de profondeur au moins, 85 cm sous une voie accessible aux véhicules, avec un grillage avertisseur rouge 20 cm au-dessus",640,410)
+s.a('<rect x="30" y="74" width="580" height="250" rx="6" fill="url(#terre)"/><rect x="30" y="66" width="580" height="12" rx="4" fill="#4f9a3a"/>')
+for i in range(29): s.a(f'<path d="M{40+i*20} 66 l-3 -9 M{46+i*20} 66 l2 -11 M{52+i*20} 66 l5 -8" stroke="#4f9a3a" stroke-width="2" stroke-linecap="round"/>')
+for i in range(40): s.a(f'<circle cx="{44+(i*97)%560}" cy="{92+(i*53)%220}" r="{1.5+(i%3)}" fill="#8f6f45" opacity=".5"/>')
+# grillage avertisseur : 20 cm au-dessus du conduit
+s.a(f'<rect x="60" y="184" width="380" height="9" fill="{RED}" opacity=".9"/>')
+for i in range(38): s.a(f'<rect x="{62+i*10}" y="186" width="5" height="5" fill="url(#terre)"/>')
+annele(s,60,277,380,26,"tpc")
+s.t(250,176,"grillage avertisseur rouge",11.5,True,"#8e1414"); s.t(250,316,"TPC rouge · courant fort",11.5,True,"#8e1414")
+s.t(44,100,"sol",11.5,True,INK,"start")
+# cotes
+def cote(x,y1,y2,l1,l2):
+    s.a(f'<path d="M{x} {y1} V{y2}" stroke="{INK}" stroke-width="2"/><path d="M{x-7} {y1} h14 M{x-7} {y2} h14" stroke="{INK}" stroke-width="2"/>')
+    s.t(x+12,(y1+y2)/2+1,l1,13,True,INK,"start")
+    if l2: s.t(x+12,(y1+y2)/2+22,l2,11,False,INK,"start")
+cote(548,76,264,"50 cm","au moins"); cote(456,188,264,"20 cm","")
+s.a(f'<rect x="24" y="340" width="592" height="52" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,362,"85 cm au moins sous une voie",12,True); s.t(320,383,"accessible aux véhicules",12,True)
+s.ecrire("c13-tpc.svg")
+
+# ---------- 13.6 trois façons d'encastrer
+s=S("Trois façons d'encastrer","Trois méthodes d'encastrement : traditionnelle, les conduits passent par des boîtes de dérivation ; pieuvre, les conduits rayonnent depuis une boîte centrale ; tableau, chaque circuit repart directement du tableau")
+def tab(x,y): s.a(f'<rect x="{x}" y="{y}" width="26" height="36" rx="3" fill="#fff" stroke="#7d858e" stroke-width="1.5"/><rect x="{x+4}" y="{y+8}" width="18" height="5" fill="#3a3f46"/><rect x="{x+4}" y="{y+20}" width="18" height="5" fill="#3a3f46"/>')
+def boite(x,y): s.a(f'<rect x="{x-9}" y="{y-9}" width="18" height="18" rx="3" fill="#e8eaed" stroke="#5b6673" stroke-width="2"/>')
+def point(x,y): s.a(f'<circle cx="{x}" cy="{y}" r="8" fill="#fff" stroke="{INK}" stroke-width="2"/><circle cx="{x-3}" cy="{y}" r="1.6" fill="{INK}"/><circle cx="{x+3}" cy="{y}" r="1.6" fill="{INK}"/>')
+def gaine(d): s.a(f'<path d="{d}" fill="none" stroke="#7d858e" stroke-width="6" stroke-linejoin="round"/><path d="{d}" fill="none" stroke="#dfe3e7" stroke-width="3.5" stroke-dasharray="4 3" stroke-linejoin="round"/>')
+for i,(nom,l1,l2) in enumerate((("TRADITIONNELLE","de boîte en boîte,","dans des saignées"),("PIEUVRE","une boîte centrale,","des conduits en étoile"),("TABLEAU","chaque circuit part","droit du tableau"))):
+    x=24+202*i; cx=x+94
+    carte(s,x,44,188,286); s.t(cx,70,nom,12.5,True,AMB)
+    s.a(f'<rect x="{x+12}" y="84" width="164" height="150" rx="6" fill="#fff" stroke="#d5d9de"/>')
+    pts=[(x+70,212),(x+118,212),(x+158,212)]
+    if i==0:
+        gaine(f"M{x+33} 180 V104 H{x+158}"); 
+        for (px,py) in pts: gaine(f"M{px} 104 V{py-8}")
+        for (px,py) in pts: boite(px,104)
+    elif i==1:
+        gaine(f"M{x+33} 180 V140 L{x+104} 110")
+        for (px,py) in pts: gaine(f"M{x+104} 110 L{px} {py-8}")
+        boite(x+104,110)
+    else:
+        for k,(px,py) in enumerate(pts): gaine(f"M{x+27+k*6} 180 V{100+k*12} H{px} V{py-8}")
+    tab(x+20,180)
+    for (px,py) in pts: point(px,py)
+    s.t(cx,270,l1,11.5); s.t(cx,294,l2,11.5)
+s.a(f'<rect x="24" y="340" width="592" height="50" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,361,"Dans tous les cas : des tracés droits,",12,True); s.t(320,382,"horizontaux ou verticaux",12,True)
+s.ecrire("c13-encastre.svg")
+
+# ---------- 13.7 choisir selon la pose
+s=S("À chaque pose son conduit","Choisir le conduit selon la pose : encastré, ICTA ; apparent, IRL ou goulotte ; enterré, TPC rouge")
+for r,(titre,val,desc) in enumerate((("ENCASTRÉ","ICTA","dans les murs, les cloisons, les dalles"),("APPARENT","IRL ou goulotte","garage, cave, rénovation"),("ENTERRÉ","TPC rouge","dans une tranchée, avec grillage avertisseur"))):
+    y=48+r*94; carte(s,16,y,608,84)
+    if r==0: annele(s,34,y+42,162,30)
+    elif r==1: lisse(s,34,y+38,162,24); collier(s,76,y+38,24); collier(s,156,y+38,24)
+    else: annele(s,34,y+42,162,30,"tpc")
+    s.t(214,y+28,titre,13,True,AMB,"start"); s.t(214,y+52,val,13.5,True,INK,"start"); s.t(214,y+73,desc,10.5,False,GR,"start")
+s.a(f'<rect x="30" y="338" width="580" height="46" rx="12" fill="#fff1c2" stroke="{YEL}"/>')
+s.t(320,367,"Le conduit se choisit avant le fil",13,True)
+s.ecrire("c13-choix.svg")
+print("module 13 : 7 images")

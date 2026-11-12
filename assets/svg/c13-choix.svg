@@ -1,19 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Choisir le conduit selon la pose : encastré, ICTA ; apparent, IRL ou goulotte ; enterré, TPC rouge">
-<text x="160" y="18" text-anchor="middle" font-size="9.5" fill="#9aa6b3" font-weight="normal">À chaque pose son conduit</text>
-<rect x="12" y="32" width="296" height="36" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="37" width="4" height="26" rx="2" fill="#ffd23f"/>
-<text x="24" y="53.0" text-anchor="start" font-size="8.5" fill="#ffd23f" font-weight="bold">ENCASTRÉ</text>
-<text x="100" y="47.5" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">ICTA</text>
-<text x="100" y="59.5" text-anchor="start" font-size="7.8" fill="#9aa6b3" font-weight="normal">dans les murs, les cloisons, les dalles</text>
-<rect x="12" y="74" width="296" height="36" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="79" width="4" height="26" rx="2" fill="#ff8c2b"/>
-<text x="24" y="95.0" text-anchor="start" font-size="8.5" fill="#ff8c2b" font-weight="bold">APPARENT</text>
-<text x="100" y="89.5" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">IRL ou goulotte</text>
-<text x="100" y="101.5" text-anchor="start" font-size="7.8" fill="#9aa6b3" font-weight="normal">garage, cave, rénovation</text>
-<rect x="12" y="116" width="296" height="36" rx="9" fill="#24282f" stroke="#3a404b" stroke-width="1.2" />
-<rect x="12" y="121" width="4" height="26" rx="2" fill="#e85b50"/>
-<text x="24" y="137.0" text-anchor="start" font-size="8.5" fill="#e85b50" font-weight="bold">ENTERRÉ</text>
-<text x="100" y="131.5" text-anchor="start" font-size="8.5" fill="#e8eaed" font-weight="bold">TPC rouge</text>
-<text x="100" y="143.5" text-anchor="start" font-size="7.8" fill="#9aa6b3" font-weight="normal">dans une tranchée, avec grillage avertisseur</text>
-<text x="160" y="168" text-anchor="middle" font-size="7.8" fill="#9aa6b3" font-weight="normal">Le conduit se choisit avant le fil</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Choisir le conduit selon la pose : encastré, ICTA ; apparent, IRL ou goulotte ; enterré, TPC rouge">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+</defs>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">À chaque pose son conduit</text>
+<rect x="16" y="48" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="34" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="43" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="52" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="61" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="70" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="79" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="88" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="97" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="106" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="115" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="124" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="133" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="142" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="151" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="160" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="169" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="178" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<rect x="187" y="75.0" width="7.7" height="30" rx="3" fill="url(#icta)" stroke="#00000022"/>
+<text x="214" y="76" text-anchor="start" font-size="16.9" font-weight="800" fill="#b85a08">ENCASTRÉ</text>
+<text x="214" y="100" text-anchor="start" font-size="17.6" font-weight="800" fill="#1c2530">ICTA</text>
+<text x="214" y="121" text-anchor="start" font-size="13.7" font-weight="500" fill="#5b6673">dans les murs, les cloisons, les dalles</text>
+<rect x="16" y="142" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="34" y="168.0" width="162" height="24" rx="2" fill="url(#irl)" stroke="#7d858e"/>
+<rect x="69" y="163.0" width="14" height="34" rx="4" fill="#5b6673"/><rect x="64" y="195.0" width="24" height="7" rx="2" fill="#5b6673"/><circle cx="76" cy="198.5" r="2.4" fill="#e8eaed"/>
+<rect x="149" y="163.0" width="14" height="34" rx="4" fill="#5b6673"/><rect x="144" y="195.0" width="24" height="7" rx="2" fill="#5b6673"/><circle cx="156" cy="198.5" r="2.4" fill="#e8eaed"/>
+<text x="214" y="170" text-anchor="start" font-size="16.9" font-weight="800" fill="#b85a08">APPARENT</text>
+<text x="214" y="194" text-anchor="start" font-size="17.6" font-weight="800" fill="#1c2530">IRL ou goulotte</text>
+<text x="214" y="215" text-anchor="start" font-size="13.7" font-weight="500" fill="#5b6673">garage, cave, rénovation</text>
+<rect x="16" y="236" width="608" height="84" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
+<rect x="34" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="43" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="52" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="61" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="70" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="79" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="88" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="97" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="106" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="115" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="124" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="133" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="142" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="151" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="160" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="169" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="178" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<rect x="187" y="263.0" width="7.7" height="30" rx="3" fill="url(#tpc)" stroke="#00000022"/>
+<text x="214" y="264" text-anchor="start" font-size="16.9" font-weight="800" fill="#b85a08">ENTERRÉ</text>
+<text x="214" y="288" text-anchor="start" font-size="17.6" font-weight="800" fill="#1c2530">TPC rouge</text>
+<text x="214" y="309" text-anchor="start" font-size="13.7" font-weight="500" fill="#5b6673">dans une tranchée, avec grillage avertisseur</text>
+<rect x="30" y="338" width="580" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
+<text x="320" y="367" text-anchor="middle" font-size="16.9" font-weight="800" fill="#1c2530">Le conduit se choisit avant le fil</text>
 </svg>
