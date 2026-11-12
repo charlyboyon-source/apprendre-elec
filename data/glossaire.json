@@ -330,7 +330,7 @@
   },
   "conducteur principal de protection": {
     "nom": "Conducteur principal de protection",
-    "definition": "Conducteur vert/jaune de 16 mm² qui relie la borne principale de terre au bornier de terre du tableau, d'où partent les conducteurs de protection de tous les circuits.",
+    "definition": "Conducteur vert/jaune, de même section que l'arrivée (16 mm² avec une arrivée en 16 mm²), qui relie la borne principale de terre au bornier de terre du tableau, d'où partent les conducteurs de protection de tous les circuits.",
     "niveau_associe": 6
   },
   "liaison équipotentielle principale": {
