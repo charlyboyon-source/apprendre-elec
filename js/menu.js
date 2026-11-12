@@ -33,6 +33,7 @@ export function brancherMenu(onChangement) {
       <a class="menu-lien${actif(page === "fiche.html")}" href="fiche.html">🖨 Fiches mémo</a>
       <a class="menu-lien${actif(page === "lexique.html")}" href="lexique.html">📚 Lexique</a>
       <p class="menu-titre">S'entraîner</p>
+      <a class="menu-lien${actif(page === "qcm.html")}" href="qcm.html">✅ QCM corrigés</a>
       <a class="menu-lien${actif(surBiblio && type === "quiz")}" href="bibliotheque.html?type=quiz">🎯 Quiz</a>
       <a class="menu-lien${actif(page === "examen.html")}" href="examen.html">📝 Examen blanc</a>
       <a class="menu-lien${actif(page === "erreurs.html")}" href="erreurs.html">🔁 Mes erreurs</a>
@@ -69,7 +70,8 @@ export function brancherMenu(onChangement) {
         ["cours.html", "📖", "Tous les cours", "21 cours illustrés, du courant au photovoltaïque"],
         ["fiche.html", "🖨", "Fiches mémo", "L'essentiel de chaque cours, à imprimer"],
         ["lexique.html", "📚", "Lexique", "Les mots du métier, de A à Z"]] },
-      { id: "entrainer", label: "S'entraîner", actif: (surBiblio && type === "quiz") || ["examen.html", "erreurs.html"].includes(page), liens: [
+      { id: "entrainer", label: "S'entraîner", actif: (surBiblio && type === "quiz") || ["examen.html", "erreurs.html", "qcm.html"].includes(page) || location.pathname.includes("/qcm/"), liens: [
+        ["qcm.html", "✅", "QCM corrigés", "10 questions corrigées par cours"],
         ["bibliotheque.html?type=quiz", "🎯", "Quiz", "Un quiz par cours"],
         ["examen.html", "📝", "Examen blanc", "40 questions en 40 minutes"],
         ["erreurs.html", "🔁", "Mes erreurs", "Rejoue les questions ratées"]] },

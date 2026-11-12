@@ -269,3 +269,12 @@
 .lexique-extrait p { margin: 0 0 4px; line-height: 1.5; }
 .lexique-extrait cite { font-style: normal; font-size: 0.85rem; }
 .lexique-voisins { line-height: 1.8; }
+/* QCM corrigés */
+.qcm-question { margin: 14px 0; padding: 14px 16px; background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; }
+.qcm-question h2 { margin: 0 0 6px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--texte-2); }
+.qcm-enonce { margin: 0 0 8px; font-weight: 700; line-height: 1.45; }
+.qcm-choix { list-style: none; padding: 0; margin: 0 0 8px; line-height: 1.6; }
+.qcm-reponse summary { cursor: pointer; font-weight: 700; color: var(--texte); }
+.qcm-reponse[open] { background: #fffbe6; border-radius: 10px; padding: 6px 10px; }
+.qcm-reponse p { margin: 6px 0; line-height: 1.5; }
+.qcm-renvoi { font-size: 0.88rem; }

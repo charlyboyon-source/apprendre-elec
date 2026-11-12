@@ -77,6 +77,7 @@ glossaire = json.load(open("data/glossaire.json", encoding="utf-8"))
 blocs = {n["id"]: b for b in parcours["blocs"] for n in b["niveaux"]}
 modules = [json.load(open(f, encoding="utf-8")) for f in sorted(glob.glob("data/niveaux/*.json"))]
 pages = {m["id"]: f'cours/{m["id"]:02d}-{slug(m["titre"])}.html' for m in modules}
+qcm_pages = {m["id"]: f'qcm/{m["id"]:02d}-{slug(m["titre"])}.html' for m in modules}
 
 # Titres pour Google (balise <title> et og:title ; le h1 affiché reste le titre du cours). 60 caractères au plus.
 TITRES = {
@@ -194,7 +195,7 @@ for i, m in enumerate(modules):
       <li><a class="module-etape" data-act="quiz" href="{pages[n]}#quiz"><i>2</i><span><b>Faire le quiz</b><small>{nbq} questions</small></span></a></li>
       <li><a class="module-etape" data-act="jeu" href="{pages[n]}#jeu"><i>3</i><span><b>Jouer : {jeu_nom}</b><small>pour ancrer</small></span></a></li>
     </ol>
-    <p class="module-liens"><a href="fiche.html?id={n}">🖨 La fiche mémo de ce cours</a></p>'''
+    <p class="module-liens"><a href="fiche.html?id={n}">🖨 La fiche mémo de ce cours</a> · <a href="{qcm_pages[n]}">✅ Le QCM corrigé (10 questions)</a></p>'''
     secs = []
     for k, s in enumerate(c["sections"]):
         fig = f'<div class="lecon-figure"><img src="assets/svg/{s["svg"]}" alt="{html.escape(texte_brut(s["titre"]))}" loading="lazy"></div>' if s.get("svg") else ""
@@ -285,6 +286,74 @@ open("lexique.html", "w", encoding="utf-8").write(lex)
 # ---------- Pages d'outils et d'information
 def page(fichier, titre, description, corps, script="js/page.js", classe="page-outil"):
     open(fichier, "w", encoding="utf-8").write(tete(titre, description, fichier) + f'  <main class="niveau {classe}">\n{corps}\n  </main>\n' + PIED.replace("js/page.js", script))
+
+
+# ---------- Un QCM corrigé par cours, lisible par Google (qcm/NN-slug.html) + index qcm.html
+THEMES = {1: "bases de l'électricité", 2: "loi d'Ohm et puissance", 3: "circuit électrique", 4: "série, parallèle, alternatif",
+          5: "danger électrique", 6: "protection des personnes", 7: "salle de bain", 8: "indices IP, IK et classes",
+          9: "habilitation et consignation", 10: "disjoncteurs et fusibles", 11: "tableau électrique", 12: "conducteurs et câbles",
+          13: "conduits et modes de pose", 14: "GTL et circuits", 15: "schémas électriques", 16: "simple et double allumage",
+          17: "va-et-vient et permutateur", 18: "télérupteur et minuterie", 19: "chauffe-eau, heures creuses", 20: "IRVE et domotique",
+          21: "photovoltaïque"}
+os.makedirs("qcm", exist_ok=True)
+for f in glob.glob("qcm/*.html"): os.remove(f)
+def choisir_questions(m, n=10):
+    """10 questions réparties sur toutes les parties du cours (tour par tour, dans l'ordre de la banque)."""
+    par_section = {}
+    for i, q in enumerate(m["banque"]): par_section.setdefault(q.get("renvoi_lecon", 0), []).append(i)
+    choisies, tour = [], 0
+    while len(choisies) < min(n, len(m["banque"])):
+        ajout = False
+        for k in sorted(par_section):
+            if tour < len(par_section[k]) and len(choisies) < n: choisies.append(par_section[k][tour]); ajout = True
+        if not ajout: break
+        tour += 1
+    return sorted(choisies)
+for m in modules:
+    n = m["id"]
+    qs = [m["banque"][i] for i in choisir_questions(m)]
+    titre = f"QCM {THEMES[n]} corrigé : 10 questions"
+    desc = f"10 questions corrigées sur {THEMES[n]}, avec les explications : entraîne-toi au QCM d'électricité du module {n}, puis fais le quiz complet."
+    if len(desc) > 155: desc = f"10 questions corrigées et expliquées sur {THEMES[n]} (module {n}). Entraîne-toi, puis fais le quiz complet."
+    lettres = "ABCD"
+    items = []
+    for j, q in enumerate(qs):
+        choix = "".join(f"<li><b>{lettres[c]}.</b> {html.escape(texte_brut(x))}</li>" for c, x in enumerate(q["choix"]))
+        sec = m["cours"]["sections"][q.get("renvoi_lecon", 0)]
+        items.append(f'''      <section class="qcm-question">
+        <h2>Question {j + 1}</h2>
+        <p class="qcm-enonce">{html.escape(texte_brut(q["question"]))}</p>
+        <ol class="qcm-choix">{choix}</ol>
+        <details class="qcm-reponse"><summary>Voir la réponse</summary>
+          <p><b>Réponse {lettres[q["bonne"]]} : {html.escape(texte_brut(q["choix"][q["bonne"]]))}</b></p>
+          <p>{html.escape(texte_brut(q.get("explication", "")))}</p>
+          <p class="qcm-renvoi">À revoir : <a href="{pages[n]}#s{q.get("renvoi_lecon", 0) + 1}">{texte_brut(sec["titre"])}</a></p>
+        </details>
+      </section>''')
+    corps = f'''    <p class="lecon-kicker">QCM CORRIGÉ · MODULE {n}</p>
+    <h1>QCM {THEMES[n]} : 10 questions corrigées</h1>
+    <p class="niveau-objectif">Dix questions tirées du cours <a href="{pages[n]}">{m["titre"]}</a>, réparties sur toutes ses parties. Réponds de tête, puis ouvre « Voir la réponse » : la bonne réponse, l'explication et la partie du cours à revoir.</p>
+{chr(10).join(items)}
+    <div class="page-actions"><a class="bouton-plein" href="{pages[n]}#quiz">Faire le quiz complet ({min(15, len(m["banque"]))} questions tirées parmi {len(m["banque"])})</a>
+    <a class="bouton-creux" href="qcm.html">Tous les QCM</a></div>'''
+    contenu = (tete(titre, desc, qcm_pages[n], base="../")
+        + f'  <main class="niveau page-qcm">\n{corps}\n  </main>\n' + PIED)
+    open(qcm_pages[n], "w", encoding="utf-8").write(contenu)
+liste_qcm = ""
+for b in parcours["blocs"]:
+    ids = [x["id"] for x in b["niveaux"]]
+    liste_qcm += f'''    <section class="outil-carte">
+      <h2>Bloc {b["id"]} — {b["titre"]}</h2>
+      <ul class="liste-modules">
+''' + "\n".join(f'        <li><span><span class="num">{m["id"]}</span><a href="{qcm_pages[m["id"]]}">QCM {THEMES[m["id"]]}</a></span><span class="droite"><a href="{pages[m["id"]]}">le cours</a></span></li>' for m in modules if m["id"] in ids) + '''
+      </ul>
+    </section>
+'''
+page("qcm.html", "QCM d'électricité corrigés : 21 thèmes, 210 questions",
+     "21 QCM d'électricité du bâtiment corrigés et expliqués, un par cours : loi d'Ohm, différentiel, tableau, câbles, va-et-vient, télérupteur, photovoltaïque…",
+     f'''    <h1>QCM d'électricité corrigés</h1>
+    <p class="niveau-objectif">Un QCM de 10 questions par cours, avec la réponse et l'explication à découvrir après avoir répondu. Pour aller plus loin, chaque cours propose un quiz complet tiré au hasard dans sa banque de questions, et l'<a href="examen.html">examen blanc</a> mélange les 21 modules.</p>
+{liste_qcm}''')
 
 # ---------- Actualités
 actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
@@ -493,7 +562,7 @@ page("mentions-legales.html", "Mentions légales | ApprendreElec",
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
 urls_lex = sorted(f"lexique/{slug(c)}.html" for c in LEX_PAGES)
-urls = ["", "cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules] + urls_lex
+urls = ["", "qcm.html"] + list(qcm_pages.values()) + ["cours.html", "calculateurs.html", "configurateur.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "atelier-schemas.html", "a-propos.html"] + [pages[m["id"]] for m in modules] + urls_lex
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes dont", len(LEX_PAGES), "avec leur page,", len(urls), "adresses dans le plan du site")
