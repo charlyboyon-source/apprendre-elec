@@ -62,7 +62,7 @@ def tete(titre, description, chemin, base=""):
 '''
 
 PIED = '''  <footer class="pied">
-    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
   </footer>
   <script type="module" src="js/page.js"></script>
 </body>
@@ -202,6 +202,49 @@ page("actualites.html", "Actualités de l'électricité du bâtiment : normes, C
 {cartes}
     <p class="note-affiliation">Une information te semble fausse ou dépassée ? Elle est datée : la norme ou le texte cité fait toujours foi.</p>''')
 
+# ---------- Calculateurs
+def champ(nom, label, valeur="", unite="", aide=""):
+    return f'<label class="calc-champ"><span>{label}</span><span class="calc-entree"><input name="{nom}" inputmode="decimal" value="{valeur}" placeholder="{aide}">{f"<i>{unite}</i>" if unite else ""}</span></label>'
+def carte_calc(id_, titre, intro, champs, lien, lien_txt, apres=""):
+    return f'''    <section class="calc" id="{id_}">
+      <h2>{titre}</h2>
+      <p class="calc-intro">{intro}</p>
+      <div class="calc-champs">{champs}</div>{apres}
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="{pages[lien]}">{lien_txt}</a></p>
+    </section>'''
+calc = "\n".join([
+  carte_calc("calc-energie", "Combien consomme un appareil ?", "La puissance est écrite sur la plaque de l'appareil. Le prix du kWh est sur ta facture d'électricité.",
+    champ("p","Puissance","2000","W")+champ("h","Durée par jour","2","h")+champ("j","Nombre de jours","30","jours")+champ("prix","Prix du kWh (facultatif)","","€","ex. 0,25"),
+    2, "module 2, l'énergie E = P × t"),
+  carte_calc("calc-courant", "Quel courant appelle un appareil ?", "On lit la puissance sur la plaque signalétique et on en déduit le courant : I = P / U.",
+    champ("p","Puissance","2300","W")+champ("u","Tension","230","V"),
+    2, "module 2, la puissance P = U × I"),
+  carte_calc("calc-section", "Section du câble et calibre du disjoncteur", "Le repère de base entre la section des conducteurs en cuivre et le calibre maximal du disjoncteur qui les protège.",
+    '<div class="calc-choix"><label><input type="radio" name="sens" value="section" checked> J\'ai une section</label><label><input type="radio" name="sens" value="calibre"> J\'ai un calibre</label></div>'
+    +'<label class="calc-champ"><span>Section</span><select name="section"><option value="1.5">1,5 mm²</option><option value="2.5" selected>2,5 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></label>'
+    +'<label class="calc-champ"><span>Calibre du disjoncteur</span><select name="calibre"><option>10</option><option selected>16</option><option>20</option><option>32</option><option>40</option><option>63</option></select></label>',
+    12, "module 12, la section et le courant",
+    '\n      <p class="calc-note">Certains circuits ont leurs propres règles : éclairage, prises, plaque de cuisson… voir le module 14.</p>'),
+  carte_calc("calc-differentiel", "Calibre d'un interrupteur différentiel", "Liste les disjoncteurs placés derrière le différentiel. Coche ceux qui se comptent en entier.",
+    '<div class="calc-liste"></div><button type="button" class="bouton-creux calc-plus">+ Ajouter un disjoncteur</button>'
+    +champ("agcp","Calibre de l'AGCP (facultatif, méthode amont)","","A","ex. 45"),
+    11, "module 11, les méthodes amont et aval"),
+  carte_calc("calc-chute", "Chute de tension sur une longue ligne", "Une ligne en monophasé 230 V, en cuivre. La longueur est celle du câble, du tableau à l'appareil.",
+    champ("l","Longueur du câble","40","m")+champ("i","Courant","16","A")
+    +'<label class="calc-champ"><span>Section</span><select name="s"><option value="1.5">1,5 mm²</option><option value="2.5" selected>2,5 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></label>'
+    +'<label class="calc-champ"><span>Usage</span><select name="usage"><option value="eclairage">éclairage (3 %)</option><option value="autre" selected>autres usages (5 %)</option></select></label>',
+    12, "module 12, la chute de tension",
+    '\n      <p class="calc-note">Hypothèses : cuivre en service (0,0225 Ω·mm²/m), circuit résistif (cos φ = 1). C\'est un ordre de grandeur pour apprendre, pas une note de calcul.</p>'),
+])
+page("calculateurs.html", "Calculateurs d'électricité : consommation, courant, section, différentiel, chute de tension | ApprendreElec",
+     "Cinq calculateurs gratuits pour l'électricité du bâtiment : consommation et coût d'un appareil, courant appelé, section et calibre, calibre d'un interrupteur différentiel, chute de tension. Avec le calcul pas à pas.",
+     f'''    <h1>Calculateurs</h1>
+    <p class="niveau-objectif">Tape tes valeurs : le résultat s'affiche tout de suite, avec le calcul détaillé et le lien vers le cours qui l'explique. Ces outils servent à apprendre et à vérifier un ordre de grandeur ; ils ne remplacent pas l'étude d'une installation.</p>
+    <nav class="calc-sommaire"><a href="calculateurs.html#calc-energie">Consommation</a><a href="calculateurs.html#calc-courant">Courant</a><a href="calculateurs.html#calc-section">Section</a><a href="calculateurs.html#calc-differentiel">Différentiel</a><a href="calculateurs.html#calc-chute">Chute de tension</a></nav>
+{calc}''', script="js/calculateurs.js")
+
 par_bloc = ""
 for b in parcours["blocs"]:
     ids = [n["id"] for n in b["niveaux"]]
@@ -319,7 +362,7 @@ page("mentions-legales.html", "Mentions légales — ApprendreElec",
 
 # ---------- Plan du site
 jour = datetime.date.today().isoformat()
-urls = ["", "cours.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
+urls = ["", "cours.html", "calculateurs.html", "actualites.html", "lexique.html", "examen.html", "fiche.html", "materiel.html", "atelier-depannage.html", "a-propos.html"] + [pages[m["id"]] for m in modules]
 open("sitemap.xml", "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{jour}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 print(len(modules), "pages de cours,", len(glossaire), "termes,", len(urls), "adresses dans le plan du site")

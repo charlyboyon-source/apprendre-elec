@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Calculateurs d&#x27;électricité : consommation, courant, section, différentiel, chute de tension | ApprendreElec</title>
+  <meta name="description" content="Cinq calculateurs gratuits pour l&#x27;électricité du bâtiment : consommation et coût d&#x27;un appareil, courant appelé, section et calibre, calibre d&#x27;un interrupteur différentiel, chute de tension. Avec le calcul pas à pas.">
+  <link rel="canonical" href="https://apprendre-electricite.fr/calculateurs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ApprendreElec">
+  <meta property="og:title" content="Calculateurs d&#x27;électricité : consommation, courant, section, différentiel, chute de tension | ApprendreElec">
+  <meta property="og:description" content="Cinq calculateurs gratuits pour l&#x27;électricité du bâtiment : consommation et coût d&#x27;un appareil, courant appelé, section et calibre, calibre d&#x27;un interrupteur différentiel, chute de tension. Avec le calcul pas à pas.">
+  <meta property="og:url" content="https://apprendre-electricite.fr/calculateurs.html">
+  <meta property="og:image" content="https://apprendre-electricite.fr/assets/partage.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/lecon.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/habillage.css">
+</head>
+<body>
+  <header class="entete">
+    <button class="bouton-burger" aria-label="Menu">☰</button>
+    <a class="titre-site" href="index.html">⚡ ApprendreElec</a>
+    <span class="compteur-electrons">0 e⁻</span>
+  </header>
+  <main class="niveau page-outil">
+    <h1>Calculateurs</h1>
+    <p class="niveau-objectif">Tape tes valeurs : le résultat s'affiche tout de suite, avec le calcul détaillé et le lien vers le cours qui l'explique. Ces outils servent à apprendre et à vérifier un ordre de grandeur ; ils ne remplacent pas l'étude d'une installation.</p>
+    <nav class="calc-sommaire"><a href="calculateurs.html#calc-energie">Consommation</a><a href="calculateurs.html#calc-courant">Courant</a><a href="calculateurs.html#calc-section">Section</a><a href="calculateurs.html#calc-differentiel">Différentiel</a><a href="calculateurs.html#calc-chute">Chute de tension</a></nav>
+    <section class="calc" id="calc-energie">
+      <h2>Combien consomme un appareil ?</h2>
+      <p class="calc-intro">La puissance est écrite sur la plaque de l'appareil. Le prix du kWh est sur ta facture d'électricité.</p>
+      <div class="calc-champs"><label class="calc-champ"><span>Puissance</span><span class="calc-entree"><input name="p" inputmode="decimal" value="2000" placeholder=""><i>W</i></span></label><label class="calc-champ"><span>Durée par jour</span><span class="calc-entree"><input name="h" inputmode="decimal" value="2" placeholder=""><i>h</i></span></label><label class="calc-champ"><span>Nombre de jours</span><span class="calc-entree"><input name="j" inputmode="decimal" value="30" placeholder=""><i>jours</i></span></label><label class="calc-champ"><span>Prix du kWh (facultatif)</span><span class="calc-entree"><input name="prix" inputmode="decimal" value="" placeholder="ex. 0,25"><i>€</i></span></label></div>
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="cours/02-la-loi-d-ohm-et-la-puissance.html">module 2, l'énergie E = P × t</a></p>
+    </section>
+    <section class="calc" id="calc-courant">
+      <h2>Quel courant appelle un appareil ?</h2>
+      <p class="calc-intro">On lit la puissance sur la plaque signalétique et on en déduit le courant : I = P / U.</p>
+      <div class="calc-champs"><label class="calc-champ"><span>Puissance</span><span class="calc-entree"><input name="p" inputmode="decimal" value="2300" placeholder=""><i>W</i></span></label><label class="calc-champ"><span>Tension</span><span class="calc-entree"><input name="u" inputmode="decimal" value="230" placeholder=""><i>V</i></span></label></div>
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="cours/02-la-loi-d-ohm-et-la-puissance.html">module 2, la puissance P = U × I</a></p>
+    </section>
+    <section class="calc" id="calc-section">
+      <h2>Section du câble et calibre du disjoncteur</h2>
+      <p class="calc-intro">Le repère de base entre la section des conducteurs en cuivre et le calibre maximal du disjoncteur qui les protège.</p>
+      <div class="calc-champs"><div class="calc-choix"><label><input type="radio" name="sens" value="section" checked> J'ai une section</label><label><input type="radio" name="sens" value="calibre"> J'ai un calibre</label></div><label class="calc-champ"><span>Section</span><select name="section"><option value="1.5">1,5 mm²</option><option value="2.5" selected>2,5 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></label><label class="calc-champ"><span>Calibre du disjoncteur</span><select name="calibre"><option>10</option><option selected>16</option><option>20</option><option>32</option><option>40</option><option>63</option></select></label></div>
+      <p class="calc-note">Certains circuits ont leurs propres règles : éclairage, prises, plaque de cuisson… voir le module 14.</p>
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="cours/12-conducteurs-et-cables.html">module 12, la section et le courant</a></p>
+    </section>
+    <section class="calc" id="calc-differentiel">
+      <h2>Calibre d'un interrupteur différentiel</h2>
+      <p class="calc-intro">Liste les disjoncteurs placés derrière le différentiel. Coche ceux qui se comptent en entier.</p>
+      <div class="calc-champs"><div class="calc-liste"></div><button type="button" class="bouton-creux calc-plus">+ Ajouter un disjoncteur</button><label class="calc-champ"><span>Calibre de l'AGCP (facultatif, méthode amont)</span><span class="calc-entree"><input name="agcp" inputmode="decimal" value="" placeholder="ex. 45"><i>A</i></span></label></div>
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="cours/11-le-tableau-electrique-et-ses-differentiels.html">module 11, les méthodes amont et aval</a></p>
+    </section>
+    <section class="calc" id="calc-chute">
+      <h2>Chute de tension sur une longue ligne</h2>
+      <p class="calc-intro">Une ligne en monophasé 230 V, en cuivre. La longueur est celle du câble, du tableau à l'appareil.</p>
+      <div class="calc-champs"><label class="calc-champ"><span>Longueur du câble</span><span class="calc-entree"><input name="l" inputmode="decimal" value="40" placeholder=""><i>m</i></span></label><label class="calc-champ"><span>Courant</span><span class="calc-entree"><input name="i" inputmode="decimal" value="16" placeholder=""><i>A</i></span></label><label class="calc-champ"><span>Section</span><select name="s"><option value="1.5">1,5 mm²</option><option value="2.5" selected>2,5 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></label><label class="calc-champ"><span>Usage</span><select name="usage"><option value="eclairage">éclairage (3 %)</option><option value="autre" selected>autres usages (5 %)</option></select></label></div>
+      <p class="calc-note">Hypothèses : cuivre en service (0,0225 Ω·mm²/m), circuit résistif (cos φ = 1). C'est un ordre de grandeur pour apprendre, pas une note de calcul.</p>
+      <p class="calc-resultat" aria-live="polite"></p>
+      <p class="calc-detail"></p>
+      <p class="calc-lien">Pour comprendre : <a href="cours/12-conducteurs-et-cables.html">module 12, la chute de tension</a></p>
+    </section>
+  </main>
+  <footer class="pied">
+    <a href="index.html">Le parcours</a> · <a href="lexique.html">Lexique</a> · <a href="examen.html">Examen blanc</a> · <a href="calculateurs.html">Calculateurs</a> · <a href="actualites.html">Actualités</a> · <a href="a-propos.html">À propos</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="#" data-gerer-mesure>Gérer les cookies</a>
+  </footer>
+  <script type="module" src="js/calculateurs.js"></script>
+</body>
+</html>
