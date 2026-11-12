@@ -361,7 +361,7 @@ function jouerSequence(etapes, contactsDepart) {
     }
     return r;
   };
-  regler();
+  resultats.push({ e: { debut: true }, r: regler() });
   for (const e of etapes) {
     let r;
     if (e.appui) { contacts[e.appui] = true; r = regler(); if (r.court || r.terre) { resultats.push({ e, r }); break; } contacts[e.appui] = false; r = regler(); }
@@ -374,6 +374,7 @@ function jouerSequence(etapes, contactsDepart) {
 const texteEtape = (e) => (e.appui ? `Appui sur « ${nomDe(e.appui)} »` : e.temps ? "Après la durée réglée" : e.texte);
 function verifier() {
   const lignes = [], fautes = [], remarques = [];
+  s.incomplet = false;
   let fonctionne = true;
   const controlePhase = (r, attendu) => {
     for (const id of Object.keys(attendu)) if (!r.lampes[id] && r.de(`${id}-L`) === 230 && !fautes.some((f) => f.startsWith(nomDe(id))))
@@ -381,12 +382,26 @@ function verifier() {
   };
   const decrire = (r, attendu) => Object.keys(attendu).map((id) => `${nomDe(id)} : ${m.composants.find((c) => c.id === id).type === "chauffeEau" ? (r.lampes[id] ? "chauffe" : "à l'arrêt") : `lumière ${r.lampes[id] ? "allumée" : "éteinte"}`}`).join(", ");
   if (m.sequence) {
-    for (const { e, r } of jouerSequence(m.sequence, s.contacts)) {
-      if (r.court || r.terre) { fonctionne = false; lignes.push([false, `${texteEtape(e)} : ${r.court ? "court-circuit" : "phase reliée à la terre"}`]); break; }
-      const ok = Object.entries(e.attendu).every(([id, v]) => r.lampes[id] === v);
+    // Télérupteur et minuterie : chaque bouton raccordé est essayé à part, quel que soit l'état de départ de la lampe.
+    const tl = m.composants.some((c) => c.type === "tl");
+    const lampe = m.composants.find((c) => c.type === "lampe").id;
+    const cable = (c) => s.fils.some((w) => [w.a, w.b].some((x) => x.startsWith(`${c.id}-`)));
+    const bps = m.composants.filter((c) => c.type === "bp");
+    const raccordes = bps.filter(cable);
+    if (!raccordes.length) { fonctionne = false; lignes.push([false, "Aucun bouton-poussoir n'est raccordé."]); }
+    for (const bp of bps.filter((c) => !cable(c))) { remarques.push(`« ${bp.nom} » n'est pas raccordé : la consigne en demande ${bps.length}.`); s.incomplet = true; }
+    for (const bp of raccordes) {
+      const etapes = tl ? [{ appui: bp.id }, { appui: bp.id }] : [{ temps: true }, { appui: bp.id }, { temps: true }];
+      const res = jouerSequence(etapes, s.contacts);
+      const panne = res.find(({ r }) => r.court || r.terre);
+      if (panne) { fonctionne = false; lignes.push([false, `« ${bp.nom} » : ${panne.r.court ? "court-circuit" : "phase reliée à la terre"}`]); continue; }
+      const etats = res.map(({ r }) => r.lampes[lampe]);
+      const ok = tl ? etats[1] !== etats[0] && etats[2] === etats[0] : !etats[1] && etats[2] && !etats[3];
       if (!ok) fonctionne = false;
-      lignes.push([ok, `${texteEtape(e)} : ${decrire(r, e.attendu)}`]);
-      controlePhase(r, e.attendu);
+      lignes.push([ok, tl
+        ? `« ${bp.nom} » : ${ok ? "un appui allume, l'appui suivant éteint" : `la lampe ${etats[1] === etats[0] ? "ne change pas d'état quand on appuie" : "ne revient pas à son état au deuxième appui"}`}`
+        : `« ${bp.nom} » : ${ok ? "un appui allume, la lampe s'éteint seule après la durée réglée" : etats[2] ? "la lampe reste allumée après la durée réglée" : "un appui n'allume pas la lampe"}`]);
+      for (const { r } of res) controlePhase(r, { [lampe]: true });
     }
   } else {
     const essais = m.essais(s);
@@ -431,7 +446,7 @@ function verifier() {
   const uniques = (t) => [...new Set(t)];
   s.verif = { lignes, fonctionne, fautes: uniques(fautes), remarques: uniques(remarques) };
   if (fonctionne && !s.verif.fautes.length) {
-    const etoiles = Math.max(1, 3 - s.aide - (s.fautes.length ? 1 : 0));
+    const etoiles = Math.max(1, 3 - s.aide - (s.fautes.length ? 1 : 0) - (s.incomplet ? 1 : 0));
     s.verif.etoiles = etoiles; sons.succes(); crediterElectrons(etoiles * 10);
   } else sons.rate();
 }
