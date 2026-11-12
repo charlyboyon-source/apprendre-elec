@@ -18,3 +18,39 @@
 .sc-verif li.ok { color: #14703f; } .sc-verif li.ko { color: #b3261e; }
 .sc-verif .im-plein { max-width: 300px; }
 .sc-dev { display: block; width: 100%; max-width: 760px; height: auto; margin: 10px auto 0; border: 1px solid #e3d9b8; border-radius: 10px; }
+/* Tout à l'écran : platine à la hauteur de la fenêtre, outils dans une colonne à droite */
+.sc .im-hud { margin-bottom: 6px; }
+.sc .im-titre span { display: block; font-size: 0.85rem; }
+.sc-zone { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-items: start; }
+.sc-platine { max-height: calc(100vh - var(--entete-h, 70px) - 90px); max-height: calc(100dvh - var(--entete-h, 70px) - 90px); }
+.sc-cadre { display: flex; justify-content: center; }
+@media (min-width: 760px) {
+  .sc-zone { grid-template-columns: minmax(0, 1fr) 190px; }
+  .sc-colonne { flex-direction: column; align-items: stretch; margin-top: 0; gap: 8px; position: sticky; top: calc(var(--entete-h, 70px) + 8px); }
+  .sc-colonne .sc-palette { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .sc-colonne .sc-bobine { padding: 4px 8px 4px 4px; font-size: 0.78rem; }
+  .sc-colonne .sc-bobine span { width: 18px; height: 18px; }
+  .sc-colonne .im-outils { flex-direction: column; gap: 5px; }
+  .sc-colonne .im-outils button { padding: 7px 10px; font-size: 0.82rem; text-align: left; }
+  .sc-cadre { background: #c9ab84; }
+}
+@media (max-width: 759px) {
+  .sc-colonne .sc-palette { gap: 4px; }
+  .sc-colonne .sc-bobine { padding: 3px 8px 3px 3px; font-size: 0.75rem; }
+  .sc-colonne .im-outils button { padding: 6px 9px; font-size: 0.78rem; }
+}
+/* Écrans peu hauts (téléphone en paysage) : tout en compact */
+@media (max-height: 520px) and (min-width: 600px) {
+  .entete .nav-haut { display: none; }
+  .sc { padding-top: 4px; }
+  .sc .im-hud { margin-bottom: 4px; }
+  .sc .im-titre span { display: none; }
+  .sc-platine { max-height: calc(100dvh - var(--entete-h, 50px) - 50px); }
+  .sc-zone { grid-template-columns: minmax(0, 1fr) 210px; gap: 6px; }
+  .sc-colonne { gap: 4px; }
+  .sc-colonne .sc-palette { grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+  .sc-colonne .sc-bobine { font-size: 0; padding: 4px; justify-content: center; }
+  .sc-colonne .sc-bobine span { width: 22px; height: 22px; }
+  .sc-colonne .im-outils { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .sc-colonne .im-outils button { padding: 5px 6px; font-size: 0.7rem; line-height: 1.2; }
+}

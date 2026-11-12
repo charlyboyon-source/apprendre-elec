@@ -477,8 +477,9 @@ function rendre() {
     <div class="im-hud"><div class="im-titre"><b>${m.titre}</b><span>${m.consigne}</span></div>
       <div class="im-compteurs"><span>${s.fils.length} fil${s.fils.length > 1 ? "s" : ""}</span><span>${s.sousTension ? "⚡ sous tension" : "🔒 hors tension"}</span></div></div>
     <p class="im-paysage">📱 Tourne ton téléphone pour câbler en grand.</p>
+    <div class="sc-zone">
     <div class="im-cadre sc-cadre">${svg}${s.message ? `<p class="im-bulle ${s.message.type}" role="status">${s.message.t}</p>` : ""}</div>
-    <div class="im-barre">
+    <div class="im-barre sc-colonne">
       <div class="sc-palette" role="group" aria-label="Couleur du fil">${COULEURS.map(([k, l, c]) => `<button type="button" class="sc-bobine ${s.couleur === k && s.outil === "fil" ? "actif" : ""}" data-couleur="${k}" title="${l}"><span style="background:${k === "terre" ? "repeating-linear-gradient(90deg,#3d9a3d 0 6px,#e8cf2c 6px 12px)" : c}"></span>${l}</button>`).join("")}</div>
       <div class="im-outils">
         <button type="button" class="${s.outil === "couper" ? "actif" : ""}" data-action="couper">✂️ Couper un fil</button>
@@ -486,8 +487,9 @@ function rendre() {
         <button type="button" class="${s.sousTension ? "actif" : ""}" data-action="tension">${s.sousTension ? "🔒 Couper le courant" : "⚡ Mettre sous tension"}</button>
         <button type="button" data-action="verifier">🔍 Faire vérifier</button>
         ${m.composants.some((c) => c.type === "minuterie") ? `<button type="button" data-action="temps">⏱ Laisser passer 3 minutes</button>` : ""}
-        <button type="button" data-action="aide">${s.aide === 0 ? "📐 Voir le schéma développé (−1 ★)" : s.aide === 1 ? "📝 Câblage pas à pas (−1 ★)" : "Aide complète affichée"}</button>
+        <button type="button" data-action="aide">${s.aide === 0 ? "📐 Schéma développé (−1 ★)" : s.aide === 1 ? "📝 Câblage pas à pas (−1 ★)" : "Aide complète affichée ↓"}</button>
       </div>
+    </div>
     </div>
     ${s.aide >= 1 ? `<div class="sc-aide"><b>Schéma développé</b> : phase en haut, neutre en bas, appareils au repos. Lis-le de haut en bas, comme le chemin du courant.${schemaDev(m)}</div>` : ""}
     ${s.aide >= 2 ? `<p class="sc-aide"><b>Câblage pas à pas :</b> ${m.aide}</p>` : ""}
@@ -548,6 +550,7 @@ racine.addEventListener("click", (ev) => {
   else if (d.action === "suivant") { const i = MONTAGES.indexOf(m); ouvrir(MONTAGES[(i + 1) % MONTAGES.length].id); history.replaceState(null, "", `?m=${m.id}`); }
   rendre();
   if (d.action === "verifier") racine.querySelector(".sc-verif")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  if (d.action === "aide") racine.querySelector(".sc-aide:last-of-type")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
 });
 racine.addEventListener("keydown", (ev) => {
   if ((ev.key === "Enter" || ev.key === " ") && ev.target.matches("[role=button]")) { ev.preventDefault(); ev.target.dispatchEvent(new MouseEvent("click", { bubbles: true })); }
