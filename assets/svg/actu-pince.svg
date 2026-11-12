@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Une pince coupante diagonale isolée 1000 V qui coupe un conducteur de cuivre">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<rect width="640" height="360" rx="0" fill="#f6f2ea"/>
+<g transform="translate(320 170) rotate(-18)" filter="url(#ombre)"><path d="M-200 -18 L-40 -10 L-40 10 L-200 22 Q-216 4 -200 -18 Z" fill="#d92b2b" stroke="#8e1414" stroke-width="2"/><path d="M-200 30 L-40 16 L-40 30 L-196 52 Q-214 44 -200 30 Z" fill="#f28c28" stroke="#b85a08" stroke-width="2"/><rect x="-60" y="-14" width="14" height="48" rx="3" fill="#ffd23f"/><path d="M-40 -12 L40 -26 Q96 -22 120 4 L52 8 Z" fill="url(#acierH)" stroke="#5b6673" stroke-width="2"/><path d="M-40 32 L40 40 Q96 34 120 10 L52 12 Z" fill="url(#acierH)" stroke="#5b6673" stroke-width="2"/><circle cx="-8" cy="8" r="12" fill="url(#vis)" stroke="#5b6673" stroke-width="2"/><text x="-130" y="8" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">1000 V</text></g>
+<rect x="508" y="86.0" width="40" height="12" fill="url(#cuivreH)"/><ellipse cx="548" cy="92" rx="2.4" ry="6.0" fill="#f3c592" stroke="#8f4f17" stroke-width=".8"/>
+<rect x="420" y="81.0" width="90" height="22" rx="4.4" fill="#d92b2b"/><rect x="420" y="84.1" width="90" height="4.4" fill="#fff" opacity=".28"/><ellipse cx="510" cy="92" rx="3.7" ry="11.0" fill="#d92b2b" stroke="#00000033"/>
+<polygon points="461.8,112.0 455.0,112.6 455.2,119.5 451.2,113.9 445.4,117.5 448.2,111.3 442.2,108.0 449.0,107.4 448.8,100.5 452.8,106.1 458.6,102.5 455.8,108.7" fill="#ffd23f" stroke="#e8590c"/>
+</svg>

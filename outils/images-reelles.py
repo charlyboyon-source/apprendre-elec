@@ -2514,3 +2514,52 @@ s.t(450,318,"échafaudage roulant",11,True)
 bande(s,350,46,["Une échelle n'est pas un poste de travail"],12)
 s.ecrire("c9-hauteur.svg")
 print("module 9 : 7 images")
+
+# =====================================================================
+# ACTUALITÉS — illustrations (640 x 360, sans titre : le titre est sur la carte)
+# =====================================================================
+class SA(S):
+    def __init__(s,aria): s.w,s.h,s.aria=640,360,aria; s.o=[f'<rect width="640" height="360" rx="0" fill="#f6f2ea"/>']
+
+s=SA("Le livret de la norme NF C 15-100, série 2024, à côté d'un tableau électrique")
+s.a('<g filter="url(#ombre)"><rect x="110" y="50" width="200" height="270" rx="8" fill="#1c2530"/></g><rect x="110" y="50" width="22" height="270" rx="4" fill="#3a3f46"/>')
+s.a('<rect x="150" y="84" width="140" height="6" fill="#ffc21a"/>')
+s.t(220,140,"NF C 15-100",19,True,"#fff"); s.t(220,172,"série 2024",14,False,"#ffc21a")
+for k,l in enumerate(("-1  principes","-4-41  protection","-7-701  salle d'eau","-7-722  recharge")): s.t(150,214+k*22,l,9,False,"#c5cad0","start")
+coffret(s,360,70,180,220)
+for r in range(3):
+    y=88+r*68; rail(s,368,y,164,0.27); idiff(s,372,y,0.27,"40 A","A" if r==0 else "AC",False)
+    for i in range(6): disj(s,372+2*18.9+i*18.9,y,0.27,"",None,True,False)
+s.ecrire("actu-norme.svg")
+
+s=SA("Un onduleur photovoltaïque et son certificat de conformité NF EN 50549")
+panneau_pv(s,40,60,120,170,4,6); trait(s,"M160 140 H230",RED,5); trait(s,"M160 158 H230",INK,5)
+onduleur_box(s,230,92,110,130)
+s.a('<g filter="url(#ombre)"><rect x="390" y="60" width="190" height="240" rx="6" fill="#fff" stroke="#c5cad0"/></g>')
+s.t(485,100,"CERTIFICAT",13,True); s.t(485,126,"NF EN 50549",13,True,BLUE); s.t(485,148,"essais NF EN 50549-10",9.5,False,GR)
+for k in range(4): s.a(f'<path d="M414 {176+k*18} H556" stroke="#d5d9de" stroke-width="4"/>')
+s.a(f'<circle cx="540" cy="262" r="24" fill="{GRN}"/><path d="M528 262 l9 9 l16 -18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>')
+s.ecrire("actu-onduleur.svg")
+
+s=SA("Une pince coupante diagonale isolée 1000 V qui coupe un conducteur de cuivre")
+s.a('<g transform="translate(320 170) rotate(-18)" filter="url(#ombre)">'
+    '<path d="M-200 -18 L-40 -10 L-40 10 L-200 22 Q-216 4 -200 -18 Z" fill="#d92b2b" stroke="#8e1414" stroke-width="2"/>'
+    '<path d="M-200 30 L-40 16 L-40 30 L-196 52 Q-214 44 -200 30 Z" fill="#f28c28" stroke="#b85a08" stroke-width="2"/>'
+    '<rect x="-60" y="-14" width="14" height="48" rx="3" fill="#ffd23f"/>'
+    '<path d="M-40 -12 L40 -26 Q96 -22 120 4 L52 8 Z" fill="url(#acierH)" stroke="#5b6673" stroke-width="2"/>'
+    '<path d="M-40 32 L40 40 Q96 34 120 10 L52 12 Z" fill="url(#acierH)" stroke="#5b6673" stroke-width="2"/>'
+    '<circle cx="-8" cy="8" r="12" fill="url(#vis)" stroke="#5b6673" stroke-width="2"/>'
+    '<text x="-130" y="8" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">1000 V</text></g>')
+fil(s,420,92,90,22,RED,40,12)
+s.a(f'<polygon points="{etoile(452,110,10,4,6,.2)}" fill="#ffd23f" stroke="#e8590c"/>')
+s.ecrire("actu-pince.svg")
+
+s=SA("Un perforateur sans fil SDS-Max sur batterie, avec son foret béton")
+s.a('<g filter="url(#ombre)"><path d="M140 110 H380 Q410 110 410 140 V190 Q410 214 386 214 H300 L286 300 H220 L232 214 H160 Q130 214 130 184 V130 Q130 110 150 110 Z" fill="#d92b2b" stroke="#8e1414" stroke-width="2"/></g>')
+s.a('<rect x="200" y="296" width="110" height="40" rx="8" fill="#2b3036"/><rect x="214" y="304" width="40" height="8" rx="3" fill="#d92b2b"/>')
+s.a('<rect x="150" y="128" width="200" height="40" rx="10" fill="#2b3036" opacity=".85"/>')
+s.a('<rect x="410" y="148" width="40" height="28" rx="5" fill="#3a3f46"/><rect x="450" y="156" width="150" height="12" fill="url(#acierH)" stroke="#5b6673"/><path d="M600 156 L620 162 L600 168 Z" fill="#7d858e"/>')
+for k in range(7): s.a(f'<path d="M{462+k*20} 156 l10 12" stroke="#5b6673" stroke-width="2"/>')
+s.a(f'<circle cx="520" cy="90" r="40" fill="#fff1c2" stroke="{YEL}" stroke-width="3"/>'); s.t(520,92,"8,1 J",17,True); s.t(520,112,"EPTA",10,False,GR)
+s.ecrire("actu-perforateur.svg")
+print("actualités : 4 illustrations")

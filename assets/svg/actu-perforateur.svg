@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Un perforateur sans fil SDS-Max sur batterie, avec son foret béton">
+<defs>
+<linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
+<linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
+<linearGradient id="manette" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5058"/><stop offset="1" stop-color="#23272c"/></linearGradient>
+<radialGradient id="vis" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#f1f2f4"/><stop offset="1" stop-color="#8d949c"/></radialGradient>
+<linearGradient id="cuivreH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0b77a"/><stop offset=".5" stop-color="#c9782f"/><stop offset="1" stop-color="#8f4f17"/></linearGradient>
+<linearGradient id="cuivreV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f4f17"/><stop offset=".45" stop-color="#f0b77a"/><stop offset="1" stop-color="#9a5a1f"/></linearGradient>
+<linearGradient id="acierH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".5" stop-color="#aab1b9"/><stop offset="1" stop-color="#7d858e"/></linearGradient>
+<linearGradient id="cylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde1"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8ce"/></linearGradient>
+<linearGradient id="gaineV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a81d1d"/><stop offset=".4" stop-color="#ef4a4a"/><stop offset="1" stop-color="#b02020"/></linearGradient>
+<linearGradient id="chaud" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3f46"/><stop offset=".5" stop-color="#e8590c"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="icta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".3" stop-color="#dfe3e7"/><stop offset="1" stop-color="#6b727a"/></linearGradient>
+<linearGradient id="tpc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b02020"/><stop offset=".3" stop-color="#ff6b5e"/><stop offset="1" stop-color="#8e1414"/></linearGradient>
+<linearGradient id="irl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab1b9"/><stop offset=".3" stop-color="#f1f3f5"/><stop offset="1" stop-color="#8d949c"/></linearGradient>
+<linearGradient id="terre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a877"/><stop offset="1" stop-color="#a98557"/></linearGradient>
+<pattern id="vj" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="16" height="16" fill="#2e9e4f"/><rect width="7" height="16" fill="#f2d21a"/></pattern>
+<filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
+<g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
+<linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
+<linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
+</defs>
+<rect width="640" height="360" rx="0" fill="#f6f2ea"/>
+<g filter="url(#ombre)"><path d="M140 110 H380 Q410 110 410 140 V190 Q410 214 386 214 H300 L286 300 H220 L232 214 H160 Q130 214 130 184 V130 Q130 110 150 110 Z" fill="#d92b2b" stroke="#8e1414" stroke-width="2"/></g>
+<rect x="200" y="296" width="110" height="40" rx="8" fill="#2b3036"/><rect x="214" y="304" width="40" height="8" rx="3" fill="#d92b2b"/>
+<rect x="150" y="128" width="200" height="40" rx="10" fill="#2b3036" opacity=".85"/>
+<rect x="410" y="148" width="40" height="28" rx="5" fill="#3a3f46"/><rect x="450" y="156" width="150" height="12" fill="url(#acierH)" stroke="#5b6673"/><path d="M600 156 L620 162 L600 168 Z" fill="#7d858e"/>
+<path d="M462 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M482 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M502 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M522 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M542 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M562 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<path d="M582 156 l10 12" stroke="#5b6673" stroke-width="2"/>
+<circle cx="520" cy="90" r="40" fill="#fff1c2" stroke="#ffc21a" stroke-width="3"/>
+<text x="520" y="92" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">8,1 J</text>
+<text x="520" y="112" text-anchor="middle" font-size="13.0" font-weight="500" fill="#5b6673">EPTA</text>
+</svg>

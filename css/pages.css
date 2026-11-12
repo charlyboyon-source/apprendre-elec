@@ -181,3 +181,9 @@
 .actu-cat { font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--orange); }
 .actu-retenir { background: var(--jaune-doux); border-radius: 8px; padding: 8px 10px; font-size: 0.92rem; }
 .actu-source { font-size: 0.82rem; color: var(--texte-2); margin: 0; }
+.actu { scroll-margin-top: 110px; }
+.actu-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; border: 1px solid var(--bordure); margin-bottom: 10px; }
+@media (min-width: 760px) {
+  .actu:has(.actu-image) { display: grid; grid-template-columns: 240px 1fr; column-gap: 18px; }
+  .actu:has(.actu-image) .actu-image { grid-row: 1 / span 6; margin: 0; align-self: start; }
+}

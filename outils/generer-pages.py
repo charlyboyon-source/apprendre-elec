@@ -186,7 +186,9 @@ actu = json.load(open("data/actualites.json", encoding="utf-8"))["actualites"]
 MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
 def date_fr(d):
     a, m, j = d.split("-"); return f"{int(j)} {MOIS[int(m)-1]} {a}"
-cartes = "\n".join(f'''      <article class="actu">
+def actu_id(a): return "actu-" + slug(a["titre"])[:60]
+cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
+        {f'<img class="actu-image" src="{a["image"]}" alt="" loading="lazy">' if a.get("image") else ""}
         <p class="actu-meta"><span class="actu-cat">{html.escape(a["categorie"])}</span> · {date_fr(a["date"])}</p>
         <h2>{html.escape(a["titre"])}</h2>
         <p>{html.escape(a["texte"])}</p>
