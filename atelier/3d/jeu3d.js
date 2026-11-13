@@ -3,6 +3,7 @@
 // Le modèle électrique est celui de l'atelier 2D (../immersif/moteur.js) : seule la façon de voir et de toucher change.
 import * as THREE from "./three.module.min.js";
 import { creerMonde } from "./monde.js";
+import { creerMultimetre, creerVAT, creerSonde, creerTournevis, creerPlateau } from "./materiel.js";
 import S from "./scenario.js";
 import { modele } from "../immersif/moteur.js";
 import { sons } from "../immersif/sons.js";
@@ -26,11 +27,12 @@ const M = () => modele(S, e);
 function nouvellePartie() {
   e = {
     panne: S.pannes[0], app: { inter: false, ampouleMontee: true }, repare: false, fini: false,
-    poses: [], humeur: 3, minutes: 0, fautes: [], conseils: [], accident: false,
+    poses: [], humeur: 3, minutes: 0, fautes: [], accident: false,
     plaque: true, vis: [true, true], mecaSorti: false, obs: false, coupe: false,
+    filEngage: false, filSerre: false, essaye: false, attenteFacture: false,
     calibre: "V", rouge: null, noir: null, enMain: null, vatPts: [], vatLecture: null, vat: { avant: false, absence: false, apres: false },
-    lecture: null, mesures: [], journal: [], bulle: null, vue: "entree", rappel: false,
-    aide: { cle: null, niveau: 0 }, indicesPris: 0, panneau: "client", debut: true,
+    lecture: null, mesures: [], journal: [], bulle: null, vue: "entree", rappel: false, lieux: new Set(["entree"]),
+    aide: { cle: null, niveau: 0 }, indicesPris: 0, panneau: "client", debut: true, mode: "guide",
   };
   for (const r of RANGEES) for (const a of r) e.app[a.cle] = true;
 }
@@ -39,66 +41,90 @@ const dire = (t, type = "info") => { e.bulle = { t, type }; };
 const faute = (t) => { if (!e.fautes.includes(t)) e.fautes.push(t); };
 const lampeAllumee = () => M().alimente("DclL", "DclN");
 const pot = (n) => M().potentiels().de(n);
+const circuitCoupe = () => !e.app.dj || !e.app.diff;
 function vibrer(m) { try { if (navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) navigator.vibrate(m); } catch { /* rien */ } }
 
 /* =====================================================================
    Vues et caméra
    ===================================================================== */
 const VUES = {
-  entree: { libre: true, pos: [0, 1.62, 3.95], yaw: 0, pitch: -0.04, parent: null, nom: "l'entrée" },
-  chambre: { libre: true, pos: [0.2, 1.62, 1.0], yaw: 0, pitch: -0.12, parent: "entree", nom: "la chambre" },
-  plafonnier: { parent: "chambre", nom: "le plafonnier" },
-  inter: { parent: "chambre", nom: "l'interrupteur" },
-  tableau: { parent: "entree", nom: "le tableau" },
-  rangee1: { parent: "tableau", nom: "la rangée du haut" },
-  rangee2: { parent: "tableau", nom: "la rangée du bas" },
+  entree: { libre: true, pos: [0, 1.62, 3.95], yaw: 0, pitch: -0.04, parent: null, nom: "l'entrée", court: "L'entrée", lieu: "Entrée" },
+  chambre: { libre: true, pos: [0.42, 1.62, 0.32], yaw: 0, pitch: -0.1, parent: "entree", nom: "la chambre", court: "La chambre", lieu: "Chambre" },
+  plafonnier: { parent: "chambre", nom: "le plafonnier", court: "Le plafonnier" },
+  inter: { parent: "chambre", nom: "l'interrupteur", court: "L'interrupteur", lieu: "Interrupteur" },
+  tableau: { parent: "entree", nom: "le tableau", court: "Le tableau", lieu: "Tableau" },
+  rangee1: { parent: "tableau", nom: "la rangée du haut", court: "La rangée" },
+  rangee2: { parent: "tableau", nom: "la rangée du bas", court: "La rangée" },
 };
-const tmpCam = new THREE.PerspectiveCamera();
+const FOV_PROCHE = 32;
+let fovLibre = 66;
+const fovDe = (vue) => (VUES[vue].libre ? fovLibre : FOV_PROCHE);
+// largeur vue à 1 m avec le champ étroit (dépend de la forme de l'écran)
+function largeurVue() { return 2 * Math.tan((FOV_PROCHE / 2) * RAD) * Math.min(1.25, camera.aspect); }
 function cadreProche(vue) {
-  // position et cible de la caméra, calculées dans le repère de l'objet regardé
+  // vues rapprochées au « téléobjectif » : l'objet remplit l'image, sans déformation
   let obj, p, c;
+  const k = largeurVue();
   if (vue === "inter") {
     obj = W.appareil;
-    // vues rapprochées au « téléobjectif » (champ étroit) : l'objet est grand, sans déformation
-    const k = largeurVue();
-    if (e.mecaSorti) { const d = 0.13 / k; p = [0.022, -0.03 - d * 0.22, 0.03 + d]; c = [0.022, -0.03, 0.03]; }
-    else if (!e.plaque) { const d = 0.125 / k; p = [0.012, 0, d]; c = [0.012, 0, 0]; }
-    else { const d = 0.19 / k; p = [0.0355, 0, d]; c = [0.0355, 0, 0]; }
-  } else if (vue === "tableau") { obj = W.tableau; const d = 0.33 / largeurVue(); p = [0, 0, 0.1 + d]; c = [0, 0, 0.1]; }
-  else if (vue === "rangee1" || vue === "rangee2") { obj = W.tableau; const y = W.rangees[vue === "rangee1" ? 0 : 1].position.y; const d = 0.125 / largeurVue(); p = [0, y - 0.008, 0.165 + d]; c = [0, y, 0.165]; }
-  else if (vue === "plafonnier") return orient([0.25, 1.55, 0.75], [0, 2.05, 0]);
+    if (e.mecaSorti) { const d = 0.135 / k; p = [0.028, -0.03 - d * 0.22, 0.03 + d]; c = [0.028, -0.03, 0.03]; }
+    else if (!e.plaque) { const d = 0.085 / k; p = [0.004, -0.004, d]; c = [0.004, -0.004, 0]; }
+    else { const d = 0.162 / k; p = [0.0355, 0, d]; c = [0.0355, 0, 0]; }
+  } else if (vue === "tableau") { obj = W.tableau; const d = 0.3 / k; p = [0, 0, 0.1 + d]; c = [0, 0, 0.1]; }
+  else if (vue === "rangee1" || vue === "rangee2") { obj = W.tableau; const y = W.rangees[vue === "rangee1" ? 0 : 1].position.y; const d = 0.112 / k; p = [0, y - 0.008, 0.165 + d]; c = [0, y, 0.165]; }
+  else if (vue === "plafonnier") return orient([0.3, 1.55, 0.6], [0, 2.05, 0]);
   obj.updateMatrixWorld(true);
   return orient(obj.localToWorld(new THREE.Vector3(...p)).toArray(), obj.localToWorld(new THREE.Vector3(...c)).toArray());
 }
-const FOV_PROCHE = 32;
-// largeur vue à 1 m avec le champ étroit (dépend de la forme de l'écran)
-function largeurVue() { return 2 * Math.tan((FOV_PROCHE / 2) * RAD) * Math.min(1.25, camera.aspect); }
-let fovLibre = 66;
-const fovDe = (vue) => (VUES[vue].libre ? fovLibre : FOV_PROCHE);
 function orient(pos, cible) {
   const d = new THREE.Vector3(...cible).sub(new THREE.Vector3(...pos)).normalize();
   return { pos, yaw: Math.atan2(-d.x, -d.z), pitch: Math.asin(d.y) };
 }
-const regard = { yaw: 0, pitch: 0, base: null }; // base = cadrage d'une vue rapprochée (la tête ne bouge qu'un peu autour)
+const regard = { yaw: 0, pitch: 0, base: null, memo: {} };
 function cadrageVue(vue) { const v = VUES[vue]; return v.libre ? { pos: v.pos, yaw: v.yaw, pitch: v.pitch } : cadreProche(vue); }
 let transition = null;
-function allerVue(vue, { garderRegard = false } = {}) {
+function lancerTransition(de, a, d) {
+  // un nouveau mouvement remplace le précédent : celui-ci est considéré comme terminé (personne ne reste bloqué)
+  if (transition) { const ancien = transition; transition = null; ancien.res(); }
+  return new Promise((res) => { transition = { t0: performance.now(), d: REDUIT ? 1 : d, de, a, res }; });
+}
+function allerVue(vue, { duree = 900 } = {}) {
   const avant = e.vue;
+  if (VUES[avant] && VUES[avant].libre) regard.memo[avant] = { yaw: regard.yaw, pitch: regard.pitch };
   e.vue = vue; e.rouge = null; e.noir = null; e.vatPts = []; e.lecture = null; e.vatLecture = null; e.enMain = null;
-  majSondes();
+  if (VUES[vue].lieu) e.lieux.add(vue);
   const c = cadrageVue(vue);
-  if (VUES[vue].libre && garderRegard && regard.memo && regard.memo[vue]) Object.assign(c, regard.memo[vue]);
-  if (VUES[avant] && VUES[avant].libre) { regard.memo = regard.memo || {}; regard.memo[avant] = { yaw: regard.yaw, pitch: regard.pitch }; }
+  if (VUES[vue].libre && regard.memo[vue]) Object.assign(c, regard.memo[vue]);
   let dy = c.yaw - regard.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy));
-  transition = { t0: performance.now(), d: REDUIT ? 1 : 950, de: { pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, a: { pos: new THREE.Vector3(...c.pos), yaw: regard.yaw + dy, pitch: c.pitch, fov: fovDe(vue) } };
   regard.base = VUES[vue].libre ? null : { yaw: regard.yaw + dy, pitch: c.pitch };
   if (vue !== avant) temps(0.5);
-  ambianceSonore();
+  ambianceSonore(); majSondes(); majUI();
+  return lancerTransition({ pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, { pos: new THREE.Vector3(...c.pos), yaw: regard.yaw + dy, pitch: c.pitch, fov: fovDe(vue) }, duree);
 }
-function recadrer() { // la vue rapprochée change (le mécanisme sort) : la caméra suit en douceur
+function recadrer() { // la vue rapprochée change (plaque, mécanisme) : la caméra suit en douceur
   const c = cadrageVue(e.vue);
-  transition = { t0: performance.now(), d: REDUIT ? 1 : 700, de: { pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, a: { pos: new THREE.Vector3(...c.pos), yaw: c.yaw, pitch: c.pitch, fov: fovDe(e.vue) } };
   regard.base = { yaw: c.yaw, pitch: c.pitch };
+  return lancerTransition({ pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, { pos: new THREE.Vector3(...c.pos), yaw: c.yaw, pitch: c.pitch, fov: fovDe(e.vue) }, 650);
+}
+// tourner la tête (sans se déplacer) vers un point de la scène
+function regarderVers(p, duree = 700) {
+  const d = p.clone().sub(camera.position).normalize();
+  let yaw = Math.atan2(-d.x, -d.z), dy = yaw - regard.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy));
+  return lancerTransition({ pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, { pos: camera.position.clone(), yaw: regard.yaw + dy, pitch: Math.max(-1, Math.min(1.1, Math.asin(d.y))), fov: camera.fov }, duree);
+}
+// se rendre dans une vue en passant par les pièces (vrai déplacement, une étape après l'autre)
+const VOISINS = { entree: ["chambre", "tableau"], chambre: ["entree", "inter", "plafonnier"], inter: ["chambre"], plafonnier: ["chambre"], tableau: ["entree", "rangee1", "rangee2"], rangee1: ["tableau"], rangee2: ["tableau"] };
+function trajet(vers) {
+  const vus = new Map([[e.vue, null]]), file = [e.vue];
+  while (file.length) { const v = file.shift(); if (v === vers) break; for (const w of VOISINS[v]) if (!vus.has(w)) { vus.set(w, v); file.push(w); } }
+  const t = []; for (let v = vers; v && v !== e.vue; v = vus.get(v)) t.unshift(v);
+  return t;
+}
+async function allerA(vers) {
+  if (occupe || vers === e.vue) return;
+  occupe = true;
+  try { const t = trajet(vers); for (let i = 0; i < t.length; i++) await allerVue(t[i], { duree: t.length > 1 ? 650 : 900 }); }
+  finally { occupe = false; apresArrivee(); majUI(); }
 }
 const lisse = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -114,66 +140,108 @@ function pasAnims(now) {
     if (t >= 1) { anims.splice(i, 1); a.res(); }
   }
 }
-// le tournevis : vient sur la vis (ou la borne), tourne, repart
+// le tournevis arrive de biais, la lame engagée dans la tête, et tourne
 let tournevis = null;
-function creerTournevis() {
-  const g = new THREE.Group();
-  const manche = W.cyl(0.011, 0.013, 0.095, new THREE.MeshStandardMaterial({ color: 0xf2c230, roughness: 0.5 }), 16); manche.position.y = 0.13; g.add(manche);
-  const bague = W.cyl(0.0135, 0.0135, 0.018, new THREE.MeshStandardMaterial({ color: 0x1d2228, roughness: 0.6 }), 16); bague.position.y = 0.075; g.add(bague);
-  const tige = W.cyl(0.0028, 0.0028, 0.075, W.M.acier, 10); tige.position.y = 0.035; g.add(tige);
-  const lame = W.boite(0.0055, 0.006, 0.0012, W.M.acier); lame.position.y = 0.002; g.add(lame);
-  g.visible = false; W.scene.add(g); return g;
-}
-async function vissage(posMonde, axe, sens) {
-  // axe : direction de la vis vers l'extérieur (le tournevis arrive le long de cet axe)
+async function vissage(posMonde, axe, sens, objetQuiTourne = null) {
   sons.vis(); vibrer(25);
-  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), axe.clone().normalize());
+  const bas = new THREE.Vector3(0, -1, 0).applyQuaternion(camera.quaternion), droite = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
+  const incline = axe.clone().normalize().multiplyScalar(0.82).addScaledVector(droite, 0.42).addScaledVector(bas, 0.38).normalize();
+  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), incline);
   tournevis.quaternion.copy(q); tournevis.visible = true;
-  const loin = posMonde.clone().addScaledVector(axe, 0.07);
-  await anime(260, (t) => tournevis.position.lerpVectors(loin, posMonde, t));
-  const q0 = q.clone();
-  await anime(560, (t) => { tournevis.quaternion.copy(q0).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), (sens === "devisser" ? -1 : 1) * t * 4 * Math.PI)); });
-  await anime(220, (t) => tournevis.position.lerpVectors(posMonde, loin, t));
+  const loin = posMonde.clone().addScaledVector(incline, 0.06);
+  await anime(240, (t) => tournevis.position.lerpVectors(loin, posMonde, t));
+  const q0 = q.clone(), r0 = objetQuiTourne ? objetQuiTourne.rotation.y : 0, s = sens === "devisser" ? -1 : 1;
+  await anime(620, (t) => {
+    tournevis.quaternion.copy(q0).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), s * t * 3 * Math.PI));
+    if (objetQuiTourne) objetQuiTourne.rotation.y = r0 + s * t * 3 * Math.PI;
+  });
+  await anime(200, (t) => tournevis.position.lerpVectors(posMonde, loin, t));
   tournevis.visible = false;
 }
 
 /* =====================================================================
-   Fils dans la boîte de l'interrupteur (tubes recalculés quand le mécanisme bouge)
+   Ce que l'on tient en bas de l'image : multimètre, VAT, plaque déclipsée, plateau des vis
    ===================================================================== */
-const fils = {};
-function majFils() {
-  const A = W.appareil;
-  A.updateMatrixWorld(true);
-  const versLocal = (obj) => A.worldToLocal(obj.getWorldPosition(new THREE.Vector3()));
-  const bL = versLocal(W.bornesMeca["int-E"]), b1 = versLocal(W.bornesMeca["int-S"]);
-  const sorti = !e.repare;
-  // bout du fil rouge : sorti de sa borne (2 cm à côté) tant que la panne n'est pas réparée
-  const bout = sorti ? bL.clone().add(new THREE.Vector3(-0.006, -0.02, 0.01)) : bL.clone();
-  W.boutRouge.position.copy(bout);
-  W.boutRouge.visible = sorti && e.mecaSorti;
-  const tube = (nom, depart, arrivee, mat) => {
-    const mi = depart.clone().lerp(arrivee, 0.5); mi.z = Math.max(depart.z, arrivee.z) + 0.012; mi.y -= 0.012;
-    const courbe = new THREE.CatmullRomCurve3([depart, depart.clone().add(new THREE.Vector3(0, -0.006, 0.012)), mi, arrivee]);
-    if (fils[nom]) { fils[nom].geometry.dispose(); W.fils.remove(fils[nom]); }
-    fils[nom] = new THREE.Mesh(new THREE.TubeGeometry(courbe, 24, 0.0017, 8), mat); fils[nom].castShadow = true;
-    W.fils.add(fils[nom]);
-  };
-  tube("rouge", new THREE.Vector3(-0.008, 0.004, -0.035), sorti ? bout.clone().add(new THREE.Vector3(0.004, -0.001, -0.002)) : bL, W.M.rouge);
-  tube("orange", new THREE.Vector3(0.006, 0.006, -0.035), b1, W.M.orange);
-  // le cuivre dénudé suit le fil
-  W.boutRouge.children[0].rotation.z = Math.PI / 2;
+const main = {};
+const MAIN = 0.07; // les objets tenus sont à 7 cm de l'œil : toujours devant le mur, même tout près
+function poserEnMain(obj, fx, fy, tailleRel, rx = 0, rz = 0) {
+  // fx, fy : position dans le cadre (-1 … 1) ; tailleRel : hauteur de l'objet par rapport à la demi-hauteur du cadre
+  const d = MAIN, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
+  obj.position.set(fx * demiL, fy * demiH, -d);
+  obj.scale.setScalar((tailleRel * demiH) / obj.userData.hauteur);
+  obj.rotation.set(rx, 0, rz);
+}
+function majMain() {
+  const proche = e.vue === "inter", mesure = proche && e.mecaSorti;
+  const vat = mesure && (e.enMain === "vat" || e.vatPts.length > 0);
+  main.vat.visible = vat; main.multi.visible = mesure && !vat;
+  if (main.multi.visible) poserEnMain(main.multi, 0.66, -0.7, 0.6, -0.25, 0.12);
+  if (main.vat.visible) poserEnMain(main.vat, 0.72, -0.64, 0.64, -0.2, 0.18);
+  const molette = main.multi.userData.molette; molette.rotation.z += ((molette.userData.cible || 0) - molette.rotation.z) * 0.2;
+  // plaque et vis déposées : visibles seulement devant l'interrupteur démonté (le reste du temps, dans la sacoche)
+  const depose = proche && !e.mecaSorti;
+  main.plateau.visible = depose && e.vis.some((v) => !v);
+  if (main.plateau.visible) poserEnMain(main.plateau, 0.12, -0.84, 0.3, -0.9, 0);
+  if (W.plaque.parent === camera) { W.plaque.visible = depose; if (!W.plaque.userData.enVol) poserPlaqueEnMain(); }
+}
+function poserPlaqueEnMain() {
+  const d = MAIN, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
+  W.plaque.position.set(-0.62 * demiL, -0.8 * demiH, -d);
+  W.plaque.rotation.set(-0.5, 0, 0.12);
+  W.plaque.scale.setScalar((0.55 * demiL) / 0.152);
 }
 
 /* =====================================================================
-   Sondes (pointes du multimètre, VAT) posées dans la scène
+   Fils dans les boîtes d'encastrement (tubes recalculés quand le mécanisme bouge)
+   ===================================================================== */
+const fils = {};
+function tube(nom, points, mat, r = 0.0017) {
+  const courbe = new THREE.CatmullRomCurve3(points);
+  if (fils[nom]) { fils[nom].geometry.dispose(); fils[nom].geometry = new THREE.TubeGeometry(courbe, 28, r, 8); }
+  else { fils[nom] = new THREE.Mesh(new THREE.TubeGeometry(courbe, 28, r, 8), mat); fils[nom].castShadow = true; W.fils.add(fils[nom]); }
+  return courbe;
+}
+function chemin(depart, arrivee, mou = 0.012) {
+  // du fond de la boîte (gaine) vers la borne, avec du mou
+  const a = depart.clone().add(new THREE.Vector3(0, 0.01, 0.006));
+  const m = a.clone().lerp(arrivee, 0.55); m.z = Math.max(a.z, arrivee.z) + mou * 0.7; m.y -= mou;
+  return [depart, a, m, arrivee];
+}
+let engage = 0; // 0 = fil rouge hors de sa borne, 1 = engagé dans la borne
+function majFils() {
+  const A = W.appareil; A.updateMatrixWorld(true);
+  const versLocal = (obj) => A.worldToLocal(obj.getWorldPosition(new THREE.Vector3()));
+  const bL = versLocal(W.bornesMeca["int-E"]), b1 = versLocal(W.bornesMeca["int-S"]);
+  const g0 = W.pointsGaine[0];
+  // bout du fil rouge : dans la boîte tant que le mécanisme est dedans ; sorti, à 2 cm de la borne L ; puis engagé
+  const libre = e.mecaSorti ? bL.clone().add(new THREE.Vector3(-0.006, -0.02, 0.01)) : new THREE.Vector3(-0.014, -0.022, -0.02);
+  const dansBorne = bL.clone().add(new THREE.Vector3(0, -0.002, 0.002));
+  const k = e.repare || e.filSerre ? 1 : engage;
+  const bout = libre.clone().lerp(dansBorne, k);
+  const courbeR = tube("rouge", chemin(g0, bout, e.mecaSorti ? 0.006 : 0.003), W.M.rouge);
+  tube("orange", chemin(g0.clone().add(new THREE.Vector3(0.004, 0, 0)), b1, e.mecaSorti ? 0.006 : 0.003), W.M.orange);
+  // cuivre dénudé au bout du fil rouge
+  const dir = courbeR.getTangentAt(1).normalize();
+  W.boutRouge.position.copy(bout).addScaledVector(dir, 0.003);
+  W.boutRouge.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+  W.boutRouge.visible = e.mecaSorti;
+  // l'endroit où l'on prend le fil : le bout tant qu'il est libre, puis l'isolant un peu plus loin
+  W.prendreFil.position.copy(k > 0.5 ? courbeR.getPointAt(0.78) : bout);
+}
+function filsPrise() {
+  const g = W.pointsGaine[1], E = W.E;
+  tube("p-rouge", chemin(g, new THREE.Vector3(E - 0.008, -0.004, -0.03), 0.003), W.M.rouge);
+  tube("p-bleu", chemin(g.clone().add(new THREE.Vector3(0.003, 0, 0)), new THREE.Vector3(E + 0.008, -0.004, -0.03), 0.003), W.M.bleu);
+  const vj = new THREE.MeshStandardMaterial({ color: 0x3f9a3a, roughness: 0.45 });
+  tube("p-terre", chemin(g.clone().add(new THREE.Vector3(-0.003, 0, 0)), new THREE.Vector3(E, 0.01, -0.03), 0.003), vj);
+}
+
+/* =====================================================================
+   Pointes (multimètre, VAT) posées dans la scène, cordons jusqu'à l'appareil tenu
    ===================================================================== */
 const sondes = {};
-function creerSonde(coul) {
-  const g = new THREE.Group();
-  const corps = W.cyl(0.0045, 0.0055, 0.075, new THREE.MeshStandardMaterial({ color: coul, roughness: 0.45 }), 12); corps.position.y = 0.055; g.add(corps);
-  const garde = W.cyl(0.0075, 0.0075, 0.003, new THREE.MeshStandardMaterial({ color: coul, roughness: 0.45 }), 12); garde.position.y = 0.02; g.add(garde);
-  const pointe = W.cyl(0.0009, 0.0016, 0.018, W.M.acier, 8); pointe.position.y = 0.009; g.add(pointe);
-  g.visible = false; W.scene.add(g);
+function nouvelleSonde(coul) {
+  const g = creerSonde(coul); g.visible = false; W.scene.add(g);
   const cordon = new THREE.Mesh(new THREE.BufferGeometry(), new THREE.MeshStandardMaterial({ color: coul, roughness: 0.6 }));
   cordon.visible = false; W.scene.add(cordon);
   return { g, cordon };
@@ -181,21 +249,25 @@ function creerSonde(coul) {
 function posePoint(id) { const c = W.cibles.find((x) => x.id === id); return c.objet.getWorldPosition(new THREE.Vector3()); }
 function majSondes() {
   if (!sondes.rouge) return;
-  const place = (s, idPoint, decal) => {
+  camera.updateMatrixWorld(true);
+  const place = (s, idPoint, lat, bas, depart) => {
     if (!idPoint) { s.g.visible = false; s.cordon.visible = false; return; }
     const p = posePoint(idPoint);
-    // la sonde arrive du bas de l'écran, vers la caméra
+    // la pointe arrive de côté (depuis l'appareil tenu en bas à droite), sans cacher le point mesuré
     const versCam = camera.position.clone().sub(p).normalize();
-    const bas = new THREE.Vector3(0, -1, 0).applyQuaternion(camera.quaternion);
-    const axe = versCam.multiplyScalar(0.8).addScaledVector(bas, 0.55).add(new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).multiplyScalar(decal)).normalize();
+    const vBas = new THREE.Vector3(0, -1, 0).applyQuaternion(camera.quaternion), vDroite = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
+    const axe = versCam.multiplyScalar(0.9).addScaledVector(vDroite, lat).addScaledVector(vBas, bas).normalize();
     s.g.position.copy(p); s.g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), axe); s.g.visible = true;
-    const haut = p.clone().addScaledVector(axe, 0.095);
-    const loin = camera.position.clone().addScaledVector(bas, 0.35).addScaledVector(new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion), 0.12);
-    const courbe = new THREE.CatmullRomCurve3([haut, haut.clone().addScaledVector(axe, 0.04).addScaledVector(bas, 0.02), loin]);
-    s.cordon.geometry.dispose(); s.cordon.geometry = new THREE.TubeGeometry(courbe, 16, 0.0016, 6); s.cordon.visible = true;
+    s.g.updateMatrixWorld(true);
+    const haut = s.g.userData.haut.getWorldPosition(new THREE.Vector3());
+    const fin = depart.getWorldPosition(new THREE.Vector3());
+    const courbe = new THREE.CatmullRomCurve3([haut, haut.clone().addScaledVector(axe, 0.03), haut.clone().lerp(fin, 0.5).addScaledVector(vBas, 0.03), fin]);
+    s.cordon.geometry.dispose(); s.cordon.geometry = new THREE.TubeGeometry(courbe, 20, 0.0013, 6); s.cordon.visible = true;
   };
-  place(sondes.rouge, e.rouge, 0.25); place(sondes.noir, e.noir, -0.25);
-  place(sondes.vat1, e.vatPts[0], 0.15); place(sondes.vat2, e.vatPts[1], -0.15);
+  majMain();
+  const d = main.multi.userData.douilles, sv = main.vat.userData.sortie;
+  place(sondes.rouge, e.rouge, 0.3, 0.12, d.rouge); place(sondes.noir, e.noir, 0.14, 0.28, d.noir);
+  place(sondes.vat1, e.vatPts[0], 0.3, 0.12, sv); place(sondes.vat2, e.vatPts[1], 0.14, 0.28, sv);
 }
 
 /* =====================================================================
@@ -215,16 +287,15 @@ function actif(c) {
   return c.vues.includes(v);
 }
 const ray = new THREE.Raycaster();
-function ecranDe(p) { const r = renderer.domElement.getBoundingClientRect(); const q = p.clone().project(camera); return { x: (q.x + 1) / 2 * r.width, y: (1 - q.y) / 2 * r.height, devant: q.z < 1 }; }
-function rayonEcran(c) {
-  const p = c.objet.getWorldPosition(new THREE.Vector3());
+function ecranDe(p) { const r = renderer.domElement.getBoundingClientRect(); const q = p.clone().project(camera); return { x: (q.x + 1) / 2 * r.width, y: (1 - q.y) / 2 * r.height, devant: q.z < 1 && q.z > -1 }; }
+function rayonEcranDe(p, rayon) {
   const droite = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
-  const a = ecranDe(p), b = ecranDe(p.clone().addScaledVector(droite, c.rayon));
+  const a = ecranDe(p), b = ecranDe(p.clone().addScaledVector(droite, rayon));
   return { ...a, r: Math.hypot(b.x - a.x, b.y - a.y) };
 }
+const rayonEcran = (c) => rayonEcranDe(c.objet.getWorldPosition(new THREE.Vector3()), c.rayon);
 function cibleSous(x, y) {
   const actives = W.cibles.filter(actif);
-  // d'abord les petits points (bornes, vis, alvéoles) : le plus proche du doigt
   let best = null;
   for (const c of actives.filter((k) => k.type === "point")) {
     const s = rayonEcran(c); if (!s.devant) continue;
@@ -234,71 +305,93 @@ function cibleSous(x, y) {
   if (best) return best.id;
   const r = renderer.domElement.getBoundingClientRect();
   ray.setFromCamera(new THREE.Vector2((x / r.width) * 2 - 1, -(y / r.height) * 2 + 1), camera);
-  const hits = ray.intersectObjects(actives.filter((k) => k.type === "surface").map((k) => k.objet), false);
-  return hits.length ? hits[0].object.userData.cible : null;
+  const hits = ray.intersectObjects(actives.filter((k) => k.type === "surface").map((k) => k.objet), true);
+  for (const h of hits) { let o = h.object; while (o && !o.userData.cible) o = o.parent; if (o && o.visible !== false) return o.userData.cible; }
+  return null;
 }
 
 /* =====================================================================
    Gestes
    ===================================================================== */
 async function agir(id) {
-  if (id === "porte-chambre") { allerVue("chambre", { garderRegard: true }); if (!e.dejaChambre) { e.dejaChambre = true; dire("Noir complet. Ta frontale suit ton doigt. L'interrupteur est derrière toi."); } return; }
-  if (id === "porte-entree") { allerVue("entree", { garderRegard: true }); return; }
-  if (id === "approcher-inter") { allerVue("inter"); return; }
-  if (id === "approcher-tableau") { allerVue("tableau"); sons.clip(); dire("Tu ouvres le tableau : deux rangées, chacune derrière son différentiel."); return; }
-  if (id === "approcher-rangee1") { allerVue("rangee1"); return; }
-  if (id === "approcher-rangee2") { allerVue("rangee2"); return; }
-  if (id === "plafonnier") { allerVue("plafonnier"); dire(lampeAllumee() ? "Le plafonnier éclaire." : "Le plafonnier est éteint. L'ampoule est vissée, la cliente l'a déjà changée : commence par l'interrupteur."); return; }
+  if (id === "porte-chambre") { await allerVue("chambre"); if (!e.dejaChambre) { e.dejaChambre = true; dire("Noir complet. Ta frontale suit ton doigt. L'interrupteur est derrière toi."); } apresArrivee(); return; }
+  if (id === "porte-entree") { await allerVue("entree"); apresArrivee(); return; }
+  if (id === "approcher-inter") return allerVue("inter");
+  if (id === "approcher-tableau") { sons.clip(); dire("Tu ouvres le tableau : deux rangées, chacune derrière son différentiel."); return allerVue("tableau"); }
+  if (id === "approcher-rangee1") return allerVue("rangee1");
+  if (id === "approcher-rangee2") return allerVue("rangee2");
+  if (id === "plafonnier") { dire(lampeAllumee() ? "Le plafonnier éclaire." : "Le plafonnier est éteint. L'ampoule est neuve : commence par l'interrupteur."); return allerVue("plafonnier"); }
   if (id.startsWith("manette:")) return manette(id.slice(8));
-  // une sonde en main : la touche suivante la pose sur le point le plus proche
   const point = S.points[id];
   if (e.enMain && point) return poserSonde(id);
-  if (e.enMain && !point) { e.enMain = null; dire("Pointe reposée. Pour mesurer : une pointe en bas, puis un cercle jaune."); }
+  if (e.enMain && !point) { e.enMain = null; dire("Pointe reposée."); }
   if (id === "touche") return toucheInter();
   if (id === "plaque") return plaqueGeste();
   if (id === "vis0" || id === "vis1") return visGeste(+id[3]);
   if (id === "meca") return mecaGeste();
   if (id === "int-E" || id === "int-S") return serrer(id);
-  if (id === "fil-rouge") { dire("Le fil rouge est sorti de sa borne L. Pour le mesurer, prends d'abord une pointe."); return; }
-  if (point) { dire("Pour mesurer ici, prends d'abord une pointe ou le VAT (en bas)."); }
+  if (id === "fil-rouge") return filRouge();
+  if (point) dire("Pour mesurer ici, prends d'abord une pointe ou le VAT (en bas).");
 }
-function toucheInter() {
+async function toucheInter() {
   e.app.inter = !e.app.inter; e.obs = true; sons.interrupteur(); vibrer(10); temps(0.5);
   const a = -5 * RAD, b = 5 * RAD, de = e.app.inter ? b : a, vers = e.app.inter ? a : b;
-  anime(140, (t) => { W.touche.rotation.x = de + (vers - de) * t; });
+  await anime(140, (t) => { W.touche.rotation.x = de + (vers - de) * t; });
+  const allumee = e.app.inter && lampeAllumee();
+  dire(!e.app.inter ? "Clic. Interrupteur sur « O »." : allumee ? "Clic… et la lumière s'allume !" : "Clic. Interrupteur sur « I »… Dans ton dos, le plafonnier reste éteint.", allumee ? "ok" : "info");
   apres();
-  if (e.vue === "inter") dire(!e.app.inter ? "Clic. Interrupteur sur « O »." : lampeAllumee() ? "Clic… et la lumière s'allume !" : "Clic. Interrupteur sur « I »… Dans ton dos, le plafonnier reste éteint.", e.app.inter && lampeAllumee() ? "ok" : "info");
+  if (allumee && e.repare && !e.essaye) recompense();
 }
 async function plaqueGeste() {
   const P = W.plaque;
   if (e.plaque) {
-    sons.clip(); temps(1); e.plaque = false;
-    const p0 = P.position.clone();
-    await anime(520, (t) => { P.position.set(p0.x + 0.02 * t, p0.y - 0.05 * t, p0.z + 0.11 * t); P.rotation.x = 20 * RAD * t; P.rotation.z = -6 * RAD * t; });
-    P.visible = false; recadrer();
+    // déclipsée : elle vient dans la main (en bas à gauche de l'image)
+    sons.clip(); temps(1); e.plaque = false; P.userData.enVol = true;
+    camera.attach(P);
+    const p0 = P.position.clone(), q0 = P.quaternion.clone(), s0 = P.scale.x;
+    recadrer();
+    await anime(600, (t) => { /* suivi dans majMain une fois arrivé */ P.position.lerpVectors(p0, cibleMainPlaque().p, t); P.quaternion.slerpQuaternions(q0, cibleMainPlaque().q, t); P.scale.setScalar(s0 + (cibleMainPlaque().s - s0) * t); });
+    P.userData.enVol = false;
     dire("La plaque se déclipse. Le mécanisme est tenu par deux vis.");
   } else {
-    P.visible = true; sons.clip(); temps(1); e.plaque = true; recadrer();
-    const p0 = new THREE.Vector3(W.E / 2, 0, 0.0015);
-    await anime(420, (t) => { const u = 1 - t; P.position.set(p0.x + 0.02 * u, p0.y - 0.05 * u, p0.z + 0.11 * u); P.rotation.x = 20 * RAD * u; P.rotation.z = -6 * RAD * u; });
+    sons.clip(); temps(1); e.plaque = true; P.userData.enVol = true; P.visible = true;
+    W.groupePlaque.attach(P);
+    const p0 = P.position.clone(), q0 = P.quaternion.clone(), s0 = P.scale.x;
+    recadrer();
+    await anime(520, (t) => { P.position.lerpVectors(p0, new THREE.Vector3(), t); P.quaternion.slerpQuaternions(q0, new THREE.Quaternion(), t); P.scale.setScalar(s0 + (1 - s0) * t); });
+    P.userData.enVol = false;
     dire("Plaque reclipsée.", "ok");
   }
   apres();
 }
+function cibleMainPlaque() {
+  const d = MAIN, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
+  return { p: new THREE.Vector3(-0.62 * demiL, -0.8 * demiH, -d), q: new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.5, 0, 0.12)), s: (0.55 * demiL) / 0.152 };
+}
 async function visGeste(i) {
   const v = W.vis[i];
-  const p = v.getWorldPosition(new THREE.Vector3());
   const axe = new THREE.Vector3(0, 0, 1).applyQuaternion(W.appareil.getWorldQuaternion(new THREE.Quaternion()));
+  const place = new THREE.Vector3(i ? 0.0295 : -0.0295, 0, 0.0038);
   if (e.vis[i]) {
+    // la vis tourne et sort, puis va sur le plateau aimanté
     e.vis[i] = false; temps(0.5);
-    const z0 = v.position.z, anim = anime(800, (t) => { v.rotation.z = -t * 4 * Math.PI; v.position.z = z0 + 0.016 * t; });
+    const p = v.getWorldPosition(new THREE.Vector3());
+    const anim = anime(860, (t) => { v.rotation.z = -t * 3 * Math.PI; v.position.z = place.z + 0.012 * t; });
     await vissage(p, axe, "devisser"); await anim;
-    v.visible = false; v.position.z = z0;
-    dire(e.vis.some(Boolean) ? "Une vis est sortie. Il en reste une." : "Les deux vis sont sorties : touche le mécanisme pour le tirer hors de sa boîte.", "ok");
+    main.plateau.visible = true; majMain(); main.plateau.updateMatrixWorld(true);
+    const slot = main.plateau.userData.places[i];
+    slot.attach(v);
+    const p0 = v.position.clone(), q0 = v.quaternion.clone(), s0 = v.scale.x;
+    await anime(380, (t) => { v.position.lerpVectors(p0, new THREE.Vector3(), t); v.quaternion.slerpQuaternions(q0, new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)), t); v.scale.setScalar(s0 + (1 - s0) * t); });
+    dire(e.vis.some(Boolean) ? "Une vis est sortie, posée sur le plateau. Il en reste une." : "Les deux vis sont sorties : touche le mécanisme pour le tirer hors de sa boîte.", "ok");
   } else {
-    v.visible = true; e.vis[i] = true; temps(0.5);
-    const z0 = v.position.z; v.position.z = z0 + 0.016;
-    const anim = anime(800, (t) => { v.rotation.z = t * 4 * Math.PI; v.position.z = z0 + 0.016 * (1 - t); });
+    // la vis revient du plateau, se pose dans son trou, et se visse
+    e.vis[i] = true; temps(0.5);
+    W.meca.attach(v);
+    const p0 = v.position.clone(), q0 = v.quaternion.clone(), s0 = v.scale.x, haut = place.clone().add(new THREE.Vector3(0, 0, 0.012));
+    await anime(380, (t) => { v.position.lerpVectors(p0, haut, t); v.quaternion.slerpQuaternions(q0, new THREE.Quaternion(), t); v.scale.setScalar(s0 + (1 - s0) * t); });
+    const p = W.appareil.localToWorld(place.clone());
+    const anim = anime(860, (t) => { v.rotation.z = t * 3 * Math.PI; v.position.z = place.z + 0.012 * (1 - t); });
     await vissage(p, axe, "serrer"); await anim;
     dire(e.vis.every(Boolean) ? "Mécanisme revissé. Tu peux reclipser la plaque." : "Une vis revissée. Il reste l'autre.", "ok");
   }
@@ -306,31 +399,48 @@ async function visGeste(i) {
 }
 async function mecaGeste() {
   const m = W.meca, sortir = !e.mecaSorti;
+  if (!sortir) { e.rouge = null; e.noir = null; e.vatPts = []; e.enMain = null; e.lecture = null; e.vatLecture = null; main.vat.userData.maj(0); majSondes(); }
   e.mecaSorti = sortir; temps(1); sons.clip();
   const de = sortir ? 0 : 1;
-  recadrer();
-  await anime(700, (t) => { const u = de + (sortir ? t : -t); m.position.set(0, -0.024 * u, 0.05 * u); m.rotation.x = -72 * RAD * u; majFils(); });
-  majFils();
+  const cam = recadrer();
+  await anime(800, (t) => { const u = de + (sortir ? t : -t); m.position.set(0, -0.022 * u, 0.045 * u); m.rotation.x = -72 * RAD * u; majFils(); });
+  await cam; majFils();
   if (sortir) {
     dire("Mécanisme sorti : bornes L et 1 visibles. Le fil rouge n'est plus dans sa borne !");
     if (!e.rappel && !circuitCoupe()) { e.rappel = true; setTimeout(() => { if (!e.bulle || e.bulle.type !== "danger") { dire("Sous tension : tu ne touches que l'isolant ; seules les pointes touchent les bornes.", "alerte"); majUI(); } }, 3600); }
   } else dire("Mécanisme rentré dans sa boîte. Revisse ses deux vis.");
   apres();
 }
-const circuitCoupe = () => !e.app.dj || !e.app.diff;
+// la réparation, geste par geste : prendre le fil, l'engager, serrer la vis, tirer pour vérifier
+async function filRouge() {
+  if (e.enMain) return;
+  if (!e.filEngage) {
+    if (pot("DjL") === 230) return electrisation("en prenant le cuivre du fil rouge");
+    if (!(e.vat.avant && e.vat.absence)) faute("Tu as pris le fil sans avoir vérifié l'absence de tension au VAT (testé avant sur une source connue).");
+    e.filEngage = true; temps(1); sons.clip();
+    await anime(650, (t) => { engage = t; majFils(); });
+    dire("Cuivre redressé et engagé à fond sous la borne L. Serre la vis maintenant.");
+  } else if (!e.filSerre) dire("Le fil n'est pas serré : serre d'abord la vis de la borne L.");
+  else {
+    // on tire doucement : il tient
+    sons.clip(); temps(0.5);
+    await anime(420, (t) => { const k = Math.sin(t * Math.PI * 3) * (1 - t) * 0.0015; W.fils.position.set(0, -k, k); });
+    W.fils.position.set(0, 0, 0);
+    e.repare = true; temps(0.5); majFils();
+    dire("Tu tires doucement sur le fil : il tient. C'est réparé.", "ok");
+  }
+  apres();
+}
 async function serrer(id) {
   const b = W.bornesMeca[id];
   const p = b.getWorldPosition(new THREE.Vector3());
   const axe = new THREE.Vector3(0, -1, 0).applyQuaternion(b.getWorldQuaternion(new THREE.Quaternion()));
-  const sousTension = id === "int-E" ? pot("DjL") === 230 || pot("IntE") === 230 : pot("IntS") === 230;
-  await vissage(p, axe, "serrer");
-  if (sousTension) return electrisation(id === "int-E" && !e.repare ? "en remettant le fil rouge dans sa borne" : "en serrant une borne sous tension");
-  if (id === "int-E" && !e.repare) {
-    e.repare = true; temps(3);
-    if (!(e.vat.avant && e.vat.absence)) faute("Tu as remis le fil sans avoir vérifié l'absence de tension au VAT (testé avant sur une source connue).");
-    majFils();
-    dire("Fil rouge engagé à fond sous la borne L et serré. Il tient.", "ok");
-  } else { temps(1); dire("Tu contrôles le serrage : cette borne était déjà bien serrée."); }
+  const sousTension = pot(id === "int-E" ? "IntE" : "IntS") === 230 || (id === "int-E" && e.filEngage && pot("DjL") === 230);
+  await vissage(p, axe, "serrer", b.userData.tete);
+  if (sousTension) return electrisation("en serrant une borne sous tension");
+  if (id === "int-E" && e.filEngage && !e.filSerre) { e.filSerre = true; temps(1); majFils(); dire("Vis de la borne L serrée. Tire légèrement sur le fil pour vérifier qu'il tient.", "ok"); }
+  else if (id === "int-E" && !e.filEngage) { temps(0.5); dire("Tu serres la borne à vide : le fil rouge n'est pas dedans."); }
+  else { temps(0.5); dire("Tu contrôles le serrage : cette borne était déjà bien serrée."); }
   apres();
 }
 async function manette(cle) {
@@ -339,9 +449,10 @@ async function manette(cle) {
   const lev = W.manettes[cle], de = e.app[cle] ? -0.009 : 0.009, vers = -de;
   await anime(160, (t) => { lev.position.y = de + (vers - de) * t; });
   if (!e.app[cle] && (cle === "dj" || cle === "diff")) e.coupe = true;
-  dire(`${ap.etiquette} : manette ${e.app[cle] ? "remontée" : "baissée"}.${!e.app[cle] && cle === "dj" ? " Les prises restent alimentées." : ""}`, e.app[cle] ? "info" : "ok");
+  dire(`${ap.etiquette} : manette ${e.app[cle] ? "remontée (I)" : "baissée (O)"}.${!e.app[cle] && cle === "dj" ? " Les prises restent alimentées." : ""}`, e.app[cle] ? "info" : "ok");
   apres();
 }
+let secousse = 0;
 function electrisation(ou) {
   e.accident = true; sons.zap(); vibrer([90, 40, 220]);
   faute(`Électrisation ${ou} : c'était sous tension. Avant de toucher un conducteur, on coupe le disjoncteur et on vérifie l'absence de tension au VAT, là où on travaille.`);
@@ -350,14 +461,15 @@ function electrisation(ou) {
   secousse = performance.now();
   majUI();
 }
-let secousse = 0;
 
 /* ---------- Multimètre et VAT ---------- */
 function prendre(outil) {
-  if (!["inter"].includes(e.vue) || !e.mecaSorti) { dire(e.vue === "inter" ? "Sors d'abord le mécanisme : les bornes sont derrière." : "Rien à mesurer ici. Les points de mesure sont à l'interrupteur, une fois le mécanisme sorti."); majUI(); return; }
-  if (outil === "vat") { e.enMain = e.enMain === "vat" ? null : "vat"; e.vatPts = []; e.vatLecture = null; e.rouge = null; e.noir = null; e.lecture = null; }
-  else { e.enMain = e.enMain === outil ? null : outil; e.vatPts = []; e.vatLecture = null; }
-  if (e.enMain) dire(e.enMain === "vat" ? "VAT en main : touche ses deux points de contact (cercles jaunes)." : `Pointe ${e.enMain === "rouge" ? "rouge" : "noire"} en main : touche le point où la poser (cercles jaunes).`, "mesure");
+  if (e.vue !== "inter" || !e.mecaSorti) { dire(e.vue === "inter" ? "Sors d'abord le mécanisme : les bornes sont derrière." : "Rien à mesurer ici. On mesure à l'interrupteur, mécanisme sorti."); majUI(); return; }
+  // prendre l'outil qu'on a déjà en main ne le repose pas (une touche de trop ne fait rien perdre)
+  if (outil === "vat") { if (e.enMain !== "vat") { e.vatPts = []; e.vatLecture = null; main.vat.userData.maj(0); } e.rouge = null; e.noir = null; e.lecture = null; }
+  else if (e.enMain === "vat" || e.vatPts.length) { e.vatPts = []; e.vatLecture = null; }
+  e.enMain = outil;
+  dire(outil === "vat" ? "VAT en main : touche ses deux points de contact (cercles jaunes)." : `Pointe ${outil === "rouge" ? "rouge" : "noire"} en main : touche le point où la poser (cercles jaunes).`, "mesure");
   majSondes(); majUI();
 }
 function poserSonde(id) {
@@ -393,45 +505,48 @@ const SOURCE = new Set(["prise-d", "prise-g", "prise-terre"]);
 function lireVAT() {
   const [a, b] = e.vatPts; temps(0.5);
   const u = a === b ? 0 : M().tension(S.points[a].noeud, S.points[b].noeud);
-  e.vatLecture = u >= 50 ? 230 : 0;
-  if (u >= 50) { sons.bip(); setTimeout(() => sons.bip(), 140); vibrer([30, 60, 30]); }
-  else sons.clip();
+  e.vatLecture = u >= 50 ? u : 0; main.vat.userData.maj(e.vatLecture);
+  if (u >= 50) { sons.bip(); setTimeout(() => sons.bip(), 140); vibrer([30, 60, 30]); } else sons.clip();
   const surPrise = SOURCE.has(a) && SOURCE.has(b) && (a === "prise-d" || b === "prise-d");
   const surFil = a === "fil-rouge" || b === "fil-rouge" || a === "int-E" || b === "int-E";
-  e.journal.unshift(`VAT ${S.points[a].nom} ↔ ${S.points[b].nom} : <b>${u >= 50 ? "voyants 230 V allumés" : "aucun voyant"}</b>`);
+  e.journal.unshift(`VAT ${S.points[a].nom} ↔ ${S.points[b].nom} : <b>${u >= 50 ? "voyants allumés jusqu'à 230 V" : "aucun voyant"}</b>`);
   if (surPrise && u >= 50) {
-    if (!e.vat.absence) { e.vat.avant = true; dire("Voyant 230 V allumé : ton VAT fonctionne.", "ok"); }
+    if (!e.vat.absence) { e.vat.avant = true; dire("Voyants allumés jusqu'à 230 V : ton VAT fonctionne.", "ok"); }
     else { e.vat.apres = true; dire("Le VAT s'allume encore sur la prise : l'absence de tension est confirmée.", "ok"); }
   } else if (surFil && u === 0) {
-    if (!e.vat.avant) { dire("Aucun voyant… mais VAT non testé avant sur la prise : ça ne prouve rien."); e.conseils.includes("vat") || e.conseils.push("vat"); }
+    if (!e.vat.avant) dire("Aucun voyant… mais VAT non testé avant sur la prise : ça ne prouve rien.");
     else if (!circuitCoupe()) dire("Aucun voyant sur ce point. Attention : le circuit n'est pas coupé au tableau.");
     else { e.vat.absence = true; dire("Aucun voyant sur le fil rouge. Reteste ton VAT sur la prise pour finir.", "ok"); }
-  } else if (surFil && u >= 50) dire("Voyant 230 V : le fil rouge est sous tension ! Coupe « Éclairage chambres ».", "alerte");
-  else dire(u >= 50 ? "Les voyants 230 V s'allument." : "Aucun voyant ne s'allume.");
+  } else if (surFil && u >= 50) dire("Voyants allumés : le fil rouge est sous tension ! Coupe « Éclairage chambres ».", "alerte");
+  else dire(u >= 50 ? "Les voyants s'allument." : "Aucun voyant ne s'allume.");
   majSondes();
 }
 
-/* ---------- Après chaque geste : lumière, réveil, fin ---------- */
-let finPrevue = false;
-function apres() {
-  majLumiere();
-  if (!e.fini && !finPrevue && e.repare && lampeAllumee() && e.plaque && !e.mecaSorti && e.vis.every(Boolean) && RANGEES[0].every((x) => e.app[x.cle])) {
-    finPrevue = true;
-    // la lumière revient : on la regarde, depuis la chambre ou depuis l'entrée (face à la porte), sans traverser de mur
-    const ou = ["inter", "plafonnier", "chambre"].includes(e.vue) ? "chambre" : "entree";
-    setTimeout(() => { allerVue(ou); transition.a.yaw = 0; transition.a.pitch = ou === "chambre" ? 0.4 : 0.04; dire("La lumière revient dans la chambre !", "ok"); majUI(); }, 900);
-    setTimeout(finir, 4200);
-  }
-  majUI();
-}
+/* ---------- Après chaque geste ; la récompense ---------- */
+function apres() { majLumiere(); majUI(); }
 let lumiere = 0, lumiereCible = 0;
 function majLumiere() {
   lumiereCible = lampeAllumee() ? 1 : 0;
   const reveilOn = pot("PrL") === 230;
   W.ecranReveil.visible = reveilOn; W.lueurReveil.intensity = reveilOn ? 0.06 : 0;
 }
+async function recompense() {
+  // le joueur a lui-même allumé : il recule et regarde la chambre éclairée, puis la facture
+  e.essaye = true; majUI();
+  await new Promise((r) => setTimeout(r, 700));
+  occupe = true;
+  try {
+    await allerVue("chambre", { duree: 1100 });
+    // on recule jusqu'à la porte pour voir toute la chambre éclairée
+    const de = new THREE.Vector3(0.22, 1.6, 1.28), vise = new THREE.Vector3(-0.55, 1.5, -1.3), dir = vise.clone().sub(de).normalize();
+    let yaw = Math.atan2(-dir.x, -dir.z), dy = yaw - regard.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy));
+    await lancerTransition({ pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, { pos: de, yaw: regard.yaw + dy, pitch: Math.asin(dir.y), fov: fovLibre }, 1300);
+  } finally { occupe = false; }
+  dire("La lumière est revenue dans la chambre !", "ok"); majUI();
+  setTimeout(() => { e.attenteFacture = true; e.bulle = null; majUI(); }, 2600);
+}
 function finir() {
-  e.fini = true; sons.succes();
+  e.fini = true; e.attenteFacture = false; sons.succes();
   let etoiles = 3;
   if (e.fautes.length) etoiles--;
   if (e.minutes > (S.tempsCible || 45)) etoiles--;
@@ -446,56 +561,50 @@ function facture() {
 }
 
 /* =====================================================================
-   Guide (mode guidé) : la prochaine chose à faire, selon ce qui est déjà fait
+   Guide : la prochaine chose à faire (et l'étape du dépanneur en cours)
    ===================================================================== */
 function mesure(x, refs) { return e.mesures.some((r) => r.cal === "V" && ((r.a === x && refs.includes(r.b)) || (r.b === x && refs.includes(r.a)))); }
 const T = ["prise-terre"];
-function H(quoi, comment, vue, cible, extra = {}) { return { quoi, comment, vue, cible, ...extra }; }
+function H(etape, quoi, comment, vue, cible, extra = {}) { return { etape, quoi, comment, vue, cible, ...extra }; }
 function indice() {
-  if (!e.poses.length) return H("Commence par écouter la cliente : pose-lui deux ou trois questions.", "Touche « 💬 Mme Martin » en bas de l'écran.", null, "[data-panneau=client]");
+  if (!e.poses.length) return H("questionner", "Commence par écouter la cliente : pose-lui deux ou trois questions.", "Touche « 💬 Mme Martin » en bas de l'écran.", null, "[data-panneau=client]");
   if (e.repare) return remise();
-  if (!e.obs) return H("Constate la panne toi-même : appuie sur l'interrupteur de la chambre.", "Entre dans la chambre (touche la porte), retourne-toi en glissant le doigt : l'interrupteur est à côté de la porte. Touche-le pour t'approcher, puis touche sa touche.", "inter", "touche");
-  if (e.plaque) return H("Pour accéder aux bornes, déclipse la plaque.", "Touche le bord de la plaque.", "inter", "plaque");
-  if (e.vis.some(Boolean) && !e.mecaSorti) return H("Dévisse les deux vis qui tiennent le mécanisme.", "Touche une vis : le tournevis la dévisse. Puis l'autre.", "inter", e.vis[0] ? "vis0" : "vis1");
-  if (!e.mecaSorti) return H("Sors le mécanisme de sa boîte.", "Touche le mécanisme.", "inter", "meca");
-  if (!mesure("int-E", T)) return H("La phase arrive-t-elle ? Mesure la borne L par rapport à la terre de la prise.", "Sélecteur sur V~. Touche la pointe rouge en bas, puis la borne L ; la pointe noire, puis la broche de terre de la prise.", "inter", null, { mesure: ["int-E", "prise-terre"] });
-  if (!mesure("fil-rouge", T)) return H("0 V sur la borne L. Et le fil rouge, a-t-il la phase ? Mesure-le par rapport à la terre.", "Pointe rouge sur le cuivre du fil rouge, pointe noire sur la broche de terre.", "inter", null, { mesure: ["fil-rouge", "prise-terre"] });
-  if (!e.coupe) return H("Le fil rouge a 230 V. Avant d'y toucher, coupe « Éclairage chambres » au tableau.", "Retourne dans l'entrée, ouvre le tableau, approche-toi de la rangée du haut et touche le 2e appareil (« Écl. chambres »).", "rangee1", "manette:dj");
-  if (!e.vat.avant) return H("Vérifie l'absence de tension. D'abord, teste ton VAT sur la prise (source connue).", "Touche « VAT » en bas, puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
-  if (!e.vat.absence) return H("VAT sur le bout du fil rouge et la terre : aucun voyant ne doit s'allumer.", "Touche « VAT », puis le cuivre du fil rouge, puis la broche de terre.", "inter", null, { vat: ["fil-rouge", "prise-terre"] });
-  if (!e.vat.apres) return H("Reteste ton VAT sur la prise : s'il s'allume encore, ta vérification est valable.", "Touche « VAT », puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
-  return H("Hors tension et vérifié : remets le fil rouge dans la borne L et serre.", "Touche la borne L : le tournevis vient la serrer.", "inter", "int-E");
+  if (!e.obs) return H("observer", "Constate la panne toi-même : appuie sur l'interrupteur de la chambre.", "Entre dans la chambre, retourne-toi : l'interrupteur est à côté de la porte. Touche-le pour t'approcher, puis touche sa touche.", "inter", "touche");
+  if (e.plaque) return H("mesurer", "Pour accéder aux bornes, déclipse la plaque.", "Touche l'encoche sous l'interrupteur.", "inter", "plaque");
+  if (e.vis.some(Boolean) && !e.mecaSorti) return H("mesurer", "Dévisse les deux vis qui tiennent le mécanisme.", "Touche une vis : le tournevis la dévisse. Puis l'autre.", "inter", e.vis[0] ? "vis0" : "vis1");
+  if (!e.mecaSorti) return H("mesurer", "Sors le mécanisme de sa boîte.", "Touche le mécanisme.", "inter", "meca");
+  if (!mesure("int-E", T)) return H("mesurer", "La phase arrive-t-elle ? Mesure la borne L par rapport à la terre de la prise.", "Sélecteur sur V~. Touche la pointe rouge en bas, puis la borne L ; la pointe noire, puis la broche de terre de la prise.", "inter", null, { mesure: ["int-E", "prise-terre"] });
+  if (!mesure("fil-rouge", T)) return H("mesurer", "0 V sur la borne L. Et le fil rouge, a-t-il la phase ? Mesure-le par rapport à la terre.", "Pointe rouge sur le cuivre du fil rouge, pointe noire sur la broche de terre.", "inter", null, { mesure: ["fil-rouge", "prise-terre"] });
+  if (!e.coupe) return H("couper", "Le fil rouge a 230 V. Avant d'y toucher, coupe « Éclairage chambres » au tableau.", "Touche « Tableau » en bas, puis la rangée du haut, puis le 2e appareil (« Écl. chambres »).", "rangee1", "manette:dj");
+  if (!e.vat.avant) return H("vat", "Vérifie l'absence de tension. D'abord, teste ton VAT sur la prise (source connue).", "Touche « VAT » en bas, puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
+  if (!e.vat.absence) return H("vat", "VAT sur le bout du fil rouge et la terre : aucun voyant ne doit s'allumer.", "Touche « VAT », puis le cuivre du fil rouge, puis la broche de terre.", "inter", null, { vat: ["fil-rouge", "prise-terre"] });
+  if (!e.vat.apres) return H("vat", "Reteste ton VAT sur la prise : s'il s'allume encore, ta vérification est valable.", "Touche « VAT », puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
+  if (!e.filEngage) return H("reparer", "Hors tension et vérifié : prends le fil rouge et engage son cuivre dans la borne L.", "Touche le bout du fil rouge.", "inter", "fil-rouge");
+  if (!e.filSerre) return H("reparer", "Serre la vis de la borne L sur le fil.", "Touche la borne L : le tournevis vient la serrer.", "inter", "int-E");
+  return H("reparer", "Tire légèrement sur le fil pour vérifier qu'il tient.", "Touche le fil rouge.", "inter", "fil-rouge");
 }
 function remise() {
-  if (e.mecaSorti) return H("C'est réparé. Rentre le mécanisme dans sa boîte.", "Touche le mécanisme.", "inter", "meca");
-  if (!e.vis.every(Boolean)) return H("Revisse le mécanisme.", "Touche chaque emplacement de vis.", "inter", e.vis[0] ? "vis1" : "vis0");
-  if (!e.plaque) return H("Reclipse la plaque.", "Touche la prise : la plaque revient par-dessus.", "inter", "plaque");
+  if (e.mecaSorti) return H("reparer", "C'est réparé. Rentre le mécanisme dans sa boîte.", "Touche le mécanisme.", "inter", "meca");
+  if (!e.vis.every(Boolean)) return H("reparer", "Revisse le mécanisme.", "Touche chaque trou de vis.", "inter", e.vis[0] ? "vis1" : "vis0");
+  if (!e.plaque) return H("reparer", "Reclipse la plaque.", "Touche la plaque que tu tiens, en bas de l'image.", "inter", "plaque");
   const bas = RANGEES[0].find((x) => !e.app[x.cle]);
-  if (bas) return H(`Remets le courant : remonte la manette « ${bas.etiquette} ».`, "Entrée → tableau → rangée du haut → touche la manette baissée.", "rangee1", `manette:${bas.cle}`);
-  if (!e.app.inter) return H("Essaie : appuie sur l'interrupteur.", "Touche la touche de l'interrupteur.", "inter", "touche");
-  return H("Regarde la chambre.", "", "chambre", null);
-}
-const LIENS = {
-  entree: [["chambre", "porte-chambre"], ["tableau", "approcher-tableau"]],
-  chambre: [["entree", "porte-entree"], ["inter", "approcher-inter"], ["plafonnier", "plafonnier"]],
-  inter: [["chambre", "[data-action=reculer]"]], plafonnier: [["chambre", "[data-action=reculer]"]],
-  tableau: [["entree", "[data-action=reculer]"], ["rangee1", "approcher-rangee1"], ["rangee2", "approcher-rangee2"]],
-  rangee1: [["tableau", "[data-action=reculer]"]], rangee2: [["tableau", "[data-action=reculer]"]],
-};
-function chemin(vers) {
-  if (!vers || vers === e.vue) return null;
-  const vus = new Set([e.vue]), file = [[e.vue, null]];
-  while (file.length) {
-    const [v, premier] = file.shift();
-    for (const [w, sel] of LIENS[v] || []) { if (vus.has(w)) continue; const p = premier || sel; if (w === vers) return p; vus.add(w); file.push([w, p]); }
-  }
-  return null;
+  if (bas && e.app.inter) return H("reparer", "Avant de remettre le courant, mets l'interrupteur sur « O ».", "Touche la touche de l'interrupteur.", "inter", "touche");
+  if (bas) return H("reparer", `Remets le courant : remonte la manette « ${bas.etiquette} ».`, "Touche « Tableau » en bas, puis la rangée du haut, puis la manette baissée.", "rangee1", `manette:${bas.cle}`);
+  return H("essayer", "Essaie : appuie toi-même sur l'interrupteur.", "Touche « Interrupteur » en bas, puis sa touche.", "inter", "touche");
 }
 // ce que le guide montre maintenant : un id de la scène, ou un bouton (sélecteur CSS)
 function guideCible() {
-  if (e.mode === "terrain" || e.panneau || e.fini || finPrevue) return null;
+  if (e.mode !== "guide" || e.panneau || e.fini || e.essaye) return null;
   const h = indice(); if (!h) return null;
-  if (h.vue && h.vue !== e.vue) return chemin(h.vue);
+  if (h.vue && h.vue !== e.vue) {
+    const t = trajet(h.vue);
+    // un lieu déjà visité et loin : le raccourci en bas ; sinon, la porte ou l'objet le plus proche
+    const lieu = [...t].reverse().find((v) => VUES[v].lieu && e.lieux.has(v));
+    if (t.length > 1 && lieu && lieu !== t[0]) return `[data-lieu=${lieu}]`;
+    const prochaine = t[0];
+    if (VUES[e.vue].parent === prochaine) return "[data-action=reculer]";
+    return { chambre: e.vue === "entree" ? "porte-chambre" : null, entree: "porte-entree", inter: "approcher-inter", tableau: "approcher-tableau", rangee1: "approcher-rangee1", rangee2: "approcher-rangee2", plafonnier: "plafonnier" }[prochaine];
+  }
   if (h.mesure) {
     const [a, b] = h.mesure;
     if (e.calibre !== "V") return "[data-calibre=V]";
@@ -503,11 +612,24 @@ function guideCible() {
     if (e.noir !== b) return e.enMain === "noir" ? b : "[data-sonde=noir]";
     return null;
   }
-  if (h.vat) {
-    if (e.enMain !== "vat") return "[data-sonde=vat]";
-    return e.vatPts.length ? h.vat[1] : h.vat[0];
-  }
+  if (h.vat) { if (e.enMain !== "vat") return "[data-sonde=vat]"; return e.vatPts.length ? h.vat[1] : h.vat[0]; }
   return h.cible;
+}
+// en mode guidé, en arrivant dans une pièce, la tête se tourne d'elle-même vers l'objet demandé
+function apresArrivee() {
+  if (e.mode !== "guide" || !VUES[e.vue].libre) return;
+  const g = guideCible(); const c = g && !g.startsWith("[") && W.cibles.find((x) => x.id === g && actif(x));
+  if (!c) return;
+  const s = ecranDe(centreCible(c)), r = renderer.domElement.getBoundingClientRect();
+  const vue = e.vue;
+  if (!s.devant || s.x < 30 || s.x > r.width - 30 || s.y < 30 || s.y > r.height - 30) setTimeout(() => { if (e.vue === vue && !transition && !occupe) regarderVers(centreCible(c)); }, 350);
+}
+// la plaque tenue en main se touche n'importe où : son repère (l'encoche) ne vaut que posée au mur
+const ancreDe = (c) => (c.ancre && !(c.id === "plaque" && W.plaque.parent === camera) ? c.ancre : null);
+function centreCible(c) {
+  if (ancreDe(c)) return c.ancre.getWorldPosition(new THREE.Vector3());
+  if (c.type === "point") return c.objet.getWorldPosition(new THREE.Vector3());
+  return new THREE.Box3().setFromObject(c.objet).getCenter(new THREE.Vector3());
 }
 
 /* =====================================================================
@@ -545,7 +667,7 @@ function panneauClient() {
     <button type="button" class="j-plein" data-action="fermer">${e.debut ? "Au travail" : "Retour au travail"}</button></div>`;
 }
 function panneauAide() {
-  const h = indice() || H("Tout est en ordre.", "", null, null);
+  const h = indice() || H("", "Tout est en ordre.", "", null, null);
   if (e.aide.cle !== h.quoi) e.aide = { cle: h.quoi, niveau: 0 };
   const n = e.aide.niveau, ou = h.vue ? VUES[h.vue].nom : "en bas de l'écran";
   const niveaux = [`<p><b>Où ?</b> Va voir ${ou}.</p>`, `<p><b>Quoi ?</b> ${h.quoi}</p>`, `<p><b>Comment ?</b> ${h.comment}</p>`];
@@ -566,19 +688,22 @@ function panneauFin() {
     <a class="j-lien" href="atelier-depannage.html?i=chambre">Les autres pannes de la chambre (atelier 2D)</a></div>`;
 }
 function etapesFaites() {
-  return { questionner: e.poses.length > 0, observer: e.obs, couper: e.coupe, vat: e.vat.avant && e.vat.absence, mesurer: e.mesures.length > 0, reparer: e.repare, essayer: e.fini || finPrevue };
+  return { questionner: e.poses.length > 0, observer: e.obs, couper: e.coupe, vat: e.vat.avant && e.vat.absence, mesurer: e.mesures.length > 0, reparer: e.repare && e.plaque && !e.mecaSorti && RANGEES[0].every((x) => e.app[x.cle]), essayer: e.essaye };
 }
 function etapesHTML() {
-  const fait = etapesFaites(), enCours = ETAPES.find(([k]) => !fait[k]);
-  return ETAPES.map(([k, court, long]) => { const et = fait[k] ? "fait" : enCours && enCours[0] === k ? "encours" : ""; return `<li class="${et}" aria-label="${long} : ${fait[k] ? "fait" : "à faire"}">${court}</li>`; }).join("");
+  const fait = etapesFaites(), h = !e.essaye && e.mode === "guide" ? indice() : null;
+  const enCours = h ? h.etape : (ETAPES.find(([k]) => !fait[k]) || [])[0];
+  return ETAPES.map(([k, court, long]) => { const et = fait[k] && k !== enCours ? "fait" : enCours === k ? "encours" : ""; return `<li class="${et}" aria-label="${long} : ${fait[k] ? "fait" : enCours === k ? "en cours" : "à faire"}">${court}</li>`; }).join("");
 }
 let minuterie = null;
 function objectifHTML() {
+  if (e.attenteFacture) return `<span class="t-retour ok">💡 La chambre est éclairée.</span><button type="button" class="j-facture-btn" data-action="facture">Voir la facture</button>`;
   if (e.bulle) return `<span class="t-retour ${e.bulle.type}">${e.bulle.t}</span>`;
-  const h = e.mode === "guide" && !e.fini ? indice() : null;
+  const h = e.mode === "guide" && !e.fini && !e.essaye ? indice() : null;
   return h ? `<span>👉 ${h.quoi}</span>` : "<b>🎯 Trouve pourquoi le plafonnier de la chambre ne s'allume plus, et répare.</b>";
 }
 function majUI() {
+  if (!e) return;
   const f = facture();
   racine.querySelector(".j-compteurs").innerHTML = `<span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span>`;
   racine.querySelector(".t-etapes").innerHTML = etapesHTML();
@@ -588,15 +713,19 @@ function majUI() {
   if (e.bulle) { const b = e.bulle; minuterie = setTimeout(() => { if (e.bulle === b) { e.bulle = null; majUI(); } }, b.type === "danger" ? 6500 : b.type === "alerte" ? 5000 : 3800); }
   // multimètre, VAT
   racine.querySelector(".j-lcd").innerHTML = `<small>${e.calibre === "OFF" ? "arrêt" : e.calibre === "V" ? "V~" : "Ω"}</small>${e.calibre === "OFF" ? "" : e.lecture || "- - -"}`;
+  main.multi.userData.maj(e.calibre, e.lecture);
   racine.querySelectorAll("[data-calibre]").forEach((b) => b.classList.toggle("actif", b.dataset.calibre === e.calibre));
-  racine.querySelector(".j-molette").style.setProperty("--angle", `${{ OFF: -50, V: 0, "Ω": 50 }[e.calibre]}deg`);
   racine.querySelectorAll("[data-sonde]").forEach((b) => { b.classList.toggle("en-main", e.enMain === b.dataset.sonde); b.classList.toggle("posee", b.dataset.sonde !== "vat" && !!e[b.dataset.sonde]); });
-  racine.querySelector(".j-vat-leds").className = `j-vat-leds${e.vatLecture === 230 ? " allume" : ""}`;
-  racine.querySelector("[data-action=reculer]").disabled = !VUES[e.vue].parent;
+  racine.querySelector(".j-vat-leds").className = `j-vat-leds${e.vatLecture ? " allume" : ""}`;
+  // reculer (dit où il mène) et raccourcis de lieux
+  const parent = VUES[e.vue].parent, rec = racine.querySelector("[data-action=reculer]");
+  rec.disabled = !parent; rec.textContent = parent ? `↩ ${VUES[parent].court}` : "↩ Reculer";
+  racine.querySelector(".j-lieux").innerHTML = ["entree", "chambre", "inter", "tableau"].filter((v) => e.lieux.has(v) && v !== e.vue && v !== parent)
+    .map((v) => `<button type="button" data-lieu="${v}">${VUES[v].lieu}</button>`).join("");
   // panneaux
   const voile = racine.querySelector(".j-voile");
   const p = { client: panneauClient, aide: panneauAide, fin: panneauFin }[e.panneau];
-  voile.hidden = !p; voile.innerHTML = p ? p() : "";
+  voile.hidden = !p; if (p) voile.innerHTML = p();
   // guide
   racine.querySelectorAll(".t-guide").forEach((x) => x.classList.remove("t-guide"));
   const g = guideCible();
@@ -605,43 +734,51 @@ function majUI() {
 }
 
 /* =====================================================================
-   Anneaux jaunes (guide et points de mesure) et flèche hors écran
+   Cercles jaunes (à la taille de la cible, jamais deux qui se touchent) et flèche hors écran
    ===================================================================== */
 const guide = { cible: null };
-let anneaux = [];
-function anneau(couleur = 0xffc400) {
-  const m = new THREE.Mesh(new THREE.RingGeometry(0.8, 1, 40), new THREE.MeshBasicMaterial({ color: couleur, transparent: true, opacity: 0.9, depthTest: false, side: THREE.DoubleSide }));
-  m.renderOrder = 10; m.visible = false; W.scene.add(m); return m;
-}
-function majAnneaux(now) {
+let poolAnneaux = [];
+function dessinerAnneaux(now) {
+  const couche = racine.querySelector(".j-anneaux"), r = renderer.domElement.getBoundingClientRect();
+  const liste = [];
+  const gc = guide.cible && !transition && W.cibles.find((c) => c.id === guide.cible && actif(c));
   const points = e.enMain ? W.cibles.filter((c) => c.type === "point" && actif(c) && S.points[c.id]) : [];
-  while (anneaux.length < points.length + 1) anneaux.push(anneau());
-  anneaux.forEach((a) => { a.visible = false; });
-  const poser = (a, c, guideOn) => {
-    const p = c.objet.getWorldPosition(new THREE.Vector3());
-    const dist = camera.position.distanceTo(p);
-    let r = c.type === "point" ? c.rayon : 0;
-    if (c.ancre) { c.ancre.getWorldPosition(p); r = 0.026; }
-    else if (!r) { const b = new THREE.Box3().setFromObject(c.objet); r = Math.min(0.35, b.getSize(new THREE.Vector3()).length() / 2.6); b.getCenter(p); }
-    const pulse = guideOn ? 1 + 0.12 * Math.sin(now / 180) : 1;
-    a.position.copy(p); a.quaternion.copy(camera.quaternion); a.scale.setScalar(Math.max(r, dist * 0.028) * pulse);
-    a.material.opacity = guideOn ? 0.95 : 0.55; a.visible = true;
-  };
-  points.forEach((c, i) => poser(anneaux[i + 1], c, false));
+  const tous = new Map();
+  for (const c of points) tous.set(c.id, { c, guide: false });
+  if (gc) tous.set(gc.id, { c: gc, guide: true });
+  const pts = [...tous.values()].filter((x) => x.c.type === "point").map((x) => ({ ...x, s: rayonEcran(x.c) }));
+  for (const x of pts) {
+    if (!x.s.devant) continue;
+    let rr = x.s.r;
+    for (const y of pts) if (y !== x) rr = Math.min(rr, Math.hypot(y.s.x - x.s.x, y.s.y - x.s.y) / 2 - 3);
+    liste.push({ x: x.s.x, y: x.s.y, w: Math.max(14, rr) * 2, h: Math.max(14, rr) * 2, rond: true, guide: x.guide, id: x.c.id });
+  }
+  for (const x of tous.values()) {
+    if (x.c.type === "point") continue;
+    if (ancreDe(x.c)) { const s = rayonEcranDe(x.c.ancre.getWorldPosition(new THREE.Vector3()), x.c.rayonAncre || 0.02); liste.push({ x: s.x, y: s.y, w: Math.max(30, s.r * 2), h: Math.max(30, s.r * 2), rond: true, guide: x.guide, id: x.c.id }); continue; }
+    const b = new THREE.Box3().setFromObject(x.c.objet); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9, devant = false;
+    for (let k = 0; k < 8; k++) { const p = new THREE.Vector3(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z); const s = ecranDe(p); if (s.devant) devant = true; x0 = Math.min(x0, s.x); y0 = Math.min(y0, s.y); x1 = Math.max(x1, s.x); y1 = Math.max(y1, s.y); }
+    if (devant) liste.push({ x: (x0 + x1) / 2, y: (y0 + y1) / 2, w: Math.min(x1 - x0, r.width * 0.9), h: Math.min(y1 - y0, r.height * 0.9), rond: false, guide: x.guide, id: x.c.id });
+  }
+  while (poolAnneaux.length < liste.length) { const d = document.createElement("div"); d.className = "j-anneau"; couche.appendChild(d); poolAnneaux.push(d); }
+  poolAnneaux.forEach((d, i) => {
+    const a = liste[i]; if (!a) { d.hidden = true; return; }
+    d.hidden = false; d.className = `j-anneau${a.rond ? " rond" : ""}${a.guide ? " guide" : ""}`; d.dataset.id = a.id;
+    d.style.cssText = `left:${a.x - a.w / 2}px;top:${a.y - a.h / 2}px;width:${a.w}px;height:${a.h}px`;
+  });
+  window.__anneaux = liste;
+  // flèche au bord de l'écran quand la cible demandée n'est pas visible ; la toucher tourne la tête
   const fleche = racine.querySelector(".j-fleche");
   fleche.hidden = true;
-  const gc = guide.cible && W.cibles.find((c) => c.id === guide.cible && actif(c));
-  if (gc && !transition) {
-    poser(anneaux[0], gc, true);
-    const p = anneaux[0].position, s = ecranDe(p), r = renderer.domElement.getBoundingClientRect();
+  if (gc) {
+    const p = centreCible(gc), s = ecranDe(p);
     const dehors = !s.devant || s.x < 0 || s.y < 0 || s.x > r.width || s.y > r.height;
     if (dehors) {
-      // flèche au bord de l'écran, dans la direction de la cible
       const v = p.clone().applyMatrix4(camera.matrixWorldInverse);
       const ang = Math.atan2(-v.y, v.x);
       const cx = r.width / 2, cy = r.height / 2, k = Math.min((cx - 34) / Math.abs(Math.cos(ang) || 1e-6), (cy - 34) / Math.abs(Math.sin(ang) || 1e-6));
-      fleche.style.transform = `translate(${cx + Math.cos(ang) * k - 22}px, ${cy + Math.sin(ang) * k - 22}px) rotate(${ang}rad)`;
-      fleche.hidden = false;
+      fleche.style.transform = `translate(${cx + Math.cos(ang) * k - 26}px, ${cy + Math.sin(ang) * k - 26}px) rotate(${ang}rad)`;
+      fleche.hidden = false; fleche.dataset.vers = gc.id;
     }
   }
 }
@@ -650,31 +787,33 @@ function majAnneaux(now) {
    Boucle de rendu, images par seconde
    ===================================================================== */
 const fps = { n: 0, t0: performance.now(), val: 60, bas: 0 };
-function boucle(now) {
-  requestAnimationFrame(boucle);
+let attente = null; // une touche faite pendant une animation est gardée et jouée juste après
+function boucle(now) { requestAnimationFrame(boucle); image(now); }
+function image(now) {
   pasAnims(now);
   if (transition) {
-    const t = Math.min(1, (now - transition.t0) / transition.d), k = lisse(t);
-    camera.position.lerpVectors(transition.de.pos, transition.a.pos, k);
-    regard.yaw = transition.de.yaw + (transition.a.yaw - transition.de.yaw) * k;
-    regard.pitch = transition.de.pitch + (transition.a.pitch - transition.de.pitch) * k;
-    camera.fov = transition.de.fov + (transition.a.fov - transition.de.fov) * k; camera.updateProjectionMatrix();
-    if (t >= 1) { transition = null; majSondes(); }
+    const t = Math.min(1, (now - transition.t0) / transition.d), k = lisse(t), tr = transition;
+    camera.position.lerpVectors(tr.de.pos, tr.a.pos, k);
+    regard.yaw = tr.de.yaw + (tr.a.yaw - tr.de.yaw) * k;
+    regard.pitch = tr.de.pitch + (tr.a.pitch - tr.de.pitch) * k;
+    camera.fov = tr.de.fov + (tr.a.fov - tr.de.fov) * k; camera.updateProjectionMatrix();
+    if (t >= 1) { transition = null; majSondes(); tr.res(); }
   }
   camera.rotation.set(regard.pitch, regard.yaw, 0, "YXZ");
   if (secousse && now - secousse < 500) { const a = (1 - (now - secousse) / 500) * 0.03; camera.rotation.x += (Math.random() - 0.5) * a; camera.rotation.y += (Math.random() - 0.5) * a; }
-  // la frontale suit le doigt
-  if (!appui) viseeDoigt.lerp(CENTRE, 0.02); // sans le doigt, la lampe revient où l'on regarde
+  camera.updateMatrixWorld(true);
+  // la frontale suit le doigt dans les pièces ; dans une vue rapprochée, elle reste droit devant
+  if (!appui || !VUES[e.vue].libre) viseeDoigt.lerp(CENTRE, VUES[e.vue].libre ? 0.02 : 0.2);
   frontaleCible.lerp(viseeDoigt, 0.15);
   W.frontale.target.position.copy(frontaleCible);
-  // la lumière du plafonnier monte doucement
   lumiere += (lumiereCible - lumiere) * 0.06;
-  W.lampe.intensity = lumiere * 11; W.ampouleMat.emissiveIntensity = lumiere * 6; W.M.abatJour.emissiveIntensity = lumiere * 0.55; W.ambiance.intensity = 0.18 + lumiere * 0.5;
+  W.lampe.intensity = lumiere * 11; W.ampouleMat.emissiveIntensity = lumiere * 6; W.M.abatJour.emissiveIntensity = lumiere * 0.22; W.ambiance.intensity = 0.3 + lumiere * 0.45;
   W.frontale.intensity = (VUES[e.vue].libre ? 9 : 0.45) * (1 - lumiere * 0.7);
   W.pluie.offset.y -= 0.012;
-  majAnneaux(now);
+  majMain();
+  if (attente && !occupe && !transition && !anims.length) { const a = attente; attente = null; toucherEcran(a.x, a.y); }
   renderer.render(W.scene, camera);
-  // images par seconde (affichées avec ?fps) ; proposer la 2D si le téléphone ne suit pas
+  dessinerAnneaux(now);
   fps.n++;
   if (now - fps.t0 >= 1000) {
     fps.val = Math.round((fps.n * 1000) / (now - fps.t0)); fps.n = 0; fps.t0 = now;
@@ -686,6 +825,7 @@ function boucle(now) {
 }
 const viseeDoigt = new THREE.Vector3(0, 0, -1), frontaleCible = new THREE.Vector3(0, 0, -1), CENTRE = new THREE.Vector3(0, 0, -1);
 function viser(x, y) {
+  if (!VUES[e.vue].libre) return;
   const r = renderer.domElement.getBoundingClientRect();
   viseeDoigt.set(((x / r.width) * 2 - 1) * 0.55, (-(y / r.height) * 2 + 1) * 0.55, -1);
 }
@@ -695,7 +835,7 @@ function viser(x, y) {
    ===================================================================== */
 const amb = {};
 function demarrerAmbiance() {
-  if (!sonsActives()) return;
+  if (!sonsActives() || amb.ctx) return;
   try {
     const c = amb.ctx = new (window.AudioContext || window.webkitAudioContext)();
     const n = c.sampleRate * 2, buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
@@ -721,53 +861,64 @@ function ambianceSonore() {
 }
 
 /* =====================================================================
-   Entrées (glisser = tourner la tête ; toucher = agir)
+   Entrées : glisser = tourner la tête ; glisser vers le bas en vue rapprochée = reculer ; toucher = agir
    ===================================================================== */
 let appui = null;
+async function toucherEcran(x, y) {
+  if (occupe || transition || e.panneau) { attente = { x, y }; return; }
+  const id = cibleSous(x, y);
+  if (!id) { if (e.enMain) { e.enMain = null; dire("Pointe reposée."); majUI(); } return; }
+  e.bulle = null; occupe = true;
+  try { await agir(id); } finally { occupe = false; majUI(); }
+}
+function reculer() { const p = VUES[e.vue].parent; if (p && !occupe) { occupe = true; allerVue(p).then(() => { occupe = false; apresArrivee(); majUI(); }); } }
 function brancherEntrees(canvas) {
   canvas.addEventListener("pointerdown", (ev) => {
-    if (occupe || e.panneau) return;
+    if (e.panneau) return;
     appui = { x: ev.clientX, y: ev.clientY, yaw: regard.yaw, pitch: regard.pitch, bouge: false };
     canvas.setPointerCapture(ev.pointerId);
     const r = canvas.getBoundingClientRect(); viser(ev.clientX - r.left, ev.clientY - r.top);
   });
   canvas.addEventListener("pointermove", (ev) => {
-    const r = canvas.getBoundingClientRect(); viser(ev.clientX - r.left, ev.clientY - r.top);
     if (!appui) return;
+    const r = canvas.getBoundingClientRect(); viser(ev.clientX - r.left, ev.clientY - r.top);
     const dx = ev.clientX - appui.x, dy = ev.clientY - appui.y;
     if (Math.hypot(dx, dy) > 8) appui.bouge = true;
-    if (!appui.bouge || transition) return;
-    const k = 1.15 / Math.max(r.height, 300) * (camera.fov / 60) * Math.PI;
-    let yaw = appui.yaw + dx * k * 0.9, pitch = appui.pitch + dy * k * 0.9;
-    if (regard.base) { // vue rapprochée : la tête bouge un peu, pas plus
+    if (!appui.bouge || transition || occupe) return;
+    // un glissement sur toute la largeur = un demi-tour
+    const k = (camera.fov / fovLibre);
+    let yaw = appui.yaw + (dx / r.width) * Math.PI * k, pitch = appui.pitch + (dy / r.height) * (Math.PI / 2) * k;
+    if (regard.base) {
       yaw = regard.base.yaw + Math.max(-0.07, Math.min(0.07, yaw - regard.base.yaw));
       pitch = regard.base.pitch + Math.max(-0.06, Math.min(0.06, pitch - regard.base.pitch));
     } else pitch = Math.max(-1.1, Math.min(1.25, pitch));
     regard.yaw = yaw; regard.pitch = pitch;
   });
-  const fin = async (ev) => {
+  canvas.addEventListener("pointerup", (ev) => {
     if (!appui) return;
     const a = appui; appui = null;
-    if (a.bouge) { majSondes(); return; }
-    if (occupe || e.panneau || transition) return;
+    const dx = ev.clientX - a.x, dy = ev.clientY - a.y;
+    if (a.bouge) {
+      if (!VUES[e.vue].libre && dy > 70 && Math.abs(dx) < dy * 0.8) { regard.yaw = a.yaw; regard.pitch = a.pitch; reculer(); }
+      return;
+    }
     const r = canvas.getBoundingClientRect();
-    const id = cibleSous(ev.clientX - r.left, ev.clientY - r.top);
-    if (!id) { if (e.enMain) { e.enMain = null; dire("Pointe reposée."); majUI(); } return; }
-    e.bulle = null; occupe = true;
-    try { await agir(id); } finally { occupe = false; majUI(); }
-  };
-  canvas.addEventListener("pointerup", fin);
+    toucherEcran(ev.clientX - r.left, ev.clientY - r.top);
+  });
   canvas.addEventListener("pointercancel", () => { appui = null; });
 }
 function brancherBoutons() {
-  racine.addEventListener("click", (ev) => {
-    const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-calibre],[data-sonde]");
+  racine.addEventListener("click", async (ev) => {
+    const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-calibre],[data-sonde],[data-lieu],.j-fleche");
     if (!t || !e) return;
     const d = t.dataset;
+    if (t.classList.contains("j-fleche")) { const c = W.cibles.find((x) => x.id === d.vers); if (c && !transition) regarderVers(centreCible(c)); return; }
     if (d.action === "fermer") { if (e.debut) { e.debut = false; dire("Mme Martin retourne en cuisine. La chambre est devant toi, le tableau à droite."); } e.panneau = null; }
     else if (d.action === "indice") { e.aide.niveau = Math.min(3, e.aide.niveau + 1); e.indicesPris++; temps(2); }
-    else if (d.action === "rejouer") { location.reload(); return; }
-    else if (d.action === "reculer") { if (VUES[e.vue].parent && !occupe) allerVue(VUES[e.vue].parent, { garderRegard: true }); }
+    else if (d.action === "rejouer") { rejouer(); return; }
+    else if (d.action === "facture") { finir(); return; }
+    else if (d.action === "reculer") { reculer(); return; }
+    else if (d.lieu) { allerA(d.lieu); return; }
     else if (d.panneau) e.panneau = e.panneau === d.panneau ? null : d.panneau;
     else if (d.question) poserQuestion(d.question);
     else if (d.calibre) { e.calibre = d.calibre; sons.clip(); mesurer(); }
@@ -777,7 +928,7 @@ function brancherBoutons() {
 }
 
 /* =====================================================================
-   Démarrage
+   Démarrage, nouvelle partie
    ===================================================================== */
 function gabarit() {
   racine.innerHTML = `
@@ -785,28 +936,41 @@ function gabarit() {
     <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à l'atelier">✕</a></div>
   <ol class="t-etapes" aria-label="Méthode du dépanneur"></ol>
   <div class="t-objectif" role="status"></div>
-  <div class="j-scene"><div class="j-fleche" hidden aria-hidden="true">➜</div><div class="j-flash"></div>
+  <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div>
     <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-depannage.html?i=chambre">Jouer la version 2D</a></p>
     ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div></div>
   <div class="j-barre">
     <div class="j-multi" role="group" aria-label="Multimètre">
       <output class="j-lcd" aria-label="Écran du multimètre"></output>
-      <div class="j-selecteur"><span class="j-molette" aria-hidden="true"></span>
-        <button type="button" data-calibre="OFF">Arrêt</button><button type="button" data-calibre="V">V~</button><button type="button" data-calibre="Ω">Ω</button></div>
+      <div class="j-selecteur"><button type="button" data-calibre="OFF">Arrêt</button><button type="button" data-calibre="V">V~</button><button type="button" data-calibre="Ω">Ω</button></div>
       <button type="button" class="j-sonde rouge" data-sonde="rouge" aria-label="Pointe rouge"><i></i></button>
       <button type="button" class="j-sonde noir" data-sonde="noir" aria-label="Pointe noire"><i></i></button>
     </div>
     <button type="button" class="j-vat" data-sonde="vat" aria-label="VAT, vérificateur d'absence de tension"><b>VAT</b><span class="j-vat-leds"><i>230</i></span></button>
+    <div class="j-deplacer"><button type="button" class="j-reculer" data-action="reculer">↩ Reculer</button><div class="j-lieux" aria-label="Aller directement à"></div></div>
     <div class="j-boutons">
       <button type="button" data-panneau="client">💬 ${S.client.court}</button>
-      <button type="button" data-action="reculer">↩ Reculer</button>
       <button type="button" data-panneau="aide">🆘 Je suis perdu</button>
     </div>
   </div>`;
 }
+function remettreScene() {
+  // la scène revient comme à l'arrivée (pour « Rejouer » sans recharger la page)
+  W.meca.position.set(0, 0, 0); W.meca.rotation.set(0, 0, 0); W.touche.rotation.set(0, 0, 0);
+  W.vis.forEach((v, i) => { W.meca.attach(v); v.position.set(i ? 0.0295 : -0.0295, 0, 0.0038); v.rotation.set(0, 0, 0); v.scale.set(1, 1, 1); v.visible = true; });
+  W.groupePlaque.attach(W.plaque); W.plaque.position.set(0, 0, 0); W.plaque.rotation.set(0, 0, 0); W.plaque.scale.set(1, 1, 1); W.plaque.visible = true;
+  for (const lev of Object.values(W.manettes)) lev.position.y = 0.009;
+  for (const b of Object.values(W.bornesMeca)) b.userData.tete.rotation.y = 0;
+  engage = 0; lumiere = 0; main.vat.userData.maj(0);
+  const v = VUES.entree; camera.position.set(...v.pos); regard.yaw = v.yaw; regard.pitch = v.pitch; regard.base = null; regard.memo = {};
+  camera.fov = fovLibre; camera.updateProjectionMatrix();
+}
+function rejouer() {
+  nouvellePartie(); remettreScene(); majFils(); majLumiere(); majSondes(); ambianceSonore(); majUI();
+}
 function webgl2() { try { return !!document.createElement("canvas").getContext("webgl2"); } catch { return false; } }
 async function demarrer() {
-  nouvellePartie(); e.mode = "guide";
+  nouvellePartie();
   gabarit();
   const scene = racine.querySelector(".j-scene");
   renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
@@ -820,22 +984,39 @@ async function demarrer() {
   W.scene.add(camera);
   camera.add(W.frontale); W.frontale.position.set(0.04, 0.05, 0.02);
   camera.add(W.frontale.target); W.frontale.target.position.set(0, 0, -1);
-  tournevis = creerTournevis();
-  sondes.rouge = creerSonde(0xc8261e); sondes.noir = creerSonde(0x1b1b1b); sondes.vat1 = creerSonde(0x3a3f45); sondes.vat2 = creerSonde(0x3a3f45);
-  const v = VUES.entree; camera.position.set(...v.pos); regard.yaw = v.yaw; regard.pitch = v.pitch;
+  tournevis = creerTournevis(); tournevis.visible = false; W.scene.add(tournevis);
+  main.multi = creerMultimetre(); main.vat = creerVAT(); main.plateau = creerPlateau();
+  for (const o of [main.multi, main.vat, main.plateau]) { o.visible = false; camera.add(o); }
+  // lumière douce sur ce que l'on tient en main (le reflet de la frontale)
+  const lumMain = new THREE.PointLight(0xfff1dc, 0.06, 0.11, 2); lumMain.position.set(0, -0.005, -0.02); camera.add(lumMain);
+  sondes.rouge = nouvelleSonde(0xc8261e); sondes.noir = nouvelleSonde(0x1b1b1b); sondes.vat1 = nouvelleSonde(0x2f6fb8); sondes.vat2 = nouvelleSonde(0x2f6fb8);
   const taille = () => {
     const r = scene.getBoundingClientRect();
     renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height);
     fovLibre = camera.aspect < 0.8 ? 66 : 55; camera.fov = e && !VUES[e.vue].libre ? FOV_PROCHE : fovLibre; camera.updateProjectionMatrix();
   };
-  taille(); addEventListener("resize", () => { taille(); if (transition === null && !VUES[e.vue].libre) recadrer(); });
-  majFils(); majLumiere();
+  taille();
+  addEventListener("resize", () => { taille(); if (!transition && !VUES[e.vue].libre) recadrer(); });
+  remettreScene(); majFils(); filsPrise(); majLumiere();
   brancherEntrees(renderer.domElement); brancherBoutons();
   majUI();
   requestAnimationFrame(boucle);
   demarrerAmbiance();
   // pour les contrôles automatiques
-  window.__atelier3d = { e: () => e, cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...(c.type === "point" ? rayonEcran(c) : {}) })), guide: () => guideCible(), toucher: (id) => { const c = W.cibles.find((x) => x.id === id); if (c.type === "point") { const s = rayonEcran(c); return s; } if (c.ancre) return ecranDe(c.ancre.getWorldPosition(new THREE.Vector3())); const b = new THREE.Box3().setFromObject(c.objet), p = b.getCenter(new THREE.Vector3()); return ecranDe(p); }, occupe: () => occupe || !!transition || anims.length > 0 };
+  window.__atelier3d = {
+    e: () => e, guide: () => guideCible(), cam: () => camera, image: () => image(performance.now()),
+    cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...(c.type === "point" ? rayonEcran(c) : {}) })),
+    toucher: (id) => { const c = W.cibles.find((x) => x.id === id); return c.type === "point" ? rayonEcran(c) : ecranDe(centreCible(c)); },
+    occupe: () => occupe || !!transition || anims.length > 0 || !!attente,
+    debug: () => ({ occupe, transition: !!transition, anims: anims.length, attente }),
+    W: () => W, main: () => main,
+    // boîtes à l'écran des objets tenus (multimètre, VAT, plaque, plateau) : ils ne doivent cacher aucune cible
+    tenus: () => [main.multi, main.vat, main.plateau, W.plaque].filter((o) => o.visible && (o.parent === camera)).map((o) => {
+      const b = new THREE.Box3().setFromObject(o); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      for (let k = 0; k < 8; k++) { const s = ecranDe(new THREE.Vector3(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z)); x0 = Math.min(x0, s.x); y0 = Math.min(y0, s.y); x1 = Math.max(x1, s.x); y1 = Math.max(y1, s.y); }
+      return { x0, y0, x1, y1 };
+    }),
+  };
 }
 
 // écran d'accueil : un appui pour entrer (il débloque aussi le son)
@@ -843,7 +1024,7 @@ racine.innerHTML = `<div class="j-accueil">
   <p class="j-sur">Atelier dépannage · prototype 3D</p>
   <h1>La lumière de la chambre</h1>
   <p>Il est presque minuit, il pleut. Mme Martin t'appelle : la lumière de sa chambre ne marche plus. Tu arrives avec ta lampe frontale, ta sacoche, ton multimètre et ton VAT.</p>
-  <ul><li>👉 <b>Glisse</b> le doigt pour tourner la tête.</li><li>👆 <b>Touche</b> un objet pour t'en approcher ou agir dessus.</li><li>🎧 Avec le son, c'est mieux.</li></ul>
+  <ul><li>👉 <b>Glisse</b> le doigt pour tourner la tête (vers le bas, de près : tu recules).</li><li>👆 <b>Touche</b> un objet pour t'en approcher ou agir dessus.</li><li>🎧 Avec le son, c'est mieux.</li></ul>
   ${webgl2() ? `<button type="button" class="j-plein" id="entrer">Entrer chez Mme Martin</button>` : `<p class="j-alerte">Ton navigateur n'affiche pas la 3D (WebGL 2 absent).</p>`}
   <a class="j-lien" href="atelier-depannage.html?i=chambre">Jouer la version 2D</a>
 </div>`;

@@ -77,3 +77,19 @@
 .j-alerte { background: #4a1714; padding: 10px; border-radius: 10px; }
 @media (min-width: 900px) { #jeu { max-width: 1200px; margin: 0 auto; } .j-barre { grid-template-columns: auto auto 1fr; } .j-boutons { grid-column: auto; } }
 #jeu [hidden] { display: none !important; }
+/* cercles jaunes (à la taille de la cible) et flèche vers une cible hors de l'image */
+.j-anneaux { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.j-anneau { position: absolute; box-sizing: border-box; border: 2px solid rgba(255, 196, 0, 0.75); border-radius: 12px; pointer-events: none; }
+.j-anneau.rond { border-radius: 50%; }
+.j-anneau.guide { border: 3px solid #ffc400; box-shadow: 0 0 10px rgba(255, 196, 0, 0.7); animation: j-pouls 1.1s ease-in-out infinite; }
+.j-fleche { z-index: 3; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; background: rgba(10, 12, 16, 0.55); cursor: pointer; pointer-events: auto; font-size: 30px; }
+/* reculer (dit où il mène) et raccourcis de lieux, près du pouce */
+.j-deplacer { grid-column: 1 / -1; display: flex; gap: 5px; min-width: 0; }
+.j-reculer { flex: none; min-width: 132px; min-height: 48px; border-radius: 12px; border: 2px solid #ffc400; background: #2a2208; color: #ffe08a; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
+.j-reculer:disabled { border-color: #2c3542; background: #161c26; color: #6b7480; }
+.j-lieux { flex: 1; display: flex; gap: 5px; overflow-x: auto; scrollbar-width: none; }
+.j-lieux button { flex: 1 0 auto; min-height: 48px; padding: 0 10px; border-radius: 12px; border: 2px solid #2c3542; background: #161c26; color: #f3f1ec; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+.j-boutons { grid-template-columns: repeat(2, 1fr); }
+.t-objectif .j-facture-btn { margin-left: auto; flex: none; min-height: 40px; padding: 0 14px; border: 0; border-radius: 10px; background: #1d2228; color: #fff; font-weight: 800; cursor: pointer; }
+#jeu .t-objectif { gap: 8px; }
+@media (min-width: 900px) { .j-deplacer { grid-column: auto; } }

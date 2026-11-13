@@ -94,7 +94,7 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   }
 
   const cibles = [];   // tout ce qui se touche : { id, objet, rayon (m) pour un point, type: "point" | "surface", vues }
-  const cible = (id, objet, vues, opts = {}) => { objet.userData.cible = id; cibles.push({ id, objet, vues, type: opts.type || "surface", rayon: opts.rayon || 0, ancre: opts.ancre || null }); return objet; };
+  const cible = (id, objet, vues, opts = {}) => { objet.userData.cible = id; cibles.push({ id, objet, vues, type: opts.type || "surface", rayon: opts.rayon || 0, ancre: opts.ancre || null, rayonAncre: opts.rayonAncre || 0 }); return objet; };
   const hitSphere = (r) => new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), M.invisible);
 
   /* ---------- La chambre : x ∈ [-1.8, 1.8], z ∈ [-1.6, 1.6], hauteur 2,50 m ---------- */
@@ -107,7 +107,13 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   mur(3.2, H, M.mur, V(1.8, H / 2, 0), -Math.PI / 2);             // mur de l'armoire
   // mur de la porte (z = 1.6), percé d'une ouverture x ∈ [-0.42, 0.42], hauteur 2,04
   mur(1.38, H, M.mur, V(-1.11, H / 2, 1.6), Math.PI);
-  mur(1.38, H, M.mur, V(1.11, H / 2, 1.6), Math.PI);
+  { // pan de mur à droite de la porte, percé pour les deux boîtes d'encastrement (repère local : x local = -(x monde - 1,11))
+    const f = new THREE.Shape(); f.moveTo(-0.69, -H / 2); f.lineTo(0.69, -H / 2); f.lineTo(0.69, H / 2); f.lineTo(-0.69, H / 2); f.lineTo(-0.69, -H / 2);
+    for (const xm of [0.66, 0.66 - 0.071]) { const t = new THREE.Path(); t.absarc(-(xm - 1.11), 1.1 - H / 2, 0.0335, 0, Math.PI * 2, true); f.holes.push(t); }
+    const g = new THREE.ShapeGeometry(f, 24);
+    const uv = g.attributes.uv; for (let k = 0; k < uv.count; k++) uv.setXY(k, (uv.getX(k) + 0.69) / 1.38, (uv.getY(k) + H / 2) / H);
+    const m = new THREE.Mesh(g, M.mur); m.position.set(1.11, H / 2, 1.6); m.rotation.y = Math.PI; m.receiveShadow = true; scene.add(m);
+  }
   mur(0.84, H - 2.04, M.mur, V(0, 2.04 + (H - 2.04) / 2, 1.6), Math.PI);
   // plinthes
   for (const [w, x, z, r] of [[3.6, 0, -1.59, 0], [3.2, -1.79, 0, Math.PI / 2], [3.2, 1.79, 0, -Math.PI / 2]]) { const p = boite(w, 0.07, 0.012, M.plastiqueMat); p.position.set(x, 0.035, z); p.rotation.y = r; scene.add(p); }
@@ -166,45 +172,74 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const lampe = new THREE.PointLight(0xffd2a0, 0, 0, 2); lampe.position.set(0, H - 0.5, 0); scene.add(lampe);
   const zonePlaf = hitSphere(0.28); zonePlaf.position.set(0, H - 0.35, 0); scene.add(cible("plafonnier", zonePlaf, ["chambre"]));
 
-  /* ---------- Interrupteur + prise sur support double, à côté de la porte (x = 0,62, h = 1,10 m) ----------
+  /* ---------- Interrupteur + prise sur support double, à côté de la porte (x = 0,66, h = 1,10 m) ----------
      Repère local : +x vers la droite vu de face, +y vers le haut, +z vers celui qui regarde. */
   const appareil = new THREE.Group();
   appareil.position.set(0.66, 1.1, 1.6); appareil.rotation.y = Math.PI; scene.add(appareil);
   const E = 0.071; // entraxe interrupteur → prise
-  for (const x of [0, E]) { const t = new THREE.Mesh(new THREE.PlaneGeometry(0.076, 0.076), M.trou); t.position.set(x, 0, 0.0006); appareil.add(t); }
-  // conducteurs dans la boîte : rouge (phase, arrivée), orange (retour lampe vers le plafonnier)
+  const RB = 0.0335; // rayon intérieur d'une boîte d'encastrement (Ø 67 mm), profondeur 40 mm
+  const plastBoite = new THREE.MeshStandardMaterial({ color: 0x8d949c, roughness: 0.8, side: THREE.BackSide });
+  const gaineMat = new THREE.MeshStandardMaterial({ color: 0x8f9499, roughness: 0.7 });
+  const pointsGaine = [];
+  for (const x of [0, E]) {
+    // boîte : paroi (vue de l'intérieur), fond, entrée de gaine ICTA en bas
+    const paroi = new THREE.Mesh(new THREE.CylinderGeometry(RB, RB, 0.04, 40, 1, true), plastBoite);
+    paroi.rotation.x = Math.PI / 2; paroi.position.set(x, 0, -0.02); appareil.add(paroi);
+    const fond = new THREE.Mesh(new THREE.CircleGeometry(RB, 40), new THREE.MeshStandardMaterial({ color: 0x7b828a, roughness: 0.85 }));
+    fond.position.set(x, 0, -0.0399); appareil.add(fond);
+    const bord = new THREE.Mesh(new THREE.RingGeometry(RB, RB + 0.0025, 40), new THREE.MeshStandardMaterial({ color: 0x9aa1a8, roughness: 0.7 }));
+    bord.position.set(x, 0, 0.0003); appareil.add(bord);
+    const gaine = new THREE.Group(); gaine.position.set(x - 0.006, -RB + 0.004, -0.026); appareil.add(gaine);
+    for (let k = 0; k < 5; k++) { const anneau = new THREE.Mesh(new THREE.TorusGeometry(0.0072, 0.0016, 6, 18), gaineMat); anneau.rotation.x = Math.PI / 2; anneau.position.y = -k * 0.0035; gaine.add(anneau); }
+    const bouche = new THREE.Mesh(new THREE.CircleGeometry(0.0062, 18), new THREE.MeshBasicMaterial({ color: 0x0c0c0c })); bouche.rotation.x = -Math.PI / 2; bouche.position.y = 0.0016; gaine.add(bouche);
+    pointsGaine.push(new THREE.Vector3(x - 0.006, -RB + 0.006, -0.026));
+  }
+  // conducteurs (tubes recalculés par le jeu quand le mécanisme bouge)
   const fils = new THREE.Group(); appareil.add(fils);
-  // mécanisme d'interrupteur (support métallique + corps + touche) et ses deux vis
+  // mécanisme d'interrupteur : support métallique avec ses trous, corps, touche ; deux vis de fixation
   const meca = new THREE.Group(); appareil.add(meca);
-  const support = plaqueArrondie(0.071, 0.071, 0.0012, 0.004, [{ w: 0.046, h: 0.046, x: 0, y: 0 }], M.gris); meca.add(support);
+  const support = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.046, h: 0.046, x: 0, y: 0 }], M.gris); meca.add(support);
+  for (const x of [-0.0295, 0.0295]) { // trous oblongs des vis (visibles quand la vis est enlevée)
+    const trou = new THREE.Mesh(new THREE.PlaneGeometry(0.0042, 0.0085), new THREE.MeshBasicMaterial({ color: 0x0a0a0a })); trou.position.set(x, 0, 0.0039); meca.add(trou);
+  }
+  for (const y of [0.0295, -0.0295]) { const t = new THREE.Mesh(new THREE.PlaneGeometry(0.008, 0.0035), new THREE.MeshBasicMaterial({ color: 0x0a0a0a })); t.position.set(0, y, 0.0039); meca.add(t); }
   const corpsMeca = boite(0.045, 0.045, 0.026, M.plastiqueMat); corpsMeca.position.z = -0.008; meca.add(corpsMeca);
   const touche = new THREE.Group(); touche.position.z = 0.008; meca.add(touche);
   const toucheMesh = plaqueArrondie(0.043, 0.043, 0.006, 0.004, [], M.plastique); touche.add(toucheMesh);
   const repere = new THREE.Mesh(new THREE.PlaneGeometry(0.008, 0.002), new THREE.MeshBasicMaterial({ color: 0x9a9a9a })); repere.position.set(0, -0.016, 0.0095); touche.add(repere);
-  // bornes sous le mécanisme (L et 1), visibles quand on le sort et qu'on le bascule
+  // bornes sous le mécanisme (L et 1), repères gravés, visibles quand on le sort et qu'on le bascule
   const bornesMeca = {};
-  const etiqBornes = new THREE.Mesh(new THREE.PlaneGeometry(0.044, 0.012), new THREE.MeshBasicMaterial({ map: texte(["L          1"], { w: 256, h: 64, fond: "#e6e2d8", taille: 44 }) }));
-  etiqBornes.rotation.x = Math.PI / 2; etiqBornes.position.set(0, -0.0231, 0.0); meca.add(etiqBornes);
+  const etiqBornes = new THREE.Mesh(new THREE.PlaneGeometry(0.044, 0.012), new THREE.MeshBasicMaterial({ map: texte([{ t: "L                1", taille: 40 }], { w: 256, h: 64, fond: "#e2ddd2", coul: "#8a857b" }) }));
+  etiqBornes.rotation.x = Math.PI / 2; etiqBornes.position.set(0, -0.02255, 0.004); meca.add(etiqBornes);
   for (const [id, x] of [["int-E", -0.012], ["int-S", 0.012]]) {
-    const b = new THREE.Group(); b.position.set(x, -0.0232, -0.011); meca.add(b);
-    const tete = cyl(0.0032, 0.0032, 0.002, M.laiton, 16); tete.position.y = -0.001; b.add(tete);
-    const fente2 = boite(0.0055, 0.0008, 0.0008, M.noir); fente2.position.y = -0.0021; fente2.rotation.y = 25 * RAD; b.add(fente2);
+    const b = new THREE.Group(); b.position.set(x, -0.0232, -0.008); meca.add(b);
+    const puitsB = cyl(0.0042, 0.0042, 0.0006, M.noir, 16); puitsB.position.y = 0.0002; b.add(puitsB);
+    const teteB = new THREE.Group(); b.add(teteB);
+    const tete = cyl(0.0032, 0.0032, 0.002, M.laiton, 16); tete.position.y = -0.001; teteB.add(tete);
+    const fente2 = boite(0.0058, 0.0008, 0.0008, M.noir); fente2.position.y = -0.0021; fente2.rotation.y = 25 * RAD; teteB.add(fente2);
     const h = hitSphere(0.0095); b.add(h); cible(id, h, ["inter"], { type: "point", rayon: 0.0095 });
+    b.userData.tete = teteB;
     bornesMeca[id] = b;
   }
-  const vis = [];
+  // vis de fixation à tête cruciforme, vissées dans les griffes, posées sur le support
+  const vis = [], creerVis = () => {
+    const v = new THREE.Group();
+    const tete = cyl(0.0034, 0.0034, 0.0016, M.acier, 18); tete.rotation.x = Math.PI / 2; tete.position.z = 0.0008; v.add(tete);
+    for (const r of [0, Math.PI / 2]) { const c = boite(0.0046, 0.0009, 0.0006, M.noir); c.rotation.z = r; c.position.z = 0.0017; v.add(c); }
+    const tige = cyl(0.0014, 0.0014, 0.016, M.acier, 8); tige.rotation.x = Math.PI / 2; tige.position.z = -0.008; v.add(tige);
+    return v;
+  };
   for (const [i, x] of [[0, -0.0295], [1, 0.0295]]) {
-    const v = new THREE.Group(); v.position.set(x, 0, 0.0016); meca.add(v);
-    const tete = cyl(0.0028, 0.0028, 0.0018, M.acier, 16); tete.rotation.x = Math.PI / 2; v.add(tete);
-    const f = boite(0.005, 0.0008, 0.001, M.noir); f.position.z = 0.0009; v.add(f);
-    const tige = cyl(0.0013, 0.0013, 0.018, M.acier, 8); tige.rotation.x = Math.PI / 2; tige.position.z = -0.009; v.add(tige);
-    const h = hitSphere(0.013); v.add(h); cible(`vis${i}`, h, ["inter"], { type: "point", rayon: 0.013 });
+    const v = creerVis(); v.position.set(x, 0, 0.0038); meca.add(v);
+    const h = hitSphere(0.012); h.position.set(x, 0, 0.004); meca.add(h); cible(`vis${i}`, h, ["inter"], { type: "point", rayon: 0.012 });
     vis.push(v);
   }
   const zoneMeca = boite(0.046, 0.046, 0.03, M.invisible); zoneMeca.position.z = 0.004; meca.add(zoneMeca); cible("meca", zoneMeca, ["inter"]);
-  const zoneTouche = boite(0.044, 0.044, 0.012, M.invisible); zoneTouche.position.z = 0.012; touche.add(zoneTouche); cible("touche", zoneTouche, ["inter"]);
-  // prise 2P+T : socle, deux alvéoles, broche de terre (en haut)
+  const zoneTouche = boite(0.04, 0.04, 0.012, M.invisible); zoneTouche.position.z = 0.012; touche.add(zoneTouche); cible("touche", zoneTouche, ["inter"]);
+  // prise 2P+T sur son support métallique : socle, deux alvéoles, broche de terre (en haut)
   const prise = new THREE.Group(); prise.position.x = E; appareil.add(prise);
+  const supportP = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.05, h: 0.05, x: 0, y: 0 }], M.gris); prise.add(supportP);
+  const corpsP = cyl(0.0245, 0.0245, 0.03, M.plastiqueMat, 32); corpsP.rotation.x = Math.PI / 2; corpsP.position.z = -0.012; prise.add(corpsP);
   const socle = cyl(0.0225, 0.0235, 0.012, M.plastique, 40); socle.rotation.x = Math.PI / 2; socle.position.z = 0.002; prise.add(socle);
   const puits = cyl(0.019, 0.019, 0.004, M.plastiqueMat, 40); puits.rotation.x = Math.PI / 2; puits.position.z = 0.0065; prise.add(puits);
   for (const [id, x] of [["prise-g", -0.0095], ["prise-d", 0.0095]]) {
@@ -213,17 +248,19 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   }
   const broche = cyl(0.0024, 0.0024, 0.013, M.acier, 14); broche.rotation.x = Math.PI / 2; broche.position.set(0, 0.0115, 0.0135); prise.add(broche);
   const hT = hitSphere(0.0115); hT.position.set(0, 0.0125, 0.016); prise.add(hT); cible("prise-terre", hT, ["inter-ouvert"], { type: "point", rayon: 0.0115 });
-  // plaque double (deux fenêtres), clipsée par-dessus
+  // plaque double (deux fenêtres) avec son encoche de déclipsage sous l'interrupteur
   const plaque = plaqueArrondie(0.152, 0.081, 0.006, 0.008, [{ w: 0.05, h: 0.05, x: -0.0355, y: 0 }, { w: 0.05, h: 0.05, x: 0.0355, y: 0 }]);
-  plaque.position.set(E / 2, 0, 0.0015); appareil.add(plaque);
-  const zonePlaque = boite(0.152, 0.081, 0.012, M.invisible); zonePlaque.position.set(E / 2, 0, 0.006); appareil.add(zonePlaque);
-  const repPlaque = new THREE.Object3D(); repPlaque.position.set(0.054, 0, 0.01); appareil.add(repPlaque); // loin des vis
-  cible("plaque", zonePlaque, ["inter"], { ancre: repPlaque });
+  const encoche = boite(0.012, 0.0022, 0.004, M.noir); encoche.position.set(-0.0355, -0.0405, 0.004); plaque.add(encoche);
+  const groupePlaque = new THREE.Group(); groupePlaque.position.set(E / 2, 0, 0.0015); appareil.add(groupePlaque); groupePlaque.add(plaque);
+  plaque.position.set(0, 0, 0);
+  const repPlaque = new THREE.Object3D(); repPlaque.position.set(-0.0355, -0.04, 0.008); groupePlaque.add(repPlaque); // l'encoche
+  cible("plaque", plaque, ["inter"], { ancre: repPlaque, rayonAncre: 0.009 });
   const zoneInter = boite(0.22, 0.16, 0.05, M.invisible); zoneInter.position.set(E / 2, 0, 0.02); appareil.add(zoneInter); cible("approcher-inter", zoneInter, ["chambre"]);
-  // bout dénudé du fil rouge quand il est sorti de sa borne
+  // bout dénudé du fil rouge (sorti de sa borne), et l'endroit où l'on prend le fil
   const boutRouge = new THREE.Group(); appareil.add(boutRouge);
   const ame = cyl(0.0011, 0.0011, 0.009, M.cuivre, 8); boutRouge.add(ame);
-  const hR = hitSphere(0.0095); boutRouge.add(hR); cible("fil-rouge", hR, ["inter"], { type: "point", rayon: 0.0095 });
+  const prendreFil = new THREE.Group(); appareil.add(prendreFil);
+  const hR = hitSphere(0.0095); prendreFil.add(hR); cible("fil-rouge", hR, ["inter"], { type: "point", rayon: 0.0095 });
   ombre(appareil);
 
   /* ---------- L'entrée : couloir x ∈ [-0.6, 0.6], z ∈ [1.6, 4.6], tableau sur le mur x = 0,6 ---------- */
@@ -265,8 +302,12 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
       
       const levier = new THREE.Group(); levier.position.set(0, 0.009, 0.058); m.add(levier); // en haut = enclenché
       const lev = boite(Math.min(0.0105, w * 0.5), 0.012, 0.011, a.type === "id" ? M.bleu : M.manette); lev.position.z = 0.004; levier.add(lev);
-      const io = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.55, 0.034), new THREE.MeshBasicMaterial({ map: texte([{ t: "I", taille: 26 }, { t: " ", taille: 10 }, { t: "O", taille: 26 }], { w: 48, h: 128, fond: "#2a2d31", coul: "#d8dadd" }) }));
-      io.position.set(0, 0, 0.0565); m.add(io);
+      // fente de la manette, et repères imprimés hors de sa course : I en haut (fermé, sous tension), O en bas (ouvert)
+      const fente3 = boite(w * 0.55, 0.031, 0.001, M.noir); fente3.position.set(0, 0, 0.0562); m.add(fente3);
+      for (const [t, y] of [["I", 0.0188], ["O", -0.0188]]) {
+        const r = new THREE.Mesh(new THREE.PlaneGeometry(0.0062, 0.0062), new THREE.MeshBasicMaterial({ map: texte([{ t, taille: 54 }], { w: 64, h: 64, fond: "#f7f5f0", coul: "#1d2228" }) }));
+        r.position.set(0, y, 0.0562); r.userData.repere = t; m.add(r);
+      }
       if (a.type === "id") { const t = boite(0.006, 0.006, 0.004, M.jaune || new THREE.MeshStandardMaterial({ color: 0xf2c230 })); t.position.set(w / 2 - 0.008, 0.033, 0.05); m.add(t); }
       const zone = boite(w - 0.001, 0.085, 0.07, M.invisible); zone.position.z = 0.035; m.add(zone); cible(`manette:${a.cle}`, zone, [`rangee${rangees.length + 1}`]);
       manettes[a.cle] = levier;
@@ -302,13 +343,13 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
 
   /* ---------- Lumières ---------- */
   const ambiance = new THREE.HemisphereLight(0x9fb4d8, 0x1a1410, 0.18); scene.add(ambiance);
-  const lune = new THREE.DirectionalLight(0x7f9cd6, 0.5); lune.position.set(-4, 2.5, -0.4); lune.target.position.set(0, 0, 0); scene.add(lune, lune.target);
+  const lune = new THREE.DirectionalLight(0x7f9cd6, 0.65); lune.position.set(-4, 2.5, -0.4); lune.target.position.set(0, 0, 0); scene.add(lune, lune.target);
   const frontale = new THREE.SpotLight(0xfff4e0, 9, 9, 26 * RAD, 0.6, 1.6);
   frontale.castShadow = true; frontale.shadow.mapSize.set(512, 512); frontale.shadow.bias = -0.0004; frontale.shadow.camera.near = 0.05;
 
   return {
     scene, M, cibles, appareil, meca, touche, vis, plaque, prise, fils, boutRouge, bornesMeca, tableau, rangees, manettes,
-    lampe, ampouleMat, ambiance, frontale, pluie, ecranReveil, lueurReveil, E, plafonnier,
+    lampe, ampouleMat, ambiance, frontale, pluie, ecranReveil, lueurReveil, E, plafonnier, pointsGaine, groupePlaque, prendreFil, creerVis, texte,
     hitSphere, cyl, boite,
   };
 }
