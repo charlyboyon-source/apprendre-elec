@@ -35,6 +35,12 @@ def sans_vide(o):
     return o
 def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(sans_vide(obj), ensure_ascii=False).replace("</", "<\\/") + "</script>"
+def sommaire_ld(chemin, nom, description, items):
+    """Page de sommaire : CollectionPage + liste ordonnée de ses pages (items = [(titre, chemin)])."""
+    return ld({"@context": "https://schema.org", "@type": "CollectionPage", "name": nom, "description": description,
+               "url": SITE + chemin, "inLanguage": "fr", "isPartOf": {"@type": "WebSite", "name": "ApprendreElec", "url": SITE},
+               "mainEntity": {"@type": "ItemList", "numberOfItems": len(items), "itemListElement": [
+                   {"@type": "ListItem", "position": i + 1, "name": texte_brut(t), "url": SITE + c} for i, (t, c) in enumerate(items)]}})
 def ariane(items):
     """items : [(libellé, chemin ou None)] ; renvoie le fil visible + son BreadcrumbList."""
     vis = " › ".join(f'<a href="{c}">{html.escape(l)}</a>' if c is not None else f'<span aria-current="page">{html.escape(l)}</span>' for l, c in items)
@@ -336,6 +342,9 @@ molette = chr(10).join(
 lex = tete("Lexique de l'électricien : les mots du métier expliqués",
            f"{len(glossaire)} termes de l'électricité du bâtiment expliqués simplement : DDR, AGCP, ICTA, régime TT, calibre, sensibilité, GTL…", "lexique.html")
 lex += f'''  <main class="niveau page-lexique">
+    {ld({"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "Lexique de l'électricien", "url": SITE + "lexique.html", "inLanguage": "fr",
+         "description": f"{len(glossaire)} termes de l'électricité du bâtiment expliqués simplement.",
+         "hasDefinedTerm": [{"@type": "DefinedTerm", "name": e["nom"], "termCode": cle, "description": texte_brut(e["definition"]), "inDefinedTermSet": SITE + "lexique.html", "url": SITE + lien_terme(cle)} for cle, e in glossaire.items()]})}
     <h1>Lexique de l'électricien</h1>
     <p class="niveau-objectif">{len(glossaire)} mots du métier, expliqués simplement. Tape quelques lettres, ou touche une lettre sur le côté pour y aller directement.</p>
     <input class="lexique-recherche" type="search" placeholder="Chercher un terme…" aria-label="Chercher un terme">
@@ -427,7 +436,8 @@ for b in parcours["blocs"]:
 '''
 page("qcm.html", "QCM d'électricité corrigés : 21 thèmes, 210 questions",
      "21 QCM d'électricité du bâtiment corrigés et expliqués, un par cours : loi d'Ohm, différentiel, tableau, câbles, va-et-vient, télérupteur, photovoltaïque…",
-     f'''    <h1>QCM d'électricité corrigés</h1>
+     sommaire_ld("qcm.html", "QCM d'électricité corrigés", "Un QCM corrigé de 10 questions par cours.", [(f"QCM {THEMES[m['id']]}", qcm_pages[m["id"]]) for m in modules]) + f'''
+    <h1>QCM d'électricité corrigés</h1>
     <p class="niveau-objectif">Un QCM de 10 questions par cours, avec la réponse et l'explication à découvrir après avoir répondu. Pour aller plus loin, chaque cours propose un quiz complet tiré au hasard dans sa banque de questions, et l'<a href="examen.html">examen blanc</a> mélange les 21 modules.</p>
 {liste_qcm}''')
 
@@ -514,7 +524,8 @@ cartes = "\n".join(f'''      <article class="actu" id="{actu_id(a)}">
       </article>''' for i, a in enumerate(actus_triees))
 page("actualites.html", "Actualités de l'électricien : normes, matériel",
      "Les nouveautés utiles aux électriciens et aux apprentis : normes, réglementation, Consuel, nouveau matériel. Chaque information est vérifiée et sourcée.",
-     f'''    <h1>Actualités</h1>
+     sommaire_ld("actualites.html", "Actualités de l'électricien", "Normes, réglementation et matériel : les nouveautés vérifiées et sourcées.", [(a["titre"], actu_page(a)) for a in actus_triees]) + f'''
+    <h1>Actualités</h1>
     <p class="niveau-objectif">Normes, réglementation, nouveau matériel : ce qui change pour l'électricien. Chaque information est vérifiée sur une source officielle ou chez le fabricant, avec le lien pour aller plus loin.</p>
 {cartes}
     <p class="note-affiliation">Une information te semble fausse ou dépassée ? Elle est datée : la norme ou le texte cité fait toujours foi.</p>''')
@@ -602,7 +613,8 @@ for b in parcours["blocs"]:
 nbq = sum(len(m["banque"]) for m in modules)
 page("cours.html", "Cours d'électricité du bâtiment : les 21 cours gratuits",
      f"Les {len(modules)} cours d'ApprendreElec, classés par bloc : bases, sécurité, tableau et conducteurs, montages d'éclairage, applications.",
-     f'''    <h1>Tous les cours</h1>
+     sommaire_ld("cours.html", "Cours d'électricité du bâtiment", f"Les {len(modules)} cours d'ApprendreElec, classés par bloc.", [(m["titre"], pages[m["id"]]) for m in modules]) + f'''
+    <h1>Tous les cours</h1>
     <p class="niveau-objectif">{len(modules)} cours illustrés, {nbq} questions. Chaque cours se lit sur une seule page, puis se vérifie par un quiz.</p>
 {par_bloc}''')
 
@@ -636,7 +648,8 @@ page("erreurs.html", "Mes erreurs : réviser les questions ratées",
 
 page("fiche.html", "Fiches mémo d'électricité à imprimer : les 21 cours",
      "L'essentiel de chaque cours en une page : les fiches mémo d'ApprendreElec, à relire avant un contrôle ou à imprimer.",
-     '''    <div class="fiche-zone">
+     sommaire_ld("fiche.html", "Fiches mémo d'électricité", "L'essentiel de chaque cours en une page, à imprimer.", [(f"Fiche mémo : {m['titre']}", fiche_pages[m["id"]]) for m in modules]) + '''
+    <div class="fiche-zone">
     <h1>Fiches mémo</h1>
     <p class="niveau-objectif">L'essentiel de chaque cours en quelques cartes illustrées : à relire avant un contrôle, à imprimer, ou à réviser en cochant ce que tu sais déjà.</p>
 ''' + "".join(f'''    <section class="outil-carte">
