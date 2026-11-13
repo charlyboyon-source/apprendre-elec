@@ -1,0 +1,79 @@
+/* Atelier dépannage 3D : plein écran, l'image au centre, aucun texte posé dessus. */
+.j-page { margin: 0; background: #05070c; color: #f3f1ec; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; overscroll-behavior: none; }
+#jeu { position: fixed; inset: 0; display: flex; flex-direction: column; gap: 5px; padding: max(6px, env(safe-area-inset-top)) 6px max(6px, env(safe-area-inset-bottom)); box-sizing: border-box; height: 100dvh; }
+.j-haut { display: flex; align-items: center; gap: 8px; }
+.j-titre { flex: 1; min-width: 0; line-height: 1.15; }
+.j-titre b { display: block; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.j-titre span { font-size: 0.76rem; color: #aeb6c2; }
+.j-compteurs { display: flex; gap: 5px; }
+.j-compteurs span { background: #1d2430; color: #fff; border-radius: 9px; padding: 5px 8px; font-weight: 700; font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.j-quitter { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #1d2430; color: #fff; text-decoration: none; font-size: 1.1rem; }
+#jeu .t-etapes li { background: #161c26; border-color: #2c3542; color: #9aa6b6; }
+#jeu .t-etapes li.fait { background: #1c4a2c; border-color: #3c8a55; color: #c9f5d6; }
+#jeu .t-etapes li.encours { background: #4a3a06; border-color: #e0a800; color: #ffe08a; box-shadow: none; }
+.j-scene { position: relative; flex: 1; min-height: 0; border-radius: 14px; overflow: hidden; background: #000; touch-action: none; }
+.j-scene canvas { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.j-fleche { position: absolute; left: 0; top: 0; width: 44px; height: 44px; display: grid; place-items: center; font-size: 30px; color: #ffc400; text-shadow: 0 0 8px rgba(255, 196, 0, 0.8); pointer-events: none; animation: j-pouls 1s ease-in-out infinite; }
+@keyframes j-pouls { 50% { opacity: 0.45; } }
+.j-flash { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: #fff; }
+.j-flash.zap { animation: j-zap 1.6s ease-out forwards; }
+@keyframes j-zap { 0% { opacity: 1; background: #eaf2ff; } 8% { opacity: 1; background: #fff; } 14% { opacity: 1; background: #000; } 70% { opacity: 1; background: #000; } 100% { opacity: 0; background: #000; } }
+.j-fps { position: absolute; left: 6px; bottom: 6px; font: 700 12px ui-monospace, monospace; color: #7dff9a; background: rgba(0, 0, 0, 0.6); padding: 2px 6px; border-radius: 6px; pointer-events: none; }
+.j-lent { position: absolute; left: 8px; right: 8px; bottom: 8px; margin: 0; padding: 8px 10px; border-radius: 10px; background: rgba(20, 24, 32, 0.92); font-size: 0.85rem; }
+.j-lent a { color: #ffd84a; }
+.j-voile { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(4, 6, 10, 0.6); }
+.j-panneau { background: #fffdf7; color: #1d2228; border-radius: 16px; padding: 14px 16px 0; width: min(560px, 100%); max-height: 100%; overflow: auto; box-sizing: border-box; display: flex; flex-direction: column; }
+.j-panneau > * { flex: none; }
+.j-panneau h2 { margin: 0 0 8px; font-size: 1.1rem; }
+.j-panneau h3 { margin: 10px 0 4px; font-size: 0.98rem; }
+.j-panneau p { line-height: 1.45; margin: 6px 0; }
+.j-client-tete { display: flex; gap: 10px; align-items: center; }
+.j-client-tete small { display: block; color: #6b7178; }
+.j-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; }
+.j-humeur { margin-left: auto; font-size: 1.6rem; }
+.j-fil .j-r { background: #f1ece2; border-radius: 12px 12px 12px 2px; padding: 8px 12px; font-style: italic; }
+.j-fil .j-moi { text-align: right; font-weight: 700; color: #1f4f8a; }
+.j-petit { font-size: 0.82rem; color: #6b7178; }
+.j-question { display: block; width: 100%; text-align: left; margin: 6px 0; padding: 10px 12px; min-height: 44px; border-radius: 12px; border: 2px solid #d9d2c3; background: #fff; color: #1d2228; font-size: 0.95rem; cursor: pointer; }
+.j-plein { position: sticky; bottom: 0; display: block; width: 100%; margin: 10px 0 0; padding: 13px; border: 0; border-radius: 12px; background: #1d2228; color: #fff; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 -10px 14px #fffdf7; }
+.j-panneau > .j-plein:last-child, .j-panneau > .j-lien:last-child { margin-bottom: 14px; }
+.j-lien { display: block; text-align: center; margin: 10px 0 14px; color: #1f4f8a; font-weight: 700; }
+.j-etoiles { font-size: 2rem; color: #e0a800; text-align: center; margin: 0; }
+.j-fautes { background: #fde9e7; border-radius: 10px; padding: 8px 12px; font-size: 0.9rem; }
+.j-ok { color: #14522a; font-weight: 700; }
+.j-conseil { background: #fff4cf; border-radius: 10px; padding: 8px 12px; font-size: 0.9rem; }
+.j-facture { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 0.92rem; }
+.j-facture td, .j-facture th { padding: 4px 2px; border-bottom: 1px solid #e6dfd1; text-align: left; }
+.j-facture td:last-child, .j-facture th:last-child { text-align: right; }
+/* barre du bas : multimètre, VAT, boutons */
+.j-barre { display: grid; grid-template-columns: 1fr auto; gap: 5px; }
+.j-multi { display: flex; align-items: center; gap: 4px; background: #f2c230; border: 3px solid #2b2f34; border-radius: 14px; padding: 3px; min-width: 0; }
+.j-lcd { min-width: 78px; padding: 1px 6px; border-radius: 8px; background: #c8d4b4; color: #1d2620; border: 2px solid #2b2f34; font: 700 1.05rem ui-monospace, Menlo, monospace; text-align: right; }
+.j-lcd small { display: block; font-size: 0.6rem; text-align: left; opacity: 0.7; }
+.j-selecteur { position: relative; display: flex; gap: 2px; flex: 1; min-width: 0; }
+.j-selecteur button { flex: 1; min-width: 0; min-height: 44px; padding: 0 2px; border: 2px solid #2b2f34; border-radius: 9px; background: #fff7d1; color: #1d2228; font-weight: 800; font-size: 0.82rem; cursor: pointer; }
+.j-selecteur button.actif { background: #2b2f34; color: #fff; }
+.j-molette { display: none; --angle: 0deg; }
+.j-sonde { width: 44px; height: 44px; flex: none; border-radius: 10px; border: 2px solid #2b2f34; background: #fff7d1; display: grid; place-items: center; cursor: pointer; padding: 0; }
+.j-sonde i { width: 12px; height: 30px; border-radius: 6px; display: block; transform: rotate(18deg); }
+.j-sonde.rouge i { background: #c8261e; }
+.j-sonde.noir i { background: #1b1b1b; }
+.j-sonde.posee { background: #e3dcc4; }
+.j-sonde.en-main, .j-vat.en-main { outline: 3px solid #ffc400; outline-offset: 1px; background: #fff; }
+.j-vat { min-width: 64px; min-height: 52px; border-radius: 14px; border: 3px solid #2b2f34; background: #d9dde2; color: #1d2228; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 0.8rem; }
+.j-vat-leds i { display: block; font-style: normal; font-size: 0.66rem; font-weight: 800; padding: 1px 5px; border-radius: 5px; background: #4b5058; color: #8d939b; }
+.j-vat-leds.allume i { background: #ff3b2f; color: #fff; box-shadow: 0 0 10px #ff3b2f; }
+.j-boutons { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.j-boutons button { min-height: 44px; border-radius: 12px; border: 2px solid #2c3542; background: #161c26; color: #f3f1ec; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+.j-boutons button:disabled { opacity: 0.4; }
+#jeu .t-guide { box-shadow: 0 0 0 3px #ffb800; animation: t-guideb 1.2s ease-in-out infinite; }
+/* accueil */
+.j-accueil { margin: auto; max-width: 520px; padding: 18px; line-height: 1.5; }
+.j-accueil h1 { font-size: 1.7rem; margin: 4px 0 10px; }
+.j-sur { color: #f2c230; font-weight: 800; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.06em; margin: 0; }
+.j-accueil ul { padding-left: 0; list-style: none; }
+.j-accueil .j-plein { position: static; background: #f2c230; color: #1d2228; box-shadow: none; }
+.j-accueil .j-lien { color: #9ec3ff; }
+.j-alerte { background: #4a1714; padding: 10px; border-radius: 10px; }
+@media (min-width: 900px) { #jeu { max-width: 1200px; margin: 0 auto; } .j-barre { grid-template-columns: auto auto 1fr; } .j-boutons { grid-column: auto; } }
+#jeu [hidden] { display: none !important; }
