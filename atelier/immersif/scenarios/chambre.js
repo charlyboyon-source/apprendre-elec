@@ -51,6 +51,7 @@ export default {
   accueil: "« Bonsoir ! Merci d'être venu si vite. C'est la lumière de la chambre, elle ne marche plus. »",
   merci: "« La lumière ! Merci beaucoup. »",
   vueDepart: "chambre",
+  rapprochees: ["inter", "plafonnier", "module"],
   tempsCible: 45,
   dialogue: {
     max: 5,
@@ -118,7 +119,7 @@ export default {
     { id: "neutre", visible: "dcl-N", cible: "dcl-N", reparation: "serrer",
       titre: "Neutre desserré dans la boîte du plafonnier",
       explication: "Au plafonnier, interrupteur sur « I » : L ↔ terre = 230 V, la phase arrive bien. Mais L ↔ N = 0 V : le neutre ne revient plus au tableau. Dans la boîte DCL, le fil bleu est sorti de sa borne (le luminaire mal fixé bougeait à chaque claquement de porte). Attention : quand le luminaire est branché et l'interrupteur sur « I », ce neutre coupé prend la tension de la phase à travers l'ampoule. Un neutre coupé peut être dangereux." },
-    { id: "ampoule", visible: null, piece: "remplacerAmpoule",
+    { id: "ampoule", visible: null, piece: "remplacerAmpoule", inutiles: ["couper", "vat"],
       titre: "Ampoule grillée",
       explication: "Toutes les tensions sont bonnes : au plafonnier, interrupteur sur « I », L ↔ N = 230 V. Le circuit amène bien la tension jusqu'à la lampe : c'est le récepteur qui ne marche plus. Une ampoule LED ne se teste pas à l'ohmmètre (son électronique interne fausse la mesure) : on essaie une ampoule neuve, et la lumière revient. La cliente n'avait pas d'ampoule de rechange : elle n'avait donc rien essayé. Une LED qui clignote puis s'éteint, c'est souvent son alimentation interne qui lâche." },
     { id: "isolement", visible: "denude", cible: "dcl-L", reparation: "refaire", depart: { diff: false },
@@ -128,7 +129,7 @@ export default {
   ],
   pieces: [
     { id: "remplacerInter", nom: "Mécanisme d'interrupteur", prix: 9, minutes: 10 },
-    { id: "remplacerAmpoule", nom: "Ampoule LED E27", prix: 6, minutes: 2 },
+    { id: "remplacerAmpoule", nom: "Ampoule LED E27", feminin: true, prix: 6, minutes: 2 },
   ],
   liaisons: [
     { a: "L", b: "Ld", si: "diff" }, { a: "N", b: "Nd", si: "diff" },
@@ -209,6 +210,7 @@ export default {
         a.anim("meca", [{ transform: "none" }, { transform: "translate(220px, -40px)" }], 450);
         e.mecaSorti = true; a.temps(1); a.sons.clip();
         a.dire("Tu tires le mécanisme hors de sa boîte : ses bornes L et 1 sont accessibles.");
+        a.rappelTension();
       } else {
         a.anim("meca", [{ transform: "none", opacity: 1 }, { transform: "translate(-200px, 40px) scale(.75)", opacity: 0.6 }], 450);
         e.mecaSorti = false; a.temps(1); a.sons.clip();
@@ -238,6 +240,7 @@ export default {
         a.anim("capot", [{ transform: "none", opacity: 1 }, { transform: "translate(-180px, 240px) rotate(12deg) scale(.5)", opacity: 0.5 }], 480);
         e.capot = false; a.temps(1); a.sons.clip();
         a.dire("Capot retiré : les trois bornes L, N et terre sont devant toi.");
+        a.rappelTension();
       } else { e.capot = true; a.temps(1); a.sons.clip(); a.dire("Capot remis en place."); }
     },
   },
@@ -280,6 +283,12 @@ const T = ["prise-terre", "terre", "dcl-T"];
 function H(ou, quoi, comment, vue, cible) { return { ou, quoi, comment, vue, cible }; }
 const POINTE = '.pointe[data-pointe="rouge"]';
 function indices(a) {
+  const h = indice(a);
+  // sur l'escabeau, on dit d'abord d'en descendre si la suite se passe ailleurs
+  if (h && a.e.vue === "plafonnier" && h.vue && h.vue !== "plafonnier") h.quoi = `Descends de l'escabeau. ${h.quoi}`;
+  return h;
+}
+function indice(a) {
   const e = a.e, p = e.panne.id;
   // a-t-on mesuré x ↔ (une des refs), circuit sous tension (ou coupé) ?
   const m = (x, refs, { lecture, sousTension = true, inter } = {}) => e.mesures.some((r) =>

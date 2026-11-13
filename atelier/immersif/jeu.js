@@ -20,7 +20,7 @@ const CATALOGUE = [
   { id: "borne", fichier: "./scenarios/borne.js", titre: "La voiture qui ne charge pas", lieu: "Garage" },
   { id: "toit", fichier: "./scenarios/toit.js", titre: "Sur le toit", lieu: "Photovoltaïque" },
 ];
-const ETAPES = [["questionner", "Questionner"], ["observer", "Observer"], ["couper", "Couper"], ["vat", "Vérifier l'absence de tension"], ["mesurer", "Mesurer"], ["reparer", "Réparer"], ["essayer", "Essayer"]];
+const ETAPES = [["questionner", "Écouter", "Écouter le client"], ["observer", "Observer", "Constater la panne"], ["couper", "Couper", "Couper le circuit"], ["vat", "VAT", "Vérifier l'absence de tension"], ["mesurer", "Mesurer", "Mesurer"], ["reparer", "Réparer", "Réparer"], ["essayer", "Essayer", "Essayer"]];
 const TUTO = [
   ["👆", "Touche pour agir", "Une vis, une plaque, une manette, une ampoule : touche-la, le jeu fait le geste. Le bon outil est pris tout seul."],
   ["🔍", "Touche pour t'approcher", "Dans une pièce, touche un objet (l'interrupteur, le plafonnier, le tableau) pour t'en approcher. On agit dessus de près."],
@@ -69,6 +69,8 @@ function alimente(a, b) {
 
 /* ---------- Outils pour les interventions ---------- */
 function dire(t, type = "info") { e.bulle = { t, type }; }
+const SOUS_TENSION = "Sous tension : tu ne touches que les parties isolées, seules les pointes touchent les bornes.";
+function rappelTension() { if (e.rappelTension || (S.circuitCoupe && S.circuitCoupe(e))) return; e.rappelTension = true; dire(SOUS_TENSION, "alerte"); }
 function temps(m) { e.minutes += m; }
 function faute(t) { if (!e.fautes.includes(t)) e.fautes.push(t); }
 function electrisation(ou) {
@@ -102,7 +104,7 @@ function tourner(nom, sens, x, y) {
   }
 }
 const finAnimations = () => Promise.race([Promise.all(animations), new Promise((r) => setTimeout(r, 900))]);
-const api = () => ({ e, pot: potentiels(), alimente, dire, temps, faute, electrisation, sons, aller, anim, tourner });
+const api = () => ({ e, pot: potentiels(), alimente, dire, temps, faute, electrisation, sons, aller, anim, tourner, rappelTension });
 
 /* ---------- Partie ---------- */
 function nouvelle(id) {
@@ -179,7 +181,7 @@ function piece(id) {
   temps(p.minutes); e.pieces.push(p); sons.vis();
   const utile = ok !== "inutile" && [].concat(e.panne.piece || []).includes(id);
   if (utile && !e.repare) { e.repare = true; e.loose = null; } else e.piecesInutiles++;
-  dire(`${p.nom} posé (${p.prix} €).`, "ok");
+  dire(`${p.nom} posé${p.feminin ? "e" : ""} (${p.prix} €).`, "ok");
   apres();
 }
 
@@ -231,7 +233,7 @@ function poserPointe(id, b) {
   e[id] = { x: b.x, y: b.y, vis: b.id };
   e.lecture = null; e.pointeChoisie = null;
   const autre = id === "rouge" ? "noir" : "rouge";
-  if (e[autre].vis) { const avant = e.bulle; mesurer(); if (e.lecture && !(e.bulle !== avant && e.bulle.type === "danger")) dire(`<b class="t-val">${e.lecture}</b> ${S.noms[e.rouge.vis]} ↔ ${S.noms[e.noir.vis]}`, "mesure"); }
+  if (e[autre].vis) { e.bulle = null; mesurer(); }
   else dire(`Pointe ${NOM_P[id]} posée sur : ${S.noms[b.id]}. Pose maintenant la pointe ${NOM_P[autre]}.`, "mesure");
 }
 
@@ -371,18 +373,54 @@ function cadrage() {
   const vw = A >= W / H ? W : Math.max(540, Math.min(W, H * A));
   const cx = (S.cadrage && S.cadrage[e.vue]) || 600;
   const vx = Math.max(0, Math.min(W - vw, cx - vw / 2));
-  return { x: vx, y: 0, w: vw, h: H };
+  const zoom = (S.rapprochees || []).includes(e.vue) && boiteUtile();
+  if (!zoom) return { x: vx, y: 0, w: vw, h: H };
+  // vue rapprochée : on cadre serré autour de tout ce qui se touche, l'objet au centre et en grand
+  const m = 26, bw = zoom.x1 - zoom.x0 + 2 * m, bh = zoom.y1 - zoom.y0 + 2 * m;
+  const w = Math.min(vw, Math.max(400, bw, bh * A));
+  const h = Math.min(H, w / A); // si l'image est plus haute que la scène, le cadre garde des bandes (comme sans zoom)
+  const x = Math.max(0, Math.min(W - w, (zoom.x0 + zoom.x1) / 2 - w / 2));
+  const y = Math.max(0, Math.min(H - h, (zoom.y0 + zoom.y1) / 2 - h / 2));
+  return { x, y, w, h };
+}
+// Boîte (coordonnées de la scène) qui contient toutes les zones à toucher de la vue
+function zonesMonde() {
+  const svg = racine.querySelector(".im-scene");
+  const inv = svg.getScreenCTM().inverse();
+  return [...svg.querySelectorAll(".im-vue .t-hit, .im-vue .t-etiq")].map((el) => {
+    const r = el.getBoundingClientRect(); if (!r.width) return null;
+    const a = new DOMPoint(r.left, r.top).matrixTransform(inv), b = new DOMPoint(r.right, r.bottom).matrixTransform(inv);
+    return { x0: a.x, y0: a.y, x1: b.x, y1: b.y };
+  }).filter(Boolean);
+}
+function boiteUtile() {
+  const z = zonesMonde(); if (!z.length) return null;
+  return { x0: Math.min(...z.map((b) => b.x0)), y0: Math.min(...z.map((b) => b.y0)), x1: Math.max(...z.map((b) => b.x1)), y1: Math.max(...z.map((b) => b.y1)) };
+}
+// Place les deux pointes au repos en bas de l'image, là où elles ne cachent aucune zone à toucher
+function placeRepos(vb) {
+  const zones = zonesMonde();
+  const libre = (x, y, autres) => zones.concat(autres).every((b) => x + 40 < b.x0 || x - 40 > b.x1 || y + 4 < b.y0 || y - 118 > b.y1);
+  const pos = [];
+  // d'abord le long du bas, de droite à gauche, puis en remontant
+  for (let y = vb.y + vb.h - 24; y > vb.y + 160 && pos.length < 2; y -= 20)
+    for (let x = vb.x + vb.w - 50; x > vb.x + 50 && pos.length < 2; x -= 8) {
+      const deja = pos.map(([px, py]) => ({ x0: px - 40, x1: px + 40, y0: py - 118, y1: py + 4 }));
+      if (libre(x, y, deja)) pos.push([x, y]);
+    }
+  while (pos.length < 2) pos.push([vb.x + vb.w - 52 - 76 * pos.length, vb.y + vb.h - 24]);
+  return pos;
 }
 function placerPointes() {
   const svg = racine.querySelector(".im-scene");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const vb = cadrage();
   svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
   const mesurable = !!racine.querySelector(".im-scene [data-vis]");
-  const lcd = racine.querySelector(".t-lcd");
-  if (lcd) lcd.hidden = !mesurable;
   const g = racine.querySelector(".im-pointes");
   if (!mesurable || S.sansMultimetre) { g.innerHTML = ""; return; }
-  for (const [id, dx] of [["rouge", 52], ["noir", 128]]) if (e[id].repos) e[id] = { repos: true, x: vb.x + vb.w - dx, y: 726 };
+  const [pr, pn] = placeRepos(vb);
+  for (const [id, [x, y]] of [["rouge", pr], ["noir", pn]]) if (e[id].repos) e[id] = { repos: true, x, y };
   g.innerHTML = pointes(e);
   if (e.pointeChoisie) g.querySelector(`[data-pointe="${e.pointeChoisie}"]`)?.classList.add("t-choisie");
   if (e.pointeChoisie || tenue) montrerCibles(true);
@@ -395,21 +433,42 @@ function surligner() {
   racine.querySelectorAll(".t-guide").forEach((x) => x.classList.remove("t-guide"));
   if (e.mode !== "guide" || e.panneau || e.fini) return;
   const h = aideActuelle(); if (!h) return;
-  const ici = h.cible && racine.querySelector(h.cible);
+  // une pointe est toujours là : elle ne compte que si on est dans la bonne vue
+  const ici = h.cible && !h.cible.startsWith(".pointe") && racine.querySelector(h.cible);
   const sel = ici || !h.vue || h.vue === vueComplete() ? h.cible : cheminVers(h.vue);
   if (sel) racine.querySelectorAll(sel).forEach((x) => x.classList.add("t-guide"));
 }
-function bulleHTML() {
-  if (!e.bulle) return "";
-  const p = e.pointBulle;
-  const style = p ? `style="left:${p.x}px;top:${p.y}px"` : "";
-  return `<p class="t-bulle ${e.bulle.type}${p ? ` pres ${p.bas ? "bas" : "haut"}` : ""}" ${style} role="status">${e.bulle.t}</p>`;
+// Bande d'objectif : le dernier retour s'y affiche quelques secondes, puis l'objectif revient.
+// Aucun texte n'est posé sur l'image.
+let minuterieRetour = null;
+function objectifHTML(h) {
+  if (e.bulle) return `<span class="t-retour ${e.bulle.type}">${e.bulle.t}</span>`;
+  return h ? `<span>👉 ${h.quoi}</span>` : `<b>🎯 ${S.objectif}</b>`;
+}
+function programmerRetour(h) {
+  clearTimeout(minuterieRetour);
+  if (!e.bulle) return;
+  const b = e.bulle;
+  minuterieRetour = setTimeout(() => {
+    if (!e || e.bulle !== b) return;
+    e.bulle = null;
+    const o = racine.querySelector(".t-objectif"); if (o) o.innerHTML = objectifHTML(h);
+  }, b.type === "danger" ? 6000 : b.type === "alerte" ? 5000 : 3500);
+}
+function etapesHTML() {
+  const fait = etapesFaites(), inutiles = e.panne.inutiles || [];
+  const enCours = ETAPES.find(([k]) => !fait[k] && !inutiles.includes(k));
+  return ETAPES.map(([k, court, long]) => {
+    const etat = fait[k] ? "fait" : inutiles.includes(k) ? "inutile" : enCours && enCours[0] === k ? "encours" : "";
+    const dit = fait[k] ? "fait" : etat === "inutile" ? "pas nécessaire ici" : etat === "encours" ? "en cours" : "à faire";
+    return `<li class="${etat}" title="${long} : ${dit}" aria-label="${long} : ${dit}">${court}</li>`;
+  }).join("");
 }
 function rendre() {
   if (!S) { menu(); return; }
   verifierFin();
   racine.classList.add("im2"); document.body.classList.add("atelier-plein");
-  const f = facture(), fait = etapesFaites();
+  const f = facture();
   const vue = S.vues[e.vue](e, api(), e.vueArg);
   const h = e.mode === "guide" && !e.fini ? aideActuelle() : null;
   const panneau = { client: panneauClient, camion: panneauCamion, carnet: panneauCarnet, aide: panneauAide, tuto: panneauTuto, fin: panneauFin }[e.panneau];
@@ -420,16 +479,14 @@ function rendre() {
       <div class="t-compteurs"><span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span></div>
       <button type="button" class="t-quitter" data-action="menu" aria-label="Quitter l'intervention">✕</button>
     </div>
-    <ol class="t-etapes" aria-label="Méthode du dépanneur">${ETAPES.map(([k, l]) => `<li class="${fait[k] ? "fait" : ""}">${fait[k] ? "✓ " : ""}${l}</li>`).join("")}</ol>
-    <div class="t-objectif">${h ? `<span>👉 ${h.quoi}</span>` : `<b>🎯 ${S.objectif}</b>`}</div>
+    <ol class="t-etapes" aria-label="Méthode du dépanneur">${etapesHTML()}</ol>
+    <div class="t-objectif" role="status" data-guide="${h ? h.quoi.replace(/"/g, "&quot;") : ""}">${objectifHTML(h)}</div>
     <div class="t-ecran">
       <svg class="im-scene" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${S.titre}">${DEFS}<g class="im-vue">${vue}</g><g class="t-cibles"></g><g class="im-pointes"></g></svg>
-      ${S.sansMultimetre ? "" : `<output class="t-lcd" aria-label="Écran du multimètre"><small>${e.calibre === "OFF" ? "arrêt" : e.calibre === "V" ? "V~" : "Ω"}</small>${e.calibre === "OFF" ? "" : e.lecture || "- - -"}</output>`}
-      ${bulleHTML()}
       ${panneau ? `<div class="im-voile">${panneau()}</div>` : ""}
     </div>
     <div class="t-barre">
-      ${S.sansMultimetre ? "" : `<div class="t-calibres" role="group" aria-label="Sélecteur du multimètre">${calibres.map(([c, l]) => `<button type="button" class="${e.calibre === c ? "actif" : ""}" data-calibre="${c}">${l}</button>`).join("")}</div>`}
+      ${S.sansMultimetre ? "" : `<div class="t-calibres" role="group" aria-label="Sélecteur du multimètre"><output class="t-lcd" aria-label="Écran du multimètre"><small>${e.calibre === "OFF" ? "arrêt" : e.calibre === "V" ? "V~" : "Ω"}</small>${e.calibre === "OFF" ? "" : e.lecture || "- - -"}</output>${calibres.map(([c, l]) => `<button type="button" class="${e.calibre === c ? "actif" : ""}" data-calibre="${c}">${l}</button>`).join("")}</div>`}
       <div class="t-boutons">
         ${S.dialogue ? `<button type="button" data-panneau="client">💬 ${S.client.court}</button>` : ""}
         ${S.pieces && S.pieces.length ? `<button type="button" data-panneau="camion">🚐 Camionnette</button>` : ""}
@@ -439,6 +496,7 @@ function rendre() {
     </div>`;
   placerPointes();
   surligner();
+  programmerRetour(h);
 }
 addEventListener("resize", () => { if (S && e && !ancien) { placerPointes(); } });
 
@@ -449,13 +507,6 @@ function versSVG(ev) {
   const m = svg.getScreenCTM().inverse();
   const p = new DOMPoint(ev.clientX, ev.clientY).matrixTransform(m);
   return { x: p.x, y: p.y };
-}
-function noterPoint(ev) {
-  const cadre = racine.querySelector(".t-ecran"); if (!cadre) return;
-  const r = cadre.getBoundingClientRect();
-  const x = ev.clientX - r.left, y = ev.clientY - r.top;
-  if (x < 0 || y < 0 || x > r.width || y > r.height) { e.pointBulle = null; return; }
-  e.pointBulle = { x: Math.max(8, Math.min(r.width - 268, x - 130)), y: y > r.height * 0.55 ? y - 18 : y + 30, bas: y > r.height * 0.55 };
 }
 function montrerOutil(ev, icone) {
   const cadre = racine.querySelector(".t-ecran"); if (!cadre || !icone) return;
@@ -489,7 +540,6 @@ let ignorerClic = false;
 racine.addEventListener("pointerup", (ev) => {
   if (!tenue) return;
   const t = tenue; tenue = null; ignorerClic = true;
-  noterPoint(ev);
   if (!t.bouge) {
     // pointe touchée sans la glisser : on la « prend », la prochaine borne touchée la reçoit
     e.pointeChoisie = e.pointeChoisie === t.id ? null : t.id;
@@ -508,7 +558,6 @@ racine.addEventListener("click", async (ev) => {
   if (ancien) return;
   // une pointe est en main : la touche suivante dans l'image la pose sur la borne la plus proche
   if (e && e.pointeChoisie && !e.panneau && ev.target.closest(".im-scene")) {
-    noterPoint(ev);
     const b = plusProche(versSVG(ev), 130);
     if (b) { poserPointe(e.pointeChoisie, b); rendre(); return; }
     e.pointeChoisie = null;
@@ -521,7 +570,7 @@ racine.addEventListener("click", async (ev) => {
   if (d.action === "menu") { S = null; e = null; history.replaceState(null, "", location.pathname); menu(); return; }
   if (!e) return;
   if (e.panneau && !t.closest(".im-voile") && !t.closest(".t-barre")) return;
-  noterPoint(ev);
+  if (d.aller || d.geste || d.vis || d.calibre || d.piece) e.bulle = null;
   const avant = e.vue;
   if (d.aller) { aller(d.aller); montrerOutil(ev, "🚶"); }
   else if (d.geste) {
@@ -545,7 +594,6 @@ racine.addEventListener("click", async (ev) => {
   else if (d.action === "tuto") { if (e.tuto < TUTO.length - 1) e.tuto++; else { ecrire(LS_TUTO, "1"); e.panneau = "client"; } }
   else if (d.action === "fermer") { if (e.debut && e.panneau === "client") { e.debut = false; if (S.entree) S.entree(api()); } e.panneau = null; apres(); }
   else if (d.action === "suivante") { nouvelle(); e.panneau = "client"; }
-  if (e.vue !== avant) e.pointBulle = null;
   rendre();
 });
 racine.addEventListener("keydown", (ev) => {
