@@ -1,5 +1,5 @@
 // Intervention « La lumière de la chambre » (maison, Mme Martin).
-import { vueTableau } from "../commun.js";
+import { vueTableau2, vueModule2 } from "../commun.js";
 import { vueChambre, vueEntree, vueInter, vuePlafonnier } from "./chambre-vues.js";
 
 const RANGEE1 = [
@@ -43,6 +43,7 @@ const NOEUDS = {
 
 export default {
   id: "chambre",
+  v2: true,
   titre: "La lumière de la chambre",
   lieu: "Maison individuelle · chambre du rez-de-chaussée",
   client: { nom: "Mme Martin", court: "Mme Martin", initiales: "MM", teinte: "#c98f6b", role: "Propriétaire de la maison",
@@ -144,54 +145,122 @@ export default {
   noeuds: NOEUDS, noms: NOMS,
   pasDeVis: ["prise-terre", "prise-d", "prise-g"],
   tableau: { rangees: [RANGEE1, RANGEE2] },
-  etat: () => ({ inter: 0, dcl: 0, ampoule: true, ampouleNeuve: false }),
+  etat: () => ({ plaque: true, visMeca: [true, true], mecaSorti: false, luminaire: true, capot: true, ampoule: true, ampouleNeuve: false }),
   majApp(e) {
     if (e.app.inter === undefined) e.app.inter = false;
-    e.app.ampouleMontee = e.dcl === 0 && e.ampoule;
+    e.app.ampouleMontee = e.luminaire && e.ampoule;
   },
   circuitCoupe: (e) => !e.app.dj || !e.app.diff,
   contexte: (e) => `interrupteur sur ${e.app.inter ? "I" : "O"}`,
-  gestesTournevis: ["sortirMeca", "remonterMeca", "ouvrirDcl", "fermerDcl"],
+  voisins(vue) {
+    const z = (v) => `[data-aller="${v}"]`;
+    if (vue === "chambre") return [["inter", z("inter")], ["plafonnier", z("plafonnier")], ["entree", z("entree")]];
+    if (vue === "entree") return [["tableau", z("tableau")], ["chambre", z("chambre")]];
+    if (vue === "tableau") return [["entree", z("entree")], ...[...RANGEE1, ...RANGEE2].map((x) => [`module:${x.cle}`, z(`module:${x.cle}`)])];
+    if (vue.startsWith("module:")) return [["tableau", z("tableau")]];
+    return [["chambre", z("chambre")]];
+  },
   vues: {
     chambre: (e, a) => { e.lampeAllumee = a.alimente("DclL", "DclN"); return vueChambre(e); },
-    entree: (e) => vueEntree(e),
-    tableau: (e) => vueTableau(e, { rangees: [RANGEE1, RANGEE2], relies: ["diff", "dj", "d2", "d3", "d4"], noms: NOMS, retour: "entree" }),
-    inter: (e) => vueInter(e),
+    entree: () => vueEntree(),
+    tableau: (e) => vueTableau2(e, { rangees: [RANGEE1, RANGEE2], retour: "entree" }),
+    module: (e, a, cle) => vueModule2(e, { rangees: [RANGEE1, RANGEE2], relies: ["diff", "dj", "d2", "d3", "d4"], noms: NOMS }, cle),
+    inter: (e, a) => { e.lampeAllumee = a.alimente("DclL", "DclN"); return vueInter(e); },
     plafonnier: (e, a) => { e.lampeAllumee = a.alimente("DclL", "DclN"); return vuePlafonnier(e); },
   },
   entree(a) { a.dire("La chambre est dans la pénombre. L'interrupteur est à côté de la porte, le tableau dans l'entrée."); },
   gestes: {
-    interrupteur(a) { const e = a.e; e.app.inter = !e.app.inter; a.sons.interrupteur(); a.dire(e.app.inter ? "Clic. Interrupteur sur « I »." : "Clic. Interrupteur sur « O »."); },
+    interrupteur(a) {
+      const e = a.e; e.app.inter = !e.app.inter; e.obs = true; e.verifLumiere = true; a.sons.interrupteur();
+      a.anim("touche", [{ transform: "translateY(0)" }, { transform: `translateY(${e.app.inter ? -10 : 10}px)` }], 160);
+    },
     manette(a, cle) {
-      const e = a.e; const tout = [...RANGEE1, ...RANGEE2]; const ap = tout.find((x) => x.cle === cle);
+      const e = a.e; const ap = [...RANGEE1, ...RANGEE2].find((x) => x.cle === cle);
       e.app[cle] = !e.app[cle]; a.sons.disjoncteur(); a.temps(0.5);
+      a.anim(`man-${cle}`, [{ transform: "translateY(0)" }, { transform: `translateY(${e.app[cle] ? -36 : 36}px)` }], 180);
+      if (!e.app[cle] && (cle === "dj" || cle === "diff")) e.coupe = true;
       a.dire(`${ap.etiquette} : manette ${e.app[cle] ? "remontée" : "baissée"}.`);
     },
-    deposerPlaque(a) { a.e.inter = 1; a.temps(1); a.sons.clip(); a.dire("Tu déclipses la plaque de finition. Le mécanisme est tenu par deux vis."); },
-    sortirMeca(a) { a.e.inter = 2; a.temps(3); a.sons.vis(); a.dire("Tu dévisses les deux vis de fixation et tu sors le mécanisme de sa boîte : les bornes sont accessibles en bas."); },
-    remonterMeca(a) { a.e.inter = 0; a.temps(3); a.sons.vis(); a.sons.clip(); a.dire("Mécanisme revissé, plaque reclipsée."); },
-    decrocher(a) { a.e.dcl = 1; a.temps(3); a.sons.clip(); a.dire("Tu montes sur l'escabeau et tu débranches la fiche DCL : le luminaire est décroché."); },
-    raccrocher(a) { a.e.dcl = 0; a.temps(2); a.sons.clip(); a.dire("Luminaire rebranché sur sa prise DCL."); },
-    ouvrirDcl(a) { a.e.dcl = 2; a.temps(2); a.sons.clip(); a.dire("Boîte DCL ouverte : les trois bornes sont devant toi."); },
-    fermerDcl(a) { a.e.dcl = 1; a.temps(2); a.sons.clip(); a.dire("Boîte DCL refermée."); },
-    devisserAmpoule(a) { a.e.ampoule = false; a.temps(1); a.dire("Ampoule dévissée. C'est une ampoule LED : pas de filament à regarder, et l'ohmmètre ne dirait rien de fiable sur son électronique."); },
-    visserAmpoule(a) { a.e.ampoule = true; a.temps(1); a.dire(a.e.ampouleNeuve ? "Ampoule neuve vissée." : "Ampoule revissée."); },
+    plaque(a) {
+      const e = a.e;
+      if (e.plaque) {
+        a.anim("plaque", [{ transform: "none", opacity: 1 }, { transform: "translate(150px, 280px) rotate(-8deg) scale(.47)", opacity: 0.5 }], 480);
+        e.plaque = false; a.temps(1); a.sons.clip();
+        a.dire("Tu glisses le tournevis plat dans l'encoche : la plaque se déclipse. Le mécanisme est tenu par deux vis.");
+      } else if (e.mecaSorti || !e.visMeca.every(Boolean)) a.dire("Revisse d'abord le mécanisme dans sa boîte avant de remettre la plaque.");
+      else { e.plaque = true; a.temps(1); a.sons.clip(); a.dire("Plaque reclipsée."); }
+    },
+    visMeca(a, i) {
+      const e = a.e; i = Number(i);
+      if (e.mecaSorti) { a.dire("Rentre d'abord le mécanisme dans sa boîte."); return; }
+      const x = i ? 566 : 374;
+      if (e.visMeca[i]) {
+        a.tourner(`vismeca-${i}`, "devisser", x, 270); e.visMeca[i] = false; a.temps(0.5);
+        a.dire(e.visMeca.some(Boolean) ? "Une vis est sortie. Il en reste une." : "Les deux vis sont sorties : touche le mécanisme pour le tirer hors de sa boîte.", "ok");
+      } else {
+        a.tourner(null, "serrer", x, 270); e.visMeca[i] = true; a.temps(0.5);
+        a.dire(e.visMeca.every(Boolean) ? "Mécanisme revissé. Tu peux reclipser la plaque." : "Une vis revissée. Il reste l'autre.", "ok");
+      }
+    },
+    meca(a) {
+      const e = a.e;
+      if (!e.mecaSorti) {
+        if (e.visMeca.some(Boolean)) { a.dire("Le mécanisme est encore tenu : touche chacune de ses deux vis pour la dévisser."); return; }
+        a.anim("meca", [{ transform: "none" }, { transform: "translate(220px, -40px)" }], 450);
+        e.mecaSorti = true; a.temps(1); a.sons.clip();
+        a.dire("Tu tires le mécanisme hors de sa boîte : ses bornes L et 1 sont accessibles.");
+      } else {
+        a.anim("meca", [{ transform: "none", opacity: 1 }, { transform: "translate(-200px, 40px) scale(.75)", opacity: 0.6 }], 450);
+        e.mecaSorti = false; a.temps(1); a.sons.clip();
+        a.dire("Mécanisme rentré dans sa boîte. Revisse ses deux vis.");
+      }
+    },
+    ampoule(a) {
+      const e = a.e;
+      if (e.ampoule) {
+        a.anim("ampoule", [{ transform: "none", opacity: 1 }, { transform: "rotate(-300deg) translateY(30px)", opacity: 0.2 }], 520);
+        e.ampoule = false; a.temps(1);
+        a.dire("Ampoule dévissée. C'est une LED : pas de filament à regarder, et l'ohmmètre ne dirait rien de fiable sur son électronique.");
+      } else { e.ampoule = true; a.temps(1); a.dire(e.ampouleNeuve ? "Ampoule neuve vissée." : "Ampoule revissée."); }
+    },
+    luminaire(a) {
+      const e = a.e;
+      if (e.luminaire) {
+        a.anim("luminaire", [{ transform: "none", opacity: 1 }, { transform: "translate(130px, 200px) scale(.6)", opacity: 0.3 }], 520);
+        e.luminaire = false; a.temps(2); a.sons.clip();
+        a.dire("Tu débranches la fiche DCL : le luminaire est décroché. Le capot de la boîte DCL protège encore les bornes.");
+      } else if (!e.capot) a.dire("Remets d'abord le capot de la boîte DCL.");
+      else { e.luminaire = true; a.temps(2); a.sons.clip(); a.dire("Luminaire rebranché sur sa fiche DCL."); }
+    },
+    capot(a) {
+      const e = a.e;
+      if (e.capot) {
+        a.anim("capot", [{ transform: "none", opacity: 1 }, { transform: "translate(-180px, 240px) rotate(12deg) scale(.5)", opacity: 0.5 }], 480);
+        e.capot = false; a.temps(1); a.sons.clip();
+        a.dire("Capot retiré : les trois bornes L, N et terre sont devant toi.");
+      } else { e.capot = true; a.temps(1); a.sons.clip(); a.dire("Capot remis en place."); }
+    },
   },
   apres(a) {
     const e = a.e, f = e.panne.fuite;
-    if (f && !e.repare && e.dcl === 0 && f.every((k) => e.app[k])) {
-      e.app.diff = false; setTimeout(() => a.sons.disjoncteur(), 120);
+    let declenche = false;
+    if (f && !e.repare && e.luminaire && e.capot && f.every((k) => e.app[k])) {
+      e.app.diff = false; declenche = true; setTimeout(() => a.sons.disjoncteur(), 120);
       a.dire("Clac ! Dans l'entrée, le différentiel vient de déclencher. La chambre et le séjour sont dans le noir.", "alerte");
+    }
+    if (e.verifLumiere) {
+      e.verifLumiere = false;
+      if (!declenche) a.dire(!e.app.inter ? "Clic. Interrupteur sur « O »." : a.alimente("DclL", "DclN") ? "Clic. La lumière s'allume !" : "Clic. Interrupteur sur « I »… le plafonnier reste éteint.", e.app.inter && a.alimente("DclL", "DclN") ? "ok" : "info");
     }
   },
   poser(a, id) {
     const e = a.e;
     if (id === "remplacerAmpoule") {
-      if (e.vue !== "plafonnier" || e.dcl !== 0 || e.ampoule) { a.dire("Pour changer l'ampoule, monte au plafonnier et dévisse d'abord l'ancienne."); return false; }
+      if (e.vue !== "plafonnier" || !e.luminaire || e.ampoule) { a.dire("Pour changer l'ampoule : monte au plafonnier et dévisse d'abord l'ancienne."); return false; }
       e.ampouleNeuve = true; e.ampoule = true; return true;
     }
     if (id === "remplacerInter") {
-      if (e.vue !== "inter" || e.inter !== 2) { a.dire("Pour changer le mécanisme, sors-le d'abord de sa boîte."); return false; }
+      if (e.vue !== "inter" || !e.mecaSorti) { a.dire("Pour changer le mécanisme : sors-le d'abord de sa boîte."); return false; }
       if (a.pot.de("IntE") === 230 || a.pot.de("IntS") === 230) { a.electrisation("en débranchant les fils de l'interrupteur"); return false; }
       if (!e.verifies.has("IntE")) a.faute("Tu as remplacé l'interrupteur sans avoir vérifié l'absence de tension sur ses bornes.");
       return true;
@@ -200,6 +269,96 @@ export default {
   },
   termine(a) {
     const e = a.e;
-    return RANGEE1.every((x) => e.app[x.cle]) && a.alimente("DclL", "DclN") && e.inter === 0 && e.dcl === 0 && e.vue === "chambre";
+    return RANGEE1.every((x) => e.app[x.cle]) && a.alimente("DclL", "DclN") && e.plaque && !e.mecaSorti && e.visMeca.every(Boolean) && e.luminaire && e.capot && e.ampoule;
   },
+  objectif: "Trouve pourquoi le plafonnier de la chambre ne s'allume plus, et répare.",
+  indices,
 };
+
+/* ---------- Aide : la prochaine étape du dépanneur, selon ce qui a déjà été fait ---------- */
+const T = ["prise-terre", "terre", "dcl-T"];
+function H(ou, quoi, comment, vue, cible) { return { ou, quoi, comment, vue, cible }; }
+const POINTE = '.pointe[data-pointe="rouge"]';
+function indices(a) {
+  const e = a.e, p = e.panne.id;
+  // a-t-on mesuré x ↔ (une des refs), circuit sous tension (ou coupé) ?
+  const m = (x, refs, { lecture, sousTension = true, inter } = {}) => e.mesures.some((r) =>
+    ((r.a === x && refs.includes(r.b)) || (r.b === x && refs.includes(r.a))) && r.cal === "V" && (!lecture || r.lecture === lecture)
+    && (sousTension ? !r.coupe : r.coupe) && (inter === undefined || r.inter === inter));
+  const couperDj = (pourquoi) => H("Le tableau, dans l'entrée", `${pourquoi} Avant de toucher quoi que ce soit, coupe le disjoncteur « Éclairage chambres ».`,
+    "Entrée → Ouvrir le tableau → touche la manette du disjoncteur « Éclairage chambres » (2e appareil de la rangée du haut) pour la baisser.", "tableau", '[data-geste="manette:dj"]');
+  if (!e.poses.length) return H("Mme Martin (bouton en bas de l'écran)", "Commence par écouter la cliente : pose-lui deux ou trois questions.", "Touche « 💬 Mme Martin », puis choisis une question. Évite celles qui accusent.", null, '[data-panneau="client"]');
+  if (e.repare) return remise(a);
+  if (!e.obs) return H("L'interrupteur de la chambre", "Constate la panne toi-même : appuie sur l'interrupteur et regarde si le plafonnier s'allume.", "Dans la chambre, touche l'interrupteur pour t'en approcher, puis touche sa touche.", "inter", '[data-geste="interrupteur"]');
+  if (p === "isolement") {
+    if (!e.coupe) return couperDj("Le différentiel déclenche dès qu'on allume : un courant fuit vers la terre sur ce circuit.");
+    const o = ouvrirPlafonnier(e); if (o) return o;
+    if (!e.verifies.has("DclL")) return H("La boîte DCL du plafonnier", "Vérifie l'absence de tension avant de toucher : mesure L ↔ terre.", "Calibre V~. Pointe rouge sur la borne L, pointe noire sur la borne de terre : tu dois lire 0 V.", "plafonnier", POINTE);
+    return H("La borne L du DCL", "Regarde le fil orange : il est dénudé trop long et touche le fil de terre. Refais la connexion.", "Touche la borne L : tu recoupes le cuivre abîmé, tu redénudes à la bonne longueur et tu resserres.", "plafonnier", '[data-vis="dcl-L"]');
+  }
+  if (!m("int-E", T)) {
+    const o = accesInter(e); if (o) return o;
+    return H("Les bornes de l'interrupteur", "La phase arrive-t-elle à l'interrupteur ? Mesure entre sa borne L et la terre de la prise.", "Calibre V~ en bas. Pointe rouge sur la borne L, pointe noire sur la broche de terre de la prise. Glisse une pointe, ou touche-la puis touche la borne.", "inter", POINTE);
+  }
+  if (p === "fildj") {
+    if (!m("dj-L", T)) return H("Le disjoncteur « Éclairage chambres »", "Rien n'arrive à l'interrupteur. Remonte au tableau : la sortie du disjoncteur donne-t-elle 230 V ?", "Entrée → tableau → touche le bas du disjoncteur « Éclairage chambres » pour t'en approcher. Mesure sa borne de sortie L (en bas à droite) par rapport au bornier de terre.", "module:dj", POINTE);
+    if (!e.coupe) return couperDj("Le disjoncteur donne 230 V, l'interrupteur rien : la liaison entre les deux est en cause. Regarde la vis de sortie : le fil rouge est mal engagé.");
+    if (!e.verifies.has("DjL")) return H("Le disjoncteur « Éclairage chambres »", "Vérifie l'absence de tension sur sa sortie L avant de serrer.", "Pointe rouge sur la borne de sortie L, pointe noire sur le bornier de terre : 0 V attendu.", "module:dj", POINTE);
+    return H("La borne de sortie L du disjoncteur", "Resserre le fil rouge sous sa vis.", "Touche la borne de sortie L : le tournevis vient serrer.", "module:dj", '[data-vis="dj-L"]');
+  }
+  if (!m("int-E", ["int-S"], { inter: true })) {
+    if (!e.app.inter) return H("La touche de l'interrupteur", "La phase arrive bien. Mets l'interrupteur sur « I » pour tester son contact.", "Touche la touche du mécanisme.", "inter", '[data-geste="interrupteur"]');
+    return H("Les bornes L et 1 de l'interrupteur", "Sur « I », mesure entre ses deux bornes : 0 V, le contact est fermé ; 230 V, il reste ouvert.", "Pointe rouge sur la borne L, pointe noire sur la borne 1.", "inter", POINTE);
+  }
+  if (p === "contact") {
+    if (!e.coupe) return couperDj("Sur « I », il reste 230 V entre L et 1 : le contact ne se ferme plus, le mécanisme est usé.");
+    if (!e.verifies.has("IntE")) return H("Les bornes de l'interrupteur", "Vérifie l'absence de tension avant de débrancher : L ↔ terre de la prise.", "Pointe rouge sur la borne L, pointe noire sur la broche de terre : 0 V attendu.", "inter", POINTE);
+    return H("La camionnette", "Remplace le mécanisme d'interrupteur.", "Touche « 🚐 Camionnette » et choisis le mécanisme d'interrupteur.", null, '[data-panneau="camion"]');
+  }
+  if (p === "sortie") {
+    if (!e.coupe) return couperDj("Le contact est bon (0 V entre L et 1), mais regarde la borne 1 : le fil orange est à moitié sorti.");
+    if (!e.verifies.has("IntS")) return H("La borne 1 de l'interrupteur", "Vérifie l'absence de tension sur la borne 1 avant de serrer.", "Pointe rouge sur la borne 1, pointe noire sur la broche de terre : 0 V attendu.", "inter", POINTE);
+    return H("La borne 1 de l'interrupteur", "Engage bien le fil orange sous la vis et resserre.", "Touche la borne 1 : le tournevis vient serrer.", "inter", '[data-vis="int-S"]');
+  }
+  // neutre ou ampoule : on monte au plafonnier
+  if (!m("dcl-L", ["dcl-N"], { inter: true })) {
+    if (!e.app.inter) return H("La touche de l'interrupteur", "Laisse l'interrupteur sur « I » pour mesurer au plafonnier.", "Touche la touche de l'interrupteur.", "inter", '[data-geste="interrupteur"]');
+    const o = ouvrirPlafonnier(e, "Le contact de l'interrupteur est bon : la phase repart vers le plafonnier. Va voir là-haut."); if (o) return o;
+    return H("Les bornes du DCL", "Interrupteur sur « I », mesure L ↔ N, puis L ↔ terre.", "Pointe rouge sur la borne L, pointe noire sur la borne N, puis sur la terre.", "plafonnier", POINTE);
+  }
+  if (p === "neutre") {
+    if (!e.coupe) return couperDj("La phase arrive (L ↔ terre = 230 V) mais pas le retour : L ↔ N = 0 V. Le neutre est coupé : regarde la borne N.");
+    if (!e.verifies.has("DclN")) return H("La borne N du DCL", "Vérifie l'absence de tension sur la borne N avant de serrer.", "Pointe rouge sur la borne N, pointe noire sur la terre : 0 V attendu.", "plafonnier", POINTE);
+    return H("La borne N du DCL", "Rengage le fil bleu sous sa vis et resserre.", "Touche la borne N : le tournevis vient serrer.", "plafonnier", '[data-vis="dcl-N"]');
+  }
+  // ampoule
+  if (!e.capot) return H("La boîte DCL", "L ↔ N = 230 V : la tension arrive jusqu'au luminaire. Le circuit est bon, c'est la lampe. Remets le capot.", "Touche le capot posé à gauche.", "plafonnier", '[data-geste="capot"]');
+  if (!e.luminaire) return H("Le luminaire", "Raccroche le luminaire.", "Touche le luminaire posé à droite.", "plafonnier", '[data-geste="luminaire"]');
+  if (e.ampoule) return H("L'ampoule", "Dévisse l'ampoule qui ne marche plus.", "Touche l'ampoule.", "plafonnier", '[data-geste="ampoule"]');
+  return H("La camionnette", "Pose une ampoule neuve.", "Touche « 🚐 Camionnette » et choisis l'ampoule LED.", null, '[data-panneau="camion"]');
+}
+function accesInter(e) {
+  if (e.plaque) return H("L'interrupteur de la chambre", "Pour mesurer, il faut accéder aux bornes : commence par déclipser la plaque.", "Approche-toi de l'interrupteur et touche l'encoche sous la plaque.", "inter", '[data-geste="plaque"]');
+  if (!e.mecaSorti && e.visMeca.some(Boolean)) return H("Les vis du mécanisme", "Dévisse les deux vis qui tiennent le mécanisme.", "Touche une vis : le tournevis la dévisse. Puis l'autre.", "inter", `[data-geste="visMeca:${e.visMeca[0] ? 0 : 1}"]`);
+  if (!e.mecaSorti) return H("Le mécanisme", "Sors le mécanisme de sa boîte.", "Touche le mécanisme.", "inter", '[data-geste="meca"]');
+  return null;
+}
+function ouvrirPlafonnier(e, pourquoi = "") {
+  if (e.luminaire) return H("Le plafonnier", `${pourquoi} Décroche le luminaire.`.trim(), "Dans la chambre, touche le plafonnier pour monter sur l'escabeau, puis touche la fiche DCL en haut.", "plafonnier", '[data-geste="luminaire"]');
+  if (e.capot) return H("La boîte DCL", "Retire le capot de la boîte DCL pour voir les bornes.", "Touche le capot.", "plafonnier", '[data-geste="capot"]');
+  return null;
+}
+function remise(a) {
+  const e = a.e;
+  const ok = (q, c, vue, cible) => H("Remise en état", q, c, vue, cible);
+  if (!e.capot) return ok("C'est réparé. Remets le capot de la boîte DCL.", "Touche le capot posé à gauche.", "plafonnier", '[data-geste="capot"]');
+  if (!e.luminaire) return ok("Raccroche le luminaire.", "Touche le luminaire posé à droite.", "plafonnier", '[data-geste="luminaire"]');
+  if (!e.ampoule) return ok("Revisse l'ampoule.", "Touche la douille de l'ampoule.", "plafonnier", '[data-geste="ampoule"]');
+  if (e.mecaSorti) return ok("C'est réparé. Rentre le mécanisme dans sa boîte.", "Touche « Rentrer le mécanisme ».", "inter", '[data-geste="meca"]');
+  if (!e.visMeca.every(Boolean)) return ok("Revisse le mécanisme.", "Touche chaque trou de vis.", "inter", `[data-geste="visMeca:${e.visMeca[0] ? 1 : 0}"]`);
+  if (!e.plaque) return ok("Reclipse la plaque.", "Touche la plaque posée à côté.", "inter", '[data-geste="plaque"]');
+  const bas = RANGEE1.find((x) => !e.app[x.cle]);
+  if (bas) return ok(`Remets le courant : remonte la manette « ${bas.etiquette} ».`, "Entrée → tableau → touche la manette baissée.", "tableau", `[data-geste="manette:${bas.cle}"]`);
+  if (!e.app.inter) return ok("Essaie : allume la lumière.", "Touche la touche de l'interrupteur.", "inter", '[data-geste="interrupteur"]');
+  return ok("Regarde si le plafonnier éclaire.", "Retourne dans la chambre.", "chambre", null);
+}
