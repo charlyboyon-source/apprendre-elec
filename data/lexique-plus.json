@@ -108,7 +108,7 @@
     ]
   },
   "prise de terre": {
-    "chantier": "Sur une construction neuve, la meilleure solution est la boucle en fond de fouille, posée avant de couler les fondations. Sinon, on enfonce un piquet. On mesure ensuite sa résistance en ouvrant la barrette de la borne principale de terre : avec des différentiels 30 mA, on vise 100 Ω au plus.",
+    "chantier": "Sur une construction neuve, la meilleure solution est la boucle en fond de fouille, posée avant de couler les fondations. Sinon, on enfonce un piquet. On mesure ensuite sa résistance en ouvrant la barrette de la borne principale de terre : elle doit valoir 100 Ω au plus, parce que l'AGCP a une sensibilité de 500 mA (50 V / 0,5 A = 100 Ω).",
     "confondre": [
       [
         "conducteur de terre",
