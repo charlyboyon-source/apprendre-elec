@@ -903,5 +903,432 @@
       "défaut d'isolement",
       "terre"
     ]
+  },
+  "volume de sécurité": {
+    "chantier": "En entrant dans une salle d'eau à équiper, le premier réflexe est de repérer la baignoire ou le receveur et de tracer les volumes au mètre. Le volume 1 monte jusqu'à 2,25 m du sol fini ; le volume 2 forme une bande de 60 cm autour, à mesurer à l'horizontale depuis le bord. Une prise posée à 55 cm du bord est en volume 2 : elle est interdite, sauf la prise rasoir à transformateur de séparation.",
+    "confondre": [
+      [
+        "indice IP",
+        "l'indice IP est une propriété du matériel ; le volume est une zone de la pièce qui impose un indice minimal."
+      ],
+      [
+        "hors volume",
+        "le reste de la pièce n'est pas un volume de sécurité, mais tout y reste protégé par un DDR 30 mA."
+      ]
+    ],
+    "voisins": [
+      "IPX4",
+      "IPX7",
+      "TBTS",
+      "LES",
+      "transformateur de séparation"
+    ]
+  },
+  "LES": {
+    "chantier": "Dans une salle d'eau, la LES relie entre elles les canalisations métalliques, les huisseries métalliques et la baignoire si elle est en métal, ainsi que les conducteurs de protection de la pièce. Si deux éléments sont au même potentiel, il n'y a aucune tension entre eux : une personne qui les touche en même temps n'est traversée par aucun courant. Les connexions doivent rester accessibles pour être vérifiées.",
+    "confondre": [
+      [
+        "liaison équipotentielle principale",
+        "la liaison principale relie les grosses canalisations du bâtiment à la borne principale de terre ; la LES agit localement, dans la pièce d'eau."
+      ],
+      [
+        "conducteur de protection",
+        "le conducteur de protection relie les masses d'un circuit à la terre ; la LES relie entre eux les éléments conducteurs de la pièce."
+      ]
+    ],
+    "voisins": [
+      "liaison équipotentielle principale",
+      "volume de sécurité",
+      "conducteur de protection",
+      "masse"
+    ]
+  },
+  "transformateur de séparation": {
+    "chantier": "On le trouve dans la prise rasoir de 20 à 50 VA, la seule prise tolérée en volume 2. Elle ne convient qu'aux petits appareils comme un rasoir ou une brosse à dents : on n'y branche pas un sèche-cheveux. Comme son secondaire n'est pas relié à la terre, aucune boucle de défaut ne peut se fermer à travers le corps de l'utilisateur.",
+    "confondre": [
+      [
+        "transformateur de sécurité",
+        "le transformateur de sécurité abaisse la tension en TBTS (12 V par exemple) ; le transformateur de séparation isole du réseau sans forcément abaisser la tension."
+      ]
+    ],
+    "voisins": [
+      "volume de sécurité",
+      "TBTS",
+      "boucle de défaut",
+      "classe III"
+    ]
+  },
+  "régime de neutre": {
+    "chantier": "Tous les logements raccordés au réseau public sont en régime TT : neutre relié à la terre au poste du distributeur, masses reliées à la prise de terre de la maison. Le régime TN se rencontre surtout dans l'industrie qui possède son propre transformateur, le régime IT là où une coupure au premier défaut serait dangereuse, comme dans certains blocs opératoires.",
+    "confondre": [
+      [
+        "régime TT",
+        "le TT est l'un des trois régimes de neutre, celui des logements."
+      ]
+    ],
+    "voisins": [
+      "régime TT",
+      "prise de terre",
+      "boucle de défaut",
+      "défaut d'isolement",
+      "DDR"
+    ]
+  },
+  "défaut d'isolement": {
+    "chantier": "Causes fréquentes : un câble écrasé par une agrafe, une vis qui traverse une gaine, l'humidité dans une boîte de dérivation, un appareil vieilli. Le différentiel qui déclenche dès qu'on remonte un disjoncteur précis indique souvent un défaut d'isolement sur ce circuit. On le cherche au mégohmmètre, installation hors tension et récepteurs débranchés.",
+    "confondre": [
+      [
+        "court-circuit",
+        "un court-circuit relie la phase au neutre (ou deux phases) ; un défaut d'isolement fait passer du courant vers la masse ou la terre."
+      ]
+    ],
+    "voisins": [
+      "boucle de défaut",
+      "masse",
+      "contact indirect",
+      "DDR",
+      "isolant"
+    ]
+  },
+  "boucle de défaut": {
+    "chantier": "En régime TT, le courant de la boucle de défaut passe par deux prises de terre : celle de la maison et celle du poste du distributeur. Leur résistance limite le courant à une valeur bien trop faible pour faire déclencher un disjoncteur. C'est pour cela que la protection contre les contacts indirects repose sur le différentiel, qui détecte ces faibles courants de fuite.",
+    "confondre": [
+      [
+        "défaut d'isolement",
+        "le défaut d'isolement est la cause ; la boucle de défaut est le chemin que prend ensuite le courant."
+      ]
+    ],
+    "voisins": [
+      "défaut d'isolement",
+      "régime TT",
+      "prise de terre",
+      "DDR",
+      "conducteur de protection"
+    ]
+  },
+  "classe III": {
+    "chantier": "On en rencontre surtout dans les salles d'eau : spots 12 V en volume 0 ou 1, éclairage de balnéo. Le matériel de classe III n'a pas de borne de terre. Il doit être alimenté par un transformateur de sécurité, placé hors de tous les volumes de sécurité, volume caché compris.",
+    "confondre": [
+      [
+        "classe II",
+        "le matériel de classe II fonctionne en 230 V et protège par une double isolation."
+      ],
+      [
+        "TBTS",
+        "la TBTS est la tension d'alimentation ; la classe III est la catégorie du matériel conçu pour elle."
+      ]
+    ],
+    "voisins": [
+      "TBTS",
+      "classe II",
+      "classe I",
+      "volume de sécurité"
+    ]
+  },
+  "double isolation": {
+    "chantier": "Un appareil à double isolation n'a pas de borne de terre : on ne relie jamais un conducteur vert-jaune à son boîtier. Le conducteur de protection reste pourtant tiré jusqu'au point de raccordement (DCL, boîte), car un jour un luminaire de classe I pourra y être branché. Sur la plaque signalétique, on reconnaît la double isolation au double carré.",
+    "confondre": [
+      [
+        "classe II",
+        "la classe II est la catégorie de matériel ; la double isolation est le moyen qu'elle utilise pour protéger."
+      ],
+      [
+        "classe I",
+        "le matériel de classe I est protégé par sa liaison à la terre, pas par une double isolation."
+      ]
+    ],
+    "voisins": [
+      "classe II",
+      "classe I",
+      "isolant",
+      "DCL",
+      "contact indirect"
+    ]
+  },
+  "voisinage": {
+    "chantier": "Exemple : poser un nouveau disjoncteur dans un tableau dont une autre rangée reste sous tension. On travaille alors au voisinage de pièces nues sous tension : il faut une habilitation avec la lettre V (B1V, B2V…), délimiter la zone et poser des protections isolantes (nappes, capots) sur ce qui reste sous tension.",
+    "confondre": [
+      [
+        "travaux sous tension",
+        "au voisinage, on ne touche pas les pièces sous tension ; les travaux sous tension (lettre T) exigent une autre habilitation."
+      ]
+    ],
+    "voisins": [
+      "habilitation électrique",
+      "NF C 18-510",
+      "consignation",
+      "EPI",
+      "contact direct"
+    ]
+  },
+  "EPI": {
+    "chantier": "Avant chaque utilisation, on vérifie les gants isolants : on les gonfle en roulant la manchette pour repérer un trou ou une fissure. En basse tension, on utilise au minimum des gants de classe 00 (500 V). Les EPI ne remplacent pas la consignation : ils protègent quand le risque n'a pas pu être supprimé.",
+    "confondre": [
+      [
+        "protection collective",
+        "nappes isolantes, balisage ou garde-corps protègent toute l'équipe ; l'EPI ne protège que celui qui le porte."
+      ]
+    ],
+    "voisins": [
+      "NF C 18-510",
+      "habilitation électrique",
+      "voisinage",
+      "VAT",
+      "brûlure électrique"
+    ]
+  },
+  "NF C 18-510": {
+    "chantier": "C'est elle qui fixe les symboles d'habilitation (B0, B1V, BR, BC…), les étapes de la consignation et les zones autour des pièces sous tension. Pour l'électricien, elle répond à la question « comment intervenir sans se blesser ? ». Le recyclage de l'habilitation est recommandé tous les 3 ans.",
+    "confondre": [
+      [
+        "NF C 15-100",
+        "la NF C 15-100 dit comment concevoir et réaliser l'installation ; la NF C 18-510 dit comment travailler dessus en sécurité."
+      ],
+      [
+        "NF C 14-100",
+        "la NF C 14-100 concerne le branchement, en amont de l'AGCP."
+      ]
+    ],
+    "voisins": [
+      "habilitation électrique",
+      "consignation",
+      "voisinage",
+      "EPI",
+      "NF C 15-100"
+    ]
+  },
+  "conducteur de terre": {
+    "chantier": "Il sort de terre, depuis le piquet ou la boucle en fond de fouille, et remonte jusqu'à la borne principale de terre, en général dans la GTL. En cuivre nu, sa section est de 25 mm². Sa liaison au piquet se fait par un raccord prévu pour cela, accessible pour pouvoir être contrôlé.",
+    "confondre": [
+      [
+        "conducteur principal de protection",
+        "le conducteur principal de protection part de la borne principale de terre vers le tableau ; le conducteur de terre arrive de la prise de terre."
+      ],
+      [
+        "conducteur de protection",
+        "le conducteur de protection (PE) part du tableau vers les masses de chaque circuit."
+      ]
+    ],
+    "voisins": [
+      "prise de terre",
+      "borne principale de terre",
+      "conducteur principal de protection",
+      "liaison équipotentielle principale"
+    ]
+  },
+  "borne principale de terre": {
+    "chantier": "Avant le passage du Consuel, on ouvre la barrette de coupure pour mesurer la prise de terre seule au telluromètre, puis on la referme et on vérifie le serrage. Il ne faut jamais l'oublier ouverte : toute l'installation se retrouverait sans terre, sans que rien ne le signale.",
+    "confondre": [
+      [
+        "bornier de terre du tableau",
+        "le bornier du tableau distribue la terre aux circuits ; la borne principale de terre est en amont, entre la prise de terre et le tableau."
+      ]
+    ],
+    "voisins": [
+      "conducteur de terre",
+      "conducteur principal de protection",
+      "liaison équipotentielle principale",
+      "prise de terre"
+    ]
+  },
+  "conducteur principal de protection": {
+    "chantier": "Il part de la borne principale de terre et arrive sur le bornier de terre du tableau de répartition. Sa section suit celle de l'arrivée : 16 mm² quand l'arrivée est en 16 mm². Toujours vert-jaune, il ne doit jamais pouvoir être coupé par un appareil de commande ou de protection.",
+    "confondre": [
+      [
+        "conducteur de terre",
+        "le conducteur de terre, en cuivre nu de 25 mm², relie la prise de terre à la borne principale de terre."
+      ],
+      [
+        "conducteur de protection",
+        "les conducteurs de protection des circuits partent du bornier du tableau vers les masses."
+      ]
+    ],
+    "voisins": [
+      "borne principale de terre",
+      "conducteur de terre",
+      "conducteur de protection",
+      "tableau de répartition"
+    ]
+  },
+  "appareillage": {
+    "chantier": "Dans une salle d'eau, la distinction est décisive : le volume caché, sous la baignoire, peut recevoir certains matériels d'utilisation, mais aucun appareillage (ni interrupteur, ni prise, ni boîte de connexion). Ailleurs, l'appareillage se pose à des hauteurs précises, et ses bornes se serrent conducteur par conducteur.",
+    "confondre": [
+      [
+        "matériel d'utilisation",
+        "le luminaire, le chauffe-eau ou la pompe utilisent l'énergie ; l'appareillage sert à commander ou à connecter."
+      ],
+      [
+        "appareil de protection",
+        "les disjoncteurs et différentiels protègent ; ils sont au tableau, pas dans l'appareillage des pièces."
+      ]
+    ],
+    "voisins": [
+      "volume de sécurité",
+      "appareil de commande",
+      "bouton-poussoir",
+      "DCL"
+    ]
+  },
+  "condamnation": {
+    "chantier": "Chaque intervenant pose son propre cadenas et garde la clé sur lui : tant qu'il travaille, lui seul peut rendre le courant. Sur un tableau domestique, on utilise un dispositif de verrouillage qui se fixe sur la manette du disjoncteur. Un « je l'ai coupé, n'y touche pas » lancé à un collègue n'est pas une condamnation.",
+    "confondre": [
+      [
+        "consignation",
+        "la consignation comprend quatre étapes ; la condamnation est la deuxième, après la séparation."
+      ],
+      [
+        "séparation",
+        "séparer, c'est couper la source ; condamner, c'est empêcher qu'on la remette."
+      ]
+    ],
+    "voisins": [
+      "consignation",
+      "VAT",
+      "habilitation électrique",
+      "NF C 18-510"
+    ]
+  },
+  "surintensité": {
+    "chantier": "Quand un disjoncteur saute, la première question est : surcharge ou court-circuit ? Un disjoncteur qui déclenche après plusieurs minutes de fonctionnement fait penser à une surcharge (trop d'appareils). Un déclenchement immédiat, avec parfois un claquement, fait penser à un court-circuit, à rechercher avant de réarmer.",
+    "confondre": [
+      [
+        "courant de fuite",
+        "un courant de fuite vers la terre, même faible, fait déclencher le différentiel ; il ne s'agit pas d'une surintensité."
+      ]
+    ],
+    "voisins": [
+      "surcharge",
+      "court-circuit",
+      "disjoncteur magnétothermique",
+      "calibre",
+      "fusible"
+    ]
+  },
+  "disjoncteur magnétothermique": {
+    "chantier": "C'est le disjoncteur divisionnaire de chaque circuit du tableau. Dans un logement, il coupe à la fois la phase et le neutre. On le choisit par son calibre (d'après la section du câble), sa courbe (C le plus souvent) et son pouvoir de coupure (3 000 A au moins en domestique). Avant de le réarmer après un déclenchement, on cherche toujours la cause.",
+    "confondre": [
+      [
+        "interrupteur différentiel",
+        "l'interrupteur différentiel détecte les fuites de courant à la terre, pas les surintensités."
+      ],
+      [
+        "fusible",
+        "le fusible protège aussi contre les surintensités, mais il fond et doit être remplacé ; le disjoncteur se réarme."
+      ]
+    ],
+    "voisins": [
+      "bilame",
+      "courbe de déclenchement",
+      "calibre",
+      "pouvoir de coupure",
+      "disjoncteur divisionnaire"
+    ]
+  },
+  "bilame": {
+    "chantier": "Un disjoncteur qui vient de déclencher sur surcharge ne se réarme pas tout de suite : son bilame est encore chaud. Ce n'est pas une panne. On profite de ce délai pour chercher l'appareil en trop sur le circuit. Le bilame agit lentement : c'est voulu, pour laisser passer les pointes de courant brèves au démarrage des appareils.",
+    "confondre": [
+      [
+        "électroaimant",
+        "l'électroaimant est le déclencheur magnétique, instantané, contre le court-circuit."
+      ]
+    ],
+    "voisins": [
+      "disjoncteur magnétothermique",
+      "surcharge",
+      "effet Joule",
+      "calibre"
+    ]
+  },
+  "courbe de déclenchement": {
+    "chantier": "Dans un logement, les disjoncteurs divisionnaires sont le plus souvent en courbe C. La courbe B convient aux grandes longueurs de câble, où le courant de court-circuit reste faible. La courbe D est réservée aux appareils qui appellent un très fort courant au démarrage, comme certains moteurs ou transformateurs.",
+    "confondre": [
+      [
+        "calibre",
+        "le calibre fixe le courant que le disjoncteur laisse passer en permanence ; la courbe fixe à partir de combien de fois ce calibre il coupe instantanément."
+      ],
+      [
+        "courbe de sécurité",
+        "la courbe de sécurité concerne le corps humain, pas le disjoncteur."
+      ]
+    ],
+    "voisins": [
+      "disjoncteur magnétothermique",
+      "calibre",
+      "court-circuit",
+      "bilame"
+    ]
+  },
+  "NF C 14-100": {
+    "chantier": "Pour l'électricien, elle fixe une frontière : tout ce qui est en amont de l'AGCP (câble de branchement, coffret, compteur) appartient au distributeur et c'est lui qui le raccorde. On n'y touche pas : le compteur et le capot de l'AGCP sont plombés. Sur un chantier neuf, le coffret de branchement provisoire relève aussi de cette norme.",
+    "confondre": [
+      [
+        "NF C 15-100",
+        "la NF C 15-100 régit l'installation intérieure, en aval de l'AGCP."
+      ],
+      [
+        "NF C 18-510",
+        "la NF C 18-510 concerne la sécurité des personnes qui interviennent."
+      ]
+    ],
+    "voisins": [
+      "AGCP",
+      "NF C 15-100",
+      "panneau de contrôle",
+      "GTL"
+    ]
+  },
+  "tableau de répartition": {
+    "chantier": "En maison individuelle, on prévoit au moins 20 % de modules libres pour les ajouts futurs. Chaque interrupteur différentiel alimente au plus 8 disjoncteurs, et on repère chaque circuit par une étiquette claire (« prises cuisine », « chauffe-eau »). Un tableau propre, peigné et étiqueté se dépanne en quelques minutes.",
+    "confondre": [
+      [
+        "panneau de contrôle",
+        "le panneau de contrôle porte le compteur et l'AGCP ; le tableau de répartition est en aval."
+      ],
+      [
+        "GTL",
+        "la GTL est l'emplacement qui regroupe panneau de contrôle et tableau ; le tableau n'en est qu'une partie."
+      ]
+    ],
+    "voisins": [
+      "interrupteur différentiel",
+      "disjoncteur divisionnaire",
+      "peigne d'alimentation",
+      "GTL",
+      "AGCP"
+    ]
+  },
+  "peigne d'alimentation": {
+    "chantier": "On coupe le peigne à la longueur de la rangée et on ferme ses extrémités avec les embouts isolants prévus. Le peigne doit correspondre aux appareils (même marque ou compatibles, bon nombre de pôles). On l'enfonce à fond dans les bornes avant de serrer, puis on vérifie que chaque dent est bien prise.",
+    "confondre": [
+      [
+        "pontage",
+        "le pontage est un morceau de fil qui relie deux appareils ; le peigne les relie tous d'un coup, plus proprement et plus sûrement."
+      ]
+    ],
+    "voisins": [
+      "tableau de répartition",
+      "interrupteur différentiel",
+      "disjoncteur divisionnaire"
+    ]
+  },
+  "âme": {
+    "chantier": "La section d'un conducteur, en mm², est celle de son âme. Une âme souple se termine par un embout de câblage avant d'aller dans une borne à vis ; une âme rigide s'insère directement. Après serrage, on tire sur chaque conducteur pour vérifier qu'il tient. Le calibre du disjoncteur dépend directement de la section de l'âme : 1,5 mm² pour 16 A au plus, 2,5 mm² pour 20 A.",
+    "confondre": [
+      [
+        "isolant",
+        "l'isolant entoure l'âme ; c'est sa couleur qui indique le rôle du conducteur."
+      ],
+      [
+        "câble",
+        "un câble regroupe plusieurs conducteurs, chacun avec son âme et son isolant."
+      ]
+    ],
+    "voisins": [
+      "conducteur",
+      "câble",
+      "H07V-U",
+      "isolant",
+      "calibre"
+    ]
   }
 }
