@@ -1330,5 +1330,421 @@
       "isolant",
       "calibre"
     ]
+  },
+  "câble": {
+    "chantier": "On le désigne par le nombre et la section de ses conducteurs : 3G2,5 signifie trois conducteurs de 2,5 mm², dont un vert-jaune (le G). Un 5G1,5 en compte cinq de 1,5 mm². Grâce à sa gaine, un câble peut se poser directement à certains endroits, alors que des conducteurs isolés seuls doivent toujours passer sous conduit ou goulotte.",
+    "confondre": [
+      [
+        "conducteur",
+        "un conducteur isolé, c'est une seule âme et son isolant ; le câble en réunit plusieurs sous une gaine."
+      ],
+      [
+        "conduit",
+        "le conduit est le tube dans lequel on passe les conducteurs ou les câbles."
+      ]
+    ],
+    "voisins": [
+      "conducteur",
+      "âme",
+      "H07V-U",
+      "conduit",
+      "chute de tension"
+    ]
+  },
+  "H07V-U": {
+    "chantier": "C'est le fil qu'on tire dans les conduits ICTA et qu'on utilise pour câbler les tableaux. Rigide, il garde la forme qu'on lui donne, ce qui rend le câblage propre. Pour une liaison qui bouge ou un passage serré, on prend du H07V-K, souple, en terminant chaque extrémité par un embout de câblage.",
+    "confondre": [
+      [
+        "câble",
+        "le H07V-U est un conducteur seul, sans gaine : il se pose toujours sous conduit ou goulotte."
+      ],
+      [
+        "H07V-K",
+        "le K désigne une âme souple, à nombreux brins fins."
+      ]
+    ],
+    "voisins": [
+      "âme",
+      "conducteur",
+      "câble",
+      "ICTA",
+      "isolant"
+    ]
+  },
+  "goulotte": {
+    "chantier": "En rénovation, elle évite de saigner les murs. On la fixe de niveau, on prévoit les accessoires d'angle et de raccordement à la bonne dimension, et on ne la remplit pas à ras bord pour pouvoir fermer le couvercle sans pincer les conducteurs. Une goulotte à compartiments permet de séparer le courant fort des câbles de communication.",
+    "confondre": [
+      [
+        "conduit",
+        "le conduit est un tube fermé ; la goulotte s'ouvre par un couvercle sur toute sa longueur."
+      ],
+      [
+        "plinthe technique",
+        "c'est une goulotte en forme de plinthe, posée au bas du mur."
+      ]
+    ],
+    "voisins": [
+      "conduit",
+      "IRL",
+      "ICTA",
+      "câble"
+    ]
+  },
+  "panneau de contrôle": {
+    "chantier": "Il fait partie de la GTL et porte le compteur et l'AGCP. Ses organes de manœuvre se placent à 1,80 m au plus du sol fini, et entre 0,90 m et 1,30 m quand le logement doit être accessible aux personnes à mobilité réduite. La hauteur se prend depuis le sol fini : sur un chantier, on tient compte de l'épaisseur de la chape et du revêtement à venir.",
+    "confondre": [
+      [
+        "tableau de répartition",
+        "le tableau de répartition, en aval, porte les protections des circuits."
+      ],
+      [
+        "GTL",
+        "la GTL est l'emplacement complet ; le panneau de contrôle n'en est qu'une partie."
+      ]
+    ],
+    "voisins": [
+      "AGCP",
+      "GTL",
+      "ETEL",
+      "tableau de répartition",
+      "NF C 14-100"
+    ]
+  },
+  "schéma architectural": {
+    "chantier": "C'est le premier document qu'on reçoit sur un chantier, souvent dessiné sur le plan de l'architecte. On y lit où poser chaque prise, interrupteur et point lumineux, et quel interrupteur commande quelle lampe. Il ne dit rien du nombre de conducteurs : c'est à l'électricien d'en déduire le câblage.",
+    "confondre": [
+      [
+        "schéma développé",
+        "le schéma développé montre le fonctionnement d'un montage, sans tenir compte de l'emplacement des appareils."
+      ],
+      [
+        "schéma unifilaire",
+        "l'unifilaire décrit le tableau et ses circuits, pas la position des appareils dans les pièces."
+      ]
+    ],
+    "voisins": [
+      "schéma unifilaire",
+      "schéma multifilaire",
+      "schéma développé",
+      "simple allumage"
+    ]
+  },
+  "schéma unifilaire": {
+    "chantier": "On le colle souvent dans la porte du tableau : il indique pour chaque circuit l'interrupteur différentiel qui le protège, le calibre du disjoncteur et la section des conducteurs. Un trait barré de trois petits traits obliques représente trois conducteurs. En dépannage, c'est lui qu'on consulte en premier pour savoir quel disjoncteur alimente quelle pièce.",
+    "confondre": [
+      [
+        "schéma multifilaire",
+        "le multifilaire dessine chaque conducteur séparément."
+      ],
+      [
+        "schéma architectural",
+        "l'architectural montre l'emplacement des appareils sur le plan, pas les protections du tableau."
+      ]
+    ],
+    "voisins": [
+      "schéma multifilaire",
+      "schéma architectural",
+      "tableau de répartition",
+      "calibre"
+    ]
+  },
+  "schéma multifilaire": {
+    "chantier": "C'est le schéma qu'on suit pour câbler borne par borne : chaque conducteur y est tracé à sa couleur, rouge pour la phase, bleu pour le neutre, vert-jaune pour la terre, orange pour le retour lampe. Il est plus long à dessiner, mais il ne laisse aucune place au doute.",
+    "confondre": [
+      [
+        "schéma unifilaire",
+        "l'unifilaire regroupe tous les conducteurs d'un circuit en un seul trait."
+      ],
+      [
+        "schéma développé",
+        "le développé explique le fonctionnement, sans représenter les boîtes ni le trajet réel des fils."
+      ]
+    ],
+    "voisins": [
+      "schéma unifilaire",
+      "schéma développé",
+      "schéma architectural",
+      "retour lampe"
+    ]
+  },
+  "simple allumage": {
+    "chantier": "C'est le premier montage qu'on câble en formation, et le plus courant dans un logement. La règle à ne jamais oublier : l'interrupteur coupe la phase, pas le neutre. Sinon, la douille reste sous tension même lampe éteinte, et celui qui change l'ampoule risque une électrisation.",
+    "confondre": [
+      [
+        "va-et-vient",
+        "le va-et-vient commande la même lampe depuis deux endroits."
+      ],
+      [
+        "double allumage",
+        "le double allumage commande deux lampes séparément depuis un seul endroit."
+      ]
+    ],
+    "voisins": [
+      "double allumage",
+      "va-et-vient",
+      "retour lampe",
+      "DCL",
+      "appareil de commande"
+    ]
+  },
+  "double allumage": {
+    "chantier": "On le rencontre par exemple dans un salon avec un plafonnier et des appliques, ou une salle de bain avec plafonnier et éclairage du miroir. La phase arrive sur l'interrupteur double, qui la renvoie sur deux retours lampe, un par point lumineux ; le neutre rejoint directement chacun des deux.",
+    "confondre": [
+      [
+        "simple allumage",
+        "le simple allumage ne commande qu'un seul point lumineux."
+      ],
+      [
+        "va-et-vient",
+        "le va-et-vient commande un point lumineux depuis deux endroits, avec deux navettes."
+      ]
+    ],
+    "voisins": [
+      "simple allumage",
+      "retour lampe",
+      "va-et-vient",
+      "DCL"
+    ]
+  },
+  "DCL": {
+    "chantier": "Chaque point lumineux d'un logement neuf reçoit un DCL : un socle fixé dans la boîte et une fiche sur laquelle on raccorde le luminaire. Il est livré avec une douille provisoire, pratique pour éclairer le chantier avant la pose des luminaires. Le jour où l'on change de lustre, on débranche la fiche sans toucher aux conducteurs.",
+    "confondre": [
+      [
+        "boîte de connexion",
+        "la boîte de connexion raccorde des conducteurs entre eux ; le DCL sert à brancher un luminaire."
+      ]
+    ],
+    "voisins": [
+      "simple allumage",
+      "retour lampe",
+      "conducteur de protection",
+      "double isolation"
+    ]
+  },
+  "navette": {
+    "chantier": "Les deux navettes relient les bornes de sortie des deux interrupteurs de va-et-vient, et dans un permutateur elles passent par l'interrupteur du milieu. Une erreur classique est d'inverser une navette avec la phase ou le retour lampe : le montage marche alors à moitié. On repère donc les navettes avant de raccorder.",
+    "confondre": [
+      [
+        "retour lampe",
+        "le retour lampe va de l'interrupteur à la lampe ; les navettes restent entre les interrupteurs."
+      ]
+    ],
+    "voisins": [
+      "va-et-vient",
+      "permutateur",
+      "retour lampe",
+      "simple allumage"
+    ]
+  },
+  "ECS": {
+    "chantier": "Le chauffe-eau électrique à accumulation a son circuit spécialisé : conducteurs de 2,5 mm² et disjoncteur de 20 A, souvent commandé par un contacteur heures creuses. Dans la méthode aval de calcul d'un interrupteur différentiel, son calibre compte en entier. À l'installation, on remplit toujours la cuve avant la première mise sous tension.",
+    "confondre": [
+      [
+        "groupe de sécurité",
+        "le groupe de sécurité est un organe de plomberie du chauffe-eau, pas un appareil électrique."
+      ]
+    ],
+    "voisins": [
+      "contacteur heures creuses",
+      "heures creuses",
+      "circuit spécialisé",
+      "groupe de sécurité"
+    ]
+  },
+  "groupe de sécurité": {
+    "chantier": "Pendant la chauffe, l'eau se dilate : il est normal qu'un peu d'eau s'écoule par le groupe de sécurité, d'où la nécessité de le raccorder à une évacuation. On le manœuvre régulièrement pour éviter qu'il se bloque. Ce n'est pas un appareil électrique, mais l'électricien le croise à chaque raccordement de chauffe-eau.",
+    "confondre": [
+      [
+        "réducteur de pression",
+        "le réducteur abaisse la pression du réseau d'eau ; le groupe de sécurité protège la cuve contre une surpression."
+      ]
+    ],
+    "voisins": [
+      "ECS",
+      "contacteur heures creuses",
+      "circuit spécialisé"
+    ]
+  },
+  "heures creuses": {
+    "chantier": "Pour que le chauffe-eau ne chauffe qu'en heures creuses, on câble la bobine d'un contacteur heures creuses sur le contact C1-C2 du compteur. Le contacteur a souvent trois positions : automatique, arrêt, marche forcée. En cas de panne d'eau chaude, on vérifie d'abord la position du sélecteur.",
+    "confondre": [
+      [
+        "contacteur heures creuses",
+        "les heures creuses sont des plages horaires ; le contacteur est l'appareil qui s'en sert pour commander un circuit."
+      ]
+    ],
+    "voisins": [
+      "contacteur heures creuses",
+      "ECS",
+      "énergie électrique",
+      "délestage"
+    ]
+  },
+  "IRVE": {
+    "chantier": "Avant d'installer une borne, on vérifie la puissance du contrat et l'état du tableau. Une borne monophasée de 32 A fournit environ 7,4 kW (230 V × 32 A) ; une prise renforcée admet 14 A, soit environ 3,2 kW. Au-delà de 3,7 kW, l'installation est réservée aux professionnels titulaires d'une qualification IRVE.",
+    "confondre": [
+      [
+        "prise renforcée",
+        "la prise renforcée est une solution IRVE d'appoint, en mode 2 ; la borne travaille en mode 3."
+      ]
+    ],
+    "voisins": [
+      "mode de charge",
+      "circuit spécialisé",
+      "délestage",
+      "DDR"
+    ]
+  },
+  "mode de charge": {
+    "chantier": "Le mode 1, voiture branchée sur une prise ordinaire sans boîtier de contrôle, est à proscrire. Le mode 2 se fait sur une prise, de préférence renforcée, avec le boîtier de contrôle sur le câble. Le mode 3, sur borne dédiée, est la solution normale au domicile. Le mode 4 concerne la charge rapide en courant continu, sur les stations publiques.",
+    "confondre": [
+      [
+        "puissance de charge",
+        "le mode décrit la façon de charger ; la puissance (3,2 kW, 7,4 kW, 22 kW…) dépend du circuit et du matériel."
+      ]
+    ],
+    "voisins": [
+      "IRVE",
+      "délestage",
+      "circuit spécialisé"
+    ]
+  },
+  "domotique": {
+    "chantier": "Une bonne installation domotique garde toujours une commande locale : si le système tombe en panne, on doit pouvoir allumer la lumière ou couper le chauffage à la main. L'électricien prévoit aussi les conducteurs nécessaires (neutre dans les boîtes, liaisons de commande) au moment du gros œuvre, car les ajouter après coûte cher.",
+    "confondre": [
+      [
+        "télérupteur",
+        "un télérupteur est un simple appareil de commande ; la domotique fait communiquer capteurs, commande et actionneurs."
+      ]
+    ],
+    "voisins": [
+      "actionneur",
+      "délestage",
+      "télérupteur",
+      "contacteur heures creuses"
+    ]
+  },
+  "actionneur": {
+    "chantier": "Un actionneur placé dans une boîte d'encastrement ou au tableau commande un circuit, mais il ne le protège pas : le disjoncteur et le différentiel restent indispensables. On respecte la puissance maximale indiquée dans sa notice, surtout pour les moteurs et les éclairages à led, qui appellent un fort courant à l'allumage.",
+    "confondre": [
+      [
+        "capteur",
+        "le capteur informe (température, présence, ouverture) ; l'actionneur agit."
+      ],
+      [
+        "appareil de protection",
+        "l'actionneur commande ; le disjoncteur protège."
+      ]
+    ],
+    "voisins": [
+      "domotique",
+      "délestage",
+      "appareil de commande",
+      "appareil de protection"
+    ]
+  },
+  "délestage": {
+    "chantier": "Le délesteur surveille le courant appelé et coupe d'abord un appareil non prioritaire, comme un radiateur ou le chauffe-eau, avant que l'AGCP ne déclenche. Il est très utile avec une borne de recharge : on évite ainsi d'augmenter la puissance du contrat. Quand la consommation baisse, l'appareil délesté se remet en marche automatiquement.",
+    "confondre": [
+      [
+        "déclenchement",
+        "le délestage coupe un appareil choisi ; le déclenchement de l'AGCP coupe toute l'installation."
+      ]
+    ],
+    "voisins": [
+      "AGCP",
+      "domotique",
+      "IRVE",
+      "heures creuses",
+      "actionneur"
+    ]
+  },
+  "effet photovoltaïque": {
+    "chantier": "La conséquence pratique est majeure : les panneaux produisent dès qu'ils sont éclairés, et on ne peut pas les éteindre. Ouvrir l'AGCP ne coupe pas la partie en courant continu, entre les panneaux et l'onduleur. On travaille dessus en se protégeant comme sur une installation sous tension, ou après avoir occulté les panneaux. Même par temps couvert, la tension apparaît : seul le courant produit diminue.",
+    "confondre": [
+      [
+        "solaire thermique",
+        "les capteurs solaires thermiques chauffent de l'eau ; les panneaux photovoltaïques produisent de l'électricité."
+      ],
+      [
+        "courant alternatif",
+        "la cellule produit du courant continu ; c'est l'onduleur qui le transforme en alternatif."
+      ]
+    ],
+    "voisins": [
+      "watt-crête",
+      "chaîne photovoltaïque",
+      "onduleur",
+      "générateur",
+      "autoconsommation"
+    ]
+  },
+  "watt-crête": {
+    "chantier": "Un module courant fait par exemple 400 Wc. Dix modules de 400 Wc forment une installation de 4 kWc, ce qui ne veut pas dire qu'elle produit 4 kW en permanence : la production réelle dépend de l'orientation, de l'inclinaison, de la saison, de la température et de l'ombre. Pour comparer deux modules de même taille, on regarde leur puissance en Wc.",
+    "confondre": [
+      [
+        "kWh",
+        "le watt-crête est une puissance maximale ; la production d'une année se compte en kWh."
+      ],
+      [
+        "watt",
+        "le watt mesure une puissance quelconque ; le watt-crête est la puissance d'un module dans les conditions d'essai de référence."
+      ]
+    ],
+    "voisins": [
+      "effet photovoltaïque",
+      "chaîne photovoltaïque",
+      "onduleur",
+      "énergie électrique"
+    ]
+  },
+  "chaîne photovoltaïque": {
+    "chantier": "Parce que les tensions s'additionnent, une chaîne de modules atteint plusieurs centaines de volts en courant continu. Le continu ne passe pas par zéro : un arc qui s'amorce ne s'éteint pas tout seul. On ne débranche donc jamais un connecteur en charge : on ouvre d'abord l'interrupteur-sectionneur prévu pour couper du continu. Avant de raccorder une chaîne à l'onduleur, on vérifie sa polarité et sa tension au multimètre, calibre continu.",
+    "confondre": [
+      [
+        "association en parallèle",
+        "en parallèle, les tensions ne s'additionnent pas, ce sont les courants."
+      ],
+      [
+        "champ photovoltaïque",
+        "le champ désigne l'ensemble des modules d'une installation, qui peut compter plusieurs chaînes."
+      ]
+    ],
+    "voisins": [
+      "association en série",
+      "effet photovoltaïque",
+      "onduleur",
+      "watt-crête"
+    ]
+  },
+  "onduleur": {
+    "chantier": "L'onduleur assure le découplage : si le réseau disparaît, par exemple pour des travaux, il s'arrête aussitôt d'injecter. Sans cela, l'installation pourrait remettre sous tension une ligne que des techniciens croient coupée. Il ajuste aussi en permanence son fonctionnement pour tirer le maximum de puissance des panneaux.",
+    "confondre": [
+      [
+        "onduleur informatique",
+        "l'onduleur d'un ordinateur est une alimentation de secours à batterie ; ce n'est pas le même appareil."
+      ]
+    ],
+    "voisins": [
+      "chaîne photovoltaïque",
+      "effet photovoltaïque",
+      "fréquence",
+      "autoconsommation"
+    ]
+  },
+  "autoconsommation": {
+    "chantier": "Pour en profiter, on fait fonctionner les gros appareils quand les panneaux produisent : chauffe-eau, lave-linge ou recharge de voiture en milieu de journée plutôt que la nuit. Avec la vente du surplus, le compteur mesure séparément l'énergie soutirée au réseau et l'énergie injectée.",
+    "confondre": [
+      [
+        "vente totale",
+        "en vente totale, toute la production part sur le réseau ; le logement ne consomme pas directement ce qu'il produit."
+      ]
+    ],
+    "voisins": [
+      "onduleur",
+      "effet photovoltaïque",
+      "délestage",
+      "heures creuses"
+    ]
   }
 }
