@@ -497,5 +497,411 @@
       "disjoncteur magnétothermique",
       "défaut d'isolement"
     ]
+  },
+  "électron": {
+    "chantier": "On ne voit jamais un électron, mais on choisit le matériel en fonction de lui : le cuivre des conducteurs est utilisé parce que ses électrons libres se déplacent très facilement, alors que le PVC des gaines n'en a presque pas. Les électrons avancent lentement dans le fil ; c'est la mise en mouvement de tous les électrons du circuit qui est quasi instantanée, c'est pourquoi la lampe s'allume dès qu'on ferme l'interrupteur.",
+    "confondre": [
+      [
+        "courant électrique",
+        "le courant est le déplacement ordonné de très nombreux électrons, pas l'électron lui-même."
+      ],
+      [
+        "sens conventionnel",
+        "les électrons vont du − vers le + à l'extérieur du générateur, le sens conventionnel va du + vers le −."
+      ]
+    ],
+    "voisins": [
+      "conducteur",
+      "isolant",
+      "courant électrique",
+      "sens conventionnel",
+      "intensité"
+    ]
+  },
+  "conducteur": {
+    "chantier": "Sur le chantier, le mot désigne surtout les fils : on parle de conducteur de phase, de neutre ou de protection. Chacun se repère à la couleur de son isolant : rouge (ou marron, noir) pour la phase, bleu pour le neutre, vert-jaune pour la terre. Le vert-jaune est réservé au conducteur de protection : on ne l'utilise jamais pour autre chose.",
+    "confondre": [
+      [
+        "câble",
+        "un câble réunit plusieurs conducteurs isolés sous une gaine commune."
+      ],
+      [
+        "isolant",
+        "l'isolant empêche le courant de passer ; il entoure l'âme du conducteur."
+      ]
+    ],
+    "voisins": [
+      "isolant",
+      "âme",
+      "câble",
+      "électron",
+      "H07V-U"
+    ]
+  },
+  "courant électrique": {
+    "chantier": "Pour mesurer le courant, on place l'ampèremètre en série dans le circuit, ou on utilise une pince ampèremétrique, plus pratique : elle mesure sans rien débrancher. La pince se referme autour d'un seul conducteur, la phase par exemple. Autour d'un câble entier, l'aller et le retour s'annulent et la pince affiche presque zéro.",
+    "confondre": [
+      [
+        "tension",
+        "la tension est la différence de potentiel qui pousse le courant ; elle se mesure en volts, en parallèle."
+      ],
+      [
+        "intensité",
+        "l'intensité est la valeur du courant, en ampères."
+      ],
+      [
+        "courant alternatif",
+        "le courant alternatif est une forme de courant électrique qui change de sens 100 fois par seconde, comme celui du réseau ; le courant d'une pile, lui, est continu."
+      ]
+    ],
+    "voisins": [
+      "intensité",
+      "électron",
+      "sens conventionnel",
+      "générateur",
+      "loi d'Ohm"
+    ]
+  },
+  "sens conventionnel": {
+    "chantier": "Le sens du courant compte surtout en courant continu : batterie, panneaux photovoltaïques, alimentation 12 V de leds. Inverser le + et le − peut empêcher un appareil de fonctionner, voire l'abîmer. Sur un schéma, la flèche du courant part toujours de la borne + du générateur.",
+    "confondre": [
+      [
+        "électron",
+        "les électrons circulent en sens inverse du sens conventionnel."
+      ],
+      [
+        "courant alternatif",
+        "en alternatif, le sens change 100 fois par seconde : on ne parle plus de + et de −, mais de phase et de neutre."
+      ]
+    ],
+    "voisins": [
+      "courant électrique",
+      "électron",
+      "générateur",
+      "courant alternatif"
+    ]
+  },
+  "énergie électrique": {
+    "chantier": "C'est l'énergie, et non la puissance, que le client paie. Un radiateur de 2 000 W qui chauffe 3 heures consomme 2 kW × 3 h = 6 kWh. Pour comparer deux appareils, il faut donc tenir compte de leur durée d'utilisation : une petite puissance allumée toute la journée peut coûter plus cher qu'une grosse puissance allumée quelques minutes.",
+    "confondre": [
+      [
+        "puissance",
+        "la puissance (en watts) dit à quel rythme un appareil consomme ; l'énergie (en kWh) dit combien il a consommé en tout."
+      ]
+    ],
+    "voisins": [
+      "puissance",
+      "heures creuses",
+      "effet Joule",
+      "délestage"
+    ]
+  },
+  "générateur": {
+    "chantier": "Dans un logement, le générateur, pour l'électricien, c'est le réseau : la tension arrive du poste de transformation par le branchement, jusqu'à l'AGCP. Sur une installation photovoltaïque, les panneaux sont aussi des générateurs : ils produisent du courant continu dès qu'ils sont éclairés, même quand l'installation est coupée côté réseau.",
+    "confondre": [
+      [
+        "récepteur",
+        "le récepteur consomme l'énergie que le générateur fournit."
+      ]
+    ],
+    "voisins": [
+      "récepteur",
+      "tension",
+      "courant électrique",
+      "effet photovoltaïque",
+      "onduleur"
+    ]
+  },
+  "appareil de protection": {
+    "chantier": "Au tableau, chaque circuit a son appareil de protection contre les surintensités, et chaque groupe de circuits passe par un interrupteur différentiel 30 mA. Le calibre du disjoncteur se choisit d'après la section des conducteurs du circuit : il protège le câble, pas l'appareil branché au bout.",
+    "confondre": [
+      [
+        "appareil de commande",
+        "l'interrupteur allume et éteint à la demande ; l'appareil de protection coupe tout seul en cas d'anomalie."
+      ]
+    ],
+    "voisins": [
+      "fusible",
+      "disjoncteur",
+      "DDR",
+      "calibre",
+      "appareil de commande"
+    ]
+  },
+  "surcharge": {
+    "chantier": "Exemple typique : un radiateur d'appoint de 2 000 W et une bouilloire de 2 200 W branchés sur la même prise multiple. Ensemble, ils appellent 4 200 W / 230 V ≈ 18 A sur un circuit protégé à 16 A. Le disjoncteur ne coupe pas tout de suite : son bilame chauffe, puis il déclenche au bout d'un moment, d'autant plus vite que la surcharge est forte.",
+    "confondre": [
+      [
+        "court-circuit",
+        "le court-circuit est un courant énorme et soudain, coupé presque instantanément par le déclencheur magnétique."
+      ]
+    ],
+    "voisins": [
+      "surintensité",
+      "court-circuit",
+      "bilame",
+      "calibre",
+      "effet Joule"
+    ]
+  },
+  "fusible": {
+    "chantier": "On en trouve encore dans les anciens tableaux et dans certains appareils. Un fusible fondu se remplace toujours par un fusible du même calibre, jamais d'un calibre supérieur : sinon le câble n'est plus protégé. Avant de remplacer, on cherche pourquoi il a fondu, sinon le nouveau fondra à son tour.",
+    "confondre": [
+      [
+        "disjoncteur",
+        "le disjoncteur se réarme après avoir coupé ; le fusible fondu doit être remplacé."
+      ]
+    ],
+    "voisins": [
+      "disjoncteur",
+      "calibre",
+      "pouvoir de coupure",
+      "surintensité",
+      "appareil de protection"
+    ]
+  },
+  "association en série": {
+    "chantier": "Dans une installation, on met en série l'interrupteur et la lampe qu'il commande : le courant traverse l'un puis l'autre, c'est pourquoi ouvrir l'interrupteur éteint la lampe. En revanche, on ne branche jamais deux récepteurs 230 V en série : chacun n'aurait qu'une partie de la tension et fonctionnerait mal. Une guirlande ancienne montre le défaut du montage : une ampoule grillée, et toute la guirlande s'éteint.",
+    "confondre": [
+      [
+        "association en parallèle",
+        "en parallèle, chaque récepteur reçoit toute la tension et fonctionne indépendamment des autres."
+      ]
+    ],
+    "voisins": [
+      "association en parallèle",
+      "résistance équivalente",
+      "loi d'Ohm",
+      "appareil de commande"
+    ]
+  },
+  "association en parallèle": {
+    "chantier": "Toutes les prises d'un même circuit sont en parallèle : chacune reçoit 230 V, et débrancher un appareil ne change rien pour les autres. En revanche, les courants s'additionnent dans le câble : c'est pour cela qu'un circuit de prises a un nombre maximal de prises et un disjoncteur adapté à sa section.",
+    "confondre": [
+      [
+        "association en série",
+        "en série, le même courant traverse tous les récepteurs et les tensions se partagent."
+      ]
+    ],
+    "voisins": [
+      "association en série",
+      "résistance équivalente",
+      "intensité",
+      "surcharge"
+    ]
+  },
+  "résistance équivalente": {
+    "chantier": "Deux résistances de 100 Ω donnent 200 Ω en série et 50 Ω en parallèle. À retenir : en parallèle, la résistance équivalente est toujours plus petite que la plus petite des résistances. C'est pourquoi chaque appareil branché en plus sur un circuit fait monter le courant total.",
+    "confondre": [
+      [
+        "résistance",
+        "la résistance est celle d'un seul élément ; la résistance équivalente remplace tout un groupement."
+      ]
+    ],
+    "voisins": [
+      "résistance",
+      "association en série",
+      "association en parallèle",
+      "loi d'Ohm"
+    ]
+  },
+  "période": {
+    "chantier": "À 50 Hz, une période dure 20 ms, et la tension passe par zéro deux fois par période, donc 100 fois par seconde. L'électricien mesure rarement une période lui-même, mais elle sert de repère : un éclairage mal filtré peut scintiller 100 fois par seconde, et un différentiel qui coupe en 40 ms laisse passer deux périodes. Le réseau ne change jamais de rythme : 50 périodes par seconde, partout en France.",
+    "confondre": [
+      [
+        "fréquence",
+        "la fréquence est le nombre de périodes par seconde : f = 1/T."
+      ],
+      [
+        "valeur efficace",
+        "la valeur efficace (230 V) décrit la grandeur de la tension, la période décrit son rythme."
+      ]
+    ],
+    "voisins": [
+      "fréquence",
+      "courant alternatif",
+      "valeur efficace"
+    ]
+  },
+  "fréquence": {
+    "chantier": "En Europe, le réseau est à 50 Hz ; en Amérique du Nord, à 60 Hz. Un onduleur photovoltaïque doit fournir exactement la fréquence du réseau pour pouvoir y injecter son courant ; si la fréquence sort de la plage admise, il se découple. Le multimètre peut l'afficher, en position Hz.",
+    "confondre": [
+      [
+        "période",
+        "la période est la durée d'un cycle, en secondes ; la fréquence est le nombre de cycles par seconde."
+      ]
+    ],
+    "voisins": [
+      "période",
+      "courant alternatif",
+      "valeur efficace",
+      "onduleur"
+    ]
+  },
+  "valeur efficace": {
+    "chantier": "Quand le multimètre affiche 230 V en position V~, c'est une valeur efficace. La tension monte pourtant à environ 325 V à chaque crête, et les isolants doivent le supporter. Pour mesurer correctement des courants déformés (variateurs, leds, électronique), on préfère un appareil « TRMS », qui calcule la vraie valeur efficace.",
+    "confondre": [
+      [
+        "tension",
+        "la tension efficace (230 V) n'est pas la tension maximale atteinte (environ 325 V)."
+      ]
+    ],
+    "voisins": [
+      "courant alternatif",
+      "tension",
+      "fréquence",
+      "période"
+    ]
+  },
+  "électrisation": {
+    "chantier": "Face à une victime encore en contact, on ne la touche pas : on coupe d'abord le courant (disjoncteur, AGCP). Ensuite on alerte les secours (15, 18 ou 112) et on applique les gestes de premiers secours. Même une électrisation qui paraît bénigne doit être vue par un médecin : le courant peut avoir touché le cœur ou brûlé en profondeur.",
+    "confondre": [
+      [
+        "électrocution",
+        "l'électrocution est une électrisation mortelle."
+      ]
+    ],
+    "voisins": [
+      "électrocution",
+      "tétanisation",
+      "fibrillation ventriculaire",
+      "brûlure électrique",
+      "contact direct"
+    ]
+  },
+  "électrocution": {
+    "chantier": "Le mot est souvent mal employé : quelqu'un qui « s'est électrocuté » et en parle le lendemain a été électrisé. Sur un rapport d'accident ou à l'examen, on emploie le mot juste. L'électrocution est le plus souvent due à une fibrillation ventriculaire ou à un arrêt respiratoire provoqué par le courant. Les victimes d'électrisation sont toujours examinées à l'hôpital, pour vérifier que le cœur n'a pas été touché.",
+    "confondre": [
+      [
+        "électrisation",
+        "l'électrisation désigne tout passage de courant dans le corps, mortel ou non."
+      ],
+      [
+        "brûlure électrique",
+        "la brûlure est une blessure due à l'effet Joule ; elle accompagne souvent une électrisation et peut être très grave sans être mortelle."
+      ]
+    ],
+    "voisins": [
+      "électrisation",
+      "fibrillation ventriculaire",
+      "tétanisation",
+      "tension limite de sécurité"
+    ]
+  },
+  "tétanisation": {
+    "chantier": "C'est le piège de la main qui saisit un conducteur sous tension : les muscles qui ferment la main se contractent et la victime ne peut plus lâcher, ce qui prolonge le passage du courant. C'est une des raisons pour lesquelles on vérifie l'absence de tension avant de toucher, et pourquoi le DDR 30 mA doit couper en une fraction de seconde.",
+    "confondre": [
+      [
+        "fibrillation ventriculaire",
+        "la fibrillation touche le cœur, à des intensités plus élevées (vers 75 mA)."
+      ]
+    ],
+    "voisins": [
+      "électrisation",
+      "fibrillation ventriculaire",
+      "sensibilité",
+      "DDR"
+    ]
+  },
+  "fibrillation ventriculaire": {
+    "chantier": "En cas de fibrillation, seul un défibrillateur peut rétablir le rythme du cœur. Sur un chantier, il faut savoir où se trouve le défibrillateur automatisé externe (DAE) le plus proche. Les appareils de protection sont réglés pour couper bien avant ce seuil : c'est tout l'intérêt de la sensibilité 30 mA.",
+    "confondre": [
+      [
+        "tétanisation",
+        "la tétanisation bloque les muscles des membres ou de la respiration, à des intensités plus faibles."
+      ]
+    ],
+    "voisins": [
+      "tétanisation",
+      "électrocution",
+      "électrisation",
+      "sensibilité"
+    ]
+  },
+  "courbe de sécurité": {
+    "chantier": "Elle explique deux règles du métier : la tension limite de sécurité (50 V en alternatif en milieu sec, plus basse en milieu mouillé) et l'obligation de couper vite quand une masse est mise sous tension. Une tension de contact faible peut être supportée longtemps ; une tension de contact élevée doit être coupée en quelques fractions de seconde.",
+    "confondre": [
+      [
+        "courbe de déclenchement",
+        "la courbe de déclenchement (B, C, D) concerne le disjoncteur, pas le corps humain."
+      ],
+      [
+        "tension de contact",
+        "la tension de contact est la valeur subie à un instant donné ; la courbe dit combien de temps on peut la supporter."
+      ]
+    ],
+    "voisins": [
+      "tension limite de sécurité",
+      "tension de contact",
+      "DDR",
+      "contact indirect"
+    ]
+  },
+  "brûlure électrique": {
+    "chantier": "Le cas le plus courant chez les électriciens est l'arc électrique : un court-circuit provoqué par un outil entre deux bornes sous tension dégage une chaleur intense et projette du métal fondu. On s'en protège en travaillant hors tension, et sinon avec des EPI adaptés : écran facial, gants isolants, vêtements non propagateurs de flamme.",
+    "confondre": [
+      [
+        "effet Joule",
+        "l'effet Joule est le phénomène physique (le courant chauffe) ; la brûlure est la blessure qu'il provoque dans le corps."
+      ]
+    ],
+    "voisins": [
+      "électrisation",
+      "court-circuit",
+      "EPI",
+      "effet Joule"
+    ]
+  },
+  "contact direct": {
+    "chantier": "Exemples : retirer le capot d'un tableau sous tension, toucher le bout dénudé d'un fil, introduire un tournevis dans une prise. Le matériel doit empêcher le doigt d'atteindre les parties sous tension (indice de protection IP 2X au moins). Avant d'intervenir, on consigne : c'est la seule vraie protection.",
+    "confondre": [
+      [
+        "contact indirect",
+        "dans un contact indirect, on touche une masse qui n'aurait jamais dû être sous tension."
+      ]
+    ],
+    "voisins": [
+      "contact indirect",
+      "consignation",
+      "DDR",
+      "indice IP",
+      "VAT"
+    ]
+  },
+  "contact indirect": {
+    "chantier": "Exemple : un fil de phase abîmé touche la carcasse métallique d'un lave-linge. Si la carcasse est reliée à la terre, le courant de défaut s'écoule par le conducteur de protection et le différentiel coupe. Sans conducteur de protection, la carcasse reste sous tension et la prochaine personne qui la touche sert de chemin vers la terre.",
+    "confondre": [
+      [
+        "contact direct",
+        "dans un contact direct, on touche une pièce normalement sous tension."
+      ]
+    ],
+    "voisins": [
+      "contact direct",
+      "masse",
+      "défaut d'isolement",
+      "conducteur de protection",
+      "DDR"
+    ]
+  },
+  "masse": {
+    "chantier": "Toutes les masses des appareils de classe I (lave-linge, four, radiateur métallique) se relient au conducteur de protection vert-jaune. Une masse est inoffensive tant que l'isolement est bon ; elle devient dangereuse lors d'un défaut d'isolement, et c'est la liaison à la terre qui permet alors au différentiel de couper.",
+    "confondre": [
+      [
+        "masse (automobile, électronique)",
+        "dans une voiture ou un montage électronique, la « masse » est le 0 V du circuit, ce n'est pas le même sens qu'en installation électrique."
+      ],
+      [
+        "terre",
+        "la terre est le sol et la prise de terre ; la masse est la partie métallique de l'appareil qu'on y relie."
+      ]
+    ],
+    "voisins": [
+      "contact indirect",
+      "classe I",
+      "conducteur de protection",
+      "défaut d'isolement",
+      "terre"
+    ]
   }
 }
