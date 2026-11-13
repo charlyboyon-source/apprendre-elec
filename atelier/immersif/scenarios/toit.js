@@ -169,10 +169,10 @@ export default {
       const p = a.e.prepa;
       const bt = (k, l) => `<button type="button" class="im-question ${p[k] ? "choisi" : ""}" data-s="prepa:${k}">${p[k] ? "✔ " : ""}${l}</button>`;
       return `<h2>Avant de monter</h2>
-        <p>Toiture en pente, gouttière à 5 m, pas d'échafaudage. Prépare-toi.</p>
+        <p>Toiture en pente, gouttière à 5 m, échelle de 6 m, pas d'échafaudage. Prépare-toi.</p>
         ${bt("harnais", "Harnais antichute et longe")}${bt("casque", "Casque avec jugulaire")}${bt("ancrage", "S'accrocher à la ligne de vie dès qu'on arrive sur le toit")}
         <div class="im-reglage"><span>Distance entre le pied de l'échelle et la façade</span>
-        ${["0,5", "1,25", "2,5"].map((d) => `<button type="button" class="im-question ${p.pied === d ? "choisi" : ""}" data-s="pied:${d}">${d} m</button>`).join("")}</div>
+        ${["0,5", "1,75", "3"].map((d) => `<button type="button" class="im-question ${p.pied === d ? "choisi" : ""}" data-s="pied:${d}">${d} m</button>`).join("")}</div>
         ${bt("depasse", "Échelle attachée, dépassant d'1 m au-dessus de la gouttière")}
         <button type="button" class="im-plein" data-s="monter">Monter sur le toit</button>`;
     } },
@@ -186,7 +186,7 @@ export default {
       if (!p.harnais) manque.push("le harnais antichute");
       if (!p.casque) manque.push("le casque");
       if (!p.ancrage) manque.push("l'accrochage à la ligne de vie");
-      if (p.pied !== "1,25") manque.push("le pied de l'échelle à 1/4 de la hauteur (5 m ÷ 4 = 1,25 m)");
+      if (p.pied !== "1,75") manque.push("le pied de l'échelle écarté entre le quart et le tiers de sa longueur (échelle de 6 m : entre 1,5 m et 2 m)");
       if (!p.depasse) manque.push("l'échelle attachée qui dépasse d'1 m");
       if (manque.length) {
         a.faute(`Montée refusée : il manquait ${manque.join(", ")}. Une chute de toit, c'est la première cause d'accident grave chez les électriciens qui posent du photovoltaïque.`);
