@@ -93,3 +93,20 @@
 .t-objectif .j-facture-btn { margin-left: auto; flex: none; min-height: 40px; padding: 0 14px; border: 0; border-radius: 10px; background: #1d2228; color: #fff; font-weight: 800; cursor: pointer; }
 #jeu .t-objectif { gap: 8px; }
 @media (min-width: 900px) { .j-deplacer { grid-column: auto; } }
+
+/* Caisse à outils : chaque appareil est dessiné et porte son nom ; celui que l'on tient est entouré */
+.j-barre { grid-template-columns: 1fr; }
+.j-caisse { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; min-width: 0; background: #2a2f37; border: 2px solid #3a4250; border-radius: 14px; padding: 4px; }
+.j-caisse button { min-height: 58px; min-width: 0; padding: 3px 2px; border-radius: 10px; border: 2px solid #2b2f34; background: #eef0f2; color: #1d2228; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+.j-caisse svg { width: 44px; height: 34px; display: block; }
+.j-caisse b { font-size: 0.82rem; line-height: 1; }
+.j-caisse button.en-main { background: #fff3c4; outline: 3px solid #ffc400; outline-offset: 1px; }
+.j-caisse button.en-main b::after { content: "en main"; display: block; font-weight: 600; font-size: 0.66rem; margin-top: 1px; }
+/* Valeur mesurée, en gros, en haut de l'image */
+.j-lecture { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); z-index: 3; pointer-events: none; min-width: 150px; padding: 4px 14px 6px; border-radius: 12px; background: #c8d4b4; color: #1d2620; border: 3px solid #2b2f34; text-align: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5); }
+.j-lecture small { display: block; font-size: 0.68rem; font-weight: 700; opacity: 0.75; }
+.j-lecture b { display: block; font: 800 1.7rem/1.1 ui-monospace, Menlo, monospace; white-space: nowrap; }
+.j-lecture.vat { background: #d9dde2; }
+.j-lecture.vat b { font: 800 1.15rem/1.3 system-ui, sans-serif; }
+.j-lecture.vat.allume { background: #ff3b2f; color: #fff; border-color: #7d1b14; }
+@media (min-width: 900px) { .j-barre { grid-template-columns: auto 1fr auto; } .j-caisse button { min-width: 96px; } }

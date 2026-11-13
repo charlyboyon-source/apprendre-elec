@@ -30,7 +30,7 @@ function nouvellePartie() {
     poses: [], humeur: 3, minutes: 0, fautes: [], accident: false,
     plaque: true, vis: [true, true], mecaSorti: false, obs: false, coupe: false,
     filEngage: false, filSerre: false, essaye: false, attenteFacture: false,
-    calibre: "V", rouge: null, noir: null, enMain: null, vatPts: [], vatLecture: null, vat: { avant: false, absence: false, apres: false },
+    calibre: "V", rouge: null, noir: null, dernier: null, outil: null, aideMesure: false, vatPts: [null, null], vatDernier: 0, vatLecture: null, vat: { avant: false, absence: false, apres: false },
     lecture: null, mesures: [], journal: [], bulle: null, vue: "entree", rappel: false, lieux: new Set(["entree"]),
     aide: { cle: null, niveau: 0 }, indicesPris: 0, panneau: "client", debut: true, mode: "guide",
   };
@@ -42,6 +42,9 @@ const faute = (t) => { if (!e.fautes.includes(t)) e.fautes.push(t); };
 const lampeAllumee = () => M().alimente("DclL", "DclN");
 const pot = (n) => M().potentiels().de(n);
 const circuitCoupe = () => !e.app.dj || !e.app.diff;
+// un appareil de mesure est en main : toucher un point y pose une pointe
+const mesureEnMain = () => e.outil === "multi" || e.outil === "vat";
+const NOMS_OUTILS = { multi: "le multimètre", vat: "le VAT", tournevis: "le tournevis" };
 function vibrer(m) { try { if (navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) navigator.vibrate(m); } catch { /* rien */ } }
 
 /* =====================================================================
@@ -91,7 +94,7 @@ function lancerTransition(de, a, d) {
 function allerVue(vue, { duree = 900 } = {}) {
   const avant = e.vue;
   if (VUES[avant] && VUES[avant].libre) regard.memo[avant] = { yaw: regard.yaw, pitch: regard.pitch };
-  e.vue = vue; e.rouge = null; e.noir = null; e.vatPts = []; e.lecture = null; e.vatLecture = null; e.enMain = null;
+  e.vue = vue; rangerOutil();
   if (VUES[vue].lieu) e.lieux.add(vue);
   const c = cadrageVue(vue);
   if (VUES[vue].libre && regard.memo[vue]) Object.assign(c, regard.memo[vue]);
@@ -173,10 +176,11 @@ function poserEnMain(obj, fx, fy, tailleRel, rx = 0, rz = 0) {
 }
 function majMain() {
   const proche = e.vue === "inter", mesure = proche && e.mecaSorti;
-  const vat = mesure && (e.enMain === "vat" || e.vatPts.length > 0);
-  main.vat.visible = vat; main.multi.visible = mesure && !vat;
-  if (main.multi.visible) poserEnMain(main.multi, 0.66, -0.7, 0.6, -0.25, 0.12);
-  if (main.vat.visible) poserEnMain(main.vat, 0.72, -0.64, 0.64, -0.2, 0.18);
+  // l'appareil pris dans la caisse monte dans la main (en bas à droite de l'image)
+  const k = lisse(Math.min(1, (performance.now() - (main.pris || 0)) / (REDUIT ? 1 : 380))), bas = (1 - k) * 0.9;
+  main.vat.visible = mesure && e.outil === "vat"; main.multi.visible = mesure && e.outil === "multi";
+  if (main.multi.visible) poserEnMain(main.multi, 0.66, -0.7 - bas, 0.6, -0.25, 0.12);
+  if (main.vat.visible) poserEnMain(main.vat, 0.72, -0.64 - bas, 0.64, -0.2, 0.18);
   const molette = main.multi.userData.molette; molette.rotation.z += ((molette.userData.cible || 0) - molette.rotation.z) * 0.2;
   // plaque et vis déposées : visibles seulement devant l'interrupteur démonté (le reste du temps, dans la sacoche)
   const depose = proche && !e.mecaSorti;
@@ -250,9 +254,15 @@ function posePoint(id) { const c = W.cibles.find((x) => x.id === id); return c.o
 function majSondes() {
   if (!sondes.rouge) return;
   camera.updateMatrixWorld(true);
+  const now = performance.now(), DUREE = REDUIT ? 1 : 320;
   const place = (s, idPoint, lat, bas, depart) => {
-    if (!idPoint) { s.g.visible = false; s.cordon.visible = false; return; }
-    const p = posePoint(idPoint);
+    const fin0 = depart.getWorldPosition(new THREE.Vector3());
+    // la pointe part de l'appareil, va se poser sur le point touché, et revient à l'appareil quand on la retire
+    if (idPoint !== s.id) { s.de = s.g.visible ? s.g.position.clone() : null; s.t0 = now; s.avant = s.id; s.id = idPoint; }
+    const k = lisse(Math.min(1, (now - (s.t0 || 0)) / DUREE));
+    s.enVol = k < 1;
+    if (!idPoint && (k >= 1 || !s.de)) { s.g.visible = false; s.cordon.visible = false; s.enVol = false; return; }
+    const but = idPoint ? posePoint(idPoint) : fin0, p = (s.de || fin0).clone().lerp(but, k);
     // la pointe arrive de côté (depuis l'appareil tenu en bas à droite), sans cacher le point mesuré
     const versCam = camera.position.clone().sub(p).normalize();
     const vBas = new THREE.Vector3(0, -1, 0).applyQuaternion(camera.quaternion), vDroite = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
@@ -260,7 +270,7 @@ function majSondes() {
     s.g.position.copy(p); s.g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), axe); s.g.visible = true;
     s.g.updateMatrixWorld(true);
     const haut = s.g.userData.haut.getWorldPosition(new THREE.Vector3());
-    const fin = depart.getWorldPosition(new THREE.Vector3());
+    const fin = fin0;
     const courbe = new THREE.CatmullRomCurve3([haut, haut.clone().addScaledVector(axe, 0.03), haut.clone().lerp(fin, 0.5).addScaledVector(vBas, 0.03), fin]);
     s.cordon.geometry.dispose(); s.cordon.geometry = new THREE.TubeGeometry(courbe, 20, 0.0013, 6); s.cordon.visible = true;
   };
@@ -269,6 +279,7 @@ function majSondes() {
   place(sondes.rouge, e.rouge, 0.3, 0.12, d.rouge); place(sondes.noir, e.noir, 0.14, 0.28, d.noir);
   place(sondes.vat1, e.vatPts[0], 0.3, 0.12, sv); place(sondes.vat2, e.vatPts[1], 0.14, 0.28, sv);
 }
+const sondesEnVol = () => Object.values(sondes).some((s) => s.enVol);
 
 /* =====================================================================
    Ce qui se touche
@@ -323,15 +334,14 @@ async function agir(id) {
   if (id === "plafonnier") { dire(lampeAllumee() ? "Le plafonnier éclaire." : "Le plafonnier est éteint. L'ampoule est neuve : commence par l'interrupteur."); return allerVue("plafonnier"); }
   if (id.startsWith("manette:")) return manette(id.slice(8));
   const point = S.points[id];
-  if (e.enMain && point) return poserSonde(id);
-  if (e.enMain && !point) { e.enMain = null; dire("Pointe reposée."); }
+  if (mesureEnMain() && point) return poserPointe(id);
   if (id === "touche") return toucheInter();
   if (id === "plaque") return plaqueGeste();
   if (id === "vis0" || id === "vis1") return visGeste(+id[3]);
   if (id === "meca") return mecaGeste();
   if (id === "int-E" || id === "int-S") return serrer(id);
   if (id === "fil-rouge") return filRouge();
-  if (point) dire("Pour mesurer ici, prends d'abord une pointe ou le VAT (en bas).");
+  if (point) dire("Pour mesurer ici, prends d'abord le multimètre ou le VAT dans la caisse à outils (en bas).");
 }
 async function toucheInter() {
   e.app.inter = !e.app.inter; e.obs = true; sons.interrupteur(); vibrer(10); temps(0.5);
@@ -399,7 +409,7 @@ async function visGeste(i) {
 }
 async function mecaGeste() {
   const m = W.meca, sortir = !e.mecaSorti;
-  if (!sortir) { e.rouge = null; e.noir = null; e.vatPts = []; e.enMain = null; e.lecture = null; e.vatLecture = null; main.vat.userData.maj(0); majSondes(); }
+  if (!sortir) { rangerOutil(); majSondes(); }
   e.mecaSorti = sortir; temps(1); sons.clip();
   const de = sortir ? 0 : 1;
   const cam = recadrer();
@@ -413,7 +423,7 @@ async function mecaGeste() {
 }
 // la réparation, geste par geste : prendre le fil, l'engager, serrer la vis, tirer pour vérifier
 async function filRouge() {
-  if (e.enMain) return;
+  if (mesureEnMain()) return;
   if (!e.filEngage) {
     if (pot("DjL") === 230) return electrisation("en prenant le cuivre du fil rouge");
     if (!(e.vat.avant && e.vat.absence)) faute("Tu as pris le fil sans avoir vérifié l'absence de tension au VAT (testé avant sur une source connue).");
@@ -462,27 +472,52 @@ function electrisation(ou) {
   majUI();
 }
 
-/* ---------- Multimètre et VAT ---------- */
+/* ---------- La caisse à outils : je prends l'appareil, je touche deux points ---------- */
+function rangerOutil() {
+  e.outil = null; e.rouge = null; e.noir = null; e.dernier = null; e.lecture = null;
+  e.vatPts = [null, null]; e.vatDernier = 0; e.vatLecture = null;
+  if (main.vat) main.vat.userData.maj(0);
+}
 function prendre(outil) {
+  // retoucher l'appareil que l'on tient le range : les pointes reviennent
+  if (e.outil === outil) { rangerOutil(); sons.clip(); dire(`Tu ranges ${NOMS_OUTILS[outil]} dans la caisse.`); majSondes(); majUI(); return; }
+  if (outil === "tournevis") {
+    rangerOutil(); e.outil = "tournevis"; sons.clip();
+    dire(e.vue === "inter" ? "Tournevis en main : touche une vis ou une borne, il la visse ou la dévisse." : "Tournevis en main. Il sert à l'interrupteur : vis du mécanisme, bornes.");
+    majSondes(); majUI(); return;
+  }
   if (e.vue !== "inter" || !e.mecaSorti) { dire(e.vue === "inter" ? "Sors d'abord le mécanisme : les bornes sont derrière." : "Rien à mesurer ici. On mesure à l'interrupteur, mécanisme sorti."); majUI(); return; }
-  // prendre l'outil qu'on a déjà en main ne le repose pas (une touche de trop ne fait rien perdre)
-  if (outil === "vat") { if (e.enMain !== "vat") { e.vatPts = []; e.vatLecture = null; main.vat.userData.maj(0); } e.rouge = null; e.noir = null; e.lecture = null; }
-  else if (e.enMain === "vat" || e.vatPts.length) { e.vatPts = []; e.vatLecture = null; }
-  e.enMain = outil;
-  dire(outil === "vat" ? "VAT en main : touche ses deux points de contact (cercles jaunes)." : `Pointe ${outil === "rouge" ? "rouge" : "noire"} en main : touche le point où la poser (cercles jaunes).`, "mesure");
+  rangerOutil(); e.outil = outil; main.pris = performance.now(); sons.clip();
+  const nom = outil === "vat" ? "VAT en main" : "Multimètre en main, réglé sur V~";
+  dire(e.aideMesure ? `${nom}. Touche deux points.` : `${nom}. Touche les deux points entre lesquels tu veux mesurer.`, "mesure");
+  e.aideMesure = true;
   majSondes(); majUI();
 }
-function poserSonde(id) {
-  if (e.enMain === "vat") {
-    e.vatPts.push(id); sons.clip(); majSondes();
-    if (e.vatPts.length < 2) { dire("Touche maintenant le second point de contact du VAT."); return; }
-    lireVAT(); e.enMain = null; return;
+// Premier point : la pointe rouge. Second point : la pointe noire. Ensuite, seule la dernière pointe posée se déplace
+// (l'autre garde la référence). Toucher un point déjà occupé retire sa pointe.
+function poserPointe(id) {
+  sons.clip();
+  if (e.outil === "vat") {
+    const v = e.vatPts, occ = v.indexOf(id);
+    if (occ >= 0) { v[occ] = null; e.vatLecture = null; main.vat.userData.maj(0); dire("Pointe retirée. Touche un point pour la reposer."); }
+    else {
+      const k = v[0] === null ? 0 : v[1] === null ? 1 : e.vatDernier;
+      v[k] = id; e.vatDernier = k;
+      if (v[0] !== null && v[1] !== null) lireVAT();
+      else { e.vatLecture = null; main.vat.userData.maj(0); dire("Première pointe du VAT posée. Touche le second point."); }
+    }
+    majSondes(); return;
   }
-  const qui = e.enMain; e[qui] = id; sons.clip();
-  const autre = qui === "rouge" ? "noir" : "rouge";
-  e.enMain = e[autre] ? null : autre;
-  majSondes(); mesurer();
-  if (!e[autre]) dire(`Pointe ${qui === "rouge" ? "rouge" : "noire"} posée. Touche le second point : la pointe ${autre === "rouge" ? "rouge" : "noire"} est en main.`, "mesure");
+  if (e.rouge === id || e.noir === id) {
+    const qui = e.rouge === id ? "rouge" : "noir"; e[qui] = null; e.lecture = null;
+    dire(`Pointe ${qui === "rouge" ? "rouge" : "noire"} retirée. Touche un point pour la reposer.`);
+  } else {
+    const qui = !e.rouge ? "rouge" : !e.noir ? "noir" : e.dernier;
+    e[qui] = id; e.dernier = qui;
+    if (e.rouge && e.noir) { mesurer(); dire(`${S.points[e.rouge].nom} ↔ ${S.points[e.noir].nom} : ${e.lecture}.`, "mesure"); }
+    else { e.lecture = null; dire(`Pointe ${qui === "rouge" ? "rouge" : "noire"} posée. Touche le second point.`, "mesure"); }
+  }
+  majSondes();
 }
 function mesurer() {
   const a = e.rouge, b = e.noir;
@@ -519,7 +554,6 @@ function lireVAT() {
     else { e.vat.absence = true; dire("Aucun voyant sur le fil rouge. Reteste ton VAT sur la prise pour finir.", "ok"); }
   } else if (surFil && u >= 50) dire("Voyants allumés : le fil rouge est sous tension ! Coupe « Éclairage chambres ».", "alerte");
   else dire(u >= 50 ? "Les voyants s'allument." : "Aucun voyant ne s'allume.");
-  majSondes();
 }
 
 /* ---------- Après chaque geste ; la récompense ---------- */
@@ -573,13 +607,13 @@ function indice() {
   if (e.plaque) return H("mesurer", "Pour accéder aux bornes, déclipse la plaque.", "Touche l'encoche sous l'interrupteur.", "inter", "plaque");
   if (e.vis.some(Boolean) && !e.mecaSorti) return H("mesurer", "Dévisse les deux vis qui tiennent le mécanisme.", "Touche une vis : le tournevis la dévisse. Puis l'autre.", "inter", e.vis[0] ? "vis0" : "vis1");
   if (!e.mecaSorti) return H("mesurer", "Sors le mécanisme de sa boîte.", "Touche le mécanisme.", "inter", "meca");
-  if (!mesure("int-E", T)) return H("mesurer", "La phase arrive-t-elle ? Mesure la borne L par rapport à la terre de la prise.", "Sélecteur sur V~. Touche la pointe rouge en bas, puis la borne L ; la pointe noire, puis la broche de terre de la prise.", "inter", null, { mesure: ["int-E", "prise-terre"] });
-  if (!mesure("fil-rouge", T)) return H("mesurer", "0 V sur la borne L. Et le fil rouge, a-t-il la phase ? Mesure-le par rapport à la terre.", "Pointe rouge sur le cuivre du fil rouge, pointe noire sur la broche de terre.", "inter", null, { mesure: ["fil-rouge", "prise-terre"] });
+  if (!mesure("int-E", T)) return H("mesurer", "La phase arrive-t-elle ? Mesure la borne L par rapport à la terre de la prise.", "Touche « Multimètre » dans la caisse, en bas. Touche d'abord la broche de terre de la prise (elle servira de référence), puis la borne L.", "inter", null, { mesure: ["prise-terre", "int-E"] });
+  if (!mesure("fil-rouge", T)) return H("mesurer", "0 V sur la borne L. Et le fil rouge, a-t-il la phase ? Mesure-le par rapport à la terre.", "Laisse la pointe sur la broche de terre et touche le cuivre du fil rouge : l'autre pointe s'y déplace.", "inter", null, { mesure: ["prise-terre", "fil-rouge"] });
   if (!e.coupe) return H("couper", "Le fil rouge a 230 V. Avant d'y toucher, coupe « Éclairage chambres » au tableau.", "Touche « Tableau » en bas, puis la rangée du haut, puis le 2e appareil (« Écl. chambres »).", "rangee1", "manette:dj");
-  if (!e.vat.avant) return H("vat", "Vérifie l'absence de tension. D'abord, teste ton VAT sur la prise (source connue).", "Touche « VAT » en bas, puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
-  if (!e.vat.absence) return H("vat", "VAT sur le bout du fil rouge et la terre : aucun voyant ne doit s'allumer.", "Touche « VAT », puis le cuivre du fil rouge, puis la broche de terre.", "inter", null, { vat: ["fil-rouge", "prise-terre"] });
-  if (!e.vat.apres) return H("vat", "Reteste ton VAT sur la prise : s'il s'allume encore, ta vérification est valable.", "Touche « VAT », puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
-  if (!e.filEngage) return H("reparer", "Hors tension et vérifié : prends le fil rouge et engage son cuivre dans la borne L.", "Touche le bout du fil rouge.", "inter", "fil-rouge");
+  if (!e.vat.avant) return H("vat", "Vérifie l'absence de tension. D'abord, teste ton VAT sur la prise (source connue).", "Touche « VAT » dans la caisse, en bas, puis les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
+  if (!e.vat.absence) return H("vat", "VAT sur le bout du fil rouge et la terre : aucun voyant ne doit s'allumer.", "VAT en main : touche la broche de terre, retire la pointe restée sur la prise en touchant son alvéole, puis touche le cuivre du fil rouge.", "inter", null, { vat: ["prise-terre", "fil-rouge"] });
+  if (!e.vat.apres) return H("vat", "Reteste ton VAT sur la prise : s'il s'allume encore, ta vérification est valable.", "VAT en main : touche les deux alvéoles de la prise.", "inter", null, { vat: ["prise-g", "prise-d"] });
+  if (!e.filEngage) return H("reparer", "Hors tension et vérifié : prends le fil rouge et engage son cuivre dans la borne L.", "Range le VAT (retouche-le dans la caisse), puis touche le bout du fil rouge.", "inter", "fil-rouge");
   if (!e.filSerre) return H("reparer", "Serre la vis de la borne L sur le fil.", "Touche la borne L : le tournevis vient la serrer.", "inter", "int-E");
   return H("reparer", "Tire légèrement sur le fil pour vérifier qu'il tient.", "Touche le fil rouge.", "inter", "fil-rouge");
 }
@@ -605,15 +639,21 @@ function guideCible() {
     if (VUES[e.vue].parent === prochaine) return "[data-action=reculer]";
     return { chambre: e.vue === "entree" ? "porte-chambre" : null, entree: "porte-entree", inter: "approcher-inter", tableau: "approcher-tableau", rangee1: "approcher-rangee1", rangee2: "approcher-rangee2", plafonnier: "plafonnier" }[prochaine];
   }
-  if (h.mesure) {
-    const [a, b] = h.mesure;
-    if (e.calibre !== "V") return "[data-calibre=V]";
-    if (e.rouge !== a) return e.enMain === "rouge" ? a : "[data-sonde=rouge]";
-    if (e.noir !== b) return e.enMain === "noir" ? b : "[data-sonde=noir]";
-    return null;
-  }
-  if (h.vat) { if (e.enMain !== "vat") return "[data-sonde=vat]"; return e.vatPts.length ? h.vat[1] : h.vat[0]; }
+  if (h.mesure) return e.outil !== "multi" ? "[data-outil=multi]" : prochainPoint(e.rouge, e.noir, e.dernier === "noir" ? 1 : 0, h.mesure);
+  if (h.vat) return e.outil !== "vat" ? "[data-outil=vat]" : prochainPoint(e.vatPts[0], e.vatPts[1], e.vatDernier, h.vat);
+  // un geste à la main sur un point mesurable : il faut d'abord ranger l'appareil de mesure (ou prendre le tournevis)
+  if (mesureEnMain() && S.points[h.cible]) return h.cible === "int-E" || h.cible === "int-S" ? "[data-outil=tournevis]" : `[data-outil=${e.outil}]`;
   return h.cible;
+}
+// le prochain point à toucher pour que les deux pointes (p0, p1) soient sur la paire voulue ; « dernier » = la pointe mobile
+function prochainPoint(p0, p1, dernier, voulu) {
+  const [a, b] = voulu, dans = (x) => x === a || x === b, autre = (x) => (x === a ? b : a);
+  if (!p0 && !p1) return a;
+  if (!p0 || !p1) { const pose = p0 || p1; return dans(pose) ? autre(pose) : pose; }
+  const mobile = dernier ? p1 : p0, fixe = dernier ? p0 : p1;
+  if (dans(fixe)) return mobile === autre(fixe) ? null : autre(fixe);
+  if (dans(mobile)) return fixe;
+  return a;
 }
 // en mode guidé, en arrivant dans une pièce, la tête se tourne d'elle-même vers l'objet demandé
 function apresArrivee() {
@@ -712,11 +752,13 @@ function majUI() {
   clearTimeout(minuterie);
   if (e.bulle) { const b = e.bulle; minuterie = setTimeout(() => { if (e.bulle === b) { e.bulle = null; majUI(); } }, b.type === "danger" ? 6500 : b.type === "alerte" ? 5000 : 3800); }
   // multimètre, VAT
-  racine.querySelector(".j-lcd").innerHTML = `<small>${e.calibre === "OFF" ? "arrêt" : e.calibre === "V" ? "V~" : "Ω"}</small>${e.calibre === "OFF" ? "" : e.lecture || "- - -"}`;
   main.multi.userData.maj(e.calibre, e.lecture);
-  racine.querySelectorAll("[data-calibre]").forEach((b) => b.classList.toggle("actif", b.dataset.calibre === e.calibre));
-  racine.querySelectorAll("[data-sonde]").forEach((b) => { b.classList.toggle("en-main", e.enMain === b.dataset.sonde); b.classList.toggle("posee", b.dataset.sonde !== "vat" && !!e[b.dataset.sonde]); });
-  racine.querySelector(".j-vat-leds").className = `j-vat-leds${e.vatLecture ? " allume" : ""}`;
+  racine.querySelectorAll("[data-outil]").forEach((b) => { const pris = e.outil === b.dataset.outil; b.classList.toggle("en-main", pris); b.setAttribute("aria-pressed", pris); });
+  // la valeur mesurée, en gros, en haut de l'image (loin des points mesurés)
+  const lec = racine.querySelector(".j-lecture"), deux = e.outil === "vat" ? e.vatPts[0] !== null && e.vatPts[1] !== null : !!(e.rouge && e.noir);
+  lec.hidden = !mesureEnMain();
+  if (e.outil === "multi") { lec.className = "j-lecture"; lec.innerHTML = `<small>Multimètre · V~</small><b>${deux ? e.lecture : "– – –"}</b>`; }
+  else if (e.outil === "vat") { lec.className = `j-lecture vat${deux && e.vatLecture ? " allume" : ""}`; lec.innerHTML = `<small>VAT</small><b>${!deux ? "– – –" : e.vatLecture ? "Tension : 230 V" : "Aucun voyant"}</b>`; }
   // reculer (dit où il mène) et raccourcis de lieux
   const parent = VUES[e.vue].parent, rec = racine.querySelector("[data-action=reculer]");
   rec.disabled = !parent; rec.textContent = parent ? `↩ ${VUES[parent].court}` : "↩ Reculer";
@@ -742,7 +784,7 @@ function dessinerAnneaux(now) {
   const couche = racine.querySelector(".j-anneaux"), r = renderer.domElement.getBoundingClientRect();
   const liste = [];
   const gc = guide.cible && !transition && W.cibles.find((c) => c.id === guide.cible && actif(c));
-  const points = e.enMain ? W.cibles.filter((c) => c.type === "point" && actif(c) && S.points[c.id]) : [];
+  const points = mesureEnMain() ? W.cibles.filter((c) => c.type === "point" && actif(c) && S.points[c.id]) : [];
   const tous = new Map();
   for (const c of points) tous.set(c.id, { c, guide: false });
   if (gc) tous.set(gc.id, { c: gc, guide: true });
@@ -810,7 +852,7 @@ function image(now) {
   W.lampe.intensity = lumiere * 11; W.ampouleMat.emissiveIntensity = lumiere * 6; W.M.abatJour.emissiveIntensity = lumiere * 0.22; W.ambiance.intensity = 0.3 + lumiere * 0.45;
   W.frontale.intensity = (VUES[e.vue].libre ? 9 : 0.45) * (1 - lumiere * 0.7);
   W.pluie.offset.y -= 0.012;
-  majMain();
+  if (sondesEnVol()) majSondes(); else majMain();
   if (attente && !occupe && !transition && !anims.length) { const a = attente; attente = null; toucherEcran(a.x, a.y); }
   renderer.render(W.scene, camera);
   dessinerAnneaux(now);
@@ -867,7 +909,7 @@ let appui = null;
 async function toucherEcran(x, y) {
   if (occupe || transition || e.panneau) { attente = { x, y }; return; }
   const id = cibleSous(x, y);
-  if (!id) { if (e.enMain) { e.enMain = null; dire("Pointe reposée."); majUI(); } return; }
+  if (!id) return;
   e.bulle = null; occupe = true;
   try { await agir(id); } finally { occupe = false; majUI(); }
 }
@@ -909,7 +951,7 @@ function brancherEntrees(canvas) {
 }
 function brancherBoutons() {
   racine.addEventListener("click", async (ev) => {
-    const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-calibre],[data-sonde],[data-lieu],.j-fleche");
+    const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-outil],[data-lieu],.j-fleche");
     if (!t || !e) return;
     const d = t.dataset;
     if (t.classList.contains("j-fleche")) { const c = W.cibles.find((x) => x.id === d.vers); if (c && !transition) regarderVers(centreCible(c)); return; }
@@ -921,8 +963,7 @@ function brancherBoutons() {
     else if (d.lieu) { allerA(d.lieu); return; }
     else if (d.panneau) e.panneau = e.panneau === d.panneau ? null : d.panneau;
     else if (d.question) poserQuestion(d.question);
-    else if (d.calibre) { e.calibre = d.calibre; sons.clip(); mesurer(); }
-    else if (d.sonde) { prendre(d.sonde); return; }
+    else if (d.outil) { prendre(d.outil); return; }
     majUI();
   });
 }
@@ -936,17 +977,15 @@ function gabarit() {
     <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à l'atelier">✕</a></div>
   <ol class="t-etapes" aria-label="Méthode du dépanneur"></ol>
   <div class="t-objectif" role="status"></div>
-  <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div>
+  <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output>
     <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-depannage.html?i=chambre">Jouer la version 2D</a></p>
     ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div></div>
   <div class="j-barre">
-    <div class="j-multi" role="group" aria-label="Multimètre">
-      <output class="j-lcd" aria-label="Écran du multimètre"></output>
-      <div class="j-selecteur"><button type="button" data-calibre="OFF">Arrêt</button><button type="button" data-calibre="V">V~</button><button type="button" data-calibre="Ω">Ω</button></div>
-      <button type="button" class="j-sonde rouge" data-sonde="rouge" aria-label="Pointe rouge"><i></i></button>
-      <button type="button" class="j-sonde noir" data-sonde="noir" aria-label="Pointe noire"><i></i></button>
+    <div class="j-caisse" role="group" aria-label="Caisse à outils">
+      <button type="button" data-outil="vat" aria-pressed="false"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="2" width="14" height="30" rx="4" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="20" y="5" width="8" height="3" rx="1" fill="#ff3b2f"/><rect x="20" y="10" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="15" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="20" width="8" height="3" rx="1" fill="#6b7480"/><path d="M24 32v6" stroke="#9aa3ad" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26C8 26 8 12 8 6" fill="none" stroke="#1d2228" stroke-width="2"/><rect x="5" y="2" width="6" height="12" rx="2" fill="#2f6fb8" stroke="#1d2228" stroke-width="1.5"/><path d="M8 14v5" stroke="#9aa3ad" stroke-width="2" stroke-linecap="round"/></svg><b>VAT</b></button>
+      <button type="button" data-outil="multi" aria-pressed="false"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="14" y="1" width="20" height="34" rx="4" fill="#f2c230" stroke="#1d2228" stroke-width="2"/><rect x="17" y="4" width="14" height="9" rx="1.5" fill="#c8d4b4" stroke="#1d2228" stroke-width="1.2"/><circle cx="24" cy="23" r="6" fill="#2b2f34"/><path d="M24 23l3-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M19 35c-6 4-12 0-12-8" fill="none" stroke="#c8261e" stroke-width="2.2"/><path d="M29 35c6 4 12 0 12-8" fill="none" stroke="#1b1b1b" stroke-width="2.2"/><path d="M7 27V14" stroke="#c8261e" stroke-width="3.5" stroke-linecap="round"/><path d="M41 27V14" stroke="#1b1b1b" stroke-width="3.5" stroke-linecap="round"/></svg><b>Multimètre</b></button>
+      <button type="button" data-outil="tournevis" aria-pressed="false"><svg viewBox="0 0 48 40" aria-hidden="true"><g transform="rotate(-38 24 20)"><rect x="3" y="14" width="19" height="12" rx="5" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="6" y="14" width="3" height="12" fill="#c8261e"/><rect x="22" y="17.5" width="20" height="5" rx="1" fill="#c9ced4" stroke="#1d2228" stroke-width="1.2"/><path d="M42 17.5l4 2.5-4 2.5z" fill="#6b7480" stroke="#1d2228" stroke-width="1"/></g></svg><b>Tournevis</b></button>
     </div>
-    <button type="button" class="j-vat" data-sonde="vat" aria-label="VAT, vérificateur d'absence de tension"><b>VAT</b><span class="j-vat-leds"><i>230</i></span></button>
     <div class="j-deplacer"><button type="button" class="j-reculer" data-action="reculer">↩ Reculer</button><div class="j-lieux" aria-label="Aller directement à"></div></div>
     <div class="j-boutons">
       <button type="button" data-panneau="client">💬 ${S.client.court}</button>
@@ -961,7 +1000,7 @@ function remettreScene() {
   W.groupePlaque.attach(W.plaque); W.plaque.position.set(0, 0, 0); W.plaque.rotation.set(0, 0, 0); W.plaque.scale.set(1, 1, 1); W.plaque.visible = true;
   for (const lev of Object.values(W.manettes)) lev.position.y = 0.009;
   for (const b of Object.values(W.bornesMeca)) b.userData.tete.rotation.y = 0;
-  engage = 0; lumiere = 0; main.vat.userData.maj(0);
+  engage = 0; lumiere = 0; main.vat.userData.maj(0); for (const s of Object.values(sondes)) { s.id = undefined; s.de = null; s.g.visible = false; s.cordon.visible = false; }
   const v = VUES.entree; camera.position.set(...v.pos); regard.yaw = v.yaw; regard.pitch = v.pitch; regard.base = null; regard.memo = {};
   camera.fov = fovLibre; camera.updateProjectionMatrix();
 }
@@ -1007,7 +1046,10 @@ async function demarrer() {
     e: () => e, guide: () => guideCible(), cam: () => camera, image: () => image(performance.now()),
     cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...(c.type === "point" ? rayonEcran(c) : {}) })),
     toucher: (id) => { const c = W.cibles.find((x) => x.id === id); return c.type === "point" ? rayonEcran(c) : ecranDe(centreCible(c)); },
-    occupe: () => occupe || !!transition || anims.length > 0 || !!attente,
+    occupe: () => occupe || !!transition || anims.length > 0 || !!attente || sondesEnVol(),
+    // jouer une touche sur l'image (coordonnées dans la scène), comme un doigt
+    toucherEcran: (x, y) => toucherEcran(x, y),
+    lecture: () => { const o = racine.querySelector(".j-lecture"); return o.hidden ? null : { texte: o.textContent, ...(({ left, top, right, bottom }) => ({ x0: left, y0: top, x1: right, y1: bottom }))(o.getBoundingClientRect()), scene: renderer.domElement.getBoundingClientRect().toJSON() }; },
     debug: () => ({ occupe, transition: !!transition, anims: anims.length, attente }),
     W: () => W, main: () => main,
     // boîtes à l'écran des objets tenus (multimètre, VAT, plaque, plateau) : ils ne doivent cacher aucune cible
