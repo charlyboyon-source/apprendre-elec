@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Au moins deux interrupteurs différentiels 30 mA : un de type AC pour l'éclairage et les prises, un de type A pour la plaque de cuisson et le lave-linge">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Au moins deux DDR 30 mA : la cuisson, le lave-linge et la recharge de véhicule sous un type A, ou F, ou B ; les autres circuits, comme l'éclairage et les prises, sous un type AC au minimum">
 <defs>
 <linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
 <linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
@@ -18,7 +18,7 @@
 <filter id="ombre" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1b2430" flood-opacity=".25"/></filter>
 <g id="borne"><rect x="-12" y="-12" width="24" height="24" rx="4" fill="#2b3036"/><circle r="8" fill="url(#vis)"/><rect x="-6" y="-1.2" width="12" height="2.4" rx="1" fill="#5a616a" transform="rotate(-25)"/></g>
 </defs>
-<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Au moins deux interrupteurs différentiels</text>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Au moins deux DDR 30 mA</text>
 <rect x="16" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <rect x="328" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <text x="164" y="72" text-anchor="middle" font-size="19.5" font-weight="800" fill="#b85a08">TYPE AC</text>
@@ -26,13 +26,13 @@
 <text x="150" y="128" text-anchor="start" font-size="19.5" font-weight="800" fill="#2166d1">30 mA</text>
 <text x="150" y="164" text-anchor="start" font-size="15.6" font-weight="500" fill="#1c2530">éclairage</text>
 <text x="150" y="188" text-anchor="start" font-size="15.6" font-weight="500" fill="#1c2530">prises de courant</text>
-<text x="164" y="306" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">circuits ordinaires</text>
+<text x="164" y="306" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">au minimum</text>
 <text x="476" y="72" text-anchor="middle" font-size="19.5" font-weight="800" fill="#2166d1">TYPE A</text>
 <g transform="translate(344 90) scale(0.72)" filter="url(#ombre)"><rect width="140" height="240" rx="6" fill="url(#corps)" stroke="#b3b9c0"/><rect y="60" width="140" height="120" fill="url(#nez)" stroke="#c5cad0"/><use href="#borne" x="35" y="30"/><use href="#borne" x="105" y="30"/><use href="#borne" x="35" y="210"/><use href="#borne" x="105" y="210"/><rect x="20" y="72" width="34" height="62" rx="4" fill="#d5d9de" stroke="#b3b9c0"/><rect x="24" y="72" width="26" height="34" rx="4" fill="url(#manette)"/><rect x="76" y="72" width="46" height="24" rx="4" fill="#f2a20c" stroke="#b97a05"/><text x="99" y="89" text-anchor="middle" font-size="13" font-weight="800" fill="#3a2a00">TEST</text><text x="99" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="#1c2530">40 A</text><text x="99" y="141" text-anchor="middle" font-size="16" font-weight="800" fill="#2166d1">30 mA</text><g transform="translate(0 -84)"><rect x="18" y="222" width="38" height="24" rx="3" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M24 232 q4 -10 8 0 t8 0" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M24 240 q4 -8 8 0 M40 240 h0" fill="none" stroke="#1c2530" stroke-width="1.4"/><path d="M42 232 h8" stroke="#1c2530" stroke-width="1.4"/></g><text x="99" y="166" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">type A</text></g>
 <text x="462" y="128" text-anchor="start" font-size="19.5" font-weight="800" fill="#2166d1">30 mA</text>
-<text x="462" y="164" text-anchor="start" font-size="15.6" font-weight="500" fill="#1c2530">plaque de cuisson</text>
+<text x="462" y="164" text-anchor="start" font-size="15.6" font-weight="500" fill="#1c2530">cuisson</text>
 <text x="462" y="188" text-anchor="start" font-size="15.6" font-weight="500" fill="#1c2530">lave-linge</text>
-<text x="476" y="306" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">électronique de puissance</text>
+<text x="476" y="306" text-anchor="middle" font-size="16.2" font-weight="500" fill="#5b6673">recharge de véhicule</text>
 <rect x="90" y="346" width="460" height="42" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
-<text x="320" y="374" text-anchor="middle" font-size="18.2" font-weight="800" fill="#1c2530">Minimum : 1 type AC + 1 type A</text>
+<text x="320" y="374" text-anchor="middle" font-size="18.2" font-weight="800" fill="#1c2530">Cuisson, lave-linge, recharge : type A minimum</text>
 </svg>

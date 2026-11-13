@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 410" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Volume 0 : l'intérieur de la baignoire ou du receveur de douche. Matériel IPX7, très basse tension de sécurité 12 V uniquement ; le transformateur est toujours placé hors de tous les volumes">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 410" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Volume 0 : l'intérieur de la baignoire ou du receveur de douche. Matériel IPX7, très basse tension de sécurité limitée à 12 V en alternatif ou 30 V en continu lisse ; le transformateur est toujours placé hors de tous les volumes">
 <defs>
 <linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
 <linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
@@ -32,7 +32,7 @@
 <text x="498" y="198.0" text-anchor="middle" font-size="13.0" font-weight="800" fill="#1c2530">transformateur</text>
 <text x="430" y="96" text-anchor="middle" font-size="15.0" font-weight="500" fill="#1c2530">l'intérieur de la</text>
 <text x="430" y="118" text-anchor="middle" font-size="15.0" font-weight="500" fill="#1c2530">baignoire ou du receveur</text>
-<text x="430" y="150" text-anchor="middle" font-size="15.6" font-weight="800" fill="#2166d1">IPX7 · TBTS 12 V</text>
+<text x="430" y="150" text-anchor="middle" font-size="15.6" font-weight="800" fill="#2166d1">IPX7 · TBTS 12 V~ ou 30 V⎓</text>
 <rect x="24" y="354" width="592" height="40" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
 <text x="320" y="380.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Transformateur toujours hors de tous les volumes</text>
 </svg>

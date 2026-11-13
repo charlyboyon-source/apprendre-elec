@@ -24,7 +24,7 @@
     "confondre": [
       [
         "interrupteur différentiel",
-        "l'AGCP coupe tout le logement et protège l'installation ; les interrupteurs différentiels 30 mA du tableau protègent les personnes, rangée par rangée."
+        "l'AGCP coupe tout le logement ; son différentiel 500 mA coupe sur contact indirect si la terre fait 100 Ω au plus. Les interrupteurs différentiels 30 mA du tableau assurent la protection complémentaire, rangée par rangée."
       ]
     ],
     "voisins": [
@@ -52,7 +52,7 @@
     ]
   },
   "interrupteur différentiel": {
-    "chantier": "Il occupe en général deux modules, en tête de rangée, et alimente les disjoncteurs de la rangée par le peigne. Dans un logement, on en pose au moins deux de 30 mA (un type AC et un type A), avec au plus 8 disjoncteurs derrière chacun, et on teste chacun avec son bouton « T ».",
+    "chantier": "Il occupe en général deux modules, en tête de rangée, et alimente les disjoncteurs de la rangée par le peigne. Dans un logement, on en pose au moins deux de 30 mA (la cuisson, le lave-linge et la recharge de véhicule sous un type A, ou F, ou B ; les autres circuits sous un type AC au minimum), avec au plus 8 disjoncteurs derrière chacun, et on teste chacun avec son bouton « T ».",
     "confondre": [
       [
         "disjoncteur différentiel",
@@ -172,7 +172,7 @@
     ]
   },
   "ETEL": {
-    "chantier": "L'espace technique électrique du logement fait 60 cm de large et 25 cm de profondeur au minimum, du sol au plafond. On le tient à distance d'une canalisation de gaz (10 cm), d'une source de chaleur (40 cm) et d'un point d'eau (60 cm), et on n'y fait passer rien d'étranger à l'installation électrique.",
+    "chantier": "L'espace technique électrique du logement fait 60 cm de large et 25 cm de profondeur au minimum, du sol au plafond. On le tient à distance d'une canalisation de gaz (10 cm), d'une source de chaleur non isolée thermiquement (40 cm) et d'un point d'eau (60 cm), et on n'y fait passer rien d'étranger à l'installation électrique.",
     "confondre": [
       [
         "GTL",
@@ -187,7 +187,7 @@
     ]
   },
   "ICTA": {
-    "chantier": "C'est la gaine grise annelée qu'on noie dans les murs, les cloisons et les dalles. Elle existe du diamètre 16 mm au 63 mm. On ne la remplit qu'au tiers de sa section, et on respecte un rayon de cintrage d'au moins 6 fois son diamètre, sinon les fils ne coulissent plus.",
+    "chantier": "C'est la gaine grise annelée qu'on noie dans les murs, les cloisons et les dalles. Elle existe du diamètre 16 mm au 63 mm. Quand on y tire les conducteurs après la pose, on ne la remplit qu'au tiers de sa section ; on la courbe largement, sans la pincer, sinon les fils ne coulissent plus.",
     "confondre": [
       [
         "IRL",
@@ -221,7 +221,7 @@
     ]
   },
   "TPC": {
-    "chantier": "Pour alimenter un portail ou un éclairage de jardin, on enterre le câble dans un TPC rouge, à 50 cm de profondeur au moins en terrain ordinaire (85 cm sous une voie accessible aux véhicules), avec un grillage avertisseur rouge environ 20 cm au-dessus.",
+    "chantier": "Pour alimenter un portail ou un éclairage de jardin, on enterre le câble dans un TPC rouge, à 50 cm de profondeur au moins en terrain ordinaire (85 cm à la traversée des voies accessibles aux voitures et sous les trottoirs), avec un grillage avertisseur rouge environ 20 cm au-dessus.",
     "confondre": [
       [
         "ICTA",
@@ -312,7 +312,7 @@
     ]
   },
   "indice IP": {
-    "chantier": "Sur une plaque signalétique, « IPX4 » veut dire : protection contre les solides non précisée (X), protégé contre les projections d'eau de toutes directions (4). Dans une salle de bain, on demande au moins IPX4 près de la douche et IPX7 dans le volume 0 ; dehors sous la pluie, on vise couramment IP44 ou mieux.",
+    "chantier": "Sur une plaque signalétique, « IPX4 » veut dire : protection contre les solides non précisée (X), protégé contre les projections d'eau de toutes directions (4). Dans une salle de bain, on demande au moins IPX4 près de la douche et IPX7 dans le volume 0 ; dehors, IPX4 au minimum (IP44 est courant), IPX5 là où il y a un risque d'arrosage au jet.",
     "confondre": [
       [
         "indice IK",
@@ -368,7 +368,7 @@
     ]
   },
   "TBTS": {
-    "chantier": "Dans le volume 0 d'une salle de bain, seul un matériel en TBTS 12 V alimenté par un transformateur de sécurité placé hors volume est admis. La TBTS ne dépasse pas 50 V en alternatif (120 V en continu lisse) et ses circuits sont séparés de la terre et des autres circuits.",
+    "chantier": "Dans le volume 0 d'une salle de bain, seul un matériel en TBTS 12 V en alternatif (ou 30 V en continu lisse) alimenté par un transformateur de sécurité placé hors volume est admis. La TBTS ne dépasse pas 50 V en alternatif (120 V en continu lisse) et ses circuits sont séparés de la terre et des autres circuits.",
     "confondre": [
       [
         "transformateur de séparation",
@@ -398,7 +398,7 @@
     ]
   },
   "consignation": {
-    "chantier": "Quatre étapes, dans l'ordre : séparer l'ouvrage de toute source (on ouvre le disjoncteur), condamner (cadenas et pancarte), identifier (s'assurer que c'est le bon circuit), vérifier l'absence de tension avec un VAT. Tant que ces quatre étapes ne sont pas faites, on considère que c'est sous tension.",
+    "chantier": "Cinq opérations, dans l'ordre : séparer l'ouvrage de toute source (on ouvre le disjoncteur), condamner (cadenas et pancarte), identifier (s'assurer que c'est le bon circuit), vérifier l'absence de tension avec un VAT, puis mettre à la terre et en court-circuit, immédiatement après la VAT (obligatoire en haute tension, pas toujours requis en basse tension, voir NF C 18-510). Tant que l'absence de tension n'est pas vérifiée, on considère que c'est sous tension.",
     "confondre": [
       [
         "condamnation",
@@ -449,7 +449,7 @@
     ]
   },
   "sensibilité": {
-    "chantier": "Sur un différentiel marqué « 40 A / 30 mA », c'est le 30 mA qui le fait déclencher sur une fuite. 30 mA protège les personnes ; 300 ou 500 mA limitent surtout le risque d'incendie (c'est la sensibilité habituelle d'un AGCP).",
+    "chantier": "Sur un différentiel marqué « 40 A / 30 mA », c'est le 30 mA qui le fait déclencher sur une fuite. Le 30 mA assure la protection complémentaire des personnes, même en contact direct. Le 500 mA, sensibilité habituelle de l'AGCP, coupe sur contact indirect si la prise de terre fait 100 Ω au plus ; le 300 mA sert à prévenir l'incendie.",
     "confondre": [
       [
         "calibre",
@@ -464,7 +464,7 @@
     ]
   },
   "pouvoir de coupure": {
-    "chantier": "Il est écrit dans un petit rectangle sur la face avant d'un disjoncteur (par exemple 3000 ou 4500). En installation domestique, on demande au moins 3 000 A ; en petit tertiaire (moins de 36 kVA), on retient 4 500 A. Un appareil au pouvoir de coupure trop faible peut se détruire sans couper le court-circuit.",
+    "chantier": "Il est écrit dans un petit rectangle sur la face avant d'un disjoncteur (par exemple 3000 ou 4500). Pour un branchement à puissance limitée, jusqu'à 36 kVA, on demande au moins 3 000 A ; au-delà, il se calcule d'après le courant de court-circuit. Un appareil au pouvoir de coupure trop faible peut se détruire sans couper le court-circuit.",
     "confondre": [
       [
         "calibre",
@@ -645,7 +645,7 @@
     ]
   },
   "fusible": {
-    "chantier": "On en trouve encore dans les anciens tableaux et dans certains appareils. Un fusible fondu se remplace toujours par un fusible du même calibre, jamais d'un calibre supérieur : sinon le câble n'est plus protégé. Avant de remplacer, on cherche pourquoi il a fondu, sinon le nouveau fondra à son tour.",
+    "chantier": "On en trouve encore dans les anciens tableaux et dans certains appareils : dans un logement neuf, chaque circuit est obligatoirement protégé par un disjoncteur, le fusible ne se rencontre plus qu'en rénovation. Un fusible fondu se remplace toujours par un fusible du même calibre, jamais d'un calibre supérieur : sinon le câble n'est plus protégé. Avant de remplacer, on cherche pourquoi il a fondu, sinon le nouveau fondra à son tour.",
     "confondre": [
       [
         "disjoncteur",
@@ -905,7 +905,7 @@
     ]
   },
   "volume de sécurité": {
-    "chantier": "En entrant dans une salle d'eau à équiper, le premier réflexe est de repérer la baignoire ou le receveur et de tracer les volumes au mètre. Le volume 1 monte jusqu'à 2,25 m du sol fini ; le volume 2 forme une bande de 60 cm autour, à mesurer à l'horizontale depuis le bord. Une prise posée à 55 cm du bord est en volume 2 : elle est interdite, sauf la prise rasoir à transformateur de séparation.",
+    "chantier": "En entrant dans une salle d'eau à équiper, le premier réflexe est de repérer la baignoire ou le receveur et de tracer les volumes au mètre. Le volume 1 monte jusqu'à 2,25 m du sol fini (ou jusqu'à la pomme de douche fixe si elle est plus haute) ; le volume 2 forme une bande de 60 cm autour, à mesurer à l'horizontale depuis le bord. Une prise posée à 55 cm du bord est en volume 2 : elle est interdite, sauf la prise rasoir à transformateur de séparation.",
     "confondre": [
       [
         "indice IP",
@@ -925,7 +925,7 @@
     ]
   },
   "LES": {
-    "chantier": "Dans une salle d'eau, la LES relie entre elles les canalisations métalliques, les huisseries métalliques et la baignoire si elle est en métal, ainsi que les conducteurs de protection de la pièce. Si deux éléments sont au même potentiel, il n'y a aucune tension entre eux : une personne qui les touche en même temps n'est traversée par aucun courant. Les connexions doivent rester accessibles pour être vérifiées.",
+    "chantier": "Dans une salle d'eau, la LES relie entre elles les canalisations métalliques, les parties fixes des huisseries métalliques (si elles peuvent toucher des éléments métalliques de la construction) et la baignoire si elle est en métal, ainsi que les conducteurs de protection de la pièce. Une baignoire ou une huisserie peut ne pas être reliée si sa continuité avec un élément déjà relié est de 2 Ω au plus. Si deux éléments sont au même potentiel, il n'y a aucune tension entre eux : une personne qui les touche en même temps n'est traversée par aucun courant. Les connexions doivent rester accessibles pour être vérifiées.",
     "confondre": [
       [
         "liaison équipotentielle principale",
@@ -944,7 +944,7 @@
     ]
   },
   "transformateur de séparation": {
-    "chantier": "On le trouve dans la prise rasoir de 20 à 50 VA, la seule prise tolérée en volume 2. Elle ne convient qu'aux petits appareils comme un rasoir ou une brosse à dents : on n'y branche pas un sèche-cheveux. Comme son secondaire n'est pas relié à la terre, aucune boucle de défaut ne peut se fermer à travers le corps de l'utilisateur.",
+    "chantier": "On le trouve dans la prise rasoir, la seule prise tolérée en volume 2. Elle ne convient qu'aux petits appareils comme un rasoir ou une brosse à dents : on n'y branche pas un sèche-cheveux. Comme son secondaire n'est pas relié à la terre, aucune boucle de défaut ne peut se fermer à travers le corps de l'utilisateur.",
     "confondre": [
       [
         "transformateur de sécurité",
@@ -1132,7 +1132,7 @@
     ]
   },
   "conducteur principal de protection": {
-    "chantier": "Il part de la borne principale de terre et arrive sur le bornier de terre du tableau de répartition. Sa section suit celle de l'arrivée : 16 mm² quand l'arrivée est en 16 mm². Toujours vert-jaune, il ne doit jamais pouvoir être coupé par un appareil de commande ou de protection.",
+    "chantier": "Il part de la borne principale de terre et arrive sur le bornier de terre du tableau de répartition. Sa section : 10 mm² si l'alimentation est en 10 mm², 16 mm² au-delà. Toujours vert-jaune, il ne doit jamais pouvoir être coupé par un appareil de commande ou de protection.",
     "confondre": [
       [
         "conducteur de terre",
@@ -1174,7 +1174,7 @@
     "confondre": [
       [
         "consignation",
-        "la consignation comprend quatre étapes ; la condamnation est la deuxième, après la séparation."
+        "la consignation comprend cinq opérations ; la condamnation est la deuxième, après la séparation."
       ],
       [
         "séparation",
@@ -1581,7 +1581,7 @@
     ]
   },
   "IRVE": {
-    "chantier": "Avant d'installer une borne, on vérifie la puissance du contrat et l'état du tableau. Une borne monophasée de 32 A fournit environ 7,4 kW (230 V × 32 A) ; une prise renforcée admet 14 A, soit environ 3,2 kW. Au-delà de 3,7 kW, l'installation est réservée aux professionnels titulaires d'une qualification IRVE.",
+    "chantier": "Avant d'installer une borne, on vérifie la puissance du contrat et l'état du tableau. Une borne monophasée de 32 A fournit environ 7,4 kW (230 V × 32 A) ; une prise renforcée admet 14 à 16 A selon le matériel, soit 3,2 à 3,7 kW. Au-delà de 3,7 kW, l'installation est réservée aux professionnels titulaires d'une qualification IRVE.",
     "confondre": [
       [
         "prise renforcée",

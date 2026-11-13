@@ -31,7 +31,7 @@
   },
   "TBTS": {
     "nom": "Très Basse Tension de Sécurité",
-    "definition": "Alimentation ≤ 50 V fournie par un transformateur de sécurité. Dans les volumes de salle de bain, elle est limitée à 12 V alternatif, transformateur placé hors de tous les volumes."
+    "definition": "Alimentation ≤ 50 V fournie par un transformateur de sécurité. Dans les volumes de salle de bain, elle est limitée à 12 V en alternatif ou 30 V en continu lisse, transformateur placé hors de tous les volumes."
   },
   "IPX7": {
     "nom": "Indice de protection IPX7",
@@ -39,7 +39,7 @@
   },
   "IPX4": {
     "nom": "Indice de protection IPX4",
-    "definition": "Le 2e chiffre 4 = protégé contre les projections d'eau de toutes directions. Exigé en volumes 1, 2 et caché (IPX5 si la douche envoie des jets horizontaux)."
+    "definition": "Le 2e chiffre 4 = protégé contre les projections d'eau de toutes directions. Exigé en volumes 1 et 2 de la salle de bain (IPX5 si la douche envoie des jets horizontaux) et au minimum à l'extérieur."
   },
   "classe II": {
     "nom": "Matériel de classe II",
@@ -47,7 +47,7 @@
   },
   "LES": {
     "nom": "Liaison Équipotentielle Supplémentaire",
-    "definition": "Conducteur vert/jaune qui met au même potentiel tous les éléments conducteurs de la pièce d'eau (canalisations, huisseries métalliques, baignoire métal…) — 2,5 mm² protégé mécaniquement, 4 mm² sinon."
+    "definition": "Conducteur vert/jaune qui met au même potentiel tous les éléments conducteurs de la pièce d'eau (canalisations, parties fixes des huisseries métalliques en contact avec la construction, baignoire métal…) — 2,5 mm² protégé mécaniquement, 4 mm² sinon."
   },
   "transformateur de séparation": {
     "nom": "Transformateur de séparation",
@@ -255,7 +255,7 @@
   },
   "sensibilité": {
     "nom": "Sensibilité d'un DDR (IΔn)",
-    "definition": "Courant de fuite à partir duquel un DDR déclenche. 30 mA (haute sensibilité) pour protéger les personnes ; 300 ou 500 mA (moyenne sensibilité) pour prévenir l'incendie."
+    "definition": "Courant de fuite à partir duquel un DDR déclenche. 30 mA (haute sensibilité) : protection complémentaire des personnes, même en contact direct. 500 mA : disjoncteur de branchement, qui coupe sur contact indirect si la prise de terre fait 100 Ω au plus. 300 mA : prévention de l'incendie."
   },
   "interrupteur différentiel": {
     "nom": "Interrupteur différentiel",
@@ -300,12 +300,12 @@
   },
   "consignation": {
     "nom": "Consignation",
-    "definition": "Procédure de mise en sécurité d'un ouvrage avant travaux hors tension, en quatre étapes : Séparer, Condamner, Identifier, Vérifier l'absence de tension (S.C.I.V.).",
+    "definition": "Procédure de mise en sécurité d'un ouvrage avant travaux hors tension, en cinq opérations : Séparer, Condamner, Identifier, Vérifier l'absence de tension (S.C.I.V.), puis mise à la terre et en court-circuit (obligatoire en haute tension, pas toujours requise en basse tension).",
     "niveau_associe": 9
   },
   "VAT": {
     "nom": "Vérification d'Absence de Tension (VAT)",
-    "definition": "Dernière étape de la consignation, réalisée avec un vérificateur dédié dont on contrôle le fonctionnement avant et après, sur tous les conducteurs, au plus près de la zone de travail.",
+    "definition": "Quatrième opération de la consignation, suivie immédiatement, quand elle est requise, de la mise à la terre et en court-circuit. Elle se réalise avec un vérificateur dédié dont on contrôle le fonctionnement avant et après, sur tous les conducteurs, au plus près de la zone de travail.",
     "niveau_associe": 9
   },
   "EPI": {
@@ -330,7 +330,7 @@
   },
   "conducteur principal de protection": {
     "nom": "Conducteur principal de protection",
-    "definition": "Conducteur vert/jaune, de même section que l'arrivée (16 mm² avec une arrivée en 16 mm²), qui relie la borne principale de terre au bornier de terre du tableau, d'où partent les conducteurs de protection de tous les circuits.",
+    "definition": "Conducteur vert/jaune (10 mm² si l'alimentation est en 10 mm², 16 mm² au-delà) qui relie la borne principale de terre au bornier de terre du tableau, d'où partent les conducteurs de protection de tous les circuits.",
     "niveau_associe": 6
   },
   "liaison équipotentielle principale": {
@@ -360,7 +360,7 @@
   },
   "pouvoir de coupure": {
     "nom": "Pouvoir de coupure",
-    "definition": "Plus fort courant de court-circuit qu'un appareil de protection peut couper sans se détruire. 3 000 A au minimum en domestique, 4 500 A en petit tertiaire (moins de 36 kVA).",
+    "definition": "Plus fort courant de court-circuit qu'un appareil de protection peut couper sans se détruire. 3 000 A au moins pour un branchement à puissance limitée, jusqu'à 36 kVA ; au-delà, il se calcule d'après le courant de court-circuit.",
     "niveau_associe": 10
   },
   "disjoncteur magnétothermique": {
@@ -374,7 +374,7 @@
   },
   "courbe de déclenchement": {
     "nom": "Courbe de déclenchement",
-    "definition": "Lettre qui fixe le seuil du déclencheur magnétique d'un disjoncteur, en multiples du calibre In : B = 3 à 5 In, C = 5 à 10 In, D = 10 à 20 In.",
+    "definition": "Lettre qui fixe le seuil du déclencheur magnétique d'un disjoncteur, en multiples du calibre In : B = 3 à 5 In, C = 5 à 10 In, D = à partir de 10 In (10 à 14 In ou 10 à 20 In selon la norme de l'appareil).",
     "niveau_associe": 10
   },
   "AGCP": {
@@ -427,7 +427,7 @@
   },
   "ICTA": {
     "nom": "Conduit ICTA",
-    "definition": "Isolant, Cintrable, Transversalement élastique, Annelé : la gaine annelée de la pose encastrée. Diamètres de 16 à 63 mm. Remplissage : un tiers au maximum. Rayon de cintrage : au moins 6 fois le diamètre.",
+    "definition": "Isolant, Cintrable, Transversalement élastique, Annelé : la gaine annelée de la pose encastrée. Diamètres de 16 à 63 mm. Remplissage : un tiers au maximum quand les conducteurs sont tirés après la pose. On le courbe largement, sans le pincer.",
     "niveau_associe": 13
   },
   "IRL": {
@@ -437,7 +437,7 @@
   },
   "TPC": {
     "nom": "Conduit TPC",
-    "definition": "Tube de protection des câbles, pour les canalisations enterrées. Rouge pour le courant fort. Enterré à 50 cm au moins (85 cm sous une voie accessible aux véhicules), avec un grillage avertisseur 20 cm au-dessus.",
+    "definition": "Tube de protection des câbles, pour les canalisations enterrées. Rouge pour le courant fort. Enterré à 50 cm au moins (85 cm à la traversée des voies accessibles aux voitures et sous les trottoirs), avec un grillage avertisseur 20 cm au-dessus.",
     "niveau_associe": 13
   },
   "goulotte": {
@@ -451,7 +451,7 @@
   },
   "ETEL": {
     "nom": "Espace Technique Électrique du Logement (ETEL)",
-    "definition": "Volume réservé à la GTL : 60 cm de large, 25 cm de profondeur, du sol au plafond. À 10 cm au moins d'une canalisation de gaz, 40 cm d'une source de chaleur, 60 cm d'un point d'eau.",
+    "definition": "Volume réservé à la GTL : 60 cm de large, 25 cm de profondeur, du sol au plafond. À 10 cm au moins d'une canalisation de gaz, 40 cm d'une source de chaleur non isolée thermiquement, 60 cm d'un point d'eau.",
     "niveau_associe": 14
   },
   "panneau de contrôle": {

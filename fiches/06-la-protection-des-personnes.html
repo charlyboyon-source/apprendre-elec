@@ -51,11 +51,11 @@
         </div>
       </section>
       <section class="fiche-carte">
-        <div class="fiche-carte-image"><img src="assets/svg/c6-circuit-terre.svg" alt="Le circuit de terre : la prise de terre, boucle à fond de fouille ou piquet de 2 m, puis le conducteur de terre en cuivre nu 25 mm², la borne principale de terre avec sa barrette de coupure, le conducteur principal de protection 16 mm², et le bornier de terre du tableau" width="640" height="440" loading="lazy"></div>
+        <div class="fiche-carte-image"><img src="assets/svg/c6-circuit-terre.svg" alt="Le circuit de terre : la prise de terre, boucle à fond de fouille ou piquet de 2 m, puis le conducteur de terre en cuivre nu 25 mm², la borne principale de terre avec sa barrette de coupure, le conducteur principal de protection, 10 mm² si l&#x27;alimentation est en 10 mm², 16 mm² au-delà, et le bornier de terre du tableau" width="640" height="440" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">3</span>La prise de terre et le circuit de terre</h2>
-          <p class="fiche-carte-memo">Prise de terre (piquet 2 m, ou boucle à fond de fouille = la meilleure) → conducteur de terre 25 mm² cuivre nu → borne principale (barrette de coupure pour mesurer) → conducteur principal de protection (même section que l'arrivée : 16 mm² avec une arrivée en 16 mm²) → bornier du tableau.</p>
-          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> La barrette de coupure n'est pas un détail : sans elle, impossible de mesurer la prise de terre seule. Avant un Consuel, on l'ouvre, on mesure, on referme. Et on connaît les sections les yeux fermés : 25 mm² cuivre nu pour le conducteur de terre, 16 mm² pour le conducteur principal de protection quand l'arrivée est en 16 mm² (il suit la section de l'arrivée).</p>
+          <p class="fiche-carte-memo">Prise de terre (piquet 2 m, ou boucle à fond de fouille = la meilleure) → conducteur de terre 25 mm² cuivre nu → borne principale (barrette de coupure pour mesurer) → conducteur principal de protection (10 mm² si l'alimentation est en 10 mm², 16 mm² au-delà) → bornier du tableau.</p>
+          <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> La barrette de coupure n'est pas un détail : sans elle, impossible de mesurer la prise de terre seule. Avant un Consuel, on l'ouvre, on mesure, on referme. Et on connaît les sections les yeux fermés : 25 mm² cuivre nu pour le conducteur de terre, pour le conducteur principal de protection, 10 mm² si l'alimentation est en 10 mm², 16 mm² au-delà.</p>
         </div>
       </section>
       <section class="fiche-carte">
@@ -78,7 +78,7 @@
         <div class="fiche-carte-image"><img src="assets/svg/c6-ddr-principe.svg" alt="Vue en coupe d&#x27;un dispositif différentiel : la phase et le neutre traversent un tore. Si leurs courants sont égaux, rien ne se passe ; s&#x27;ils diffèrent, à cause d&#x27;une fuite vers la terre, la bobine de détection fait déclencher l&#x27;appareil" width="640" height="430" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">6</span>Le DDR : principe et sensibilités</h2>
-          <p class="fiche-carte-memo">DDR : phase et neutre dans un tore ; il coupe si elles diffèrent (fuite). Sensibilité IΔn en mA. 30 mA (haute sensibilité) → personnes. 300/500 mA → incendie.</p>
+          <p class="fiche-carte-memo">DDR : phase et neutre dans un tore ; il coupe si elles diffèrent (fuite). Sensibilité IΔn en mA. 30 mA (haute sensibilité) → protection complémentaire des personnes, même en contact direct. 500 mA (disjoncteur de branchement) → coupure sur contact indirect si la terre fait 100 Ω au plus. 300 mA → incendie.</p>
           <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Ne confonds jamais calibre et sensibilité. Un différentiel « 40 A / 30 mA », c'est 40 A de calibre (le courant qu'il laisse passer) et 30 mA de sensibilité (la fuite qui le fait couper). On dit « sensibilité 30 mA », jamais « calibre 30 mA ».</p>
         </div>
       </section>
@@ -86,7 +86,7 @@
         <div class="fiche-carte-image"><img src="assets/svg/c6-types-ddr.svg" alt="Types de dispositifs différentiels : AC, courant alternatif sinusoïdal ; A, en plus le continu pulsé ; F, en plus les fréquences mélangées ; B, en plus le continu lisse. Chaque type détecte aussi ce que voit le précédent" width="640" height="420" loading="lazy"></div>
         <div class="fiche-carte-corps">
           <h2><span class="fiche-carte-num">7</span>Les types de DDR : AC, A, F, B</h2>
-          <p class="fiche-carte-memo">Types de DDR, du plus simple au plus complet : AC (alternatif seul) ⊂ A (+ continu pulsé : plaque, lave-linge) ⊂ F (+ fréquences mixtes) ⊂ B (+ continu lisse). Tableau : au moins 1 type AC + 1 type A.</p>
+          <p class="fiche-carte-memo">Types de DDR, du plus simple au plus complet : AC (alternatif seul) ⊂ A (+ continu pulsé : plaque, lave-linge) ⊂ F (+ fréquences mixtes, exigé derrière un variateur de vitesse monophasé) ⊂ B (+ continu lisse). Tableau : au moins 2 DDR 30 mA ; cuisson, lave-linge, recharge de véhicule sous type A (ou F, ou B) ; le reste sous type AC au minimum.</p>
           <p class="fiche-carte-chantier"><strong>Sur le chantier</strong> Un moyen de retenir : A comme « Appareils électroménagers » (plaque, lave-linge → type A). Mettre une plaque à induction derrière un simple type AC, c'est une non-conformité classique au Consuel.</p>
         </div>
       </section>

@@ -49,5 +49,5 @@
 <rect x="328" y="322" width="296" height="62" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <text x="476" y="348" text-anchor="middle" font-size="13.0" font-weight="800" fill="#d92b2b">différents (fuite vers la terre) :</text>
 <text x="476" y="370" text-anchor="middle" font-size="14.3" font-weight="500" fill="#1c2530">il coupe</text>
-<text x="320" y="414" text-anchor="middle" font-size="12.3" font-weight="500" fill="#5b6673">Sensibilité IΔn : 30 mA pour les personnes ; 300/500 mA contre l'incendie</text>
+<text x="320" y="414" text-anchor="middle" font-size="12.3" font-weight="500" fill="#5b6673">30 mA : protection complémentaire · 500 mA : contacts indirects · 300 mA : incendie</text>
 </svg>

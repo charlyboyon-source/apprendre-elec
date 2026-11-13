@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Travail en hauteur : le pied de l'échelle s'écarte du quart de la hauteur ; une échelle n'est pas un poste de travail. Échafaudage roulant : 8 m au plus en extérieur, 12 m en intérieur">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Travail en hauteur : le pied de l'échelle s'écarte du mur entre le quart et le tiers de la longueur L de l'échelle ; une échelle n'est pas un poste de travail. Échafaudage roulant : hauteur de plancher de 8 m au plus en extérieur, 12 m en intérieur">
 <defs>
 <linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
 <linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
@@ -33,13 +33,12 @@
 <path d="M209 143 L225 158" stroke="#7d858e" stroke-width="4"/>
 <path d="M215 119 L230 136" stroke="#7d858e" stroke-width="4"/>
 <path d="M220 94 L235 114" stroke="#7d858e" stroke-width="4"/>
-<path d="M140 70 V290" stroke="#1c2530" stroke-width="2"/><path d="M134 70 h12 M134 290 h12" stroke="#1c2530" stroke-width="2"/>
-<text x="130" y="186.0" text-anchor="end" font-size="19.5" font-weight="800" fill="#1c2530">H</text>
+<text x="186" y="186.0" text-anchor="end" font-size="19.5" font-weight="800" fill="#1c2530">L</text>
 <path d="M175.0 308 H230" stroke="#b85a08" stroke-width="2.4"/><path d="M175.0 302 v12 M230 302 v12" stroke="#b85a08" stroke-width="2.4"/>
-<text x="202.5" y="330" text-anchor="middle" font-size="14.3" font-weight="800" fill="#b85a08">H / 4</text>
+<text x="202.5" y="330" text-anchor="middle" font-size="14.3" font-weight="800" fill="#b85a08">L/4 à L/3</text>
 <text x="26" y="214" text-anchor="start" font-size="13.0" font-weight="800" fill="#b85a08">pied écarté</text>
-<text x="26" y="232" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">du quart de</text>
-<text x="26" y="250" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">la hauteur</text>
+<text x="26" y="232" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">du quart au tiers</text>
+<text x="26" y="250" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">de la longueur L</text>
 <rect x="380" y="96" width="140" height="10" fill="#7d858e"/>
 <path d="M386 106 V166 M514 106 V166" stroke="#aab1b9" stroke-width="5"/><path d="M386 106 L514 166 M514 106 L386 166" stroke="#c5cad0" stroke-width="2.5"/><rect x="380" y="162" width="140" height="8" fill="#7d858e"/>
 <path d="M386 166 V226 M514 166 V226" stroke="#aab1b9" stroke-width="5"/><path d="M386 166 L514 226 M514 166 L386 226" stroke="#c5cad0" stroke-width="2.5"/><rect x="380" y="222" width="140" height="8" fill="#7d858e"/>
@@ -51,7 +50,8 @@
 <text x="572" y="152" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">extérieur</text>
 <text x="572" y="206" text-anchor="middle" font-size="20.8" font-weight="800" fill="#2166d1">12 m</text>
 <text x="572" y="228" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">intérieur</text>
-<text x="450" y="318" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">échafaudage roulant</text>
+<text x="476" y="62" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">échafaudage roulant</text>
+<text x="476" y="318" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">hauteur de plancher maximale</text>
 <rect x="24" y="350" width="592" height="46" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
 <text x="320" y="379.0" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Une échelle n'est pas un poste de travail</text>
 </svg>

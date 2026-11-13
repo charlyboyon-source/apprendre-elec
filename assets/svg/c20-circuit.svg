@@ -40,5 +40,5 @@
 <text x="320" y="346" text-anchor="middle" font-size="13.7" font-weight="500" fill="#5b6673">La notice de la borne fixe le type de différentiel</text>
 <rect x="24" y="362" width="592" height="52" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
 <text x="320" y="383.5" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Prise renforcée : 2,5 mm², 20 A</text>
-<text x="320" y="404.5" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Borne 32 A : 6 mm² au moins</text>
+<text x="320" y="404.5" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Borne : 6 mm² sous 32 A, 10 mm² sous 40 A</text>
 </svg>

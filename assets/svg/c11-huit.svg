@@ -41,6 +41,6 @@
 <path d="M189.8 262 v10 H537.0 v-10" fill="none" stroke="#1c2530" stroke-width="2.5"/>
 <text x="363.4" y="300" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1c2530">8 disjoncteurs maximum</text>
 <rect x="40" y="330" width="560" height="50" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
-<text x="320" y="351" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Répartis l'éclairage et les prises</text>
-<text x="320" y="372" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">sur plusieurs différentiels</text>
+<text x="320" y="351" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">Obligatoire : éclairage et prises répartis</text>
+<text x="320" y="372" text-anchor="middle" font-size="15.6" font-weight="800" fill="#1c2530">sous au moins deux DDR</text>
 </svg>
