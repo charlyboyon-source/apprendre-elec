@@ -1,17 +1,17 @@
 // Configurateur pédagogique de tableau (logement, monophasé 230 V).
 // Règles appliquées, toutes tirées des modules 11, 14 et 20 :
-//  - éclairage : 1,5 mm², 16 A, 8 points max par circuit ; au moins 2 circuits au-delà de 35 m² ;
+//  - éclairage : 1,5 mm², 16 A, 8 points max par circuit ; au moins 2 circuits dès 2 pièces principales ;
 //  - prises 16 A : 12 max en 2,5 mm² / 20 A, ou 8 max en 1,5 mm² / 16 A ; cuisine : circuit dédié 2,5 mm² / 20 A ;
 //  - spécialisés : plaque 6 mm² / 32 A ; four, lave-linge, lave-vaisselle, sèche-linge, chauffe-eau 2,5 mm² / 20 A ; VMC 1,5 mm² / 2 A ;
-//  - au moins 2 interrupteurs différentiels 30 mA, dont 1 type AC et 1 type A ; plaque et lave-linge sous le type A ;
-//  - 8 disjoncteurs max par interrupteur différentiel ; éclairage et prises répartis ;
+//  - au moins 2 DDR 30 mA ; cuisson, lave-linge et recharge de véhicule sous un type A ; les autres sous un type AC au minimum ;
+//  - 8 disjoncteurs max par interrupteur différentiel ; éclairage et prises répartis sous au moins 2 DDR (obligatoire) ;
 //  - calibre du différentiel : méthode aval (somme / 2, chauffe-eau et recharge en entier), calibres 25, 40, 63 A ;
 //  - recharge de véhicule (prise renforcée 2,5 mm² / 20 A) : différentiel 30 mA type A propre au circuit ;
-//  - réserve : 20 % des emplacements en maison individuelle, 6 modules libres en appartement, jamais de rangée vide ;
-//    2 prises modulaires ; rangées de 13 modules. (Vérifié sur les guides Legrand, novembre 2026.)
+//  - réserve : 20 % des emplacements, limitée à 6 modules en logement collectif ; rangées de 13 modules.
+//  - le socle 2P+T des équipements de communication est attenant ou intégré au tableau de communication : pas dessiné ici.
 import "./page.js";
 
-const MODULES_RANGEE = 13, MODULES_ID = 2, MODULES_PRISE = 2.5;
+const MODULES_RANGEE = 13, MODULES_ID = 2;
 const CAL_ID = [25, 40, 63];
 const form = document.querySelector(".config-form");
 const sortie = document.querySelector(".config-resultat");
@@ -19,13 +19,15 @@ const val = (n) => form.elements[n];
 const entier = (n) => Math.max(0, Math.floor(Number(String(val(n).value).replace(",", ".")) || 0));
 const coche = (n) => val(n).checked;
 const maison = () => val("logement").value === "maison";
+// Réserve exigée : 20 % des emplacements ; en logement collectif, elle est limitée à 6 modules.
+const reserveMini = (total) => maison() ? 0.2 * total : Math.min(0.2 * total, 6);
 const methodeAmont = () => Number(val("agcp").value) > 0 && val("methode").value === "amont";
 
 function circuits() {
   const liste = [];
-  const surface = entier("surface"), points = entier("points");
+  const pieces = entier("pieces"), points = entier("points");
   if (points > 0) {
-    const n = Math.max(Math.ceil(points / 8), surface > 35 ? 2 : 1);
+    const n = Math.max(Math.ceil(points / 8), pieces >= 2 && points >= 2 ? 2 : 1);
     for (let k = 0; k < n; k++) {
       const pts = Math.floor(points / n) + (k < points % n ? 1 : 0);
       liste.push({ nom: `Éclairage ${k + 1}`, court: `Écl.${k + 1}`, detail: `${pts} point${pts > 1 ? "s" : ""} lumineux`, cal: 16, sec: "1,5", fam: "ecl" });
@@ -86,24 +88,12 @@ function repartir(liste) {
 }
 
 function rangees(ids) {
-  const r = ids.map((i) => ({ id: i, prises: 0, libres: MODULES_RANGEE - MODULES_ID - i.circ.length }));
-  let aPlacer = 2;
-  for (const row of [...r].sort((a, b) => b.libres - a.libres)) {
-    while (aPlacer && row.libres >= MODULES_PRISE) { row.prises++; row.libres -= MODULES_PRISE; aPlacer--; }
-  }
-  if (aPlacer) r.push({ id: null, prises: aPlacer, libres: MODULES_RANGEE - aPlacer * MODULES_PRISE });
+  const r = ids.map((i) => ({ id: i, libres: MODULES_RANGEE - MODULES_ID - i.circ.length }));
   const ok = () => {
     const total = r.length * MODULES_RANGEE, libres = r.reduce((s, x) => s + x.libres, 0);
-    return maison() ? libres >= 0.2 * total : libres >= 6;
+    return libres >= reserveMini(total);
   };
-  while (!ok()) r.push({ id: null, prises: 0, libres: MODULES_RANGEE });
-  // Pas de rangée entièrement vide : on y déplace une prise modulaire.
-  for (const vide of r.filter((x) => !x.id && !x.prises)) {
-    const source = r.find((x) => x.prises > (x.id ? 0 : 1));
-    if (!source) break;
-    source.prises--; source.libres += MODULES_PRISE;
-    vide.prises++; vide.libres -= MODULES_PRISE;
-  }
+  while (!ok()) r.push({ id: null, libres: MODULES_RANGEE });
   return r;
 }
 
@@ -117,7 +107,6 @@ function dessin(r) {
       cases.push(`<div class="tab-mod tab-id t-${row.id.type}" style="grid-column: span ${MODULES_ID * 2}" title="Interrupteur différentiel ${row.id.cal} A, 30 mA, type ${row.id.type}"><b>${row.id.cal} A</b><small>30 mA</small><small>type ${row.id.type}</small></div>`);
       for (const c of row.id.circ) cases.push(`<div class="tab-mod tab-dj f-${c.fam}" style="grid-column: span 2" title="${esc(c.nom)} : ${c.sec} mm², disjoncteur ${c.cal} A"><b>C${c.cal}</b><small>${esc(c.court)}</small></div>`);
     }
-    for (let p = 0; p < row.prises; p++) cases.push(`<div class="tab-mod tab-prise" style="grid-column: span ${MODULES_PRISE * 2}" title="Prise de courant modulaire"><span></span></div>`);
     const libres = Math.round(row.libres * 2);
     if (libres > 0) cases.push(`<div class="tab-mod tab-libre" style="grid-column: span ${libres}"><small>réserve</small></div>`);
     return `<div class="tab-rangee"><span class="tab-num">${k + 1}</span><div class="tab-rail">${cases.join("")}</div></div>`;
@@ -136,14 +125,13 @@ function calculer() {
   if (!(plaque && autres20 >= 3)) alertes.push("Un logement compte au moins 4 circuits spécialisés : la plaque de cuisson et au moins trois autres en 2,5 mm² sous 20 A, parmi le four, le lave-vaisselle, le lave-linge et le sèche-linge.");
   if (coche("recharge")) alertes.push("Recharge : vérifie dans la notice le type de différentiel exigé (type A au minimum, parfois type B). Une borne de plus de 3,7 kW demande la qualification IRVE.");
   const verifs = [
-    [ids.filter((i) => !i.ve).length >= 2, "Au moins 2 interrupteurs différentiels 30 mA"],
-    [ids.some((i) => i.type === "AC") && ids.some((i) => i.type === "A" && !i.ve), "Au moins 1 type AC et 1 type A"],
+    [ids.filter((i) => !i.ve).length >= 2, "Au moins 2 DDR 30 mA"],
+    [liste.filter((c) => c.typeA || c.ve).every((c) => ids.some((i) => i.type === "A" && i.circ.includes(c))), "Cuisson, lave-linge et recharge de véhicule sous un type A"],
     [ids.every((i) => i.circ.length <= 8), "8 disjoncteurs au maximum par différentiel"],
-    [liste.filter((c) => c.typeA).every((c) => ids.some((i) => i.type === "A" && i.circ.includes(c))), "Plaque et lave-linge sous un type A"],
+    [["ecl", "pr"].every((f) => liste.filter((c) => c.fam === f).length < 2 || ids.filter((i) => i.circ.some((c) => c.fam === f)).length >= 2), "Éclairage et prises répartis sous au moins 2 DDR"],
     maison()
-      ? [libres >= 0.2 * total, `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (au moins 20 % en maison individuelle)`]
-      : [libres >= 6, `Réserve : ${Math.round(libres * 10) / 10} modules libres (au moins 6 en appartement)`],
-    [r.every((x) => x.id || x.prises), "Aucune rangée laissée entièrement vide"],
+      ? [libres >= reserveMini(total), `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (au moins 20 %)`]
+      : [libres >= reserveMini(total), `Réserve : ${Math.round(libres * 10) / 10} modules libres sur ${total} (20 %, limitée à 6 modules en logement collectif)`],
   ];
   sortie.innerHTML = `
     <div class="config-chiffres">
