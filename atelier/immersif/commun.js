@@ -70,7 +70,7 @@ export function cadreCliquable(x, y, w, h, attr, label, rx = 14) {
 export const MOD = 82;
 const HT = 250;
 const LIGNES = [96, 438];
-function appareil(a, x, y, w, haut) {
+function appareil(a, x, y, w, haut, actif = true) {
   const id = a.type === "id", tl = a.type === "tl";
   const cx = x + w / 2;
   const visH = [x + 18, x + w - 18];
@@ -96,11 +96,11 @@ function appareil(a, x, y, w, haut) {
     s += `<rect x="${cx - 16}" y="${y + 192}" width="32" height="14" rx="2" fill="none" stroke="#6b7178"/>${texte(cx, y + 203, a.pdc || "4500", 9.5, 700, "#4b5157")}`;
     s += texte(x + 14, y + 104, "N", 11, 800, "#2e6bc9", "start");
   }
-  s += `<g class="manette" data-geste="manette:${a.cle}" role="button" tabindex="0" aria-label="${tl ? "Basculer à la main" : haut ? "Baisser" : "Remonter"} ${a.etiquette}">
+  s += `<g class="manette" ${actif ? `data-geste="manette:${a.cle}" role="button" tabindex="0" aria-label="${tl ? "Basculer à la main" : haut ? "Baisser" : "Remonter"} ${a.etiquette}"` : ""}>
     <rect x="${cx - 17}" y="${y + 86}" width="34" height="80" rx="6" fill="#2a2e33"/>
-    <rect x="${cx - 13}" y="${manY}" width="26" height="34" rx="5" fill="${id ? "#3567b5" : tl ? "#e9eef6" : "#f7f7f5"}" stroke="${id ? "#24497f" : "#7d8288"}" stroke-width="1.5"/>
+    <g class="t-levier" data-anim="man-${a.cle}"><rect x="${cx - 13}" y="${manY}" width="26" height="34" rx="5" fill="${id ? "#3567b5" : tl ? "#e9eef6" : "#f7f7f5"}" stroke="${id ? "#24497f" : "#7d8288"}" stroke-width="1.5"/></g>
     ${texte(cx, haut ? y + 160 : y + 98, haut ? "I" : "O", 11, 800, haut ? "#d23a2e" : "#7d8288")}
-    <rect x="${cx - 26}" y="${y + 80}" width="52" height="92" fill="transparent"/>
+    ${actif ? `<rect x="${cx - 26}" y="${y + 80}" width="52" height="92" fill="transparent"/>` : ""}
   </g>`;
   if (!id) s += `<rect x="${cx - 7}" y="${y + 70}" width="14" height="5" rx="2" fill="${haut ? "#d23a2e" : "#3d9a3d"}"/>`;
   s += `<rect x="${x + 2}" y="${y - 50}" width="${w - 4}" height="40" rx="3" fill="#fffbe6" stroke="#d8cd9f"/>`;
@@ -157,7 +157,7 @@ export function vueTableau(e, cfg) {
 /* ---------- Pointes de touche ---------- */
 export function pointes(e) {
   const p = (q, coul, id) => `<g class="pointe" data-pointe="${id}" transform="translate(${q.x} ${q.y})">
-      <circle r="40" fill="transparent"/>
+      <rect class="t-manche" x="-34" y="-114" width="68" height="100" rx="14" fill="transparent"/>
       <path d="M0 0 L-5 -18 L5 -18 Z" fill="url(#g-acier)"/>
       <rect x="-10" y="-96" width="20" height="80" rx="8" fill="${coul}"/>
       <rect x="-14" y="-40" width="28" height="9" rx="3" fill="${id === "rouge" ? "#7d1b14" : "#000"}"/>
@@ -165,4 +165,115 @@ export function pointes(e) {
     </g>`;
   const cordon = (q, coul, xd) => `<path d="M${xd} 760 C ${xd} 690, ${q.x} ${q.y + 40}, ${q.x} ${q.y - 96}" fill="none" stroke="${coul}" stroke-width="8" stroke-linecap="round" opacity=".95"/>`;
   return `${cordon(e.noir, "#151515", 1130)}${cordon(e.rouge, "#b82a21", 1170)}${p(e.noir, "#1c1c1c", "noir")}${p(e.rouge, "#c8322a", "rouge")}`;
+}
+
+/* =====================================================================
+   Nouveau moteur (jeu.js) : des cibles faites pour le doigt.
+   Règles : toute zone touchable fait au moins CIBLE × CIBLE unités
+   (≈ 46 px sur un téléphone de 390 px, où l'on montre une bande de
+   540 unités de large) ; jamais une zone dans une autre ; ce qui compte
+   est dessiné entre x = 330 et x = 870 (la bande visible sur téléphone).
+   ===================================================================== */
+export const CIBLE = 68;
+// Zone touchable : cadre visible (pointillés), zone invisible agrandie au minimum, étiquette.
+export function zone(x, y, w, h, attrs, label, opts = {}) {
+  const lw = Math.max(w, CIBLE), lh = Math.max(h, CIBLE);
+  const X = x - (lw - w) / 2, Y = y - (lh - h) / 2;
+  const { etiquette = label, pos = "bas", rx = 14, cadre = true } = opts;
+  let etiq = "";
+  if (etiquette) {
+    const lg = etiquette.length * 8.4 + 28;
+    const ey = pos === "haut" ? y - 40 : pos === "dedans" ? y + h / 2 - 15 : y + h + 8;
+    etiq = `<g class="t-etiq" pointer-events="none"><rect x="${x + w / 2 - lg / 2}" y="${ey}" width="${lg}" height="30" rx="15" fill="#1d2228" fill-opacity=".86"/>${texte(x + w / 2, ey + 20, etiquette, 14.5, 700, "#fff")}</g>`;
+  }
+  return `<g class="t-zone" ${attrs} role="button" tabindex="0" aria-label="${label}">
+    ${cadre ? `<rect class="t-cadre" x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}"/>` : ""}
+    <rect class="t-hit" x="${X}" y="${Y}" width="${lw}" height="${lh}" rx="${Math.min(rx, lw / 2)}" fill="transparent"/>${etiq}</g>`;
+}
+// Borne mesurable et serrable : la vis tourne quand on la serre (data-anim), grande zone ronde autour.
+export function borne(x, y, r, id, label, opts = {}) {
+  const { rot = 25, laiton = true } = opts;
+  return `<g class="t-borne" data-vis="${id}" data-cx="${x}" data-cy="${y}" role="button" tabindex="0" aria-label="${label}">
+    <circle class="t-hit" cx="${x}" cy="${y}" r="${Math.max(CIBLE / 2, r + 14)}" fill="transparent"/>
+    <g class="t-tourne" data-anim="vis-${id}">${vis(x, y, r, { laiton, rot })}</g></g>`;
+}
+// Point de mesure sans vis (alvéole, broche) : même cible, pas de tournevis.
+export function point(x, y, id, label) {
+  return `<g class="t-borne" data-vis="${id}" data-cx="${x}" data-cy="${y}" role="button" tabindex="0" aria-label="${label}">
+    <circle class="t-hit" cx="${x}" cy="${y}" r="${CIBLE / 2}" fill="transparent"/></g>`;
+}
+// Vis de fixation (geste) : on la touche, elle tourne et sort.
+export function visFixation(x, y, r, geste, anim, label, presente = true) {
+  return `<g class="t-zone" data-geste="${geste}" data-cx="${x}" data-cy="${y}" role="button" tabindex="0" aria-label="${label}">
+    <circle class="t-hit" cx="${x}" cy="${y}" r="${CIBLE / 2}" fill="transparent"/>
+    ${presente ? `<g class="t-tourne" data-anim="${anim}">${vis(x, y, r, { laiton: false, rot: 35 })}</g>` : `<circle cx="${x}" cy="${y}" r="${r * 0.55}" fill="#3a3530"/><circle class="t-cadre" cx="${x}" cy="${y}" r="${r + 8}"/>`}</g>`;
+}
+// Le tournevis qu'on voit arriver sur la vis.
+export function dessinTournevis(x, y) {
+  return `<g class="t-outil" pointer-events="none" transform="translate(${x} ${y}) rotate(-28)">
+    <rect x="-3.5" y="-92" width="7" height="88" rx="2" fill="url(#g-acier)"/>
+    <rect x="-13" y="-178" width="26" height="90" rx="11" fill="#e4b51a" stroke="#7a5d05" stroke-width="2"/>
+    <rect x="-13" y="-150" width="26" height="12" fill="#1d2228" opacity=".8"/></g>`;
+}
+
+const LIGNES2 = [86, 392];
+// Vue d'ensemble du tableau : on touche une manette pour la basculer, le haut ou le bas d'un appareil pour s'en approcher.
+export function vueTableau2(e, cfg) {
+  let s = `<rect width="1200" height="750" fill="#e6dccb"/>
+  <rect x="322" y="12" width="556" height="650" rx="16" fill="url(#g-coffret)" stroke="#b5b7b6" stroke-width="3" filter="url(#f-ombre)"/>
+  <rect x="332" y="22" width="536" height="630" rx="8" fill="#eef0f0"/>`;
+  let zones = "";
+  cfg.rangees.forEach((rangee, r) => {
+    const y = LIGNES2[r];
+    s += `<rect x="336" y="${y + HT / 2 - 9}" width="528" height="18" fill="#dde1e4"/>`;
+    s += `<rect x="342" y="${y + 16}" width="516" height="10" rx="3" fill="#c97b3d" opacity=".85"/>`;
+    let x = 344;
+    for (const a of rangee) {
+      const w = a.type === "id" ? 2 * MOD : MOD;
+      const haut = e.app[a.cle] !== false;
+      s += appareil(a, x, y, w, haut, false);
+      [[x + 18, "neutre"], [x + w - 18, "phase"]].forEach(([vx, coul]) => {
+        s += conducteur(`M${vx} ${y + HT - 16} L${vx} ${y + HT + 6}`, coul, 8) + vis(vx, y + HT - 22, 11, { rot: 25 }) + vis(vx, y + 22, 11, { rot: 25 });
+      });
+      const nom = a.etiquette;
+      zones += zone(x, y, w, 70, `data-aller="module:${a.cle}"`, `S'approcher de : ${nom}`, { etiquette: "", cadre: false, rx: 6 });
+      zones += zone(x, y + 72, w, 112, `data-geste="manette:${a.cle}"`, `${haut ? "Baisser" : "Remonter"} la manette : ${nom}`, { etiquette: "", cadre: false, rx: 6 });
+      zones += zone(x, y + 186, w, 64, `data-aller="module:${a.cle}"`, `S'approcher de : ${nom}`, { etiquette: "", cadre: false, rx: 6 });
+      x += w + 4;
+    }
+  });
+  s += texte(600, 668, "touche une manette pour la basculer · le haut ou le bas d'un appareil pour t'en approcher", 13.5, 600, "#5b6168");
+  return s + zones + zone(340, 700, 170, 40, `data-aller="${cfg.retour}"`, "Refermer le tableau", { pos: "dedans" });
+}
+// Gros plan d'un appareil du tableau : ses quatre bornes, sa manette, et le bornier de terre à côté.
+export function vueModule2(e, cfg, cle) {
+  const a = cfg.rangees.flat().find((x) => x.cle === cle);
+  const id = a.type === "id", base = id ? 2 * MOD : MOD;
+  const k = id ? 1.7 : 2.2, x0 = id ? 360 : 400, y0 = id ? 160 : 130;
+  const haut = e.app[a.cle] !== false;
+  const relie = (cfg.relies || []).includes(cle);
+  const X = (v) => x0 + v * k, Y = (v) => y0 + v * k;
+  let s = `<rect width="1200" height="750" fill="#e6dccb"/><rect x="330" y="30" width="540" height="690" rx="14" fill="#eef0f0" stroke="#c9cccc" stroke-width="2"/>
+  <g transform="translate(${x0} ${y0}) scale(${k})">${appareil(a, 0, 0, base, haut, false)}`;
+  [[18, "N", "neutre"], [base - 18, "L", "phase"]].forEach(([vx, kk, coul]) => {
+    const idv = `${cle}-${kk}`;
+    s += (e.loose === idv
+      ? conducteur(`M${vx + 4} ${HT - 4} L${vx + 6} ${HT + 30} Q${vx + 6} ${HT + 46} ${vx + 16} ${HT + 52}`, coul, 7) + cuivre(vx + 3, HT - 18, 14, 96, 5)
+      : conducteur(`M${vx} ${HT - 16} L${vx} ${HT + 30} Q${vx} ${HT + 46} ${vx + 8} ${HT + 52}`, coul, 7));
+    s += conducteur(`M${vx} 16 L${vx} -10`, coul, 7);
+  });
+  s += `</g>`;
+  const noms = cfg.noms || {};
+  [[18, "N"], [base - 18, "L"]].forEach(([vx, kk]) => {
+    const bas = `${cle}-${kk}`, hautId = `${cle}-amont-${kk}`;
+    s += relie ? borne(X(vx), Y(HT - 22), 24, bas, noms[bas] || bas, { rot: e.loose === bas ? 70 : 25 }) : vis(X(vx), Y(HT - 22), 24, { rot: 25 });
+    s += relie ? borne(X(vx), Y(22), 24, hautId, noms[hautId] || hautId) : vis(X(vx), Y(22), 24, { rot: 25 });
+  });
+  const cx = base / 2;
+  s += zone(X(cx - 26), Y(80), 52 * k, 92 * k, `data-geste="manette:${cle}"`, `${haut ? "Baisser" : "Remonter"} la manette : ${a.etiquette}`, { etiquette: haut ? "Baisser" : "Remonter", pos: "dedans", cadre: false });
+  // bornier de terre
+  s += `<rect x="690" y="380" width="160" height="70" rx="8" fill="#e9ecee" stroke="#9aa1a8"/><rect x="702" y="398" width="136" height="32" rx="4" fill="url(#g-laiton)"/>`;
+  s += conducteur("M820 560 C 818 500 812 470 806 430", "terre", 10) + conducteur("M730 560 C 732 500 736 470 740 430", "terre", 10);
+  s += borne(770, 414, 18, "terre", noms.terre || "bornier de terre") + texte(770, 478, "bornier de terre", 15, 700, "#3b3f44");
+  return s + zone(340, 684, 190, 48, `data-aller="tableau"`, "Retour au tableau", { pos: "dedans" });
 }
