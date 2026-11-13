@@ -1,10 +1,9 @@
-// Progression du joueur : électrons, badges, niveaux terminés.
+// Progression du joueur : badges, niveaux terminés.
 // Stockage : localStorage, clé unique versionnée.
 
 const CLE_STOCKAGE = "apprendre-elec-v1";
 
 const ETAT_DEFAUT = {
-  electrons: 0,
   badges: [],
   niveauxTermines: [],
   activites: {},
@@ -24,14 +23,6 @@ export function chargerProgression() {
 
 export function sauverProgression(etat) {
   localStorage.setItem(CLE_STOCKAGE, JSON.stringify(etat));
-}
-
-export function crediterElectrons(montant) {
-  const etat = chargerProgression();
-  etat.electrons += montant;
-  sauverProgression(etat);
-  majCompteurElectrons(etat.electrons);
-  return etat.electrons;
 }
 
 export function terminerNiveau(idNiveau) {
@@ -103,7 +94,3 @@ export function toutesActivitesFaites(idNiveau, etat = chargerProgression()) {
   return Boolean(a.lecon && a.quiz && a.jeu);
 }
 
-export function majCompteurElectrons(valeur = chargerProgression().electrons) {
-  const el = document.querySelector(".compteur-electrons");
-  if (el) el.textContent = `${valeur} e⁻`;
-}

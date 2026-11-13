@@ -2,7 +2,6 @@
 // Fils tirés de borne à borne (couleur au choix), boîte de dérivation à connecteurs, simulation électrique,
 // contrôle automatique : fonctionnement dans toutes les positions, court-circuit, défaut à la terre, phase coupée, terre, couleurs.
 import "../../js/page.js";
-import { crediterElectrons } from "../../js/progression.js";
 import { brancherBoutonSons } from "../../js/audio.js";
 import { DEFS, vis, conducteur, texte } from "../immersif/commun.js";
 import { sons } from "../immersif/sons.js";
@@ -447,7 +446,7 @@ function verifier() {
   s.verif = { lignes, fonctionne, fautes: uniques(fautes), remarques: uniques(remarques) };
   if (fonctionne && !s.verif.fautes.length) {
     const etoiles = Math.max(1, 3 - s.aide - (s.fautes.length ? 1 : 0) - (s.incomplet ? 1 : 0));
-    s.verif.etoiles = etoiles; sons.succes(); crediterElectrons(etoiles * 10);
+    s.verif.etoiles = etoiles; sons.succes();
   } else sons.rate();
 }
 const nomDe = (id) => m.composants.find((c) => c.id === id).nom;

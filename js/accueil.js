@@ -1,13 +1,11 @@
-// Script de la page d'accueil : en-tête, compteur d'électrons, menu et carte
+// Script de la page d'accueil : en-tête, menu et carte
 // du parcours. Volontairement léger : les cours, quiz et jeux ont leurs propres pages.
 
-import { majCompteurElectrons } from "./progression.js";
 import { afficherCarte } from "./carte.js";
 import { brancherMenu } from "./menu.js";
 import { brancherBoutonSons } from "./audio.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  majCompteurElectrons();
   brancherBoutonSons();
   const entete = document.querySelector(".entete");
   if (entete) {

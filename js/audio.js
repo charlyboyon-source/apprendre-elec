@@ -1,5 +1,5 @@
 // Sons des jeux uniquement (Web Audio, volume bas, désactivables).
-// La navigation et les gains d'électrons restent silencieux.
+// La navigation reste silencieuse.
 
 const CLE_SONS = "apprendre-elec-v1-sons";
 

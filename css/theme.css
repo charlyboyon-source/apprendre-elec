@@ -94,14 +94,6 @@ button {
   padding: var(--esp-1) var(--esp-2);
 }
 
-.compteur-electrons {
-  background: var(--jaune-doux);
-  color: var(--jaune);
-  border: 1px solid var(--jaune);
-  border-radius: 999px;
-  padding: var(--esp-1) var(--esp-3);
-  font-weight: 700;
-}
 
 /* Emplacement bandeau premium — désactivé en v1 */
 .bandeau-premium { display: none; }

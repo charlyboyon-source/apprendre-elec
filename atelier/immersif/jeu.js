@@ -7,7 +7,6 @@
 // - deux façons de jouer : « Guidé » ou « Comme sur le terrain ».
 // Les interventions pas encore adaptées (sans « v2: true ») tournent encore sur l'ancien moteur (ancien.js).
 import "../../js/page.js";
-import { crediterElectrons } from "../../js/progression.js";
 import { brancherBoutonSons } from "../../js/audio.js";
 import { DEFS, W, H, pointes, dessinTournevis } from "./commun.js";
 import { sons } from "./sons.js";
@@ -244,7 +243,6 @@ function verifierFin() {
   if (e.humeur < 2) etoiles--;
   if (e.accident) etoiles = Math.min(etoiles, 1);
   e.etoiles = Math.max(1, etoiles);
-  crediterElectrons(e.etoiles * 15);
   e.panneau = "fin";
 }
 function facture() {
@@ -310,7 +308,6 @@ function panneauFin() {
     ${e.humeur < 3 ? `<p class="im-alerte">Une question maladroite a agacé ton client : on questionne pour comprendre, jamais pour accuser.</p>` : ""}
     ${e.indicesPris ? `<p class="im-petit">${e.indicesPris} indice${e.indicesPris > 1 ? "s" : ""} demandé${e.indicesPris > 1 ? "s" : ""}.</p>` : ""}
     ${e.fautes.length ? `<ul class="im-fautes">${e.fautes.map((x) => `<li>${x}</li>`).join("")}</ul>` : `<p class="im-ok">Aucune faute de sécurité.</p>`}
-    <p class="im-petit">+${e.etoiles * 15} e⁻</p>
     <button type="button" class="im-plein" data-action="suivante">Autre panne ici</button>
     <button type="button" class="im-lien" data-action="menu">Choisir une autre intervention</button></div>`;
 }

@@ -3,7 +3,6 @@
 // Chaque intervention (scenarios/*.js) fournit ses vues, son installation, ses gestes, ses pannes et son dialogue.
 // Le moteur gère : la conversation, les déplacements, le multimètre et ses pointes, le tournevis,
 // les pièces de la camionnette, les conséquences (électrisation, ohmmètre sous tension), le temps et la facture.
-import { crediterElectrons } from "../../js/progression.js";
 import { DEFS, W, H, pointes } from "./commun.js";
 import { sons } from "./sons.js";
 
@@ -187,7 +186,7 @@ function mesurer(compter = true) {
 function verifierFin() {
   if (e.fini || !e.repare || !S.termine(api())) return;
   e.fini = true; sons.succes();
-  if (S.etoiles) { e.etoiles = S.etoiles(api()); crediterElectrons(e.etoiles * 15); e.panneau = "fin"; return; }
+  if (S.etoiles) { e.etoiles = S.etoiles(api()); e.panneau = "fin"; return; }
   let etoiles = 3;
   if (e.fautes.length) etoiles--;
   if (e.piecesInutiles) etoiles--;
@@ -195,7 +194,6 @@ function verifierFin() {
   if (e.humeur < 2) etoiles--;
   if (e.accident) etoiles = Math.min(etoiles, 1);
   e.etoiles = Math.max(1, etoiles);
-  crediterElectrons(e.etoiles * 15);
   e.panneau = "fin";
 }
 function facture() {
@@ -246,7 +244,6 @@ function panneauCamion() {
 }
 function panneauFin() {
   if (S.finHtml) return `<div class="im-panneau im-fin"><p class="im-etoiles">${"★".repeat(e.etoiles)}${"☆".repeat(3 - e.etoiles)}</p>${S.finHtml(api())}
-    <p class="im-petit">+${e.etoiles * 15} e⁻</p>
     <button type="button" class="im-plein" data-action="suivante">Rejouer (autres défauts)</button>
     <button type="button" class="im-lien" data-action="menu">Choisir une autre intervention</button></div>`;
   const f = facture();
@@ -264,7 +261,6 @@ function panneauFin() {
     ${e.piecesInutiles ? `<p class="im-alerte">${e.piecesInutiles} pièce${e.piecesInutiles > 1 ? "s" : ""} changée${e.piecesInutiles > 1 ? "s" : ""} pour rien : le client l'a payée.</p>` : ""}
     ${e.humeur < 3 ? `<p class="im-alerte">Une question maladroite a agacé ton client : on questionne pour comprendre, jamais pour accuser.</p>` : ""}
     ${e.fautes.length ? `<ul class="im-fautes">${e.fautes.map((x) => `<li>${x}</li>`).join("")}</ul>` : `<p class="im-ok">Aucune faute de sécurité.</p>`}
-    <p class="im-petit">+${e.etoiles * 15} e⁻</p>
     <button type="button" class="im-plein" data-action="suivante">Autre panne ici</button>
     <button type="button" class="im-lien" data-action="menu">Choisir une autre intervention</button>
   </div>`;

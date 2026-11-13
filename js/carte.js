@@ -64,7 +64,7 @@ function majBandeauProgression(parcours, etat) {
   const faits = etat.niveauxTermines.filter((id) => id >= 1 && id <= total).length;
   const pct = total ? Math.round((faits / total) * 100) : 0;
   bandeau.innerHTML = `
-    <div class="progression-ligne">Ta progression : <b>${faits} / ${total}</b> niveaux · <b class="prog-e">${etat.electrons} e⁻</b></div>
+    <div class="progression-ligne">Ta progression : <b>${faits} / ${total}</b> niveaux</div>
     <div class="progression-barre"><span style="width:${pct}%"></span></div>`;
 }
 

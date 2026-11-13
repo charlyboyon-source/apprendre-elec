@@ -1,9 +1,9 @@
 // Page d'un cours : le cours, puis le quiz et le jeu sur la même page.
 // Étape 1 cochée quand on arrive au bout du cours ; quand les trois étapes
-// sont faites pour la première fois : récompense et module suivant débloqué.
+// sont faites pour la première fois : module suivant débloqué.
 import "./page.js";
 import {
-  crediterElectrons, terminerNiveau, deverrouillerManuel,
+  terminerNiveau, deverrouillerManuel,
   activiteFaite, marquerActivite, toutesActivitesFaites
 } from "./progression.js";
 import { brancherBoutonSons } from "./audio.js";
@@ -80,10 +80,9 @@ function fait(niveau, act) {
   const avant = toutesActivitesFaites(id);
   marquerActivite(id, act);
   if (!avant && toutesActivitesFaites(id)) {
-    crediterElectrons(niveau.recompense.electrons);
     terminerNiveau(id);
     const bravo = document.querySelector(".module-bravo");
-    if (bravo) { bravo.hidden = false; bravo.querySelector("b").textContent = `+${niveau.recompense.electrons} e⁻`; }
+    if (bravo) bravo.hidden = false;
   }
   majEtapes();
 }
