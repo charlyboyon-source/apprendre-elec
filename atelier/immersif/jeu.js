@@ -11,6 +11,7 @@ import { crediterElectrons } from "../../js/progression.js";
 import { brancherBoutonSons } from "../../js/audio.js";
 import { DEFS, W, H, pointes, dessinTournevis } from "./commun.js";
 import { sons } from "./sons.js";
+import { modele } from "./moteur.js";
 
 const CATALOGUE = [
   { id: "chambre", fichier: "./scenarios/chambre.js", titre: "La lumière de la chambre", lieu: "Maison", v2: true },
@@ -35,37 +36,12 @@ let e = null;        // état de la partie
 let ancien = false;  // l'ancien moteur a la main
 let occupe = false;  // une animation est en cours : on ignore les touches
 
-/* ---------- Modèle électrique (graphe de liaisons) ---------- */
-function liaisons() { return typeof S.liaisons === "function" ? S.liaisons(e) : S.liaisons; }
-function conduit(l) {
-  if (l.coupePar && l.coupePar === e.panne.id && !e.repare) return false;
-  if (l.si && !e.app[l.si]) return false;
-  if (l.sauf && e.app[l.sauf]) return false;
-  return true;
-}
-function potentiels() {
-  const parent = {};
-  const f = (x) => (parent[x] === undefined || parent[x] === x ? (parent[x] = x) : (parent[x] = f(parent[x])));
-  const actives = liaisons().filter(conduit);
-  for (const l of actives) if (!l.charge) parent[f(l.a)] = f(l.b);
-  const pot = { [f("L")]: 230, [f("N")]: 0, [f("PE")]: 0 };
-  let change = true;
-  while (change) {
-    change = false;
-    for (const l of actives.filter((x) => x.charge)) {
-      const a = f(l.a), b = f(l.b);
-      if (pot[a] !== undefined && pot[b] === undefined) { pot[b] = pot[a]; change = true; }
-      else if (pot[b] !== undefined && pot[a] === undefined) { pot[a] = pot[b]; change = true; }
-    }
-  }
-  return { de: (n) => pot[f(n)], groupe: f };
-}
-function alimente(a, b) {
-  const l = liaisons().find((x) => x.charge && ((x.a === a && x.b === b) || (x.a === b && x.b === a)));
-  if (!l || !conduit(l)) return false;
-  const p = potentiels();
-  return (p.de(a) === 230 && p.groupe(b) === p.groupe("N")) || (p.de(b) === 230 && p.groupe(a) === p.groupe("N"));
-}
+/* ---------- Modèle électrique (commun avec l'atelier 3D : moteur.js) ---------- */
+const M = () => modele(S, e);
+const liaisons = () => M().liaisons();
+const conduit = (l) => M().conduit(l);
+const potentiels = () => M().potentiels();
+const alimente = (a, b) => M().alimente(a, b);
 
 /* ---------- Outils pour les interventions ---------- */
 function dire(t, type = "info") { e.bulle = { t, type }; }
@@ -209,10 +185,7 @@ function mesurer(compter = true) {
       dire("L'appareil hurle : tension détectée sur le calibre Ω ! Un multimètre bas de gamme n'y survivrait pas.", "danger");
       return;
     }
-    const fil = liaisons().filter((l) => conduit(l) && !l.charge);
-    const vus = new Set([na]), file = [na];
-    while (file.length) { const x = file.shift(); for (const l of fil) { const y = l.a === x ? l.b : l.b === x ? l.a : null; if (y && !vus.has(y)) { vus.add(y); file.push(y); } } }
-    e.lecture = vus.has(nb) ? "0,2 Ω" : "OL";
+    e.lecture = M().continuite(na, nb) ? "0,2 Ω" : "OL";
   } else {
     const va = pt.de(na), vb = pt.de(nb);
     const u = va === undefined || vb === undefined ? 0 : Math.abs(va - vb);
