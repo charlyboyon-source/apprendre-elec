@@ -694,7 +694,7 @@ page("materiel.html", "Outils de l'apprenti électricien : quoi acheter",
     <p class="note-affiliation">Cette page ne contient pour l'instant aucun lien commercial. Si des liens vers des boutiques y sont ajoutés un jour, ils seront signalés comme liens affiliés : ApprendreElec touchera alors une petite commission, sans surcoût pour toi, et les critères ci-dessus ne changeront pas.</p>''', classe="page-simple")
 
 page("a-propos.html", "À propos d'ApprendreElec : qui écrit ce site",
-     "ApprendreElec est un site gratuit pour apprendre l'électricité du bâtiment : qui l'a fait, pour qui, et comment s'en servir.",
+     "ApprendreElec, site gratuit pour apprendre l'électricité du bâtiment : qui l'écrit, comment les cours sont vérifiés, comment signaler une erreur.",
      f'''    <h1>À propos</h1>
     <p>ApprendreElec est un site gratuit pour apprendre l'électricité du bâtiment, du tout premier circuit jusqu'au niveau attendu pour le titre professionnel d'Électricien d'Équipement du Bâtiment.</p>
     <h2>Pour qui ?</h2>
@@ -708,6 +708,12 @@ page("a-propos.html", "À propos d'ApprendreElec : qui écrit ce site",
     </ul>
     <h2>Qui l'a fait ?</h2>
     <p>Le site est conçu par Charly, en formation au TP Électricien d'Équipement du Bâtiment. Tout le contenu est original : aucun cours n'est recopié.</p>
+    <h2>Comment les cours sont écrits et vérifiés</h2>
+    <p>Chaque cours suit la même méthode. Le texte est rédigé avec le vocabulaire exact du métier, puis relu comme le ferait un correcteur d'examen, à la recherche de la faute : une valeur fausse, un mot mal employé, une question qui aurait deux bonnes réponses.</p>
+    <p>Les valeurs chiffrées (sections, calibres, distances, seuils de danger) sont recoupées sur les sources d'origine quand elles sont accessibles : les textes officiels publiés sur Légifrance, la documentation d'Enedis pour le branchement, l'INRS pour la sécurité au travail, les publications de l'AFNOR. Le texte complet de la NF C 15-100 est payant : quand une règle ne peut pas être vérifiée dans le texte lui-même, on le dit au lieu d'affirmer.</p>
+    <p>Chaque page de cours indique sa date de dernière mise à jour. Les <a href="actualites.html">actualités</a> citent toujours leur source.</p>
+    <h2>Signaler une erreur</h2>
+    <p>Tu as repéré une erreur, une valeur qui a changé avec la norme, ou une explication pas claire ? Écris à <a href="mailto:contact@apprendre-electricite.fr">contact@apprendre-electricite.fr</a> en indiquant la page concernée. Chaque signalement est vérifié, et la correction est faite dès qu'elle est confirmée.</p>
     <h2>À garder en tête</h2>
     <p>ApprendreElec est un outil de révision. Il ne remplace ni une formation, ni un formateur, ni le texte des normes, qui évoluent. Une erreur a pu se glisser : en cas de doute, c'est la norme en vigueur et ton formateur qui font foi.</p>
     <p><b>On n'intervient jamais sur une installation électrique sans y être formé et habilité.</b> Toute intervention se fait hors tension, absence de tension vérifiée.</p>''', classe="page-simple")
@@ -716,7 +722,7 @@ page("mentions-legales.html", "Mentions légales | ApprendreElec",
      "Mentions légales du site ApprendreElec : éditeur, hébergeur, données personnelles, propriété du contenu.",
      '''    <h1>Mentions légales</h1>
     <h2>Éditeur</h2>
-    <p>ApprendreElec est un site personnel, non commercial, édité par un particulier (Charly).</p>
+    <p>ApprendreElec est un site personnel, non commercial, édité par un particulier (Charly). Contact : <a href="mailto:contact@apprendre-electricite.fr">contact@apprendre-electricite.fr</a>.</p>
     <h2>Hébergeur</h2>
     <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
     <h2>Données personnelles</h2>
