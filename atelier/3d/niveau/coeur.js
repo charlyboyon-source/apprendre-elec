@@ -9,7 +9,7 @@ const fr = (x, d = 1) => x.toFixed(d).replace(".", ",").replace(/,0+$/, "");
 export const heureFr = (h) => { const m = Math.round(h * 60) % 1440; return `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, "0")}`; };
 // affichage du mesureur d'isolement : on compare, on ne donne pas de seuil
 export function megohms(r) { if (r === Infinity || r > 2e8) return "plus de 200 MΩ"; const m = r / 1e6; return `${m >= 10 ? fr(m, 0) : m >= 0.1 ? fr(m, 1) : fr(m, 3)} MΩ`; }
-const COUTS = { essayer: 0.5, manette: 0.25, mode: 0.25, regler_horloge: 0.5, ouvrir: 2, fermer: 1, debrancher: 1, rebrancher: 1, mesurer: 0.5, question: 1, regarder: 0.25, deplacer: 0.5 };
+const COUTS = { essayer: 0.5, manette: 0.25, test: 0.25, mode: 0.25, regler_horloge: 0.5, ouvrir: 2, fermer: 1, debrancher: 1, rebrancher: 1, mesurer: 0.5, question: 1, regarder: 0.25, deplacer: 0.5 };
 
 export function creerPartie(N, cause) {
   const inst = creerInstallation(N.logement, [N.causes[cause]]), e = inst.etatInitial();
@@ -51,7 +51,8 @@ export function creerPartie(N, cause) {
   }
   function declenchements(ev) {
     for (const d of ev) {
-      dire(`Clac ! ${nomProt(d.id).replace(/^l/, "L")} vient de déclencher.`, "alerte");
+      dire(`Clac ! ${nomProt(d.id).replace(/^l/, "L")} vient de déclencher${d.raison === "court-circuit" ? ", d'un coup" : d.raison === "surintensite" ? ", après avoir chauffé un moment" : ""}.`, "alerte");
+      if (d.raison === "court-circuit") P.vus.add(`cc:${d.id}`); if (d.raison === "surintensite") P.vus.add(`thermique:${d.id}`);
       noter("tableau", `${heureFr(d.heure !== undefined ? d.heure : e.env.heure)} : ${nomProt(d.id)} a déclenché${d.raison === "fuite" ? " (fuite vers la terre)" : ""}.`);
       P.vus.add(`declenche:${d.id}`);
     }
@@ -87,9 +88,11 @@ export function creerPartie(N, cause) {
     const cout = COUTS[a.type] || 0;
     let retour;
     switch (a.type) {
-      case "deplacer": break;
+      case "deplacer": if (a.lieu) P.vus.add(`lieu:${a.lieu}`); break;
+      case "geste": { const g = N.gestes[a.id](P, { dire, noter, declenchements, calc }); retour = g; break; } // un geste propre au niveau (s'asseoir sur un lit…)
       case "regarder": { // un indice visuel (horloge, traces, buée…)
-        const o = N.regards && N.regards[a.id]; const t = o ? o(P) : null;
+        const o = N.regards && N.regards[a.id]; const pr = inst.protections.find((x) => x.id === a.id);
+        const t = o ? o(P) : pr ? { texte: `${nomProt(a.id).replace(/^l/, "L")} : calibre ${pr.calibre} A. Rien d'anormal à voir.`, valeur: { calibre: pr.calibre } } : null;
         if (t) { dire(t.texte, t.type || "info"); if (t.indice) { noter("indices", t.indice); P.vus.add(`indice:${a.id}`); } retour = t.valeur; }
         break;
       }
@@ -98,6 +101,8 @@ export function creerPartie(N, cause) {
         if (o.type === "prise") { const ok = calc().alimente(a.id); dire(`${o.nom} : ta lampe témoin ${ok ? "s'allume" : "reste éteinte"}.`, ok ? "ok" : "alerte"); noter("constats", `${o.nom} : ${ok ? "alimentée" : "sans courant"} (${heureFr(e.env.heure)}).`); retour = ok; }
         else if (o.type === "interrupteur") { const avant = etatVisible(); declenchements(inst.agir(e, { type: "basculer", id: a.id }).declenchements); const apres = etatVisible(); const ch = inst.points.filter((p) => avant[p.id] !== apres[p.id]); dire(ch.length ? ch.map((p) => `${p.nom} : ${apres[p.id] ? "allumé" : "éteint"}`).join(" ; ") + "." : `${o.nom} : clic… rien ne change.`, ch.length ? "ok" : "alerte"); for (const p of ch) noter("constats", `${p.nom} : fonctionne.`); if (!ch.length) noter("constats", `${o.nom} : aucun effet (${heureFr(e.env.heure)}).`); retour = ch.length > 0; }
         else if (o.type === "point_lumineux") { const ok = calc().allume(a.id); dire(ok ? `${o.nom} : il éclaire.` : `${o.nom} : éteint. Tu essaies une ampoule neuve : toujours rien. Ce n'est pas l'ampoule.`, ok ? "ok" : "alerte"); noter("constats", `${o.nom} : ${ok ? "éclaire" : "éteint, même avec une ampoule neuve"} (${heureFr(e.env.heure)}).`); retour = ok; }
+        else if ((inst.mobile[a.id] || o.type === "appareil_fixe") && N.commutables && N.commutables.includes(a.id)) { // un appareil du client : on lit sa plaque, on l'allume ou on l'éteint
+          const r = inst.agir(e, { type: "marche", id: a.id }), on = e.marche[a.id]; dire(`${o.nom} — plaque signalétique : ${o.puissance} W. Tu ${on ? "l'allumes" : "l'éteins"}.`, on ? "ok" : "info"); noter("constats", `${o.nom} : ${o.puissance} W (plaque signalétique).`); declenchements(r.declenchements); retour = on; }
         else { const ok = calc().fonctionne(a.id); const t = (N.essais && N.essais[a.id]) ? N.essais[a.id](ok, P) : `${o.nom} : ${ok ? "en marche" : "à l'arrêt"}.`; dire(t, ok ? "ok" : "info"); noter("constats", `${o.nom} : ${ok ? "en marche" : "à l'arrêt"} (${heureFr(e.env.heure)}).`); retour = ok; }
         break;
       }
@@ -113,6 +118,17 @@ export function creerPartie(N, cause) {
         }
         declenchements(r.declenchements.filter((d) => d.id !== a.id));
         retour = e.positions[a.id];
+        break;
+      }
+      case "test": { // bouton test d'un interrupteur différentiel ou du disjoncteur de branchement
+        const avant = etatVisible(), r = inst.agir(e, { type: "test", id: a.id }), nom = nomProt(a.id);
+        if (r.testSansEffet) { dire(`Bouton test (${nom}) : rien ne se passe. ${e.positions[a.id] ? "Il n'est pas alimenté : le bouton test ne fonctionne que sous tension." : "Sa manette est déjà en bas."}`, "alerte"); retour = false; }
+        else {
+          const apres = etatVisible(), perdus = inst.points.filter((p) => avant[p.id] && !apres[p.id]);
+          dire(`Tu appuies sur le bouton test : clac, ${nom} déclenche. Il fonctionne.${perdus.length ? ` S'arrêtent : ${perdus.map((p) => p.nom.toLowerCase()).join(", ")}.` : ""} Remonte sa manette pour remettre le courant.`, "ok");
+          noter("tableau", `Bouton test : ${nom} déclenche bien.`);
+          declenchements(r.declenchements.filter((d) => d.id !== a.id)); retour = true;
+        }
         break;
       }
       case "mode": { // sélecteur d'une horloge ou d'un contacteur : auto → I → 0 → auto
@@ -151,6 +167,9 @@ export function creerPartie(N, cause) {
           else if (!P.vat.teste) dire("VAT : aucun voyant… mais tu ne l'as pas testé avant sur une source connue : ça ne prouve rien.", "info");
           else { for (const b of [x, y]) P.vat.absence.add(b.split(/[.#]/)[0].startsWith("c") && b.includes("#") ? inst.conducteur[b.split("#")[0]][b.split("#")[1]].split(".")[0] : b.split(".")[0]); dire("VAT : aucun voyant entre ces deux points.", "ok"); }
           noter("mesures", `VAT, ${nomBorne(x)} ↔ ${nomBorne(y)} : ${u ? "tension présente" : "aucun voyant"} (${heureFr(e.env.heure)}).`);
+        } else if (outil === "pince") { // autour d'UN conducteur : celui qui part de la borne touchée
+          if (x.endsWith(".cable")) { retour = 0; dire("Pince autour du câble entier : 0 A. Le courant qui part par la phase revient par le neutre : autour des deux à la fois, leurs effets s'annulent. On serre UN seul conducteur.", "mesure"); noter("mesures", `Pince autour du câble entier : 0 A (${heureFr(e.env.heure)}).`); }
+          else { const c = N.logement.conducteurs.find((k) => k.de === x) || N.logement.conducteurs.find((k) => k.vers === x); const i = c ? inst.courantConducteur(e, c.id) : 0; retour = i; dire(`Pince sur le conducteur ${c ? c.couleur : ""} · ${nomBorne(x)} : ${fr(i, 1)} A.`, "mesure"); noter("mesures", `Pince, ${nomBorne(x)} : ${fr(i, 1)} A (${heureFr(e.env.heure)}).`); }
         } else if (outil === "ohm") {
           const k = inst.continuite(e, x, y); retour = k;
           if (k === "tension") { faute("Ohmmètre posé sur un circuit sous tension : une continuité se mesure toujours circuit coupé."); dire("L'appareil signale une tension : la continuité se mesure hors tension. Coupe d'abord le circuit.", "danger"); }
@@ -190,9 +209,10 @@ export function creerPartie(N, cause) {
       case "securiser": { // la fin réaliste : remplacer, mettre hors service, expliquer ; puis on vérifie que ça tient
         if (!P.trouve) break;
         const rem = N.remedes.find((x) => x.id === a.id);
-        if (!rem.pour.includes(cause)) { P.mauvaisRemedes++; dire(rem.non || "Ce n'est pas la bonne réponse à cette panne.", "client"); retour = false; break; }
+        if (!rem.pour.includes(cause)) { P.mauvaisRemedes++; if (rem.faute) faute(rem.faute); dire(rem.non || "Ce n'est pas la bonne réponse à cette panne.", "client"); retour = false; break; }
         for (const k of Object.keys(e.deconnecte)) delete e.deconnecte[k];
         if (rem.repare) inst.agir(e, { type: "reparer", panne: 0 });
+        if (rem.effet) rem.effet(P);
         if (rem.horsService) inst.agir(e, { type: "manoeuvrer", id: rem.horsService, position: false });
         for (const p of inst.protections) if (p.id !== rem.horsService) inst.agir(e, { type: "manoeuvrer", id: p.id, position: true });
         for (const o of N.logement.organes) if (o.type === "horloge") inst.agir(e, { type: "regler_horloge", id: o.id });

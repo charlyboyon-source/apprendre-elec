@@ -78,6 +78,12 @@ c.appareil("television", "Télévision", 100, "pc_sejour1");
 c.appareil("refrigerateur", "Réfrigérateur", 150, "pc_cuisine4");
 c.appareil("congelateur", "Congélateur", 150, "pc_congelateur");
 c.appareil("lavelinge", "Lave-linge", 2200, "pc_lavelinge", false);
+// Le décor branché : chaque appareil dépend de sa prise, donc de son disjoncteur
+c.appareil("lampadaire", "Lampadaire du séjour", 40, "pc_sejour2", false);
+c.appareil("lampe_appoint", "Lampe d'appoint", 25, "pc_sejour1", false);
+c.appareil("bouilloire", "Bouilloire", 2000, "pc_cuisine1", false);
+c.appareil("cafetiere", "Cafetière", 800, "pc_cuisine2", false);
+c.appareil("micro_ondes", "Four à micro-ondes", 1000, "pc_cuisine3", false);
 
 export const maisonJardin = c.logement;
 export const reperesMaison = { versBoite, enterre, b12, b23, versCe, cordonCe };

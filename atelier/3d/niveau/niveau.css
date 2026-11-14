@@ -16,3 +16,14 @@
 @media (min-width: 900px) { #jeu .n-boutons { grid-template-columns: repeat(5, auto); } #jeu .n-boutons .n-trouve { grid-column: auto; } #jeu .n-boutons button { padding: 0 12px; } }
 #jeu .j-question.n-choisi { background: #1d2228; color: #fff; border-color: #1d2228; }
 .j-panneau h3 { margin: 10px 0 2px; font-size: 0.9rem; }
+/* signalement de ce qui s'actionne (survol à la souris, toucher) et écran d'attente du décor */
+.n-survol { position: absolute; z-index: 3; pointer-events: none; transform: translate(-50%, -50%); }
+.n-survol i { display: block; width: 38px; height: 38px; border-radius: 50%; border: 2px solid #ffc400; box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.45), 0 0 14px rgba(255, 196, 0, 0.5); }
+.n-survol span { position: absolute; left: 50%; top: 46px; transform: translateX(-50%); white-space: nowrap; background: rgba(13, 16, 22, 0.9); color: #ffe08a; font-size: 0.74rem; font-weight: 700; padding: 3px 8px; border-radius: 8px; }
+.n-survol.appui i { animation: n-appui 0.5s ease-out; }
+@keyframes n-appui { from { transform: scale(0.5); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+.n-charge { position: absolute; inset: 0; z-index: 4; display: grid; place-content: center; gap: 12px; justify-items: center; background: #05070c; color: #e9ecf1; text-align: center; }
+.n-charge div { width: min(240px, 60vw); height: 6px; border-radius: 3px; background: #1d2330; overflow: hidden; }
+.n-charge div i { display: block; height: 100%; width: 0; background: #ffc400; transition: width 0.15s linear; }
+.n-charge small { color: #8d97a6; }
+@media (prefers-reduced-motion: reduce) { .n-survol.appui i { animation: none; } }

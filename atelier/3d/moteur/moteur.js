@@ -20,7 +20,9 @@
 //   { type: "surcharge", branchements: [{ appareil, prise }] }                trop d'appareils sur un circuit
 //   { type: "organe_hs", organe }                                             ampoule, interrupteur, disjoncteur
 //   { type: "etiquette_fausse", disjoncteur, etiquette }                      le repérage du tableau ment
-//   { type: "pont", a, b }                                                    deux bornes qui se touchent
+//   { type: "pont", a, b, quand? }                                            deux bornes qui se touchent
+//   { type: "connexion_chauffe", disjoncteur }      borne desserrée sur un disjoncteur : il chauffe et déclenche sous son calibre
+//   { type: "mauvais_calibre", disjoncteur, calibre } un disjoncteur plus petit que celui prévu pour le circuit
 // Un défaut d'isolement peut aussi partir d'une borne quelconque ({ borne }) et dépendre du temps qu'il fait :
 // resistance: 1500 ou resistance: { sec: 1e6, pluie: 5000 } (en ohms ; absent = pas de fuite par ce temps-là).
 // Un organe hors service peut être « collé » (mode: "colle") : bouton-poussoir enfoncé, contact soudé.
@@ -61,6 +63,8 @@ const DESSERRAGE = new Set(["connexion_desserree", "neutre_coupe_boite"]);
 export function creerInstallation(logement, pannes = []) {
   const T = logement.tableau;
   const protections = [{ ...T.agcp, genre: "agcp" }, ...T.differentiels.map((d) => ({ ...d, genre: "differentiel" })), ...T.disjoncteurs.map((d) => ({ ...d, genre: "disjoncteur" }))];
+  const prevus = {};
+  for (const p of pannes) if (p.type === "mauvais_calibre") { const x = protections.find((k) => k.id === p.disjoncteur); prevus[x.id] = x.calibre; x.calibre = p.calibre; }
   const organe = Object.fromEntries(logement.organes.map((o) => [o.id, o]));
   const mobile = Object.fromEntries((logement.appareils || []).map((a) => [a.id, a]));
   const conducteur = Object.fromEntries(logement.conducteurs.map((c) => [c.id, c]));
@@ -284,7 +288,7 @@ export function creerInstallation(logement, pannes = []) {
         if (o.type === "minuterie" && e.minuteries[o.id] > 0) e.minuteries[o.id] = Math.max(0, e.minuteries[o.id] - dt);
       }
       if (logement.thermique) for (const p of protections) if (p.genre === "disjoncteur") {
-        const k = e.positions[p.id] ? r.surcharge(p.id) : 0;
+        const k = (e.positions[p.id] ? r.surcharge(p.id) : 0) * (actives(e).some((x) => x.type === "connexion_chauffe" && x.disjoncteur === p.id) ? 1.6 : 1);
         e.chauffe[p.id] = k > 1 ? (e.chauffe[p.id] || 0) + dt * (k * k - 1) / 30 : Math.max(0, (e.chauffe[p.id] || 0) - dt / 20);
       }
       e.env.heure = (e.env.heure + dt / 60) % 24; e.minutes += dt;
@@ -307,7 +311,14 @@ export function creerInstallation(logement, pannes = []) {
     else if (type === "rebrancher_fil") { delete e.deconnecte[`${action.conducteur}:${action.extremite}`]; }
     else if (type === "regler_horloge") { e.cadrans[id] = action.heure !== undefined ? action.heure : e.env.heure; }
     else if (type === "meteo") { Object.assign(e.env, action.env); }
-    else if (type === "reparer") { e.repare[action.panne] = true; const p = pannes[action.panne]; if (p.type === "surcharge") for (const b of p.branchements.slice(1)) e.branche[b.appareil] = null; if (p.type === "defaut_isolement" && p.appareil) e.branche[p.appareil] = null; }
+    // bouton « test » d'un appareil différentiel : il crée une fuite interne. L'appareil ne déclenche que s'il est fermé et alimenté.
+    else if (type === "test") {
+      const p = protections.find((k) => k.id === id), r0 = calculer(e);
+      if (!p || !p.sensibilite || !e.positions[id] || r0.tension(`${id}.Lin`, `${id}.Nin`) < SEUIL_VAT) return Object.assign(r0, { testSansEffet: true });
+      e.positions[id] = false; e.declenche[id] = "test";
+      const r = calculer(e); r.declenchements.unshift({ id, raison: "test" }); return r;
+    }
+    else if (type === "reparer") { e.repare[action.panne] = true; const p = pannes[action.panne]; if (p.type === "mauvais_calibre") protections.find((k) => k.id === p.disjoncteur).calibre = prevus[p.disjoncteur]; if (p.type === "surcharge") for (const b of p.branchements.slice(1)) e.branche[b.appareil] = null; if (p.type === "defaut_isolement" && p.appareil) e.branche[p.appareil] = null; }
     else throw new Error(`Action inconnue : ${type}`);
     return calculer(e);
   }

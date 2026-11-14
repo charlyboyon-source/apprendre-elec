@@ -27,34 +27,83 @@ export default {
   plan: {
     tableau: { extras: { ID2: ["horloge", "kc"] } },
     lieux: {
-      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3.2, 3], sol: "bois", objets: [
-        { t: "tableau", mur: "N", u: 0, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -1.15, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "boite", id: "bd_ecl", mur: "N", u: 1.15, y: 2.2 },
-        { t: "prise", id: "pc_entree", mur: "O", u: 0.8, y: 0.35 }, { t: "porte", vers: "sejour", mur: "E", u: 0.3, y: 1.025 }, { t: "porte", vers: "cellier", mur: "O", u: -0.5, y: 1.025 } ] },
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", objets: [
-        { t: "inter", id: "int_sejour", mur: "O", u: -0.2, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.3, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "N", u: 1.6, y: 0.35 },
-        { t: "meuble", x: -1.3, z: -1.85, w: 1.3, h: 0.45, d: 0.4 }, { t: "meuble", x: -1.3, z: -1.95, y: 0.45, w: 1.0, h: 0.6, d: 0.06, c: 0x0b0d10 }, { t: "meuble", x: 0.9, z: 0.9, w: 1.9, h: 0.7, d: 0.85, m: "tissu" },
-        { t: "porte", vers: "entree", mur: "O", u: 1.2, y: 1.025 }, { t: "porte", vers: "cuisine", mur: "E", u: -1.2, y: 1.025 }, { t: "porte", vers: "terrasse", mur: "S", u: 0.9, y: 1.025 } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", objets: [
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [4.2, 3], sol: "bois", camera: [0.1, 1.62, 1.05], objets: [
+        { t: "tableau", mur: "N", u: 0.9, y: 1.55 }, { t: "inter", id: "int_entree", mur: "N", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "boite", id: "bd_ecl", mur: "N", u: 1.85, y: 2.2 },
+        { t: "prise", id: "pc_entree", mur: "O", u: 0.3, y: 0.35 }, { t: "porte", vers: "sejour", mur: "E", u: 0.3, y: 1.025 }, { t: "porte", vers: "cellier", mur: "O", u: -0.9, y: 1.025 },
+        { t: "porteEntree", mur: "N", u: -1.15, y: 0 }, { t: "portemanteau", mur: "O", u: 1.0, y: 1.74 }, { t: "chaussures", mur: "O", u: 1.0, y: 0 },
+        { t: "tapis", x: 0.2, z: 0.35, w: 1.9, d: 1.1, couleurs: ["#2f3f55", "#d9c9a3", "#6b2a26"] },
+        { t: "modele", f: "ClassicConsole_01", x: 1.86, z: -0.8, r: -Math.PI / 2, s: 0.75, avec: [
+          { t: "cles", x: -0.36, y: 0.715, z: 0.04 }, { t: "courrier", x: -0.05, y: 0.715, z: 0.02 }, { t: "modele", f: "standing_picture_frame_01", x: 0.38, y: 0.715, z: -0.04, r: -0.3 }, { t: "modele", f: "potted_plant_04", x: 0.2, y: 0.715, z: 0.04 } ] },
+        { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.8, y: 1.52, auMur: true, s: 1.35 }, { t: "modele", f: "hanging_picture_frame_01", mur: "E", u: 1.15, y: 1.55, auMur: true, s: 0.7 },
+        { t: "modele", f: "potted_plant_01", x: 1.5, z: -1.18 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: 0.22, y: 1.68, auMur: true, s: 0.75 } ] },
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", camera: [1.75, 1.62, 1.75], yaw: 0.62, pitch: -0.24, objets: [
+        { t: "inter", id: "int_sejour", mur: "O", u: -0.2, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.3, y: 0.78 }, { t: "prise", id: "pc_sejour2", mur: "N", u: 1.6, y: 0.35 },
+        { t: "porte", vers: "entree", mur: "O", u: 1.2, y: 1.025 }, { t: "porte", vers: "cuisine", mur: "E", u: -1.2, y: 1.025 }, { t: "porte", vers: "terrasse", mur: "S", u: 0.9, y: 1.025 },
+        { t: "fenetre", mur: "N", u: 0.9, y: 1.45, w: 1.15, h: 1.15 },
+        { t: "tapis", x: -0.6, z: -0.55, w: 2.7, d: 1.9 },
+        { t: "modele", f: "modern_wooden_cabinet", x: -1.15, z: -1.83, e: [0.8, 1, 1], avec: [
+          { t: "tele", id: "television", x: 0.42, y: 0.68, z: -0.02 }, { t: "lampe", id: "lampe_appoint", x: -0.75, y: 0.68, z: 0, ry: 0.5 }, { t: "modele", f: "ceramic_vase_01", x: -0.42, y: 0.68, z: 0.05, s: 0.8 } ] },
+        { t: "modele", f: "sofa_03", x: -0.6, z: 0.3, r: Math.PI, avec: [ { t: "modele", f: "throw_pillows_01", x: -0.7, y: 0.47, z: -0.05, s: 0.8 }, { t: "plaid", x: 1.22, y: 0.7, z: 0.1, r: Math.PI / 2 } ] },
+        { t: "modele", f: "modern_coffee_table_01", x: -0.6, z: -0.75, r: Math.PI / 2, avec: [
+          { t: "modele", f: "tea_set_01", x: 0, y: 0.39, z: 0.3, s: 0.45 }, { t: "livre", x: 0.05, y: 0.39, z: -0.22, r: 0.3 }, { t: "telecommande", x: -0.13, y: 0.39, z: -0.02, r: -0.4 }, { t: "modele", f: "potted_plant_04", x: 0, y: 0.39, z: -0.47 } ] },
+        { t: "modele", f: "ArmChair_01", x: 1.95, z: -0.85, r: -Math.PI / 2 - 0.35 }, { t: "lampadaire", id: "lampadaire", x: 2.2, z: -1.75 },
+        { t: "modele", f: "wooden_bookshelf_worn", x: 2.2, z: 0.75, r: -Math.PI / 2, avec: [
+          { t: "livres", y: 0.39, w: 1.1, z: 0.02, g: 0 }, { t: "livres", y: 0.67, w: 1.1, z: 0.02, g: 3 }, { t: "modele", f: "book_encyclopedia_set_01", x: -0.3, y: 0.96, z: 0.02 }, { t: "livres", x: 0.3, y: 0.96, w: 0.5, z: 0.02, g: 5, n: 10 },
+          { t: "livres", y: 1.28, w: 0.7, x: -0.2, z: 0.02, g: 1, n: 14 }, { t: "modele", f: "standing_picture_frame_01", x: 0.4, y: 1.28, z: 0.05, r: -0.3 }, { t: "modele", f: "ceramic_vase_01", x: -0.35, y: 1.66, z: 0.03, s: 0.7 }, { t: "modele", f: "wicker_basket_02", x: 0.25, y: 1.66, z: 0.02 },
+          { t: "modele", f: "wicker_basket_01", x: -0.3, y: 0.11, z: 0.05, s: 1.5 }, { t: "livres", x: 0.3, y: 0.11, w: 0.5, z: 0.02, g: 2, n: 9 } ] },
+        { t: "modele", f: "hanging_picture_frame_02", mur: "N", u: -1.2, y: 1.8, auMur: true }, { t: "modele", f: "wall_clock", mur: "N", u: 2.15, y: 1.95, auMur: true },
+        { t: "modele", f: "hanging_picture_frame_01", mur: "O", u: -1.25, y: 1.6, auMur: true, s: 0.8 }, { t: "modele", f: "fancy_picture_frame_01", mur: "E", u: 0.75, y: 2.25, auMur: true, s: 0.6 },
+        { t: "modele", f: "potted_plant_01", x: -2.1, z: 1.7 } ] },
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.4, 1.62, 1.05], objets: [
         { t: "inter", id: "int_cuisine", mur: "O", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" },
-        { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.0, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: -0.4, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 0.9, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.2, y: 1.15 },
-        { t: "meuble", x: -0.25, z: -1.2, w: 2.6, h: 0.9, d: 0.6 }, { t: "meuble", x: 0.25, z: -1.2, y: 0.9, w: 0.58, h: 0.02, d: 0.5, c: 0x0b0d10 }, { t: "meuble", x: 1.25, z: 0.6, w: 0.6, h: 1.8, d: 0.6, m: "blanc" },
-        { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 } ] },
-      cellier: { nom: "le cellier", court: "Le cellier", raccourci: "Cellier", taille: [2.8, 3], sol: "beton", objets: [
-        { t: "inter", id: "int_cellier", mur: "E", u: 1.1, y: 1.1 }, { t: "plafonnier", id: "pl_cellier" },
-        { t: "ballon", id: "chauffe_eau", mur: "N", u: 0.75, y: 1.55 }, { t: "boite", id: "sc_ce", mur: "N", u: 0.75, y: 0.8, w: 0.09, h: 0.09 },
-        { t: "meuble", id: "congelateur", x: -0.8, z: -1.15, w: 0.75, h: 0.9, d: 0.65, m: "blanc", voyant: true }, { t: "prise", id: "pc_congelateur", mur: "N", u: -0.8, y: 1.2 },
-        { t: "prise", id: "pc_cellier", mur: "O", u: -0.6, y: 1.15 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: 0.7, y: 1.15 }, { t: "meuble", x: -1.05, z: -0.7 + 1.4, w: 0.6, h: 0.85, d: 0.6, m: "blanc" },
-        { t: "porte", vers: "entree", mur: "E", u: -0.6, y: 1.025 } ] },
-      terrasse: { nom: "la terrasse", court: "La terrasse", raccourci: "Terrasse", ext: true, taille: [7, 4], sol: "herbe", dalle: [7, 4, 0], camera: [0, 1.62, 0.6], objets: [
-        { t: "mur", mur: "N", u: 0, y: 0, w: 9, h: 3 }, { t: "porte", vers: "sejour", mur: "N", u: 1.8, y: 1.025 },
+        { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: 0.1, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.3, y: 1.15 },
+        { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 },
+        { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.6, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.55, hotte: true }, { k: "bas", w: 0.65, haut: true }] },
+        { t: "fenetre", mur: "N", u: -0.6, y: 1.8, w: 0.7, h: 0.55, rideaux: false },
+        { t: "modele", f: "electric_stove", id: "plaque", x: 0.675, z: -1.17, s: 1.05, zone: [0.55, 0.95, 0.7], voyant: [0.2, 0.8, 0.345] },
+        { t: "bouilloire", id: "bouilloire", x: -1.3, y: 0.92, z: -1.2, ry: 0.4 }, { t: "cafetiere", id: "cafetiere", x: 0.1, y: 0.92, z: -1.2 }, { t: "microondes", id: "micro_ondes", x: 1.28, y: 0.92, z: -1.2 },
+        { t: "modele", f: "pot_enamel_01", x: -0.33, y: 0.93, z: -1.2 }, { t: "modele", f: "wooden_bowl_02", x: -0.3, y: 0.92, z: -1.02, s: 1.4 }, { t: "modele", f: "jug_01", x: -0.12, y: 0.92, z: -1.3, r: 0.6 }, { t: "modele", f: "brass_pan_01", x: 0.6, y: 0.905, z: -1.2, r: 0.5 },
+        { t: "torchon", x: 0.675, y: 0.62, z: -0.82 },
+        { t: "frigo", id: "refrigerateur", x: 1.28, z: 0.6, r: -Math.PI / 2 },
+        { t: "modele", f: "dining_table", x: -1.1, z: -0.05, r: Math.PI / 2, e: [0.467, 0.93, 0.5], avec: [ { t: "modele", f: "wooden_bowl_02", x: 0.1, y: 0.755, z: 0, s: 2.2 }, { t: "modele", f: "tea_set_01", x: -0.25, y: 0.755, z: 0.05, s: 0.4 } ] },
+        { t: "modele", f: "dining_chair_02", x: -0.52, z: -0.32, r: -Math.PI / 2 }, { t: "modele", f: "dining_chair_02", x: -0.5, z: 0.25, r: -Math.PI / 2 - 0.25 },
+        { t: "cadreTexte", mur: "E", u: -0.85, y: 1.6, titre: "NOVEMBRE" } ] },
+      cellier: { nom: "le cellier", court: "Le cellier", raccourci: "Cellier", taille: [2.8, 3], sol: "beton", camera: [-0.15, 1.62, 1.1], yaw: -0.12, objets: [
+        { t: "inter", id: "int_cellier", mur: "E", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cellier" },
+        { t: "ballon", id: "chauffe_eau", mur: "N", u: 0.3, y: 1.55 }, { t: "boite", id: "sc_ce", mur: "N", u: 0.78, y: 0.95, w: 0.09, h: 0.09 },
+        { t: "congelateur", id: "congelateur", x: -0.82, z: -1.19 }, { t: "prise", id: "pc_congelateur", mur: "N", u: -0.82, y: 1.2 },
+        { t: "prise", id: "pc_cellier", mur: "O", u: -0.6, y: 1.15 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: 0.45, y: 1.15 }, { t: "lavelinge", id: "lavelinge", x: -1.1, z: -0.45, r: Math.PI / 2 },
+        { t: "etagereChargee", x: 1.17, z: -0.92, r: -Math.PI / 2 },
+        { t: "modele", f: "wicker_basket_02", x: -1.1, z: 0.6, h: 0.45, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.4 }] }, { t: "balai", x: 0.6, z: -1.42, r: 0 }, { t: "modele", f: "wooden_bucket_01", x: -1.05, z: 1.05, h: 0.36 },
+        { t: "modele", f: "cardboard_box_01", x: 1.05, z: -0.15, r: 0.3 }, { t: "modele", f: "plastic_crate_02", x: -0.3, z: -1.25, r: 0.1 },
+        { t: "porte", vers: "entree", mur: "E", u: 0.9, y: 1.025 } ] },
+      terrasse: { nom: "la terrasse", court: "La terrasse", raccourci: "Terrasse", ext: true, taille: [7, 4], sol: "herbe", dalle: [7, 4, 0, "patio_tiles"], camera: [0.3, 1.62, 1.75], objets: [
+        { t: "mur", mur: "N", u: 0, y: 0, w: 9, h: 3 }, { t: "facade", mur: "N", u: 0, y: 0, w: 9, h: 3 }, { t: "porte", vers: "sejour", mur: "N", u: 1.8, y: 1.025, facade: true },
+        { t: "fenetre", mur: "N", u: 0.45, y: 1.55, w: 1.15, h: 1.15, rideaux: false },
         { t: "prise", id: "pc_terrasse", mur: "N", u: -0.3, y: 1.0 }, { t: "boite", id: "bd_mur", mur: "N", u: -1.7, y: 0.3, ext: (P) => P.cause !== "A", eau: (P) => P.cause === "A" },
-        { t: "porte", vers: "allee", mur: "S", u: 0, y: 1.025 } ] },
-      allee: { nom: "l'allée du jardin", court: "L'allée", raccourci: "Allée", ext: true, taille: [4, 10], sol: "herbe", dalle: [1.1, 10, 0], camera: [0, 1.62, 4.2], pitch: -0.2, objets: [
+        { t: "porte", vers: "allee", mur: "S", u: 0, y: 1.025 },
+        { t: "modele", f: "outdoor_table_chair_set_01", x: 2.45, z: 0.45, r: 0.35 },
+        { t: "modele", f: "planter_box_01", x: 0.45, z: -1.75, avec: [{ t: "modele", f: "potted_plant_04", x: -0.26, y: 0.22, s: 1.9 }, { t: "modele", f: "potted_plant_04", x: 0, y: 0.22, s: 2.2, r: 1 }, { t: "modele", f: "potted_plant_04", x: 0.26, y: 0.22, s: 1.8, r: 2 }] },
+        { t: "modele", f: "planter_box_02", x: 2.95, z: -1.72, avec: [{ t: "modele", f: "potted_plant_01", x: -0.3, y: 0.05, h: 0.75 }, { t: "modele", f: "potted_plant_01", x: 0.3, y: 0.05, h: 0.9, r: 2 }] }, { t: "modele", f: "planter_pot_clay", x: 1.15, z: -1.75, s: 1.6, avec: [{ t: "modele", f: "potted_plant_04", y: 0.22, s: 2.4 }] },
+        { t: "herbe", x: 0, z: 2.35, w: 7.5, d: 0.5, n: 260 }, { t: "herbe", x: -3.9, z: 0.3, w: 0.7, d: 4.5, n: 220 }, { t: "herbe", x: 3.9, z: 0.3, w: 0.7, d: 4.5, n: 220 }, { t: "modele", f: "planter_pot_clay", x: -2.6, z: 1.1, s: 2 },
+        { t: "modele", f: "garden_hose_wall_mounted_01", mur: "N", u: -3.0, y: 0.95, auMur: true }, { t: "modele", f: "rusted_spade_01", x: -2.3, z: -1.86, rx: -0.14, r: 0.2 },
+        { t: "modele", f: "watering_can_metal_01", x: -1.15, z: -1.7, r: 0.8 }, { t: "modele", f: "garden_gloves_01", x: -1.4, y: 0.04, z: -1.5, r: 0.5 }, { t: "modele", f: "garden_gnome", x: 3.9, z: 0.9, r: -0.7 },
+        { t: "modele", f: "calathea_orbifolia_01", x: 4.0, z: -0.8, r: Math.PI / 2, sansOmbre: true },
+        { t: "haie", x: -4.6, z: 1.5, r: Math.PI / 2, w: 8 }, { t: "haie", x: 4.9, z: 1.5, r: Math.PI / 2, w: 8 }, { t: "cloture", x: -2.9, z: 5.5, w: 4.6 }, { t: "cloture", x: 2.9, z: 5.5, w: 4.6 },
+        { t: "flaques", liste: [[-0.7, 0.7, 0.5, 0.3], [1.5, 1.2, 0.36, 0.22], [2.7, -0.4, 0.28, 0.4], [-2.9, -1.2, 0.3, 0.2]], y: 0.043 } ] },
+      allee: { nom: "l'allée du jardin", court: "L'allée", raccourci: "Allée", ext: true, taille: [4, 10], sol: "herbe", dalle: [1.1, 10, 0, "gravel_floor"], camera: [0, 1.62, 4.2], pitch: -0.2, objets: [
         { t: "borne", id: "borne1", x: 0.85, z: 2.4 }, { t: "borne", id: "borne2", x: 0.85, z: 0.2, buee: (P) => P.cause === "B" }, { t: "borne", id: "borne3", x: 0.85, z: -2.0 },
-        { t: "bordure", x: 0.6, z: 0, l: 9.6 }, { t: "terre", x: 1.05, z: 3.5, si: (P) => P.cause === "C" }, { t: "portillon", x: 0, z: -4.7 }, { t: "haie", x: -1.9, z: 0, r: Math.PI / 2, w: 9.5 },
+        { t: "bordure", x: 0.6, z: 0, l: 9.6 }, { t: "bordure", x: -0.6, z: 0, l: 9.6 }, { t: "terre", x: 1.05, z: 3.5, si: (P) => P.cause === "C" }, { t: "portillon", x: 0, z: -4.7 },
+        { t: "haie", x: -2.1, z: 0, r: Math.PI / 2, w: 9.8 }, { t: "haie", x: 2.6, z: 0, r: Math.PI / 2, w: 9.8 }, { t: "cloture", x: -1.65, z: -4.7, w: 2.0, h: 1.2 }, { t: "cloture", x: 1.75, z: -4.7, w: 2.2, h: 1.2 },
+        { t: "modele", f: "planter_box_02", x: -1.25, z: 1.6, r: Math.PI / 2, avec: [{ t: "modele", f: "potted_plant_01", x: -0.3, y: 0.05, h: 0.8 }, { t: "modele", f: "potted_plant_04", x: 0.25, y: 0.24, s: 2.4 }] },
+        { t: "herbe", x: -0.95, z: 0, w: 0.6, d: 9.6, n: 520 }, { t: "herbe", x: 1.35, z: 0, w: 1.4, d: 9.6, n: 700 }, { t: "herbe", x: -1.6, z: 0, w: 0.5, d: 9.6, n: 380 }, { t: "modele", f: "garden_gnome", x: -1.05, z: -0.9, r: 0.9 }, { t: "modele", f: "fern_02", x: 1.5, z: -1.0, sansOmbre: true }, { t: "modele", f: "calathea_orbifolia_01", x: -1.3, z: -3.0, r: 1.2, sansOmbre: true },
+        { t: "modele", f: "planter_pot_clay", x: 1.5, z: 3.6, s: 2 },
+        { t: "flaques", liste: [[0.05, 2.9, 0.33, 0.5], [-0.15, -0.6, 0.28, 0.45], [0.2, -3.1, 0.3, 0.3]], y: 0.043 },
         { t: "porte", vers: "terrasse", mur: "S", u: 0, y: 1.025 } ] },
     },
+    ronrons: [{ lieu: "cellier", id: "congelateur" }],
   },
+  commutables: ["television", "lampadaire", "lampe_appoint", "bouilloire", "cafetiere", "micro_ondes", "plaque"],
   questions: [
     { id: "quoi", texte: "Qu'est-ce qui ne marche plus quand ça saute ?", reponse: () => "« Le congélateur, la prise de la terrasse, les lumières de l'allée… et je n'ai plus d'eau chaude. Le reste de la maison marche. »" },
     { id: "heure", texte: "À quelle heure ça saute ?", reponse: () => "« Je ne sais pas, je dors ! Je le vois le matin. À sept heures, en me levant, je remonte le gros bouton du bas. »" },
@@ -72,6 +121,7 @@ export default {
     borne2: (P) => (P.cause === "B" ? { texte: "Borne 2 : il y a de la buée sous le verre.", indice: "Borne 2 de l'allée : de la buée sous le verre." } : { texte: "Borne 2 : verre propre et sec." }),
     borne1: (P) => (P.cause === "C" ? { texte: "Borne 1 : la terre a été fraîchement retournée le long de la bordure, juste devant.", indice: "Terre fraîchement retournée le long de la bordure, entre la terrasse et la borne 1." } : { texte: "Borne 1 : rien de particulier." }),
     borne3: () => ({ texte: "Borne 3 : rien de particulier." }),
+    compteur: (P) => { const hc = P.inst.heuresCreuses(P.e); return { texte: `Compteur communicant : il affiche « ${hc ? "heures creuses" : "heures pleines"} ». Son contact C1-C2 est ${hc ? "fermé" : "ouvert"} : c'est lui qui commande le contacteur du chauffe-eau (heures creuses de 23 h à 7 h).` }; },
   },
   ouvertures: {
     bd_mur: (P) => (P.cause === "A" ? { texte: "Tu ouvres la boîte : il y a de l'eau au fond, les connexions baignent dedans.", type: "alerte", indice: "De l'eau dans la boîte de dérivation au pied du mur." } : { texte: "Tu ouvres la boîte : c'est sec et propre. Trois bornes : phase, neutre, terre ; un câble arrive de la maison, un autre part sous terre vers l'allée." }),

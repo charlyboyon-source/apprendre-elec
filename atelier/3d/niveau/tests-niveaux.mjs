@@ -3,6 +3,7 @@
 import { creerPartie } from "./coeur.js";
 import N2 from "./niveau2.js";
 import N3 from "./niveau3.js";
+import N4 from "./niveau4.js";
 
 function jouerNiveau2(cause) {
   const P = creerPartie(N2, cause), F = N2.fils, A = (a) => P.action(a).retour;
@@ -65,7 +66,47 @@ function jouerNiveau3(cause) {
 }
 function vraiOuFaux(x) { if (!x) throw new Error("la continuité aurait dû être coupée entre les deux boîtes"); }
 
+function jouerNiveau4(cause) {
+  const P = creerPartie(N4, cause), A = (a) => P.action(a).retour;
+  const comment = A({ type: "question", id: "comment" }); A({ type: "question", id: "depuis" });
+  for (const l of ["entree", "escalier", "palier", "chambre2"]) A({ type: "deplacer", lieu: l });
+  const soir = A({ type: "question", id: "soir" });
+  const lu = A({ type: "regarder", id: "Q6" });
+  for (const id of ["radiateur2", "radiateur3", "ordinateur", ...(/repasse/.test(soir) ? ["fer"] : [])]) A({ type: "essayer", id });
+  let diag = null;
+  if (/D'un coup/.test(comment)) { if (A({ type: "geste", id: "lit" }) && A({ type: "regarder", id: "rallonge" })) diag = "C"; }
+  else {
+    const i = A({ type: "mesurer", outil: "pince", a: "Q6.Lout", b: null }); egalite(A({ type: "mesurer", outil: "pince", a: "Q6.cable", b: null }), 0);
+    let saute = false; for (let k = 0; k < 8 && !saute; k++) { A({ type: "attendre", minutes: 15 }); saute = !P.e.positions.Q6; }
+    if (saute) diag = lu.calibre < 20 ? "D" : i > lu.calibre ? "A" : lu.bruni ? "B" : null;
+  }
+  if (diag) { A({ type: "diagnostic", id: diag }); A({ type: "securiser", id: { A: "repartir", B: "identique", C: "rallonge", D: "calibre" }[diag] }); }
+  return { P, diag };
+}
+function egalite(a, b) { if (a !== b) throw new Error(`attendu ${b}, obtenu ${a}`); }
+
 export function testsNiveaux(cas, egal, vrai) {
+  for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 4, cause ${cause} : le joueur automatique questionne, reproduit la soirée, mesure, trouve et règle`, () => {
+    const { P, diag } = jouerNiveau4(cause);
+    egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
+  });
+  cas("Niveau 4 : à l'arrivée, le disjoncteur est en haut et tout marche", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N4, c); egal(P.calc().declenchements, []); vrai(P.e.positions.Q6 && P.calc().alimente("pc_chambre2a"), c); } });
+  cas("Niveau 4 : pince, le courant du soir vaut le total des plaques divisé par 230 V", () => {
+    for (const c of ["A", "B"]) { const P = creerPartie(N4, c); let w = 10; for (const id of N4.soiree[c]) { P.action({ type: "essayer", id }); w += P.inst.mobile[id].puissance; } const i = P.action({ type: "mesurer", outil: "pince", a: "Q6.Lout", b: null }).retour; vrai(Math.abs(i - w / 230) < 0.2, `${i} A pour ${w} W`); }
+  });
+  cas("Niveau 4 : surcharge, plus elle est forte, plus le disjoncteur déclenche vite ; court-circuit, tout de suite", () => {
+    const duree = (c) => { const P = creerPartie(N4, c); for (const id of N4.soiree[c]) P.action({ type: "essayer", id }); for (let m = 1; m <= 240; m++) { P.inst.avancer(P.e, 1); if (!P.e.positions.Q6) return m; } return Infinity; };
+    const a = duree("A"), d = duree("D"), b = duree("B"); vrai(a > 5 && a < 120 && d < a && b < 240, `A ${a} min, D ${d} min, B ${b} min`);
+    const P = creerPartie(N4, "C"); for (const id of N4.soiree.C) P.action({ type: "essayer", id }); egal(P.inst.avancer(P.e, 120), [], "la charge seule ne fait rien"); vrai(P.action({ type: "geste", id: "lit" }).retour, "le lit fait sauter"); vrai(P.vus.has("cc:Q6"));
+  });
+  cas("Niveau 4 : sans défaut, la soirée ordinaire (deux radiateurs et l'ordinateur) tient", () => { const P = creerPartie(N4, "A"); for (const id of ["radiateur2", "radiateur3", "ordinateur"]) P.action({ type: "essayer", id }); egal(P.inst.avancer(P.e, 240), []); });
+  cas("Niveau 4 : accepter de « mettre plus gros » est l'erreur grave, et ne termine pas la partie", () => {
+    const P = creerPartie(N4, "A"); P.action({ type: "diagnostic", id: "A" }); const r = P.action({ type: "securiser", id: "gros" }); vrai(!r.retour && !P.fini); egal(P.fautes.length, 1); vrai(/32 A/.test(P.fautes[0]));
+    vrai(!P.action({ type: "securiser", id: "identique" }).retour, "changer le disjoncteur ne règle pas une surcharge"); vrai(P.action({ type: "securiser", id: "repartir" }).retour && P.fini); vrai(P.bilan.etoiles <= 1);
+  });
+  cas("Niveau 4 : la question qui trie n'apparaît pas toute seule, et celle des adolescents demande de monter", () => { const P = creerPartie(N4, "A"); vrai(!N4.questions.find((q) => q.id === "soir").si(P)); P.action({ type: "deplacer", lieu: "palier" }); vrai(N4.questions.find((q) => q.id === "soir").si(P)); });
+  cas("Niveau 4 : les indices ne donnent jamais la cause", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N4, c); for (const t of N4.indices(P)) vrai(!/rallonge écrasée|borne desserrée|10 A|fer à repasser/.test(t), t); } });
+
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 3, cause ${cause} : le joueur automatique repère, trouve, prouve, répare et refait les étiquettes`, () => {
     const { P, diag } = jouerNiveau3(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini && P.etiquettesFaites, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
@@ -87,6 +128,34 @@ export function testsNiveaux(cas, egal, vrai) {
   });
   cas("Niveau 3 : les indices ne donnent jamais la cause", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N3, c); for (const t of N3.indices(P)) vrai(!/sorti de son connecteur|bruni|hors service|desserré/.test(t), t); } });
 
+  cas("Niveau 2 : le bouton test fait déclencher pour de vrai chaque interrupteur différentiel et le disjoncteur de branchement", () => {
+    const P = creerPartie(N2, "A");
+    for (const id of ["ID1", "ID2", "AGCP"]) {
+      vrai(P.action({ type: "test", id }).retour, `${id} : le test déclenche`); vrai(!P.e.positions[id], `${id} ouvert`);
+      vrai(!P.action({ type: "test", id }).retour, `${id} déjà ouvert : sans effet`); P.action({ type: "manette", id, position: true }); vrai(P.e.positions[id], `${id} réarmé`);
+    }
+    P.action({ type: "manette", id: "AGCP", position: false }); vrai(!P.action({ type: "test", id: "ID1" }).retour, "sans tension, le bouton test ne fait rien"); vrai(P.e.positions.ID1, "ID1 reste fermé");
+  });
+  cas("Niveau 2 : chaque disjoncteur coupe exactement son circuit, et le décor branché en dépend", () => {
+    const P = creerPartie(N2, "A"), A = (a) => P.action(a);
+    for (const i of ["int_entree", "int_sejour", "int_cuisine", "int_cellier", "lampadaire", "lampe_appoint", "bouilloire", "cafetiere", "micro_ondes"]) A({ type: "essayer", id: i });
+    A({ type: "mode", id: "horloge", mode: "I" }); A({ type: "mode", id: "kc", mode: "I" }); P.inst.agir(P.e, { type: "marche", id: "lavelinge", marche: true });
+    const vis = () => { const r = P.calc(), v = {}; for (const p of P.inst.points) v[p.id] = p.type === "prise" ? r.alimente(p.id) : p.type === "point_lumineux" ? r.allume(p.id) : r.fonctionne(p.id); for (const a of N2.logement.appareils) v[a.id] = r.fonctionne(a.id); return v; };
+    vrai(Object.entries(vis()).every(([k, x]) => x || k === "plaque"), `tout marche au départ : ${Object.entries(vis()).filter(([, x]) => !x).map(([k]) => k)}`);
+    // tout allumer en même temps, plaque comprise, dépasse le calibre du disjoncteur de branchement (45 A) : il déclenche
+    A({ type: "essayer", id: "plaque" }); vrai(!P.e.positions.AGCP, "le disjoncteur de branchement déclenche en surcharge"); for (const i of ["bouilloire", "cafetiere", "micro_ondes"]) A({ type: "essayer", id: i }); P.inst.agir(P.e, { type: "marche", id: "lavelinge", marche: false }); A({ type: "mode", id: "kc", mode: "0" }); A({ type: "manette", id: "AGCP", position: true });
+    vrai(P.e.positions.AGCP && P.calc().fonctionne("plaque"), "plaque en marche, gros appareils arrêtés");
+    { const av = vis(); A({ type: "manette", id: "Q1", position: false }); const ap = vis(); egal(Object.keys(av).filter((k) => av[k] && !ap[k]), ["plaque"], "Q1 coupe"); A({ type: "manette", id: "Q1", position: true }); A({ type: "essayer", id: "plaque" }); for (const i of ["bouilloire", "cafetiere", "micro_ondes"]) A({ type: "essayer", id: i }); P.inst.agir(P.e, { type: "marche", id: "lavelinge", marche: true }); A({ type: "mode", id: "kc", mode: "I" }); }
+    const attendu = { Q2: ["pc_lavelinge", "lavelinge"], Q3: ["pc_cuisine1", "pc_cuisine2", "pc_cuisine3", "pc_cuisine4", "bouilloire", "cafetiere", "micro_ondes", "refrigerateur"], Q4: ["pc_sejour1", "pc_sejour2", "pc_entree", "television", "lampadaire", "lampe_appoint"],
+      Q5: ["pl_entree", "pl_sejour", "pl_cuisine", "pl_cellier"], Q6: ["pc_congelateur", "pc_cellier", "congelateur"], Q7: ["pc_terrasse"], Q8: ["borne1", "borne2", "borne3"], Q9: ["chauffe_eau"], Q10: [] };
+    for (const [q, liste] of Object.entries(attendu)) {
+      const av = vis(); A({ type: "manette", id: q, position: false }); const ap = vis();
+      egal(Object.keys(av).filter((k) => av[k] && !ap[k]).sort(), [...liste].sort(), `${q} coupe`); A({ type: "manette", id: q, position: true }); egal(vis(), av, `${q} remonté`);
+    }
+    // la commande heures creuses : en automatique, à 23 h 30, elle met le chauffe-eau en marche ; son disjoncteur l'arrête
+    A({ type: "mode", id: "kc", mode: "auto" }); vrai(!P.calc().fonctionne("chauffe_eau"), "de jour, en auto : arrêt"); P.e.env.heure = 23.5; vrai(P.calc().fonctionne("chauffe_eau"), "heures creuses : marche");
+    A({ type: "manette", id: "Q10", position: false }); vrai(!P.calc().fonctionne("chauffe_eau"), "Q10 baissé : arrêt"); A({ type: "mode", id: "kc", mode: "0" }); A({ type: "manette", id: "Q10", position: true }); vrai(!P.calc().fonctionne("chauffe_eau"), "sélecteur sur 0 : arrêt");
+  });
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 2, cause ${cause} : le joueur automatique trouve, prouve et sécurise`, () => {
     const { P, diag } = jouerNiveau2(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini && P.securise, "partie finie"); vrai(P.preuves.length > 0, "preuve par une mesure");
