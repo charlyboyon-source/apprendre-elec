@@ -678,22 +678,10 @@ function centreCible(c) {
 const VISAGES = ["😠", "😕", "🙂", "😊"];
 function questionsVisibles() { return S.dialogue.questions.filter((q) => !e.poses.includes(q.id) && (!q.apres || e.poses.includes(q.apres))); }
 const reponse = (q) => q.reponse[e.panne.id] || q.reponse["*"];
-function parler(t) {
-  if (!sonsActives() || !("speechSynthesis" in window)) return;
-  try {
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(t.replace(/[«»]/g, "").trim()); u.lang = "fr-FR"; u.rate = 1.03; u.pitch = 1.08;
-    const v = speechSynthesis.getVoices().filter((x) => x.lang && x.lang.startsWith("fr"));
-    const f = v.find((x) => /amélie|amelie|audrey|marie|aurélie|julie|virginie|female|femme/i.test(x.name)) || v[0];
-    if (f) u.voice = f;
-    speechSynthesis.speak(u);
-  } catch { /* rien */ }
-}
 function poserQuestion(id) {
   const q = S.dialogue.questions.find((x) => x.id === id);
   e.poses.push(id); temps(1);
   if (q.mauvaise) e.humeur = Math.max(0, e.humeur - 1);
-  parler(reponse(q));
 }
 function panneauClient() {
   const c = S.client, restantes = S.dialogue.max - e.poses.length;

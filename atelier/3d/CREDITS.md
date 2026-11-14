@@ -100,4 +100,3 @@ Tout ce qui vient d'une banque libre est sous licence CC0 (domaine public : usag
 | Appareils branchés : télévision à écran plat, lampadaire, cafetière, réfrigérateur, lave-linge, congélateur, chauffe-eau et ses tuyaux, écrans et voyants | `niveau/decor.js` | Contenu du site |
 | Bâti et petits objets : murs, portes, fenêtres, rideaux, cuisine (meubles, plan de travail, évier, hotte), tapis, plaid, livres, télécommande, porte-manteau et vêtements, meuble à chaussures, clés, courrier, bocaux, haies (feuillage), touffes d'herbe, clôtures, vue du jardin par les fenêtres, flaques, pluie | `niveau/decor.js`, `niveau/monde.js` | Contenu du site |
 | Sons (pluie, ronron du congélateur, clics, déclenchements, décharge) | Synthétisés dans le navigateur (Web Audio) | Contenu du site |
-| Voix de la cliente (niveau 1) | Synthèse vocale du navigateur de l'utilisateur | — |
