@@ -15,7 +15,7 @@ const COMMANDES = new Set(["interrupteur", "va_et_vient"]);
 
 // ---- toutes les pannes possibles d'un logement, avec l'endroit où elles se trouvent
 export function lieuDe(logement, p) {
-  if (p.conducteur) return `conducteur:${p.conducteur}`;
+  if (p.conducteur && p.type !== "defaut_isolement") return `conducteur:${p.conducteur}`;
   if (p.type === "organe_hs") return `organe:${p.organe}`;
   if (p.type === "defaut_isolement") return `appareil:${p.organe || p.appareil}`;
   if (p.type === "surcharge") return `surcharge:${logement.organes.find((o) => o.id === p.branchements[0].prise).circuit}`;
@@ -152,7 +152,7 @@ export function prouver(logement, panne) {
     const actions = [...prot.map((id) => ({ type: "manoeuvrer", id })), ...cmd.map((id) => ({ type: "basculer", id })), { type: "reparer", panne: 0 }];
     const cle = (e) => [...prot, ...cmd].map((id) => +e.positions[id]).join("") + (e.repare[0] ? "R" : "-");
     const but = (e) => e.repare[0] && prot.every((id) => e.positions[id]);
-    const copie = (e) => ({ positions: { ...e.positions }, branche: { ...e.branche }, marche: { ...e.marche }, repare: [...e.repare], declenche: { ...e.declenche } });
+    const copie = (e) => structuredClone(e);
     const e0 = inst.etatInitial(); inst.calculer(e0);
     const vus = new Map([[cle(e0), e0]]), file = [e0], arcs = new Map(), buts = new Set();
     while (file.length) {

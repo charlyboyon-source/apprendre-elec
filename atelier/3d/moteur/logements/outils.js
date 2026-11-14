@@ -71,5 +71,5 @@ export function chantier(infos) {
     organe("appareil_fixe", id, pieceId, { nom, circuit: idCircuit, puissance, marche });
     return ligne(idCircuit, depart, id);
   }
-  return { logement: L, piece, circuit, tableau, boite, appareil, ligne, prises, simpleAllumage, vaEtVient, priseCommandee, fixe, fil };
+  return { logement: L, piece, circuit, tableau, organe, boite, appareil, ligne, prises, simpleAllumage, vaEtVient, priseCommandee, fixe, fil, pnt };
 }
