@@ -116,30 +116,69 @@ export default {
   plan: {
     tableau: { cables: ["Q6"], regards: ["Q6"] },
     lieux: {
-      garage: { nom: "le garage", court: "Le garage", raccourci: "Garage", taille: [4.2, 3.6], sol: "beton", objets: [
+      // Le pavillon des Morel, un soir d'hiver : lumières allumées partout, nuit aux fenêtres. Les deux radiateurs d'appoint,
+      // l'ordinateur, le fer et sa table sont de vrais objets : on lit leur plaque, on les allume, le courant suit.
+      garage: { nom: "le garage", court: "Le garage", raccourci: "Garage", taille: [4.2, 3.6], sol: "beton", teinte: 0xd9d6cc, objets: [
         { t: "tableau", mur: "N", u: 0, y: 1.45 }, { t: "inter", id: "int_garage", mur: "N", u: -1.5, y: 1.1 }, { t: "plafonnier", id: "pl_garage" }, { t: "prise", id: "pc_garage", mur: "O", u: 0.4, y: 1.15 }, { t: "prise", id: "pc_lavelinge", mur: "E", u: -0.8, y: 1.15 },
-        { t: "meuble", x: -1.75, z: -0.3, w: 0.6, h: 0.9, d: 1.6 }, { t: "meuble", x: 1.75, z: -0.8, w: 0.6, h: 0.85, d: 0.6, m: "blanc" }, porte("entree", "E", 0.9) ] },
+        porte("entree", "E", 0.9),
+        { t: "etabli", mur: "O", u: 0.35, y: 0, w: 1.5 }, { t: "modele", f: "metal_toolbox", x: -1.75, y: 0.9, z: 0.0, r: Math.PI / 2 + 0.2 }, { t: "modele", f: "oil_tin", x: -1.8, y: 0.9, z: -0.75 },
+        { t: "lavelinge", id: "lavelinge", x: 1.8, z: -0.8, r: -Math.PI / 2 },
+        { t: "modele", f: "wicker_basket_02", x: 1.78, z: -0.1, h: 0.42, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.36 }] },
+        { t: "etagereChargee", mur: "N", u: 1.42, y: 0 }, { t: "porteGarage", mur: "S", u: 0.3, y: 0, w: 2.5 },
+        { t: "modele", f: "cardboard_box_01", x: -1.6, z: 1.25, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: -1.55, y: 0.3, z: 1.22, r: -0.25, s: 0.8 }, { t: "modele", f: "wooden_crate_02", x: -1.0, z: 1.4, r: 0.2 },
+        { t: "modele", f: "rusted_spade_01", x: -1.98, z: 0.85, rx: -0.14, r: 1.6 }, { t: "balai", x: -1.95, z: 1.05, r: 1.4 }, { t: "modele", f: "watering_can_metal_01", x: 0.95, z: -1.45, r: 0.6 } ] },
       entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3, 3], sol: "carrelage", objets: [
         { t: "inter", id: "int_entree", mur: "S", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "E", u: 0.4, y: 0.75 }, { t: "boite", id: "bd_rdc", mur: "E", u: -0.8, y: 2.2 },
-        porte("garage", "O", 0.5), porte("escalier", "N", 0.4) ] },
+        porte("garage", "O", 0.5), porte("escalier", "N", 0.4),
+        { t: "porteEntree", mur: "S", u: -0.5, y: 0 }, { t: "portemanteau", mur: "O", u: -0.78, y: 1.74 }, { t: "chaussures", mur: "O", u: -0.78, y: 0 },
+        { t: "tapis", x: 0, z: 0.2, w: 1.7, d: 1.2, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
+        { t: "modele", f: "ClassicConsole_01", x: 1.33, z: -0.7, r: -Math.PI / 2, s: 0.62, avec: [ { t: "cles", x: -0.28, y: 0.59, z: 0.03 }, { t: "courrier", x: 0.02, y: 0.59, z: 0.02 }, { t: "modele", f: "potted_plant_04", x: 0.28, y: 0.59, z: 0.02 } ] },
+        { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.7, y: 1.45, auMur: true, s: 0.9 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: -0.75, y: 1.62, auMur: true, s: 0.6 },
+        { t: "modele", f: "rubber_boots", x: 0.85, z: 1.22, s: 0.9, e: [0.55, 1, 1], r: Math.PI } ] },
       escalier: { nom: "l'escalier", court: "L'escalier", raccourci: "Escalier", taille: [1.5, 4.4], h: 5.3, sol: "bois", camera: [0, 1.62, 1.8], pitch: 0.28, objets: [
-        { t: "marches", n: 14, haut: 2.8 }, { t: "inter", id: "int_escalier", mur: "O", u: -1.6, y: 1.1 }, { t: "plafonnier", id: "pl_escalier" }, porte("entree", "S", 0), porte("palier", "N", 0, 3.825) ] },
+        { t: "marches", n: 14, haut: 2.8 }, { t: "inter", id: "int_escalier", mur: "O", u: -1.6, y: 1.1 }, { t: "plafonnier", id: "pl_escalier" }, porte("entree", "S", 0), porte("palier", "N", 0, 3.825),
+        { t: "rampe", x: 0.7, y: 0.92, z: 1.2, l: 3.2, h: 2.8 },
+        { t: "modele", f: "hanging_picture_frame_03", mur: "O", u: -0.55, y: 2.0, auMur: true, s: 0.7 }, { t: "modele", f: "fancy_picture_frame_01", mur: "O", u: 0.4, y: 2.8, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", mur: "O", u: 1.3, y: 3.6, auMur: true, s: 0.7 } ] },
       palier: { nom: "le palier", court: "Le palier", raccourci: "Palier", taille: [3.4, 2.4], sol: "bois", objets: [
         { t: "inter", id: "int_palier", mur: "S", u: 1.2, y: 1.1 }, { t: "plafonnier", id: "pl_palier" }, { t: "prise", id: "pc_palier", mur: "N", u: -0.2, y: 0.75 }, { t: "prise", id: "pc_sde", mur: "E", u: 0.7, y: 1.15 }, { t: "boite", id: "bd_et", mur: "N", u: 1.3, y: 2.2 },
-        { t: "meuble", x: -0.2, z: -0.75, w: 1.2, h: 0.85, d: 0.38 }, { t: "meuble", id: "fer", x: -0.2, z: -0.72, y: 0.85, w: 0.24, h: 0.13, d: 0.12, c: 0x3b6fb0, voyant: true },
-        porte("escalier", "S", -0.2), porte("chambre1", "O", 0), porte("chambre2", "N", -1.2), porte("chambre3", "E", -0.4) ] },
-      chambre1: { nom: "la chambre des parents", court: "La chambre des parents", raccourci: "Parents", taille: [3.4, 3.2], sol: "bois", objets: [
-        { t: "inter", id: "int_chambre1", mur: "E", u: 1.0, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 1.2, y: 0.75 },
-        { t: "meuble", x: 0, z: -0.5, w: 1.6, h: 0.5, d: 2, m: "tissu" }, { t: "meuble", id: "chevet", x: 1.15, z: -1.3, w: 0.3, h: 0.75, d: 0.3, voyant: true }, porte("palier", "E", -0.6) ] },
-      chambre2: { nom: "la chambre de Théo", court: "La chambre de Théo", raccourci: "Théo", taille: [3.2, 3.2], sol: "bois", objets: [
-        { t: "inter", id: "int_chambre2", mur: "S", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre2" }, { t: "prise", id: "pc_chambre2a", mur: "O", u: 0.6, y: 0.75 }, { t: "prise", id: "pc_chambre2b", mur: "N", u: 1.0, y: 0.75 },
-        { t: "meuble", id: "lit", x: -0.55, z: -0.55, w: 1.0, h: 0.5, d: 2, m: "tissu" }, { t: "indice", id: "rallonge", x: 0.05, z: -1.3, w: 0.9, d: 0.05 },
-        { t: "meuble", id: "radiateur2", x: -1.35, z: 0.9, w: 0.2, h: 0.6, d: 0.5, m: "blanc", voyant: true }, { t: "meuble", x: 1.0, z: -1.25, w: 1.0, h: 0.75, d: 0.5 }, { t: "meuble", id: "ordinateur", x: 1.0, z: -1.3, y: 0.75, w: 0.5, h: 0.32, d: 0.05, c: 0x0b0d10, voyant: true },
-        porte("palier", "S", 0.6) ] },
-      chambre3: { nom: "la chambre de Léa", court: "La chambre de Léa", raccourci: "Léa", taille: [3.2, 3], sol: "bois", objets: [
-        { t: "inter", id: "int_chambre3", mur: "O", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre3" }, { t: "prise", id: "pc_chambre3a", mur: "N", u: -1.0, y: 0.75 }, { t: "prise", id: "pc_chambre3b", mur: "E", u: 0.2, y: 0.75 },
-        { t: "meuble", x: 0.5, z: -0.4, w: 1.0, h: 0.5, d: 2, m: "tissu" }, { t: "meuble", id: "radiateur3", x: -1.0, z: -1.2, w: 0.5, h: 0.6, d: 0.2, m: "blanc", voyant: true }, { t: "meuble", id: "chargeur", x: 1.35, z: 0.2, y: 0.5, w: 0.08, h: 0.05, d: 0.06, m: "blanc", voyant: true },
-        porte("palier", "O", -0.5) ] },
+        porte("escalier", "S", -0.2), porte("chambre1", "O", 0), porte("chambre2", "N", -1.2), porte("chambre3", "E", -0.4),
+        // la table à repasser de Mme Morel, le fer branché sur la prise du palier
+        { t: "repassage", id: "fer", x: 0.5, z: -0.72 },
+        { t: "modele", f: "wicker_basket_02", x: 1.38, z: -0.92, h: 0.42, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.36 }] },
+        { t: "tapis", x: 0, z: 0.25, w: 2.0, d: 0.9, couleurs: ["#3f5a4a", "#e2d3ae", "#7a2f2a"] },
+        { t: "modele", f: "fancy_picture_frame_02", mur: "N", u: 0.45, y: 1.7, auMur: true, s: 0.6 }, { t: "modele", f: "potted_plant_01", x: -1.42, z: 0.92, h: 0.75, sansOmbre: true } ] },
+      chambre1: { nom: "la chambre des parents", court: "La chambre des parents", raccourci: "Parents", taille: [3.4, 3.2], sol: "bois", camera: [0.2, 1.62, 1.15], yaw: 0.15, pitch: -0.18, objets: [
+        { t: "inter", id: "int_chambre1", mur: "E", u: 1.0, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 1.2, y: 0.75 }, porte("palier", "E", -0.6),
+        { t: "lit", x: -0.15, z: -0.49, w: 1.6, couette: 0x7a4a55, plaid: 0xd9c9a3 },
+        { t: "modele", f: "painted_wooden_nightstand", x: 0.95, z: -1.33, h: 0.55, avec: [ { t: "lampeChevet", id: "chevet", x: -0.06, y: 0.55, z: -0.03, c: 0x8a6a44 } ] },
+        { t: "modele", f: "painted_wooden_nightstand", x: -1.25, z: -1.33, h: 0.55, avec: [ { t: "lampeChevet", x: 0.05, y: 0.55, z: -0.03, c: 0x8a6a44 }, { t: "livre", x: -0.1, y: 0.55, z: 0.1, r: 0.4 } ] },
+        { t: "fenetre", mur: "O", u: 0.7, y: 1.45, w: 1.0, h: 1.15, vue: "nuit", rideaux: 0x7a4a55 },
+        { t: "modele", f: "GothicCabinet_01", x: -1.38, z: 0.85, r: Math.PI / 2, h: 1.9, e: [0.8, 1, 0.6] },
+        { t: "modele", f: "GothicCommode_01", x: 0.2, z: 1.36, r: Math.PI, h: 0.9, avec: [ { t: "modele", f: "standing_picture_frame_02", x: -0.3, y: 0.9, z: 0, r: 0.3, s: 0.8 }, { t: "modele", f: "ceramic_vase_01", x: 0.3, y: 0.9, z: 0, s: 0.7 } ] },
+        { t: "tapis", x: -0.15, z: 0.75, w: 2.0, d: 0.9, couleurs: ["#7a2f2a", "#e2d3ae", "#2f3f55"] },
+        { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -0.15, y: 2.0, auMur: true, s: 0.8 } ] },
+      chambre2: { nom: "la chambre de Théo", court: "La chambre de Théo", raccourci: "Théo", taille: [3.2, 3.2], sol: "bois", camera: [0.15, 1.62, 1.15], yaw: 0.1, pitch: -0.22, objets: [
+        { t: "inter", id: "int_chambre2", mur: "S", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre2" }, { t: "prise", id: "pc_chambre2a", mur: "O", u: 0.6, y: 0.75 }, { t: "prise", id: "pc_chambre2b", mur: "N", u: 1.0, y: 0.75 }, porte("palier", "S", 0.6),
+        { t: "lit", id: "lit", x: -0.88, z: -0.56, w: 1.0, l: 2.0, couette: 0x2f4a6b, plaid: false, coussins: false },
+        // la rallonge qui alimente la lampe du bureau : elle part de la prise, longe le mur et passe sous le pied du lit
+        { t: "rallonge", id: "rallonge", x: 0, z: 0, points: [[-0.42, 0.006, -1.5], [-0.2, 0.006, -1.42], [0.2, 0.006, -1.46], [0.55, 0.006, -1.4]] },
+        { t: "radiateur", id: "radiateur2", x: -1.36, z: 0.95, r: Math.PI / 2 },
+        { t: "modele", f: "wooden_table_02", x: 1.22, z: -0.3, r: -Math.PI / 2, avec: [ { t: "ordinateur", id: "ordinateur", x: -0.1, y: 0.8, z: 0.02 }, { t: "modele", f: "desk_lamp_arm_01", x: -0.45, y: 0.8, z: -0.18, h: 0.42, r: 0.6 } ] },
+        { t: "modele", f: "painted_wooden_chair_02", x: 0.6, z: -0.3, r: Math.PI / 2, s: 0.74, avec: [ { t: "vetement", x: 0, y: 0.94, z: -0.2, w: 0.44, l: 0.9, c: 0x2f3f55 } ] },
+        { t: "fenetre", mur: "E", u: -0.95, y: 1.6, w: 0.8, h: 0.9, vue: "nuit", rideaux: false },
+        { t: "affiche", mur: "N", u: -0.1, y: 1.65, texte: "TOURNÉE" }, { t: "affiche", mur: "O", u: -0.6, y: 1.65, w: 0.45, h: 0.62, texte: "FINALE", couleurs: ["#3f5a3a", "#f2efe6", "#1f2a44"] },
+        { t: "tapis", x: 0.2, z: 0.45, w: 1.5, d: 1.0, couleurs: ["#22262d", "#8d949c", "#c8261e"] }, { t: "linge", x: -0.2, y: 0.02, z: 0.75 },
+        { t: "modele", f: "cardboard_box_01", x: 1.3, z: 1.25, r: 0.4, h: 0.3 } ] },
+      chambre3: { nom: "la chambre de Léa", court: "La chambre de Léa", raccourci: "Léa", taille: [3.2, 3], sol: "bois", camera: [-0.3, 1.62, 1.0], yaw: -0.2, pitch: -0.2, objets: [
+        { t: "inter", id: "int_chambre3", mur: "O", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre3" }, { t: "prise", id: "pc_chambre3a", mur: "N", u: -1.0, y: 0.75 }, { t: "prise", id: "pc_chambre3b", mur: "E", u: 0.2, y: 0.75 }, porte("palier", "O", -0.5),
+        { t: "lit", x: 0.4, z: -0.48, w: 1.0, l: 2.0, couette: 0xb86a7a, plaid: 0xf2efe6 },
+        { t: "radiateur", id: "radiateur3", x: -1.0, z: -1.3 },
+        { t: "modele", f: "painted_wooden_nightstand", x: 1.32, z: 0.45, r: -Math.PI / 2, h: 0.5 }, { t: "chargeur", id: "chargeur", mur: "E", u: 0.2, y: 0.75 },
+        { t: "fenetre", mur: "N", u: 0.4, y: 1.75, w: 0.9, h: 0.7, vue: "nuit", rideaux: 0xb86a7a },
+        { t: "modele", f: "wooden_table_02", x: -0.2, z: 1.14, r: Math.PI, e: [0.9, 1, 0.8], avec: [ { t: "livre", x: 0.2, y: 0.8, z: 0, r: 0.3, c: 0x8a2f4a }, { t: "livre", x: 0.2, y: 0.828, z: 0.01, r: -0.1, c: 0x2f4a6b }, { t: "modele", f: "potted_plant_04", x: -0.3, y: 0.8, z: -0.05 }, { t: "tasse", x: -0.05, y: 0.8, z: 0.1, c: 0xb86a7a } ] },
+        { t: "modele", f: "painted_wooden_chair_02", x: -0.2, z: 0.6, r: 0.2, s: 0.74 },
+        { t: "affiche", mur: "E", u: -0.9, y: 1.65, w: 0.45, h: 0.62, texte: "DANSE", couleurs: ["#7a2f55", "#f2c2d0", "#2f3f55"] },
+        { t: "tapis", x: -0.3, z: 0.1, w: 1.3, d: 0.9, couleurs: ["#b86a7a", "#f2efe6", "#7a2f55"] } ] },
     },
   },
 };
