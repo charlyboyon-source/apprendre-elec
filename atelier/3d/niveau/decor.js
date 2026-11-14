@@ -11,7 +11,9 @@ let chargeur = null;
 
 function toile(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return { c, g: c.getContext("2d"), t }; }
 
-export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables }) {
+export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables, depart }) {
+  // le lieu de départ est chargé d'abord ; les autres lieux arrivent ensuite, pendant qu'on joue
+  let lancerSuite; const suite = new Promise((r) => { lancerSuite = r; });
   chargeur = chargeur || new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const suivi = { total: 0, faits: 0, parLieu: {} };
   const charger = (f) => cache[f] || (cache[f] = new Promise((res, rej) => chargeur.load(`${base}../modeles/${f}.glb`, (g) => { g.scene.traverse((o) => {
@@ -24,7 +26,7 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
   // pose un modèle dans le groupe g : au sol (centré, pieds à y = 0) ou au mur (centré, dos contre le mur)
   function modele(g, f, o = {}, lieuId = "") {
     suivi.total++;
-    const p = charger(f).then((src) => {
+    const p = (!depart || lieuId === depart ? charger(f) : suite.then(() => charger(f))).then((src) => {
       const m = src.clone(true), b = new THREE.Box3().setFromObject(m), t = b.getSize(V(0, 0, 0)), c = b.getCenter(V(0, 0, 0));
       let s = o.s || 1; if (o.h) s = o.h / t.y; if (o.w) s = o.w / Math.max(t.x, t.z);
       const e = o.e || [1, 1, 1], H = new THREE.Group(); H.add(m);
@@ -350,7 +352,7 @@ haie(o, lieuId, lieu, G, g) {
   };
 
   return {
-    suivi,
+    suivi, lancerSuite,
     pret: (lieuId) => Promise.all(suivi.parLieu[lieuId] || []),
     tout: () => Promise.all(Object.values(suivi.parLieu).flat()),
     // rend vrai si l'objet a été posé ; « avec » : des objets posés dessus, dans le repère du premier

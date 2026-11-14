@@ -269,6 +269,7 @@ export function lancerNiveau(N) {
   }
   let minuterie = null;
   function majUI() {
+    reveiller();
     if (!P) return;
     racine.querySelector(".j-compteurs").innerHTML = `<span title="Heure">${nuit() ? "🌙" : "☀️"} ${heureFr(P.e.env.heure)}</span><span title="Temps">${P.e.env.pluie ? "🌧 pluie" : "sec"}</span>`;
     const o = racine.querySelector(".t-objectif");
@@ -310,9 +311,26 @@ export function lancerNiveau(N) {
       if (t >= 1) { transition = null; majSondes(); tr.res(); }
     }
     camera.rotation.set(regard.pitch, regard.yaw, 0, "YXZ"); camera.updateMatrixWorld(true);
-    W.animer(dt); majMain();
+    const bouge = W.animer(dt); majMain();
     if (attente && !occupe && !transition) { const a = attente; attente = null; toucherEcran(a.x, a.y); }
-    renderer.render(W.scene, camera); anneaux();
+    // Fluidité : quand rien ne bouge (ni la tête, ni un objet, ni l'appareil en main), l'image n'est pas recalculée.
+    const p = camera.position, sig = `${p.x.toFixed(4)},${p.y.toFixed(4)},${p.z.toFixed(4)},${regard.yaw.toFixed(4)},${regard.pitch.toFixed(4)},${camera.fov.toFixed(2)},${J.outil},${J.lecture}`;
+    if (W.sale) { W.sale = false; reveil = 45; }
+    if (bouge || transition || sig !== signature || now - J.pris < 600) reveil = Math.max(reveil, 3);
+    signature = sig;
+    if (reveil <= 0 && !force) { suite = 0; return; }
+    reveil--; renderer.render(W.scene, camera); anneaux(); definition(dt);
+  }
+  let reveil = 60, signature = "", force = false, suite = 0, lentes = 0, mauvaises = 0, defMin = 0.75, defDepart = 1;
+  const reveiller = (n = 45) => { reveil = Math.max(reveil, n); };
+  // Définition d'affichage : plafonnée sur les écrans très denses, puis baissée d'un cran si l'appareil ne suit pas
+  // (deux séries de suite avec au moins 20 images lentes sur 30). Elle ne remonte pas : pas de va-et-vient visible.
+  function definitionDepart() { const r = racine.querySelector(".j-scene").getBoundingClientRect(); return Math.max(0.75, Math.min(devicePixelRatio, 1.5, Math.sqrt(1.1e6 / Math.max(1, r.width * r.height)))); }
+  function definition(dt) {
+    if (W.decor.suivi.faits < W.decor.suivi.total || document.hidden || transition || occupe) { suite = 0; lentes = 0; return; }
+    if (++suite < 3) return; // les premières images après une pause ne comptent pas
+    if (dt > 0.021) lentes++;
+    if (suite >= 33) { mauvaises = lentes >= 20 ? mauvaises + 1 : 0; if (mauvaises >= 2 && renderer.getPixelRatio() > defMin + 0.01) { mauvaises = 0; renderer.setPixelRatio(Math.max(defMin, renderer.getPixelRatio() * 0.85)); reveiller(); } suite = 0; lentes = 0; }
   }
   function boucle(now) { requestAnimationFrame(boucle); image(now); }
 
@@ -330,7 +348,7 @@ export function lancerNiveau(N) {
     try { await agir(id); } finally { occupe = false; majUI(); }
   }
   function brancher(canvas) {
-    canvas.addEventListener("pointerdown", (ev) => { if (J.panneau) return; appui = { x: ev.clientX, y: ev.clientY, yaw: regard.yaw, pitch: regard.pitch, bouge: false }; try { canvas.setPointerCapture(ev.pointerId); } catch { /* rien */ } });
+    canvas.addEventListener("pointerdown", (ev) => { reveiller(); if (J.panneau) return; appui = { x: ev.clientX, y: ev.clientY, yaw: regard.yaw, pitch: regard.pitch, bouge: false }; try { canvas.setPointerCapture(ev.pointerId); } catch { /* rien */ } });
     let survol = 0;
     canvas.addEventListener("pointermove", (ev) => {
       if (!appui && ev.pointerType === "mouse" && !occupe && !transition && !J.panneau) { const now = performance.now(); if (now - survol > 60) { survol = now; const r = canvas.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top, id = cibleSous(x, y); canvas.style.cursor = id ? "pointer" : "grab"; signaler(id, x, y); } }
@@ -409,22 +427,22 @@ export function lancerNiveau(N) {
     nouvellePartie(); gabarit();
     const scene = racine.querySelector(".j-scene");
     renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false;
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
-    scene.prepend(renderer.domElement);
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false; renderer.debug.checkShaderErrors = false;
+    scene.prepend(renderer.domElement); defDepart = definitionDepart(); renderer.setPixelRatio(defDepart); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+    THREE.DefaultLoadingManager.onProgress = () => reveiller(); THREE.DefaultLoadingManager.onLoad = () => reveiller(90);
     camera = new THREE.PerspectiveCamera(60, 1, 0.01, 60); camera.rotation.order = "YXZ";
     reconstruire();
     main.multi = creerMultimetre(); main.vat = creerVAT(); for (const o of [main.multi, main.vat]) { o.visible = false; camera.add(o); }
-    camera.add(new THREE.PointLight(0xfff1dc, 0.06, 0.11, 2));
+    camera.add(new THREE.PointLight(0xfff1dc, 0.06, 0.11, 2)); // toujours présente : l'allumer et l'éteindre obligerait à recalculer tous les matériaux (2 s d'arrêt)
     sondes.rouge = creerSonde(0xc8261e); sondes.noir = creerSonde(0x1b1b1b); for (const s of Object.values(sondes)) { s.visible = false; W.scene.add(s); }
     const taille = () => { const r = scene.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height); fovLibre = camera.aspect < 0.8 ? 72 : 58; camera.fov = libre() ? fovLibre : FOV_PROCHE; camera.updateProjectionMatrix(); };
-    taille(); addEventListener("resize", () => { taille(); if (!transition && !libre()) { const c = cadrage(J.vue); camera.position.copy(c.pos); regard.yaw = c.yaw; regard.pitch = c.pitch; } });
+    taille(); addEventListener("resize", () => { taille(); reveiller(); if (!transition && !libre()) { const c = cadrage(J.vue); camera.position.copy(c.pos); regard.yaw = c.yaw; regard.pitch = c.pitch; } });
     const o = cadrage(J.vue); camera.position.copy(o.pos); regard.yaw = o.yaw; regard.pitch = o.pitch;
     W.maj(lieuDe(J.vue), true, J.vue); brancher(renderer.domElement); majUI(); attendreDecor();
     requestAnimationFrame(boucle);
     // pour les contrôles automatiques
     window.__niveau = {
-      P: () => P, J: () => J, W: () => W, cam: () => camera, image: () => image(performance.now()), occupe: () => occupe || !!transition || !!attente,
+      P: () => P, J: () => J, W: () => W, cam: () => camera, image: () => { force = true; image(performance.now()); force = false; }, definition: () => [defDepart, renderer.getPixelRatio()], occupe: () => occupe || !!transition || !!attente,
       aller: (v) => allerA(v), prendre, toucherEcran, rendu: () => renderer, decor: () => W.decor.suivi, regard: () => regard, rafraichir: () => { W.rafraichir(); majUI(); }, vues: () => Object.keys(W.vues),
       cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...centreEcran(c), r: c.type === "point" ? rayonEcran(c).r : undefined })),
       ou: (id) => { const l = W.cibles.filter((x) => x.id === id).flatMap((x) => x.vues); return l.length ? l : null; },

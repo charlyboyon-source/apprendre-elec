@@ -37,7 +37,7 @@ export function creerMonde(renderer, base, N, P) {
   const M = {
     mur: mat(0xffffff, { roughness: 0.95, map: tex("beige_wall_001_diff.jpg", [2.5, 1.4]), normalMap: tex("beige_wall_001_nor_gl.jpg", [2.5, 1.4], false) }), plafond: mat(0xf2efe8, { roughness: 0.95 }), plastique: mat(0xf4f4f1, { roughness: 0.35 }), gris: mat(0x8d949c), noir: mat(0x1b1d20, { roughness: 0.5 }),
     laiton: mat(0xc9a44a, { metalness: 0.85, roughness: 0.3 }), cuivre: mat(0xd98a4a, { metalness: 0.9, roughness: 0.3 }), acier: mat(0xb9bfc6, { metalness: 0.8, roughness: 0.35 }),
-    invisible: new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }), bois: mat(0x8a6a4a), crepi: mat(0xefe6d2, { roughness: 1 }), herbe: mat(0x3f6a35, { roughness: 1 }), dalle: mat(0xa9a59c, { roughness: 0.95 }),
+    invisible: new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, visible: false }), bois: mat(0x8a6a4a), crepi: mat(0xefe6d2, { roughness: 1 }), herbe: mat(0x3f6a35, { roughness: 1 }), dalle: mat(0xa9a59c, { roughness: 0.95 }),
     carrelage: mat(0xc9c4b8, { roughness: 0.5 }), beton: mat(0x8f8d88, { roughness: 0.95 }), terre: mat(0x4a3526, { roughness: 1 }), blanc: mat(0xfafafa, { roughness: 0.4 }), tissu: mat(0x4a5a78, { roughness: 0.95 }),
     eau: mat(0x6fa8d8, { roughness: 0.1, transparent: true, opacity: 0.6 }),
   };
@@ -54,7 +54,7 @@ export function creerMonde(renderer, base, N, P) {
   const voyants = {}, manettes = {}, capots = {}, interieurs = {}, cadrans = {}, selecteurs = {}, touches = {}, fenetresIO = {}, boutonsTest = {}, voyantsTension = [];
   let porteTableau = null, afficheCompteur = null;
   const inst = P.inst, L = N.logement;
-  const decor = creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables });
+  const decor = creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables, depart: N.depart });
 
   // ---- repère d'un mur : position et orientation d'un objet posé dessus
   function surMur(lieu, mur, u = 0, y = 1.2) {
@@ -346,6 +346,7 @@ export function creerMonde(renderer, base, N, P) {
     if (!lieu.ext && !lieu.cle) lieu.cle = { pos: V(0, lieu.h + 1.3, 0), vers: V(0, 0, 0), force: 30, angle: 1.0 };
   });
 
+  decor.pret(N.depart).then(() => setTimeout(decor.lancerSuite, 250));
   /* =====================  Lumières, ciel, pluie  ===================== */
   // Le nombre de lumières ne change jamais (une lumière clé qui porte les ombres, quatre lampes, le ciel, la frontale) :
   // on les déplace dans le lieu où se trouve le joueur. C'est ce qui garde le jeu fluide au téléphone.
@@ -387,6 +388,10 @@ export function creerMonde(renderer, base, N, P) {
     // les lampes du lieu où l'on se trouve (les autres pièces sont loin)
     const ici = sources.filter((s) => s.lieu === lieuCourant);
     bassin.forEach((p, i) => { const s = ici[i]; if (!s) { p.intensity = 0; return; } s.obj.getWorldPosition(p.position); p.color.set(s.couleur); p.distance = s.portee; p.intensity = s.on(r) ? s.force * (s.plafond && nuit ? 0.6 : 1) : 0; });
+    // Fluidité : une lumière qui n'éclaire pas le lieu courant n'est pas calculée du tout (elle coûtait autant qu'allumée),
+    // et seul le lieu où se trouve le joueur est dessiné. Le nombre de lampes ne dépend que du lieu, pas de leur état.
+    soleil.visible = ext; cle.visible = !ext; frontale.visible = nuit; bassin.forEach((p, i) => { p.visible = !!ici[i]; });
+    for (const [id, x] of Object.entries(lieux)) x.G.visible = id === lieuCourant;
     for (const s of sources) { const on = s.on(r); for (const m of s.mats) m.emissiveIntensity = on ? (s.k || 2.4) : 0; }
     for (const t of temoins) t(r, e, lieuCourant, nuit);
     for (const [id, m] of Object.entries(voyants)) m.emissiveIntensity = r.fonctionne(id) ? 3 : 0;
@@ -404,6 +409,7 @@ export function creerMonde(renderer, base, N, P) {
     for (const w of mouillables) { w.m.roughness = e.env.pluie ? 0.3 : 1; w.m.color.copy(w.c).multiplyScalar(e.env.pluie ? 0.5 : 1); }
     pluie.visible = !!e.env.pluie && ext; if (pluie.visible) pluie.position.copy(O);
     if (renderer) renderer.shadowMap.needsUpdate = true;
+    monde.sale = true;
     monde.ambiance = { pluie: !!e.env.pluie, dehors: ext, ronron: (N.plan.ronrons || []).some((x) => x.lieu === lieuCourant && r.fonctionne(x.id)) };
   }
   function dessinerCadran(C, heure, org) {
@@ -420,13 +426,14 @@ export function creerMonde(renderer, base, N, P) {
   // ce qui bouge d'une image à l'autre : manettes, porte du tableau, boutons, pluie
   let enCharge = true;
   function animer(dt) {
-    const k = Math.min(1, dt * 22);
-    for (const x of Object.values(manettes)) if (x.a !== x.vers) { x.a += (x.vers - x.a) * k; if (Math.abs(x.vers - x.a) < 0.01) x.a = x.vers; x.piv.rotation.x = x.a; }
-    if (porteTableau && porteTableau.a !== porteTableau.vers) { const p = porteTableau; p.a += (p.vers - p.a) * Math.min(1, dt * 7); if (Math.abs(p.vers - p.a) < 0.01) p.a = p.vers; p.pivot.rotation.y = p.a; }
-    for (const b of Object.values(boutonsTest)) if (b.t > 0) { b.t = Math.max(0, b.t - dt * 5); b.b.position.z = b.z - 0.0025 * Math.sin(b.t * Math.PI); }
+    const k = Math.min(1, dt * 22); let bouge = pluie.visible || enCharge;
+    for (const x of Object.values(manettes)) if (x.a !== x.vers) { bouge = true; x.a += (x.vers - x.a) * k; if (Math.abs(x.vers - x.a) < 0.01) x.a = x.vers; x.piv.rotation.x = x.a; }
+    if (porteTableau && porteTableau.a !== porteTableau.vers) { bouge = true; const p = porteTableau; p.a += (p.vers - p.a) * Math.min(1, dt * 7); if (Math.abs(p.vers - p.a) < 0.01) p.a = p.vers; p.pivot.rotation.y = p.a; }
+    for (const b of Object.values(boutonsTest)) if (b.t > 0) { bouge = true; b.t = Math.max(0, b.t - dt * 5); b.b.position.z = b.z - 0.0025 * Math.sin(b.t * Math.PI); }
     if (pluie.visible) { const p = gouttes.attributes.position; for (let i = 0; i < NG; i++) { let y = p.getY(i * 2) - dt * 11; if (y < 0.2) y += 7; p.setY(i * 2, y); p.setY(i * 2 + 1, y - 0.22); } p.needsUpdate = true; }
     // tant que des modèles arrivent, les ombres sont recalculées
     if (enCharge && renderer) { renderer.shadowMap.needsUpdate = true; if (decor.suivi.faits >= decor.suivi.total) enCharge = false; }
+    return bouge;
   }
   const monde = { scene, cibles, vues, lieux, frontale, M, maj, animer, sorti, decor, ambiance: {}, appuyerTest: (id) => { if (boutonsTest[id]) boutonsTest[id].t = 1; }, rafraichir: () => { if (dernier) maj(...dernier); },
     // pour les contrôles automatiques : ce que montre le tableau (angle des manettes, fenêtres I/O, porte, sélecteurs, voyants)
