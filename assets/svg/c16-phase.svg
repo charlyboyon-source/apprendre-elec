@@ -31,8 +31,8 @@
 <text x="164" y="214" text-anchor="middle" font-size="15.0" font-weight="500" fill="#1c2530">interrupteur ouvert :</text>
 <text x="164" y="238" text-anchor="middle" font-size="15.0" font-weight="500" fill="#1c2530">la douille est</text>
 <text x="164" y="268" text-anchor="middle" font-size="18.2" font-weight="800" fill="#17804c">HORS TENSION</text>
-<text x="164" y="308" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">on change l'ampoule</text>
-<text x="164" y="330" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">sans risque</text>
+<text x="164" y="308" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">mais on coupe quand même</text>
+<text x="164" y="330" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">le disjoncteur avant d'intervenir</text>
 <rect x="328" y="44" width="296" height="346" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <text x="476" y="72" text-anchor="middle" font-size="18.2" font-weight="800" fill="#d92b2b">SUR LE NEUTRE</text>
 <path d="M348 128 H474" fill="none" stroke="#d92b2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>

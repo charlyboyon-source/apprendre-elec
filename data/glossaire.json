@@ -185,15 +185,15 @@
   },
   "tétanisation": {
     "nom": "Tétanisation",
-    "definition": "Contraction incontrôlable des muscles sous l'effet du courant. Vers 10 mA, elle empêche la victime de lâcher le conducteur (seuil de non-lâcher) ; vers 30 mA, elle paralyse la respiration."
+    "definition": "Contraction incontrôlable des muscles sous l'effet du courant. Vers 10 mA, elle empêche la victime de lâcher le conducteur (seuil de non-lâcher) ; vers 25 mA, elle atteint les muscles respiratoires."
   },
   "fibrillation ventriculaire": {
     "nom": "Fibrillation ventriculaire",
-    "definition": "Désorganisation du rythme cardiaque sous l'effet du courant (vers 75 mA) : le cœur tremble au lieu de pomper et n'assure plus la circulation du sang. C'est la principale cause de décès par électrocution."
+    "definition": "Désorganisation du rythme cardiaque sous l'effet du courant (dès 40 mA si le courant dure 5 s) : le cœur tremble au lieu de pomper et n'assure plus la circulation du sang. C'est la principale cause de décès par électrocution."
   },
   "tension limite de sécurité": {
     "nom": "Tension limite de sécurité (UL)",
-    "definition": "Tension de contact en dessous de laquelle le courant reste sans danger, quelle que soit la durée. En courant alternatif : 50 V en milieu sec, 25 V en milieu mouillé.",
+    "definition": "Tension de contact en dessous de laquelle le courant reste sans danger, quelle que soit la durée. En courant alternatif : 50 V ; en salle d'eau, la TBTS est limitée à 12 V en alternatif.",
     "niveau_associe": 5
   },
   "tension de contact": {

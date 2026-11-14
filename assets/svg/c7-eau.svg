@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Peau sèche : de l'ordre de 5 000 Ω, tension limite 50 V. Peau mouillée : de l'ordre de 1 000 Ω, tension limite 25 V. Même tension, résistance plus faible : courant plus fort">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="D'une main à l'autre, le tableau de l'INRS donne 4 600 Ω sous 50 V peau sèche, 3 675 Ω peau humide, et 2 050 Ω sous 200 V. Avec 2 000 Ω environ, 230 V donnent plus de 100 mA. Même tension, résistance plus faible : courant plus fort">
 <defs>
 <linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
 <linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
@@ -20,21 +20,17 @@
 <linearGradient id="cellule" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4a8a"/><stop offset="1" stop-color="#16285a"/></linearGradient>
 <linearGradient id="cuve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5e"/><stop offset=".55" stop-color="#ffb3a0"/><stop offset="1" stop-color="#7fb8f0"/></linearGradient>
 </defs>
-<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">Mouillé, le corps résiste cinq fois moins</text>
+<text x="320.0" y="26" text-anchor="middle" font-size="20.8" font-weight="800" fill="#1c2530">La résistance du corps n'est pas fixe</text>
 <rect x="16" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <rect x="328" y="44" width="296" height="290" rx="14" fill="#f6f2ea" stroke="#e3dccf"/>
 <path d="M134 170 V100 q0 -10 8 -10 q8 0 8 10 V80 q0 -10 8 -10 q8 0 8 10 V82 q0 -10 8 -10 q8 0 8 10 V96 q0 -10 8 -10 q8 0 8 10 V176 q0 30 -30 34 h-12 q-24 -4 -24 -40 Z" fill="#f2c6a5" stroke="#c98a65" stroke-width="2"/>
-<text x="164" y="246" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">≈ 5 000 Ω</text>
-<text x="164" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">peau sèche</text>
-<text x="164" y="304" text-anchor="middle" font-size="15.0" font-weight="800" fill="#17804c">milieu sec : UL = 50 V</text>
+<text x="164" y="246" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">4 600 Ω</text>
+<text x="164" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">sous 50 V, peau sèche (INRS)</text>
+<text x="164" y="304" text-anchor="middle" font-size="13.7" font-weight="800" fill="#17804c">peau humide : 3 675 Ω</text>
 <path d="M446 170 V100 q0 -10 8 -10 q8 0 8 10 V80 q0 -10 8 -10 q8 0 8 10 V82 q0 -10 8 -10 q8 0 8 10 V96 q0 -10 8 -10 q8 0 8 10 V176 q0 30 -30 34 h-12 q-24 -4 -24 -40 Z" fill="#f2c6a5" stroke="#c98a65" stroke-width="2"/>
-<path d="M442 100 q-6 10 0 14 q6 -4 0 -14" fill="#3d9be9"/>
-<path d="M506 80 q-6 10 0 14 q6 -4 0 -14" fill="#3d9be9"/>
-<path d="M470 130 q-6 10 0 14 q6 -4 0 -14" fill="#3d9be9"/>
-<path d="M514 150 q-6 10 0 14 q6 -4 0 -14" fill="#3d9be9"/>
-<text x="476" y="246" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">≈ 1 000 Ω</text>
-<text x="476" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">peau mouillée</text>
-<text x="476" y="304" text-anchor="middle" font-size="15.0" font-weight="800" fill="#2166d1">milieu mouillé : UL = 25 V</text>
+<text x="476" y="246" text-anchor="middle" font-size="22.1" font-weight="800" fill="#1c2530">2 050 Ω</text>
+<text x="476" y="268" text-anchor="middle" font-size="14.3" font-weight="500" fill="#5b6673">sous 200 V (INRS)</text>
+<text x="476" y="304" text-anchor="middle" font-size="13.7" font-weight="800" fill="#2166d1">230 V / 2 000 Ω : plus de 100 mA</text>
 <rect x="24" y="348" width="592" height="48" rx="12" fill="#fff1c2" stroke="#ffc21a"/>
 <text x="320" y="378.0" text-anchor="middle" font-size="14.3" font-weight="800" fill="#1c2530">Même tension, résistance plus faible : courant plus fort</text>
 </svg>
