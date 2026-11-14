@@ -33,6 +33,7 @@ function nouvellePartie() {
     calibre: "V", rouge: null, noir: null, dernier: null, outil: null, aideMesure: false, vatPts: [null, null], vatDernier: 0, vatLecture: null, vat: { avant: false, absence: false, apres: false },
     lecture: null, mesures: [], journal: [], bulle: null, vue: "entree", rappel: false, lieux: new Set(["entree"]),
     aide: { cle: null, niveau: 0 }, indicesPris: 0, panneau: "client", debut: true, mode: "guide",
+    lampes: { "chevet-g": true, "chevet-d": false }, // Mme Martin a laissé une lampe de chevet allumée : les prises, elles, marchent
   };
   for (const r of RANGEES) for (const a of r) e.app[a.cle] = true;
 }
@@ -51,7 +52,7 @@ function vibrer(m) { try { if (navigator.vibrate && navigator.userActivation && 
    Vues et caméra
    ===================================================================== */
 const VUES = {
-  entree: { libre: true, pos: [0, 1.62, 3.95], yaw: 0, pitch: -0.04, parent: null, nom: "l'entrée", court: "L'entrée", lieu: "Entrée" },
+  entree: { libre: true, pos: [-0.28, 1.62, 3.95], yaw: -0.07, pitch: -0.04, parent: null, nom: "l'entrée", court: "L'entrée", lieu: "Entrée" },
   chambre: { libre: true, pos: [0.42, 1.62, 0.32], yaw: 0, pitch: -0.1, parent: "entree", nom: "la chambre", court: "La chambre", lieu: "Chambre" },
   plafonnier: { parent: "chambre", nom: "le plafonnier", court: "Le plafonnier" },
   inter: { parent: "chambre", nom: "l'interrupteur", court: "L'interrupteur", lieu: "Interrupteur" },
@@ -73,8 +74,8 @@ function cadreProche(vue) {
     if (e.mecaSorti) { const d = 0.135 / k; p = [0.028, -0.03 - d * 0.22, 0.03 + d]; c = [0.028, -0.03, 0.03]; }
     else if (!e.plaque) { const d = 0.085 / k; p = [0.004, -0.004, d]; c = [0.004, -0.004, 0]; }
     else { const d = 0.162 / k; p = [0.0355, 0, d]; c = [0.0355, 0, 0]; }
-  } else if (vue === "tableau") { obj = W.tableau; const d = 0.3 / k; p = [0, 0, 0.1 + d]; c = [0, 0, 0.1]; }
-  else if (vue === "rangee1" || vue === "rangee2") { obj = W.tableau; const y = W.rangees[vue === "rangee1" ? 0 : 1].position.y; const d = 0.112 / k; p = [0, y - 0.008, 0.165 + d]; c = [0, y, 0.165]; }
+  } else if (vue === "tableau") { obj = W.tableau; const d = Math.max(0.3 / k, 0.54); p = [0, 0.02, 0.1 + d]; c = [0, 0.02, 0.1]; }
+  else if (vue === "rangee1" || vue === "rangee2") { obj = W.tableau; const y = W.rangees[vue === "rangee1" ? 0 : 1].position.y; const d = Math.max(0.112 / k, 0.27); p = [0, y + 0.006, 0.165 + d]; c = [0, y + 0.014, 0.165]; } // la rangée et sa bande d'étiquettes
   else if (vue === "plafonnier") return orient([0.3, 1.55, 0.6], [0, 2.05, 0]);
   obj.updateMatrixWorld(true);
   return orient(obj.localToWorld(new THREE.Vector3(...p)).toArray(), obj.localToWorld(new THREE.Vector3(...c)).toArray());
@@ -325,7 +326,7 @@ function cibleSous(x, y) {
    Gestes
    ===================================================================== */
 async function agir(id) {
-  if (id === "porte-chambre") { await allerVue("chambre"); if (!e.dejaChambre) { e.dejaChambre = true; dire("Noir complet. Ta frontale suit ton doigt. L'interrupteur est derrière toi."); } apresArrivee(); return; }
+  if (id === "porte-chambre") { await allerVue("chambre"); if (!e.dejaChambre) { e.dejaChambre = true; dire("Le plafonnier est éteint : seule une lampe de chevet éclaire la chambre. Ta frontale suit ton doigt. L'interrupteur est derrière toi."); } apresArrivee(); return; }
   if (id === "porte-entree") { await allerVue("entree"); apresArrivee(); return; }
   if (id === "approcher-inter") return allerVue("inter");
   if (id === "approcher-tableau") { sons.clip(); dire("Tu ouvres le tableau : deux rangées, chacune derrière son différentiel."); return allerVue("tableau"); }
@@ -333,6 +334,8 @@ async function agir(id) {
   if (id === "approcher-rangee2") return allerVue("rangee2");
   if (id === "plafonnier") { dire(lampeAllumee() ? "Le plafonnier éclaire." : "Le plafonnier est éteint. L'ampoule est neuve : commence par l'interrupteur."); return allerVue("plafonnier"); }
   if (id.startsWith("manette:")) return manette(id.slice(8));
+  if (id.startsWith("test:")) return boutonTest(id.slice(5));
+  if (id.startsWith("essayer:chevet")) return lampeChevet(id.slice(8));
   const point = S.points[id];
   if (mesureEnMain() && point) return poserPointe(id);
   if (id === "touche") return toucheInter();
@@ -453,13 +456,50 @@ async function serrer(id) {
   else { temps(0.5); dire("Tu contrôles le serrage : cette borne était déjà bien serrée."); }
   apres();
 }
+// ce que coupe chaque appareil du tableau, dit en une phrase (ce qu'on voit d'ici, ou ce qui se passe dans le reste du logement)
+const EFFETS = {
+  diff: "Toute la rangée du haut est coupée : éclairage et prises des chambres, prises du séjour, lave-vaisselle.",
+  dj: "Les prises restent alimentées.",
+  d2: "Dans la chambre, le réveil et les lampes de chevet s'éteignent.",
+  d3: "Dans le séjour, les prises sont coupées.",
+  d4: "Le lave-vaisselle n'est plus alimenté.",
+  diff2: "Toute la rangée du bas est coupée : la cuisine est dans le noir. « Hé ! » fait Mme Martin.",
+  d5: "La plaque de cuisson n'est plus alimentée.",
+  d6: "Le lave-linge n'est plus alimenté.",
+  d7: "Le four n'est plus alimenté.",
+  d8: "Les prises de la cuisine sont coupées.",
+  d9: "La lumière du séjour et de la cuisine s'éteint. « Hé ! Je n'y vois plus rien ! » fait Mme Martin.",
+};
+async function basculer(cle) { // la manette pivote, la fenêtre I / O suit
+  const lev = W.manettes[cle], de = lev.rotation.x, vers = e.app[cle] ? -0.62 : 0.62;
+  await anime(160, (t) => { lev.rotation.x = de + (vers - de) * t; });
+  W.fenetresIO[cle].material = e.app[cle] ? W.matIO.I : W.matIO.O;
+}
 async function manette(cle) {
   const ap = RANGEES.flat().find((x) => x.cle === cle);
   e.app[cle] = !e.app[cle]; sons.disjoncteur(); vibrer(30); temps(0.5);
-  const lev = W.manettes[cle], de = e.app[cle] ? -0.009 : 0.009, vers = -de;
-  await anime(160, (t) => { lev.position.y = de + (vers - de) * t; });
+  await basculer(cle);
   if (!e.app[cle] && (cle === "dj" || cle === "diff")) e.coupe = true;
-  dire(`${ap.etiquette} : manette ${e.app[cle] ? "remontée (I)" : "baissée (O)"}.${!e.app[cle] && cle === "dj" ? " Les prises restent alimentées." : ""}`, e.app[cle] ? "info" : "ok");
+  dire(`${ap.etiquette} : manette ${e.app[cle] ? "remontée (I)" : "baissée (O)"}.${!e.app[cle] && EFFETS[cle] ? ` ${EFFETS[cle]}` : ""}`, e.app[cle] ? "info" : "ok");
+  apres();
+}
+// bouton test d'un interrupteur différentiel : s'il est fermé, il déclenche (c'est le signe qu'il fonctionne)
+async function boutonTest(cle) {
+  const ap = RANGEES.flat().find((x) => x.cle === cle), bt = W.boutonsTest[cle];
+  sons.clip(); vibrer(15); temps(0.5);
+  await anime(180, (t) => { bt.b.position.z = bt.z - 0.0025 * Math.sin(t * Math.PI); });
+  if (!e.app[cle]) { dire(`Bouton test de « ${ap.etiquette} » : rien ne se passe, sa manette est déjà en bas (O).`); apres(); return; }
+  e.app[cle] = false; sons.disjoncteur(); vibrer(30);
+  await basculer(cle);
+  if (cle === "diff") e.coupe = true;
+  dire(`Bouton test : « ${ap.etiquette} » déclenche, il fonctionne. ${EFFETS[cle]} Remonte sa manette pour remettre le courant.`, "ok");
+  apres();
+}
+// lampe de chevet : elle est branchée sur une prise de la chambre (disjoncteur « Pr. chambres »)
+function lampeChevet(id) {
+  e.lampes[id] = !e.lampes[id]; sons.clip(); vibrer(15);
+  const alim = pot("PrL") === 230;
+  dire(!alim ? "Tu appuies sur le bouton de la lampe : rien. Les prises de la chambre ne sont plus alimentées." : e.lampes[id] ? "La lampe de chevet s'allume : les prises de la chambre sont alimentées, c'est bien l'éclairage qui est en panne." : "Tu éteins la lampe de chevet.");
   apres();
 }
 let secousse = 0;
@@ -561,9 +601,16 @@ function apres() { majLumiere(); majUI(); }
 let lumiere = 0, lumiereCible = 0;
 function majLumiere() {
   lumiereCible = lampeAllumee() ? 1 : 0;
-  const reveilOn = pot("PrL") === 230;
-  W.ecranReveil.visible = reveilOn; W.lueurReveil.intensity = reveilOn ? 0.06 : 0;
+  const prises = pot("PrL") === 230, cuisine = e.app.diff2 && e.app.d9;
+  W.ecranReveil.visible = prises;
+  // une lampe de chevet éteinte n'est pas calculée du tout (les matériaux des trois cas possibles sont préparés au chargement)
+  for (const l of W.lampesChevet) { const on = prises && e.lampes[l.id]; l.lumiere.intensity = on ? l.force : 0; l.lumiere.visible = on; for (const m of l.mats) m.emissiveIntensity = on ? l.k : 0; }
+  chevets = W.lampesChevet.filter((l) => l.lumiere.intensity > 0).length;
+  W.cuisine.intensity = cuisine ? 1.4 : 0; W.ouverture.material.color.set(cuisine ? 0xffc98a : 0x0b0806);
+  for (const [cle, f] of Object.entries(W.fenetresIO)) f.material = e.app[cle] ? W.matIO.I : W.matIO.O;
+  reveiller();
 }
+let chevets = 0;
 async function recompense() {
   // le joueur a lui-même allumé : il recule et regarde la chambre éclairée, puis la facture
   e.essaye = true; majUI();
@@ -731,6 +778,7 @@ function objectifHTML() {
   return h ? `<span>👉 ${h.quoi}</span>` : "<b>🎯 Trouve pourquoi le plafonnier de la chambre ne s'allume plus, et répare.</b>";
 }
 function majUI() {
+  reveiller();
   if (!e) return;
   const f = facture();
   racine.querySelector(".j-compteurs").innerHTML = `<span title="Temps passé">⏱ ${Math.round(e.minutes)} min</span><span title="Facture en cours">🧾 ${f.total} €</span>`;
@@ -817,6 +865,19 @@ function dessinerAnneaux(now) {
    Boucle de rendu, images par seconde
    ===================================================================== */
 const fps = { n: 0, t0: performance.now(), val: 60, bas: 0 };
+let ombreTour = 0, reveil = 60, signature = "", forcer = false, decorPret = false, serie = 0, lentes = 0, mauvaises = 0, dernierRendu = 0;
+const champ = new THREE.Frustum(), matChamp = new THREE.Matrix4();
+function reveiller(n = 45) { reveil = Math.max(reveil, n); }
+// Définition d'affichage : plafonnée sur les écrans très denses, puis baissée d'un cran si l'appareil ne suit pas
+// (deux séries de suite avec au moins 20 images lentes sur 30). Elle ne remonte pas.
+function definitionDepart() { const r = racine.querySelector(".j-scene").getBoundingClientRect(); return Math.max(0.75, Math.min(devicePixelRatio, 1.5, Math.sqrt(1.1e6 / Math.max(1, r.width * r.height)))); }
+function definition(now) {
+  const dt = now - dernierRendu; dernierRendu = now;
+  if (!decorPret || document.hidden || transition || occupe) { serie = 0; lentes = 0; return; }
+  if (++serie < 3) return;
+  if (dt > 21) lentes++;
+  if (serie >= 33) { mauvaises = lentes >= 20 ? mauvaises + 1 : 0; if (mauvaises >= 2 && renderer.getPixelRatio() > 0.76) { mauvaises = 0; renderer.setPixelRatio(Math.max(0.75, renderer.getPixelRatio() * 0.85)); reveiller(); } serie = 0; lentes = 0; }
+}
 let attente = null; // une touche faite pendant une animation est gardée et jouée juste après
 function boucle(now) { requestAnimationFrame(boucle); image(now); }
 function image(now) {
@@ -837,13 +898,23 @@ function image(now) {
   frontaleCible.lerp(viseeDoigt, 0.15);
   W.frontale.target.position.copy(frontaleCible);
   lumiere += (lumiereCible - lumiere) * 0.06;
-  W.lampe.intensity = lumiere * 11; W.ampouleMat.emissiveIntensity = lumiere * 6; W.M.abatJour.emissiveIntensity = lumiere * 0.22; W.ambiance.intensity = 0.3 + lumiere * 0.45;
-  W.frontale.intensity = (VUES[e.vue].libre ? 9 : 0.45) * (1 - lumiere * 0.7);
-  W.pluie.offset.y -= 0.012;
+  W.lampe.intensity = lumiere * 11; W.ampouleMat.emissiveIntensity = lumiere * 6; W.M.abatJour.emissiveIntensity = lumiere * 0.22; W.ambiance.intensity = 0.3 + lumiere * 0.45 + chevets * 0.22;
+  { const p = W.porteTableau; p.vers = e.vue === "tableau" || e.vue.startsWith("rangee") ? -1.95 : 0; if (p.a !== p.vers) { p.a += (p.vers - p.a) * 0.12; if (Math.abs(p.vers - p.a) < 0.01) p.a = p.vers; p.pivot.rotation.y = p.a; reveiller(2); } }
+  W.frontale.intensity = (VUES[e.vue].libre ? 9 : 0.45) * (1 - lumiere * 0.7) * (1 - Math.min(2, chevets) * 0.18);
   if (sondesEnVol()) majSondes(); else majMain();
   if (attente && !occupe && !transition && !anims.length) { const a = attente; attente = null; toucherEcran(a.x, a.y); }
+  // Fluidité : l'image n'est recalculée que si quelque chose bouge (la tête, la frontale, un objet, la pluie à la fenêtre si on la voit).
+  const fenetreVue = W.vitrePluie && champ.setFromProjectionMatrix(matChamp.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse)).intersectsObject(W.vitrePluie);
+  if (fenetreVue) W.pluie.offset.y -= 0.012;
+  const p = camera.position, c = frontaleCible, sig = `${p.x.toFixed(4)},${p.y.toFixed(4)},${p.z.toFixed(4)},${regard.yaw.toFixed(4)},${regard.pitch.toFixed(4)},${camera.fov.toFixed(2)},${c.x.toFixed(3)},${c.y.toFixed(3)},${lumiere.toFixed(3)},${e.outil},${e.lecture}`;
+  if (fenetreVue || transition || anims.length || sondesEnVol() || (secousse && now - secousse < 600) || sig !== signature || !decorPret) reveiller(3);
+  signature = sig;
+  if (reveil <= 0 && !forcer) { serie = 0; fps.n = 0; fps.t0 = now; return; }
+  reveil--;
+  renderer.shadowMap.needsUpdate = reveil <= 1 || forcer || (++ombreTour & 1) === 0;
   renderer.render(W.scene, camera);
   dessinerAnneaux(now);
+  definition(now);
   fps.n++;
   if (now - fps.t0 >= 1000) {
     fps.val = Math.round((fps.n * 1000) / (now - fps.t0)); fps.n = 0; fps.t0 = now;
@@ -904,6 +975,7 @@ async function toucherEcran(x, y) {
 function reculer() { const p = VUES[e.vue].parent; if (p && !occupe) { occupe = true; allerVue(p).then(() => { occupe = false; apresArrivee(); majUI(); }); } }
 function brancherEntrees(canvas) {
   canvas.addEventListener("pointerdown", (ev) => {
+    reveiller();
     if (e.panneau) return;
     appui = { x: ev.clientX, y: ev.clientY, yaw: regard.yaw, pitch: regard.pitch, bouge: false };
     canvas.setPointerCapture(ev.pointerId);
@@ -967,7 +1039,7 @@ function gabarit() {
   <div class="t-objectif" role="status"></div>
   <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output>
     <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-depannage.html?i=chambre">Jouer la version 2D</a></p>
-    ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div></div>
+    ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div><div class="j-charge"><b>Mme Martin ouvre la porte…</b><span><i></i></span></div></div>
   <div class="j-barre">
     <div class="j-caisse" role="group" aria-label="Caisse à outils">
       <button type="button" data-outil="vat" aria-pressed="false"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="2" width="14" height="30" rx="4" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="20" y="5" width="8" height="3" rx="1" fill="#ff3b2f"/><rect x="20" y="10" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="15" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="20" width="8" height="3" rx="1" fill="#6b7480"/><path d="M24 32v6" stroke="#9aa3ad" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26C8 26 8 12 8 6" fill="none" stroke="#1d2228" stroke-width="2"/><rect x="5" y="2" width="6" height="12" rx="2" fill="#2f6fb8" stroke="#1d2228" stroke-width="1.5"/><path d="M8 14v5" stroke="#9aa3ad" stroke-width="2" stroke-linecap="round"/></svg><b>VAT</b></button>
@@ -986,7 +1058,8 @@ function remettreScene() {
   W.meca.position.set(0, 0, 0); W.meca.rotation.set(0, 0, 0); W.touche.rotation.set(0, 0, 0);
   W.vis.forEach((v, i) => { W.meca.attach(v); v.position.set(i ? 0.0295 : -0.0295, 0, 0.0038); v.rotation.set(0, 0, 0); v.scale.set(1, 1, 1); v.visible = true; });
   W.groupePlaque.attach(W.plaque); W.plaque.position.set(0, 0, 0); W.plaque.rotation.set(0, 0, 0); W.plaque.scale.set(1, 1, 1); W.plaque.visible = true;
-  for (const lev of Object.values(W.manettes)) lev.position.y = 0.009;
+  for (const lev of Object.values(W.manettes)) lev.rotation.x = -0.62;
+  W.porteTableau.a = 0; W.porteTableau.pivot.rotation.y = 0;
   for (const b of Object.values(W.bornesMeca)) b.userData.tete.rotation.y = 0;
   engage = 0; lumiere = 0; main.vat.userData.maj(0); for (const s of Object.values(sondes)) { s.id = undefined; s.de = null; s.g.visible = false; s.cordon.visible = false; }
   const v = VUES.entree; camera.position.set(...v.pos); regard.yaw = v.yaw; regard.pitch = v.pitch; regard.base = null; regard.memo = {};
@@ -1001,10 +1074,10 @@ async function demarrer() {
   gabarit();
   const scene = racine.querySelector(".j-scene");
   renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
-  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  scene.prepend(renderer.domElement);
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false;
+  scene.prepend(renderer.domElement); renderer.setPixelRatio(definitionDepart()); renderer.debug.checkShaderErrors = false;
+  THREE.DefaultLoadingManager.onProgress = () => reveiller(); THREE.DefaultLoadingManager.onLoad = () => reveiller(90);
   W = creerMonde(renderer, BASE, { rangees: RANGEES, etiquettes: ETIQ });
   camera = new THREE.PerspectiveCamera(60, 1, 0.01, 30);
   camera.rotation.order = "YXZ";
@@ -1023,15 +1096,25 @@ async function demarrer() {
     fovLibre = camera.aspect < 0.8 ? 66 : 55; camera.fov = e && !VUES[e.vue].libre ? FOV_PROCHE : fovLibre; camera.updateProjectionMatrix();
   };
   taille();
-  addEventListener("resize", () => { taille(); if (!transition && !VUES[e.vue].libre) recadrer(); });
+  addEventListener("resize", () => { taille(); reveiller(); if (!transition && !VUES[e.vue].libre) recadrer(); });
   remettreScene(); majFils(); filsPrise(); majLumiere();
   brancherEntrees(renderer.domElement); brancherBoutons();
   majUI();
   requestAnimationFrame(boucle);
   demarrerAmbiance();
+  // le décor (modèles 3D) arrive : l'entrée d'abord (on la montre dès qu'elle est posée), la chambre pendant que la cliente parle
+  { const el = racine.querySelector(".j-charge"), sv = W.decor.suivi, tic = setInterval(() => { el.querySelector("i").style.width = `${Math.round((sv.faits / Math.max(1, sv.total)) * 100)}%`; }, 120);
+    const fin = () => { clearInterval(tic); el.hidden = true; reveiller(120); W.decor.lancerSuite(); };
+    Promise.race([W.decor.pret("entree"), new Promise((r) => setTimeout(r, 15000))]).then(fin, fin);
+    // quand tout est posé : préparer en fond les matériaux pour 0 et 2 lampes de chevet allumées, pour qu'allumer une lampe ne fige pas l'image
+    Promise.race([W.decor.tout(), new Promise((r) => setTimeout(r, 30000))]).then(async () => {
+      decorPret = true; reveiller(120);
+      const ch = W.lampesChevet.map((l) => l.lumiere), etat = ch.map((l) => l.visible);
+      for (const cas of [[false, false], [true, true]]) { await new Promise((r) => setTimeout(r, 400)); ch.forEach((l, i) => { l.visible = cas[i]; }); try { renderer.compile(W.scene, camera); } catch { /* rien */ } const v = W.lampesChevet.map((l) => pot("PrL") === 230 && e.lampes[l.id]); ch.forEach((l, i) => { l.visible = v[i]; }); reveiller(); }
+    }); }
   // pour les contrôles automatiques
   window.__atelier3d = {
-    e: () => e, guide: () => guideCible(), cam: () => camera, image: () => image(performance.now()),
+    e: () => e, guide: () => guideCible(), cam: () => camera, image: () => { forcer = true; image(performance.now()); forcer = false; }, rendu: () => renderer, decor: () => W.decor.suivi, regard: () => regard, definition: () => renderer.getPixelRatio(),
     cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...(c.type === "point" ? rayonEcran(c) : {}) })),
     toucher: (id) => { const c = W.cibles.find((x) => x.id === id); return c.type === "point" ? rayonEcran(c) : ecranDe(centreCible(c)); },
     occupe: () => occupe || !!transition || anims.length > 0 || !!attente || sondesEnVol(),
@@ -1039,7 +1122,7 @@ async function demarrer() {
     toucherEcran: (x, y) => toucherEcran(x, y),
     lecture: () => { const o = racine.querySelector(".j-lecture"); return o.hidden ? null : { texte: o.textContent, ...(({ left, top, right, bottom }) => ({ x0: left, y0: top, x1: right, y1: bottom }))(o.getBoundingClientRect()), scene: renderer.domElement.getBoundingClientRect().toJSON() }; },
     debug: () => ({ occupe, transition: !!transition, anims: anims.length, attente }),
-    W: () => W, main: () => main,
+    W: () => W, main: () => main, aller: (v) => allerA(v),
     // boîtes à l'écran des objets tenus (multimètre, VAT, plaque, plateau) : ils ne doivent cacher aucune cible
     tenus: () => [main.multi, main.vat, main.plateau, W.plaque].filter((o) => o.visible && (o.parent === camera)).map((o) => {
       const b = new THREE.Box3().setFromObject(o); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;

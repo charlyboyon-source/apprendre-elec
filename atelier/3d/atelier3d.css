@@ -110,3 +110,9 @@
 .j-lecture.vat b { font: 800 1.15rem/1.3 system-ui, sans-serif; }
 .j-lecture.vat.allume { background: #ff3b2f; color: #fff; border-color: #7d1b14; }
 @media (min-width: 900px) { .j-barre { grid-template-columns: auto 1fr auto; } .j-caisse button { min-width: 96px; } }
+
+/* attente du décor (modèles 3D) : un voile sombre et une barre, par-dessus la scène */
+.j-charge { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #05070c; color: #f4efe2; font-size: 1rem; }
+.j-charge[hidden] { display: none; }
+.j-charge span { width: min(240px, 60%); height: 6px; border-radius: 3px; background: #1d2530; overflow: hidden; }
+.j-charge i { display: block; height: 100%; width: 0; background: #ffc400; transition: width 0.15s; }

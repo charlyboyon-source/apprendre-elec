@@ -92,11 +92,30 @@ Tout ce qui vient d'une banque libre est sous licence CC0 (domaine public : usag
 | `ciel_jour.jpg` | Ciel de jour (HDRI `kloofendal_48d_partly_cloudy_puresky`, image réduite) | Poly Haven, https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky | CC0 |
 | `ciel_nuit.jpg` | Ciel de nuit (HDRI `dikhololo_night`, image réduite) | Poly Haven, https://polyhaven.com/a/dikhololo_night | CC0 |
 
+## Modèles 3D ajoutés pour le niveau 1 (la chambre et l'entrée de Mme Martin)
+
+Le niveau 1 réutilise aussi des modèles du niveau 2 (console, miroir, coussins, vase, cadres, plantes, chapeau).
+
+| Fichier | Ce que c'est | Source | Licence |
+|---|---|---|---|
+| `GothicBed_01.glb` | Lit en bois de la chambre | Poly Haven, https://polyhaven.com/a/GothicBed_01 | CC0 |
+| `GothicCabinet_01.glb` | Armoire de la chambre | Poly Haven, https://polyhaven.com/a/GothicCabinet_01 | CC0 |
+| `GothicCommode_01.glb` | Commode de la chambre | Poly Haven, https://polyhaven.com/a/GothicCommode_01 | CC0 |
+| `GreenChair_01.glb` | Fauteuil de la chambre | Poly Haven, https://polyhaven.com/a/GreenChair_01 | CC0 |
+| `painted_wooden_nightstand.glb` | Table de chevet | Poly Haven, https://polyhaven.com/a/painted_wooden_nightstand | CC0 |
+| `potted_plant_02.glb` | Plante verte en pot | Poly Haven, https://polyhaven.com/a/potted_plant_02 | CC0 |
+| `hanging_picture_frame_03.glb` | Cadre ovale au-dessus du lit | Poly Haven, https://polyhaven.com/a/hanging_picture_frame_03 | CC0 |
+| `fancy_picture_frame_02.glb` | Tableau au-dessus de la commode | Poly Haven, https://polyhaven.com/a/fancy_picture_frame_02 | CC0 |
+| `standing_picture_frame_02.glb` | Cadre photo posé | Poly Haven, https://polyhaven.com/a/standing_picture_frame_02 | CC0 |
+| `mantel_clock_01.glb` | Pendulette de la commode | Poly Haven, https://polyhaven.com/a/mantel_clock_01 | CC0 |
+| `painted_wooden_bench.glb` | Banc de l'entrée | Poly Haven, https://polyhaven.com/a/painted_wooden_bench | CC0 |
+| `rubber_boots.glb` | Bottes en caoutchouc | Poly Haven, https://polyhaven.com/a/rubber_boots | CC0 |
+
 ## Fait par le code du site
 
 | Élément | Où | Licence |
 |---|---|---|
 | Appareillage électrique : tableau, disjoncteurs, interrupteurs différentiels, horloge, contacteur, compteur, disjoncteur de branchement, goulotte, prises, interrupteurs, boîtes, bornes de jardin, conducteurs | `niveau/monde.js`, `monde.js` | Contenu du site |
 | Appareils branchés : télévision à écran plat, lampadaire, cafetière, réfrigérateur, lave-linge, congélateur, chauffe-eau et ses tuyaux, écrans et voyants | `niveau/decor.js` | Contenu du site |
-| Bâti et petits objets : murs, portes, fenêtres, rideaux, cuisine (meubles, plan de travail, évier, hotte), tapis, plaid, livres, télécommande, porte-manteau et vêtements, meuble à chaussures, clés, courrier, bocaux, haies (feuillage), touffes d'herbe, clôtures, vue du jardin par les fenêtres, flaques, pluie | `niveau/decor.js`, `niveau/monde.js` | Contenu du site |
+| Bâti et petits objets : murs, portes, fenêtres (vue du jardin le jour, vue de la rue une nuit de pluie), rideaux, couette, oreillers et plaid du lit, lampes de chevet, réveil, gilet posé sur le fauteuil, cuisine (meubles, plan de travail, évier, hotte), tapis, plaid, livres, télécommande, porte-manteau et vêtements, meuble à chaussures, clés, courrier, bocaux, haies (feuillage), touffes d'herbe, clôtures, vue du jardin par les fenêtres, flaques, pluie | `niveau/decor.js`, `niveau/monde.js` | Contenu du site |
 | Sons (pluie, ronron du congélateur, clics, déclenchements, décharge) | Synthétisés dans le navigateur (Web Audio) | Contenu du site |

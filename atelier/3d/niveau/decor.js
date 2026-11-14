@@ -67,6 +67,27 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
     });
     return T;
   }
+  // ce qu'on voit par la fenêtre une nuit de pluie : la rue, un réverbère et son halo, les fenêtres des voisins, la chaussée mouillée
+  let rueNuit = null;
+  function vueNuit() {
+    if (rueNuit) return rueNuit;
+    const T = (rueNuit = toile(512, 512)), g = T.g, ciel = g.createLinearGradient(0, 0, 0, 330); ciel.addColorStop(0, "#070b16"); ciel.addColorStop(1, "#1a2540"); g.fillStyle = ciel; g.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 9; i++) { g.fillStyle = `rgba(60,72,100,${0.10 + (i % 3) * 0.05})`; g.beginPath(); g.ellipse((i * 97) % 512, 40 + ((i * 53) % 90), 90 + (i % 4) * 30, 18 + (i % 3) * 8, 0, 0, 7); g.fill(); }
+    // les maisons d'en face, toits, quelques fenêtres allumées
+    const maisons = [[-10, 150, 190, 300], [170, 190, 150, 300], [310, 140, 215, 300]];
+    for (const [x, y, w] of maisons) { g.fillStyle = "#0b0f18"; g.fillRect(x, y, w, 340 - y); g.beginPath(); g.moveTo(x - 8, y); g.lineTo(x + w / 2, y - 46); g.lineTo(x + w + 8, y); g.fill(); g.fillRect(x + w * 0.7, y - 50, 14, 34); }
+    for (const [x, y, c] of [[36, 196, "#ffcf7a"], [112, 196, "#191f2c"], [36, 262, "#191f2c"], [112, 262, "#ffd998"], [206, 232, "#9fc4ff"], [262, 232, "#191f2c"], [346, 186, "#ffcf7a"], [430, 186, "#191f2c"], [346, 256, "#191f2c"], [430, 256, "#ffe2a8"]]) { g.fillStyle = c; g.fillRect(x, y, 38, 44); g.strokeStyle = "#0b0f18"; g.lineWidth = 3; g.strokeRect(x, y, 38, 44); g.beginPath(); g.moveTo(x + 19, y); g.lineTo(x + 19, y + 44); g.stroke(); }
+    // la chaussée mouillée et ses reflets
+    const sol = g.createLinearGradient(0, 340, 0, 512); sol.addColorStop(0, "#0d1220"); sol.addColorStop(1, "#05070c"); g.fillStyle = sol; g.fillRect(0, 340, 512, 172);
+    g.fillStyle = "#11161f"; g.fillRect(0, 336, 512, 10);
+    // le réverbère et son halo
+    g.fillStyle = "#05070a"; g.fillRect(286, 150, 7, 200); g.fillRect(262, 146, 30, 6);
+    const halo = g.createRadialGradient(264, 160, 2, 264, 160, 150); halo.addColorStop(0, "rgba(255,214,150,0.95)"); halo.addColorStop(0.08, "rgba(255,190,110,0.55)"); halo.addColorStop(0.4, "rgba(255,170,90,0.14)"); halo.addColorStop(1, "rgba(255,170,90,0)"); g.fillStyle = halo; g.fillRect(64, 0, 400, 360);
+    for (const [x, c, w] of [[264, "255,190,110", 26], [55, "255,207,122", 12], [131, "255,217,152", 12], [225, "159,196,255", 12], [365, "255,207,122", 12], [449, "255,226,168", 12]]) { const r = g.createLinearGradient(0, 346, 0, 500); r.addColorStop(0, `rgba(${c},0.5)`); r.addColorStop(1, `rgba(${c},0)`); g.fillStyle = r; for (let k = 0; k < 6; k++) g.fillRect(x - w / 2 + ((k * 7) % 5) - 2, 346 + k * 24, w, 16); }
+    // la haie du jardin, au premier plan
+    g.fillStyle = "#04070a"; g.beginPath(); g.moveTo(0, 512); g.lineTo(0, 440); for (let x = 0; x <= 512; x += 14) g.lineTo(x, 432 + Math.sin(x * 0.09) * 8 + ((x * 7) % 11)); g.lineTo(512, 512); g.fill();
+    T.t.needsUpdate = true; return T;
+  }
   const hhmm = (h) => { const m = Math.round(h * 60) % 1440; return `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
 
   const poseurs = {
@@ -80,21 +101,21 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       const w = o.w || 1.1, h = o.h || 1.2, pvc = mat(0xf3f1ec, { roughness: 0.45 });
       for (const [bw, bh, x, y] of [[w + 0.1, 0.06, 0, h / 2 + 0.02], [w + 0.1, 0.06, 0, -h / 2 - 0.02], [0.06, h, -w / 2 - 0.02, 0], [0.06, h, w / 2 + 0.02, 0], [0.04, h, 0, 0]]) { const b = boite(bw, bh, 0.05, pvc); b.position.set(x, y, 0.02); g.add(b); }
       const appui = boite(w + 0.24, 0.03, 0.14, pvc); appui.position.set(0, -h / 2 - 0.06, 0.06); g.add(appui);
-      const T = vueJardin();
+      const T = o.vue === "nuit" ? vueNuit() : vueJardin();
       const vitre = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: T.t })); vitre.position.z = 0.012; g.add(vitre);
-      temoins.push((r, e, lc, nuit) => { vitre.material.color.setScalar(nuit ? 0.035 : 1.7); });
+      if (o.vue !== "nuit") temoins.push((r, e, lc, nuit) => { vitre.material.color.setScalar(nuit ? 0.035 : 1.7); });
       if (o.rideaux !== false) {
         const tr = cyl(0.012, 0.012, w + 0.7, M.laiton, 10); tr.rotation.z = Math.PI / 2; tr.position.set(0, h / 2 + 0.16, 0.1); g.add(tr);
-        const mr = tissu(o.rideaux || 0xb9a58a, { rep: [2, 5] });
+        const mr = tissu(o.rideaux || 0xb9a58a, { rep: [2, 5] }), bas = o.rideauxLongs ? h / 2 + (o.y || 1.45) - 0.03 : h / 2 + 0.27, hr = h / 2 + 0.15 + bas;
         for (const s of [-1, 1]) {
-          const geo = new THREE.PlaneGeometry(0.42, h + 0.42, 14, 1), p = geo.attributes.position;
-          for (let i = 0; i < p.count; i++) p.setZ(i, Math.sin(p.getX(i) * 46) * 0.028);
-          geo.computeVertexNormals(); const r = new THREE.Mesh(geo, mr); r.position.set(s * (w / 2 + 0.16), -0.06, 0.1); r.receiveShadow = true; g.add(r);
+          const geo = new THREE.PlaneGeometry(0.42, hr, 14, 6), p = geo.attributes.position;
+          for (let i = 0; i < p.count; i++) p.setZ(i, Math.sin(p.getX(i) * 46) * (0.028 + (0.5 - p.getY(i) / hr) * 0.012));
+          geo.computeVertexNormals(); const r = new THREE.Mesh(geo, mr); r.position.set(s * (w / 2 + 0.16), h / 2 + 0.15 - hr / 2, 0.1); r.receiveShadow = true; g.add(r);
         }
       }
       // la lumière du jour entre par la fenêtre (c'est elle qui porte les ombres dans la pièce)
       g.updateMatrixWorld(true);
-      if (!lieu.cle) lieu.cle = { pos: g.localToWorld(V(0, 0.25, 0.22)).sub(G.position), vers: V(0, 0.1, 0), force: 55, angle: 1.15 };
+      if (lieu && !lieu.cle) lieu.cle = { pos: g.localToWorld(V(0, 0.25, 0.22)).sub(G.position), vers: V(0, 0.1, 0), force: 55, angle: 1.15 };
     },
     tapis(o, lieuId, lieu, G, g) {
       const T = toile(256, 256), c = o.couleurs || ["#6b2a26", "#d9c9a3", "#2f3f55"], gg = T.g;
@@ -121,6 +142,45 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
     cadreTexte(o, lieuId, lieu, G, g) { // un petit cadre dessiné (calendrier, liste de courses) pour les murs
       const T = toile(128, 160), gg = T.g; gg.fillStyle = "#fbfaf4"; gg.fillRect(0, 0, 128, 160); gg.fillStyle = "#c8261e"; gg.fillRect(0, 0, 128, 34); gg.fillStyle = "#fff"; gg.font = "700 20px system-ui"; gg.textAlign = "center"; gg.fillText(o.titre || "NOVEMBRE", 64, 24); gg.fillStyle = "#333"; gg.font = "11px system-ui"; for (let i = 0; i < 30; i++) gg.fillText(String(i + 1), 14 + (i % 7) * 17, 56 + Math.floor(i / 7) * 22); T.t.needsUpdate = true;
       const p = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.275), new THREE.MeshStandardMaterial({ map: T.t, roughness: 0.9 })); p.position.z = 0.006; g.add(p);
+    },
+
+    /* ----- chambre ----- */
+    // un lit fait : le lit en bois (modèle), une couette qui retombe sur les côtés, repliée vers la tête, deux oreillers et des coussins
+    lit(o, lieuId, lieu, G, g) {
+      const w = o.w || 1.5, L = w * 1.364, hm = 0.52 * (w / 1.5);
+      modele(g, "GothicBed_01", { s: w / 1.494, ry: o.tete === "+z" ? Math.PI : 0 }, lieuId);
+      const mc = tissu(o.couette || 0x4f6a8a, { rep: [5, 7] }), lg = L * 0.62, z0 = L * 0.5 - 0.06;
+      const geo = new THREE.PlaneGeometry(w + 0.5, lg, 30, 22), p = geo.attributes.position;
+      for (let i = 0; i < p.count; i++) { // x en travers du lit, y le long : le drap plonge au-delà des bords du matelas
+        const x = p.getX(i), y = p.getY(i), bord = Math.max(0, Math.abs(x) - (w / 2 - 0.05)), pied = Math.max(0, y - (lg / 2 - 0.1));
+        const chute = Math.min(0.26, bord * 1.25) + Math.min(0.2, pied * 2.2), gonfle = 0.035 * Math.cos((x / w) * Math.PI) + 0.012 * Math.sin(y * 9 + x * 3) + 0.008 * Math.sin(x * 23 + y * 4);
+        p.setXYZ(i, Math.sign(x) * Math.min(Math.abs(x), w / 2 + 0.012 + bord * 0.12), hm + 0.03 + gonfle - chute, z0 - lg / 2 + y - Math.min(0.05, pied * 0.5));
+      }
+      geo.computeVertexNormals(); const couette = new THREE.Mesh(geo, mc); couette.castShadow = true; couette.receiveShadow = true; g.add(couette);
+      // le revers de la couette, côté tête : un boudin de tissu clair
+      const rev = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, w + 0.06, 18, 1), tissu(o.drap || 0xf2ede2, { rep: [6, 1] })); rev.rotation.z = Math.PI / 2; rev.scale.set(1, 1, 2.1); rev.position.set(0, hm + 0.055, z0 - lg + 0.03); rev.castShadow = true; g.add(rev);
+      for (const [x, c] of [[-w * 0.24, 0xf4f0e6], [w * 0.24, 0xf4f0e6]]) { const o2 = new THREE.Mesh(new THREE.SphereGeometry(0.3, 22, 12), tissu(c, { rep: [3, 2] })); o2.scale.set(1.02, 0.3, 0.62); o2.rotation.x = -0.32; o2.position.set(x, hm + 0.12, -L / 2 + 0.3); o2.castShadow = true; g.add(o2); }
+      const cs = new THREE.Group(); cs.position.set(o.coussins === false ? 99 : -0.05, hm + 0.06, -L / 2 + 0.56); g.add(cs); if (o.coussins !== false) modele(cs, "throw_pillows_01", { w: 0.95, ry: 0.1 }, lieuId);
+      if (o.plaid !== false) { const pg = new THREE.PlaneGeometry(w + 0.34, 0.5, 22, 6), q = pg.attributes.position; for (let i = 0; i < q.count; i++) { const x = q.getX(i), y = q.getY(i), bord = Math.max(0, Math.abs(x) - (w / 2 - 0.04)); q.setXYZ(i, Math.sign(x) * Math.min(Math.abs(x), w / 2 + 0.03 + bord * 0.1), hm + 0.075 + 0.03 * Math.cos((x / w) * Math.PI) + 0.006 * Math.sin(x * 30) - Math.min(0.2, bord * 1.2), z0 - 0.42 + y); } pg.computeVertexNormals(); const pl = new THREE.Mesh(pg, tissu(o.plaid || 0xc9a24a, { rep: [8, 3] })); pl.castShadow = true; g.add(pl); }
+    },
+    // lampe de chevet : pied en céramique, abat-jour en tissu qui s'éclaire. Elle est branchée sur une prise : elle suit son circuit.
+    lampeChevet(o, lieuId, lieu, G, g) {
+      const pts = [[0, 0], [0.075, 0], [0.08, 0.012], [0.05, 0.03], [0.062, 0.09], [0.07, 0.14], [0.045, 0.2], [0.02, 0.225], [0.014, 0.26], [0, 0.26]].map(([x, y]) => new THREE.Vector2(x, y));
+      const pied = new THREE.Mesh(new THREE.LatheGeometry(pts, 28), mat(o.c || 0x2f5a6b, { roughness: 0.25 })); pied.castShadow = true; g.add(pied);
+      const col = cyl(0.006, 0.006, 0.09, M.laiton, 10); col.position.y = 0.3; g.add(col);
+      const abat = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.13, 0.17, 32, 1, true), new THREE.MeshStandardMaterial({ color: 0xf2e6cf, side: THREE.DoubleSide, roughness: 0.95, normalMap: pbr.tex("fabric_pattern_07_nor.jpg", [6, 2], false), emissive: 0xffc98a, emissiveIntensity: 0 })); abat.position.y = 0.385; g.add(abat);
+      const amp = new THREE.Mesh(new THREE.SphereGeometry(0.026, 14, 10), emissif(0xf6f1e6, 0xffd49a)); amp.position.y = 0.37; g.add(amp);
+      const cordon = boite(0.004, 0.004, 0.3, M.noir); cordon.position.set(0.03, 0.003, -0.16); cordon.castShadow = false; g.add(cordon);
+      const bouton = boite(0.014, 0.008, 0.03, mat(0xf4f4f1)); bouton.position.set(0.03, 0.006, -0.1); g.add(bouton);
+      sources.push({ id: o.id, lieu: lieuId, obj: amp, couleur: 0xffcf96, force: o.force || 7, portee: 7, on: (r) => r.fonctionne(o.id), mats: [abat.material, amp.material], k: 1.5 });
+      zone(g, 0.3, 0.5, 0.3, 0.25, o.id, lieuId);
+    },
+    // un vêtement posé sur un dossier ou un bras de fauteuil (gilet, robe de chambre)
+    vetement(o, lieuId, lieu, G, g) {
+      const geo = new THREE.PlaneGeometry(o.w || 0.5, o.l || 0.9, 12, 16), p = geo.attributes.position, l = o.l || 0.9;
+      // à cheval sur le dossier : un pan retombe derrière (45 % de la longueur), l'autre devant
+      for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), t = (l / 2 - y) / l, d = t - 0.45, cote = Math.tanh(d * 28), bas = Math.abs(d) * l; p.setXYZ(i, x * (1 - 0.1 * Math.min(1, bas * 2)) + 0.014 * Math.sin(bas * 16 + x * 5), -bas + 0.03 * (1 - Math.abs(cote)) + 0.01 * Math.sin(x * 24), cote * (0.04 + 0.012 * Math.sin(x * 17 + bas * 9))); }
+      geo.computeVertexNormals(); const m = new THREE.Mesh(geo, tissu(o.c || 0x8a3f3a, { rep: [5, 8] })); m.castShadow = true; g.add(m);
     },
 
     /* ----- appareils branchés : ils dépendent de leur prise, donc de leur disjoncteur ----- */
