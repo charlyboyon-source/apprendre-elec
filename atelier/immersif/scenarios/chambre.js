@@ -7,14 +7,15 @@ const RANGEE1 = [
   { cle: "dj", type: "dj", cal: "C16", etiquette: "Éclairage chambres" },
   { cle: "d2", type: "dj", cal: "C20", etiquette: "Prises chambres" },
   { cle: "d3", type: "dj", cal: "C20", etiquette: "Prises séjour" },
-  { cle: "d4", type: "dj", cal: "C16", etiquette: "Éclairage séjour" },
+  { cle: "d4", type: "dj", cal: "C20", etiquette: "Lave-vaisselle" },
 ];
 const RANGEE2 = [
-  { cle: "diff2", type: "id", haut: "40 A", ligne2: "IΔn 30 mA", typ: "A", etiquette: "Différentiel 2" },
+  { cle: "diff2", type: "id", haut: "63 A", ligne2: "IΔn 30 mA", typ: "A", etiquette: "Différentiel 2" },
   { cle: "d5", type: "dj", cal: "C32", etiquette: "Plaque cuisson" },
   { cle: "d6", type: "dj", cal: "C20", etiquette: "Lave-linge" },
   { cle: "d7", type: "dj", cal: "C20", etiquette: "Four" },
   { cle: "d8", type: "dj", cal: "C20", etiquette: "Cuisine prises" },
+  { cle: "d9", type: "dj", cal: "C16", etiquette: "Éclairage séjour" },
 ];
 const NOMS = {
   "diff-L": "sortie phase du différentiel", "diff-N": "sortie neutre du différentiel",
@@ -25,8 +26,8 @@ const NOMS = {
   "d2-amont-L": "arrivée phase (Prises chambres)", "d2-amont-N": "arrivée neutre (Prises chambres)",
   "d3-L": "sortie phase du disjoncteur Prises séjour", "d3-N": "sortie neutre du disjoncteur Prises séjour",
   "d3-amont-L": "arrivée phase (Prises séjour)", "d3-amont-N": "arrivée neutre (Prises séjour)",
-  "d4-L": "sortie phase du disjoncteur Éclairage séjour", "d4-N": "sortie neutre du disjoncteur Éclairage séjour",
-  "d4-amont-L": "arrivée phase (Éclairage séjour)", "d4-amont-N": "arrivée neutre (Éclairage séjour)",
+  "d4-L": "sortie phase du disjoncteur Lave-vaisselle", "d4-N": "sortie neutre du disjoncteur Lave-vaisselle",
+  "d4-amont-L": "arrivée phase (Lave-vaisselle)", "d4-amont-N": "arrivée neutre (Lave-vaisselle)",
   "terre": "bornier de terre", "int-E": "borne L de l'interrupteur", "int-S": "borne 1 de l'interrupteur",
   "prise-terre": "broche de terre de la prise", "prise-d": "alvéole droite de la prise", "prise-g": "alvéole gauche de la prise",
   "dcl-L": "borne L du DCL", "dcl-N": "borne N du DCL", "dcl-T": "borne de terre du DCL",

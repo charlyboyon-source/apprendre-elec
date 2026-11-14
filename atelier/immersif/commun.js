@@ -219,15 +219,18 @@ export function dessinTournevis(x, y) {
 const LIGNES2 = [86, 392];
 // Vue d'ensemble du tableau : on touche une manette pour la basculer, le haut ou le bas d'un appareil pour s'en approcher.
 export function vueTableau2(e, cfg) {
+  // le coffret s'élargit si une rangée porte plus de six modules (largeur habituelle : 516)
+  const W = Math.max(516, ...cfg.rangees.map((rg) => rg.reduce((t, a) => t + (a.type === "id" ? 2 * MOD : MOD) + 4, 0)));
+  const x0 = 600 - W / 2;
   let s = `<rect width="1200" height="750" fill="#e6dccb"/>
-  <rect x="322" y="12" width="556" height="650" rx="16" fill="url(#g-coffret)" stroke="#b5b7b6" stroke-width="3" filter="url(#f-ombre)"/>
-  <rect x="332" y="22" width="536" height="630" rx="8" fill="#eef0f0"/>`;
+  <rect x="${x0 - 20}" y="12" width="${W + 40}" height="650" rx="16" fill="url(#g-coffret)" stroke="#b5b7b6" stroke-width="3" filter="url(#f-ombre)"/>
+  <rect x="${x0 - 10}" y="22" width="${W + 20}" height="630" rx="8" fill="#eef0f0"/>`;
   let zones = "";
   cfg.rangees.forEach((rangee, r) => {
     const y = LIGNES2[r];
-    s += `<rect x="336" y="${y + HT / 2 - 9}" width="528" height="18" fill="#dde1e4"/>`;
-    s += `<rect x="342" y="${y + 16}" width="516" height="10" rx="3" fill="#c97b3d" opacity=".85"/>`;
-    let x = 344;
+    s += `<rect x="${x0 - 6}" y="${y + HT / 2 - 9}" width="${W + 12}" height="18" fill="#dde1e4"/>`;
+    s += `<rect x="${x0}" y="${y + 16}" width="${W}" height="10" rx="3" fill="#c97b3d" opacity=".85"/>`;
+    let x = x0 + 2;
     for (const a of rangee) {
       const w = a.type === "id" ? 2 * MOD : MOD;
       const haut = e.app[a.cle] !== false;

@@ -16,7 +16,7 @@ const REDUIT = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const RAD = Math.PI / 180;
 const ETAPES = [["questionner", "Écouter", "Écouter la cliente"], ["observer", "Observer", "Constater la panne"], ["couper", "Couper", "Couper le circuit"], ["vat", "VAT", "Vérifier l'absence de tension"], ["mesurer", "Mesurer", "Mesurer"], ["reparer", "Réparer", "Réparer"], ["essayer", "Essayer", "Essayer"]];
 const RANGEES = S.tableau.rangees;
-const ETIQ = { diff: "Diff. 1", dj: "Écl. chambres", d2: "Pr. chambres", d3: "Pr. séjour", d4: "Écl. séjour", diff2: "Diff. 2", d5: "Plaque", d6: "Lave-linge", d7: "Four", d8: "Cuisine" };
+const ETIQ = { diff: "Diff. 1", dj: "Écl. chambres", d2: "Pr. chambres", d3: "Pr. séjour", d4: "Lave-vaiss.", diff2: "Diff. 2", d5: "Plaque", d6: "Lave-linge", d7: "Four", d8: "Cuisine", d9: "Écl. séjour" };
 
 let e = null, W = null, renderer = null, camera = null, occupe = false;
 const M = () => modele(S, e);
