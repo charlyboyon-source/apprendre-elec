@@ -181,6 +181,7 @@ cas("Appartement : navette desserrée, le va-et-vient ne marche que dans une pos
 }
 
 { const { testsEtape0 } = await import("./tests-etape0.mjs"); testsEtape0(cas, egal, vrai); }
+{ const { testsNiveaux } = await import("../niveau/tests-niveaux.mjs"); testsNiveaux(cas, egal, vrai); }
 
 console.log(`${reussis} cas réussis, ${echecs.length} échec(s).`);
 for (const x of echecs) console.log("  ✗ " + x);

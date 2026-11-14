@@ -1,0 +1,68 @@
+// Joueur automatique des niveaux 2 à 6 : il ne se sert que de ce qu'un joueur voit (messages, valeurs mesurées),
+// jamais de la cause tirée.   Lancé par ../moteur/tests.mjs
+import { creerPartie } from "./coeur.js";
+import N2 from "./niveau2.js";
+
+function jouerNiveau2(cause) {
+  const P = creerPartie(N2, cause), F = N2.fils, A = (a) => P.action(a).retour;
+  const iso = (a, b = "bt.PE") => A({ type: "mesurer", outil: "iso", a, b }), bas = (id) => A({ type: "manette", id, position: false }), haut = (id) => A({ type: "manette", id, position: true });
+  const faible = (r) => r !== "tension" && r < 5e7;
+  const consigner = (q, borne, terre) => { bas(q); A({ type: "mesurer", outil: "vat", a: "pc_sejour1.L", b: "pc_sejour1.N" }); A({ type: "mesurer", outil: "vat", a: borne, b: terre }); A({ type: "mesurer", outil: "vat", a: "pc_sejour1.L", b: "pc_sejour1.N" }); };
+  for (const q of ["quoi", "heure", "pluie", "travaux"]) A({ type: "question", id: q });
+  A({ type: "regarder", id: "horloge" });
+  let diag = null;
+  // 1. de jour : isolement des deux circuits qui démarrent la nuit, en aval de l'horloge et du contacteur
+  bas("Q8"); const allee = iso("horloge.2");
+  consigner("Q9", "sc_ce.ph", "sc_ce.pe"); A({ type: "ouvrir", id: "sc_ce" }); const ce = iso("sc_ce.ph", "sc_ce.pe");
+  if (faible(ce)) {
+    A({ type: "debrancher", conducteur: F.cordonCe.phase, extremite: "de" });
+    if (!faible(iso("sc_ce.ph", "sc_ce.pe")) && faible(iso(`${F.cordonCe.phase}#de`, "sc_ce.pe"))) diag = "D";
+  } else {
+    haut("Q9");
+    if (!faible(allee)) { // rien de jour : revenir quand ça saute, et chercher le circuit par élimination
+      haut("Q8"); A({ type: "revenir_ce_soir" }); A({ type: "regler_horloge", id: "horloge" });
+      for (let k = 0; k < 8 && P.e.positions.ID2; k++) A({ type: "attendre", minutes: 15 });
+      if (P.e.positions.ID2) return { P, diag: "rien ne saute" };
+      const rangee = ["Q6", "Q7", "Q8", "Q9", "Q10"]; rangee.forEach(bas); haut("ID2");
+      const coupables = rangee.filter((q) => { haut(q); if (P.e.positions.ID2) return false; bas(q); haut("ID2"); return true; });
+      if (coupables.join() !== "Q8") return { P, diag: `circuit ${coupables}` };
+    }
+    // 2. couper le circuit de l'allée en deux, à la boîte du pied de mur, puis borne par borne
+    consigner("Q8", "bd_mur.ph", "bd_mur.pe"); A({ type: "ouvrir", id: "bd_mur" });
+    A({ type: "debrancher", conducteur: F.enterre.phase, extremite: "de" });
+    if (faible(iso("bd_mur.ph", "bd_mur.pe"))) diag = "A";
+    else if (faible(iso(`${F.enterre.phase}#de`, "bd_mur.pe"))) {
+      A({ type: "ouvrir", id: "borne1" }); A({ type: "debrancher", conducteur: F.b12.phase, extremite: "de" });
+      if (faible(iso(`${F.enterre.phase}#de`, "bd_mur.pe"))) diag = "C";
+      else if (faible(iso(`${F.b12.phase}#de`, "borne1.PE"))) { A({ type: "ouvrir", id: "borne2" }); diag = "B"; }
+    }
+  }
+  if (diag) { A({ type: "diagnostic", id: diag }); A({ type: "securiser", id: { A: "boite", B: "presse", C: "hs_allee", D: "hs_ce" }[diag] }); }
+  return { P, diag };
+}
+
+export function testsNiveaux(cas, egal, vrai) {
+  for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 2, cause ${cause} : le joueur automatique trouve, prouve et sécurise`, () => {
+    const { P, diag } = jouerNiveau2(cause);
+    egal(diag, cause, "diagnostic"); vrai(P.fini && P.securise, "partie finie"); vrai(P.preuves.length > 0, "preuve par une mesure");
+    egal(P.fautes, [], "fautes de sécurité"); egal(P.bilan.etoiles, 3, "étoiles");
+  });
+  cas("Niveau 2 : à l'arrivée, de jour, tout fonctionne quelle que soit la cause", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N2, c); egal(P.calc().declenchements, []); vrai(P.action({ type: "essayer", id: "pc_congelateur" }).retour && P.action({ type: "essayer", id: "congelateur" }).retour, c); } });
+  cas("Niveau 2 : l'horloge donne l'heure de la coupure (19 h pour l'allée, 23 h pour le chauffe-eau)", () => { for (const [c, h] of [["A", 19], ["B", 19], ["C", 19], ["D", 23]]) { const P = creerPartie(N2, c); const cadran = P.action({ type: "regarder", id: "horloge" }).retour; egal((7 - (16 - cadran) + 24) % 24, h, c); vrai(P.carnet.indices.length === 1, "noté au carnet"); } });
+  cas("Niveau 2 : un mauvais diagnostic ou un mauvais remède ne termine pas la partie", () => {
+    const P = creerPartie(N2, "C"); vrai(!P.action({ type: "diagnostic", id: "congelateur" }).retour); egal(P.mauvaisDiagnostics, 1);
+    P.action({ type: "diagnostic", id: "C" }); vrai(!P.action({ type: "securiser", id: "moins_sensible" }).retour && !P.fini); vrai(!P.action({ type: "securiser", id: "presse" }).retour && !P.fini);
+    vrai(P.action({ type: "securiser", id: "hs_allee" }).retour && P.fini); egal(P.bilan.etoiles, 1, "sans preuve, avec erreurs");
+  });
+  cas("Niveau 2 : ouvrir ou débrancher sous tension est noté comme une faute, sans bloquer", () => {
+    const P = creerPartie(N2, "A"); P.action({ type: "mode", id: "horloge", mode: "I" }); P.action({ type: "ouvrir", id: "bd_mur" }); egal(P.fautes.length, 1);
+    vrai(P.action({ type: "debrancher", conducteur: N2.fils.enterre.phase, extremite: "de" }).retour === false); egal(P.fautes.length, 2);
+    egal(P.action({ type: "mesurer", outil: "iso", a: "bd_mur.ph", b: "bd_mur.pe" }).retour, "tension"); egal(P.fautes.length, 3);
+  });
+  cas("Niveau 2 : une mesure sur tout le circuit ne prouve rien ; il faut isoler le tronçon", () => { const P = creerPartie(N2, "C"); P.action({ type: "manette", id: "Q8", position: false }); P.action({ type: "mesurer", outil: "iso", a: "horloge.2", b: "bt.PE" }); egal(P.preuves, []); });
+  cas("Niveau 2 : le carnet note ce que chaque disjoncteur coupe, et le client réagit pour son congélateur", () => {
+    const P = creerPartie(N2, "B"); P.action({ type: "manette", id: "Q6", position: false }); vrai(P.carnet.tableau.some((t) => t.includes("Prises cellier") && t.includes("congélateur")), P.carnet.tableau.join());
+    const m = []; for (let k = 0; k < 8; k++) m.push(...P.action({ type: "attendre", minutes: 15 }).messages); vrai(m.some((x) => x.type === "client"), "reproche"); vrai(P.conseils.length === 1);
+  });
+  cas("Niveau 2 : les indices ne donnent jamais la cause", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N2, c); for (const t of N2.indices(P)) vrai(!/pleine d'eau|presse-étoupe|entaill|résistance du chauffe-eau/.test(t), t); } });
+}

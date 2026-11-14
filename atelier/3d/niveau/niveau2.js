@@ -1,0 +1,100 @@
+// Niveau 2 — « Ça saute la nuit » : la maison de Mme Roux et son jardin.
+// Quatre causes possibles, une seule par partie. Le logement est câblé dans ../moteur/logements/maison-jardin.js.
+import { maisonJardin, causesMaison, cadranMaison, reperesMaison as F } from "../moteur/logements/maison-jardin.js";
+import { heureFr } from "./coeur.js";
+
+const retard = (P) => ((P.e.env.heure - P.e.cadrans.horloge + 24) % 24);
+const isoFaite = (P) => P.carnet.mesures.some((m) => m.startsWith("Isolement"));
+
+export default {
+  id: "niveau2", numero: 2, titre: "Ça saute la nuit", page: "atelier-3d-2.html",
+  logement: maisonJardin, causes: causesMaison,
+  preparer(e, cause) { e.cadrans.horloge = cadranMaison[cause]; },
+  nomsDifferentiels: { ID1: "de la rangée du haut", ID2: "de la rangée du bas" },
+  nomsBornes: {
+    "horloge.1": "entrée du contact de l'horloge", "horloge.2": "sortie du contact de l'horloge (départ vers l'allée)", "bt.PE": "bornier de terre du tableau",
+    "kc.1": "entrée du contacteur heures creuses", "kc.2": "sortie du contacteur (départ vers le chauffe-eau)",
+  },
+  outils: ["vat", "multi", "iso"],
+  client: { nom: "Mme Roux", court: "Mme Roux", initiales: "MR", teinte: "#7a5ea8", role: "Retraitée · maison de plain-pied avec jardin" },
+  accroche: "« Bonjour, entrez. Le matin je me lève et il n'y a plus de courant dans la moitié de la maison. Je remonte le gros bouton et ça repart. C'est surtout quand il pleut, je crois. J'ai perdu tout mon congélateur la semaine dernière. »",
+  mission: "Trouve pourquoi le courant saute la nuit chez Mme Roux, prouve-le par une mesure, et remets l'installation en sécurité.",
+  depart: "entree",
+  questions: [
+    { id: "quoi", texte: "Qu'est-ce qui ne marche plus quand ça saute ?", reponse: () => "« Le congélateur, la prise de la terrasse, les lumières de l'allée… et je n'ai plus d'eau chaude. Le reste de la maison marche. »" },
+    { id: "heure", texte: "À quelle heure ça saute ?", reponse: () => "« Je ne sais pas, je dors ! Je le vois le matin. À sept heures, en me levant, je remonte le gros bouton du bas. »" },
+    { id: "pluie", texte: "Il a plu chaque fois ?", reponse: (P) => (P.cause === "D" ? "« Samedi et dimanche, oui. Mardi… non, mardi il faisait beau, et ça a sauté quand même. »" : "« Oui, je crois bien. Les trois fois, il avait plu dans la soirée. »") },
+    { id: "travaux", texte: "Quelqu'un a travaillé dehors récemment ?", reponse: () => "« Le jardinier a refait la bordure de l'allée il y a quinze jours. »" },
+    { id: "jour", si: (P) => P.vus.has("indice:horloge"), texte: "Les lampes de l'allée, vous les avez vues allumées en plein jour ?", reponse: (P) => (P.cause === "D" ? "« Non, je n'ai rien remarqué. »" : "« Tiens, oui ! L'autre matin elles étaient allumées en plein jour. J'ai trouvé ça bizarre. »") },
+    { id: "age", texte: "L'installation a été modifiée ?", reponse: () => "« Non. Le chauffe-eau a douze ans. L'éclairage de l'allée, c'est mon mari qui l'avait posé. »" },
+  ],
+  fragiles: { congelateur: { apres: 90, reproche: "« Dites… mon congélateur est sans courant depuis un bon moment. Je ne veux pas tout reperdre. »", conseil: "On prévient le client avant de couper un circuit qui alimente un congélateur, et on ne le laisse pas longtemps sans courant." } },
+  // ce qu'on voit en regardant (avant toute mesure)
+  regards: {
+    horloge(P) { const r = retard(P), h = Math.round(r * 60); return h < 5 ? { texte: `L'horloge de l'allée est à l'heure : ${heureFr(P.e.cadrans.horloge)}.`, valeur: P.e.cadrans.horloge }
+      : { texte: `L'horloge de l'allée affiche ${heureFr(P.e.cadrans.horloge)}. Ta montre dit ${heureFr(P.e.env.heure)}.`, valeur: P.e.cadrans.horloge, indice: `L'horloge de l'allée retarde de ${Math.floor(h / 60)} h ${String(h % 60).padStart(2, "0")} : elle n'a pas de réserve de marche, elle s'arrête quand le courant est coupé.` }; },
+    bd_mur: (P) => (P.cause === "A" ? { texte: "Boîte de dérivation au pied du mur : couvercle mal fermé, traces de calcaire. C'est un modèle prévu pour l'intérieur.", indice: "La boîte au pied du mur de la terrasse est un modèle d'intérieur, couvercle mal fermé, traces de calcaire." } : { texte: "Boîte de dérivation au pied du mur : modèle d'extérieur, couvercle bien fermé." }),
+    borne2: (P) => (P.cause === "B" ? { texte: "Borne 2 : il y a de la buée sous le verre.", indice: "Borne 2 de l'allée : de la buée sous le verre." } : { texte: "Borne 2 : verre propre et sec." }),
+    borne1: (P) => (P.cause === "C" ? { texte: "Borne 1 : la terre a été fraîchement retournée le long de la bordure, juste devant.", indice: "Terre fraîchement retournée le long de la bordure, entre la terrasse et la borne 1." } : { texte: "Borne 1 : rien de particulier." }),
+    borne3: () => ({ texte: "Borne 3 : rien de particulier." }),
+  },
+  ouvertures: {
+    bd_mur: (P) => (P.cause === "A" ? { texte: "Tu ouvres la boîte : il y a de l'eau au fond, les connexions baignent dedans.", type: "alerte", indice: "De l'eau dans la boîte de dérivation au pied du mur." } : { texte: "Tu ouvres la boîte : c'est sec et propre. Trois bornes : phase, neutre, terre ; un câble arrive de la maison, un autre part sous terre vers l'allée." }),
+    borne2: (P) => (P.cause === "B" ? { texte: P.e.env.pluie ? "Tu ouvres la borne 2 : de l'eau a coulé le long du câble jusqu'aux bornes. Le presse-étoupe est fendu." : "Tu ouvres la borne 2 : c'est sec, mais il y a des traces blanches sous le presse-étoupe, qui est fendu.", type: "alerte", indice: "Borne 2 : presse-étoupe fendu, traces d'eau à l'intérieur." } : { texte: "Tu ouvres la borne 2 : c'est sec et propre." }),
+  },
+  essais: {
+    congelateur: (ok) => (ok ? "Le congélateur ronronne, son voyant vert est allumé." : "Le congélateur est silencieux, voyant éteint : il n'a plus de courant."),
+    chauffe_eau: (ok, P) => (ok ? "Le chauffe-eau chauffe : son voyant est allumé." : `Le chauffe-eau ne chauffe pas en ce moment${P.inst.heuresCreuses(P.e) ? "" : " : il ne marche qu'en heures creuses, de 23 h à 7 h chez Mme Roux"}.`),
+  },
+  soir: { heure: 18.75, texte: "« Vous revoilà ! Il s'est mis à pleuvoir en fin d'après-midi. » Il est 18 h 45, il fait nuit. Tu allumes ta lampe frontale." },
+  attente(P) { const r = P.calc(); return r.allume("borne1") ? "Les bornes de l'allée sont allumées." : r.fonctionne("chauffe_eau") ? "Le chauffe-eau est en chauffe." : ""; },
+  // indice en trois crans : la méthode, la zone, la mesure. Jamais la cause.
+  indices(P) {
+    const methode = "Un interrupteur différentiel qui déclenche, c'est du courant qui fuit vers la terre sur l'un des circuits de sa rangée. Cherche d'abord QUEL circuit, puis OÙ sur ce circuit. Et demande-toi à quelle heure ça saute : qu'est-ce qui se met en marche à ce moment-là ?";
+    let zone, mesure;
+    if (!P.vus.has("indice:horloge")) { zone = "Ouvre le tableau, dans l'entrée, et regarde l'horloge de l'allée sur la rangée du bas : compare-la à ta montre."; mesure = "L'horloge s'est arrêtée à la coupure et Mme Roux a réarmé à 7 h : son retard te donne l'heure à laquelle ça a sauté."; }
+    else if (!isoFaite(P)) { zone = "Reste au tableau, rangée du bas : cinq départs. Lequel fuit ?"; mesure = "Baisse un disjoncteur de la rangée du bas, prends le mesureur d'isolement, et mesure entre la sortie phase du départ et le bornier de terre. Attention à ce qui se trouve après l'horloge et après le contacteur : mesure en aval de leur contact."; }
+    else if (!P.preuves.length && P.cause === "D") { zone = "Va voir dans le cellier, à la sortie de câble du chauffe-eau."; mesure = "Disjoncteur du chauffe-eau baissé et absence de tension vérifiée, ouvre la sortie de câble et mesure l'isolement entre la phase et la terre. Puis débranche le cordon de l'appareil pour savoir de quel côté est le défaut."; }
+    else if (!P.preuves.length && !P.soir && P.cause === "B") { zone = "De jour et par temps sec, tout est bon. Le défaut n'existe peut-être que dans les conditions où ça saute."; mesure = "Choisis « Revenir ce soir ». Quand ça saute pour de bon : baisse tous les disjoncteurs de la rangée, réarme le différentiel, remonte-les un par un."; }
+    else if (!P.preuves.length) { zone = "Dehors : la boîte de dérivation au pied du mur de la terrasse permet de couper le circuit de l'allée en deux."; mesure = "Circuit coupé et absence de tension vérifiée, ouvre la boîte, débranche le fil qui part vers l'allée, et mesure l'isolement de chaque côté. Recommence plus loin, borne par borne, sur le côté qui fuit."; }
+    else { zone = "Tu as ta preuve dans le carnet."; mesure = "Touche « J'ai trouvé » et choisis ce que tu fais pour que ça ne saute plus."; }
+    return [methode, zone, mesure];
+  },
+  diagnostics: [
+    { id: "A", texte: "La boîte de dérivation au pied du mur prend l'eau", non: "« La boîte du mur ? Vous l'avez mesurée ? Parce que mon mari l'avait changée… » Ce n'est pas ça." },
+    { id: "B", texte: "L'eau entre dans la borne 2 de l'allée quand il pleut", non: "« La deuxième borne ? Elle éclaire très bien, pourtant. » Ce n'est pas ça." },
+    { id: "C", texte: "Le câble enterré entre la boîte et la borne 1 est abîmé", non: "« Le câble sous la terre ? Comment vous le savez ? » Tu n'as rien qui le prouve : ce n'est pas ça." },
+    { id: "D", texte: "Le chauffe-eau a un défaut d'isolement", non: "« Le chauffe-eau ? Mais il chauffe très bien ! » Ce n'est pas ça." },
+    { id: "congelateur", texte: "Le congélateur fait sauter le courant", non: "« Il est neuf, je l'ai racheté la semaine dernière… » Le congélateur subit la coupure, il ne la cause pas." },
+    { id: "differentiel", texte: "L'interrupteur différentiel est trop sensible", non: "Un interrupteur différentiel 30 mA qui déclenche fait son travail : il y a une fuite quelque part. Ce n'est pas lui." },
+  ],
+  remedes: [
+    { id: "boite", pour: ["A"], repare: true, texte: "Remplacer la boîte par un modèle prévu pour l'extérieur et refaire les connexions", fait: "Tu remplaces la boîte par un modèle prévu pour l'extérieur, tu refais les connexions et tu vérifies l'isolement. La nuit suivante, sous la pluie, le différentiel tient.", non: "Ça ne répond pas à ce que tu as trouvé." },
+    { id: "presse", pour: ["B"], repare: true, texte: "Remplacer le presse-étoupe de la borne 2, sécher, refermer", fait: "Tu remplaces le presse-étoupe de la borne 2, tu sèches, tu refermes et tu vérifies l'isolement. La nuit suivante, sous la pluie, le différentiel tient.", non: "Ça ne répond pas à ce que tu as trouvé." },
+    { id: "hs_allee", pour: ["C"], horsService: "Q8", texte: "Mettre « Éclairage allée » hors service (disjoncteur baissé, étiquette) et proposer de remplacer le câble enterré", fait: "Un câble enterré entaillé ne se « rebranche » pas. Tu laisses « Éclairage allée » hors service, disjoncteur baissé et étiqueté, et tu proposes le remplacement du tronçon enterré. Le reste de la maison ne saute plus : c'est ça, le dépannage.", non: "Ici, ça se répare sur place : inutile de priver Mme Roux de son éclairage." },
+    { id: "hs_ce", pour: ["D"], horsService: "Q9", texte: "Laisser le chauffe-eau hors service et expliquer qu'il faut le réparer ou le remplacer", fait: "Tu laisses le chauffe-eau hors service, disjoncteur baissé et étiqueté, et tu expliques à Mme Roux que l'appareil doit être réparé ou remplacé. Le différentiel tient toute la nuit.", non: "Le chauffe-eau n'y est pour rien." },
+    { id: "ruban", pour: [], texte: "Refaire l'isolant du câble enterré avec du ruban adhésif", non: "Du ruban adhésif sous terre ne tient pas et n'est pas étanche : le défaut reviendra à la première pluie." },
+    { id: "moins_sensible", pour: [], texte: "Remplacer l'interrupteur différentiel 30 mA par un modèle moins sensible", non: "Jamais. Le 30 mA protège les personnes : on cherche la fuite, on ne rend pas le différentiel aveugle." },
+  ],
+  explications: {
+    A: "La boîte de dérivation au pied du mur de la terrasse est un modèle d'intérieur : l'eau y entre et y reste. Tant que l'allée est éteinte, la phase n'arrive pas dans la boîte. Le soir, l'horloge allume l'allée : le courant fuit par l'eau vers la terre et l'interrupteur différentiel de la rangée déclenche.",
+    B: "Le presse-étoupe de la borne 2 est fendu. Par temps sec, tout est normal et toutes les mesures sont bonnes. Quand il pleut, l'eau coule jusqu'aux bornes : le courant fuit vers la terre dès que l'horloge allume l'allée.",
+    C: "Le câble enterré entre la boîte et la borne 1 a été entaillé par une bêche quand la bordure a été refaite. Dans la terre mouillée, son isolant ne tient plus : le courant fuit vers la terre dès que l'allée s'allume.",
+    D: "La résistance du chauffe-eau a un défaut d'isolement. Le jour, le contacteur heures creuses est ouvert : rien ne se passe. À 23 h, il met le chauffe-eau en marche et l'interrupteur différentiel déclenche. La pluie n'y est pour rien.",
+  },
+  demarches: {
+    A: ["Écouter Mme Roux, lire le tableau, remarquer que l'horloge retarde de douze heures : ça a sauté vers 19 h, quand l'allée s'allume.", "Mesurer l'isolement du circuit de l'allée, disjoncteur baissé, en aval du contact de l'horloge : il est médiocre.", "Couper, vérifier l'absence de tension, ouvrir la boîte au pied du mur : de l'eau.", "Débrancher le départ vers l'allée et mesurer de chaque côté : le défaut est côté boîte.", "Remplacer la boîte par un modèle d'extérieur, vérifier l'isolement, vérifier que le différentiel tient."],
+    B: ["Écouter, lire le tableau, remarquer l'horloge : ça a sauté vers 19 h, quand l'allée s'allume.", "De jour, par temps sec, tous les isolements sont bons : le défaut n'existe que sous la pluie.", "Revenir le soir : quand ça saute, tout baisser, réarmer, remonter un par un. C'est « Éclairage allée ».", "Couper le circuit en deux à la boîte du pied de mur, puis à la borne 1 : le défaut est après la borne 1.", "Ouvrir la borne 2 : presse-étoupe fendu. Le remplacer, sécher, vérifier l'isolement."],
+    C: ["Écouter (le jardinier a refait la bordure), lire le tableau, remarquer l'horloge : ça a sauté vers 19 h.", "Mesurer l'isolement du circuit de l'allée en aval de l'horloge : il est médiocre.", "Ouvrir la boîte au pied du mur, débrancher le départ vers l'allée : le défaut est côté jardin.", "Séparer la borne 1 du reste : le défaut est sur le tronçon enterré entre la boîte et la borne 1.", "Mettre le circuit hors service, l'étiqueter, proposer le remplacement du câble."],
+    D: ["Écouter (mardi il faisait beau), lire le tableau, remarquer que l'horloge ne retarde que de huit heures : ça a sauté à 23 h, au début des heures creuses.", "Ce qui démarre à 23 h : le chauffe-eau, par son contacteur.", "Mesurer l'isolement en aval du contacteur, à la sortie de câble du chauffe-eau : très faible.", "Débrancher le cordon de l'appareil : le câble est bon, le défaut est dans le chauffe-eau.", "Laisser l'appareil hors service et l'expliquer à Mme Roux."],
+  },
+  conseilsFin: ["Dis à Mme Roux de ne pas laisser le congélateur sur une rangée qui alimente un circuit extérieur douteux."],
+  inutile(P) {
+    const l = [], utiles = { A: ["bd_mur"], B: ["bd_mur", "borne1", "borne2"], C: ["bd_mur", "borne1"], D: ["sc_ce"] }[P.cause];
+    const trop = [...P.ouverts].filter((id) => !utiles.includes(id)); if (trop.length) l.push(`Ouvert sans que ce soit nécessaire : ${trop.map((id) => P.nomOrgane(id, true)).join(", ")}.`);
+    const prises = [...P.essais].filter((id) => P.inst.organe[id] && P.inst.organe[id].type === "prise" && !["pr_cel", "pr_ter"].includes(P.inst.organe[id].circuit)).length; if (prises > 2) l.push(`${prises} prises essayées sur la rangée du haut, qui n'a jamais sauté.`);
+    if (P.soir && ["A", "C", "D"].includes(P.cause)) l.push("Tu es revenu le soir alors que le défaut se mesurait déjà de jour.");
+    return l;
+  },
+  fils: F,
+};
