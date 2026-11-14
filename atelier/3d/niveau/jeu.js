@@ -14,13 +14,14 @@ export function lancerNiveau(N) {
   const params = new URLSearchParams(location.search), REDUIT = matchMedia("(prefers-reduced-motion: reduce)").matches, RAD = Math.PI / 180;
   const FOV_PROCHE = 32; let fovLibre = 66;
   let P = null, W = null, renderer = null, camera = null, occupe = false, transition = null, appui = null, attente = null;
-  const J = { vue: N.depart, outil: null, rouge: null, noir: null, dernier: null, lecture: null, panneau: "client", debut: true, lieux: new Set([N.depart]), fil: [], bulle: null, aides: new Set(), onglet: "constats", pris: 0 };
+  const J = { etiq: {}, vue: N.depart, outil: null, rouge: null, noir: null, dernier: null, lecture: null, panneau: "client", debut: true, lieux: new Set([N.depart]), fil: [], bulle: null, aides: new Set(), onglet: "constats", pris: 0 };
   const regard = { yaw: 0, pitch: 0, base: null };
   const main = {}, sondes = {};
-  const OUTILS = { vat: ["VAT", "VAT en main."], multi: ["Multimètre", "Multimètre en main, réglé sur V~."], iso: ["Isolement", "Mesureur d'isolement en main."] };
+  const OUTILS = { vat: ["VAT", "VAT en main."], multi: ["Multimètre", "Multimètre en main, réglé sur V~."], iso: ["Isolement", "Mesureur d'isolement en main."], ohm: ["Continuité", "Multimètre en main, réglé sur Ω."] };
   const AIDES = {
     vat: "Touche les deux points entre lesquels tu veux vérifier. Teste-le d'abord sur une prise qui marche.",
     multi: "Touche les deux points entre lesquels tu veux mesurer.",
+    ohm: "La continuité se mesure sur un circuit COUPÉ : touche deux points. « 0,2 Ω » : ils sont reliés. « OL » : la liaison est coupée entre les deux.",
     iso: "Il se pose sur un circuit COUPÉ : touche une borne de phase ou de neutre, puis une borne de terre. Compare les circuits entre eux.",
   };
   const lisse = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -32,7 +33,7 @@ export function lancerNiveau(N) {
   function nouvellePartie() {
     const causes = Object.keys(N.causes), voulue = (params.get("cause") || "").toUpperCase();
     P = creerPartie(N, causes.includes(voulue) ? voulue : causes[Math.floor(Math.random() * causes.length)]);
-    Object.assign(J, { vue: N.depart, outil: null, rouge: null, noir: null, dernier: null, lecture: null, panneau: "client", debut: true, lieux: new Set([N.depart]), fil: [], bulle: null, onglet: "constats" });
+    Object.assign(J, { etiq: {}, vue: N.depart, outil: null, rouge: null, noir: null, dernier: null, lecture: null, panneau: "client", debut: true, lieux: new Set([N.depart]), fil: [], bulle: null, onglet: "constats" });
   }
   // une action du joueur : le cœur répond par des messages
   function jouer(a) {
@@ -59,10 +60,10 @@ export function lancerNiveau(N) {
     const lA = lieuDe(de), lB = lieuDe(v);
     if (lA !== lB) { // on passe par la porte : on s'en approche, fondu, on ressort par la porte de l'autre lieu
       const pA = W.lieux[lA].portes && W.lieux[lA].portes[lB], pB = W.lieux[lB].portes && W.lieux[lB].portes[lA];
-      if (pA) { const p = pA.localToWorld(new THREE.Vector3(0, 0.55, 0.7)), c = pA.localToWorld(new THREE.Vector3(0, 0.5, 0)); await glisser(orient(p, c), 520, fovLibre); }
+      if (pA && !pA.userData.trappe) { const p = pA.localToWorld(new THREE.Vector3(0, 0.55, 0.7)), c = pA.localToWorld(new THREE.Vector3(0, 0.5, 0)); await glisser(orient(p, c), 520, fovLibre); }
       await fondu(true);
       J.vue = v; W.maj(lB);
-      if (pB) { const p = pB.localToWorld(new THREE.Vector3(0, 0.55, 0.5)), c = pB.localToWorld(new THREE.Vector3(0, 0.5, 3)); const o = orient(p, c); camera.position.copy(o.pos); regard.yaw = o.yaw; regard.pitch = o.pitch; }
+      if (pB && !pB.userData.trappe) { const p = pB.localToWorld(new THREE.Vector3(0, 0.55, 0.5)), c = pB.localToWorld(new THREE.Vector3(0, 0.5, 3)); const o = orient(p, c); camera.position.copy(o.pos); regard.yaw = o.yaw; regard.pitch = o.pitch; }
       else { const o = cadrage(v); camera.position.copy(o.pos); regard.yaw = o.yaw; regard.pitch = o.pitch; }
       camera.fov = fovLibre; camera.updateProjectionMatrix(); majUI();
       await fondu(false);
@@ -96,10 +97,12 @@ export function lancerNiveau(N) {
   function reculer() { const p = W.vues[J.vue].parent; if (p) allerA(p); }
 
   /* ---------- ce qui se touche ---------- */
-  const actif = (c) => c.vues.includes(J.vue) && (c.type !== "point" || (mesureEnMain() && pointVisible(c.id))) && visible(c);
+  const actif = (c) => c.vues.includes(J.vue) && (c.type !== "point" || (mesureEnMain() && pointVisible(c))) && visible(c);
   function visible(c) { for (let o = c.objet; o; o = o.parent) if (o.visible === false) return false; return true; }
   // un point de mesure existe si son organe est accessible : boîte ouverte, bout de fil débranché…
-  function pointVisible(id) {
+  function pointVisible(c) {
+    const id = c.id;
+    if (id.endsWith("#bout")) return W.sorti(id.split("#")[0], c.ext);
     if (id.includes("#")) { const [cid, ext] = id.split("#"); return !!P.e.deconnecte[`${cid}:${ext}`]; }
     return true;
   }
@@ -127,6 +130,7 @@ export function lancerNiveau(N) {
     if (quoi === "regler") { sons.clip(); return void jouer({ type: "regler_horloge", id: arg }); }
     if (quoi === "essayer") { sons.interrupteur(); return void jouer({ type: "essayer", id: arg }); }
     if (quoi === "ouvrir") { sons.clip(); ranger(); return void jouer({ type: "ouvrir", id: arg }); }
+    if (quoi === "fil" && W.sorti(reste[0], reste[1])) return void jouer({ type: "regarder", id });
     if (quoi === "fil") { const [cid, ext] = reste; sons.clip(); const deja = !!P.e.deconnecte[`${cid}:${ext}`]; ranger(); return void jouer({ type: deja ? "rebrancher" : "debrancher", conducteur: cid, extremite: ext }); }
     return poserPointe(id); // un point de mesure
   }
@@ -150,7 +154,7 @@ export function lancerNiveau(N) {
     const q = !J.rouge ? "rouge" : !J.noir ? "noir" : J.dernier; J[q] = id; J.dernier = q;
     if (J.rouge && J.noir) {
       const r = jouer({ type: "mesurer", outil: J.outil, a: J.rouge, b: J.noir });
-      J.lecture = J.outil === "multi" ? `${r} V` : J.outil === "vat" ? (r ? "Tension !" : "Aucun voyant") : r === "tension" ? "TENSION !" : megohms(r);
+      J.lecture = J.outil === "multi" ? `${r} V` : J.outil === "vat" ? (r ? "Tension !" : "Aucun voyant") : r === "tension" ? "TENSION !" : J.outil === "ohm" ? (r ? "0,2 Ω" : "OL") : megohms(r);
       if (J.outil === "vat") main.vat.userData.maj(r ? 230 : 0);
       sons.bip();
     } else { J.lecture = null; J.bulle = { t: "Première pointe posée. Touche le second point.", type: "mesure" }; }
@@ -172,8 +176,8 @@ export function lancerNiveau(N) {
     const k = lisse(Math.min(1, (performance.now() - J.pris) / (REDUIT ? 1 : 380))), bas = (1 - k) * 0.9;
     const d = 0.07, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
     const pose = (obj, fx, fy, taille, rx, rz) => { obj.position.set(fx * demiL, fy * demiH, -d); obj.scale.setScalar((taille * demiH) / obj.userData.hauteur); obj.rotation.set(rx, 0, rz); };
-    main.vat.visible = J.outil === "vat" && !libre(); main.multi.visible = (J.outil === "multi" || J.outil === "iso") && !libre();
-    if (main.multi.visible) { pose(main.multi, 0.68, -0.72 - bas, 0.5, -0.25, 0.12); main.multi.userData.maj("V", J.lecture ? J.lecture.replace(" MΩ", "M").replace("plus de ", ">") : null); }
+    main.vat.visible = J.outil === "vat" && !libre(); main.multi.visible = (J.outil === "multi" || J.outil === "iso" || J.outil === "ohm") && !libre();
+    if (main.multi.visible) { pose(main.multi, 0.68, -0.72 - bas, 0.5, -0.25, 0.12); main.multi.userData.maj(J.outil === "ohm" ? "Ω" : "V", J.lecture ? J.lecture.replace(" MΩ", "M").replace("plus de ", ">") : null); }
     if (main.vat.visible) pose(main.vat, 0.74, -0.66 - bas, 0.56, -0.2, 0.18);
   }
 
@@ -223,6 +227,10 @@ export function lancerNiveau(N) {
         <button type="button" class="j-plein" data-action="rejouer">Rejouer (la cause change à chaque partie)</button>
         <a class="j-lien" href="atelier-3d.html">Niveau 1 : la lumière de la chambre</a></div>`;
     }
+    if (P.securise && N.etiquettes) return `<div class="j-panneau"><h2>🏷 Refais les étiquettes</h2><p>C'est réparé. Dernier geste : le repérage du tableau était faux. Écris ce que ton carnet a établi (onglet « Le tableau »).</p>
+      ${N.etiquettes.map((x) => `<h3>Aujourd'hui : « ${x.ancienne} »</h3><div class="j-choix">${x.choix.map(([k, t]) => `<button type="button" class="j-question${J.etiq[x.dj] === k ? " n-choisi" : ""}" data-etiq="${x.dj}:${k}">${t}</button>`).join("")}</div>`).join("")}
+      <button type="button" class="j-plein" data-action="etiqueter"${N.etiquettes.every((x) => J.etiq[x.dj]) ? "" : " disabled"}>Coller les nouvelles étiquettes</button>
+      <button type="button" class="j-question" data-panneau="carnet">📒 Relire le carnet</button></div>`;
     if (!P.trouve) return `<div class="j-panneau"><h2>✅ J'ai trouvé</h2><p>D'où vient la panne ?</p>
       <div class="j-choix">${N.diagnostics.map((d) => `<button type="button" class="j-question" data-diagnostic="${d.id}">${d.texte}</button>`).join("")}</div>
       ${P.preuves.length ? `<p class="j-ok">Ton carnet contient une mesure qui prouve une cause.</p>` : `<p class="j-petit">Ton carnet ne contient pas encore de mesure qui prouve une cause. Tu peux répondre quand même.</p>`}
@@ -242,7 +250,7 @@ export function lancerNiveau(N) {
     racine.querySelectorAll("[data-outil]").forEach((b) => { const pris = J.outil === b.dataset.outil; b.classList.toggle("en-main", pris); b.setAttribute("aria-pressed", pris); });
     const lec = racine.querySelector(".j-lecture"), deux = !!(J.rouge && J.noir);
     lec.hidden = !J.outil;
-    if (J.outil) { lec.className = `j-lecture${J.outil === "vat" ? " vat" : ""}${J.outil === "vat" && deux && J.lecture === "Tension !" ? " allume" : ""}`; lec.innerHTML = `<small>${J.outil === "multi" ? "Multimètre · V~" : J.outil === "vat" ? "VAT" : "Mesureur d'isolement"}</small><b>${deux && J.lecture ? J.lecture : "– – –"}</b>`; }
+    if (J.outil) { lec.className = `j-lecture${J.outil === "vat" ? " vat" : ""}${J.outil === "vat" && deux && J.lecture === "Tension !" ? " allume" : ""}`; lec.innerHTML = `<small>${J.outil === "multi" ? "Multimètre · V~" : J.outil === "vat" ? "VAT" : J.outil === "ohm" ? "Multimètre · Ω" : "Mesureur d'isolement"}</small><b>${deux && J.lecture ? J.lecture : "– – –"}</b>`; }
     const parent = W.vues[J.vue].parent, rec = racine.querySelector("[data-action=reculer]");
     rec.disabled = !parent; rec.textContent = parent ? `↩ ${W.vues[parent].court}` : `📍 ${W.vues[J.vue].court}`;
     racine.querySelector(".j-lieux").innerHTML = [...J.lieux].filter((v) => v !== J.vue && v !== parent).map((v) => `<button type="button" data-lieu="${v}">${W.vues[v].lieuRaccourci || W.vues[v].court}</button>`).join("");
@@ -303,10 +311,12 @@ export function lancerNiveau(N) {
     });
     canvas.addEventListener("pointercancel", () => { appui = null; });
     racine.addEventListener("click", (ev) => {
-      const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-outil],[data-lieu],[data-onglet],[data-diagnostic],[data-remede]"); if (!t || !P) return;
+      const t = ev.target.closest("[data-action],[data-panneau],[data-question],[data-outil],[data-lieu],[data-onglet],[data-diagnostic],[data-remede],[data-etiq]"); if (!t || !P) return;
       const d = t.dataset;
       if (d.action === "fermer") { if (J.debut) { J.debut = false; J.bulle = { t: N.debut || "À toi de chercher. Le carnet note tout ce que tu constates.", type: "info" }; } J.panneau = null; }
       else if (d.action === "reculer") return reculer();
+      else if (d.etiq) { const [dj, k] = d.etiq.split(":"); J.etiq[dj] = k; }
+      else if (d.action === "etiqueter") { const ok = jouer({ type: "etiqueter", choix: J.etiq }); if (ok) sons.succes(); else J.panneau = null; }
       else if (d.action === "rejouer") return rejouer();
       else if (d.action === "indice") { J.cran = Math.min(3, (J.cran || 0) + 1); P.action({ type: "indice", cran: J.cran }); }
       else if (d.action === "attendre") { J.panneau = null; jouer({ type: "attendre", minutes: 15 }); return; }
@@ -323,6 +333,7 @@ export function lancerNiveau(N) {
   }
   const ICONES = {
     vat: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="2" width="14" height="30" rx="4" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="20" y="5" width="8" height="3" rx="1" fill="#ff3b2f"/><rect x="20" y="10" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="15" width="8" height="3" rx="1" fill="#6b7480"/><path d="M24 32v6" stroke="#9aa3ad" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26C8 26 8 12 8 6" fill="none" stroke="#1d2228" stroke-width="2"/><rect x="5" y="2" width="6" height="12" rx="2" fill="#2f6fb8" stroke="#1d2228" stroke-width="1.5"/></svg>`,
+    ohm: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="14" y="1" width="20" height="34" rx="4" fill="#f2c230" stroke="#1d2228" stroke-width="2"/><rect x="17" y="4" width="14" height="9" rx="1.5" fill="#c8d4b4" stroke="#1d2228" stroke-width="1.2"/><circle cx="24" cy="23" r="7" fill="#2b2f34"/><text x="24" y="26.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">Ω</text></svg>`,
     multi: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="14" y="1" width="20" height="34" rx="4" fill="#f2c230" stroke="#1d2228" stroke-width="2"/><rect x="17" y="4" width="14" height="9" rx="1.5" fill="#c8d4b4" stroke="#1d2228" stroke-width="1.2"/><circle cx="24" cy="23" r="6" fill="#2b2f34"/><path d="M24 23l3-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M7 27V14" stroke="#c8261e" stroke-width="3.5" stroke-linecap="round"/><path d="M41 27V14" stroke="#1b1b1b" stroke-width="3.5" stroke-linecap="round"/></svg>`,
     iso: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="9" y="3" width="30" height="30" rx="5" fill="#d9480f" stroke="#1d2228" stroke-width="2"/><rect x="13" y="7" width="22" height="10" rx="1.5" fill="#c8d4b4" stroke="#1d2228" stroke-width="1.2"/><text x="24" y="15.5" font-size="8" font-weight="700" text-anchor="middle" fill="#1d2620">MΩ</text><circle cx="24" cy="25" r="5" fill="#2b2f34"/><text x="24" y="27.5" font-size="6" font-weight="700" text-anchor="middle" fill="#fff">TEST</text></svg>`,
   };

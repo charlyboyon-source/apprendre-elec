@@ -74,13 +74,14 @@ export function creerMonde(renderer, base, N, P) {
     const t = boite(0.05, 0.05, 0.006, M.blanc); t.position.z = 0.007; g.add(t); touches[o.id] = t;
     const zone = boite(0.12, 0.12, 0.03, M.invisible); zone.position.z = 0.012; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
   }
-  function plafonnier(o, lieu, G) {
+  function plafonnier(o, lieu, G, lieuId) {
     const g = new THREE.Group(); g.position.set(o.x || 0, lieu.h - 0.28, o.z || 0); G.add(g);
     const fil = cyl(0.004, 0.004, 0.28, M.noir, 8); fil.position.y = 0.14; g.add(fil);
     const abat = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.16, 28, 1, true), new THREE.MeshStandardMaterial({ color: 0xf2ead8, side: THREE.DoubleSide, roughness: 0.8, emissive: 0xffe2b0, emissiveIntensity: 0 })); g.add(abat);
     const amp = new THREE.Mesh(new THREE.SphereGeometry(0.04, 16, 12), new THREE.MeshStandardMaterial({ color: 0xf6f1e6, emissive: 0xffd49a, emissiveIntensity: 0 })); amp.position.y = -0.06; g.add(amp);
     const lum = new THREE.PointLight(0xffe6c0, 0, 9, 1.6); lum.position.y = -0.1; g.add(lum);
-    lampes[o.id] = { lum, mats: [abat.material, amp.material], force: 9 };
+    lampes[o.id] = { lum, mats: [abat.material, amp.material], force: 7 * Math.min(1, (Math.min(...lieu.taille) / 3) ** 2) };
+    const zone = boite(0.5, 0.4, 0.5, M.invisible); zone.position.y = -0.02; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
   }
   // boîte, sortie de câble : un couvercle ; ouverte, on voit les bornes du moteur et tous les conducteurs qui y arrivent
   function interieur(id, g, vue, ech = 1) {
@@ -101,7 +102,8 @@ export function creerMonde(renderer, base, N, P) {
         const gaine = cyl(0.0022 * ech, 0.0022 * ech, 0.05 * ech, m, 10); gaine.position.y = sens * 0.03 * ech; fil.add(gaine);
         const ame = cyl(0.0011 * ech, 0.0011 * ech, 0.008 * ech, M.cuivre, 8); ame.position.y = sens * 0.002 * ech; fil.add(ame);
         const prise0 = boite(0.012 * ech, 0.03 * ech, 0.012, M.invisible); prise0.position.y = sens * 0.036 * ech; fil.add(prise0); cible(`fil:${c.id}:${ext}`, prise0, [vue], { ancre: prise0 });
-        const bout = new THREE.Object3D(); bout.position.y = sens * 0.002 * ech; fil.add(bout); point(`${c.id}#${ext}`, bout, [vue], 0.009 * ech);
+        const bout = new THREE.Object3D(); bout.position.y = sens * 0.002 * ech; fil.add(bout); point(`${c.id}#${ext}`, bout, [vue], 0.009 * ech); point(`${c.id}#bout`, bout, [vue], 0.009 * ech); cibles[cibles.length - 1].ext = ext;
+        if (inst.pannes.some((p) => p.type === "connexion_desserree" && p.conducteur === c.id && p.extremite === ext && c.role === "phase")) bloc.material = mat(0x3a2a1c, { roughness: 1 });
         fils.push({ c, ext, fil, sens, x: x + dx });
       });
     });
@@ -217,7 +219,7 @@ export function creerMonde(renderer, base, N, P) {
       else g.position.set(o.x || 0, o.y || 0, o.z || 0), g.rotation.y = o.r || 0;
       if (o.t === "prise") prise(o, id, g);
       else if (o.t === "inter") inter(o, id, g);
-      else if (o.t === "plafonnier") { G.remove(g); plafonnier(o, lieu, G); }
+      else if (o.t === "plafonnier") { G.remove(g); plafonnier(o, lieu, G, id); }
       else if (o.t === "tableau") tableau(o, id, g);
       else if (o.t === "boite") boiteDerivation(o, id, g, o);
       else if (o.t === "borne") { G.remove(g); borneJardin(o, id, G); }
@@ -226,6 +228,11 @@ export function creerMonde(renderer, base, N, P) {
         const trou = boite(0.82, 1.96, 0.052, mat(0x0c0e12, { roughness: 1 })); trou.position.set(0, -0.03, 0.002); g.add(trou);
         const lbl = panneau(0.6, 0.15, etiquette(`${N.plan.lieux[o.vers].raccourci} →`, { w: 512, h: 128, taille: 64, fond: "#22262d", coul: "#ffe08a" })); lbl.position.set(0, 0.7, 0.03); g.add(lbl);
         cible(`aller:${o.vers}`, trou, [id]); lieux[id].portes = { ...(lieux[id].portes || {}), [o.vers]: g };
+      } else if (o.t === "trappe") {
+        g.userData.trappe = true; g.position.y = o.bas ? 0.01 : lieu.h - 0.01;
+        const pan = boite(0.6, 0.02, 0.6, mat(o.bas ? 0x1c2026 : 0xcfc8b8, { roughness: 0.9 })); g.add(pan);
+        const lbl = panneau(0.5, 0.13, etiquette(`${N.plan.lieux[o.vers].raccourci} ${o.bas ? "↓" : "↑"}`, { w: 512, h: 128, taille: 60, fond: "#22262d", coul: "#ffe08a" })); lbl.position.set(0.31, o.bas ? 0.12 : -0.1, 0); lbl.rotation.y = Math.PI / 2; g.add(lbl);
+        const zone = boite(0.7, 0.3, 0.7, M.invisible); zone.position.y = o.bas ? 0.1 : -0.1; g.add(zone); cible(`aller:${o.vers}`, zone, [id]); lieux[id].portes = { ...(lieux[id].portes || {}), [o.vers]: g };
       } else if (o.t === "mur") { const w = boite(o.w, o.h, 0.2, M.crepi); w.position.set(0, o.h / 2 - (o.y || 0), -0.1); g.add(w); }
       else if (o.t === "meuble") { const w = boite(o.w, o.h, o.d, M[o.m] || mat(o.c || 0x6b5a48)); w.position.y = o.h / 2; g.add(w); if (o.voyant) { const v = new THREE.Mesh(new THREE.SphereGeometry(0.012, 10, 8), new THREE.MeshStandardMaterial({ color: 0x1c3a1c, emissive: 0x35ff5a, emissiveIntensity: 0 })); v.position.set(o.w / 2 - 0.06, o.h - 0.08, o.d / 2 + 0.005); g.add(v); voyants[o.id] = v.material; } if (o.id) cible(`essayer:${o.id}`, w, [id]); }
       else if (o.t === "ballon") { const c = cyl(0.26, 0.26, 1.1, M.blanc, 28); c.position.set(0, 0, 0.27); g.add(c); const v = new THREE.Mesh(new THREE.SphereGeometry(0.014, 10, 8), new THREE.MeshStandardMaterial({ color: 0x3a2a12, emissive: 0xff8a1a, emissiveIntensity: 0 })); v.position.set(0, -0.42, 0.53); g.add(v); voyants[o.id] = v.material; cible(`essayer:${o.id}`, c, [id]); }
@@ -234,7 +241,7 @@ export function creerMonde(renderer, base, N, P) {
       else if (o.t === "portillon") { for (const dx of [-0.6, 0.6]) { const p = boite(0.1, 1.2, 0.1, M.bois); p.position.set(dx, 0.6, 0); g.add(p); } for (let i = 0; i < 7; i++) { const b = boite(0.07, 0.95, 0.03, M.bois); b.position.set(-0.45 + i * 0.15, 0.55, 0); g.add(b); } }
       else if (o.t === "haie") { const w = boite(o.w, 1.3, 0.5, mat(0x2f5328, { roughness: 1 })); w.position.y = 0.65; g.add(w); }
     }
-    if (!lieu.ext) { const amb = new THREE.PointLight(0xfff1e0, 0, 12, 1.4); amb.position.set(0, lieu.h - 0.4, 0); G.add(amb); lieux[id].jour = amb; }
+    if (!lieu.ext && !lieu.sombre) { const amb = new THREE.PointLight(0xfff1e0, 0, 12, 1.4); amb.position.set(0, lieu.h - 0.4, 0); G.add(amb); lieux[id].jour = amb; }
   });
 
   /* =====================  Lumières, ciel, pluie  ===================== */
@@ -245,12 +252,14 @@ export function creerMonde(renderer, base, N, P) {
   const pluie = new THREE.Points(gouttes, new THREE.PointsMaterial({ color: 0xaac4f0, size: 0.035, transparent: true, opacity: 0.7 })); pluie.visible = false; scene.add(pluie);
 
   // ---- mise à jour d'après l'état du moteur
+  // un fil sorti de sa borne par la panne (tant qu'elle n'est pas réparée)
+  const sorti = (cid, ext) => inst.actives(P.e).some((p) => (p.type === "connexion_desserree" || p.type === "neutre_coupe_boite") && p.conducteur === cid && p.extremite === ext);
   function maj(lieuCourant, libreVue = true) {
-    const e = P.e, r = P.calc(), nuit = e.env.heure >= 18 || e.env.heure < 7, ext = !!N.plan.lieux[lieuCourant].ext;
+    const e = P.e, r = P.calc(), vraieNuit = e.env.heure >= 18 || e.env.heure < 7, nuit = vraieNuit || !!N.plan.lieux[lieuCourant].sombre, ext = !!N.plan.lieux[lieuCourant].ext;
     scene.background = new THREE.Color(nuit ? 0x05070c : ext ? 0x9fc4ea : 0x14171c);
     hemi.intensity = nuit ? (ext ? 0.24 : 0.14) : ext ? 1.5 : 0.5; soleil.intensity = nuit ? 0 : ext ? 1.6 : 0.25;
     frontale.intensity = nuit ? (lieuCourant && !libreVue ? 1.2 : 3.4) : 0;
-    for (const [id, x] of Object.entries(lieux)) if (x.jour) x.jour.intensity = nuit ? 0 : 4.5;
+    for (const [id, x] of Object.entries(lieux)) if (x.jour) x.jour.intensity = vraieNuit ? 0 : 3.6 * Math.min(1, (Math.min(...x.lieu.taille) / 3) ** 2);
     for (const [id, l] of Object.entries(lampes)) { const on = r.allume(id); l.lum.intensity = on ? l.force : 0; for (const m of l.mats) m.emissiveIntensity = on ? 2.4 : 0; }
     for (const [id, m] of Object.entries(voyants)) m.emissiveIntensity = r.fonctionne(id) ? 3 : 0;
     for (const [id, lev] of Object.entries(manettes)) lev.position.y = e.positions[id] ? 0.009 : -0.009;
@@ -258,7 +267,7 @@ export function creerMonde(renderer, base, N, P) {
     for (const [id, s] of Object.entries(selecteurs)) s.rotation.y = { auto: 0, I: 0.9, 0: -0.9 }[e.modes[id]] || 0;
     for (const [id, C] of Object.entries(cadrans)) dessinerCadran(C, e.cadrans[id], inst.organe[id]);
     for (const [id, c] of Object.entries(capots)) c.visible = !P.ouverts.has(id);
-    for (const [id, I] of Object.entries(interieurs)) { I.G.visible = P.ouverts.has(id); for (const f of I.fils) { const d = !!e.deconnecte[`${f.c.id}:${f.ext}`]; f.fil.position.y = f.sens * (d ? 0.03 : 0.012) * I.ech; f.fil.position.z = d ? 0.024 : 0.012; f.fil.rotation.z = d ? f.sens * 0.25 : 0; } }
+    for (const [id, I] of Object.entries(interieurs)) { I.G.visible = P.ouverts.has(id); for (const f of I.fils) { const d = !!e.deconnecte[`${f.c.id}:${f.ext}`] || sorti(f.c.id, f.ext); f.fil.position.y = f.sens * (d ? 0.03 : 0.012) * I.ech; f.fil.position.z = d ? 0.024 : 0.012; f.fil.rotation.z = d ? f.sens * 0.25 : 0; } }
     pluie.visible = e.env.pluie && ext; if (pluie.visible) pluie.position.copy(lieux[lieuCourant].G.position);
   }
   function dessinerCadran(C, heure, org) {
@@ -273,5 +282,5 @@ export function creerMonde(renderer, base, N, P) {
   }
   function animer(dt) { if (!pluie.visible) return; const p = gouttes.attributes.position; for (let i = 0; i < p.count; i++) { let y = p.getY(i) - dt * 9; if (y < 0) y += 7; p.setY(i, y); } p.needsUpdate = true; }
 
-  return { scene, cibles, vues, lieux, frontale, M, maj, animer };
+  return { scene, cibles, vues, lieux, frontale, M, maj, animer, sorti };
 }

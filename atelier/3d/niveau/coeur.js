@@ -45,6 +45,7 @@ export function creerPartie(N, cause) {
     P.minutes += min;
     const ev = inst.avancer(e, min);
     declenchements(ev);
+    for (const h of N.humeurs || []) if (P.minutes >= h.apres && !P.vus.has(`humeur:${h.apres}`)) { P.vus.add(`humeur:${h.apres}`); dire(h.texte, "client"); }
     for (const a of N.logement.appareils || []) if (N.fragiles && N.fragiles[a.id]) { const ok = calc().fonctionne(a.id); P.sansCourant[a.id] = ok ? 0 : (P.sansCourant[a.id] || 0) + min; if (P.sansCourant[a.id] >= N.fragiles[a.id].apres && !P.vus.has(`reproche:${a.id}`)) { P.vus.add(`reproche:${a.id}`); dire(N.fragiles[a.id].reproche, "client"); P.conseils.push(N.fragiles[a.id].conseil); } }
     return ev;
   }
@@ -63,6 +64,9 @@ export function creerPartie(N, cause) {
   // On débranche un câble entier : la phase et le neutre qui vont ensemble d'un organe à l'autre (la terre reste).
   // Sinon, le mesureur d'isolement « voit » encore l'aval à travers le neutre et les récepteurs.
   const organeDe = (b) => b.split(".")[0];
+  // rôle d'une borne d'après les conducteurs qui y arrivent : phase, neutre, terre, retour
+  function roleBorne(b) { if (b.includes("#")) return inst.conducteur[b.split("#")[0]].role; const c = N.logement.conducteurs.find((x) => x.de === b || x.vers === b); return c ? c.role : null; }
+  const circuitBorne = (b) => { const c = b.includes("#") ? inst.conducteur[b.split("#")[0]] : N.logement.conducteurs.find((x) => x.de === b || x.vers === b); return c ? c.circuit : null; };
   function jumeaux(cid) { const c = inst.conducteur[cid]; return N.logement.conducteurs.filter((x) => x.role !== "terre" && x.circuit === c.circuit && ((organeDe(x.de) === organeDe(c.de) && organeDe(x.vers) === organeDe(c.vers)))); }
 
   // ---- une mesure d'isolement prouve la cause si elle est mauvaise, et si aucune autre cause possible ne donnerait
@@ -93,6 +97,7 @@ export function creerPartie(N, cause) {
         const o = org[a.id] || inst.mobile[a.id]; P.essais.add(a.id);
         if (o.type === "prise") { const ok = calc().alimente(a.id); dire(`${o.nom} : ta lampe témoin ${ok ? "s'allume" : "reste éteinte"}.`, ok ? "ok" : "alerte"); noter("constats", `${o.nom} : ${ok ? "alimentée" : "sans courant"} (${heureFr(e.env.heure)}).`); retour = ok; }
         else if (o.type === "interrupteur") { const avant = etatVisible(); declenchements(inst.agir(e, { type: "basculer", id: a.id }).declenchements); const apres = etatVisible(); const ch = inst.points.filter((p) => avant[p.id] !== apres[p.id]); dire(ch.length ? ch.map((p) => `${p.nom} : ${apres[p.id] ? "allumé" : "éteint"}`).join(" ; ") + "." : `${o.nom} : clic… rien ne change.`, ch.length ? "ok" : "alerte"); for (const p of ch) noter("constats", `${p.nom} : fonctionne.`); if (!ch.length) noter("constats", `${o.nom} : aucun effet (${heureFr(e.env.heure)}).`); retour = ch.length > 0; }
+        else if (o.type === "point_lumineux") { const ok = calc().allume(a.id); dire(ok ? `${o.nom} : il éclaire.` : `${o.nom} : éteint. Tu essaies une ampoule neuve : toujours rien. Ce n'est pas l'ampoule.`, ok ? "ok" : "alerte"); noter("constats", `${o.nom} : ${ok ? "éclaire" : "éteint, même avec une ampoule neuve"} (${heureFr(e.env.heure)}).`); retour = ok; }
         else { const ok = calc().fonctionne(a.id); const t = (N.essais && N.essais[a.id]) ? N.essais[a.id](ok, P) : `${o.nom} : ${ok ? "en marche" : "à l'arrêt"}.`; dire(t, ok ? "ok" : "info"); noter("constats", `${o.nom} : ${ok ? "en marche" : "à l'arrêt"} (${heureFr(e.env.heure)}).`); retour = ok; }
         break;
       }
@@ -146,6 +151,10 @@ export function creerPartie(N, cause) {
           else if (!P.vat.teste) dire("VAT : aucun voyant… mais tu ne l'as pas testé avant sur une source connue : ça ne prouve rien.", "info");
           else { for (const b of [x, y]) P.vat.absence.add(b.split(/[.#]/)[0].startsWith("c") && b.includes("#") ? inst.conducteur[b.split("#")[0]][b.split("#")[1]].split(".")[0] : b.split(".")[0]); dire("VAT : aucun voyant entre ces deux points.", "ok"); }
           noter("mesures", `VAT, ${nomBorne(x)} ↔ ${nomBorne(y)} : ${u ? "tension présente" : "aucun voyant"} (${heureFr(e.env.heure)}).`);
+        } else if (outil === "ohm") {
+          const k = inst.continuite(e, x, y); retour = k;
+          if (k === "tension") { faute("Ohmmètre posé sur un circuit sous tension : une continuité se mesure toujours circuit coupé."); dire("L'appareil signale une tension : la continuité se mesure hors tension. Coupe d'abord le circuit.", "danger"); }
+          else { dire(`Continuité, ${nomBorne(x)} ↔ ${nomBorne(y)} : ${k ? "0,2 Ω, ça passe" : "OL, ça ne passe pas"}.`, "mesure"); noter("mesures", `Continuité, ${nomBorne(x)} ↔ ${nomBorne(y)} : ${k ? "0,2 Ω (continuité)" : "OL (pas de continuité)"} (${heureFr(e.env.heure)}).`); }
         } else if (outil === "iso") {
           const R = inst.isolement(e, x, y); retour = R;
           if (R === "tension") { faute("Mesureur d'isolement posé sur un circuit sous tension : l'isolement se mesure toujours circuit coupé."); dire("Le mesureur signale une tension : l'isolement se mesure hors tension. Coupe d'abord le circuit.", "danger"); }
@@ -155,6 +164,7 @@ export function creerPartie(N, cause) {
             if (prouve(x, y, R)) { const t = `Isolement ${megohms(R)} entre ${nomBorne(x)} et la terre, le reste du circuit étant séparé.`; if (!P.preuves.includes(t)) P.preuves.push(t); }
           }
         }
+        if (N.apresMesure) { const t = N.apresMesure(P, { outil, a: x, b: y, valeur: retour }); if (t) { dire(t.texte, t.type || "alerte"); if (t.indice) noter("indices", t.indice); } }
         break;
       }
       case "question": {
@@ -187,25 +197,40 @@ export function creerPartie(N, cause) {
         for (const p of inst.protections) if (p.id !== rem.horsService) inst.agir(e, { type: "manoeuvrer", id: p.id, position: true });
         for (const o of N.logement.organes) if (o.type === "horloge") inst.agir(e, { type: "regler_horloge", id: o.id });
         for (const id of Object.keys(e.modes)) if (e.modes[id] !== "auto" && e.modes[id] !== "permanent") e.modes[id] = "auto";
-        // vérification : une nuit entière sous la pluie
-        inst.agir(e, { type: "meteo", env: { pluie: true } });
-        const ev = inst.avancer(e, 16 * 60);
-        if (ev.length) { P.mauvaisRemedes++; dire("Le lendemain, le client rappelle : ça a encore sauté dans la nuit.", "client"); retour = false; break; }
-        inst.agir(e, { type: "meteo", env: { pluie: false } });
-        P.securise = true; P.fini = true;
-        const etoiles = Math.max(1, 3 - (P.preuves.length ? 0 : 1) - (P.fautes.length ? 1 : 0) - (P.mauvaisDiagnostics + P.mauvaisRemedes ? 1 : 0));
-        P.bilan = {
-          etoiles, cause: N.causes[cause].titre, preuve: P.preuves[0] || null, remede: rem.fait, explication: N.explications[cause], demarche: N.demarches[cause],
-          inutile: N.inutile ? N.inutile(P) : [], fautes: [...P.fautes], conseils: [...new Set([...P.conseils, ...(N.conseilsFin || [])])], minutes: Math.round(P.minutes), indices: P.indicesPris,
-        };
-        dire(rem.fait, "ok"); retour = true;
+        if (N.verifier) { const pb = N.verifier(P); if (pb) { P.mauvaisRemedes++; dire(pb, "client"); retour = false; break; } }
+        else { // vérification : une nuit entière sous la pluie
+          inst.agir(e, { type: "meteo", env: { pluie: true } });
+          const ev = inst.avancer(e, 16 * 60);
+          if (ev.length) { P.mauvaisRemedes++; dire("Le lendemain, le client rappelle : ça a encore sauté dans la nuit.", "client"); retour = false; break; }
+          inst.agir(e, { type: "meteo", env: { pluie: false } });
+        }
+        P.securise = true; P.remede = rem;
+        if (N.etiquettes && !P.etiquettesFaites) { dire(`${rem.fait} Il reste à refaire les étiquettes du tableau.`, "ok"); retour = true; break; }
+        finir(); retour = true;
         break;
+      }
+      case "etiqueter": { // geste de fin : refaire le repérage du tableau avec ce que le carnet a établi
+        if (!P.securise || P.fini) break;
+        const faux = N.etiquettes.filter((x) => a.choix[x.dj] !== x.bonne);
+        if (faux.length) { P.mauvaisRemedes++; dire(`Ce n'est pas ce que tu as constaté pour ${faux.map((x) => `« ${x.ancienne} »`).join(" et ")}. Relis ton carnet, onglet « Le tableau ».`, "alerte"); retour = false; break; }
+        P.etiquettesFaites = true; finir(); retour = true; break;
       }
       default: throw new Error(`Action inconnue : ${a.type}`);
     }
     if (cout) temps(cout);
     return { messages: [...messages], retour };
   }
-  Object.assign(P, { action, nomBorne, nomOrgane, nomProt, etatVisible, bornesDe, calc, sousTension, jumeaux });
+  function finir() {
+    const rem = P.remede, preuve = N.preuve ? N.preuve(P) : P.preuves[0] || null;
+    P.fini = true;
+    const etoiles = Math.max(1, 3 - (preuve ? 0 : 1) - (P.fautes.length ? 1 : 0) - (P.mauvaisDiagnostics + P.mauvaisRemedes ? 1 : 0));
+    P.bilan = {
+      etoiles, cause: N.causes[cause].titre, preuve, remede: rem.fait, explication: N.explications[cause], demarche: N.demarches[cause],
+      inutile: N.inutile ? N.inutile(P) : [], fautes: [...P.fautes], conseils: [...new Set([...P.conseils, ...(N.conseilsFin || [])])], minutes: Math.round(P.minutes), indices: P.indicesPris,
+    };
+    dire(rem.fait, "ok");
+  }
+  const aPreuve = () => (N.preuve ? !!N.preuve(P) : P.preuves.length > 0);
+  Object.assign(P, { roleBorne, circuitBorne, aPreuve, action, nomBorne, nomOrgane, nomProt, etatVisible, bornesDe, calc, sousTension, jumeaux });
   return P;
 }

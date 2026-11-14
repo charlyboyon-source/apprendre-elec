@@ -2,6 +2,7 @@
 // jamais de la cause tirée.   Lancé par ../moteur/tests.mjs
 import { creerPartie } from "./coeur.js";
 import N2 from "./niveau2.js";
+import N3 from "./niveau3.js";
 
 function jouerNiveau2(cause) {
   const P = creerPartie(N2, cause), F = N2.fils, A = (a) => P.action(a).retour;
@@ -41,7 +42,51 @@ function jouerNiveau2(cause) {
   return { P, diag };
 }
 
+function jouerNiveau3(cause) {
+  const P = creerPartie(N3, cause), F = N3.fils, A = (a) => P.action(a).retour, U = (a, b) => A({ type: "mesurer", outil: "multi", a, b });
+  for (const q of ["quand", "saute", "sdb", "tableau"]) A({ type: "question", id: q });
+  // faire le tour : chaque lumière, chaque prise ; puis la vraie carte du tableau
+  for (const o of N3.logement.organes) if (o.type === "interrupteur" && !P.e.positions[o.id]) A({ type: "essayer", id: o.id });
+  for (const o of N3.logement.organes) if (o.type === "prise") A({ type: "essayer", id: o.id });
+  for (const q of N3.logement.tableau.disjoncteurs) { A({ type: "manette", id: q.id, position: false }); A({ type: "manette", id: q.id, position: true }); }
+  const consigner = () => { A({ type: "manette", id: "Q5", position: false }); A({ type: "mesurer", outil: "vat", a: "pc_sejour1.L", b: "pc_sejour1.N" }); };
+  const lpe = U("pc_entree.L", "pc_entree.PE"); U("pc_entree.L", "pc_entree.N"); U("pc_entree.N", "pc_entree.PE");
+  let diag = null;
+  if (lpe < 50) {
+    if (U("Q5.Lout", "bt.PE") < 50) { if (U("ID2.Lout", "bt.PE") >= 50) diag = "C"; }
+    else { consigner(); A({ type: "ouvrir", id: "bd_plafond" }); A({ type: "mesurer", outil: "vat", a: "bd_plafond.ph", b: "bd_plafond.pe" }); if (A({ type: "regarder", id: `fil:${F.repiquage.phase}:vers` })) diag = "B"; }
+  } else {
+    consigner(); A({ type: "ouvrir", id: "bd_plafond" }); A({ type: "mesurer", outil: "vat", a: "bd_plafond.ph", b: "bd_plafond.pe" });
+    if (A({ type: "regarder", id: `fil:${F.repiquage.neutre}:vers` })) diag = "A";
+    else { vraiOuFaux(A({ type: "mesurer", outil: "ohm", a: "bd_plafond.n", b: "bd_sdb.n" }) === false); A({ type: "ouvrir", id: "bd_sdb" }); if (A({ type: "regarder", id: `fil:${F.repiquage.neutre}:de` })) diag = "D"; }
+  }
+  if (diag) { A({ type: "diagnostic", id: diag }); A({ type: "securiser", id: { A: "boite", B: "boite", C: "disj", D: "sdb" }[diag] }); A({ type: "etiqueter", choix: { Q4: "a", Q5: "b" } }); }
+  return { P, diag };
+}
+function vraiOuFaux(x) { if (!x) throw new Error("la continuité aurait dû être coupée entre les deux boîtes"); }
+
 export function testsNiveaux(cas, egal, vrai) {
+  for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 3, cause ${cause} : le joueur automatique repère, trouve, prouve, répare et refait les étiquettes`, () => {
+    const { P, diag } = jouerNiveau3(cause);
+    egal(diag, cause, "diagnostic"); vrai(P.fini && P.etiquettesFaites, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
+  });
+  cas("Niveau 3 : symptôme commun, couloir, chambre 2 et prise de l'entrée morts, rien n'a sauté", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N3, c), r = P.calc(); egal(r.declenchements, []); vrai(!r.allume("pl_couloir") && !r.alimente("pc_entree"), c); P.e.positions.int_sdb = true; egal(P.calc().allume("pl_sdb"), c !== "C", `salle de bain ${c}`); vrai(N3.logement.tableau.disjoncteurs.every((q) => P.e.positions[q.id])); } });
+  cas("Niveau 3 : neutre coupé, 0 V entre phase et neutre mais 230 V entre le bleu et la terre, et le jeu l'explique", () => {
+    for (const c of ["A", "D"]) { const P = creerPartie(N3, c); egal(P.action({ type: "mesurer", outil: "multi", a: "pc_entree.L", b: "pc_entree.N" }).retour, 0); const r = P.action({ type: "mesurer", outil: "multi", a: "pc_entree.N", b: "pc_entree.PE" }); egal(r.retour, 230); vrai(r.messages.some((m) => /neutre est coupé/.test(m.t)), "explication"); vrai(P.carnet.indices.length === 1); }
+  });
+  cas("Niveau 3 : le carnet établit la vraie carte, différente des étiquettes", () => {
+    const P = creerPartie(N3, "A"); P.action({ type: "essayer", id: "int_sdb" }); P.action({ type: "essayer", id: "int_chambre1" });
+    P.action({ type: "manette", id: "Q5", position: false }); vrai(P.carnet.tableau.some((t) => t.includes("Lumière chambres") && t.includes("salle de bain")), P.carnet.tableau.join(" / "));
+    P.action({ type: "manette", id: "Q5", position: true }); P.action({ type: "manette", id: "Q4", position: false }); vrai(P.carnet.tableau.some((t) => t.includes("Lumière séjour") && t.includes("chambre 1")), P.carnet.tableau.join(" / "));
+  });
+  cas("Niveau 3 : changer l'ampoule du couloir ne sert à rien, et c'est noté", () => { const P = creerPartie(N3, "B"); vrai(!P.action({ type: "essayer", id: "pl_couloir" }).retour); vrai(P.carnet.constats.some((t) => t.includes("ampoule neuve"))); });
+  cas("Niveau 3 : la continuité se mesure hors tension", () => { const P = creerPartie(N3, "D"); egal(P.action({ type: "mesurer", outil: "ohm", a: "pc_entree.L", b: "pc_entree.N" }).retour, "tension"); egal(P.fautes.length, 1); });
+  cas("Niveau 3 : mauvaises étiquettes, mauvais remèdes : la partie ne se termine pas", () => {
+    const P = creerPartie(N3, "A"); P.action({ type: "diagnostic", id: "A" }); vrai(!P.action({ type: "securiser", id: "pont" }).retour); vrai(!P.action({ type: "securiser", id: "sdb" }).retour, "mauvais endroit");
+    vrai(P.action({ type: "securiser", id: "boite" }).retour && !P.fini); vrai(!P.action({ type: "etiqueter", choix: { Q4: "b", Q5: "b" } }).retour && !P.fini); vrai(P.action({ type: "etiqueter", choix: { Q4: "a", Q5: "b" } }).retour && P.fini);
+  });
+  cas("Niveau 3 : les indices ne donnent jamais la cause", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N3, c); for (const t of N3.indices(P)) vrai(!/sorti de son connecteur|bruni|hors service|desserré/.test(t), t); } });
+
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 2, cause ${cause} : le joueur automatique trouve, prouve et sécurise`, () => {
     const { P, diag } = jouerNiveau2(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini && P.securise, "partie finie"); vrai(P.preuves.length > 0, "preuve par une mesure");
