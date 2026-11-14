@@ -446,12 +446,12 @@
   },
   "GTL": {
     "nom": "Gaine Technique Logement (GTL)",
-    "definition": "Emplacement unique du logement où sont regroupés les arrivées et les départs du courant fort et de la communication : panneau de contrôle, tableau de répartition, tableau de communication.",
+    "definition": "Emplacement unique du logement où sont regroupés les arrivées et les départs du courant fort et de la communication : panneau de contrôle, tableau de répartition, tableau de communication. Elle n'a pas à être matérialisée sur toute la hauteur quand les arrivées et les départs se font tous par le haut ou tous par le bas.",
     "niveau_associe": 14
   },
   "ETEL": {
     "nom": "Espace Technique Électrique du Logement (ETEL)",
-    "definition": "Volume réservé à la GTL : 60 cm de large, 25 cm de profondeur, du sol au plafond. À 10 cm au moins d'une canalisation de gaz, 40 cm d'une source de chaleur non isolée thermiquement, 60 cm d'un point d'eau.",
+    "definition": "Volume réservé à la GTL : 60 cm de large, 25 cm de profondeur, du sol au plafond (la GTL n'a pas à être matérialisée sur toute la hauteur quand les arrivées et les départs se font tous par le haut ou tous par le bas). À 10 cm au moins d'une canalisation de gaz, 40 cm d'une source de chaleur non isolée thermiquement, 60 cm d'un point d'eau.",
     "niveau_associe": 14
   },
   "panneau de contrôle": {

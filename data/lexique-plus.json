@@ -156,7 +156,7 @@
     ]
   },
   "GTL": {
-    "chantier": "Dans un logement neuf, la GTL regroupe au même endroit, du sol au plafond, le panneau de contrôle (compteur et AGCP), le tableau de répartition et le tableau de communication. On la place près d'une entrée ou dans le garage, jamais dans une salle de bain.",
+    "chantier": "Dans un logement neuf, la GTL regroupe au même endroit, du sol au plafond, le panneau de contrôle (compteur et AGCP), le tableau de répartition et le tableau de communication. Elle n'a pas à être matérialisée sur toute la hauteur quand les arrivées et les départs se font tous par le haut ou tous par le bas. On la place près d'une entrée ou dans le garage ; le tableau est interdit dans les volumes 0, 1, 2 et caché d'une salle de bain.",
     "confondre": [
       [
         "ETEL",
@@ -172,7 +172,7 @@
     ]
   },
   "ETEL": {
-    "chantier": "L'espace technique électrique du logement fait 60 cm de large et 25 cm de profondeur au minimum, du sol au plafond. On le tient à distance d'une canalisation de gaz (10 cm), d'une source de chaleur non isolée thermiquement (40 cm) et d'un point d'eau (60 cm), et on n'y fait passer rien d'étranger à l'installation électrique.",
+    "chantier": "L'espace technique électrique du logement fait 60 cm de large et 25 cm de profondeur au minimum, du sol au plafond ; la GTL n'a pas à être matérialisée sur toute la hauteur quand les arrivées et les départs se font tous par le haut ou tous par le bas. On le tient à distance d'une canalisation de gaz (10 cm), d'une source de chaleur non isolée thermiquement (40 cm) et d'un point d'eau (60 cm), et on n'y fait passer rien d'étranger à l'installation électrique.",
     "confondre": [
       [
         "GTL",
@@ -1205,7 +1205,7 @@
     ]
   },
   "disjoncteur magnétothermique": {
-    "chantier": "C'est le disjoncteur divisionnaire de chaque circuit du tableau. Dans un logement, il coupe à la fois la phase et le neutre. On le choisit par son calibre (d'après la section du câble), sa courbe (C le plus souvent) et son pouvoir de coupure (3 000 A au moins en domestique). Avant de le réarmer après un déclenchement, on cherche toujours la cause.",
+    "chantier": "C'est le disjoncteur divisionnaire de chaque circuit du tableau. Dans un logement, il coupe à la fois la phase et le neutre. On le choisit par son calibre (d'après la section du câble), sa courbe (C le plus souvent) et son pouvoir de coupure (3 000 A au moins pour un branchement à puissance limitée, jusqu'à 36 kVA). Avant de le réarmer après un déclenchement, on cherche toujours la cause.",
     "confondre": [
       [
         "interrupteur différentiel",

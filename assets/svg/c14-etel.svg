@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Dimensions de l'ETEL : 60 cm de large, 25 cm de profondeur, du sol au plafond. Distances à respecter : 10 cm d'une canalisation de gaz, 40 cm d'une source de chaleur non isolée thermiquement, 60 cm d'un point d'eau">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Dimensions de l'ETEL : 60 cm de large, 25 cm de profondeur, du sol au plafond, sauf si les arrivées et les départs se font tous par le haut ou tous par le bas. Distances à respecter : 10 cm d'une canalisation de gaz, 40 cm d'une source de chaleur non isolée thermiquement, 60 cm d'un point d'eau">
 <defs>
 <linearGradient id="corps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eef0f2"/><stop offset=".5" stop-color="#fdfdfd"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient>
 <linearGradient id="nez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ebee"/></linearGradient>
@@ -36,6 +36,8 @@
 <text x="28" y="280" text-anchor="start" font-size="16.9" font-weight="800" fill="#17804c">toute</text>
 <text x="28" y="300" text-anchor="start" font-size="16.9" font-weight="800" fill="#17804c">la hauteur</text>
 <text x="28" y="321" text-anchor="start" font-size="13.7" font-weight="500" fill="#5b6673">du sol au plafond</text>
+<text x="28" y="357" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">sauf si arrivées et départs se font</text>
+<text x="28" y="375" text-anchor="start" font-size="13.0" font-weight="500" fill="#1c2530">tous par le haut ou tous par le bas</text>
 <text x="476" y="72" text-anchor="middle" font-size="15.0" font-weight="800" fill="#1c2530">Et il se tient à distance de :</text>
 <rect x="346" y="118" width="62" height="12" rx="3" fill="#f2c200" stroke="#b08900"/><rect x="368" y="110" width="16" height="28" rx="3" fill="#d9a900" stroke="#b08900"/><rect x="362" y="100" width="28" height="8" rx="3" fill="#d92b2b"/>
 <rect x="348" y="192" width="8" height="50" rx="3" fill="url(#nez)" stroke="#aab1b9"/>
