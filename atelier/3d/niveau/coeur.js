@@ -35,7 +35,7 @@ export function creerPartie(N, cause) {
     if (N.nomsBornes && N.nomsBornes[b]) return N.nomsBornes[b];
     const p = inst.protections.find((x) => x.id === id);
     if (p) return `${{ Lout: "sortie phase", Nout: "sortie neutre", Lin: "arrivée phase", Nin: "arrivée neutre" }[borne]} de ${nomProt(id).replace(/^le |^l'/, "")}`;
-    const lib = { ph: "borne de phase", n: "borne de neutre", pe: "borne de terre", L: "borne de phase", N: "borne de neutre", PE: "borne de terre", 1: "borne 1", 2: "borne 2", A1: "borne A1", A2: "borne A2" }[borne] || `borne ${borne}`;
+    const lib = { bp: "borne du retour bouton-poussoir (blanc)", lp: "borne du retour lampe (orange)", B: "borne B (commande)", S: "borne S (sortie vers les lampes)", ph: "borne de phase", n: "borne de neutre", pe: "borne de terre", L: "borne de phase", N: "borne de neutre", PE: "borne de terre", 1: "borne 1", 2: "borne 2", A1: "borne A1", A2: "borne A2" }[borne] || `borne ${borne}`;
     return `${lib} · ${nomOrgane(id, true)}`;
   }
   function nomOrgane(id, minuscule = false) { const o = org[id]; const n = o ? o.nom : inst.protections.some((p) => p.id === id) ? nomProt(id) : id === "bt" ? "bornier de terre" : id; return minuscule ? n.charAt(0).toLowerCase() + n.slice(1) : n; }
@@ -131,10 +131,10 @@ export function creerPartie(N, cause) {
         }
         break;
       }
-      case "mode": { // sélecteur d'une horloge ou d'un contacteur : auto → I → 0 → auto
-        const suiv = a.mode || { auto: "I", I: "0", 0: "auto" }[e.modes[a.id]];
+      case "mode": { // sélecteur d'une horloge ou d'un contacteur : auto → I → 0 → auto ; d'une minuterie : auto ↔ marche permanente
+        const suiv = a.mode || (org[a.id].type === "minuterie" ? { auto: "permanent", permanent: "auto" } : { auto: "I", I: "0", 0: "auto" })[e.modes[a.id]];
         const r = inst.agir(e, { type: "mode", id: a.id, mode: suiv });
-        dire(`${org[a.id].nom} : sélecteur sur « ${{ auto: "auto", I: "I (marche forcée)", 0: "0 (arrêt)" }[suiv]} ».`); declenchements(r.declenchements); retour = suiv;
+        dire(`${org[a.id].nom} : sélecteur sur « ${{ auto: "auto", I: "I (marche forcée)", 0: "0 (arrêt)", permanent: "marche permanente" }[suiv]} ».`); P.vus.add(`mode:${a.id}:${suiv}`); declenchements(r.declenchements); retour = suiv;
         break;
       }
       case "regler_horloge": { inst.agir(e, { type: "regler_horloge", id: a.id }); dire(`Tu remets l'horloge à l'heure : ${heureFr(e.env.heure)}.`, "ok"); declenchements(calc().declenchements); break; }
@@ -149,7 +149,7 @@ export function creerPartie(N, cause) {
       case "fermer": { P.ouverts.delete(a.id); dire(`${nomOrgane(a.id)} : refermé.`); break; }
       case "debrancher": {
         const c = inst.conducteur[a.conducteur], b = c[a.extremite];
-        const groupe = c.role === "terre" ? [c] : jumeaux(a.conducteur);
+        const groupe = c.role === "terre" || N.filParFil ? [c] : jumeaux(a.conducteur); // filParFil : on sépare un seul conducteur (le retour bouton-poussoir, par exemple)
         if (groupe.some((x) => calc().tension(x[a.extremite], "terre.PE") >= 50)) { faute("Électrisation : tu as voulu débrancher un conducteur sous tension. On coupe, on vérifie l'absence de tension au VAT, et seulement ensuite on touche."); dire("⚡ Décharge ! Ce conducteur était sous tension.", "danger"); retour = false; break; }
         if (!P.vat.absence.has(b.split(".")[0])) { const t = "Avant de débrancher un conducteur, vérifie l'absence de tension au VAT, là où tu travailles (VAT testé avant et après sur une source connue)."; if (!P.conseils.includes(t)) P.conseils.push(t); }
         for (const x of groupe) inst.agir(e, { type: "debrancher_fil", conducteur: x.id, extremite: a.extremite });
@@ -157,7 +157,7 @@ export function creerPartie(N, cause) {
         dire(groupe.length > 1 ? `Tu débranches la phase et le neutre du câble qui va vers ${autre}. La terre reste raccordée.` : `Fil ${c.couleur} débranché de la ${nomBorne(b)}.`, "ok"); retour = true;
         break;
       }
-      case "rebrancher": { const c = inst.conducteur[a.conducteur], groupe = c.role === "terre" ? [c] : jumeaux(a.conducteur); for (const x of groupe) inst.agir(e, { type: "rebrancher_fil", conducteur: x.id, extremite: a.extremite }); dire(groupe.length > 1 ? "Câble rebranché : phase et neutre resserrés sur leurs bornes." : `Fil ${c.couleur} rebranché sur la ${nomBorne(c[a.extremite])}.`, "ok"); declenchements(calc().declenchements); break; }
+      case "rebrancher": { const c = inst.conducteur[a.conducteur], groupe = c.role === "terre" || N.filParFil ? [c] : jumeaux(a.conducteur); for (const x of groupe) inst.agir(e, { type: "rebrancher_fil", conducteur: x.id, extremite: a.extremite }); dire(groupe.length > 1 ? "Câble rebranché : phase et neutre resserrés sur leurs bornes." : `Fil ${c.couleur} rebranché sur la ${nomBorne(c[a.extremite])}.`, "ok"); declenchements(calc().declenchements); break; }
       case "mesurer": {
         const { outil, a: x, b: y } = a, r = calc();
         if (outil === "multi") { const u = r.tension(x, y); retour = u; dire(`${nomBorne(x)} ↔ ${nomBorne(y)} : ${u} V.`, "mesure"); noter("mesures", `Multimètre, ${nomBorne(x)} ↔ ${nomBorne(y)} : ${u} V (${heureFr(e.env.heure)}).`); }
@@ -238,6 +238,7 @@ export function creerPartie(N, cause) {
       default: throw new Error(`Action inconnue : ${a.type}`);
     }
     if (cout) temps(cout);
+    if (N.apresAction) N.apresAction(P, a, { dire, noter }); // ce que le niveau constate après chaque geste (une lumière qui s'éteint…)
     return { messages: [...messages], retour };
   }
   function finir() {

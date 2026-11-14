@@ -1,6 +1,6 @@
 // Petit outil pour décrire un logement sans écrire chaque conducteur à la main.
 // Le résultat (chantier(...).logement) n'est que des données : il se copie tel quel en JSON.
-const COULEUR = { phase: "rouge", neutre: "bleu", terre: "vert-jaune", retour: "orange", navette: "violet" };
+const COULEUR = { phase: "rouge", neutre: "bleu", terre: "vert-jaune", retour: "orange", navette: "violet", retour_bp: "blanc" };
 
 export function chantier(infos) {
   const L = { ...infos, pieces: [], tableau: null, circuits: [], organes: [], appareils: [], conducteurs: [], etat: {} };

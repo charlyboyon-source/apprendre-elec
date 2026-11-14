@@ -306,6 +306,52 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       for (let i = 0; i <= 4; i++) { const s = cyl(0.008, 0.008, 0.07, M.laiton, 8); s.rotation.z = Math.PI / 2; s.position.set(-0.035, (o.h * i) / 4, -(o.l * i) / 4); g.add(s); }
     },
 
+    /* ----- parties communes d'un immeuble (niveau 5) ----- */
+    // batterie de boîtes aux lettres
+    boitesLettres(o, lieuId, lieu, G, g) {
+      const n = o.n || 6, col = 3, w = 0.3, h = 0.14, gris = mat(0x8d949c, { metalness: 0.5, roughness: 0.45 });
+      const fond = boite(col * w + 0.04, Math.ceil(n / col) * h + 0.04, 0.2, mat(0x5a6068, { metalness: 0.4, roughness: 0.5 })); fond.position.z = 0.1; g.add(fond);
+      for (let i = 0; i < n; i++) { const x = (i % col - (col - 1) / 2) * w, y = (Math.floor(i / col) - (Math.ceil(n / col) - 1) / 2) * -h; const p = boite(w - 0.012, h - 0.012, 0.012, gris); p.position.set(x, y, 0.204); g.add(p);
+        const fente = boite(w - 0.08, 0.012, 0.004, M.noir); fente.position.set(x, y + 0.035, 0.211); g.add(fente); const serr = cyl(0.008, 0.008, 0.006, M.laiton, 10); serr.rotation.x = Math.PI / 2; serr.position.set(x + w / 2 - 0.04, y - 0.03, 0.212); g.add(serr);
+        const T = toile(96, 24); T.g.fillStyle = "#f4f1ea"; T.g.fillRect(0, 0, 96, 24); T.g.fillStyle = "#1d2228"; T.g.font = "700 13px system-ui"; T.g.fillText(["1er G · Durand", "1er D · Nguyen", "2e G · Petit", "2e D · Benali", "3e G · Roche", "3e D · Lopez"][i % 6], 4, 17); T.t.needsUpdate = true;
+        const et = new THREE.Mesh(new THREE.PlaneGeometry(0.13, 0.032), new THREE.MeshBasicMaterial({ map: T.t })); et.position.set(x - 0.05, y - 0.03, 0.2105); g.add(et); }
+    },
+    // panneau d'affichage du hall, avec l'affichette « intervention en cours » à poser sur la porte
+    panneauHall(o, lieuId, lieu, G, g) {
+      const liege = boite(0.7, 0.5, 0.02, mat(0xb08a5a, { roughness: 1 })); liege.position.z = 0.01; g.add(liege);
+      for (const [x, y, t, c] of [[-0.2, 0.1, "SYNDIC", "#fbfaf4"], [0.2, 0.08, "PEINTURE FRAÎCHE", "#ffe08a"], [-0.18, -0.13, "LOCAL VÉLOS", "#dfe9f2"]]) { const T = toile(128, 96), gg = T.g; gg.fillStyle = c; gg.fillRect(0, 0, 128, 96); gg.fillStyle = "#1d2228"; gg.font = "700 13px system-ui"; gg.textAlign = "center"; gg.fillText(t, 64, 26); gg.fillStyle = "#666"; for (let i = 0; i < 4; i++) gg.fillRect(14, 40 + i * 12, 100 - (i % 2) * 24, 3); T.t.needsUpdate = true; const p = new THREE.Mesh(new THREE.PlaneGeometry(0.24, 0.18), new THREE.MeshStandardMaterial({ map: T.t, roughness: 0.9 })); p.position.set(x, y, 0.022); p.rotation.z = (x + y) * 0.2; g.add(p); }
+      const T = toile(160, 112), gg = T.g; gg.fillStyle = "#e9b400"; gg.fillRect(0, 0, 160, 112); gg.strokeStyle = "#1d2228"; gg.lineWidth = 6; gg.strokeRect(5, 5, 150, 102); gg.fillStyle = "#1d2228"; gg.textAlign = "center"; gg.font = "700 22px system-ui"; gg.fillText("INTERVENTION", 80, 44); gg.fillText("EN COURS", 80, 72); gg.font = "700 12px system-ui"; gg.fillText("éclairage coupé par moments", 80, 94); T.t.needsUpdate = true;
+      const aff = new THREE.Mesh(new THREE.PlaneGeometry(0.26, 0.18), new THREE.MeshStandardMaterial({ map: T.t, roughness: 0.8 })); aff.position.set(0.2, -0.13, 0.024); g.add(aff);
+      const z = boite(0.3, 0.22, 0.04, M.invisible); z.position.set(0.2, -0.13, 0.03); g.add(z); cible(`essayer:${o.id}`, z, [lieuId]);
+    },
+    // le schéma de la minuterie, collé au mur près du tableau : on le lit
+    schema(o, lieuId, lieu, G, g) {
+      const T = toile(320, 224), gg = T.g; gg.fillStyle = "#fbfaf4"; gg.fillRect(0, 0, 320, 224); gg.strokeStyle = "#8a857b"; gg.lineWidth = 2; gg.strokeRect(3, 3, 314, 218);
+      gg.fillStyle = "#1d2228"; gg.font = "700 15px system-ui"; gg.fillText("ÉCLAIRAGE ESCALIER — minuterie", 12, 22);
+      gg.lineWidth = 3; const trait = (c, pts) => { gg.strokeStyle = c; gg.beginPath(); gg.moveTo(...pts[0]); for (const p of pts.slice(1)) gg.lineTo(...p); gg.stroke(); };
+      gg.fillStyle = "#e6e6e2"; gg.fillRect(120, 60, 80, 70); gg.strokeStyle = "#1d2228"; gg.strokeRect(120, 60, 80, 70); gg.fillStyle = "#1d2228"; gg.font = "700 12px system-ui"; gg.fillText("MINUTERIE", 126, 78); gg.fillText("L   B   S", 132, 122);
+      trait("#c8261e", [[20, 44], [300, 44]]); trait("#c8261e", [[136, 44], [136, 108]]); trait("#2f6fd0", [[20, 200], [300, 200]]);
+      for (const x of [40, 80]) { trait("#c8261e", [[x, 44], [x, 150]]); gg.fillStyle = "#fbfaf4"; gg.fillRect(x - 9, 150, 18, 14); gg.strokeStyle = "#1d2228"; gg.strokeRect(x - 9, 150, 18, 14); trait("#9a9a94", [[x, 164], [x, 180], [160, 180], [160, 128]]); }
+      trait("#e8790c", [[184, 128], [184, 150], [280, 150]]); for (const x of [230, 280]) { trait("#e8790c", [[x, 150], [x, 166]]); gg.strokeStyle = "#1d2228"; gg.beginPath(); gg.arc(x, 176, 10, 0, 7); gg.stroke(); trait("#2f6fd0", [[x, 186], [x, 200]]); }
+      gg.fillStyle = "#1d2228"; gg.font = "11px system-ui"; gg.fillText("boutons-poussoirs", 22, 216); gg.fillText("lampes", 236, 216); gg.fillText("blanc = commande", 60, 196); gg.fillText("orange = puissance", 196, 144); T.t.needsUpdate = true;
+      const p = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.21), new THREE.MeshStandardMaterial({ map: T.t, roughness: 0.9 })); p.position.z = 0.004; g.add(p);
+      const z = boite(0.32, 0.23, 0.03, M.invisible); z.position.z = 0.02; g.add(z); cible(`regarder:${o.id}`, z, [lieuId]);
+    },
+    // applique murale (hublot) reliée à une lampe du câblage : elle éclaire quand cette lampe est alimentée
+    applique(o, lieuId, lieu, G, g) {
+      const socle = cyl(0.11, 0.11, 0.03, mat(0xdcd8cf, { roughness: 0.5 }), 24); socle.rotation.x = Math.PI / 2; socle.position.z = 0.015; g.add(socle);
+      const verre = new THREE.Mesh(new THREE.SphereGeometry(0.095, 20, 10, 0, 7, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0xf6f1e6, emissive: 0xffd9a0, emissiveIntensity: 0, roughness: 0.3 })); verre.rotation.x = Math.PI / 2; verre.scale.z = 0.6; verre.position.z = 0.03; g.add(verre);
+      const src = new THREE.Object3D(); src.position.z = 0.25; g.add(src);
+      sources.push({ id: o.id, lieu: lieuId, obj: src, couleur: 0xffe6c0, force: 5, portee: 9, on: (r) => r.allume(o.id), mats: [verre.material], k: 2 });
+    },
+    // ce que les peintres ont laissé : un pot, un rouleau, une bâche pliée
+    peintres(o, lieuId, lieu, G, g) {
+      const pot = cyl(0.11, 0.1, 0.2, mat(0xe9e6dc, { roughness: 0.4, metalness: 0.3 }), 20); pot.position.y = 0.1; g.add(pot); const cou = cyl(0.112, 0.112, 0.012, mat(0xf3ece0, { roughness: 0.6 }), 20); cou.position.y = 0.206; g.add(cou);
+      for (let i = 0; i < 3; i++) { const c = boite(0.02, 0.08 + i * 0.03, 0.004, mat(0xf3ece0, { roughness: 0.7 })); c.position.set(Math.sin(i * 2.1) * 0.1, 0.16 - i * 0.015, Math.cos(i * 2.1) * 0.1); c.rotation.y = i * 2.1; c.castShadow = false; g.add(c); }
+      const man = cyl(0.012, 0.012, 0.3, mat(0xc8261e, { roughness: 0.5 }), 8); man.rotation.z = Math.PI / 2 - 0.2; man.position.set(0.28, 0.05, 0.05); g.add(man); const rou = cyl(0.035, 0.035, 0.2, mat(0xf2efe6, { roughness: 1 }), 14); rou.rotation.x = Math.PI / 2; rou.position.set(0.44, 0.04, 0.05); g.add(rou);
+      const bache = boite(0.5, 0.05, 0.36, new THREE.MeshStandardMaterial({ color: 0xcfe0e6, roughness: 0.3, transparent: true, opacity: 0.85 })); bache.position.set(0.1, 0.025, -0.3); bache.rotation.y = 0.2; g.add(bache);
+    },
+
     /* ----- salle de bain ----- */
     // meuble vasque : caisson, vasque, mitigeur, miroir éclairé par le jour, verre à dents
     lavabo(o, lieuId, lieu, G, g) {

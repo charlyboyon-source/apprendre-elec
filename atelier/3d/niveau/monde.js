@@ -97,14 +97,24 @@ export function creerMonde(renderer, base, N, P) {
     sources.push({ id: o.id, lieu: lieuId, obj: amp, couleur: 0xffe6c0, force: 6 * Math.min(1, (Math.min(...lieu.taille) / 3) ** 2), portee: 9, on: (r) => r.allume(o.id), mats: [abat.material, amp.material], plafond: true });
     const zone = boite(0.5, 0.4, 0.5, M.invisible); zone.position.y = -0.02; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
   }
+  // bouton-poussoir à voyant (minuterie d'escalier) : on appuie, il revient. Le voyant éclaire tant que la lumière est éteinte.
+  const voyantsBP = [];
+  function boutonPoussoir(o, lieuId, g) {
+    const pl = boite(0.082, 0.082, 0.012, M.plastique); pl.position.z = 0.006; g.add(pl);
+    const t = boite(0.05, 0.05, 0.008, M.blanc); t.position.z = o.enfonce && o.enfonce(P) ? 0.0125 : 0.016; g.add(t); touches[`bp:${o.id}`] = t;
+    const v = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.005, 0.002), new THREE.MeshStandardMaterial({ color: 0x3a2a1c, emissive: 0xff8a1a, emissiveIntensity: 0 })); v.position.set(0, -0.012, t.position.z + 0.0045); g.add(v);
+    voyantsBP.push({ id: o.id, m: v.material, mort: !!o.voyantMort, lampe: o.lampe });
+    if (o.peinture && o.peinture(P)) for (const [x, y, s] of [[0.02, 0.03, 1], [-0.028, 0.012, 0.7], [0.012, -0.03, 0.8]]) { const p = new THREE.Mesh(new THREE.CircleGeometry(0.012 * s, 10), mat(0xf3ece0, { roughness: 0.9 })); p.position.set(x, y, 0.0205); g.add(p); }
+    const zone = boite(0.14, 0.14, 0.03, M.invisible); zone.position.z = 0.014; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
+  }
   // boîte, sortie de câble : un couvercle ; ouverte, on voit les bornes du moteur et tous les conducteurs qui y arrivent
   function interieur(id, g, vue, ech = 1) {
     const org = inst.organe[id], bornes = org.bornes || ["L", "N", "PE"], G = new THREE.Group(); G.visible = false; g.add(G);
-    const fond = boite(0.13 * ech, 0.11 * ech, 0.004, M.gris); fond.position.z = 0.002; G.add(fond);
+    const fond = boite(Math.max(0.13, bornes.length * 0.04) * ech, 0.11 * ech, 0.004, M.gris); fond.position.z = 0.002; G.add(fond);
     const fils = [];
     bornes.forEach((b, i) => {
       const x = (i - (bornes.length - 1) / 2) * 0.036 * ech, nom = `${id}.${b}`;
-      const bloc = boite(0.02 * ech, 0.016 * ech, 0.014, b.toLowerCase().startsWith("p") && b.toLowerCase() !== "ph" ? mat(0x4a9a35) : b.toLowerCase().startsWith("n") ? mat(0x2f6fd0) : mat(0x8a8f96)); bloc.position.set(x, 0, 0.011); G.add(bloc);
+      const bloc = boite(0.02 * ech, 0.016 * ech, 0.014, b === "bp" ? mat(0xe9e9e4) : b === "lp" ? mat(0xe8790c) : b.toLowerCase().startsWith("p") && b.toLowerCase() !== "ph" ? mat(0x4a9a35) : b.toLowerCase().startsWith("n") ? mat(0x2f6fd0) : mat(0x8a8f96)); bloc.position.set(x, 0, 0.011); G.add(bloc);
       const vis = cyl(0.0045 * ech, 0.0045 * ech, 0.004, M.laiton, 12); vis.rotation.x = Math.PI / 2; vis.position.set(x, 0, 0.019); G.add(vis); point(nom, vis, [vue], 0.011 * ech);
       const lies = L.conducteurs.filter((c) => c.de === nom || c.vers === nom);
       lies.forEach((c, k) => {
@@ -125,6 +135,7 @@ export function creerMonde(renderer, base, N, P) {
     return G;
   }
   function boiteDerivation(o, lieuId, g, { w = 0.14, h = 0.12, nomVue } = {}) {
+    w = Math.max(w, (inst.organe[o.id].bornes || []).length * 0.04 + 0.02);
     const org = inst.organe[o.id], vue = `v:${o.id}`, ext = typeof o.ext === "function" ? o.ext(P) : !!o.ext;
     const corps = boite(w, h, 0.05, ext ? mat(0x9aa0a6, { roughness: 0.6 }) : M.plastique); corps.position.z = -0.022; g.add(corps);
     const capot = boite(w + 0.006, h + 0.006, 0.008, ext ? mat(0xb3b9c0, { roughness: 0.5 }) : M.blanc); capot.position.z = 0.008; g.add(capot); capots[o.id] = capot;
@@ -132,7 +143,7 @@ export function creerMonde(renderer, base, N, P) {
     const I = interieur(o.id, g, vue);
     if (o.eau && o.eau(P)) { const eau = boite(0.128, 0.04, 0.02, M.eau); eau.position.set(0, -0.035, 0.012); I.add(eau); }
     const zone = boite(w + 0.1, h + 0.1, 0.08, M.invisible); zone.position.z = 0.02; g.add(zone); cible(`approcher:${o.id}`, zone, [lieuId]);
-    vueProche(vue, lieuId, g, 0.2, { nom: nomVue || org.nom.toLowerCase(), court: org.nom });
+    vueProche(vue, lieuId, g, Math.max(0.2, w + 0.05), { nom: nomVue || org.nom.toLowerCase(), court: org.nom });
     return corps;
   }
   function borneJardin(o, lieuId, G) {
@@ -177,7 +188,7 @@ export function creerMonde(renderer, base, N, P) {
 
   function tableau(o, lieuId, g, lieu) {
     const T = L.tableau, extras = (N.plan.tableau && N.plan.tableau.extras) || {};
-    const rangs = T.differentiels.map((d) => [{ id: d.id, genre: "id", w: 2 }, ...T.disjoncteurs.filter((q) => q.differentiel === d.id).map((q) => ({ id: q.id, genre: "dj", w: 1 })), ...(extras[d.id] || []).map((x) => ({ id: x, genre: inst.organe[x].type, w: inst.organe[x].type === "horloge" ? 3 : 2 }))]);
+    const rangs = T.differentiels.map((d) => [{ id: d.id, genre: "id", w: 2 }, ...T.disjoncteurs.filter((q) => q.differentiel === d.id).map((q) => ({ id: q.id, genre: "dj", w: 1 })), ...(extras[d.id] || []).map((x) => ({ id: x, genre: inst.organe[x].type, w: inst.organe[x].type === "horloge" ? 3 : inst.organe[x].type === "minuterie" ? 2.5 : 2 }))]);
     const larg = Math.max(...rangs.map((r) => r.reduce((s, a) => s + a.w, 0))) * MOD + 0.05, haut = rangs.length * 0.2 + 0.09, y0 = o.y === undefined ? 1.2 : o.y;
     // la goulotte de la GTL, du sol au plafond, derrière le tableau et le panneau de contrôle
     const gou = boite(0.27, lieu.h, 0.05, mat(0xf1f0ec, { roughness: 0.5 })); gou.position.set(0, lieu.h / 2 - y0, 0.025); g.add(gou);
@@ -200,7 +211,8 @@ export function creerMonde(renderer, base, N, P) {
       const rail = boite(larg - 0.04, 0.035, 0.008, M.acier); rail.position.z = 0.004; R.add(rail);
       const total = rang.reduce((s, a) => s + a.w, 0) * MOD; let x = -total / 2;
       // deux vues par rangée si elle est longue : les appareils de protection, puis les appareils de commande
-      const groupes = [rang.filter((a) => a.genre === "id" || a.genre === "dj"), rang.filter((a) => a.genre !== "id" && a.genre !== "dj")].filter((k) => k.length);
+      const seule = rang.reduce((s, a) => s + a.w, 0) <= 7.5; // une rangée courte tient dans une seule vue
+      const groupes = seule ? [rang] : [rang.filter((a) => a.genre === "id" || a.genre === "dj"), rang.filter((a) => a.genre !== "id" && a.genre !== "dj")].filter((k) => k.length);
       const vueDe = (a) => `v:rangee${r + 1}${groupes.length > 1 && a.genre !== "id" && a.genre !== "dj" ? "b" : ""}`;
       const etiq = [];
       for (const a of rang) {
@@ -229,6 +241,14 @@ export function creerMonde(renderer, base, N, P) {
           voyantTension(m, `${a.id}.2`, 0.022, 0.036, 0.046, 0xff8a1a);
           for (const [b, dx] of [["1", -0.012], ["2", 0.012]]) { const t = cyl(0.0032, 0.0032, 0.006, b === "2" ? mat(0xe8790c) : M.laiton, 12); t.rotation.x = Math.PI / 2; t.position.set(dx, -0.058, 0.03); m.add(t); point(`${a.id}.${b}`, t, [vue], 0.0085); }
           etiq.push([x + w / 2, w, "Horloge allée"]);
+        } else if (a.genre === "minuterie") { // minuterie d'escalier : sélecteur auto / marche permanente, voyant de sortie, bornes L, B (commande), S (sortie)
+          const lbl = panneau(w - 0.004, 0.022, etiquette(["MINUTERIE", { t: "auto · permanent", taille: 19 }], { w: 192, h: 88, taille: 24 })); lbl.position.set(0, 0.022, 0.0456); m.add(lbl);
+          cible(`regarder:${a.id}`, lbl, [vue]);
+          selecteur(m, a.id, 0, -0.006, 0.048, vue, w - 0.004);
+          voyantTension(m, `${a.id}.S`, 0.016, 0.037, 0.046, 0xff8a1a);
+          const rp = panneau(w - 0.004, 0.0075, etiquette("L        B        S", { w: 256, h: 44, taille: 30, fond: "#d9dbd6" })); rp.position.set(0, -0.0445, 0.0272); m.add(rp);
+          for (const [b, dx, mm] of [["L", -0.0135, M.laiton], ["B", 0, mat(0xe9e9e4)], ["S", 0.0135, mat(0xe8790c)]]) { const t = cyl(0.0032, 0.0032, 0.006, mm, 12); t.rotation.x = Math.PI / 2; t.position.set(dx, -0.058, 0.03); m.add(t); point(`${a.id}.${b}`, t, [vue], 0.0075); }
+          etiq.push([x + w / 2, w, "Minuterie"]);
         } else if (a.genre === "contacteur") {
           const lbl = panneau(w - 0.004, 0.02, etiquette(["HC", { t: "auto · I · 0", taille: 20 }], { w: 128, h: 80 })); lbl.position.set(0, 0.022, 0.0456); m.add(lbl);
           selecteur(m, a.id, 0, -0.006, 0.048, vue, w - 0.004);
@@ -256,7 +276,7 @@ export function creerMonde(renderer, base, N, P) {
         const z = boite(wg, 0.12, 0.08, M.invisible); z.position.set(x0 + wg / 2, 0, 0.04); R.add(z); cible(`approcher:${id.slice(2)}`, z, ["v:tableau"]);
         const tr = boite(0.03, 0.012, 0.012, mat(0x4a9a35)); tr.position.set(x0 + wg / 2, -0.088, 0.02); R.add(tr);
         const vt = cyl(0.004, 0.004, 0.006, M.laiton, 12); vt.rotation.x = Math.PI / 2; vt.position.set(x0 + wg / 2, -0.088, 0.028); R.add(vt); point("bt.PE", vt, [id], 0.0095);
-        vueProche(id, lieuId, R, Math.max(0.105, wg + 0.012), { nom: k ? "l'horloge et le contacteur" : `la rangée ${r ? "du bas" : "du haut"}`, court: k ? "Horloge, contacteur" : `Rangée ${r ? "du bas" : "du haut"}`, parent: "v:tableau", centre: V(x0 + wg / 2, 0.002, 0.07), hauteur: 0.206 });
+        vueProche(id, lieuId, R, Math.max(0.105, wg + 0.012), { nom: k ? "l'horloge et le contacteur" : rangs.length === 1 ? "la rangée" : `la rangée ${r ? "du bas" : "du haut"}`, court: k ? "Horloge, contacteur" : rangs.length === 1 ? "La rangée" : `Rangée ${r ? "du bas" : "du haut"}`, parent: "v:tableau", centre: V(x0 + wg / 2, 0.002, 0.07), hauteur: 0.206 });
         x0 += wg;
       });
     });
@@ -290,7 +310,7 @@ export function creerMonde(renderer, base, N, P) {
     if (lieu.ext && lieu.dalle) { const d = boite(lieu.dalle[0], 0.04, lieu.dalle[1], lieu.dalle[3] ? sols[lieu.dalle[3]](lieu, lieu.dalle) : M.dalle); d.castShadow = false; d.position.set(0, 0.02, lieu.dalle[2] || 0); G.add(d); }
     if (!lieu.ext) {
       for (const m of ["N", "S", "E", "O"]) {
-        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, lieu.murs === "beton" ? (lieu.matMur = lieu.matMur || pbr.m("concrete_floor_02", [2.4, 0.5], { roughness: 1 })) : lieu.teinte ? (lieu.matMur = lieu.matMur || mat(lieu.teinte, { roughness: 0.95, map: M.mur.map, normalMap: M.mur.normalMap })) : M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
+        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, lieu.murs === "beton" ? (lieu.matMur = lieu.matMur || pbr.m("concrete_floor_02", [Math.max(...lieu.taille) / 1.6, lieu.h / 1.6], { roughness: 1 })) : lieu.teinte ? (lieu.matMur = lieu.matMur || mat(lieu.teinte, { roughness: 0.95, map: M.mur.map, normalMap: M.mur.normalMap })) : M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
         if (lieu.murs !== "beton") { const pl = boite(lg, 0.08, 0.012, blancMat); pl.castShadow = false; pl.position.copy(s.p).setY(0.04).addScaledVector(s.n, 0.006); pl.rotation.y = s.r; G.add(pl); }
       }
       const pl = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), lieu.murs === "beton" ? pbr.m("concrete_floor_02", [lx / 1.5, lz / 1.5], { roughness: 1 }) : M.plafond); pl.rotation.x = Math.PI / 2; pl.position.y = lieu.h; G.add(pl);
@@ -305,6 +325,7 @@ export function creerMonde(renderer, base, N, P) {
       if (decor.poser(o, id, lieu, G, g)) continue;
       if (o.t === "prise") prise(o, id, g);
       else if (o.t === "inter") inter(o, id, g);
+      else if (o.t === "bp") boutonPoussoir(o, id, g);
       else if (o.t === "plafonnier") { G.remove(g); plafonnier(o, lieu, G, id); }
       else if (o.t === "tableau") tableau(o, id, g, lieu);
       else if (o.t === "boite") boiteDerivation(o, id, g, o);
@@ -399,7 +420,8 @@ export function creerMonde(renderer, base, N, P) {
     for (const [id, x] of Object.entries(manettes)) x.vers = e.positions[id] ? -0.62 : 0.62;
     for (const [id, io] of Object.entries(fenetresIO)) io.material = e.positions[id] ? matIO.I : matIO.O;
     for (const [id, t] of Object.entries(touches)) t.rotation.x = e.positions[id] ? -0.09 : 0.09;
-    for (const [id, s] of Object.entries(selecteurs)) s.rotation.z = { auto: 0.9, I: 0, 0: -0.9 }[e.modes[id]] || 0;
+    for (const [id, s] of Object.entries(selecteurs)) s.rotation.z = { auto: 0.9, I: 0, 0: -0.9, permanent: -0.9 }[e.modes[id]] || 0;
+    for (const v of voyantsBP) v.m.emissiveIntensity = !v.mort && r.tension(`${v.id}.1`, "terre.PE") >= 50 && !(v.lampe && r.allume(v.lampe)) ? 3 : 0;
     for (const [id, C] of Object.entries(cadrans)) dessinerCadran(C, e.cadrans[id], inst.organe[id]);
     if (afficheCompteur) afficheCompteur(r.tension(`${L.tableau.agcp.id}.Lin`, `${L.tableau.agcp.id}.Nin`) >= 50 ? (inst.heuresCreuses(e) ? "H CREUSES" : "H PLEINES") : "");
     if (porteTableau) porteTableau.vers = vue === "v:tableau" || String(vue).startsWith("v:rangee") ? -1.95 : 0;

@@ -21,6 +21,7 @@
 //   { type: "organe_hs", organe }                                             ampoule, interrupteur, disjoncteur
 //   { type: "etiquette_fausse", disjoncteur, etiquette }                      le repérage du tableau ment
 //   { type: "pont", a, b, quand? }                                            deux bornes qui se touchent
+//   { type: "conducteur_deplace", conducteur, extremite, borne }              un fil raccordé sur une autre borne que la sienne
 //   { type: "connexion_chauffe", disjoncteur }      borne desserrée sur un disjoncteur : il chauffe et déclenche sous son calibre
 //   { type: "mauvais_calibre", disjoncteur, calibre } un disjoncteur plus petit que celui prévu pour le circuit
 // Un défaut d'isolement peut aussi partir d'une borne quelconque ({ borne }) et dépendre du temps qu'il fait :
@@ -112,6 +113,8 @@ export function creerInstallation(logement, pannes = []) {
     for (const c of logement.conducteurs) {
       if (act.some((p) => p.type === "conducteur_coupe" && p.conducteur === c.id)) continue;
       let de = c.de, vers = c.vers;
+      // un conducteur raccordé au mauvais endroit (neutre emprunté à un autre circuit, fil rangé sur le mauvais bornier)
+      for (const p of act) if (p.type === "conducteur_deplace" && p.conducteur === c.id) { if (p.extremite === "de") de = p.borne; else vers = p.borne; }
       for (const p of act) if (DESSERRAGE.has(p.type) && p.conducteur === c.id) {
         const bout = `${c.id}#bout`; bouts[bout] = p.extremite === "de" ? c.de : c.vers;
         if (p.extremite === "de") de = bout; else vers = bout;

@@ -3,6 +3,7 @@
 import { creerPartie } from "./coeur.js";
 import N2 from "./niveau2.js";
 import N3 from "./niveau3.js";
+import N5 from "./niveau5.js";
 import N4 from "./niveau4.js";
 
 function jouerNiveau2(cause) {
@@ -85,7 +86,39 @@ function jouerNiveau4(cause) {
 }
 function egalite(a, b) { if (a !== b) throw new Error(`attendu ${b}, obtenu ${a}`); }
 
+// Niveau 5 : le joueur automatique lit le sélecteur, mesure la borne de commande, sépare la colonne par moitiés
+function jouerNiveau5(cause) {
+  const P = creerPartie(N5, cause), F = N5.fils, A = (a) => P.action(a).retour, U = (a, b) => A({ type: "mesurer", outil: "multi", a, b });
+  const attendre = () => A({ type: "attendre", minutes: 15 }), lit = () => P.calc().allume("l_hall");
+  for (const q of ["depuis", "travaux", "local", "couper"]) A({ type: "question", id: q });
+  A({ type: "deplacer", lieu: "local" }); A({ type: "regarder", id: "schema" });
+  const consigner = () => { A({ type: "geste", id: "affichette" }); A({ type: "manette", id: "Q2", position: false }); A({ type: "mesurer", outil: "vat", a: "pc_local.L", b: "pc_local.N" }); };
+  const separer = (boite, cid, ext) => { consigner(); if (!P.ouverts.has(boite)) A({ type: "ouvrir", id: boite }); A({ type: "mesurer", outil: "vat", a: `${boite}.ph`, b: `${boite}.pe` }); A({ type: "debrancher", conducteur: cid, extremite: ext }); A({ type: "manette", id: "Q2", position: true }); attendre(); const reste = lit(); consigner(); A({ type: "rebrancher", conducteur: cid, extremite: ext }); A({ type: "manette", id: "Q2", position: true }); return reste; };
+  let diag = null;
+  if (A({ type: "regarder", id: "mn" })) { A({ type: "mode", id: "mn" }); attendre(); if (!lit()) diag = "A"; }
+  else if (U("mn.B", "Q2.Nout") < 50) { attendre(); if (lit() && separer("bd_tab", F.commande, "de")) diag = "C"; }
+  else if (!separer("bd_1", F.troncons["bd_1>bd_2"].bp, "de")) { // éteint : le défaut est au-dessus du 1er
+    if (separer("bd_2", F.troncons["bd_2>bd_3"].bp, "de")) { A({ type: "deplacer", lieu: "palier2" }); if (A({ type: "geste", id: "bp_2" }) && P.vus.has("colle:bp_2")) diag = "B"; }
+    else { A({ type: "geste", id: "bp_3" }); consigner(); A({ type: "ouvrir", id: "bd_3" }); if (P.vus.has("pince:bd_3")) diag = "D"; A({ type: "manette", id: "Q2", position: true }); }
+  }
+  if (diag) { A({ type: "diagnostic", id: diag }); A({ type: "securiser", id: { A: "auto", B: "bouton", C: "minuterie", D: "boite" }[diag] }); }
+  return { P, diag };
+}
+
 export function testsNiveaux(cas, egal, vrai) {
+  for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 5, cause ${cause} : le joueur automatique lit, mesure, sépare par moitiés, trouve et répare`, () => {
+    const { P, diag } = jouerNiveau5(cause);
+    egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
+  });
+  cas("Niveau 5 : symptôme commun, toutes les lampes de l'escalier restent allumées bien après la temporisation", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N5, c); P.action({ type: "attendre", minutes: 15 }); for (const l of ["l_hall", "l_1", "l_2", "l_3", "l_cave"]) vrai(P.calc().allume(l), `${c} ${l}`); } });
+  cas("Niveau 5 : remplacer la minuterie d'emblée ne règle rien quand elle n'est pas en cause", () => { for (const c of ["A", "B", "D"]) { const P = creerPartie(N5, c); P.action({ type: "diagnostic", id: c }); vrai(!P.action({ type: "securiser", id: "minuterie" }).retour, c); vrai(!P.fini, c); } });
+  cas("Niveau 5 : débrancher le fil blanc sous tension quand il porte la phase, c'est l'électrisation", () => { const P = creerPartie(N5, "D"); P.action({ type: "ouvrir", id: "bd_1" }); vrai(!P.action({ type: "debrancher", conducteur: N5.fils.troncons["bd_1>bd_2"].bp, extremite: "de" }).retour); vrai(P.fautes.length >= 1); });
+  cas("Niveau 5 : on sépare un seul fil, les lampes gardent leur phase et leur neutre", () => { const P = creerPartie(N5, "B"); P.action({ type: "manette", id: "Q2", position: false }); P.action({ type: "debrancher", conducteur: N5.fils.troncons["bd_1>bd_2"].bp, extremite: "de" }); egal(Object.keys(P.e.deconnecte).length, 1); });
+  cas("Niveau 5 : le bouton de la cave marche, seul son voyant est grillé ; les indices ne donnent jamais la cause", () => {
+    const P = creerPartie(N5, "C"); P.action({ type: "geste", id: "bp_cave" }); vrai(P.vus.has("voyant:cave"));
+    for (const c of ["A", "B", "C", "D"]) { const Q = creerPartie(N5, c); for (const t of N5.indices(Q)) vrai(!/collé|pincé|permanente/.test(t) || c === "A" && /sélecteur/i.test(t) === false ? true : !/2e étage|3e étage|contact de la minuterie est collé/.test(t), c); }
+  });
+
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 4, cause ${cause} : le joueur automatique questionne, reproduit la soirée, mesure, trouve et règle`, () => {
     const { P, diag } = jouerNiveau4(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
