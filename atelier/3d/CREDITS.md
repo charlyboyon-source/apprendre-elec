@@ -111,11 +111,27 @@ Le niveau 1 réutilise aussi des modèles du niveau 2 (console, miroir, coussins
 | `painted_wooden_bench.glb` | Banc de l'entrée | Poly Haven, https://polyhaven.com/a/painted_wooden_bench | CC0 |
 | `rubber_boots.glb` | Bottes en caoutchouc | Poly Haven, https://polyhaven.com/a/rubber_boots | CC0 |
 
+## Modèles 3D ajoutés pour le niveau 3 (l'appartement de M. Haddad)
+
+Le niveau 3 réutilise aussi des modèles des niveaux 1 et 2 (lit, table de chevet, console, miroir, cadres, plantes, bibliothèque, cuisinière, paniers, cartons, caisse à outils).
+
+| Fichier | Ce que c'est | Source | Licence |
+|---|---|---|---|
+| `Sofa_01.glb` | Canapé du séjour | Poly Haven, https://polyhaven.com/a/Sofa_01 | CC0 |
+| `coffee_table_round_01.glb` | Table basse ronde | Poly Haven, https://polyhaven.com/a/coffee_table_round_01 | CC0 |
+| `steel_frame_shelves_03.glb` | Étagère métallique du bureau | Poly Haven, https://polyhaven.com/a/steel_frame_shelves_03 | CC0 |
+| `wooden_table_02.glb` | Bureau | Poly Haven, https://polyhaven.com/a/wooden_table_02 | CC0 |
+| `painted_wooden_chair_02.glb` | Chaise en bois peint | Poly Haven, https://polyhaven.com/a/painted_wooden_chair_02 | CC0 |
+| `binder_notebook.glb` | Carnets et porte-documents | Poly Haven, https://polyhaven.com/a/binder_notebook | CC0 |
+| `plastic_thermos.glb` | Bouteille isotherme | Poly Haven, https://polyhaven.com/a/plastic_thermos | CC0 |
+| `round_wooden_table_01.glb` | Table ronde de la cuisine | Poly Haven, https://polyhaven.com/a/round_wooden_table_01 | CC0 |
+| `vintage_wooden_drawer_01.glb` | Commode à tiroirs | Poly Haven, https://polyhaven.com/a/vintage_wooden_drawer_01 | CC0 |
+
 ## Fait par le code du site
 
 | Élément | Où | Licence |
 |---|---|---|
 | Appareillage électrique : tableau, disjoncteurs, interrupteurs différentiels, horloge, contacteur, compteur, disjoncteur de branchement, goulotte, prises, interrupteurs, boîtes, bornes de jardin, conducteurs | `niveau/monde.js`, `monde.js` | Contenu du site |
 | Appareils branchés : télévision à écran plat, lampadaire, cafetière, réfrigérateur, lave-linge, congélateur, chauffe-eau et ses tuyaux, écrans et voyants | `niveau/decor.js` | Contenu du site |
-| Bâti et petits objets : murs, portes, fenêtres (vue du jardin le jour, vue de la rue une nuit de pluie), rideaux, couette, oreillers et plaid du lit, lampes de chevet, réveil, gilet posé sur le fauteuil, cuisine (meubles, plan de travail, évier, hotte), tapis, plaid, livres, télécommande, porte-manteau et vêtements, meuble à chaussures, clés, courrier, bocaux, haies (feuillage), touffes d'herbe, clôtures, vue du jardin par les fenêtres, flaques, pluie | `niveau/decor.js`, `niveau/monde.js` | Contenu du site |
+| Bâti et petits objets : murs, portes, fenêtres (vue du jardin le jour, vue de la rue une nuit de pluie), rideaux, couette, oreillers et plaid du lit, lampes de chevet, réveil, gilet posé sur le fauteuil, tasses, volets roulants, vue sur les immeubles, salle de bain (douche, meuble vasque, miroir, porte-serviettes), faux plafond (plaques, rails, suspentes, laine de verre, gaines), cuisine (meubles, plan de travail, évier, hotte), tapis, plaid, livres, télécommande, porte-manteau et vêtements, meuble à chaussures, clés, courrier, bocaux, haies (feuillage), touffes d'herbe, clôtures, vue du jardin par les fenêtres, flaques, pluie | `niveau/decor.js`, `niveau/monde.js` | Contenu du site |
 | Sons (pluie, ronron du congélateur, clics, déclenchements, décharge) | Synthétisés dans le navigateur (Web Audio) | Contenu du site |

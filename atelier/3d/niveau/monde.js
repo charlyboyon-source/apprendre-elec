@@ -290,10 +290,10 @@ export function creerMonde(renderer, base, N, P) {
     if (lieu.ext && lieu.dalle) { const d = boite(lieu.dalle[0], 0.04, lieu.dalle[1], lieu.dalle[3] ? sols[lieu.dalle[3]](lieu, lieu.dalle) : M.dalle); d.castShadow = false; d.position.set(0, 0.02, lieu.dalle[2] || 0); G.add(d); }
     if (!lieu.ext) {
       for (const m of ["N", "S", "E", "O"]) {
-        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
-        const pl = boite(lg, 0.08, 0.012, blancMat); pl.castShadow = false; pl.position.copy(s.p).setY(0.04).addScaledVector(s.n, 0.006); pl.rotation.y = s.r; G.add(pl);
+        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, lieu.murs === "beton" ? (lieu.matMur = lieu.matMur || pbr.m("concrete_floor_02", [2.4, 0.5], { roughness: 1 })) : lieu.teinte ? (lieu.matMur = lieu.matMur || mat(lieu.teinte, { roughness: 0.95, map: M.mur.map, normalMap: M.mur.normalMap })) : M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
+        if (lieu.murs !== "beton") { const pl = boite(lg, 0.08, 0.012, blancMat); pl.castShadow = false; pl.position.copy(s.p).setY(0.04).addScaledVector(s.n, 0.006); pl.rotation.y = s.r; G.add(pl); }
       }
-      const pl = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), M.plafond); pl.rotation.x = Math.PI / 2; pl.position.y = lieu.h; G.add(pl);
+      const pl = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), lieu.murs === "beton" ? pbr.m("concrete_floor_02", [lx / 1.5, lz / 1.5], { roughness: 1 }) : M.plafond); pl.rotation.x = Math.PI / 2; pl.position.y = lieu.h; G.add(pl);
     }
     lieux[id] = { G, lieu, lampes: [] };
     vues[id] = { lieu: id, parent: null, libre: true, nom: lieu.nom, court: lieu.court, lieuRaccourci: lieu.raccourci, cadre: () => ({ pos: G.localToWorld(V(...(lieu.camera || [0, 1.62, lz / 2 - 0.5]))), yaw: lieu.yaw || 0, pitch: lieu.pitch || -0.12 }) };
