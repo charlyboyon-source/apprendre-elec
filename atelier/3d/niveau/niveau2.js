@@ -20,6 +20,41 @@ export default {
   accroche: "« Bonjour, entrez. Le matin je me lève et il n'y a plus de courant dans la moitié de la maison. Je remonte le gros bouton et ça repart. C'est surtout quand il pleut, je crois. J'ai perdu tout mon congélateur la semaine dernière. »",
   mission: "Trouve pourquoi le courant saute la nuit chez Mme Roux, prouve-le par une mesure, et remets l'installation en sécurité.",
   depart: "entree",
+  pitch: "Fin d'après-midi, temps sec. Mme Roux t'attend devant sa maison de plain-pied : depuis une semaine, la moitié de la maison se retrouve sans courant au petit matin.",
+  entrer: "Entrer chez Mme Roux",
+  debut: "Mme Roux retourne au séjour. Le tableau est devant toi. À toi de chercher : le carnet note tout ce que tu constates.",
+  // le plan des lieux : ce qu'on voit, et où
+  plan: {
+    tableau: { extras: { ID2: ["horloge", "kc"] } },
+    lieux: {
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3.2, 3], sol: "bois", objets: [
+        { t: "tableau", mur: "N", u: 0, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -1.15, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "boite", id: "bd_ecl", mur: "N", u: 1.15, y: 2.2 },
+        { t: "prise", id: "pc_entree", mur: "O", u: 0.8, y: 0.35 }, { t: "porte", vers: "sejour", mur: "E", u: 0.3, y: 1.025 }, { t: "porte", vers: "cellier", mur: "O", u: -0.5, y: 1.025 } ] },
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", objets: [
+        { t: "inter", id: "int_sejour", mur: "O", u: -0.2, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.3, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "N", u: 1.6, y: 0.35 },
+        { t: "meuble", x: -1.3, z: -1.85, w: 1.3, h: 0.45, d: 0.4 }, { t: "meuble", x: -1.3, z: -1.95, y: 0.45, w: 1.0, h: 0.6, d: 0.06, c: 0x0b0d10 }, { t: "meuble", x: 0.9, z: 0.9, w: 1.9, h: 0.7, d: 0.85, m: "tissu" },
+        { t: "porte", vers: "entree", mur: "O", u: 1.2, y: 1.025 }, { t: "porte", vers: "cuisine", mur: "E", u: -1.2, y: 1.025 }, { t: "porte", vers: "terrasse", mur: "S", u: 0.9, y: 1.025 } ] },
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", objets: [
+        { t: "inter", id: "int_cuisine", mur: "O", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" },
+        { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.0, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: -0.4, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 0.9, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.2, y: 1.15 },
+        { t: "meuble", x: -0.25, z: -1.2, w: 2.6, h: 0.9, d: 0.6 }, { t: "meuble", x: 0.25, z: -1.2, y: 0.9, w: 0.58, h: 0.02, d: 0.5, c: 0x0b0d10 }, { t: "meuble", x: 1.25, z: 0.6, w: 0.6, h: 1.8, d: 0.6, m: "blanc" },
+        { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 } ] },
+      cellier: { nom: "le cellier", court: "Le cellier", raccourci: "Cellier", taille: [2.8, 3], sol: "beton", objets: [
+        { t: "inter", id: "int_cellier", mur: "E", u: 1.1, y: 1.1 }, { t: "plafonnier", id: "pl_cellier" },
+        { t: "ballon", id: "chauffe_eau", mur: "N", u: 0.75, y: 1.55 }, { t: "boite", id: "sc_ce", mur: "N", u: 0.75, y: 0.8, w: 0.09, h: 0.09 },
+        { t: "meuble", id: "congelateur", x: -0.8, z: -1.15, w: 0.75, h: 0.9, d: 0.65, m: "blanc", voyant: true }, { t: "prise", id: "pc_congelateur", mur: "N", u: -0.8, y: 1.2 },
+        { t: "prise", id: "pc_cellier", mur: "O", u: -0.6, y: 1.15 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: 0.7, y: 1.15 }, { t: "meuble", x: -1.05, z: -0.7 + 1.4, w: 0.6, h: 0.85, d: 0.6, m: "blanc" },
+        { t: "porte", vers: "entree", mur: "E", u: -0.6, y: 1.025 } ] },
+      terrasse: { nom: "la terrasse", court: "La terrasse", raccourci: "Terrasse", ext: true, taille: [7, 4], sol: "herbe", dalle: [7, 4, 0], camera: [0, 1.62, 0.6], objets: [
+        { t: "mur", mur: "N", u: 0, y: 0, w: 9, h: 3 }, { t: "porte", vers: "sejour", mur: "N", u: 1.8, y: 1.025 },
+        { t: "prise", id: "pc_terrasse", mur: "N", u: -0.3, y: 1.0 }, { t: "boite", id: "bd_mur", mur: "N", u: -1.7, y: 0.3, ext: (P) => P.cause !== "A", eau: (P) => P.cause === "A" },
+        { t: "porte", vers: "allee", mur: "S", u: 0, y: 1.025 } ] },
+      allee: { nom: "l'allée du jardin", court: "L'allée", raccourci: "Allée", ext: true, taille: [4, 10], sol: "herbe", dalle: [1.1, 10, 0], camera: [0, 1.62, 4.2], pitch: -0.2, objets: [
+        { t: "borne", id: "borne1", x: 0.85, z: 2.4 }, { t: "borne", id: "borne2", x: 0.85, z: 0.2, buee: (P) => P.cause === "B" }, { t: "borne", id: "borne3", x: 0.85, z: -2.0 },
+        { t: "bordure", x: 0.6, z: 0, l: 9.6 }, { t: "terre", x: 1.05, z: 3.5, si: (P) => P.cause === "C" }, { t: "portillon", x: 0, z: -4.7 }, { t: "haie", x: -1.9, z: 0, r: Math.PI / 2, w: 9.5 },
+        { t: "porte", vers: "terrasse", mur: "S", u: 0, y: 1.025 } ] },
+    },
+  },
   questions: [
     { id: "quoi", texte: "Qu'est-ce qui ne marche plus quand ça saute ?", reponse: () => "« Le congélateur, la prise de la terrasse, les lumières de l'allée… et je n'ai plus d'eau chaude. Le reste de la maison marche. »" },
     { id: "heure", texte: "À quelle heure ça saute ?", reponse: () => "« Je ne sais pas, je dors ! Je le vois le matin. À sept heures, en me levant, je remonte le gros bouton du bas. »" },

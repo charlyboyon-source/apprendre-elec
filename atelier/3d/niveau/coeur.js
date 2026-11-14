@@ -191,6 +191,7 @@ export function creerPartie(N, cause) {
         inst.agir(e, { type: "meteo", env: { pluie: true } });
         const ev = inst.avancer(e, 16 * 60);
         if (ev.length) { P.mauvaisRemedes++; dire("Le lendemain, le client rappelle : ça a encore sauté dans la nuit.", "client"); retour = false; break; }
+        inst.agir(e, { type: "meteo", env: { pluie: false } });
         P.securise = true; P.fini = true;
         const etoiles = Math.max(1, 3 - (P.preuves.length ? 0 : 1) - (P.fautes.length ? 1 : 0) - (P.mauvaisDiagnostics + P.mauvaisRemedes ? 1 : 0));
         P.bilan = {
