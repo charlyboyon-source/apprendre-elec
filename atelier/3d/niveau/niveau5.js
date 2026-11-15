@@ -184,7 +184,7 @@ export default {
         porte("hall", "S", 0.3),
         { t: "tuyaux", mur: "N", u: -1.05, y: 1.2 }, { t: "etagere", mur: "O", u: -0.35, y: 0, w: 0.9 },
         { t: "balai", x: -1.12, z: 0.75, r: 1.5 }, { t: "modele", f: "wooden_bucket_01", x: -0.75, z: 0.85, h: 0.32 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.05, z: 0.2 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.08, z: 0.45, r: 0.6 }, { t: "modele", f: "cardboard_box_01", x: 1.0, z: 0.9, r: 0.3, h: 0.3 } ] },
-      cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, objets: [
+      cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, camera: [0.1, 1.62, 1.3], objets: [
         { t: "plafonnier", id: "l_cave" }, { t: "bp", id: "bp_cave", mur: "S", u: -0.85, y: 1.1, lampe: "l_cave", voyantMort: true }, { t: "boite", id: "bd_cave", mur: "S", u: -1.35, y: 1.9 },
         porte("hall", "S", 0.2),
         { t: "cloture", mur: "N", u: 0, y: 0, w: 3.3, h: 1.9 }, { t: "modele", f: "wooden_crate_02", x: -1.2, z: 0.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: 1.2, z: 0.6, r: -0.2 }, { t: "modele", f: "wine_bottles_01", x: 1.25, z: -0.6 }, { t: "modele", f: "wooden_bucket_01", x: -1.25, z: -0.8, h: 0.36 }, { t: "modele", f: "cardboard_box_01", x: -0.6, z: -1.0, r: 0.5, h: 0.3 },

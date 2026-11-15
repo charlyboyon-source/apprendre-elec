@@ -454,7 +454,7 @@ export function lancerNiveau(N) {
     <div class="t-objectif" role="status"></div>
     <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><div class="j-flash"></div><div class="n-fondu"></div><div class="n-survol" hidden aria-hidden="true"><i></i><span></span></div><div class="n-charge" hidden role="status"><b>Mme Roux ouvre la porte…</b><div><i></i></div><small></small></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output><div class="j-voile" hidden></div></div>
     <div class="j-barre">
-      <div class="j-caisse${N.outils.length >= 5 ? " serre" : ""}" role="group" aria-label="Caisse à outils" style="grid-template-columns:repeat(${N.outils.length + 1},1fr)">${[...N.outils, "tournevis"].map((o) => `<button type="button" data-outil="${o}" aria-pressed="false">${ICONES[o]}<b>${OUTILS[o][0]}</b></button>`).join("")}</div>
+      <div class="j-caisse${N.outils.length >= 4 ? " serre" : ""}" role="group" aria-label="Caisse à outils" style="grid-template-columns:repeat(${N.outils.length + 1},1fr)">${[...N.outils, "tournevis"].map((o) => `<button type="button" data-outil="${o}" aria-pressed="false">${ICONES[o]}<b>${OUTILS[o][0]}</b></button>`).join("")}</div>
       <div class="j-deplacer"><button type="button" class="j-reculer" data-action="reculer">↩</button><div class="j-lieux" aria-label="Aller directement à"></div></div>
       <div class="j-boutons n-boutons">
         <button type="button" data-panneau="client">💬 ${N.client.court}</button>

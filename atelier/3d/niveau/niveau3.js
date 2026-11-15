@@ -132,13 +132,13 @@ export default {
         { t: "tapis", x: -0.1, z: 0, w: 3.9, d: 0.72, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "N", u: 1.32, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: 1.45, y: 1.62, auMur: true, s: 0.5 },
         { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -2.0, y: 1.62, auMur: true, s: 0.75 }, { t: "modele", f: "potted_plant_01", x: -2.32, z: 0.6, h: 0.7, sansOmbre: true } ] },
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [0.45, 1.62, 1.7], yaw: 0.12, pitch: -0.1, objets: [
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [0.45, 1.62, 1.85], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "S", u: -1.4, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.2, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "E", u: 0.8, y: 0.75 }, { t: "boite", id: "bd_a", mur: "N", u: 1.5, y: 2.2 },
         porte("couloir", "S", 0.8), porte("cuisine", "O", 0.6),
         { t: "fenetre", mur: "N", u: 0.42, y: 1.45, w: 1.05, h: 1.15, vue: "ville", volet: 0.45, rideaux: 0x6f7f8f },
         { t: "tapis", x: -0.45, z: -0.35, w: 2.6, d: 1.9, couleurs: ["#2f3f55", "#d9c9a3", "#7a2f2a"] },
         { t: "modele", f: "modern_wooden_cabinet", x: -1.05, z: -1.76, e: [0.8, 1, 1], avec: [ { t: "tele", id: "television", x: 0.56, y: 0.68, z: -0.02 } ] },
-        { t: "modele", f: "Sofa_01", x: -0.45, z: 0.55, r: Math.PI, s: 1.2, avec: [ { t: "plaid", x: 0.86, y: 0.72, z: 0.1, r: Math.PI / 2, c: 0x3f7a6b }, { t: "modele", f: "throw_pillows_01", x: -0.75, y: 0.5, z: -0.02, s: 0.7 } ] },
+        { t: "modele", f: "Sofa_01", x: -0.45, z: 0.4, r: Math.PI, s: 1.2, avec: [ { t: "plaid", x: 0.86, y: 0.72, z: 0.1, r: Math.PI / 2, c: 0x3f7a6b }, { t: "modele", f: "throw_pillows_01", x: -0.75, y: 0.5, z: -0.02, s: 0.7 } ] },
         { t: "modele", f: "coffee_table_round_01", x: -0.45, z: -0.6, s: 0.62, avec: [
           { t: "tasse", x: 0.12, y: 0.303, z: 0.1 }, { t: "telecommande", x: -0.16, y: 0.303, z: 0.05, r: -0.4 }, { t: "livre", x: -0.05, y: 0.303, z: -0.2, r: 0.4 } ] },
         { t: "modele", f: "wooden_bookshelf_worn", x: 2.1, z: -0.8, r: -Math.PI / 2, avec: [
@@ -146,7 +146,7 @@ export default {
           { t: "livres", x: 0.2, y: 1.28, w: 0.7, z: 0.02, g: 6, n: 14 }, { t: "modele", f: "ceramic_vase_01", x: -0.38, y: 1.28, z: 0.03, s: 0.6 }, { t: "modele", f: "wicker_basket_02", x: 0.2, y: 1.66, z: 0.02 }, { t: "modele", f: "wicker_basket_01", x: -0.25, y: 0.11, z: 0.05, s: 1.5 } ] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -1.0, y: 1.62, auMur: true, s: 0.8 }, { t: "modele", f: "wall_clock", mur: "S", u: -0.45, y: 1.95, auMur: true },
         { t: "modele", f: "potted_plant_02", x: -1.95, z: 1.6, h: 0.85, sansOmbre: true } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3, 2.8], sol: "carrelage", camera: [0.3, 1.62, 1.1], yaw: 0, pitch: -0.1, objets: [
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3, 2.8], sol: "carrelage", camera: [0.95, 1.62, 1.1], yaw: 0.22, pitch: -0.1, objets: [
         { t: "inter", id: "int_cuisine", mur: "E", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" }, { t: "prise", id: "pc_cuisine1", mur: "N", u: -0.9, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: -0.2, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "O", u: 0.6, y: 1.15 },
         porte("sejour", "E", 0.7),
         { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.5, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.55, hotte: true }] },
@@ -156,7 +156,7 @@ export default {
         { t: "modele", f: "round_wooden_table_01", x: -0.42, z: 1.0, e: [0.5, 0.75, 0.5], avec: [ { t: "tasse", x: 0.08, y: 0.753, z: 0.05, c: 0x2f5a6b }, { t: "modele", f: "plastic_thermos", x: -0.12, y: 0.753, z: -0.08, s: 0.9 }, { t: "modele", f: "wooden_bowl_02", x: -0.05, y: 0.753, z: 0.16, s: 1.2 } ] },
         { t: "modele", f: "painted_wooden_chair_02", x: 0.02, z: 1.12, r: -Math.PI / 2 - 0.3, s: 0.74 },
         { t: "modele", f: "pot_enamel_01", x: 0.2, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.25, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", x: -0.6, y: 0.62, z: -0.785 } ] },
-      chambre1: { nom: "la chambre 1", court: "La chambre 1", raccourci: "Chambre 1", taille: [3.2, 3.2], sol: "bois", camera: [0.85, 1.62, 1.1], yaw: 0.4, pitch: -0.2, objets: [
+      chambre1: { nom: "la chambre 1", court: "La chambre 1", raccourci: "Chambre 1", taille: [3.2, 3.2], sol: "bois", camera: [0.45, 1.62, 1.3], yaw: 0.25, pitch: -0.1, objets: [
         { t: "inter", id: "int_chambre1", mur: "S", u: 0.6, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 0.9, y: 0.75 }, porte("couloir", "S", -0.7),
         { t: "fenetre", mur: "O", u: 0.25, y: 1.45, w: 1.0, h: 1.15, vue: "ville", volet: 0.7, rideaux: 0x4f5d73 },
         { t: "lit", x: -0.6, z: -0.62, w: 1.4, couette: 0x5d6f5a, plaid: false },

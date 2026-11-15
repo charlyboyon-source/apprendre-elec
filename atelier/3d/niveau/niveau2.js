@@ -54,7 +54,7 @@ export default {
         { t: "modele", f: "hanging_picture_frame_02", mur: "N", u: -1.2, y: 1.8, auMur: true }, { t: "modele", f: "wall_clock", mur: "N", u: 2.15, y: 1.95, auMur: true },
         { t: "modele", f: "hanging_picture_frame_01", mur: "O", u: -1.25, y: 1.6, auMur: true, s: 0.8 }, { t: "modele", f: "fancy_picture_frame_01", mur: "E", u: 0.75, y: 2.25, auMur: true, s: 0.6 },
         { t: "modele", f: "potted_plant_01", x: -2.1, z: 1.7 } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.25, 1.62, 1.2], yaw: 0, pitch: -0.1, objets: [
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.55, 1.62, 1.35], yaw: 0.08, pitch: -0.1, objets: [
         { t: "inter", id: "int_cuisine", mur: "O", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" },
         { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: 0.1, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.3, y: 1.15 },
         { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 },
