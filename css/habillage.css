@@ -110,3 +110,26 @@
 .atelier-presentation h2 { font-size: 1.1rem; margin: 18px 0 6px; }
 .im-menu h2 { margin: 6px 0 10px; font-size: clamp(1.4rem, 3vw, 1.9rem); }
 @media (max-height: 520px) and (min-width: 600px) { .atelier-tete { display: none; } }
+
+/* Page d'entrée des dépannages 3D : une carte par niveau. */
+.depannages { max-width: 1120px; margin: 0 auto; padding: 18px 16px 48px; }
+.depannages h1 { font-size: 1.6rem; margin: 6px 0 8px; }
+.depannages-chapo { color: var(--texte-2); max-width: 46em; margin: 0 0 22px; line-height: 1.6; }
+.depannages-liste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.depannages-liste > li { display: flex; }
+.depannage { display: flex; flex-direction: column; width: 100%; background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--texte); transition: transform 0.15s, border-color 0.15s; }
+a.depannage:hover { transform: translateY(-3px); border-color: var(--jaune); }
+.depannage img { display: block; width: 100%; height: auto; background: #10141a; }
+.depannage-texte { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 16px; flex: 1; }
+.depannage-texte p { margin: 0; font-size: 0.92rem; line-height: 1.5; }
+.depannage-texte h2 { margin: 0; font-size: 1.15rem; line-height: 1.25; }
+.depannage-niveau { font-size: 0.8rem !important; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--texte-2); }
+.depannage-client { color: var(--texte-2); }
+.depannage-apprend { flex: 1; }
+.depannage-bouton { align-self: flex-start; margin-top: 8px; padding: 9px 16px; border-radius: 10px; background: var(--jaune); color: #fff; font-weight: 700; font-size: 0.92rem; }
+.depannage.ferme img { filter: grayscale(1); opacity: 0.55; }
+.depannage.ferme .depannage-texte { opacity: 0.75; }
+.depannage.ferme .depannage-bouton { background: var(--fond-3); color: var(--texte-2); border: 1px dashed var(--bordure); }
+.depannages-aide { max-width: 760px; margin: 30px 0 0; line-height: 1.6; }
+.depannages-aide h2 { font-size: 1.1rem; margin: 0 0 6px; }
+.depannages-aide li { margin: 4px 0; font-size: 0.95rem; }

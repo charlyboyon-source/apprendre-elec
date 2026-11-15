@@ -1,6 +1,7 @@
-// Atelier dépannage en 3D — prototype « La lumière de la chambre » (une panne, mode guidé).
+// Atelier dépannage en 3D — niveau 1 « La lumière de la chambre » (une panne, mode guidé).
 // Même règle que l'atelier 2D : un seul geste, toucher pour agir. Glisser le doigt fait tourner la tête.
 // Le modèle électrique est celui de l'atelier 2D (../immersif/moteur.js) : seule la façon de voir et de toucher change.
+import { liensFin, lienSecours } from "./niveaux.js";
 import * as THREE from "./three.module.min.js";
 import { creerMonde } from "./monde.js";
 import { creerMultimetre, creerVAT, creerSonde, creerTournevis, creerPlateau } from "./materiel.js";
@@ -758,9 +759,9 @@ function panneauFin() {
     ${e.fautes.length ? `<div class="j-fautes"><b>Fautes de sécurité</b><ul>${e.fautes.map((x) => `<li>${x}</li>`).join("")}</ul></div>` : `<p class="j-ok">Aucune faute de sécurité.</p>`}
     ${conseils.map((c) => `<p class="j-conseil">💡 ${c}</p>`).join("")}
     <table class="j-facture"><tr><td>Déplacement</td><td>${f.deplacement} €</td></tr><tr><td>Main-d'œuvre (${f.quarts} × ¼ h)</td><td>${f.mo} €</td></tr><tr><th>Total</th><th>${f.total} €</th></tr></table>
-    <p class="j-petit">Temps passé : ${Math.round(e.minutes)} min. Prototype 3D : une seule panne pour l'instant.</p>
+    <p class="j-petit">Temps passé : ${Math.round(e.minutes)} min.</p>
     <button type="button" class="j-plein" data-action="rejouer">Rejouer</button>
-    <a class="j-lien" href="atelier-depannage.html?i=chambre">Les autres pannes de la chambre (atelier 2D)</a></div>`;
+    ${liensFin(1)}</div>`;
 }
 function etapesFaites() {
   return { questionner: e.poses.length > 0, observer: e.obs, couper: e.coupe, vat: e.vat.avant && e.vat.absence, mesurer: e.mesures.length > 0, reparer: e.repare && e.plaque && !e.mecaSorti && RANGEES[0].every((x) => e.app[x.cle]), essayer: e.essaye };
@@ -1033,12 +1034,12 @@ function brancherBoutons() {
    ===================================================================== */
 function gabarit() {
   racine.innerHTML = `
-  <div class="j-haut"><div class="j-titre"><b>${S.titre}</b><span>🧭 Guidé · prototype 3D</span></div><div class="j-compteurs"></div>
-    <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à l'atelier">✕</a></div>
+  <div class="j-haut"><div class="j-titre"><b>${S.titre}</b><span>Niveau 1 · 🧭 guidé</span></div><div class="j-compteurs"></div>
+    <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à la liste des dépannages">✕</a></div>
   <ol class="t-etapes" aria-label="Méthode du dépanneur"></ol>
   <div class="t-objectif" role="status"></div>
   <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output>
-    <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-depannage.html?i=chambre">Jouer la version 2D</a></p>
+    <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-ancien.html?i=chambre">Jouer à la version simple</a></p>
     ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div><div class="j-charge"><b>Mme Martin ouvre la porte…</b><span><i></i></span></div></div>
   <div class="j-barre">
     <div class="j-caisse" role="group" aria-label="Caisse à outils">
@@ -1134,15 +1135,15 @@ async function demarrer() {
 
 // écran d'accueil : un appui pour entrer (il débloque aussi le son)
 racine.innerHTML = `<div class="j-accueil">
-  <p class="j-sur">Atelier dépannage · prototype 3D</p>
+  <p class="j-sur">Atelier dépannage · niveau 1</p>
   <h1>La lumière de la chambre</h1>
   <p>Il est presque minuit, il pleut. Mme Martin t'appelle : la lumière de sa chambre ne marche plus. Tu arrives avec ta lampe frontale, ta sacoche, ton multimètre et ton VAT.</p>
   <ul><li>👉 <b>Glisse</b> le doigt pour tourner la tête (vers le bas, de près : tu recules).</li><li>👆 <b>Touche</b> un objet pour t'en approcher ou agir dessus.</li><li>🎧 Avec le son, c'est mieux.</li></ul>
-  ${webgl2() ? `<button type="button" class="j-plein" id="entrer">Entrer chez Mme Martin</button>` : `<p class="j-alerte">Ton navigateur n'affiche pas la 3D (WebGL 2 absent).</p>`}
-  <a class="j-lien" href="atelier-depannage.html?i=chambre">Jouer la version 2D</a>
+  ${webgl2() ? `<button type="button" class="j-plein" id="entrer">Entrer chez Mme Martin</button>` : `<p class="j-alerte">Ton navigateur n'affiche pas la 3D (WebGL 2 absent).</p>${lienSecours("?i=chambre")}`}
+  <a class="j-lien" href="atelier-depannage.html">Tous les dépannages</a>
 </div>`;
 document.getElementById("entrer")?.addEventListener("click", () => {
   racine.innerHTML = `<div class="j-accueil"><p>Chargement de la maison…</p></div>`;
   document.body.classList.add("j-plein-ecran");
-  demarrer().catch((err) => { racine.innerHTML = `<div class="j-accueil"><p class="j-alerte">La 3D n'a pas pu démarrer (${err.message}).</p><a class="j-lien" href="atelier-depannage.html?i=chambre">Jouer la version 2D</a></div>`; });
+  demarrer().catch((err) => { racine.innerHTML = `<div class="j-accueil"><p class="j-alerte">La 3D n'a pas pu démarrer (${err.message}).</p>${lienSecours("?i=chambre")}</div>`; });
 });

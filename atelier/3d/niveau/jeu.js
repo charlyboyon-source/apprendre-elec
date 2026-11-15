@@ -2,6 +2,7 @@
 // toucher pour agir, caisse à outils (je prends l'appareil, je touche deux points). Mais ici, pas de guidage pas à pas :
 // un carnet qui se remplit tout seul, des questions au client, un indice en trois crans.
 // La logique du jeu est dans coeur.js, l'électricité dans ../moteur/moteur.js : ce fichier ne fait que montrer et toucher.
+import { liensFin, lienSecours } from "../niveaux.js";
 import * as THREE from "../three.module.min.js";
 import { creerMonde } from "./monde.js";
 import { creerPartie, heureFr, megohms } from "./coeur.js";
@@ -253,7 +254,7 @@ export function lancerNiveau(N) {
         ${b.conseils.map((c) => `<p class="j-conseil">💡 ${c}</p>`).join("")}
         <p class="j-petit">Temps passé chez ${N.client.court} : ${Math.floor(b.minutes / 60)} h ${String(b.minutes % 60).padStart(2, "0")}. Indices demandés : ${b.indices}.</p>
         <button type="button" class="j-plein" data-action="rejouer">Rejouer (la cause change à chaque partie)</button>
-        <a class="j-lien" href="atelier-3d.html">Niveau 1 : la lumière de la chambre</a></div>`;
+        ${liensFin(N.numero)}</div>`;
     }
     if (P.securise && N.etiquettes) return `<div class="j-panneau"><h2>🏷 Refais les étiquettes</h2><p>C'est réparé. Dernier geste : le repérage du tableau était faux. Écris ce que ton carnet a établi (onglet « Le tableau »).</p>
       ${N.etiquettes.map((x) => `<h3>Aujourd'hui : « ${x.ancienne} »</h3><div class="j-choix">${x.choix.map(([k, t]) => `<button type="button" class="j-question${J.etiq[x.dj] === k ? " n-choisi" : ""}" data-etiq="${x.dj}:${k}">${t}</button>`).join("")}</div>`).join("")}
@@ -395,7 +396,7 @@ export function lancerNiveau(N) {
   function gabarit() {
     racine.innerHTML = `
     <div class="j-haut"><div class="j-titre"><b>${N.titre}</b><span>Niveau ${N.numero} · ${N.client.court}</span></div><div class="j-compteurs"></div>
-      <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à l'atelier">✕</a></div>
+      <a class="j-quitter" href="atelier-depannage.html" aria-label="Quitter et revenir à la liste des dépannages">✕</a></div>
     <div class="t-objectif" role="status"></div>
     <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><div class="j-flash"></div><div class="n-fondu"></div><div class="n-survol" hidden aria-hidden="true"><i></i><span></span></div><div class="n-charge" hidden role="status"><b>Mme Roux ouvre la porte…</b><div><i></i></div><small></small></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output><div class="j-voile" hidden></div></div>
     <div class="j-barre">
@@ -460,10 +461,10 @@ export function lancerNiveau(N) {
   const webgl2 = () => { try { return !!document.createElement("canvas").getContext("webgl2"); } catch { return false; } };
   racine.innerHTML = `<div class="j-accueil"><p class="j-sur">Atelier dépannage · niveau ${N.numero}</p><h1>${N.titre}</h1><p>${N.pitch}</p>
     <ul><li>🔎 <b>Cherche</b> : ici, personne ne te dit quoi faire. La cause change à chaque partie.</li><li>📒 Le <b>carnet</b> note tout seul ce que tu constates.</li><li>👉 <b>Glisse</b> pour tourner la tête, <b>touche</b> pour agir ou t'approcher.</li></ul>
-    ${webgl2() ? `<button type="button" class="j-plein" id="entrer">${N.entrer}</button>` : `<p class="j-alerte">Ton navigateur n'affiche pas la 3D (WebGL 2 absent).</p>`}
-    <a class="j-lien" href="atelier-3d.html">Niveau 1 : la lumière de la chambre</a></div>`;
+    ${webgl2() ? `<button type="button" class="j-plein" id="entrer">${N.entrer}</button>` : `<p class="j-alerte">Ton navigateur n'affiche pas la 3D (WebGL 2 absent).</p>${lienSecours()}`}
+    <a class="j-lien" href="atelier-depannage.html">Tous les dépannages</a></div>`;
   document.getElementById("entrer")?.addEventListener("click", () => {
     racine.innerHTML = `<div class="j-accueil"><p>Chargement…</p></div>`; document.body.classList.add("j-plein-ecran");
-    demarrer().catch((err) => { console.error(err); racine.innerHTML = `<div class="j-accueil"><p class="j-alerte">La 3D n'a pas pu démarrer (${err.message}).</p></div>`; });
+    demarrer().catch((err) => { console.error(err); racine.innerHTML = `<div class="j-accueil"><p class="j-alerte">La 3D n'a pas pu démarrer (${err.message}).</p>${lienSecours()}<a class="j-lien" href="atelier-depannage.html">Tous les dépannages</a></div>`; });
   });
 }

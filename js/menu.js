@@ -17,7 +17,7 @@ export function brancherMenu(onChangement) {
   const page = location.pathname.split("/").pop() || "index.html";
   const actif = (cond) => (cond ? " actif" : "");
   const surParcours = page === "" || page === "index.html";
-  const surAtelier = page === "atelier-depannage.html" || page === "atelier-schemas.html";
+  const surAtelier = page === "atelier-depannage.html" || page === "atelier-ancien.html" || page === "atelier-schemas.html";
 
   drawer.innerHTML = `
     <div class="menu-tete">
@@ -71,7 +71,7 @@ export function brancherMenu(onChangement) {
         ["examen.html", "📝", "Examen blanc", "40 questions en 40 minutes"],
         ["erreurs.html", "🔁", "Mes erreurs", "Rejoue les questions ratées"]] },
       { id: "ateliers", label: "Ateliers", actif: surAtelier, liens: [
-        ["atelier-depannage.html", "🔧", "Atelier dépannage", "6 interventions : trouve la panne et répare"],
+        ["atelier-depannage.html", "🔧", "Atelier dépannage", "Des dépannages en 3D : trouve la panne et répare"],
         ["atelier-schemas.html", "🔌", "Atelier schémas", "13 montages à câbler toi-même"]] },
       { id: "outils", label: "Outils", actif: ["calculateurs.html", "configurateur.html", "materiel.html"].includes(page), liens: [
         ["calculateurs.html", "🧮", "Calculateurs", "Courant, section, chute de tension…"],

@@ -506,7 +506,7 @@ function menu() {
   racine.innerHTML = `<div class="im-menu"><p class="im-kicker">ATELIER SCHÉMAS</p><h2>Câble le montage</h2>
     <p>Comme à l'épreuve : une platine, une boîte de dérivation, des fils de couleur. Tu câbles hors tension, tu mets sous tension, tu essaies… et le contrôleur vérifie tout.</p>
     <div class="im-cartes">${MONTAGES.map((x) => `<button type="button" class="im-carte" data-montage="${x.id}"><span>${"●".repeat(x.niveau)}${"○".repeat(3 - x.niveau)} niveau ${x.niveau}${faits[x.id] ? ` · ${"★".repeat(faits[x.id])}` : ""}</span><b>${x.titre}</b></button>`).join("")}</div>
-    <p class="im-petit"><a href="atelier-depannage.html">Et pour chercher des pannes : l'atelier dépannage →</a></p></div>`;
+    <p class="im-petit"><a href="atelier-depannage.html">Et pour chercher des pannes : les dépannages en 3D →</a></p></div>`;
 }
 const CLE = "apprendreelec-schemas-v1";
 function lireFaits() { try { return JSON.parse(localStorage.getItem(CLE)) || {}; } catch { return {}; } }

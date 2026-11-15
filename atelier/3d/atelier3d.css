@@ -116,3 +116,4 @@
 .j-charge[hidden] { display: none; }
 .j-charge span { width: min(240px, 60%); height: 6px; border-radius: 3px; background: #1d2530; overflow: hidden; }
 .j-charge i { display: block; height: 100%; width: 0; background: #ffc400; transition: width 0.15s; }
+.j-suite { display: block; margin: 10px 0 0; padding: 13px; border-radius: 12px; background: #f2c230; color: #1d2228; font-weight: 800; text-align: center; text-decoration: none; }
