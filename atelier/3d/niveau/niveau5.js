@@ -1,9 +1,12 @@
 // Niveau 5 — « La lumière de l'escalier ne s'éteint plus » : les parties communes d'un petit immeuble.
 // Minuterie et boutons-poussoirs : séparer la commande de la puissance, chercher par moitiés au lieu de tout démonter.
 // Câblage : ../moteur/logements/immeuble.js
+import { CAGE, monter, descendre } from "./cage.js";
 import { immeuble, causesImmeuble, reperesImmeuble as F } from "../moteur/logements/immeuble.js";
 
 const porte = (vers, mur, u, y = 1.025) => ({ t: "porte", vers, mur, u, y });
+// les quatre niveaux de la cage : le hall, puis un palier par étage, empilés dans le même espace
+const LP = 2.6, LH = 4.0, cage = (k) => ({ ensemble: "cage", coque: false, pos: [0, k * CAGE.H, k ? -LH / 2 + LP / 2 : 0], taille: [3.8, LP], h: 2.6, sombre: true, teinte: 0xf1eee6, camera: [0, 1.62, LP / 2 - 0.9], pitch: -0.06 });
 const TEMPO = 3; // minutes : le réglage de cette minuterie (une donnée de l'histoire, pas une valeur de norme)
 const allume = (P) => P.calc().allume("l_hall");
 const alimente = (P) => P.calc().tension("Q2.Lout", "Q2.Nout") >= 50;
@@ -129,11 +132,11 @@ export default {
     { id: "cave", texte: "Le bouton de la cave, dont le voyant est éteint", non: "Son voyant est grillé, c'est tout : la touche revient et il allume l'escalier normalement." },
   ],
   remedes: [
-    { id: "auto", pour: ["A"], effet: (P) => { P.e.modes.mn = "auto"; }, texte: "Remettre le sélecteur sur « auto », l'étiqueter, et le dire franchement au syndic", fait: "Rien à réparer : le sélecteur est remis sur « auto » et tu colles une étiquette « ne pas toucher — auto ». Tu le dis franchement à Mme Costa : quelqu'un l'avait basculé pendant les travaux. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Le sélecteur est déjà sur « auto »." },
-    { id: "bouton", pour: ["B"], repare: true, texte: "Nettoyer ou remplacer le bouton-poussoir du 2e étage", fait: "Circuit coupé et vérifié, tu démontes le bouton du 2e : la peinture a collé la touche. Tu le remplaces. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Ce bouton n'est pas en cause : sa touche revient normalement." },
-    { id: "minuterie", pour: ["C"], repare: true, texte: "Remplacer la minuterie par un modèle équivalent et régler la temporisation", fait: "Circuit coupé et vérifié, tu remplaces la minuterie par un modèle équivalent, tu règles la temporisation sur trois minutes. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint.", non: "La minuterie fait son travail : la remplacer d'emblée ne règle rien, et le syndic paie une pièce pour rien." },
-    { id: "boite", pour: ["D"], repare: true, texte: "Refaire les connexions de la boîte du 3e étage et la refermer sans pincer les conducteurs", fait: "Circuit coupé et vérifié, tu refais la connexion du fil blanc dans la boîte du 3e, tu ranges les conducteurs et tu refermes sans les pincer. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Cette boîte est saine." },
-    { id: "ampoules", pour: [], texte: "Changer toutes les ampoules de l'escalier", non: "Des ampoules neuves resteraient allumées jour et nuit, elles aussi." },
+    { id: "auto", ou: ["mn"], pour: ["A"], effet: (P) => { P.e.modes.mn = "auto"; }, texte: "Remettre le sélecteur sur « auto », l'étiqueter, et le dire franchement au syndic", fait: "Rien à réparer : le sélecteur est remis sur « auto » et tu colles une étiquette « ne pas toucher — auto ». Tu le dis franchement à Mme Costa : quelqu'un l'avait basculé pendant les travaux. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Le sélecteur est déjà sur « auto »." },
+    { id: "bouton", ou: ["bp_2"], pour: ["B"], repare: true, texte: "Nettoyer ou remplacer le bouton-poussoir du 2e étage", fait: "Circuit coupé et vérifié, tu démontes le bouton du 2e : la peinture a collé la touche. Tu le remplaces. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Ce bouton n'est pas en cause : sa touche revient normalement." },
+    { id: "minuterie", ou: ["mn"], pour: ["C"], repare: true, texte: "Remplacer la minuterie par un modèle équivalent et régler la temporisation", fait: "Circuit coupé et vérifié, tu remplaces la minuterie par un modèle équivalent, tu règles la temporisation sur trois minutes. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint.", non: "La minuterie fait son travail : la remplacer d'emblée ne règle rien, et le syndic paie une pièce pour rien." },
+    { id: "boite", ou: ["bd_3"], pour: ["D"], repare: true, texte: "Refaire les connexions de la boîte du 3e étage et la refermer sans pincer les conducteurs", fait: "Circuit coupé et vérifié, tu refais la connexion du fil blanc dans la boîte du 3e, tu ranges les conducteurs et tu refermes sans les pincer. Tu essaies chaque bouton, de la cave au 3e : l'escalier s'allume, puis s'éteint au bout de trois minutes.", non: "Cette boîte est saine." },
+    { id: "ampoules", ou: ["l_hall", "l_1", "l_2", "l_3", "l_cave"], pour: [], texte: "Changer toutes les ampoules de l'escalier", non: "Des ampoules neuves resteraient allumées jour et nuit, elles aussi." },
   ],
   // après le remède : chaque bouton allume, et l'escalier s'éteint tout seul
   verifier(P) {
@@ -165,40 +168,46 @@ export default {
   plan: {
     tableau: { extras: { ID1: ["mn"] } },
     lieux: {
-      // Une cage d'escalier sans fenêtre, fraîchement repeinte : tout est éclairé par les lampes de la minuterie (ou par la frontale).
-      hall: { nom: "le hall", court: "Le hall", raccourci: "Hall", taille: [3.6, 4.2], sol: "carrelage", sombre: true, teinte: 0xe9e6dc, camera: [0, 1.62, 1.35], objets: [
-        { t: "plafonnier", id: "l_hall" }, { t: "bp", id: "bp_hall", mur: "N", u: -0.75, y: 1.1, lampe: "l_hall" }, { t: "bp", id: "bp_porte", mur: "S", u: 0.95, y: 1.1, lampe: "l_hall" }, { t: "boite", id: "bd_hall", mur: "N", u: -1.35, y: 2.2 },
-        porte("volee1", "N", 0.5), porte("local", "E", -0.6), porte("cave", "O", 1.1),
-        { t: "porteEntree", mur: "S", u: 0, y: 0 }, { t: "boitesLettres", mur: "O", u: -0.6, y: 1.25 }, { t: "panneauHall", id: "affichette", mur: "E", u: 0.9, y: 1.5 },
-        { t: "tapis", x: 0, z: 1.2, w: 1.6, d: 0.9, couleurs: ["#2f3f55", "#8d949c", "#22262d"] }, { t: "modele", f: "potted_plant_01", x: 1.45, z: 1.75, h: 0.9, sansOmbre: true },
-        { t: "peintres", x: -1.4, z: -1.75, r: 0.4 } ] },
-      local: { nom: "le local technique", court: "Le local technique", raccourci: "Local", taille: [2.6, 2.4], sol: "beton", sombre: true, teinte: 0xd9d6cc, camera: [0.1, 1.62, 0.75], objets: [
+      // Une cage d'escalier sans fenêtre, fraîchement repeinte : une seule cage continue, du hall au 3e (cage.js).
+      // Tout est éclairé par les lampes de la minuterie (ou par la frontale).
+      hall: { ...cage(0), nom: "le hall", court: "Le hall", raccourci: "Hall", taille: [3.8, LH], h: 2.6, camera: [0, 1.62, 1.0], objets: [
+        { t: "cageEtage", sousEscalier: true }, monter("palier1", LH),
+        { t: "plafonnier", id: "l_hall", hublot: true, z: 0.2, portee: 7, force: 9 }, { t: "bp", id: "bp_hall", mur: "N", u: 1.55, y: 1.1, lampe: "l_hall" }, { t: "bp", id: "bp_porte", mur: "S", u: 1.2, y: 1.1, lampe: "l_hall" }, { t: "boite", id: "bd_hall", mur: "E", u: -1.55, y: 2.3 },
+        porte("local", "E", 0.2), porte("cave", "N", -0.62),
+        { t: "porteVitree", mur: "S", u: 0, y: 0 }, { t: "interphone", mur: "S", u: -1.15, y: 1.35 }, { t: "boitesLettres", mur: "O", u: 0.3, y: 1.25 }, { t: "panneauHall", id: "affichette", mur: "E", u: -0.9, y: 1.5 },
+        { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "RDC", sous: "escalier ↑" }, { t: "extincteur", mur: "O", u: -1.35, y: 1.0 },
+        { t: "tapis", x: 0, z: 1.35, w: 1.5, d: 0.8, couleurs: ["#3a3530", "#57504a", "#22262d"] },
+        { t: "velo", x: -1.72, z: -1.05, r: 0 }, { t: "modele", f: "potted_plant_01", x: 1.55, z: 1.65, h: 0.9, sansOmbre: true } ] },
+      local: { nom: "le local technique", court: "Le local technique", raccourci: "Local", taille: [2.6, 2.4], sol: "beton", sombre: true, teinte: 0xe6e4de, peint: true, camera: [0.1, 1.62, 0.75], objets: [
         { t: "tableau", mur: "N", u: -0.2, y: 1.5 }, { t: "boite", id: "bd_tab", mur: "N", u: 0.75, y: 1.15 }, { t: "schema", id: "schema", mur: "N", u: 0.75, y: 1.62 },
         { t: "inter", id: "int_local", mur: "S", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_local" }, { t: "prise", id: "pc_local", mur: "E", u: -0.3, y: 1.15 }, { t: "boite", id: "bd_local", mur: "E", u: 0.6, y: 2.2 },
         porte("hall", "S", 0.3),
-        { t: "balai", x: -1.12, z: 0.6, r: 1.5 }, { t: "modele", f: "wooden_bucket_01", x: -1.0, z: 0.2, h: 0.32 }, { t: "modele", f: "multi_cleaner_5_litre", x: -1.05, z: -0.25 }, { t: "modele", f: "cardboard_box_01", x: 1.0, z: 0.85, r: 0.3, h: 0.3 } ] },
+        { t: "tuyaux", mur: "N", u: -1.05, y: 1.2 }, { t: "etagere", mur: "O", u: -0.35, y: 0, w: 0.9 },
+        { t: "balai", x: -1.12, z: 0.75, r: 1.5 }, { t: "modele", f: "wooden_bucket_01", x: -0.75, z: 0.85, h: 0.32 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.05, z: 0.2 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.08, z: 0.45, r: 0.6 }, { t: "modele", f: "cardboard_box_01", x: 1.0, z: 0.9, r: 0.3, h: 0.3 } ] },
       cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, objets: [
         { t: "plafonnier", id: "l_cave" }, { t: "bp", id: "bp_cave", mur: "S", u: -0.85, y: 1.1, lampe: "l_cave", voyantMort: true }, { t: "boite", id: "bd_cave", mur: "S", u: -1.35, y: 1.9 },
         porte("hall", "S", 0.2),
         { t: "cloture", mur: "N", u: 0, y: 0, w: 3.3, h: 1.9 }, { t: "modele", f: "wooden_crate_02", x: -1.2, z: 0.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: 1.2, z: 0.6, r: -0.2 }, { t: "modele", f: "wine_bottles_01", x: 1.25, z: -0.6 }, { t: "modele", f: "wooden_bucket_01", x: -1.25, z: -0.8, h: 0.36 }, { t: "modele", f: "cardboard_box_01", x: -0.6, z: -1.0, r: 0.5, h: 0.3 } ] },
-      volee1: { nom: "l'escalier, du hall au 1er", court: "Escalier (hall → 1er)", raccourci: "Escalier 1", taille: [1.5, 4.4], h: 5.3, sol: "bois", sombre: true, teinte: 0xe9e6dc, camera: [0, 1.62, 1.8], pitch: 0.28, objets: [
-        { t: "marches", n: 14, haut: 2.8 }, { t: "applique", id: "l_1", mur: "O", u: 0.3, y: 3.7 }, { t: "applique", id: "l_hall", mur: "E", u: 1.5, y: 2.1 }, { t: "rampe", x: 0.7, y: 0.92, z: 1.2, l: 3.2, h: 2.8 }, porte("hall", "S", 0), porte("palier1", "N", 0, 3.825) ] },
-      palier1: { nom: "le palier du 1er", court: "Le palier du 1er", raccourci: "1er", taille: [3.2, 2.8], sol: "bois", sombre: true, teinte: 0xe9e6dc, objets: [
-        { t: "plafonnier", id: "l_1" }, { t: "bp", id: "bp_1", mur: "N", u: -0.25, y: 1.1, lampe: "l_1" }, { t: "boite", id: "bd_1", mur: "N", u: -1.0, y: 2.2 },
-        porte("volee1", "S", -0.85), porte("volee2", "N", 0.85),
-        { t: "porteEntree", mur: "O", u: 0, y: 0 }, { t: "porteEntree", mur: "E", u: 0, y: 0 }, { t: "modele", f: "potted_plant_01", x: -1.3, z: -1.1, h: 0.75, sansOmbre: true } ] },
-      volee2: { nom: "l'escalier, du 1er au 2e", court: "Escalier (1er → 2e)", raccourci: "Escalier 2", taille: [1.5, 4.4], h: 5.3, sol: "bois", sombre: true, teinte: 0xe9e6dc, camera: [0, 1.62, 1.8], pitch: 0.28, objets: [
-        { t: "marches", n: 14, haut: 2.8 }, { t: "applique", id: "l_2", mur: "O", u: 0.3, y: 3.7 }, { t: "applique", id: "l_1", mur: "E", u: 1.5, y: 2.1 }, { t: "rampe", x: 0.7, y: 0.92, z: 1.2, l: 3.2, h: 2.8 }, porte("palier1", "S", 0), porte("palier2", "N", 0, 3.825) ] },
-      palier2: { nom: "le palier du 2e", court: "Le palier du 2e", raccourci: "2e", taille: [3.2, 2.8], sol: "bois", sombre: true, teinte: 0xe9e6dc, objets: [
-        { t: "plafonnier", id: "l_2" }, { t: "bp", id: "bp_2", mur: "N", u: -0.25, y: 1.1, lampe: "l_2", enfonce: (P) => P.cause === "B", peinture: (P) => P.cause === "B" }, { t: "boite", id: "bd_2", mur: "N", u: -1.0, y: 2.2 },
-        porte("volee2", "S", -0.85), porte("volee3", "N", 0.85),
-        { t: "porteEntree", mur: "O", u: 0, y: 0 }, { t: "porteEntree", mur: "E", u: 0, y: 0 }, { t: "modele", f: "rubber_boots", x: 1.2, z: 0.75, s: 0.9, e: [0.55, 1, 1], r: -Math.PI / 2 } ] },
-      volee3: { nom: "l'escalier, du 2e au 3e", court: "Escalier (2e → 3e)", raccourci: "Escalier 3", taille: [1.5, 4.4], h: 5.3, sol: "bois", sombre: true, teinte: 0xe9e6dc, camera: [0, 1.62, 1.8], pitch: 0.28, objets: [
-        { t: "marches", n: 14, haut: 2.8 }, { t: "applique", id: "l_3", mur: "O", u: 0.3, y: 3.7 }, { t: "applique", id: "l_2", mur: "E", u: 1.5, y: 2.1 }, { t: "rampe", x: 0.7, y: 0.92, z: 1.2, l: 3.2, h: 2.8 }, porte("palier2", "S", 0), porte("palier3", "N", 0, 3.825) ] },
-      palier3: { nom: "le palier du 3e", court: "Le palier du 3e", raccourci: "3e", taille: [3.2, 2.8], sol: "bois", sombre: true, teinte: 0xe9e6dc, objets: [
-        { t: "plafonnier", id: "l_3" }, { t: "bp", id: "bp_3", mur: "N", u: -0.25, y: 1.1, lampe: "l_3" }, { t: "boite", id: "bd_3", mur: "N", u: -1.0, y: 2.2 },
-        porte("volee3", "S", -0.85),
-        { t: "porteEntree", mur: "O", u: 0, y: 0 }, { t: "porteEntree", mur: "E", u: 0, y: 0 }, { t: "peintres", x: 1.0, z: -1.0, r: -0.5 }, { t: "modele", f: "potted_plant_01", x: -1.3, z: 1.05, h: 0.7, sansOmbre: true } ] },
+      palier1: { ...cage(1), nom: "le palier du 1er", court: "Le palier du 1er", raccourci: "1er", objets: [
+        { t: "cageEtage", arrive: true }, monter("palier2", LP), descendre("hall", LP),
+        { t: "plafonnier", id: "l_1", hublot: true, portee: 7, force: 9 }, { t: "bp", id: "bp_1", mur: "N", u: 1.55, y: 1.1, lampe: "l_1" }, { t: "boite", id: "bd_1", mur: "N", u: -1.55, y: 2.25 },
+        { t: "porteAppart", mur: "O", u: 0.35, y: 0, nom: "Durand", mot: "BONJOUR", sonnette: "gauche" }, { t: "porteAppart", mur: "E", u: -0.35, y: 0, nom: "Nguyen", teinte: 0x4a5a4a, paillasson: "#3f4a3a" },
+        { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "1er" }, { t: "extincteur", mur: "E", u: 0.95, y: 1.0 }, { t: "planEvacuation", mur: "S", u: -0.55, y: 1.5, etage: "1er étage" }, { t: "colonne", mur: "S", u: 0.15, y: 1.0 },
+        { t: "trottinette", x: -1.55, z: 0.95, r: 1.3 }, { t: "modele", f: "potted_plant_01", x: -1.5, z: -0.95, h: 0.75, sansOmbre: true } ] },
+      palier2: { ...cage(2), nom: "le palier du 2e", court: "Le palier du 2e", raccourci: "2e", objets: [
+        { t: "cageEtage", arrive: true }, monter("palier3", LP), descendre("palier1", LP),
+        { t: "plafonnier", id: "l_2", hublot: true, portee: 7, force: 9 }, { t: "bp", id: "bp_2", mur: "N", u: 1.55, y: 1.1, lampe: "l_2", enfonce: (P) => P.cause === "B", peinture: (P) => P.cause === "B" }, { t: "boite", id: "bd_2", mur: "N", u: -1.55, y: 2.25 },
+        { t: "porteAppart", mur: "O", u: 0.35, y: 0, nom: "Petit", teinte: 0x6a4a3a, sonnette: "gauche" }, { t: "porteAppart", mur: "E", u: -0.35, y: 0, nom: "Benali", mot: "WELCOME", paillasson: "#6b4a2a" },
+        { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "2e" }, { t: "extincteur", mur: "E", u: 0.95, y: 1.0 }, { t: "planEvacuation", mur: "S", u: -0.55, y: 1.5, etage: "2e étage" }, { t: "colonne", mur: "S", u: 0.15, y: 1.0 },
+        { t: "ruban", mur: "N", u: 1.55, y: 1.1, bandes: [[-0.08, 0.075, 0.2, 0.05], [0.075, -0.02, 0.16, 1.5]] },
+        { t: "modele", f: "rubber_boots", x: 1.6, z: 0.5, s: 0.9, e: [0.55, 1, 1], r: -Math.PI / 2 }, { t: "peintres", x: -1.35, z: 0.9, r: 1.9 } ] },
+      palier3: { ...cage(3), nom: "le palier du 3e", court: "Le palier du 3e", raccourci: "3e", objets: [
+        { t: "cageEtage", arrive: true, monte: false, dernier: true }, descendre("palier2", LP),
+        { t: "plafonnier", id: "l_3", hublot: true, portee: 7, force: 9 }, { t: "bp", id: "bp_3", mur: "N", u: 1.55, y: 1.1, lampe: "l_3" }, { t: "boite", id: "bd_3", mur: "N", u: -1.55, y: 2.25 },
+        { t: "porteAppart", mur: "O", u: 0.35, y: 0, nom: "Roche", sonnette: "gauche", paillasson: "#4a3f5a" }, { t: "porteAppart", mur: "E", u: -0.35, y: 0, nom: "Lopez", teinte: 0x3f4f5f, mot: "HOLA" },
+        { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "3e" }, { t: "extincteur", mur: "E", u: 0.95, y: 1.0 }, { t: "planEvacuation", mur: "S", u: -0.55, y: 1.5, etage: "3e étage" }, { t: "colonne", mur: "S", u: 0.15, y: 1.0 },
+        { t: "ruban", mur: "N", u: -1.55, y: 2.25, bandes: [[0, 0.09, 0.26, -0.04], [-0.11, 0, 0.2, 1.57], [0.05, -1.2, 0.3, 0.1]] }, { t: "ruban", mur: "O", u: 0.35, y: 1.0, bandes: [[0.56, 0.4, 0.5, 1.57], [0.56, -0.3, 0.4, 1.6]] },
+        { t: "escabeau", x: -1.25, z: 0.85, r: 0.5 }, { t: "peintres", x: 1.1, z: -0.85, r: -0.5 } ] },
     },
   },
 };

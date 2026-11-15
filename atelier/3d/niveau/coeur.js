@@ -209,6 +209,8 @@ export function creerPartie(N, cause) {
       case "securiser": { // la fin réaliste : remplacer, mettre hors service, expliquer ; puis on vérifie que ça tient
         if (!P.trouve) break;
         const rem = N.remedes.find((x) => x.id === a.id);
+        // réparer est un geste fait sur place : s'il démonte ou resserre, c'est hors tension
+        if (rem.repare && a.ou) { let vif = false; try { vif = sousTension(bornesDe(a.ou)); } catch { vif = false; } if (vif) { faute("Tu as réparé sous tension. Avant de démonter, de resserrer ou de remplacer, on coupe en amont et on vérifie l'absence de tension au VAT."); dire("⚡ C'était encore sous tension ! On coupe en amont, on vérifie l'absence de tension, et seulement ensuite on répare.", "danger"); } }
         if (!rem.pour.includes(cause)) { P.mauvaisRemedes++; if (rem.faute) faute(rem.faute); dire(rem.non || "Ce n'est pas la bonne réponse à cette panne.", "client"); retour = false; break; }
         for (const k of Object.keys(e.deconnecte)) delete e.deconnecte[k];
         if (rem.repare) inst.agir(e, { type: "reparer", panne: 0 });

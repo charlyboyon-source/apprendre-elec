@@ -4,6 +4,7 @@
 import * as THREE from "../three.module.min.js";
 import { GLTFLoader } from "../libs/GLTFLoader.js";
 import { MeshoptDecoder } from "../libs/meshopt_decoder.module.js";
+import { poseursCage } from "./cage.js";
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const cache = {}; // un modèle n'est téléchargé qu'une fois, même si on rejoue
@@ -662,6 +663,8 @@ haie(o, lieuId, lieu, G, g) {
       const desc = cyl(0.035, 0.035, o.h, mat(0x5a5f66, { metalness: 0.6, roughness: 0.4 }), 10); desc.position.set(-o.w / 2 + 0.4, o.h / 2, 0.06); g.add(desc);
     },
   };
+
+  Object.assign(poseurs, poseursCage({ M, mat, boite, cyl, cible, pbr, toile, temoins }));
 
   return {
     suivi, lancerSuite,

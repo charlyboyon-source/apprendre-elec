@@ -6,7 +6,7 @@ import { liensFin, lienSecours } from "../niveaux.js";
 import * as THREE from "../three.module.min.js";
 import { creerMonde } from "./monde.js";
 import { creerPartie, heureFr, megohms } from "./coeur.js";
-import { creerMultimetre, creerVAT, creerSonde } from "../materiel.js";
+import { creerMultimetre, creerVAT, creerSonde, creerTournevis } from "../materiel.js";
 import { sons } from "../../immersif/sons.js";
 import { ambiance } from "./ambiance.js";
 
@@ -19,8 +19,9 @@ export function lancerNiveau(N) {
   const J = { etiq: {}, vue: N.depart, outil: null, rouge: null, noir: null, dernier: null, lecture: null, panneau: "client", debut: true, lieux: new Set([N.depart]), fil: [], bulle: null, aides: new Set(), onglet: "constats", pris: 0 };
   const regard = { yaw: 0, pitch: 0, base: null };
   const main = {}, sondes = {};
-  const OUTILS = { vat: ["VAT", "VAT en main."], multi: ["Multimètre", "Multimètre en main, réglé sur V~."], iso: ["Isolement", "Mesureur d'isolement en main."], pince: ["Pince", "Pince ampèremétrique en main."], ohm: ["Continuité", "Multimètre en main, réglé sur Ω."] };
+  const OUTILS = { vat: ["VAT", "VAT en main."], multi: ["Multimètre", "Multimètre en main, réglé sur V~."], iso: ["Isolement", "Mesureur d'isolement en main."], pince: ["Pince", "Pince ampèremétrique en main."], tournevis: ["Réparer", "Tournevis en main."], ohm: ["Continuité", "Multimètre en main, réglé sur Ω."] };
   const AIDES = {
+    tournevis: "Va sur place et touche ce que tu remets en état : un fil, une boîte, un appareil, une manette. Avant de réparer, on coupe et on vérifie l'absence de tension.",
     vat: "Touche les deux points entre lesquels tu veux vérifier. Teste-le d'abord sur une prise qui marche.",
     multi: "Touche les deux points entre lesquels tu veux mesurer.",
     pince: "Elle mesure le courant qui passe, sans rien débrancher. Au tableau, touche UN conducteur à la sortie d'un disjoncteur : elle se referme autour de lui.",
@@ -28,7 +29,7 @@ export function lancerNiveau(N) {
     iso: "Il se pose sur un circuit COUPÉ : touche une borne de phase ou de neutre, puis une borne de terre. Compare les circuits entre eux.",
   };
   const lisse = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-  const mesureEnMain = () => !!J.outil;
+  const mesureEnMain = () => !!J.outil && J.outil !== "tournevis";
   const libre = () => !!W.vues[J.vue].libre;
   const lieuDe = (v) => W.vues[v].lieu;
 
@@ -56,13 +57,25 @@ export function lancerNiveau(N) {
     let dy = vers.yaw - regard.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy));
     return new Promise((res) => { transition = { t0: performance.now(), d: REDUIT ? 1 : d, de: { pos: camera.position.clone(), yaw: regard.yaw, pitch: regard.pitch, fov: camera.fov }, a: { pos: vers.pos.clone(), yaw: regard.yaw + dy, pitch: vers.pitch, fov }, res }; });
   }
+  // marcher le long d'un chemin (une volée d'escalier) : la caméra avance à vitesse de pas, le regard suit la pente
+  function marcher(points) {
+    if (transition) { const a = transition; transition = null; a.res(); }
+    const pts = [camera.position.clone(), ...points.map((q) => q.clone())], cumul = [0];
+    for (let i = 1; i < pts.length; i++) cumul.push(cumul[i - 1] + pts[i].distanceTo(pts[i - 1]));
+    const total = cumul[cumul.length - 1];
+    return new Promise((res) => { transition = { marche: { pts, cumul, total }, t0: performance.now(), d: REDUIT ? 1 : Math.max(600, (total / 3) * 1000), de: { fov: camera.fov }, res }; });
+  }
   const fondu = (on) => new Promise((res) => { const f = racine.querySelector(".n-fondu"); f.classList.toggle("on", on); setTimeout(res, REDUIT ? 1 : 190); });
   async function allerVue(v) {
     const de = J.vue; if (v === de) return;
-    ranger();
+    if (J.outil !== "tournevis") ranger();
     const lA = lieuDe(de), lB = lieuDe(v);
-    if (lA !== lB) { // on passe par la porte : on s'en approche, fondu, on ressort par la porte de l'autre lieu
-      const pA = W.lieux[lA].portes && W.lieux[lA].portes[lB], pB = W.lieux[lB].portes && W.lieux[lB].portes[lA];
+    const pA = lA !== lB && W.lieux[lA].portes && W.lieux[lA].portes[lB], pB = lA !== lB && W.lieux[lB].portes && W.lieux[lB].portes[lA];
+    if (pA && pA.userData.chemin) { // un escalier : on le monte (ou on le descend) marche après marche, sans fondu
+      regard.base = null; J.vue = v; W.maj(lB, true, v); ambiance(W.ambiance); majUI();
+      await marcher([...pA.userData.chemin, cadrage(v).pos]);
+      jouer({ type: "deplacer", lieu: lB });
+    } else if (lA !== lB) { // on passe par la porte : on s'en approche, fondu, on ressort par la porte de l'autre lieu
       if (pA && !pA.userData.trappe) { const p = pA.localToWorld(new THREE.Vector3(0, 0.55, 0.7)), c = pA.localToWorld(new THREE.Vector3(0, 0.5, 0)); await glisser(orient(p, c), 520, fovLibre); }
       await fondu(true);
       J.vue = v; W.maj(lB, true, v); ambiance(W.ambiance);
@@ -127,6 +140,7 @@ export function lancerNiveau(N) {
   function nomGeste(id) {
     const [quoi, ...reste] = id.split(":"), arg = reste.join(":"), o = P.inst.organe[arg] || P.inst.mobile[arg];
     if (quoi === "aller") return `Aller : ${W.vues[arg].court}`;
+    if (J.outil === "tournevis" && quoi !== "approcher" && remedesIci(id).length) return "🪛 Réparer ici";
     if (quoi === "approcher") return "S'approcher";
     if (quoi === "manette") return "Manette : monter / baisser";
     if (quoi === "test") return "Bouton test";
@@ -145,8 +159,19 @@ export function lancerNiveau(N) {
     el.hidden = false; el.style.left = `${x}px`; el.style.top = `${y}px`; el.querySelector("span").textContent = nomGeste(id);
     if (appui) { signalFin = performance.now() + 500; el.classList.remove("appui"); void el.offsetWidth; el.classList.add("appui"); setTimeout(() => { if (performance.now() >= signalFin) el.hidden = true; }, 520); }
   }
-  async function agir(id) {
+  // réparer est un geste : tournevis en main, on touche sur place ce qu'on remet en état
+  const organesDe = (id) => { const [q, ...r] = id.split(":"); if (q === "fil") { const c = P.inst.conducteur[r[0]]; return [c.de, c.vers].map((b) => b.split(".")[0]); } return [r.join(":")]; };
+  const remedesIci = (id) => { const orgs = organesDe(id); return N.remedes.filter((x) => (x.ou || []).some((o) => orgs.includes(o))).map((x) => ({ rem: x, ou: x.ou.find((o) => orgs.includes(o)) })); };
+  function appliquer(idRemede, ou) { sons.clip(); const ok = jouer({ type: "securiser", id: idRemede, ou }); if (ok) { sons.succes(); ranger(); J.panneau = "fin"; } else J.panneau = null; majUI(); return ok; }
+  function reparerIci(id, c) {
+    // au tableau, la même manette sert aussi à couper : on demande toujours ce qu'on veut y faire
+    const tableau = ["manette", "test", "mode", "regler"].includes(id.split(":")[0]);
+    if (c.length === 1 && !tableau) return void appliquer(c[0].rem.id, c[0].ou);
+    J.ici = { ou: c[0].ou, ids: c.map((x) => x.rem.id), cible: tableau ? id : null }; J.panneau = "ici"; majUI();
+  }
+  async function agir(id, normal = false) {
     const [quoi, ...reste] = id.split(":"), arg = reste.join(":");
+    if (!normal && J.outil === "tournevis" && quoi !== "aller" && quoi !== "approcher") { const c = remedesIci(id); if (c.length) return reparerIci(id, c); }
     if (quoi === "aller") return allerVue(arg);
     if (quoi === "approcher") { const v = `v:${arg}`; await allerVue(v); if (N.regards && N.regards[arg] && !J.aides.has(`vu:${arg}`)) { J.aides.add(`vu:${arg}`); jouer({ type: "regarder", id: arg }); } return; }
     if (quoi === "regarder") return void jouer({ type: "regarder", id: arg });
@@ -155,7 +180,7 @@ export function lancerNiveau(N) {
     if (quoi === "mode") { sons.clip(); return void jouer({ type: "mode", id: arg }); }
     if (quoi === "regler") { sons.clip(); return void jouer({ type: "regler_horloge", id: arg }); }
     if (quoi === "essayer") { sons.interrupteur(); return void jouer(N.gestes && N.gestes[arg] ? { type: "geste", id: arg } : { type: "essayer", id: arg }); }
-    if (quoi === "ouvrir") { sons.clip(); ranger(); return void jouer({ type: "ouvrir", id: arg }); }
+    if (quoi === "ouvrir") { sons.clip(); if (J.outil !== "tournevis") ranger(); return void jouer({ type: "ouvrir", id: arg }); }
     if (quoi === "fil" && W.sorti(reste[0], reste[1])) return void jouer({ type: "regarder", id });
     if (quoi === "fil") { const [cid, ext] = reste; sons.clip(); const deja = !!P.e.deconnecte[`${cid}:${ext}`]; ranger(); return void jouer({ type: deja ? "rebrancher" : "debrancher", conducteur: cid, extremite: ext }); }
     return poserPointe(id); // un point de mesure
@@ -165,12 +190,13 @@ export function lancerNiveau(N) {
   function ranger() { J.outil = null; J.rouge = null; J.noir = null; J.dernier = null; J.lecture = null; if (main.vat) main.vat.userData.maj(0); }
   function prendre(outil) {
     sons.clip();
+    if (outil === "tournevis" && J.outil !== outil && (!P.trouve || P.securise)) { J.bulle = { t: P.securise ? "C'est réparé." : "On ne répare pas au hasard : trouve d'abord la cause, puis dis-la avec « J'ai trouvé ».", type: "info" }; return void majUI(); }
     if (J.outil === outil) { ranger(); J.bulle = { t: "Appareil rangé dans la caisse.", type: "info" }; }
     else {
       ranger(); J.outil = outil; J.pris = performance.now();
       const premiere = !J.aides.has(outil); J.aides.add(outil);
       const points = W.cibles.some((c) => c.type === "point" && c.vues.includes(J.vue));
-      J.bulle = { t: `${OUTILS[outil][1]} ${premiere ? AIDES[outil] : points ? "Touche deux points." : "Approche-toi d'une prise, du tableau ou d'une boîte ouverte pour mesurer."}`, type: "mesure" };
+      J.bulle = { t: `${OUTILS[outil][1]} ${premiere || outil === "tournevis" ? AIDES[outil] : points ? "Touche deux points." : "Approche-toi d'une prise, du tableau ou d'une boîte ouverte pour mesurer."}`, type: "mesure" };
     }
     majSondes(); majUI();
   }
@@ -208,6 +234,7 @@ export function lancerNiveau(N) {
     main.vat.visible = J.outil === "vat" && !libre(); main.multi.visible = (J.outil === "multi" || J.outil === "iso" || J.outil === "ohm" || J.outil === "pince") && !libre();
     if (main.multi.visible) { pose(main.multi, 0.68, -0.72 - bas, 0.5, -0.25, 0.12); main.multi.userData.maj(J.outil === "ohm" ? "Ω" : "V", J.lecture ? J.lecture.replace(" MΩ", "M").replace("plus de ", ">") : null); }
     if (main.vat.visible) pose(main.vat, 0.74, -0.66 - bas, 0.56, -0.2, 0.18);
+    main.tournevis.visible = J.outil === "tournevis"; if (main.tournevis.visible) pose(main.tournevis, 0.72, -0.4 - bas, 0.8, Math.PI - 0.3, -0.35);
   }
 
   /* ---------- interface ---------- */
@@ -245,7 +272,7 @@ export function lancerNiveau(N) {
     if (P.fini) {
       const b = P.bilan;
       return `<div class="j-panneau j-fin"><p class="j-etoiles">${"★".repeat(b.etoiles)}${"☆".repeat(3 - b.etoiles)}</p><h2>${b.cause}</h2>
-        <p>${b.explication}</p>
+        <p>${b.explication}</p>${N.schemaFin ? N.schemaFin(P) : ""}
         <h3>Ta preuve</h3><p>${b.preuve || "Tu as trouvé, mais aucune mesure du carnet ne le prouve : sur un vrai dépannage, on isole le tronçon et on mesure avant d'affirmer."}</p>
         <h3>Ce que tu as fait</h3><p>${b.remede}</p>
         <h3>La bonne démarche</h3><ol>${b.demarche.map((x) => `<li>${x}</li>`).join("")}</ol>
@@ -264,9 +291,17 @@ export function lancerNiveau(N) {
       <div class="j-choix">${N.diagnostics.map((d) => `<button type="button" class="j-question" data-diagnostic="${d.id}">${d.texte}</button>`).join("")}</div>
       ${P.preuves.length ? `<p class="j-ok">Ton carnet contient une mesure qui prouve une cause.</p>` : `<p class="j-petit">Ton carnet ne contient pas encore de mesure qui prouve une cause. Tu peux répondre quand même.</p>`}
       <button type="button" class="j-plein" data-action="fermer">Je cherche encore</button></div>`;
-    return `<div class="j-panneau"><h2>Que fais-tu ?</h2><p>La cause est trouvée. Il faut maintenant que ça ne saute plus, sans mettre personne en danger.</p>
-      <div class="j-choix">${N.remedes.map((d) => `<button type="button" class="j-question" data-remede="${d.id}">${d.texte}</button>`).join("")}</div>
-      <button type="button" class="j-plein" data-action="fermer">Je réfléchis</button></div>`;
+    return `<div class="j-panneau"><h2>🪛 À toi de réparer</h2><p>La cause est trouvée. Il reste à remettre l'installation en état, sans mettre personne en danger.</p>
+      <p><b>Va sur place</b>, tournevis en main, et <b>touche ce que tu remets en état</b> : un fil, une boîte, un appareil, une manette du tableau. Avant de réparer, on coupe le circuit et on vérifie l'absence de tension.</p>
+      <details class="n-idees"><summary>Je ne vois pas quoi faire</summary><ul>${N.remedes.map((d) => `<li>${d.texte}</li>`).join("")}</ul><p class="j-petit">Une seule de ces réponses est la bonne. Choisis, puis va la faire sur place.</p></details>
+      <button type="button" class="j-plein" data-action="tournevis">${J.outil === "tournevis" ? "J'y vais" : "Prendre le tournevis"}</button></div>`;
+  }
+  function panneauIci() {
+    const nom = (P.inst.organe[J.ici.ou] || P.inst.mobile[J.ici.ou] || P.inst.protections.find((x) => x.id === J.ici.ou) || {}).nom || (P.inst.protections.find((x) => x.id === J.ici.ou) || {}).etiquette || "";
+    return `<div class="j-panneau"><h2>🪛 Que fais-tu ici ?</h2>${nom ? `<p>${nom}</p>` : ""}
+      <div class="j-choix">${J.ici.ids.map((id) => { const d = N.remedes.find((x) => x.id === id); return `<button type="button" class="j-question" data-remede="${d.id}">${d.texte}</button>`; }).join("")}</div>
+      ${J.ici.cible ? `<button type="button" class="j-question" data-action="normal">Seulement l'actionner, sans rien réparer</button>` : ""}
+      <button type="button" class="j-plein" data-action="fermer">Rien pour l'instant</button></div>`;
   }
   let minuterie = null;
   function majUI() {
@@ -279,12 +314,12 @@ export function lancerNiveau(N) {
     if (J.bulle) { const b = J.bulle; minuterie = setTimeout(() => { if (J.bulle === b) { J.bulle = null; majUI(); } }, Math.min(14000, 3500 + b.t.length * 45)); }
     racine.querySelectorAll("[data-outil]").forEach((b) => { const pris = J.outil === b.dataset.outil; b.classList.toggle("en-main", pris); b.setAttribute("aria-pressed", pris); });
     const lec = racine.querySelector(".j-lecture"), deux = J.outil === "pince" ? !!J.rouge : !!(J.rouge && J.noir);
-    lec.hidden = !J.outil;
-    if (J.outil) { lec.className = `j-lecture${J.outil === "vat" ? " vat" : ""}${J.outil === "vat" && deux && J.lecture === "Tension !" ? " allume" : ""}`; lec.innerHTML = `<small>${J.outil === "multi" ? "Multimètre · V~" : J.outil === "vat" ? "VAT" : J.outil === "ohm" ? "Multimètre · Ω" : J.outil === "pince" ? "Pince ampèremétrique" : "Mesureur d'isolement"}</small><b>${deux && J.lecture ? J.lecture : "– – –"}</b>`; }
+    lec.hidden = !mesureEnMain();
+    if (mesureEnMain()) { lec.className = `j-lecture${J.outil === "vat" ? " vat" : ""}${J.outil === "vat" && deux && J.lecture === "Tension !" ? " allume" : ""}`; lec.innerHTML = `<small>${J.outil === "multi" ? "Multimètre · V~" : J.outil === "vat" ? "VAT" : J.outil === "ohm" ? "Multimètre · Ω" : J.outil === "pince" ? "Pince ampèremétrique" : "Mesureur d'isolement"}</small><b>${deux && J.lecture ? J.lecture : "– – –"}</b>`; }
     const parent = W.vues[J.vue].parent, rec = racine.querySelector("[data-action=reculer]");
     rec.disabled = !parent; rec.textContent = parent ? `↩ ${W.vues[parent].court}` : `📍 ${W.vues[J.vue].court}`;
     racine.querySelector(".j-lieux").innerHTML = [...J.lieux].filter((v) => v !== J.vue && v !== parent).map((v) => `<button type="button" data-lieu="${v}">${W.vues[v].lieuRaccourci || W.vues[v].court}</button>`).join("");
-    const voile = racine.querySelector(".j-voile"), pan = { client: panneauClient, carnet: panneauCarnet, aide: panneauAide, temps: panneauTemps, fin: panneauFin }[J.panneau];
+    const voile = racine.querySelector(".j-voile"), pan = { client: panneauClient, carnet: panneauCarnet, aide: panneauAide, temps: panneauTemps, fin: panneauFin, ici: panneauIci }[J.panneau];
     voile.hidden = !pan; if (pan) voile.innerHTML = pan();
     racine.querySelector("[data-panneau=carnet] small").textContent = Object.values(P.carnet).reduce((s, l) => s + l.length, 0) || "";
   }
@@ -305,7 +340,23 @@ export function lancerNiveau(N) {
   let dernier = performance.now();
   function image(now) {
     const dt = Math.min(0.1, (now - dernier) / 1000); dernier = now;
-    if (transition) {
+    if (transition && transition.marche) {
+      const tr = transition, m = tr.marche, t = Math.min(1, (now - tr.t0) / tr.d), s = (t < 0.5 ? 2 * t * t : 1 - 2 * (1 - t) * (1 - t)) * m.total;
+      let i = 1; while (i < m.pts.length - 1 && m.cumul[i] < s) i++;
+      const a = m.pts[i - 1], b = m.pts[i], f = Math.min(1, (s - m.cumul[i - 1]) / Math.max(1e-6, m.cumul[i] - m.cumul[i - 1]));
+      camera.position.lerpVectors(a, b, f);
+      // le regard vise un point un peu plus loin sur le chemin : on voit venir la volée suivante au lieu de fixer le mur
+      const s2 = Math.min(m.total, s + 1.4); let j = 1; while (j < m.pts.length - 1 && m.cumul[j] < s2) j++;
+      const vis = m.pts[j - 1].clone().lerp(m.pts[j], Math.min(1, (s2 - m.cumul[j - 1]) / Math.max(1e-6, m.cumul[j] - m.cumul[j - 1])));
+      const dx = vis.x - camera.position.x, dy = vis.y - camera.position.y, dz = vis.z - camera.position.z, plat = Math.hypot(dx, dz), pente = b.y - a.y;
+      if (Math.abs(pente) > 0.05) camera.position.y += 0.022 * Math.abs(Math.sin((s * Math.PI) / 0.27));
+      if (plat > 0.15) {
+        const yaw = Math.atan2(-dx, -dz), pitch = pente > 0.05 ? -0.3 : pente < -0.05 ? -0.7 : -0.15, q = Math.min(1, dt * 4); // on regarde les marches devant soi
+        let e = yaw - regard.yaw; e = Math.atan2(Math.sin(e), Math.cos(e)); regard.yaw += e * q; regard.pitch += (pitch - regard.pitch) * q;
+      }
+      if (camera.fov !== fovLibre) { camera.fov += (fovLibre - camera.fov) * Math.min(1, dt * 6); camera.updateProjectionMatrix(); }
+      if (t >= 1) { transition = null; camera.fov = fovLibre; camera.updateProjectionMatrix(); majSondes(); tr.res(); }
+    } else if (transition) {
       const t = Math.min(1, (now - transition.t0) / transition.d), k = lisse(t), tr = transition;
       camera.position.lerpVectors(tr.de.pos, tr.a.pos, k); regard.yaw = tr.de.yaw + (tr.a.yaw - tr.de.yaw) * k; regard.pitch = tr.de.pitch + (tr.a.pitch - tr.de.pitch) * k;
       camera.fov = tr.de.fov + (tr.a.fov - tr.de.fov) * k; camera.updateProjectionMatrix();
@@ -381,12 +432,15 @@ export function lancerNiveau(N) {
       else if (d.panneau) J.panneau = J.panneau === d.panneau ? null : d.panneau;
       else if (d.question) { jouer({ type: "question", id: d.question }); J.bulle = null; }
       else if (d.outil) return prendre(d.outil);
-      else if (d.diagnostic) { const ok = jouer({ type: "diagnostic", id: d.diagnostic }); if (!ok) J.panneau = null; }
-      else if (d.remede) { const ok = jouer({ type: "securiser", id: d.remede }); if (ok) sons.succes(); else J.panneau = null; }
+      else if (d.diagnostic) { const ok = jouer({ type: "diagnostic", id: d.diagnostic }); J.panneau = null; if (ok) { ranger(); J.outil = "tournevis"; J.pris = performance.now(); J.bulle = { t: `${J.bulle ? J.bulle.t : "C'est bien ça."} 🪛 Tournevis en main : va sur place et touche ce que tu remets en état.`, type: "ok" }; majSondes(); } }
+      else if (d.remede) return void appliquer(d.remede, J.ici && J.ici.ou);
+      else if (d.action === "normal") { const c = J.ici.cible; J.panneau = null; majUI(); return void agir(c, true); }
+      else if (d.action === "tournevis") { J.panneau = null; if (J.outil !== "tournevis") { ranger(); J.outil = "tournevis"; J.pris = performance.now(); J.bulle = { t: `Tournevis en main. ${AIDES.tournevis}`, type: "mesure" }; majSondes(); } }
       majUI();
     });
   }
   const ICONES = {
+    tournevis: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="19" y="2" width="10" height="17" rx="4" fill="#d8261c" stroke="#1d2228" stroke-width="2"/><rect x="18" y="17" width="12" height="4" rx="1" fill="#f2c230" stroke="#1d2228" stroke-width="1.5"/><rect x="22.5" y="21" width="3" height="14" fill="#c9ccd0" stroke="#1d2228" stroke-width="1.2"/><rect x="21.5" y="34" width="5" height="3" fill="#8d949c" stroke="#1d2228" stroke-width="1"/></svg>`,
     vat: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="2" width="14" height="30" rx="4" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="20" y="5" width="8" height="3" rx="1" fill="#ff3b2f"/><rect x="20" y="10" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="15" width="8" height="3" rx="1" fill="#6b7480"/><path d="M24 32v6" stroke="#9aa3ad" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26C8 26 8 12 8 6" fill="none" stroke="#1d2228" stroke-width="2"/><rect x="5" y="2" width="6" height="12" rx="2" fill="#2f6fb8" stroke="#1d2228" stroke-width="1.5"/></svg>`,
     pince: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="16" width="14" height="22" rx="3" fill="#d9480f" stroke="#1d2228" stroke-width="2"/><rect x="19.5" y="20" width="9" height="6" rx="1" fill="#c8d4b4" stroke="#1d2228"/><path d="M19 16C12 12 13 2 24 2s12 10 5 14" fill="none" stroke="#1d2228" stroke-width="4"/><path d="M19 16C12 12 13 2 24 2s12 10 5 14" fill="none" stroke="#d9480f" stroke-width="2"/><circle cx="24" cy="9" r="2.2" fill="#c8261e"/></svg>`,
     ohm: `<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="14" y="1" width="20" height="34" rx="4" fill="#f2c230" stroke="#1d2228" stroke-width="2"/><rect x="17" y="4" width="14" height="9" rx="1.5" fill="#c8d4b4" stroke="#1d2228" stroke-width="1.2"/><circle cx="24" cy="23" r="7" fill="#2b2f34"/><text x="24" y="26.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">Ω</text></svg>`,
@@ -400,7 +454,7 @@ export function lancerNiveau(N) {
     <div class="t-objectif" role="status"></div>
     <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><div class="j-flash"></div><div class="n-fondu"></div><div class="n-survol" hidden aria-hidden="true"><i></i><span></span></div><div class="n-charge" hidden role="status"><b>Mme Roux ouvre la porte…</b><div><i></i></div><small></small></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output><div class="j-voile" hidden></div></div>
     <div class="j-barre">
-      <div class="j-caisse" role="group" aria-label="Caisse à outils" style="grid-template-columns:repeat(${N.outils.length},1fr)">${N.outils.map((o) => `<button type="button" data-outil="${o}" aria-pressed="false">${ICONES[o]}<b>${OUTILS[o][0]}</b></button>`).join("")}</div>
+      <div class="j-caisse${N.outils.length >= 5 ? " serre" : ""}" role="group" aria-label="Caisse à outils" style="grid-template-columns:repeat(${N.outils.length + 1},1fr)">${[...N.outils, "tournevis"].map((o) => `<button type="button" data-outil="${o}" aria-pressed="false">${ICONES[o]}<b>${OUTILS[o][0]}</b></button>`).join("")}</div>
       <div class="j-deplacer"><button type="button" class="j-reculer" data-action="reculer">↩</button><div class="j-lieux" aria-label="Aller directement à"></div></div>
       <div class="j-boutons n-boutons">
         <button type="button" data-panneau="client">💬 ${N.client.court}</button>
@@ -433,7 +487,7 @@ export function lancerNiveau(N) {
     THREE.DefaultLoadingManager.onProgress = () => reveiller(); THREE.DefaultLoadingManager.onLoad = () => reveiller(90);
     camera = new THREE.PerspectiveCamera(60, 1, 0.01, 60); camera.rotation.order = "YXZ";
     reconstruire();
-    main.multi = creerMultimetre(); main.vat = creerVAT(); for (const o of [main.multi, main.vat]) { o.visible = false; camera.add(o); }
+    main.multi = creerMultimetre(); main.vat = creerVAT(); main.tournevis = creerTournevis(); main.tournevis.userData.hauteur = 0.16; for (const o of [main.multi, main.vat, main.tournevis]) { o.visible = false; camera.add(o); }
     camera.add(new THREE.PointLight(0xfff1dc, 0.06, 0.11, 2)); // toujours présente : l'allumer et l'éteindre obligerait à recalculer tous les matériaux (2 s d'arrêt)
     sondes.rouge = creerSonde(0xc8261e); sondes.noir = creerSonde(0x1b1b1b); for (const s of Object.values(sondes)) { s.visible = false; W.scene.add(s); }
     const taille = () => { const r = scene.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height); fovLibre = camera.aspect < 0.8 ? 72 : 58; camera.fov = libre() ? fovLibre : FOV_PROCHE; camera.updateProjectionMatrix(); };

@@ -54,7 +54,7 @@ export function creerMonde(renderer, base, N, P) {
   const voyants = {}, manettes = {}, capots = {}, interieurs = {}, cadrans = {}, selecteurs = {}, touches = {}, fenetresIO = {}, boutonsTest = {}, voyantsTension = [];
   let porteTableau = null, afficheCompteur = null;
   const inst = P.inst, L = N.logement;
-  const decor = creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables, depart: N.depart });
+  const decor = creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sources, temoins, mouillables, depart: N.depart, plan: N.plan });
 
   // ---- repère d'un mur : position et orientation d'un objet posé dessus
   function surMur(lieu, mur, u = 0, y = 1.2) {
@@ -91,18 +91,24 @@ export function creerMonde(renderer, base, N, P) {
   }
   function plafonnier(o, lieu, G, lieuId) {
     const g = new THREE.Group(); g.position.set(o.x || 0, lieu.h - 0.28, o.z || 0); G.add(g);
-    const fil = cyl(0.004, 0.004, 0.28, M.noir, 8); fil.position.y = 0.14; g.add(fil);
-    const abat = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.16, 28, 1, true), new THREE.MeshStandardMaterial({ color: 0xf2ead8, side: THREE.DoubleSide, roughness: 0.8, emissive: 0xffe2b0, emissiveIntensity: 0 })); g.add(abat);
-    const amp = new THREE.Mesh(new THREE.SphereGeometry(0.04, 16, 12), new THREE.MeshStandardMaterial({ color: 0xf6f1e6, emissive: 0xffd49a, emissiveIntensity: 0 })); amp.position.y = -0.06; g.add(amp);
-    sources.push({ id: o.id, lieu: lieuId, obj: amp, couleur: 0xffe6c0, force: 6 * Math.min(1, (Math.min(...lieu.taille) / 3) ** 2), portee: 9, on: (r) => r.allume(o.id), mats: [abat.material, amp.material], plafond: true });
-    const zone = boite(0.5, 0.4, 0.5, M.invisible); zone.position.y = -0.02; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
+    let abat, amp;
+    if (o.hublot) { // hublot de parties communes : un socle et un globe plat, collés au plafond
+      abat = cyl(0.15, 0.15, 0.03, new THREE.MeshStandardMaterial({ color: 0xdcd8cf, roughness: 0.5, emissive: 0xffe2b0, emissiveIntensity: 0 }), 24); abat.position.y = 0.265; abat.castShadow = false; g.add(abat);
+      amp = new THREE.Mesh(new THREE.SphereGeometry(0.13, 20, 10, 0, 7, Math.PI / 2, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0xf6f1e6, emissive: 0xffd49a, emissiveIntensity: 0, roughness: 0.3 })); amp.scale.y = 0.55; amp.position.y = 0.25; g.add(amp);
+    } else {
+      const fil = cyl(0.004, 0.004, 0.28, M.noir, 8); fil.position.y = 0.14; g.add(fil);
+      abat = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.16, 28, 1, true), new THREE.MeshStandardMaterial({ color: 0xf2ead8, side: THREE.DoubleSide, roughness: 0.8, emissive: 0xffe2b0, emissiveIntensity: 0 })); g.add(abat);
+      amp = new THREE.Mesh(new THREE.SphereGeometry(0.04, 16, 12), new THREE.MeshStandardMaterial({ color: 0xf6f1e6, emissive: 0xffd49a, emissiveIntensity: 0 })); amp.position.y = -0.06; g.add(amp);
+    }
+    sources.push({ id: o.id, lieu: lieuId, obj: amp, couleur: 0xffe6c0, force: o.force || 6 * Math.min(1, (Math.min(...lieu.taille) / 3) ** 2), portee: o.portee || 9, on: (r) => r.allume(o.id), mats: [abat.material, amp.material], plafond: true });
+    const zone = boite(0.5, 0.4, 0.5, M.invisible); zone.position.y = o.hublot ? 0.16 : -0.02; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
   }
   // bouton-poussoir à voyant (minuterie d'escalier) : on appuie, il revient. Le voyant éclaire tant que la lumière est éteinte.
   const voyantsBP = [];
   function boutonPoussoir(o, lieuId, g) {
     const pl = boite(0.082, 0.082, 0.012, M.plastique); pl.position.z = 0.006; g.add(pl);
     const t = boite(0.05, 0.05, 0.008, M.blanc); t.position.z = o.enfonce && o.enfonce(P) ? 0.0125 : 0.016; g.add(t); touches[`bp:${o.id}`] = t;
-    const v = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.005, 0.002), new THREE.MeshStandardMaterial({ color: 0x3a2a1c, emissive: 0xff8a1a, emissiveIntensity: 0 })); v.position.set(0, -0.012, t.position.z + 0.0045); g.add(v);
+    const v = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.009, 0.002), new THREE.MeshStandardMaterial({ color: 0x3a2a1c, emissive: 0xff8a1a, emissiveIntensity: 0 })); v.position.set(0, -0.012, t.position.z + 0.0045); g.add(v);
     voyantsBP.push({ id: o.id, m: v.material, mort: !!o.voyantMort, lampe: o.lampe });
     if (o.peinture && o.peinture(P)) for (const [x, y, s] of [[0.02, 0.03, 1], [-0.028, 0.012, 0.7], [0.012, -0.03, 0.8]]) { const p = new THREE.Mesh(new THREE.CircleGeometry(0.012 * s, 10), mat(0xf3ece0, { roughness: 0.9 })); p.position.set(x, y, 0.0205); g.add(p); }
     const zone = boite(0.14, 0.14, 0.03, M.invisible); zone.position.z = 0.014; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
@@ -303,16 +309,20 @@ export function creerMonde(renderer, base, N, P) {
   }
 
   /* =====================  Lieux  ===================== */
-  const lieux = {};
+  const lieux = {}, ensembles = {};
+  // des lieux d'un même « ensemble » (une cage d'escalier) partagent le même espace : on les voit tous, on y marche de l'un à l'autre
+  const memeEnsemble = (a, b) => a === b || (!!N.plan.lieux[a].ensemble && N.plan.lieux[a].ensemble === N.plan.lieux[b].ensemble);
   const blancMat = mat(0xf3f1ec, { roughness: 0.5 });
   Object.entries(N.plan.lieux).forEach(([id, lieu], k) => {
-    const G = new THREE.Group(); G.position.set(k * ECART, 0, 0); G.updateMatrixWorld(true); scene.add(G);
+    const G = new THREE.Group();
+    if (lieu.ensemble) { if (ensembles[lieu.ensemble] === undefined) ensembles[lieu.ensemble] = k * ECART; const q = lieu.pos || [0, 0, 0]; G.position.set(ensembles[lieu.ensemble] + q[0], q[1], q[2]); } else G.position.set(k * ECART, 0, 0);
+    G.updateMatrixWorld(true); scene.add(G);
     const [lx, lz] = lieu.taille; lieu.h = lieu.h || 2.5; lieu.cle = null;
-    const sol = new THREE.Mesh(new THREE.PlaneGeometry(lieu.ext ? 60 : lx, lieu.ext ? 60 : lz), (sols[lieu.sol] || sols.bois)(lieu)); sol.rotation.x = -Math.PI / 2; sol.receiveShadow = true; G.add(sol);
+    if (lieu.coque !== false) { const sol = new THREE.Mesh(new THREE.PlaneGeometry(lieu.ext ? 60 : lx, lieu.ext ? 60 : lz), (sols[lieu.sol] || sols.bois)(lieu)); sol.rotation.x = -Math.PI / 2; sol.receiveShadow = true; G.add(sol); }
     if (lieu.ext && lieu.dalle) { const d = boite(lieu.dalle[0], 0.04, lieu.dalle[1], lieu.dalle[3] ? sols[lieu.dalle[3]](lieu, lieu.dalle) : M.dalle); d.castShadow = false; d.position.set(0, 0.02, lieu.dalle[2] || 0); G.add(d); }
-    if (!lieu.ext) {
+    if (!lieu.ext && lieu.coque !== false) {
       for (const m of ["N", "S", "E", "O"]) {
-        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, lieu.murs === "beton" ? (lieu.matMur = lieu.matMur || pbr.m("concrete_floor_02", [Math.max(...lieu.taille) / 1.6, lieu.h / 1.6], { roughness: 1 })) : lieu.teinte ? (lieu.matMur = lieu.matMur || mat(lieu.teinte, { roughness: 0.95, map: M.mur.map, normalMap: M.mur.normalMap })) : M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
+        const s = surMur(lieu, m, 0, lieu.h / 2), lg = m === "N" || m === "S" ? lx : lz, w = boite(lg, lieu.h, 0.06, lieu.murs === "beton" ? (lieu.matMur = lieu.matMur || pbr.m("concrete_floor_02", [Math.max(...lieu.taille) / 1.6, lieu.h / 1.6], { roughness: 1 })) : lieu.teinte ? (lieu.matMur = lieu.matMur || mat(lieu.teinte, { roughness: 0.95, map: lieu.peint ? null : M.mur.map, normalMap: M.mur.normalMap })) : M.mur); w.position.copy(s.p).addScaledVector(s.n, -0.03); w.rotation.y = s.r; G.add(w);
         if (lieu.murs !== "beton") { const pl = boite(lg, 0.08, 0.012, blancMat); pl.castShadow = false; pl.position.copy(s.p).setY(0.04).addScaledVector(s.n, 0.006); pl.rotation.y = s.r; G.add(pl); }
       }
       const pl = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), lieu.murs === "beton" ? pbr.m("concrete_floor_02", [lx / 1.5, lz / 1.5], { roughness: 1 }) : M.plafond); pl.rotation.x = Math.PI / 2; pl.position.y = lieu.h; G.add(pl);
@@ -346,6 +356,11 @@ export function creerMonde(renderer, base, N, P) {
           const lbl = panneau(0.5, 0.125, etiquette(nomVers, { w: 512, h: 128, taille: 64, fond: "#22262d", coul: "#ffe08a" })); lbl.position.set(0, 0.62, 0.042); g.add(lbl);
           cible(`aller:${o.vers}`, vant, [id]);
         }
+        lieux[id].portes = { ...(lieux[id].portes || {}), [o.vers]: g };
+      } else if (o.t === "passage") {
+        // un passage sans porte (une volée d'escalier) : on touche la volée, on la monte ou on la descend en marchant
+        const z = boite(o.w, o.h, o.d, M.invisible); z.castShadow = false; g.add(z); cible(`aller:${o.vers}`, z, [id]);
+        g.userData.chemin = o.chemin.map((q) => G.localToWorld(V(...q)));
         lieux[id].portes = { ...(lieux[id].portes || {}), [o.vers]: g };
       } else if (o.t === "marches") {
         const [lx2, lz2] = lieu.taille, pas = (lz2 - 1.2) / o.n;
@@ -409,12 +424,13 @@ export function creerMonde(renderer, base, N, P) {
     else if (plaf) { plaf.obj.getWorldPosition(cle.position); cle.target.position.copy(cle.position).setY(0); cle.position.y += 1.6; cle.color.set(0xffdcae); cle.intensity = 26; cle.angle = 1.0; }
     else cle.intensity = 0;
     // les lampes du lieu où l'on se trouve (les autres pièces sont loin)
-    const ici = sources.filter((s) => s.lieu === lieuCourant);
+    const ici = sources.filter((s) => memeEnsemble(s.lieu, lieuCourant));
+    if (pl.ensemble) { const dist = (s) => (s.lieu === lieuCourant ? -1 : s.obj.getWorldPosition(tmp).distanceTo(O)); ici.sort((a, b) => dist(a) - dist(b)); }
     bassin.forEach((p, i) => { const s = ici[i]; if (!s) { p.intensity = 0; return; } s.obj.getWorldPosition(p.position); p.color.set(s.couleur); p.distance = s.portee; p.intensity = s.on(r) ? s.force * (s.plafond && nuit ? 0.6 : 1) : 0; });
     // Fluidité : une lumière qui n'éclaire pas le lieu courant n'est pas calculée du tout (elle coûtait autant qu'allumée),
     // et seul le lieu où se trouve le joueur est dessiné. Le nombre de lampes ne dépend que du lieu, pas de leur état.
     soleil.visible = ext; cle.visible = !ext; frontale.visible = nuit; bassin.forEach((p, i) => { p.visible = !!ici[i]; });
-    for (const [id, x] of Object.entries(lieux)) x.G.visible = id === lieuCourant;
+    for (const [id, x] of Object.entries(lieux)) x.G.visible = memeEnsemble(id, lieuCourant);
     for (const s of sources) { const on = s.on(r); for (const m of s.mats) m.emissiveIntensity = on ? (s.k || 2.4) : 0; }
     for (const t of temoins) t(r, e, lieuCourant, nuit);
     for (const [id, m] of Object.entries(voyants)) m.emissiveIntensity = r.fonctionne(id) ? 3 : 0;
@@ -423,7 +439,7 @@ export function creerMonde(renderer, base, N, P) {
     for (const [id, io] of Object.entries(fenetresIO)) io.material = e.positions[id] ? matIO.I : matIO.O;
     for (const [id, t] of Object.entries(touches)) t.rotation.x = e.positions[id] ? -0.09 : 0.09;
     for (const [id, s] of Object.entries(selecteurs)) s.rotation.z = { auto: 0.9, I: 0, 0: -0.9, permanent: -0.9 }[e.modes[id]] || 0;
-    for (const v of voyantsBP) v.m.emissiveIntensity = !v.mort && r.tension(`${v.id}.1`, "terre.PE") >= 50 && !(v.lampe && r.allume(v.lampe)) ? 3 : 0;
+    for (const v of voyantsBP) v.m.emissiveIntensity = !v.mort && r.tension(`${v.id}.1`, "terre.PE") >= 50 && !(v.lampe && r.allume(v.lampe)) ? 6 : 0;
     for (const [id, C] of Object.entries(cadrans)) dessinerCadran(C, e.cadrans[id], inst.organe[id]);
     if (afficheCompteur) afficheCompteur(r.tension(`${L.tableau.agcp.id}.Lin`, `${L.tableau.agcp.id}.Nin`) >= 50 ? (inst.heuresCreuses(e) ? "H CREUSES" : "H PLEINES") : "");
     if (porteTableau) porteTableau.vers = vue === "v:tableau" || String(vue).startsWith("v:rangee") ? -1.95 : 0;

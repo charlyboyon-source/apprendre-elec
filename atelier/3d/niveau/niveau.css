@@ -27,3 +27,13 @@
 .n-charge div i { display: block; height: 100%; width: 0; background: #ffc400; transition: width 0.15s linear; }
 .n-charge small { color: #8d97a6; }
 @media (prefers-reduced-motion: reduce) { .n-survol.appui i { animation: none; } }
+
+.n-schema { margin: 12px 0; }
+.n-schema svg { display: block; width: 100%; height: auto; border: 1px solid #e3dccf; border-radius: 10px; }
+.n-schema figcaption { font-size: 0.9rem; margin-bottom: 6px; }
+.n-schema p { font-size: 0.88rem; color: #5b6673; margin: 6px 0 0; }
+.n-idees { margin: 10px 0; font-size: 0.92rem; }
+.n-idees summary { cursor: pointer; font-weight: 700; color: #1f4f8a; }
+.n-idees ul { margin: 8px 0; padding-left: 18px; }
+.n-idees li { margin: 4px 0; }
+@media (max-width: 480px) { .j-caisse.serre b { font-size: 0.62rem; letter-spacing: -0.03em; } }
