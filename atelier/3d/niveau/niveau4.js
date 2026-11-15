@@ -131,7 +131,7 @@ export default {
         { t: "etagereChargee", mur: "N", u: 1.42, y: 0 }, { t: "porteGarage", mur: "S", u: 0.3, y: 0, w: 2.5 },
         { t: "modele", f: "cardboard_box_01", x: -1.6, z: 1.25, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: -1.55, y: 0.3, z: 1.22, r: -0.25, s: 0.8 }, { t: "modele", f: "wooden_crate_02", x: -1.0, z: 1.4, r: 0.2 },
         { t: "modele", f: "rusted_spade_01", x: -1.98, z: 0.85, rx: -0.14, r: 1.6 }, { t: "balai", x: -1.95, z: 1.05, r: 1.4 }, { t: "modele", f: "watering_can_metal_01", x: 0.95, z: -1.45, r: 0.6 } ] },
-      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3.6, 3], sol: "carrelage", objets: [
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3.6, 3], sol: "carrelage", camera: [1.2, 1.62, 1.0], yaw: 0.72, pitch: -0.08, objets: [
         { t: "inter", id: "int_entree", mur: "S", u: 1.2, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "E", u: 0.4, y: 0.75 }, { t: "boite", id: "bd_rdc", mur: "E", u: -0.8, y: 2.2 },
         porte("garage", "O", 0.5), porte("escalier", "N", 1.15), porte("sejour", "N", -0.95),
         { t: "porteEntree", mur: "S", u: -0.5, y: 0 }, { t: "portemanteau", mur: "O", u: -0.78, y: 1.74 }, { t: "chaussures", mur: "O", u: -0.78, y: 0 },
@@ -164,12 +164,15 @@ export default {
         { t: "modele", f: "painted_wooden_chair_02", x: 0.3, z: 0.95, r: -Math.PI / 2 - 0.3, s: 0.74 }, { t: "modele", f: "painted_wooden_chair_02", x: -0.4, z: 0.25, r: 0.2, s: 0.74 },
         { t: "modele", f: "pot_enamel_01", x: 0.62, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.35, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", x: -0.5, y: 0.62, z: -0.785 } ] },
       // l'escalier de la maison : une vraie cage à deux volées, de l'entrée au palier (cage.js) ; on la monte marche après marche
-      escalier: { nom: "le pied de l'escalier", court: "L'escalier", raccourci: "Escalier", ensemble: "cage", coque: false, pos: [0, 0, 0], taille: [2.6, LE], h: 2.6, camera: [0, 1.62, LE / 2 - 0.45], pitch: 0.05, objets: [
+      escalier: { nom: "le pied de l'escalier", court: "L'escalier", raccourci: "Escalier", ensemble: "cage", coque: false, pos: [0, 0, 0], taille: [2.6, LE], h: 2.6, teinte: 0xe9dfce, camera: [0, 1.62, LE / 2 - 0.45], pitch: 0.05, objets: [
         { t: "cageEtage", sol: "bois", marches: "bois", soubassement: false, sousEscalier: true }, monter("palier", LE),
         { t: "inter", id: "int_escalier", mur: "O", u: -0.35, y: 1.1 }, { t: "plafonnier", id: "pl_escalier", z: -0.2 }, porte("entree", "S", 0),
         { t: "modele", f: "hanging_picture_frame_03", mur: "E", u: 0.3, y: 1.65, auMur: true, s: 0.7 }, { t: "modele", f: "fancy_picture_frame_01", x: 1.2, y: 1.95, z: -LE / 2 - 0.7, r: -Math.PI / 2, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", x: 1.2, y: 2.55, z: -LE / 2 - 1.5, r: -Math.PI / 2, auMur: true, s: 0.7 },
-        { t: "modele", f: "potted_plant_01", x: -1.05, z: 0.55, h: 0.7, sansOmbre: true } ] },
-      palier: { nom: "le palier", court: "Le palier", raccourci: "Palier", ensemble: "cage", coque: false, pos: [0, CAGE.H, -LE / 2 + LPA / 2], taille: [3.8, LPA], h: 2.6, camera: [0, 1.62, LPA / 2 - 0.9], pitch: -0.08, objets: [
+        { t: "modele", f: "potted_plant_01", x: -1.05, z: 0.55, h: 0.7, sansOmbre: true },
+        // sous l'escalier : un banc, les photos de famille au mur
+        { t: "modele", f: "painted_wooden_bench", x: -0.6, z: -0.66, r: 0, h: 0.5 }, { t: "modele", f: "fancy_picture_frame_02", x: -0.85, y: 1.6, z: -LE / 2, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", x: -0.3, y: 1.75, z: -LE / 2, auMur: true, s: 0.55 }, { t: "modele", f: "fancy_picture_frame_01", x: -0.4, y: 1.3, z: -LE / 2, auMur: true, s: 0.4 },
+        { t: "tapis", x: -0.1, z: 0.25, w: 1.6, d: 0.8, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] } ] },
+      palier: { nom: "le palier", court: "Le palier", raccourci: "Palier", ensemble: "cage", coque: false, pos: [0, CAGE.H, -LE / 2 + LPA / 2], taille: [3.8, LPA], h: 2.6, teinte: 0xe9dfce, camera: [0, 1.62, LPA / 2 - 0.9], pitch: -0.08, objets: [
         { t: "cageEtage", sol: "bois", marches: "bois", soubassement: false, arrive: true, monte: false, dernier: true }, descendre("escalier", LPA),
         { t: "inter", id: "int_palier", mur: "N", u: 1.55, y: 1.1 }, { t: "plafonnier", id: "pl_palier" }, { t: "prise", id: "pc_palier", mur: "S", u: -1.35, y: 0.75 }, { t: "prise", id: "pc_sde", mur: "E", u: 0.85, y: 1.15 }, { t: "boite", id: "bd_et", mur: "N", u: -1.55, y: 2.25 },
         porte("chambre1", "O", 0.2), porte("chambre2", "S", 0.2), porte("chambre3", "E", -0.3),
@@ -177,7 +180,10 @@ export default {
         { t: "repassage", id: "fer", x: 1.15, z: 0.62 },
         { t: "modele", f: "wicker_basket_02", x: 1.62, z: 1.05, h: 0.42, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.36 }] },
         { t: "tapis", x: -0.2, z: 0.1, w: 1.8, d: 0.9, couleurs: ["#3f5a4a", "#e2d3ae", "#7a2f2a"] },
-        { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -0.85, y: 1.7, auMur: true, s: 0.6 }, { t: "modele", f: "potted_plant_01", x: -1.6, z: 1.0, h: 0.75, sansOmbre: true } ] },
+        { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -0.85, y: 1.7, auMur: true, s: 0.6 }, { t: "modele", f: "potted_plant_01", x: -1.6, z: 1.0, h: 0.75, sansOmbre: true },
+        // au fond de la cage, au-dessus du palier intermédiaire : deux cadres
+        { t: "modele", f: "hanging_picture_frame_03", x: -0.5, y: 0.75, z: -LPA / 2 - 3.3, auMur: true, s: 0.8 }, { t: "modele", f: "fancy_picture_frame_02", x: 0.5, y: 0.8, z: -LPA / 2 - 3.3, auMur: true, s: 0.7 },
+        { t: "modele", f: "wall_clock", mur: "N", u: 1.55, y: 1.85, auMur: true }, { t: "modele", f: "painted_wooden_nightstand", x: -1.6, z: -0.95, h: 0.55, r: Math.PI / 2, avec: [{ t: "modele", f: "ceramic_vase_01", x: 0, y: 0.55, z: 0, s: 0.7 }] } ] },
       chambre1: { nom: "la chambre des parents", court: "La chambre des parents", raccourci: "Parents", taille: [3.4, 3.2], sol: "bois", camera: [0.2, 1.62, 1.15], yaw: 0.15, pitch: -0.18, objets: [
         { t: "inter", id: "int_chambre1", mur: "E", u: 1.0, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 1.2, y: 0.75 }, porte("palier", "E", -0.6),
         { t: "lit", x: -0.15, z: -0.49, w: 1.6, couette: 0x7a4a55, plaid: 0xd9c9a3 },

@@ -187,7 +187,10 @@ export default {
       cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, objets: [
         { t: "plafonnier", id: "l_cave" }, { t: "bp", id: "bp_cave", mur: "S", u: -0.85, y: 1.1, lampe: "l_cave", voyantMort: true }, { t: "boite", id: "bd_cave", mur: "S", u: -1.35, y: 1.9 },
         porte("hall", "S", 0.2),
-        { t: "cloture", mur: "N", u: 0, y: 0, w: 3.3, h: 1.9 }, { t: "modele", f: "wooden_crate_02", x: -1.2, z: 0.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: 1.2, z: 0.6, r: -0.2 }, { t: "modele", f: "wine_bottles_01", x: 1.25, z: -0.6 }, { t: "modele", f: "wooden_bucket_01", x: -1.25, z: -0.8, h: 0.36 }, { t: "modele", f: "cardboard_box_01", x: -0.6, z: -1.0, r: 0.5, h: 0.3 } ] },
+        { t: "cloture", mur: "N", u: 0, y: 0, w: 3.3, h: 1.9 }, { t: "modele", f: "wooden_crate_02", x: -1.2, z: 0.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: 1.2, z: 0.6, r: -0.2 }, { t: "modele", f: "wine_bottles_01", x: 1.25, z: -0.6 }, { t: "modele", f: "wooden_bucket_01", x: -1.25, z: -0.8, h: 0.36 }, { t: "modele", f: "cardboard_box_01", x: -0.6, z: -1.0, r: 0.5, h: 0.3 },
+        // ce qu'on trouve dans une cave d'immeuble : une étagère chargée, un vieux vélo, des cartons empilés, la tuyauterie
+        { t: "etagere", mur: "E", u: -0.5, y: 0, w: 1.0 }, { t: "velo", x: -0.55, z: -1.28, r: Math.PI / 2, teinte: 0x8a3a2a }, { t: "tuyaux", mur: "O", u: 0.9, y: 1.2 },
+        { t: "modele", f: "cardboard_box_01", x: 0.45, z: -1.15, r: 0.15, h: 0.34 }, { t: "modele", f: "cardboard_box_01", x: 0.47, y: 0.34, z: -1.13, r: -0.3, h: 0.28 }, { t: "modele", f: "wooden_crate_02", x: 0.95, z: -1.1, r: 0.1 } ] },
       palier1: { ...cage(1), nom: "le palier du 1er", court: "Le palier du 1er", raccourci: "1er", objets: [
         { t: "cageEtage", arrive: true }, monter("palier2", LP), descendre("hall", LP),
         { t: "plafonnier", id: "l_1", hublot: true, portee: 7, force: 9 }, { t: "bp", id: "bp_1", mur: "N", u: 1.55, y: 1.1, lampe: "l_1" }, { t: "boite", id: "bd_1", mur: "N", u: -1.55, y: 2.25 },

@@ -205,17 +205,22 @@ export default {
     tableau: { regards: ["Q2"] },
     lieux: {
       // Une maison en cours de rénovation : M. Girard fait tout lui-même, proprement… presque.
-      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3, 3], sol: "carrelage", objets: [
-        { t: "tableau", mur: "N", u: 0.3, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -0.95, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "O", u: 0.4, y: 0.75 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: -0.75, y: 1.15 },
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3, 3], sol: "carrelage", camera: [0.95, 1.62, 1.0], yaw: 0.7, pitch: -0.08, objets: [
+        { t: "tableau", mur: "N", u: 0.3, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -0.95, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "O", u: 0.1, y: 0.75 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: -0.75, y: 1.15 },
         porte("couloir", "E", 0.3),
         { t: "porteEntree", mur: "S", u: 0, y: 0 },
-        { t: "portemanteau", mur: "E", u: -0.85, y: 1.74 }, { t: "tapis", x: 0.1, z: 0.3, w: 1.6, d: 1.1, couleurs: ["#3f5a4a", "#e2d3ae", "#6b2a26"] },
+        { t: "portemanteau", mur: "O", u: 0.75, y: 1.74 }, { t: "chaussures", mur: "O", u: 0.75, y: 0 }, { t: "tapis", x: 0.1, z: 0.3, w: 1.6, d: 1.1, couleurs: ["#3f5a4a", "#e2d3ae", "#6b2a26"] },
+        // une maison en travaux : l'escabeau, des cartons, le niveau et la caisse à outils de M. Girard
+        { t: "escabeau", x: -1.1, z: 1.0, r: 2.2 }, { t: "modele", f: "ornate_mirror_01", mur: "O", u: -0.35, y: 1.5, auMur: true, s: 0.9 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: -0.45, y: 1.7, auMur: true, s: 0.55 },
+        { t: "modele", f: "potted_plant_01", x: -1.2, z: -1.2, h: 0.8, sansOmbre: true }, { t: "modele", f: "cardboard_box_01", x: 1.15, z: 0.75, r: -0.2, h: 0.32 }, { t: "modele", f: "cardboard_box_01", x: 1.17, z: 1.13, y: 0.32, r: 0.5, h: 0.26 },
         { t: "modele", f: "metal_toolbox", x: 0.9, z: -1.2, r: 0.4 }, { t: "modele", f: "cardboard_box_01", x: 1.15, z: 1.15, r: 0.3, h: 0.32 } ] },
       couloir: { nom: "le couloir", court: "Le couloir", raccourci: "Couloir", taille: [5, 1.6], sol: "bois", camera: [2.0, 1.62, 0], yaw: Math.PI / 2, pitch: 0.02, objets: [
         { t: "inter", id: "int_couloir", mur: "N", u: 1.85, y: 1.1 }, { t: "rampeSpots", id: "spots", x: 0, z: 0 }, { t: "boite", id: "spots", mur: "S", u: 0.6, y: 2.25 }, { t: "prise", id: "pc_couloir", mur: "S", u: -1.5, y: 0.75 }, { t: "trappe", vers: "combles", x: -1.5, z: 0 },
         porte("entree", "E", 0), porte("sejour", "N", 0.5), porte("chambre1", "N", -1.0), porte("chambre2", "O", 0),
         { t: "tapis", x: -0.1, z: 0, w: 3.6, d: 0.72, couleurs: ["#2f3f55", "#d9c9a3", "#7a2f2a"] }, { t: "peintres", x: 2.05, z: 0.55, r: 2.2 },
-        { t: "modele", f: "fancy_picture_frame_02", mur: "S", u: 1.6, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "cardboard_box_01", x: -2.2, z: 0.55, r: 0.2, h: 0.3 } ] },
+        { t: "modele", f: "fancy_picture_frame_02", mur: "S", u: 1.6, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "cardboard_box_01", x: -2.2, z: 0.55, r: 0.2, h: 0.3 },
+        { t: "modele", f: "hanging_picture_frame_03", mur: "S", u: -0.3, y: 1.65, auMur: true, s: 0.6 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: -0.25, y: 1.65, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", mur: "S", u: 0.75, y: 1.6, auMur: true, s: 0.5 },
+        { t: "ruban", mur: "N", u: 1.85, y: 1.1, bandes: [[0, 0.08, 0.2, 0.04], [-0.085, 0, 0.16, 1.55]] }, { t: "modele", f: "potted_plant_04", x: -2.25, y: 0.3, z: 0.55 } ] },
       sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.4, 3.8], sol: "bois", camera: [0.45, 1.62, 1.6], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "S", u: -1.3, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.2, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "E", u: 0.8, y: 0.75 }, { t: "boite", id: "bd_sej", mur: "N", u: 1.5, y: 2.2 },
         porte("couloir", "S", 0.8),
