@@ -110,7 +110,7 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const sources = [], temoins = [];
   const decor = creerDecor({ base: `${base}niveau/`, M, mat: matD, boite: boiteD, cyl: cylD, cible, pbr, P: null, inst: null, sources, temoins, mouillables: [], depart: "entree" });
   // pose un objet du décor : au sol (x, y, z, angle) ; « avec » = objets posés dessus, dans son repère
-  const pose = (lieuId, spec, x, y, z, ry = 0) => { const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = ry; scene.add(g); decor.poser(spec, lieuId, null, scene, g); return g; };
+  const pose = (lieuId, spec, x, y, z, ry = 0) => { const g = new THREE.Group(); g.userData.decor = spec.f || spec.t; g.position.set(x, y, z); g.rotation.y = ry; scene.add(g); decor.poser(spec, lieuId, null, scene, g); return g; };
 
   /* ---------- La chambre : x ∈ [-1.8, 1.8], z ∈ [-1.6, 1.6], hauteur 2,50 m ---------- */
   const H = 2.5;
@@ -163,13 +163,13 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   // armoire, commode garnie, fauteuil avec un gilet, plante, cadres
   pose("chambre", { t: "modele", f: "GothicCabinet_01", h: 1.9, e: [0.92, 1, 0.62] }, 1.5, 0, -0.9, -Math.PI / 2);
   pose("chambre", { t: "modele", f: "GothicCommode_01", h: 0.95, avec: [
-    { t: "modele", f: "mantel_clock_01", x: 0.02, y: 0.95, z: -0.03, s: 0.9 }, { t: "modele", f: "standing_picture_frame_02", x: -0.3, y: 0.95, z: 0, r: 0.35, s: 0.8 },
-    { t: "modele", f: "ceramic_vase_01", x: 0.34, y: 0.95, z: -0.02, s: 0.75 }, { t: "livre", x: 0.3, y: 0.95, z: 0.12, r: 1.3, c: 0x2f4a6b } ] }, 1.565, 0, 0.72, -Math.PI / 2);
-  pose("chambre", { t: "modele", f: "fancy_picture_frame_02", auMur: true, s: 0.8 }, 1.795, 1.62, 0.72, -Math.PI / 2);
+    { t: "modele", f: "mantel_clock_01", x: 0.02, y: 0.95, z: -0.03, s: 0.9 }, { t: "modele", f: "standing_picture_frame_02", x: -0.3, y: 0.95, z: 0, r: 0.35 + Math.PI, s: 0.8 },
+    { t: "modele", f: "ceramic_vase_01", x: 0.34, y: 0.95, z: -0.02, s: 0.75 }, { t: "livre", x: 0.3, y: 0.95, z: 0.12, r: 1.3, c: 0x2f4a6b } ] }, 1.565, 0, 0.85, -Math.PI / 2);
+  pose("chambre", { t: "modele", f: "fancy_picture_frame_02", auMur: true, s: 0.8 }, 1.795, 1.62, 0.85, -Math.PI / 2);
   pose("chambre", { t: "modele", f: "hanging_picture_frame_03", auMur: true, s: 0.95 }, -0.45, 1.98, -1.595, 0);
-  pose("chambre", { t: "modele", f: "hanging_picture_frame_01", auMur: true, s: 0.8 }, -1.795, 1.6, 1.05, Math.PI / 2);
-  pose("chambre", { t: "modele", f: "GreenChair_01", h: 1.0, avec: [{ t: "vetement", x: 0.02, y: 0.985, z: -0.27, r: 0.1, w: 0.46, l: 0.95, c: 0x7a3f55 }] }, -1.3, 0, 0.66, 1.9);
-  pose("chambre", { t: "modele", f: "potted_plant_02", h: 0.8, sansOmbre: true }, 1.45, 0, 1.33, 2.4);
+  pose("chambre", { t: "modele", f: "fancy_picture_frame_01", auMur: true, s: 0.62 }, -1.795, 1.6, 1.05, Math.PI / 2);
+  pose("chambre", { t: "modele", f: "GreenChair_01", h: 1.0, avec: [{ t: "vetement", x: 0.02, y: 0.985, z: -0.27, r: 0.1, w: 0.46, l: 0.95, c: 0x7a3f55 }] }, -1.32, 0, 0.8, 1.9);
+  pose("chambre", { t: "modele", f: "potted_plant_02", h: 0.55, sansOmbre: true }, 1.5, 0, 0.06, 2.4);
 
   /* ---------- Plafonnier : boîte DCL, cordon, abat-jour, ampoule ---------- */
   const plafonnier = new THREE.Group();
@@ -189,19 +189,19 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   appareil.position.set(0.66, 1.1, 1.6); appareil.rotation.y = Math.PI; scene.add(appareil);
   const E = 0.071; // entraxe interrupteur → prise
   const RB = 0.0335; // rayon intérieur d'une boîte d'encastrement (Ø 67 mm), profondeur 40 mm
-  const plastBoite = new THREE.MeshStandardMaterial({ color: 0x8d949c, roughness: 0.8, side: THREE.BackSide });
-  const gaineMat = new THREE.MeshStandardMaterial({ color: 0x8f9499, roughness: 0.7 });
+  const plastBoite = new THREE.MeshStandardMaterial({ color: 0x5c6670, roughness: 0.8, side: THREE.BackSide, emissive: 0x39424c, emissiveIntensity: 0.55 });
+  const gaineMat = new THREE.MeshStandardMaterial({ color: 0xb9bfc6, roughness: 0.6, emissive: 0x565c62, emissiveIntensity: 0.5 });
   const pointsGaine = [];
   for (const x of [0, E]) {
     // boîte : paroi (vue de l'intérieur), fond, entrée de gaine ICTA en bas
     const paroi = new THREE.Mesh(new THREE.CylinderGeometry(RB, RB, 0.04, 40, 1, true), plastBoite);
     paroi.rotation.x = Math.PI / 2; paroi.position.set(x, 0, -0.02); appareil.add(paroi);
-    const fond = new THREE.Mesh(new THREE.CircleGeometry(RB, 40), new THREE.MeshStandardMaterial({ color: 0x7b828a, roughness: 0.85 }));
+    const fond = new THREE.Mesh(new THREE.CircleGeometry(RB, 40), new THREE.MeshStandardMaterial({ color: 0x4a535c, roughness: 0.85, emissive: 0x2c343c, emissiveIntensity: 0.55 }));
     fond.position.set(x, 0, -0.0399); appareil.add(fond);
     const bord = new THREE.Mesh(new THREE.RingGeometry(RB, RB + 0.0025, 40), new THREE.MeshStandardMaterial({ color: 0x9aa1a8, roughness: 0.7 }));
     bord.position.set(x, 0, 0.0003); appareil.add(bord);
     const gaine = new THREE.Group(); gaine.position.set(x - 0.006, -RB + 0.004, -0.026); appareil.add(gaine);
-    for (let k = 0; k < 5; k++) { const anneau = new THREE.Mesh(new THREE.TorusGeometry(0.0072, 0.0016, 6, 18), gaineMat); anneau.rotation.x = Math.PI / 2; anneau.position.y = -k * 0.0035; gaine.add(anneau); }
+    for (let k = 0; k < 6; k++) { const anneau = new THREE.Mesh(new THREE.TorusGeometry(0.0078, 0.0018, 6, 18), gaineMat); anneau.rotation.x = Math.PI / 2; anneau.position.y = -k * 0.0035; gaine.add(anneau); }
     const bouche = new THREE.Mesh(new THREE.CircleGeometry(0.0062, 18), new THREE.MeshBasicMaterial({ color: 0x0c0c0c })); bouche.rotation.x = -Math.PI / 2; bouche.position.y = 0.0016; gaine.add(bouche);
     pointsGaine.push(new THREE.Vector3(x - 0.006, -RB + 0.006, -0.026));
   }
@@ -209,11 +209,13 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const fils = new THREE.Group(); appareil.add(fils);
   // mécanisme d'interrupteur : support métallique avec ses trous, corps, touche ; deux vis de fixation
   const meca = new THREE.Group(); appareil.add(meca);
-  const support = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.046, h: 0.046, x: 0, y: 0 }], M.gris); meca.add(support);
+  const platine = new THREE.MeshStandardMaterial({ color: 0xc3c7cc, roughness: 0.35, metalness: 0.85 });
+  const support = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.046, h: 0.046, x: 0, y: 0 }], platine); meca.add(support);
   for (const x of [-0.0295, 0.0295]) { // trous oblongs des vis (visibles quand la vis est enlevée)
-    const trou = new THREE.Mesh(new THREE.PlaneGeometry(0.0042, 0.0085), new THREE.MeshBasicMaterial({ color: 0x0a0a0a })); trou.position.set(x, 0, 0.0039); meca.add(trou);
+    const trou = new THREE.Mesh(new THREE.CircleGeometry(0.0022, 14), new THREE.MeshStandardMaterial({ color: 0x33373c, roughness: 0.9 })); trou.position.set(x, 0, 0.0039); meca.add(trou);
   }
-  for (const y of [0.0295, -0.0295]) { const t = new THREE.Mesh(new THREE.PlaneGeometry(0.008, 0.0035), new THREE.MeshBasicMaterial({ color: 0x0a0a0a })); t.position.set(0, y, 0.0039); meca.add(t); }
+  // griffes de la platine : deux pattes d'acier repliées vers l'arrière, en haut et en bas
+  for (const y of [0.031, -0.031]) { const g2 = boite(0.012, 0.0012, 0.014, M.acier); g2.position.set(0, y, -0.0075); meca.add(g2); }
   const corpsMeca = boite(0.045, 0.045, 0.026, M.plastiqueMat); corpsMeca.position.z = -0.008; meca.add(corpsMeca);
   const touche = new THREE.Group(); touche.position.z = 0.008; meca.add(touche);
   const toucheMesh = plaqueArrondie(0.043, 0.043, 0.006, 0.004, [], M.plastique); touche.add(toucheMesh);
@@ -249,7 +251,7 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const zoneTouche = boite(0.04, 0.04, 0.012, M.invisible); zoneTouche.position.z = 0.012; touche.add(zoneTouche); cible("touche", zoneTouche, ["inter"]);
   // prise 2P+T sur son support métallique : socle, deux alvéoles, broche de terre (en haut)
   const prise = new THREE.Group(); prise.position.x = E; appareil.add(prise);
-  const supportP = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.05, h: 0.05, x: 0, y: 0 }], M.gris); prise.add(supportP);
+  const supportP = plaqueArrondie(0.071, 0.071, 0.0012, 0.003, [{ w: 0.05, h: 0.05, x: 0, y: 0 }], platine); prise.add(supportP);
   const corpsP = cyl(0.0245, 0.0245, 0.03, M.plastiqueMat, 32); corpsP.rotation.x = Math.PI / 2; corpsP.position.z = -0.012; prise.add(corpsP);
   const socle = cyl(0.0225, 0.0235, 0.012, M.plastique, 40); socle.rotation.x = Math.PI / 2; socle.position.z = 0.002; prise.add(socle);
   const puits = cyl(0.019, 0.019, 0.004, M.plastiqueMat, 40); puits.rotation.x = Math.PI / 2; puits.position.z = 0.0065; prise.add(puits);
@@ -260,7 +262,9 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const broche = cyl(0.0024, 0.0024, 0.013, M.acier, 14); broche.rotation.x = Math.PI / 2; broche.position.set(0, 0.0115, 0.0135); prise.add(broche);
   const hT = hitSphere(0.0115); hT.position.set(0, 0.0125, 0.016); prise.add(hT); cible("prise-terre", hT, ["inter-ouvert"], { type: "point", rayon: 0.0115 });
   // plaque double (deux fenêtres) avec son encoche de déclipsage sous l'interrupteur
-  const plaque = plaqueArrondie(0.152, 0.081, 0.006, 0.008, [{ w: 0.05, h: 0.05, x: -0.0355, y: 0 }, { w: 0.05, h: 0.05, x: 0.0355, y: 0 }]);
+  const plaque = plaqueArrondie(0.0705, 0.081, 0.006, 0.006, [{ w: 0.05, h: 0.05, x: 0, y: 0 }]); plaque.geometry.translate(-0.0355, 0, 0);
+  { const pleine = boite(0.05, 0.05, 0.002, M.invisible); pleine.castShadow = false; pleine.position.set(-0.0355, 0, 0.003); plaque.add(pleine); } // la plaque se touche aussi par sa fenêtre (quand on la tient)
+  const plaquePrise = plaqueArrondie(0.0705, 0.081, 0.006, 0.006, [{ w: 0.05, h: 0.05, x: 0, y: 0 }]); plaquePrise.position.set(E, 0, 0.0015); appareil.add(plaquePrise);
   const encoche = boite(0.012, 0.0022, 0.004, M.noir); encoche.position.set(-0.0355, -0.0405, 0.004); plaque.add(encoche);
   const groupePlaque = new THREE.Group(); groupePlaque.position.set(E / 2, 0, 0.0015); appareil.add(groupePlaque); groupePlaque.add(plaque);
   plaque.position.set(0, 0, 0);
@@ -301,8 +305,8 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   pose("entree", { t: "modele", f: "ClassicConsole_01", s: 0.62, avec: [
     { t: "cles", x: -0.3, y: 0.59, z: 0.03 }, { t: "courrier", x: -0.02, y: 0.59, z: 0.02 }, { t: "modele", f: "standing_picture_frame_01", x: 0.3, y: 0.59, z: -0.03, r: -0.3, s: 0.85 }, { t: "modele", f: "potted_plant_04", x: 0.14, y: 0.59, z: 0.03 } ] }, XG + 0.16, 0, 2.15, Math.PI / 2);
   pose("entree", { t: "modele", f: "ornate_mirror_01", auMur: true, s: 1.05 }, XG + 0.005, 1.5, 2.15, Math.PI / 2);
-  pose("entree", { t: "portemanteau" }, XG + 0.005, 1.74, 3.2, Math.PI / 2);
-  pose("entree", { t: "modele", f: "rubber_boots", s: 0.9, e: [0.55, 1, 1] }, XG + 0.17, 0, 3.72, Math.PI / 2 - 0.2);
+  pose("entree", { t: "portemanteau" }, XG + 0.005, 1.74, 3.32, Math.PI / 2);
+  pose("entree", { t: "modele", f: "rubber_boots", s: 0.9, e: [0.55, 1, 1] }, XG + 0.17, 0, 3.84, Math.PI / 2 - 0.2);
   pose("entree", { t: "modele", f: "painted_wooden_bench", s: 0.72 }, 0.41, 0, 3.98, -Math.PI / 2);
   pose("entree", { t: "modele", f: "fancy_picture_frame_01", auMur: true, s: 0.62 }, 0.595, 1.6, 2.25, -Math.PI / 2);
   pose("entree", { t: "modele", f: "potted_plant_01", h: 0.85, sansOmbre: true }, 0.36, 0, 1.98, 0.8);

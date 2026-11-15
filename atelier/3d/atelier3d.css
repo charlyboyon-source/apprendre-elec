@@ -19,7 +19,10 @@
 .j-flash.zap { animation: j-zap 1.6s ease-out forwards; }
 @keyframes j-zap { 0% { opacity: 1; background: #eaf2ff; } 8% { opacity: 1; background: #fff; } 14% { opacity: 1; background: #000; } 70% { opacity: 1; background: #000; } 100% { opacity: 0; background: #000; } }
 .j-fps { position: absolute; left: 6px; bottom: 6px; font: 700 12px ui-monospace, monospace; color: #7dff9a; background: rgba(0, 0, 0, 0.6); padding: 2px 6px; border-radius: 6px; pointer-events: none; }
-.j-lent { position: absolute; left: 8px; right: 8px; bottom: 8px; margin: 0; padding: 8px 10px; border-radius: 10px; background: rgba(20, 24, 32, 0.92); font-size: 0.85rem; }
+.j-lent { display: flex; align-items: center; gap: 10px; margin: 6px 8px 0; padding: 6px 10px; border-radius: 10px; background: rgba(20, 24, 32, 0.92); font-size: 0.85rem; }
+.j-lent[hidden] { display: none; }
+.j-lent span { flex: 1; }
+.j-lent button { border: 0; background: none; color: #fff; font-size: 1rem; padding: 4px 8px; cursor: pointer; }
 .j-lent a { color: #ffd84a; }
 .j-voile { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(4, 6, 10, 0.6); }
 .j-panneau { background: #fffdf7; color: #1d2228; border-radius: 16px; padding: 14px 16px 0; width: min(560px, 100%); max-height: 100%; overflow: auto; box-sizing: border-box; display: flex; flex-direction: column; }

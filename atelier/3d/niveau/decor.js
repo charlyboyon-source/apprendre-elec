@@ -22,6 +22,8 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
     // un verre « à transmission » oblige à dessiner toute la scène deux fois : une simple transparence suffit ici
     // un objet plein n'a pas besoin d'être dessiné des deux côtés (deux fois moins de travail) ; les feuillages, si
     for (const m of [].concat(o.material)) if (m.side === THREE.DoubleSide && !m.alphaTest && !m.transparent && !/plant|leaf|leaves|fern|calathea|fringe|hat|glove|hose/i.test(m.name)) m.side = THREE.FrontSide;
+    // le verre des cadres photo : sans ce réglage il est opaque et noir, et cache la photo
+    for (const m of [].concat(o.material)) if (/_glass$/i.test(m.name) && !(m.transmission > 0)) { m.transparent = true; m.opacity = 0.1; m.roughness = 0.05; m.metalness = 0; m.depthWrite = false; o.castShadow = false; }
     for (const m of [].concat(o.material)) if (m.transmission > 0) { m.transmission = 0; m.transparent = true; m.opacity = 0.22; m.roughness = 0.05; m.depthWrite = false; o.castShadow = false; }
   }); res(g.scene); }, undefined, rej)));
   // pose un modèle dans le groupe g : au sol (centré, pieds à y = 0) ou au mur (centré, dos contre le mur)

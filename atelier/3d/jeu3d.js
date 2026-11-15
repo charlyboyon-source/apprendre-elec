@@ -72,10 +72,14 @@ function cadreProche(vue) {
   const k = largeurVue();
   if (vue === "inter") {
     obj = W.appareil;
-    if (e.mecaSorti) { const d = 0.135 / k; p = [0.028, -0.03 - d * 0.22, 0.03 + d]; c = [0.028, -0.03, 0.03]; }
-    else if (!e.plaque) { const d = 0.085 / k; p = [0.004, -0.004, d]; c = [0.004, -0.004, 0]; }
+    // mécanisme sorti : vue de trois quarts, à distance de bras (le mur, la boîte, la platine et les bornes) ; plus près au téléphone
+    if (e.mecaSorti) { const d = (camera.aspect < 1 ? 0.15 : 0.2) / k; p = [0.03 - d * 0.28, -0.025 - d * 0.12, 0.03 + d * 0.95]; c = [0.03, -0.025, 0.03]; }
+    // plaque retirée : tout le poste (interrupteur et prise) avec un peu de mur autour
+    else if (!e.plaque) { const d = 0.2 / k; p = [0.0355 - d * 0.12, -d * 0.06, d]; c = [0.0355, 0, 0]; }
     else { const d = 0.162 / k; p = [0.0355, 0, d]; c = [0.0355, 0, 0]; }
-  } else if (vue === "tableau") { obj = W.tableau; const d = Math.max(0.3 / k, 0.54); p = [0, 0.02, 0.1 + d]; c = [0, 0.02, 0.1]; }
+  } else if (vue === "tableau") { // les deux rangées entières, bandes d'étiquettes comprises
+    obj = W.tableau; const ys = W.rangees.map((x) => x.position.y), ym = (Math.max(...ys) + Math.min(...ys)) / 2 + 0.01, haut = Math.max(...ys) - Math.min(...ys) + 0.3;
+    const d = Math.max(0.3 / k, haut / (2 * Math.tan((FOV_PROCHE / 2) * RAD))); p = [0, ym, 0.1 + d]; c = [0, ym, 0.1]; }
   else if (vue === "rangee1" || vue === "rangee2") { obj = W.tableau; const y = W.rangees[vue === "rangee1" ? 0 : 1].position.y; const d = Math.max(0.112 / k, 0.27); p = [0, y + 0.006, 0.165 + d]; c = [0, y + 0.014, 0.165]; } // la rangée et sa bande d'étiquettes
   else if (vue === "plafonnier") return orient([0.3, 1.55, 0.6], [0, 2.05, 0]);
   obj.updateMatrixWorld(true);
@@ -192,9 +196,9 @@ function majMain() {
 }
 function poserPlaqueEnMain() {
   const d = MAIN, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
-  W.plaque.position.set(-0.62 * demiL, -0.8 * demiH, -d);
+  W.plaque.position.set(-0.46 * demiL, -0.66 * demiH, -d);
   W.plaque.rotation.set(-0.5, 0, 0.12);
-  W.plaque.scale.setScalar((0.55 * demiL) / 0.152);
+  W.plaque.scale.setScalar((0.3 * demiL) / 0.0705);
 }
 
 /* =====================================================================
@@ -224,8 +228,8 @@ function majFils() {
   const dansBorne = bL.clone().add(new THREE.Vector3(0, -0.002, 0.002));
   const k = e.repare || e.filSerre ? 1 : engage;
   const bout = libre.clone().lerp(dansBorne, k);
-  const courbeR = tube("rouge", chemin(g0, bout, e.mecaSorti ? 0.006 : 0.003), W.M.rouge);
-  tube("orange", chemin(g0.clone().add(new THREE.Vector3(0.004, 0, 0)), b1, e.mecaSorti ? 0.006 : 0.003), W.M.orange);
+  const courbeR = tube("rouge", chemin(g0, bout, e.mecaSorti ? 0.016 : 0.003), W.M.rouge);
+  tube("orange", chemin(g0.clone().add(new THREE.Vector3(0.004, 0, 0)), b1, e.mecaSorti ? 0.016 : 0.003), W.M.orange);
   // cuivre dénudé au bout du fil rouge
   const dir = courbeR.getTangentAt(1).normalize();
   W.boutRouge.position.copy(bout).addScaledVector(dir, 0.003);
@@ -380,7 +384,7 @@ async function plaqueGeste() {
 }
 function cibleMainPlaque() {
   const d = MAIN, demiH = d * Math.tan((camera.fov / 2) * RAD), demiL = demiH * camera.aspect;
-  return { p: new THREE.Vector3(-0.62 * demiL, -0.8 * demiH, -d), q: new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.5, 0, 0.12)), s: (0.55 * demiL) / 0.152 };
+  return { p: new THREE.Vector3(-0.46 * demiL, -0.66 * demiH, -d), q: new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.5, 0, 0.12)), s: (0.3 * demiL) / 0.0705 };
 }
 async function visGeste(i) {
   const v = W.vis[i];
@@ -417,7 +421,7 @@ async function mecaGeste() {
   e.mecaSorti = sortir; temps(1); sons.clip();
   const de = sortir ? 0 : 1;
   const cam = recadrer();
-  await anime(800, (t) => { const u = de + (sortir ? t : -t); m.position.set(0, -0.022 * u, 0.045 * u); m.rotation.x = -72 * RAD * u; majFils(); });
+  await anime(800, (t) => { const u = de + (sortir ? t : -t); m.position.set(0, -0.026 * u, 0.06 * u); m.rotation.x = -72 * RAD * u; majFils(); });
   await cam; majFils();
   if (sortir) {
     dire("Mécanisme sorti : bornes L et 1 visibles. Le fil rouge n'est plus dans sa borne !");
@@ -906,7 +910,7 @@ function image(now) {
   if (attente && !occupe && !transition && !anims.length) { const a = attente; attente = null; toucherEcran(a.x, a.y); }
   // Fluidité : l'image n'est recalculée que si quelque chose bouge (la tête, la frontale, un objet, la pluie à la fenêtre si on la voit).
   const fenetreVue = W.vitrePluie && champ.setFromProjectionMatrix(matChamp.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse)).intersectsObject(W.vitrePluie);
-  if (fenetreVue) W.pluie.offset.y -= 0.012;
+  if (fenetreVue) { W.pluie.offset.y += 0.012; W.pluie.offset.x += 0.0012; }
   const p = camera.position, c = frontaleCible, sig = `${p.x.toFixed(4)},${p.y.toFixed(4)},${p.z.toFixed(4)},${regard.yaw.toFixed(4)},${regard.pitch.toFixed(4)},${camera.fov.toFixed(2)},${c.x.toFixed(3)},${c.y.toFixed(3)},${lumiere.toFixed(3)},${e.outil},${e.lecture}`;
   if (fenetreVue || transition || anims.length || sondesEnVol() || (secousse && now - secousse < 600) || sig !== signature || !decorPret) reveiller(3);
   signature = sig;
@@ -920,8 +924,9 @@ function image(now) {
   if (now - fps.t0 >= 1000) {
     fps.val = Math.round((fps.n * 1000) / (now - fps.t0)); fps.n = 0; fps.t0 = now;
     if (DEBUG) racine.querySelector(".j-fps").textContent = `${fps.val} i/s`;
-    if (document.visibilityState === "visible" && fps.val < 20) fps.bas++; else fps.bas = 0;
-    if (fps.bas >= 5 && !fps.propose) { fps.propose = true; racine.querySelector(".j-lent").hidden = false; }
+    // l'alerte « appareil trop lent » : seulement décor chargé, définition déjà au plus bas, et moins de 12 images par seconde pendant 8 secondes de suite
+    if (decorPret && document.visibilityState === "visible" && fps.val < 12 && renderer.getPixelRatio() <= 0.76) fps.bas++; else fps.bas = 0;
+    if (fps.bas >= 8 && !fps.propose) { fps.propose = true; racine.querySelector(".j-lent").hidden = false; }
     window.__fps = fps.val;
   }
 }
@@ -1039,8 +1044,8 @@ function gabarit() {
   <ol class="t-etapes" aria-label="Méthode du dépanneur"></ol>
   <div class="t-objectif" role="status"></div>
   <div class="j-scene"><div class="j-anneaux" aria-hidden="true"></div><button type="button" class="j-fleche" hidden aria-label="Tourner la tête vers l'objet demandé">➜</button><div class="j-flash"></div><output class="j-lecture" hidden aria-live="polite" aria-label="Valeur mesurée"></output>
-    <p class="j-lent" hidden>Ton appareil a du mal à afficher la 3D. <a href="atelier-ancien.html?i=chambre">Jouer à la version simple</a></p>
     ${DEBUG ? '<output class="j-fps">…</output>' : ""}<div class="j-voile" hidden></div><div class="j-charge"><b>Mme Martin ouvre la porte…</b><span><i></i></span></div></div>
+  <p class="j-lent" hidden><span>Ton appareil a du mal à afficher la 3D. <a href="atelier-ancien.html?i=chambre">Jouer à la version simple</a></span><button type="button" aria-label="Fermer ce message" onclick="this.parentNode.hidden = true">✕</button></p>
   <div class="j-barre">
     <div class="j-caisse" role="group" aria-label="Caisse à outils">
       <button type="button" data-outil="vat" aria-pressed="false"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="17" y="2" width="14" height="30" rx="4" fill="#e9b400" stroke="#1d2228" stroke-width="2"/><rect x="20" y="5" width="8" height="3" rx="1" fill="#ff3b2f"/><rect x="20" y="10" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="15" width="8" height="3" rx="1" fill="#6b7480"/><rect x="20" y="20" width="8" height="3" rx="1" fill="#6b7480"/><path d="M24 32v6" stroke="#9aa3ad" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26C8 26 8 12 8 6" fill="none" stroke="#1d2228" stroke-width="2"/><rect x="5" y="2" width="6" height="12" rx="2" fill="#2f6fb8" stroke="#1d2228" stroke-width="1.5"/><path d="M8 14v5" stroke="#9aa3ad" stroke-width="2" stroke-linecap="round"/></svg><b>VAT</b></button>
@@ -1115,7 +1120,7 @@ async function demarrer() {
     }); }
   // pour les contrôles automatiques
   window.__atelier3d = {
-    e: () => e, guide: () => guideCible(), cam: () => camera, image: () => { forcer = true; image(performance.now()); forcer = false; }, rendu: () => renderer, decor: () => W.decor.suivi, regard: () => regard, definition: () => renderer.getPixelRatio(),
+    e: () => e, W: () => W, guide: () => guideCible(), cam: () => camera, image: () => { forcer = true; image(performance.now()); forcer = false; }, rendu: () => renderer, decor: () => W.decor.suivi, regard: () => regard, definition: () => renderer.getPixelRatio(),
     cibles: () => W.cibles.filter(actif).map((c) => ({ id: c.id, type: c.type, ...(c.type === "point" ? rayonEcran(c) : {}) })),
     toucher: (id) => { const c = W.cibles.find((x) => x.id === id); return c.type === "point" ? rayonEcran(c) : ecranDe(centreCible(c)); },
     occupe: () => occupe || !!transition || anims.length > 0 || !!attente || sondesEnVol(),
