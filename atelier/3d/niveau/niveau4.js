@@ -1,8 +1,10 @@
 // Niveau 4 — « Le disjoncteur saute tous les soirs » : le pavillon de la famille Morel.
 // Surcharge ou court-circuit ? Pince ampèremétrique, et un client qui veut « mettre plus gros ».
+import { CAGE, monter, descendre } from "./cage.js";
 import { pavillon, causesPavillon, soireePavillon, reperesPavillon as F } from "../moteur/logements/pavillon.js";
 
 const porte = (vers, mur, u, y = 1.025) => ({ t: "porte", vers, mur, u, y });
+const LE = 1.8, LPA = 2.6; // profondeur du pied de l'escalier et du palier
 const enHaut = (P) => ["palier", "chambre1", "chambre2", "chambre3"].some((l) => P.vus.has(`lieu:${l}`));
 const calibreLu = (P) => P.vus.has("indice:Q6") || P.vus.has("lu:Q6");
 const SOIR = (P) => soireePavillon[P.cause];
@@ -42,6 +44,8 @@ export default {
   },
   // s'asseoir sur le lit de Théo
   gestes: {
+    theo(P, o) { o.dire("Théo retire son casque : « Ouais ? Si c'est pour le courant, c'est le soir que ça saute. Demandez-moi ce qui est allumé, je sais. »", "client"); return true; },
+    lea(P, o) { o.dire("Léa lève les yeux de son téléphone : « Ça saute tous les soirs vers cette heure-ci. J'ai froid dans ma chambre, alors j'ai un radiateur. Posez-moi vos questions si vous voulez. »", "client"); return true; },
     lit(P, o) { const e = P.e; e.appuis.lit = true; const r = P.inst.calculer(e); e.appuis.lit = false; o.dire(r.declenchements.length ? "Tu t'assois sur le lit de Théo…" : "Tu t'assois sur le lit de Théo. Rien ne se passe.", "info"); o.declenchements(r.declenchements); if (r.declenchements.length) { P.vus.add("lit:declenche"); o.noter("indices", "En s'asseyant sur le lit de Théo, le disjoncteur « Prises chambres » déclenche d'un coup."); } return r.declenchements.length > 0; },
   },
   apresMesure(P, m) {
@@ -80,11 +84,11 @@ export default {
     { id: "chargeur", texte: "Le chargeur de téléphone de Léa", non: "10 W, c'est quelques centièmes d'ampère. Ce n'est pas lui." },
   ],
   remedes: [
-    { id: "repartir", pour: ["A"], effet: (P) => { P.e.branche.fer = "pc_entree"; }, texte: "Ne rien changer au tableau : repasser en bas, sur une prise d'un autre circuit, et proposer un circuit dédié", fait: "Aucune pièce changée. Tu expliques : le disjoncteur a fait son travail, il protège les conducteurs. Le fer à repasser ira sur une prise du bas, qui dépend d'un autre circuit, et tu proposes un circuit dédié pour les radiateurs. Le soir même, tout est allumé et le disjoncteur tient.", non: "Il n'y a pas de surcharge : le courant du soir reste sous le calibre prévu." },
-    { id: "identique", pour: ["B"], repare: true, texte: "Remplacer le disjoncteur par le même calibre, 20 A, et serrer correctement ses bornes", fait: "Tu remplaces le disjoncteur abîmé par un neuf du même calibre, 20 A pour ces conducteurs en 2,5 mm², et tu serres ses bornes. Le soir même, tout est allumé et il tient.", non: "Ce disjoncteur n'est pas abîmé : le changer à l'identique ne règle rien." },
-    { id: "rallonge", pour: ["C"], repare: true, texte: "Retirer la rallonge écrasée et brancher la lampe de Théo autrement", fait: "Tu retires la rallonge écrasée, tu la montres à Théo et à son père, et tu branches la lampe directement. Théo se jette sur son lit : le disjoncteur tient.", non: "Aucune rallonge n'est en cause ici." },
-    { id: "calibre", pour: ["D"], repare: true, texte: "Remettre un disjoncteur de 20 A, le calibre prévu pour des conducteurs en 2,5 mm²", fait: "Tu remplaces le disjoncteur de 10 A par un 20 A : c'est le calibre prévu pour des conducteurs en 2,5 mm² (module 12). Le soir même, tout est allumé et il tient.", non: "Le disjoncteur a déjà le calibre prévu pour ces conducteurs." },
-    { id: "gros", pour: [], faute: "Tu as accepté de poser un disjoncteur de 32 A sur des conducteurs en 2,5 mm². Le calibre protège les conducteurs : avec un calibre trop fort, ce sont les fils qui chauffent dans le mur. C'est l'erreur grave de ce dépannage.", texte: "Faire ce que demande M. Morel : poser un disjoncteur de 32 A", non: "« Ah, enfin ! » Non. Le calibre protège les conducteurs : en 2,5 mm², c'est 20 A au plus. Un 32 A laisserait les fils chauffer dans le mur. Tu dois refuser et l'expliquer." },
+    { id: "repartir", ou: ["fer"], pour: ["A"], effet: (P) => { P.e.branche.fer = "pc_entree"; }, texte: "Ne rien changer au tableau : repasser en bas, sur une prise d'un autre circuit, et proposer un circuit dédié", fait: "Aucune pièce changée. Tu expliques : le disjoncteur a fait son travail, il protège les conducteurs. Le fer à repasser ira sur une prise du bas, qui dépend d'un autre circuit, et tu proposes un circuit dédié pour les radiateurs. Le soir même, tout est allumé et le disjoncteur tient.", non: "Il n'y a pas de surcharge : le courant du soir reste sous le calibre prévu." },
+    { id: "identique", ou: ["Q6"], pour: ["B"], repare: true, texte: "Remplacer le disjoncteur par le même calibre, 20 A, et serrer correctement ses bornes", fait: "Tu remplaces le disjoncteur abîmé par un neuf du même calibre, 20 A pour ces conducteurs en 2,5 mm², et tu serres ses bornes. Le soir même, tout est allumé et il tient.", non: "Ce disjoncteur n'est pas abîmé : le changer à l'identique ne règle rien." },
+    { id: "rallonge", ou: ["rallonge"], pour: ["C"], repare: true, texte: "Retirer la rallonge écrasée et brancher la lampe de Théo autrement", fait: "Tu retires la rallonge écrasée, tu la montres à Théo et à son père, et tu branches la lampe directement. Théo se jette sur son lit : le disjoncteur tient.", non: "Aucune rallonge n'est en cause ici." },
+    { id: "calibre", ou: ["Q6"], pour: ["D"], repare: true, texte: "Remettre un disjoncteur de 20 A, le calibre prévu pour des conducteurs en 2,5 mm²", fait: "Tu remplaces le disjoncteur de 10 A par un 20 A : c'est le calibre prévu pour des conducteurs en 2,5 mm² (module 12). Le soir même, tout est allumé et il tient.", non: "Le disjoncteur a déjà le calibre prévu pour ces conducteurs." },
+    { id: "gros", ou: ["Q6"], pour: [], faute: "Tu as accepté de poser un disjoncteur de 32 A sur des conducteurs en 2,5 mm². Le calibre protège les conducteurs : avec un calibre trop fort, ce sont les fils qui chauffent dans le mur. C'est l'erreur grave de ce dépannage.", texte: "Faire ce que demande M. Morel : poser un disjoncteur de 32 A", non: "« Ah, enfin ! » Non. Le calibre protège les conducteurs : en 2,5 mm², c'est 20 A au plus. Un 32 A laisserait les fils chauffer dans le mur. Tu dois refuser et l'expliquer." },
   ],
   // on rejoue la soirée après le remède : tout ce qui tourne le soir, et Théo sur son lit
   verifier(P) {
@@ -127,26 +131,53 @@ export default {
         { t: "etagereChargee", mur: "N", u: 1.42, y: 0 }, { t: "porteGarage", mur: "S", u: 0.3, y: 0, w: 2.5 },
         { t: "modele", f: "cardboard_box_01", x: -1.6, z: 1.25, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: -1.55, y: 0.3, z: 1.22, r: -0.25, s: 0.8 }, { t: "modele", f: "wooden_crate_02", x: -1.0, z: 1.4, r: 0.2 },
         { t: "modele", f: "rusted_spade_01", x: -1.98, z: 0.85, rx: -0.14, r: 1.6 }, { t: "balai", x: -1.95, z: 1.05, r: 1.4 }, { t: "modele", f: "watering_can_metal_01", x: 0.95, z: -1.45, r: 0.6 } ] },
-      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3, 3], sol: "carrelage", objets: [
-        { t: "inter", id: "int_entree", mur: "S", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "E", u: 0.4, y: 0.75 }, { t: "boite", id: "bd_rdc", mur: "E", u: -0.8, y: 2.2 },
-        porte("garage", "O", 0.5), porte("escalier", "N", 0.4),
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [3.6, 3], sol: "carrelage", objets: [
+        { t: "inter", id: "int_entree", mur: "S", u: 1.2, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "E", u: 0.4, y: 0.75 }, { t: "boite", id: "bd_rdc", mur: "E", u: -0.8, y: 2.2 },
+        porte("garage", "O", 0.5), porte("escalier", "N", 1.15), porte("sejour", "N", -0.95),
         { t: "porteEntree", mur: "S", u: -0.5, y: 0 }, { t: "portemanteau", mur: "O", u: -0.78, y: 1.74 }, { t: "chaussures", mur: "O", u: -0.78, y: 0 },
         { t: "tapis", x: 0, z: 0.2, w: 1.7, d: 1.2, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
-        { t: "modele", f: "ClassicConsole_01", x: 1.33, z: -0.7, r: -Math.PI / 2, s: 0.62, avec: [ { t: "cles", x: -0.28, y: 0.59, z: 0.03 }, { t: "courrier", x: 0.02, y: 0.59, z: 0.02 }, { t: "modele", f: "potted_plant_04", x: 0.28, y: 0.59, z: 0.02 } ] },
-        { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.7, y: 1.45, auMur: true, s: 0.9 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: -0.75, y: 1.62, auMur: true, s: 0.6 },
+        { t: "modele", f: "ClassicConsole_01", x: 1.63, z: -0.7, r: -Math.PI / 2, s: 0.62, avec: [ { t: "cles", x: -0.28, y: 0.59, z: 0.03 }, { t: "courrier", x: 0.02, y: 0.59, z: 0.02 }, { t: "modele", f: "potted_plant_04", x: 0.28, y: 0.59, z: 0.02 } ] },
+        { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.7, y: 1.45, auMur: true, s: 0.9 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: 0.1, y: 1.62, auMur: true, s: 0.5 },
         { t: "modele", f: "rubber_boots", x: 0.85, z: 1.22, s: 0.9, e: [0.55, 1, 1], r: Math.PI } ] },
-      escalier: { nom: "l'escalier", court: "L'escalier", raccourci: "Escalier", taille: [1.5, 4.4], h: 5.3, sol: "bois", camera: [0, 1.62, 1.8], pitch: 0.28, objets: [
-        { t: "marches", n: 14, haut: 2.8 }, { t: "inter", id: "int_escalier", mur: "O", u: -1.6, y: 1.1 }, { t: "plafonnier", id: "pl_escalier" }, porte("entree", "S", 0), porte("palier", "N", 0, 3.825),
-        { t: "rampe", x: 0.7, y: 0.92, z: 1.2, l: 3.2, h: 2.8 },
-        { t: "modele", f: "hanging_picture_frame_03", mur: "O", u: -0.55, y: 2.0, auMur: true, s: 0.7 }, { t: "modele", f: "fancy_picture_frame_01", mur: "O", u: 0.4, y: 2.8, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", mur: "O", u: 1.3, y: 3.6, auMur: true, s: 0.7 } ] },
-      palier: { nom: "le palier", court: "Le palier", raccourci: "Palier", taille: [3.4, 2.4], sol: "bois", objets: [
-        { t: "inter", id: "int_palier", mur: "S", u: 1.2, y: 1.1 }, { t: "plafonnier", id: "pl_palier" }, { t: "prise", id: "pc_palier", mur: "N", u: -0.2, y: 0.75 }, { t: "prise", id: "pc_sde", mur: "E", u: 0.7, y: 1.15 }, { t: "boite", id: "bd_et", mur: "N", u: 1.3, y: 2.2 },
-        porte("escalier", "S", -0.2), porte("chambre1", "O", 0), porte("chambre2", "N", -1.2), porte("chambre3", "E", -0.4),
+      // le séjour et la cuisine : la famille vit en bas ; la plaque de cuisson du tableau est ici
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [1.45, 1.62, 1.5], yaw: 0.6, pitch: -0.22, objets: [
+        { t: "inter", id: "int_sejour", mur: "S", u: -1.4, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour", mur: "N", u: -1.9, y: 0.75 },
+        porte("entree", "S", 0.8), porte("cuisine", "O", 0.6),
+        { t: "fenetre", mur: "N", u: 0.6, y: 1.45, w: 1.2, h: 1.15, vue: "nuit", rideaux: 0x8a5a3a },
+        { t: "tapis", x: -0.45, z: -0.35, w: 2.6, d: 1.9, couleurs: ["#7a2f2a", "#e2d3ae", "#2f3f55"] },
+        { t: "modele", f: "modern_wooden_cabinet", x: -1.05, z: -1.76, e: [0.8, 1, 1], avec: [ { t: "tele", id: "television", x: 0.3, y: 0.68, z: -0.02 }, { t: "modele", f: "standing_picture_frame_02", x: -0.55, y: 0.68, z: 0.02, r: 0.3, s: 0.8 } ] },
+        { t: "modele", f: "Sofa_01", x: -0.45, z: 0.55, r: Math.PI, s: 1.2, avec: [ { t: "plaid", x: 0.86, y: 0.72, z: 0.1, r: Math.PI / 2, c: 0xa8553f }, { t: "modele", f: "throw_pillows_01", x: -0.75, y: 0.5, z: -0.02, s: 0.7 } ] },
+        { t: "modele", f: "coffee_table_round_01", x: -0.45, z: -0.6, s: 0.62, avec: [ { t: "tasse", x: 0.12, y: 0.303, z: 0.1, c: 0xa8553f }, { t: "telecommande", x: -0.16, y: 0.303, z: 0.05, r: -0.4 }, { t: "livre", x: -0.05, y: 0.303, z: -0.2, r: 0.4 } ] },
+        { t: "modele", f: "wooden_bookshelf_worn", x: 2.1, z: -0.8, r: -Math.PI / 2, avec: [
+          { t: "livres", y: 0.39, w: 1.1, z: 0.02, g: 3 }, { t: "livres", y: 0.67, w: 1.1, z: 0.02, g: 5 }, { t: "livres", x: -0.2, y: 0.96, w: 0.7, z: 0.02, g: 2, n: 14 }, { t: "modele", f: "ceramic_vase_01", x: 0.38, y: 0.96, z: 0.03, s: 0.6 },
+          { t: "modele", f: "wicker_basket_02", x: 0.2, y: 1.66, z: 0.02 }, { t: "modele", f: "wicker_basket_01", x: -0.25, y: 0.11, z: 0.05, s: 1.5 } ] },
+        { t: "modele", f: "fancy_picture_frame_02", mur: "E", u: 1.2, y: 1.62, auMur: true, s: 0.8 }, { t: "modele", f: "wall_clock", mur: "S", u: -0.45, y: 1.95, auMur: true },
+        { t: "modele", f: "potted_plant_02", x: -1.95, z: 1.6, h: 0.85, sansOmbre: true } ] },
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 2.8], sol: "carrelage", camera: [0.5, 1.62, 0.95], yaw: 0.28, pitch: -0.2, objets: [
+        { t: "inter", id: "int_cuisine", mur: "E", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" }, { t: "prise", id: "pc_cuisine", mur: "O", u: 0.55, y: 1.15 },
+        porte("sejour", "E", 0.7),
+        { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.6, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.6, hotte: true }, { k: "bas", w: 0.6, haut: true }] },
+        { t: "fenetre", mur: "N", u: -0.6, y: 1.8, w: 0.7, h: 0.55, rideaux: false, vue: "nuit" },
+        { t: "modele", f: "electric_stove", id: "plaque", x: 0.7, z: -1.07, s: 1.05, zone: [0.55, 0.95, 0.7], voyant: [0.2, 0.8, 0.345] },
+        { t: "frigo", id: "refrigerateur", x: -1.28, z: 0.42, r: Math.PI / 2 },
+        { t: "modele", f: "round_wooden_table_01", x: -0.3, z: 0.85, e: [0.62, 0.75, 0.62], avec: [ { t: "tasse", x: 0.12, y: 0.753, z: 0.05, c: 0xa8553f }, { t: "modele", f: "wooden_bowl_02", x: -0.1, y: 0.753, z: 0.12, s: 1.2 }, { t: "livre", x: 0.05, y: 0.753, z: -0.2, r: 0.5, c: 0x3f5a8a } ] },
+        { t: "modele", f: "painted_wooden_chair_02", x: 0.3, z: 0.95, r: -Math.PI / 2 - 0.3, s: 0.74 }, { t: "modele", f: "painted_wooden_chair_02", x: -0.4, z: 0.25, r: 0.2, s: 0.74 },
+        { t: "modele", f: "pot_enamel_01", x: 0.62, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.35, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", mur: "E", u: -0.85, y: 1.2 } ] },
+      // l'escalier de la maison : une vraie cage à deux volées, de l'entrée au palier (cage.js) ; on la monte marche après marche
+      escalier: { nom: "le pied de l'escalier", court: "L'escalier", raccourci: "Escalier", ensemble: "cage", coque: false, pos: [0, 0, 0], taille: [2.6, LE], h: 2.6, camera: [0, 1.62, LE / 2 - 0.45], pitch: 0.05, objets: [
+        { t: "cageEtage", sol: "bois", marches: "bois", soubassement: false, sousEscalier: true }, monter("palier", LE),
+        { t: "inter", id: "int_escalier", mur: "O", u: -0.35, y: 1.1 }, { t: "plafonnier", id: "pl_escalier", z: -0.2 }, porte("entree", "S", 0),
+        { t: "modele", f: "hanging_picture_frame_03", mur: "E", u: 0.3, y: 1.65, auMur: true, s: 0.7 }, { t: "modele", f: "fancy_picture_frame_01", x: 1.2, y: 1.95, z: -LE / 2 - 0.7, r: -Math.PI / 2, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_03", x: 1.2, y: 2.55, z: -LE / 2 - 1.5, r: -Math.PI / 2, auMur: true, s: 0.7 },
+        { t: "modele", f: "potted_plant_01", x: -1.05, z: 0.55, h: 0.7, sansOmbre: true } ] },
+      palier: { nom: "le palier", court: "Le palier", raccourci: "Palier", ensemble: "cage", coque: false, pos: [0, CAGE.H, -LE / 2 + LPA / 2], taille: [3.8, LPA], h: 2.6, camera: [0, 1.62, LPA / 2 - 0.9], pitch: -0.08, objets: [
+        { t: "cageEtage", sol: "bois", marches: "bois", soubassement: false, arrive: true, monte: false, dernier: true }, descendre("escalier", LPA),
+        { t: "inter", id: "int_palier", mur: "N", u: 1.55, y: 1.1 }, { t: "plafonnier", id: "pl_palier" }, { t: "prise", id: "pc_palier", mur: "S", u: -1.35, y: 0.75 }, { t: "prise", id: "pc_sde", mur: "E", u: 0.85, y: 1.15 }, { t: "boite", id: "bd_et", mur: "N", u: -1.55, y: 2.25 },
+        porte("chambre1", "O", 0.2), porte("chambre2", "S", 0.2), porte("chambre3", "E", -0.3),
         // la table à repasser de Mme Morel, le fer branché sur la prise du palier
-        { t: "repassage", id: "fer", x: 0.5, z: -0.72 },
-        { t: "modele", f: "wicker_basket_02", x: 1.38, z: -0.92, h: 0.42, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.36 }] },
-        { t: "tapis", x: 0, z: 0.25, w: 2.0, d: 0.9, couleurs: ["#3f5a4a", "#e2d3ae", "#7a2f2a"] },
-        { t: "modele", f: "fancy_picture_frame_02", mur: "N", u: 0.45, y: 1.7, auMur: true, s: 0.6 }, { t: "modele", f: "potted_plant_01", x: -1.42, z: 0.92, h: 0.75, sansOmbre: true } ] },
+        { t: "repassage", id: "fer", x: 1.15, z: 0.62 },
+        { t: "modele", f: "wicker_basket_02", x: 1.62, z: 1.05, h: 0.42, e: [0.62, 1, 0.62], avec: [{ t: "linge", y: 0.36 }] },
+        { t: "tapis", x: -0.2, z: 0.1, w: 1.8, d: 0.9, couleurs: ["#3f5a4a", "#e2d3ae", "#7a2f2a"] },
+        { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -0.85, y: 1.7, auMur: true, s: 0.6 }, { t: "modele", f: "potted_plant_01", x: -1.6, z: 1.0, h: 0.75, sansOmbre: true } ] },
       chambre1: { nom: "la chambre des parents", court: "La chambre des parents", raccourci: "Parents", taille: [3.4, 3.2], sol: "bois", camera: [0.2, 1.62, 1.15], yaw: 0.15, pitch: -0.18, objets: [
         { t: "inter", id: "int_chambre1", mur: "E", u: 1.0, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 1.2, y: 0.75 }, porte("palier", "E", -0.6),
         { t: "lit", x: -0.15, z: -0.49, w: 1.6, couette: 0x7a4a55, plaid: 0xd9c9a3 },
@@ -164,7 +195,8 @@ export default {
         { t: "rallonge", id: "rallonge", x: 0, z: 0, points: [[-0.42, 0.006, -1.5], [-0.2, 0.006, -1.42], [0.2, 0.006, -1.46], [0.55, 0.006, -1.4]] },
         { t: "radiateur", id: "radiateur2", x: -1.36, z: 0.95, r: Math.PI / 2 },
         { t: "modele", f: "wooden_table_02", x: 1.22, z: -0.3, r: -Math.PI / 2, avec: [ { t: "ordinateur", id: "ordinateur", x: -0.1, y: 0.8, z: 0.02 }, { t: "modele", f: "desk_lamp_arm_01", x: -0.45, y: 0.8, z: -0.18, h: 0.42, r: 0.6 } ] },
-        { t: "modele", f: "painted_wooden_chair_02", x: 0.6, z: -0.3, r: Math.PI / 2, s: 0.74, avec: [ { t: "vetement", x: 0, y: 0.94, z: -0.2, w: 0.44, l: 0.9, c: 0x2f3f55 } ] },
+        { t: "modele", f: "painted_wooden_chair_02", x: 0.6, z: -0.3, r: Math.PI / 2, s: 0.74 },
+        { t: "personne", id: "theo", x: 0.6, z: -0.3, r: Math.PI / 2, assise: 0.4, haut: 0x2f3f55, bas: 0x3a3f46, cheveux: 0x3a2a1c, casque: true, manches: true },
         { t: "fenetre", mur: "E", u: -0.95, y: 1.6, w: 0.8, h: 0.9, vue: "nuit", rideaux: false },
         { t: "affiche", mur: "N", u: -0.1, y: 1.65, texte: "TOURNÉE" }, { t: "affiche", mur: "O", u: -0.6, y: 1.65, w: 0.45, h: 0.62, texte: "FINALE", couleurs: ["#3f5a3a", "#f2efe6", "#1f2a44"] },
         { t: "tapis", x: 0.2, z: 0.45, w: 1.5, d: 1.0, couleurs: ["#22262d", "#8d949c", "#c8261e"] }, { t: "linge", x: -0.2, y: 0.02, z: 0.75 },
@@ -172,6 +204,7 @@ export default {
       chambre3: { nom: "la chambre de Léa", court: "La chambre de Léa", raccourci: "Léa", taille: [3.2, 3], sol: "bois", camera: [-0.3, 1.62, 1.0], yaw: -0.2, pitch: -0.2, objets: [
         { t: "inter", id: "int_chambre3", mur: "O", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre3" }, { t: "prise", id: "pc_chambre3a", mur: "N", u: -1.0, y: 0.75 }, { t: "prise", id: "pc_chambre3b", mur: "E", u: 0.2, y: 0.75 }, porte("palier", "O", -0.5),
         { t: "lit", x: 0.4, z: -0.48, w: 1.0, l: 2.0, couette: 0xb86a7a, plaid: 0xf2efe6 },
+        { t: "personne", id: "lea", x: -0.02, z: -0.75, r: -Math.PI / 2, assise: 0.5, haut: 0xb86a7a, bas: 0x2f3f55, cheveux: 0x5a3a22, longs: true, telephone: true, manches: true },
         { t: "radiateur", id: "radiateur3", x: -1.0, z: -1.3 },
         { t: "modele", f: "painted_wooden_nightstand", x: 1.32, z: 0.45, r: -Math.PI / 2, h: 0.5 }, { t: "chargeur", id: "chargeur", mur: "E", u: 0.2, y: 0.75 },
         { t: "fenetre", mur: "N", u: 0.4, y: 1.75, w: 0.9, h: 0.7, vue: "nuit", rideaux: 0xb86a7a },

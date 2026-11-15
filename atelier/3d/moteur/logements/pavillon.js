@@ -5,7 +5,7 @@
 import { chantier } from "./outils.js";
 
 const c = chantier({ id: "pavillon", nom: "Pavillon à étage", niveau: 4, client: "Famille Morel", reperage: "complet", thermique: true, env: { heure: 19.5, pluie: false } });
-for (const [id, nom] of [["garage", "Garage"], ["entree", "Entrée"], ["escalier", "Escalier"], ["palier", "Palier"], ["chambre1", "Chambre des parents"], ["chambre2", "Chambre de Théo"], ["chambre3", "Chambre de Léa"]]) c.piece(id, nom);
+for (const [id, nom] of [["garage", "Garage"], ["entree", "Entrée"], ["sejour", "Séjour"], ["cuisine", "Cuisine"], ["escalier", "Escalier"], ["palier", "Palier"], ["chambre1", "Chambre des parents"], ["chambre2", "Chambre de Théo"], ["chambre3", "Chambre de Léa"]]) c.piece(id, nom);
 
 c.circuit("plaque", "Plaque de cuisson", "specialise", 6);
 c.circuit("ll", "Lave-linge", "specialise", 2.5);
@@ -34,15 +34,15 @@ c.tableau("garage", {
 
 c.boite("bd_rdc", "entree", "ecl_rdc", "Boîte de dérivation de l'entrée");
 c.ligne("ecl_rdc", "Q4", "bd_rdc");
-for (const [p, nom] of [["garage", "du garage"], ["entree", "de l'entrée"], ["escalier", "de l'escalier"]]) c.simpleAllumage("ecl_rdc", "bd_rdc", { id: `int_${p}`, piece: p, nom: `Interrupteur ${nom}` }, { id: `pl_${p}`, piece: p, nom: `Plafonnier ${nom}` });
+for (const [p, nom] of [["garage", "du garage"], ["entree", "de l'entrée"], ["sejour", "du séjour"], ["cuisine", "de la cuisine"], ["escalier", "de l'escalier"]]) c.simpleAllumage("ecl_rdc", "bd_rdc", { id: `int_${p}`, piece: p, nom: `Interrupteur ${nom}` }, { id: `pl_${p}`, piece: p, nom: `Plafonnier ${nom}` });
 c.boite("bd_et", "palier", "ecl_et", "Boîte de dérivation du palier");
 c.ligne("ecl_et", "Q5", "bd_et");
 for (const [p, nom] of [["palier", "du palier"], ["chambre1", "de la chambre des parents"], ["chambre2", "de la chambre de Théo"], ["chambre3", "de la chambre de Léa"]]) c.simpleAllumage("ecl_et", "bd_et", { id: `int_${p}`, piece: p, nom: `Interrupteur ${nom}` }, { id: `pl_${p}`, piece: p, nom: `Plafonnier ${nom}` });
 
 const prCh = c.prises("pr_ch", "Q6", [["pc_palier", "palier", "Prise du palier"], ["pc_chambre1", "chambre1", "Prise de la chambre des parents"], ["pc_chambre2a", "chambre2", "Prise du radiateur de Théo"], ["pc_chambre2b", "chambre2", "Prise du bureau de Théo"], ["pc_chambre3a", "chambre3", "Prise du radiateur de Léa"], ["pc_chambre3b", "chambre3", "Prise du lit de Léa"]]);
-c.prises("pr_rdc", "Q3", [["pc_entree", "entree", "Prise de l'entrée"], ["pc_garage", "garage", "Prise de l'établi"]]);
+c.prises("pr_rdc", "Q3", [["pc_entree", "entree", "Prise de l'entrée"], ["pc_garage", "garage", "Prise de l'établi"], ["pc_sejour", "sejour", "Prise du séjour"], ["pc_cuisine", "cuisine", "Prise du plan de travail"]]);
 c.prises("sde", "Q7", [["pc_sde", "palier", "Prise de la salle d'eau"]]);
-c.fixe("plaque", "Q1", "plaque", "entree", "Plaque de cuisson", 7200);
+c.fixe("plaque", "Q1", "plaque", "cuisine", "Plaque de cuisson", 7200);
 c.prises("ll", "Q2", [["pc_lavelinge", "garage", "Prise du lave-linge"]]);
 
 c.appareil("radiateur2", "Radiateur d'appoint de Théo", 2000, "pc_chambre2a", false);
@@ -52,6 +52,8 @@ c.appareil("ordinateur", "Ordinateur de Théo", 300, "pc_chambre2b", false);
 c.appareil("chargeur", "Chargeur de téléphone", 10, "pc_chambre3b", true);
 c.appareil("chevet", "Lampe de chevet", 40, "pc_chambre1", false);
 c.appareil("lavelinge", "Lave-linge", 2200, "pc_lavelinge", false);
+c.appareil("television", "Télévision", 120, "pc_sejour", true);
+c.appareil("refrigerateur", "Réfrigérateur", 150, "pc_cuisine", true);
 
 // un soir d'hiver : les lumières sont allumées
 c.logement.etat = Object.fromEntries(c.logement.organes.filter((o) => o.type === "interrupteur").map((o) => [o.id, true]));
