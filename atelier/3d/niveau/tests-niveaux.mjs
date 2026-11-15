@@ -132,7 +132,7 @@ export function testsNiveaux(cas, egal, vrai) {
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 6, cause ${cause} : le joueur automatique reproduit, mesure l'isolement, suit le neutre, trouve et répare`, () => {
     const { P, diag, tombes } = jouerNiveau6(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
-    if (cause === "A" || cause === "B") egal(tombes, ["ID1", "ID2", "ID1+ID2"], "tantôt l'un, tantôt l'autre, tantôt les deux"); else egal(tombes, ["ID1", "ID1", "ID1"], "toujours le même");
+    if (cause === "A" || cause === "B") egal([...tombes].sort(), ["ID1", "ID1+ID2", "ID2"], "tantôt l'un, tantôt l'autre, tantôt les deux (les trois cas en trois essais, dans un ordre tiré au hasard)"); else egal(tombes, ["ID1", "ID1", "ID1"], "toujours le même");
   });
   cas("Niveau 6 : symptôme commun, couloir éteint tout tient ; allumé, un interrupteur différentiel déclenche", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N6, c); P.action({ type: "essayer", id: "int_sejour" }); vrai(P.calc().allume("pl_sejour") && P.e.positions.ID1 && P.e.positions.ID2, `${c} couloir éteint`); P.action({ type: "geste", id: "int_couloir" }); vrai(!P.e.positions.ID1 || !P.e.positions.ID2, `${c} allumé`); } });
   cas("Niveau 6 : neutre emprunté ou mal rangé, l'isolement est bon partout ; neutre ou phase pincés, il est mauvais", () => {

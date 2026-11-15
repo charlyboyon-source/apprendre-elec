@@ -4,7 +4,52 @@
 import { maisonRenovee, causesMaisonRenovee, reperesMaisonRenovee as F } from "../moteur/logements/maison-renovee.js";
 
 const porte = (vers, mur, u, y = 1.025) => ({ t: "porte", vers, mur, u, y });
-const X = (P) => P.x6 || (P.x6 = { n: 0 });
+const X = (P) => P.x6 || (P.x6 = { sac: [] });
+// lequel lâche le premier ? Tiré au hasard à chaque allumage (0 : celui du haut, 1 : celui du bas, 2 : les deux).
+// Les trois cas sortent dans un ordre mélangé avant de recommencer : en trois essais, on a vu les trois.
+const tirer = (P) => { const x = X(P); if (!x.sac.length) { x.sac = [0, 1, 2]; for (let i = 2; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x.sac[i], x.sac[j]] = [x.sac[j], x.sac[i]]; } } return x.sac.pop(); };
+
+// Le schéma dessiné à M. Girard à la fin : un vrai dessin, aux couleurs des conducteurs (rouge phase, bleu neutre,
+// orange retour lampe, vert-jaune terre).
+function schemaFin(P) {
+  const R = "#c8261e", B = "#2f6fd0", O = "#e8790c", VJ = "#4a9a35", E = "#1c2530", melange = P.cause === "A" || P.cause === "B";
+  const diff = (y, nom) => `<rect x="150" y="${y}" width="120" height="78" rx="8" fill="#fff" stroke="${E}" stroke-width="2"/><text x="210" y="${y - 8}" text-anchor="middle" font-size="13" font-weight="700" fill="${E}">${nom}</text><ellipse cx="210" cy="${y + 39}" rx="16" ry="32" fill="none" stroke="#8d949c" stroke-width="5"/><text x="210" y="${y + 92}" text-anchor="middle" font-size="11" fill="#5b6673">30 mA</text>`;
+  const lampe = (x, y) => `<circle cx="${x}" cy="${y}" r="15" fill="#fff1c2" stroke="${E}" stroke-width="2"/><path d="M${x - 10} ${y - 10} L${x + 10} ${y + 10} M${x - 10} ${y + 10} L${x + 10} ${y - 10}" stroke="${E}" stroke-width="2"/>`;
+  const fl = (x, y, a, c) => `<path d="M-7 -5 L5 0 L-7 5 Z" fill="${c}" transform="translate(${x} ${y}) rotate(${a})"/>`;
+  let corps, legende;
+  if (melange) {
+    corps = `${diff(40, "Interrupteur différentiel du haut")}${diff(200, "Interrupteur différentiel du bas")}
+      <path d="M40 60 H150 M270 60 H400" stroke="${R}" stroke-width="4" fill="none"/><path d="M40 98 H150 M270 98 H330" stroke="${B}" stroke-width="4" fill="none"/>
+      <path d="M40 220 H150 M270 220 H330" stroke="${R}" stroke-width="4" fill="none"/><path d="M40 258 H150" stroke="${B}" stroke-width="4" fill="none"/>
+      <path d="M150 60 H270 M150 220 H270" stroke="${R}" stroke-width="4" stroke-dasharray="2 5" fill="none"/><path d="M150 98 H270 M150 258 H270" stroke="${B}" stroke-width="4" stroke-dasharray="2 5" fill="none"/>
+      <rect x="400" y="46" width="34" height="28" rx="4" fill="#fff" stroke="${E}" stroke-width="2"/><text x="417" y="38" text-anchor="middle" font-size="11" fill="${E}">disjoncteur couloir</text>
+      <path d="M434 60 H470" stroke="${R}" stroke-width="4" fill="none"/><path d="M470 60 L496 46" stroke="${E}" stroke-width="3" fill="none"/><circle cx="470" cy="60" r="3.5" fill="${E}"/><circle cx="500" cy="60" r="3.5" fill="${E}"/><text x="485" y="84" text-anchor="middle" font-size="11" fill="${E}">interrupteur</text>
+      <path d="M500 60 H560 V120" stroke="${O}" stroke-width="4" fill="none"/>${lampe(560, 135)}<text x="590" y="139" font-size="12" font-weight="700" fill="${E}">spots</text>
+      <path d="M560 150 V258 H270" stroke="${B}" stroke-width="4" fill="none"/>
+      <path d="M560 150 V172 H340 V98 H330" stroke="#9aa3ad" stroke-width="2.5" stroke-dasharray="7 6" fill="none"/><text x="350" y="166" font-size="11" fill="#5b6673">le chemin normal du neutre</text>
+      ${fl(330, 60, 0, R)}${fl(520, 60, 0, O)}${fl(420, 258, 180, B)}${fl(100, 258, 180, B)}${fl(100, 60, 0, R)}
+      <text x="210" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="${R}">le courant part, rien ne revient</text>
+      <text x="210" y="312" text-anchor="middle" font-size="12" font-weight="700" fill="${B}">rien n'est parti, le courant revient</text>
+      <text x="20" y="64" font-size="12" font-weight="700" fill="${R}">Ph</text><text x="24" y="102" font-size="12" font-weight="700" fill="${B}">N</text><text x="20" y="224" font-size="12" font-weight="700" fill="${R}">Ph</text><text x="24" y="262" font-size="12" font-weight="700" fill="${B}">N</text>`;
+    legende = `La phase des spots part par l'interrupteur différentiel du haut, leur neutre revient par celui du bas${P.cause === "A" ? " (le fil bleu repiqué dans les combles)" : " (le fil bleu déplacé dans le tableau)"}. Chacun voit ce qui part différent de ce qui revient : il déclenche, sans aucune fuite vers la terre.`;
+  } else {
+    const ph = P.cause === "D";
+    corps = `${diff(90, "Interrupteur différentiel du haut")}
+      <path d="M40 110 H150 M270 110 H400" stroke="${R}" stroke-width="4" fill="none"/><path d="M40 148 H150 M270 148 H560 V200" stroke="${B}" stroke-width="4" fill="none"/>
+      <path d="M150 110 H270" stroke="${R}" stroke-width="4" stroke-dasharray="2 5" fill="none"/><path d="M150 148 H270" stroke="${B}" stroke-width="4" stroke-dasharray="2 5" fill="none"/>
+      <rect x="400" y="96" width="34" height="28" rx="4" fill="#fff" stroke="${E}" stroke-width="2"/><path d="M434 110 H470" stroke="${R}" stroke-width="4" fill="none"/><path d="M470 110 L496 96" stroke="${E}" stroke-width="3" fill="none"/><circle cx="470" cy="110" r="3.5" fill="${E}"/><circle cx="500" cy="110" r="3.5" fill="${E}"/>
+      <path d="M500 110 H600 V215 H575" stroke="${O}" stroke-width="4" fill="none"/>
+      <rect x="520" y="190" width="70" height="56" rx="6" fill="#eef0f2" stroke="${E}" stroke-width="2"/>${lampe(560, 218)}<text x="555" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="${E}">rampe métallique</text>
+      <path d="M${ph ? 590 : 548} ${ph ? 205 : 196} l-14 -6" stroke="${ph ? O : B}" stroke-width="4" fill="none"/><circle cx="${ph ? 590 : 548}" cy="${ph ? 205 : 196}" r="6" fill="none" stroke="${R}" stroke-width="2.5"/>
+      <path d="M530 246 V300 H330" stroke="${VJ}" stroke-width="4" stroke-dasharray="10 6" fill="none"/><path d="M330 288 V312 M320 316 H340 M324 322 H336" stroke="${VJ}" stroke-width="3" fill="none"/>
+      ${fl(430, 300, 180, VJ)}${fl(330, 110, 0, R)}${fl(100, 110, 0, R)}
+      <text x="352" y="326" font-size="12" font-weight="700" fill="${VJ}">une partie du courant revient par la terre</text>
+      <text x="210" y="204" text-anchor="middle" font-size="12" font-weight="700" fill="${R}">ce qui part ≠ ce qui revient</text>
+      <text x="20" y="114" font-size="12" font-weight="700" fill="${R}">Ph</text><text x="24" y="152" font-size="12" font-weight="700" fill="${B}">N</text>`;
+    legende = ph ? "Dans la rampe, la phase (fil orange) pincée touche la carcasse reliée à la terre : dès qu'on allume, un courant fuit vers la terre sans repasser par l'interrupteur différentiel." : "Dans la rampe, le neutre pincé touche la carcasse reliée à la terre : une partie du courant revient par la terre au lieu de repasser par l'interrupteur différentiel.";
+  }
+  return `<figure class="n-schema"><figcaption><b>Le schéma que tu dessines à M. Girard</b></figcaption><svg viewBox="0 0 640 340" role="img" aria-label="${legende.replace(/"/g, "&quot;")}" font-family="system-ui, sans-serif"><rect width="640" height="340" rx="10" fill="#fffdf7"/>${corps}</svg><p>${legende}</p></figure>`;
+}
 const NEUTRES_HAUT = ["Q2.Nout", "ID1.Nout", "bd_combles.n"], NEUTRES_BAS = ["Q5.Nout", "ID2.Nout", "bd_prises.n", "Q4.Nout", "Q6.Nout"];
 const estNeutreSpots = (b) => b === "spots.N" || b === `${F.spots.neutre}#de` || b === `${F.spots.neutre}#vers`;
 const boiteSaine = (nom, quoi) => () => ({ texte: `${nom} : ouverte. ${quoi}` });
@@ -54,7 +99,7 @@ export default {
       const e = P.e, on = !e.positions.int_couloir, deuxFermes = e.positions.ID1 && e.positions.ID2; P.essais.add("int_couloir");
       const r = P.inst.agir(e, { type: "basculer", id: "int_couloir" }); let ev = r.declenchements;
       if (on && ev.some((d) => d.id === "ID1") && deuxFermes && (P.cause === "A" || P.cause === "B") && !e.repare[0]) {
-        const tour = X(P).n++ % 3;
+        const tour = tirer(P);
         if (tour === 1) { e.positions.ID1 = true; delete e.declenche.ID1; e.positions.ID2 = false; e.declenche.ID2 = "fuite"; ev = [{ id: "ID2", raison: "fuite" }]; }
         if (tour === 2) { e.positions.ID2 = false; e.declenche.ID2 = "fuite"; ev = [...ev, { id: "ID2", raison: "fuite" }]; }
       }
@@ -120,12 +165,12 @@ export default {
     { id: "sensible", texte: "L'interrupteur différentiel est trop sensible", non: "« Ah, vous voyez ! » Non : ses 30 mA sont là pour protéger les personnes. Il déclenche parce qu'il voit un vrai déséquilibre." },
   ],
   remedes: [
-    { id: "neutreSpots", pour: ["A"], repare: true, texte: "Dans les combles, remettre le neutre des spots sur le neutre du circuit d'éclairage", fait: "Circuits coupés et vérifiés, tu remets le fil bleu des spots sur la borne de neutre de leur propre boîte. Tu allumes le couloir : les quatre spots éclairent et les deux interrupteurs différentiels tiennent. Tu appuies sur chaque bouton test : ils déclenchent tous les deux. Tu montres le schéma à M. Girard : « ça marchait presque », parce que le courant trouvait bien un neutre… mais pas le sien.", non: "Dans les combles, le neutre des spots est déjà sur la bonne borne." },
-    { id: "neutreTableau", pour: ["B"], repare: true, texte: "Au tableau, remettre le neutre du circuit du couloir du côté de sa rangée", fait: "Installation coupée et vérifiée, tu remets le fil bleu du disjoncteur « Éclairage couloir » du côté de l'interrupteur différentiel du haut, avec sa phase. Tu allumes le couloir : les spots éclairent et les deux interrupteurs différentiels tiennent. Tu appuies sur chaque bouton test : ils déclenchent tous les deux. Tu expliques à M. Girard : un tableau « bien rangé » où le bleu n'est plus avec son rouge, c'est un piège.", non: "Au tableau, ce neutre est déjà du bon côté." },
-    { id: "degagerN", pour: ["C"], repare: true, texte: "Dégager le conducteur de neutre pincé dans la rampe de spots et refaire son isolant", fait: "Circuit coupé et vérifié, tu dégages le fil bleu pincé, tu refais la connexion avec un conducteur sain et tu refermes le boîtier sans rien coincer. Isolement refait : bon, phase et neutre. Tu allumes : les spots éclairent, les différentiels tiennent, et chacun déclenche à son bouton test.", non: "Le neutre n'est pas pincé dans cette rampe." },
-    { id: "degagerL", pour: ["D"], repare: true, texte: "Dégager le conducteur de phase pincé dans la rampe de spots et refaire son isolant", fait: "Circuit coupé et vérifié, tu dégages le fil orange pincé, tu refais la connexion avec un conducteur sain et tu refermes le boîtier sans rien coincer. Isolement refait : bon. Tu allumes : les spots éclairent, les différentiels tiennent, et chacun déclenche à son bouton test.", non: "La phase n'est pas pincée dans cette rampe." },
-    { id: "moinsSensible", pour: [], faute: "Tu as accepté de remplacer un interrupteur différentiel 30 mA par un moins sensible. Ce différentiel protège les personnes : le « désensibiliser » pour qu'il ne saute plus, c'est retirer la protection et laisser le défaut en place.", texte: "Faire ce que demande M. Girard : remplacer le différentiel par un moins sensible", non: "« Enfin ! » Non. Un 30 mA protège les personnes ; il déclenche parce qu'il voit un vrai déséquilibre. On cherche pourquoi, on ne l'empêche pas de le voir." },
-    { id: "ampoules", pour: [], texte: "Changer les quatre ampoules des spots", non: "Des ampoules neuves feraient sauter le différentiel exactement de la même façon." },
+    { id: "neutreSpots", ou: ["bd_combles"], pour: ["A"], repare: true, texte: "Dans les combles, remettre le neutre des spots sur le neutre du circuit d'éclairage", fait: "Circuits coupés et vérifiés, tu remets le fil bleu des spots sur la borne de neutre de leur propre boîte. Tu allumes le couloir : les quatre spots éclairent et les deux interrupteurs différentiels tiennent. Tu appuies sur chaque bouton test : ils déclenchent tous les deux. Tu montres le schéma à M. Girard : « ça marchait presque », parce que le courant trouvait bien un neutre… mais pas le sien.", non: "Dans les combles, le neutre des spots est déjà sur la bonne borne." },
+    { id: "neutreTableau", ou: ["Q2"], pour: ["B"], repare: true, texte: "Au tableau, remettre le neutre du circuit du couloir du côté de sa rangée", fait: "Installation coupée et vérifiée, tu remets le fil bleu du disjoncteur « Éclairage couloir » du côté de l'interrupteur différentiel du haut, avec sa phase. Tu allumes le couloir : les spots éclairent et les deux interrupteurs différentiels tiennent. Tu appuies sur chaque bouton test : ils déclenchent tous les deux. Tu expliques à M. Girard : un tableau « bien rangé » où le bleu n'est plus avec son rouge, c'est un piège.", non: "Au tableau, ce neutre est déjà du bon côté." },
+    { id: "degagerN", ou: ["spots"], pour: ["C"], repare: true, texte: "Dégager le conducteur de neutre pincé dans la rampe de spots et refaire son isolant", fait: "Circuit coupé et vérifié, tu dégages le fil bleu pincé, tu refais la connexion avec un conducteur sain et tu refermes le boîtier sans rien coincer. Isolement refait : bon, phase et neutre. Tu allumes : les spots éclairent, les différentiels tiennent, et chacun déclenche à son bouton test.", non: "Le neutre n'est pas pincé dans cette rampe." },
+    { id: "degagerL", ou: ["spots"], pour: ["D"], repare: true, texte: "Dégager le conducteur de phase pincé dans la rampe de spots et refaire son isolant", fait: "Circuit coupé et vérifié, tu dégages le fil orange pincé, tu refais la connexion avec un conducteur sain et tu refermes le boîtier sans rien coincer. Isolement refait : bon. Tu allumes : les spots éclairent, les différentiels tiennent, et chacun déclenche à son bouton test.", non: "La phase n'est pas pincée dans cette rampe." },
+    { id: "moinsSensible", ou: ["ID1", "ID2"], pour: [], faute: "Tu as accepté de remplacer un interrupteur différentiel 30 mA par un moins sensible. Ce différentiel protège les personnes : le « désensibiliser » pour qu'il ne saute plus, c'est retirer la protection et laisser le défaut en place.", texte: "Faire ce que demande M. Girard : remplacer le différentiel par un moins sensible", non: "« Enfin ! » Non. Un 30 mA protège les personnes ; il déclenche parce qu'il voit un vrai déséquilibre. On cherche pourquoi, on ne l'empêche pas de le voir." },
+    { id: "ampoules", ou: ["spots"], pour: [], texte: "Changer les quatre ampoules des spots", non: "Des ampoules neuves feraient sauter le différentiel exactement de la même façon." },
   ],
   // après le remède : on allume, rien ne doit tomber ; puis chaque bouton test doit faire déclencher son différentiel
   verifier(P) {
@@ -135,6 +180,7 @@ export default {
     for (const d of ["ID1", "ID2"]) { r = i.agir(e, { type: "test", id: d }); if (r.testSansEffet) return "Un bouton test ne fait plus déclencher son différentiel."; i.agir(e, { type: "manoeuvrer", id: d, position: true }); }
     return null;
   },
+  schemaFin,
   explications: {
     A: "Dans les combles, M. Girard a raccordé la phase des spots sur le circuit d'éclairage (rangée du haut) et leur neutre sur le câble des prises qui passait à côté (rangée du bas). Le courant des spots part par un interrupteur différentiel et revient par l'autre : chacun voit ce qui part différent de ce qui revient, et déclenche. Il n'y a aucune fuite vers la terre : c'est pour cela que l'isolement est bon partout.",
     B: "En « rangeant » son tableau, M. Girard a raccordé le fil bleu du disjoncteur « Éclairage couloir » du côté de la rangée du bas. La phase du circuit passe par l'interrupteur différentiel du haut, son neutre par celui du bas : chacun voit un déséquilibre égal au courant des spots. Aucun défaut d'isolement : la faute est dans le tableau.",
