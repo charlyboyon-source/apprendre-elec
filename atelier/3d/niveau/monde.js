@@ -328,7 +328,7 @@ export function creerMonde(renderer, base, N, P) {
       const pl = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), lieu.murs === "beton" ? pbr.m("concrete_floor_02", [lx / 1.5, lz / 1.5], { roughness: 1 }) : M.plafond); pl.rotation.x = Math.PI / 2; pl.position.y = lieu.h; G.add(pl);
     }
     lieux[id] = { G, lieu, lampes: [] };
-    vues[id] = { lieu: id, parent: null, libre: true, nom: lieu.nom, court: lieu.court, lieuRaccourci: lieu.raccourci, cadre: () => ({ pos: G.localToWorld(V(...(lieu.camera || [0, 1.62, lz / 2 - 0.5]))), yaw: lieu.yaw || 0, pitch: lieu.pitch || -0.12 }) };
+    vues[id] = { lieu: id, parent: null, libre: true, nom: lieu.nom, court: lieu.court, lieuRaccourci: lieu.raccourci, cadre: () => ({ pos: G.localToWorld(V(...(lieu.camera || [0, 1.62, lz / 2 - 0.5]))), yaw: lieu.yaw || 0, pitch: lieu.sombre && lieu.h < 1.5 ? lieu.pitch || -0.12 : Math.max(-0.1, lieu.pitch === undefined ? -0.08 : lieu.pitch) }) };
     for (const o of lieu.objets) {
       if (o.si && !o.si(P)) continue;
       const g = new THREE.Group(); G.add(g);

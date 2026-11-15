@@ -66,7 +66,7 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       g.save(); g.beginPath(); g.moveTo(300, 296); g.lineTo(330, 296); g.lineTo(470, 512); g.lineTo(250, 512); g.closePath(); g.clip(); if (gravier) { g.fillStyle = g.createPattern(gravier, "repeat"); g.fillRect(0, 290, 512, 230); } else { g.fillStyle = "#b9ad98"; g.fillRect(0, 290, 512, 230); } g.restore();
       const om = g.createLinearGradient(0, 296, 0, 512); om.addColorStop(0, "rgba(255,255,255,0.18)"); om.addColorStop(1, "rgba(0,0,0,0.22)"); g.fillStyle = om; g.fillRect(0, 296, 512, 216);
       g.fillStyle = "#23272c"; g.fillRect(412, 372, 9, 52); g.fillStyle = "#f2efe2"; g.fillRect(410, 362, 13, 12); g.fillStyle = "#23272c"; g.fillRect(408, 358, 17, 5);
-      T.t.needsUpdate = true;
+      flouter(T, 1.2);
     });
     return T;
   }
@@ -96,7 +96,7 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
   function vueVille() {
     if (ville) return ville;
     const T = (ville = toile(512, 512)), g = T.g; g.fillStyle = "#cfe3f7"; g.fillRect(0, 0, 512, 512);
-    const im = new Image(); im.onload = () => { g.drawImage(im, 60, 90, 360, 200, 0, 0, 512, 512); dessin(); T.t.needsUpdate = true; }; im.onerror = () => { dessin(); T.t.needsUpdate = true; }; im.src = `${base}../textures/ciel_jour.jpg`;
+    const im = new Image(); im.onload = () => { g.drawImage(im, 60, 90, 360, 200, 0, 0, 512, 512); dessin(); flouter(T, 1.4); }; im.onerror = () => { dessin(); flouter(T, 1.4); }; im.src = `${base}../textures/ciel_jour.jpg`;
     const dessin = () => {
       for (const [x, y, w, c] of [[-20, 250, 190, "#b9b2a4"], [150, 190, 150, "#c9c3b6"], [290, 270, 250, "#a9a396"]]) {
         g.fillStyle = c; g.fillRect(x, y, w, 512 - y); g.fillStyle = "rgba(0,0,0,0.12)"; g.fillRect(x + w - 16, y, 16, 512 - y);
@@ -105,6 +105,23 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       for (let i = 0; i < 900; i++) { g.fillStyle = `hsl(${95 + (i % 30)}, 38%, ${18 + (i % 16)}%)`; g.beginPath(); g.ellipse((i * 131) % 512, 455 + ((i * 53) % 60), 7, 5, i, 0, 7); g.fill(); }
     };
     dessin(); T.t.needsUpdate = true; return T;
+  }
+  // un flou léger sur ce qu'on voit dehors : la vitre et la distance (sans effet sur les navigateurs qui ne le gèrent pas)
+  const flouter = (T, px = 1.6) => { try { const c2 = document.createElement("canvas"); c2.width = T.c.width; c2.height = T.c.height; const g2 = c2.getContext("2d"); g2.filter = `blur(${px}px)`; g2.drawImage(T.c, 0, 0); T.g.drawImage(c2, 0, 0); } catch { /* rien */ } T.t.needsUpdate = true; };
+  // la vue de la maison de M. Girard (niveau 6) : un lotissement, des toits, une haie, la rue
+  let campagne = null;
+  function vueCampagne() {
+    if (campagne) return campagne;
+    const T = (campagne = toile(512, 512)), g = T.g, ciel = g.createLinearGradient(0, 0, 0, 300); ciel.addColorStop(0, "#9cc4ee"); ciel.addColorStop(1, "#e6f0f8"); g.fillStyle = ciel; g.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 7; i++) { g.fillStyle = "rgba(255,255,255,0.75)"; g.beginPath(); g.ellipse(40 + i * 75, 60 + ((i * 37) % 70), 46, 15, 0, 0, 7); g.fill(); }
+    g.fillStyle = "#8aa58a"; g.beginPath(); g.moveTo(0, 270); for (let x = 0; x <= 512; x += 32) g.lineTo(x, 252 + Math.sin(x * 0.02) * 16); g.lineTo(512, 330); g.lineTo(0, 330); g.fill();
+    for (const [x, w, h, mur, toit] of [[20, 120, 70, "#e9e2d2", "#8a4a3a"], [170, 150, 84, "#f2ead8", "#5d5f66"], [350, 130, 66, "#e2d9c6", "#8a4a3a"]]) {
+      const y = 330 - h; g.fillStyle = mur; g.fillRect(x, y, w, h); g.fillStyle = toit; g.beginPath(); g.moveTo(x - 10, y); g.lineTo(x + w / 2, y - 46); g.lineTo(x + w + 10, y); g.fill();
+      g.fillStyle = "#5d6d80"; for (let k = 0; k < 2; k++) g.fillRect(x + 18 + k * (w - 58), y + 18, 22, 24); g.fillStyle = "#6b4a3a"; g.fillRect(x + w / 2 - 9, y + h - 34, 18, 34);
+    }
+    g.fillStyle = "#2f4a2a"; g.fillRect(0, 322, 512, 30); for (let i = 0; i < 700; i++) { g.fillStyle = `hsl(${100 + (i % 30)}, 36%, ${18 + (i % 14)}%)`; g.beginPath(); g.ellipse((i * 131) % 512, 318 + ((i * 53) % 34), 6, 4, i, 0, 7); g.fill(); }
+    g.fillStyle = "#6f7a5a"; g.fillRect(0, 352, 512, 60); g.fillStyle = "#8d8f92"; g.fillRect(0, 412, 512, 100); g.fillStyle = "#e6e2d6"; for (let x = 10; x < 512; x += 90) g.fillRect(x, 458, 46, 6);
+    flouter(T); return T;
   }
   const hhmm = (h) => { const m = Math.round(h * 60) % 1440; return `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
 
@@ -119,7 +136,7 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       const w = o.w || 1.1, h = o.h || 1.2, pvc = mat(0xf3f1ec, { roughness: 0.45 });
       for (const [bw, bh, x, y] of [[w + 0.1, 0.06, 0, h / 2 + 0.02], [w + 0.1, 0.06, 0, -h / 2 - 0.02], [0.06, h, -w / 2 - 0.02, 0], [0.06, h, w / 2 + 0.02, 0], [0.04, h, 0, 0]]) { const b = boite(bw, bh, 0.05, pvc); b.position.set(x, y, 0.02); g.add(b); }
       const appui = boite(w + 0.24, 0.03, 0.14, pvc); appui.position.set(0, -h / 2 - 0.06, 0.06); g.add(appui);
-      const T = o.vue === "nuit" ? vueNuit() : o.vue === "ville" ? vueVille() : vueJardin();
+      const T = o.vue === "nuit" ? vueNuit() : o.vue === "ville" ? vueVille() : o.vue === "campagne" ? vueCampagne() : vueJardin();
       const vitre = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: T.t })); vitre.position.z = 0.012; g.add(vitre);
       if (o.vue !== "nuit") temoins.push((r, e, lc, nuit) => { vitre.material.color.setScalar(nuit ? 0.035 : 1.7); });
       if (o.volet) { // volet roulant à moitié baissé : des lames, devant la vitre
@@ -482,9 +499,11 @@ tele(o, lieuId, lieu, G, g) { // écran plat sur pied
       temoins.push((r, e) => aff(r.alimente(inst.mobile[o.id].prise) ? (r.fonctionne(o.id) ? "1:30" : hhmm(e.env.heure)) : "")); zone(g, 0.52, 0.3, 0.4, 0.15, o.id, lieuId);
     },
     frigo(o, lieuId, lieu, G, g) {
-      const inox = mat(0xc9ccd0, { metalness: 0.75, roughness: 0.32 }), w = 0.6, d = 0.62;
+      const inox = mat(0xaeb3b9, { metalness: 0.8, roughness: 0.38 }), w = 0.6, d = 0.62;
       const bas = boite(w, 1.08, d, inox); bas.position.y = 0.59; g.add(bas); const hautF = boite(w, 0.62, d, inox); hautF.position.y = 1.46; g.add(hautF); const socle = boite(w - 0.04, 0.05, d - 0.06, M.noir); socle.position.y = 0.025; g.add(socle);
-      for (const y of [0.95, 1.3]) { const p = boite(0.025, 0.3, 0.03, M.acier); p.position.set(-w / 2 + 0.06, y, d / 2 + 0.02); g.add(p); }
+      for (const [y, h] of [[0.86, 0.46], [1.36, 0.3]]) { const p = boite(0.03, h, 0.035, mat(0x3a3f46, { metalness: 0.6, roughness: 0.4 })); p.position.set(-w / 2 + 0.06, y, d / 2 + 0.022); g.add(p); }
+      // les joints des deux portes : un filet sombre entre elles et sur le pourtour
+      for (const [jw, jh, x, y] of [[w, 0.012, 0, 1.14], [0.008, 1.7, -w / 2 + 0.004, 0.92], [0.008, 1.7, w / 2 - 0.004, 0.92]]) { const j = boite(jw, jh, 0.004, M.noir); j.castShadow = false; j.position.set(x, y, d / 2 + 0.001); g.add(j); }
       const aff = ecran(g, 0.07, 0.026, 0.12, 1.66, d / 2 + 0.002, "#9fd8ff"); temoins.push((r) => aff(r.fonctionne(o.id) ? "4°C" : ""));
       for (let i = 0; i < 3; i++) { const a = boite(0.05, 0.05, 0.002, mat([0xe9b400, 0xc8261e, 0x2f6fd0][i])); a.position.set(-0.1 + i * 0.12, 1.4 - i * 0.07, d / 2 + 0.002); a.rotation.z = (i - 1) * 0.12; g.add(a); }
       zone(g, w, 1.8, d, 0.9, o.id, lieuId);

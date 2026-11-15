@@ -216,10 +216,10 @@ export default {
         porte("entree", "E", 0), porte("sejour", "N", 0.5), porte("chambre1", "N", -1.0), porte("chambre2", "O", 0),
         { t: "tapis", x: -0.1, z: 0, w: 3.6, d: 0.72, couleurs: ["#2f3f55", "#d9c9a3", "#7a2f2a"] }, { t: "peintres", x: 2.05, z: 0.55, r: 2.2 },
         { t: "modele", f: "fancy_picture_frame_02", mur: "S", u: 1.6, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "cardboard_box_01", x: -2.2, z: 0.55, r: 0.2, h: 0.3 } ] },
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.4, 3.8], sol: "bois", camera: [1.4, 1.62, 1.4], yaw: 0.6, pitch: -0.22, objets: [
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.4, 3.8], sol: "bois", camera: [0.45, 1.62, 1.6], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "S", u: -1.3, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.2, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "E", u: 0.8, y: 0.75 }, { t: "boite", id: "bd_sej", mur: "N", u: 1.5, y: 2.2 },
         porte("couloir", "S", 0.8),
-        { t: "fenetre", mur: "N", u: 0.4, y: 1.45, w: 1.05, h: 1.15, rideaux: 0x8a6a44 },
+        { t: "fenetre", mur: "N", u: 0.4, y: 1.45, w: 1.05, h: 1.15, vue: "campagne", rideaux: 0x8a6a44 },
         { t: "tapis", x: -0.45, z: -0.3, w: 2.5, d: 1.8, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
         { t: "modele", f: "modern_wooden_cabinet", x: -1.05, z: -1.66, e: [0.8, 1, 1], avec: [ { t: "modele", f: "ceramic_vase_01", x: 0.5, y: 0.68, z: 0, s: 0.8 }, { t: "livre", x: 0.1, y: 0.68, z: 0.05, r: 0.3 } ] },
         { t: "modele", f: "sofa_03", x: -0.45, z: 0.5, r: Math.PI, avec: [ { t: "plaid", x: 1.22, y: 0.7, z: 0.1, r: Math.PI / 2, c: 0x8a6a44 } ] },
@@ -228,14 +228,14 @@ export default {
         { t: "modele", f: "potted_plant_02", x: -1.85, z: 1.5, h: 0.85, sansOmbre: true } ] },
       chambre1: { nom: "la chambre 1", court: "La chambre 1", raccourci: "Chambre 1", taille: [3.2, 3.2], sol: "bois", camera: [0.85, 1.62, 1.1], yaw: 0.4, pitch: -0.2, objets: [
         { t: "inter", id: "int_chambre1", mur: "S", u: 0.6, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 0.9, y: 0.75 }, { t: "boite", id: "bd_ch", mur: "E", u: 0.9, y: 2.2 }, porte("couloir", "S", -0.7),
-        { t: "fenetre", mur: "O", u: 0.25, y: 1.45, w: 1.0, h: 1.15, rideaux: 0x5d6f5a },
+        { t: "fenetre", mur: "O", u: 0.25, y: 1.45, w: 1.0, h: 1.15, vue: "campagne", rideaux: 0x5d6f5a },
         { t: "lit", x: -0.6, z: -0.62, w: 1.4, couette: 0x8a6a44, plaid: 0x3f5a4a },
         { t: "modele", f: "painted_wooden_nightstand", x: 0.38, z: -1.33, h: 0.55, avec: [ { t: "lampeChevet", x: -0.06, y: 0.55, z: -0.05, c: 0x3f5a4a }, { t: "livre", x: 0.1, y: 0.55, z: 0.08, r: 0.2 } ] },
         { t: "modele", f: "vintage_wooden_drawer_01", x: 1.33, z: -0.45, r: -Math.PI / 2, e: [0.62, 0.78, 0.5] }, { t: "tapis", x: 0.45, z: 0.3, w: 1.5, d: 1.0, couleurs: ["#3f5a4a", "#e2d3ae", "#7a2f2a"] } ] },
       chambre2: { nom: "la chambre 2", court: "La chambre 2", raccourci: "Chambre 2", taille: [3, 3.2], sol: "bois", objets: [
         { t: "inter", id: "int_chambre2", mur: "E", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre2" }, { t: "prise", id: "pc_chambre2", mur: "N", u: -0.8, y: 0.75 }, porte("couloir", "E", -0.2),
         // la chambre en travaux : bâche, pots, escabeau remplacé par une table de tapissier, cartons
-        { t: "fenetre", mur: "N", u: 0.45, y: 1.55, w: 0.9, h: 0.95, rideaux: false },
+        { t: "fenetre", mur: "N", u: 0.45, y: 1.55, w: 0.9, h: 0.95, vue: "campagne", rideaux: false },
         { t: "modele", f: "wooden_table_02", x: 0.4, z: -1.0, avec: [ { t: "modele", f: "metal_toolbox", x: -0.25, y: 0.8, z: 0 }, { t: "modele", f: "oil_tin", x: 0.3, y: 0.8, z: 0.05 } ] },
         { t: "peintres", x: -0.9, z: 0.4, r: 0.6 }, { t: "peintres", x: 0.9, z: 0.8, r: -1.2 }, { t: "modele", f: "cardboard_box_01", x: -1.15, z: -1.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: -1.1, y: 0.3, z: -1.22, r: -0.2, s: 0.8 },
         { t: "modele", f: "steel_frame_shelves_03", x: -1.26, z: 0.9, r: Math.PI / 2, s: 0.6 } ] },

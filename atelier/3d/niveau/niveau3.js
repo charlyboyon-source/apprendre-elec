@@ -118,9 +118,9 @@ export default {
     lieux: {
       // L'appartement de M. Haddad, infirmier de nuit : il dort le jour (volets à moitié baissés), sa tenue attend sur une chaise,
       // sa tasse de café traîne. Les prises, interrupteurs, boîtes et portes sont là où le câblage les met.
-      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [2.6, 2.6], sol: "bois", objets: [
-        { t: "tableau", mur: "N", u: 0.2, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "O", u: 0.3, y: 0.75 }, porte("couloir", "E", 0.2),
-        { t: "porteEntree", mur: "S", u: 0, y: 0 }, { t: "portemanteau", mur: "O", u: -0.72, y: 1.74 }, { t: "chaussures", mur: "O", u: -0.72, y: 0 },
+      entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [2.6, 2.6], sol: "bois", camera: [0.8, 1.62, 0.85], yaw: 0.8, pitch: -0.08, objets: [
+        { t: "tableau", mur: "N", u: 0.2, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "O", u: -0.85, y: 0.75 }, porte("couloir", "E", 0.2),
+        { t: "porteEntree", mur: "S", u: 0, y: 0 }, { t: "portemanteau", mur: "O", u: 0.2, y: 1.74 }, { t: "chaussures", mur: "O", u: 0.2, y: 0 },
         { t: "tapis", x: 0, z: 0.1, w: 1.5, d: 1.1, couleurs: ["#3f5a4a", "#e2d3ae", "#2f3f55"] },
         { t: "modele", f: "ClassicConsole_01", x: 1.14, z: -0.82, r: -Math.PI / 2, s: 0.6, avec: [
           { t: "cles", x: -0.28, y: 0.572, z: 0.03 }, { t: "courrier", x: 0, y: 0.572, z: 0.02 }, { t: "modele", f: "standing_picture_frame_01", x: 0.28, y: 0.572, z: -0.03, r: -0.3, s: 0.85 } ] },
@@ -132,7 +132,7 @@ export default {
         { t: "tapis", x: -0.1, z: 0, w: 3.9, d: 0.72, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "N", u: 1.32, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: 1.45, y: 1.62, auMur: true, s: 0.5 },
         { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -2.0, y: 1.62, auMur: true, s: 0.75 }, { t: "modele", f: "potted_plant_01", x: -2.32, z: 0.6, h: 0.7, sansOmbre: true } ] },
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [1.45, 1.62, 1.5], yaw: 0.6, pitch: -0.22, objets: [
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [0.45, 1.62, 1.7], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "S", u: -1.4, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.2, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "E", u: 0.8, y: 0.75 }, { t: "boite", id: "bd_a", mur: "N", u: 1.5, y: 2.2 },
         porte("couloir", "S", 0.8), porte("cuisine", "O", 0.6),
         { t: "fenetre", mur: "N", u: 0.42, y: 1.45, w: 1.05, h: 1.15, vue: "ville", volet: 0.45, rideaux: 0x6f7f8f },
@@ -146,7 +146,7 @@ export default {
           { t: "livres", x: 0.2, y: 1.28, w: 0.7, z: 0.02, g: 6, n: 14 }, { t: "modele", f: "ceramic_vase_01", x: -0.38, y: 1.28, z: 0.03, s: 0.6 }, { t: "modele", f: "wicker_basket_02", x: 0.2, y: 1.66, z: 0.02 }, { t: "modele", f: "wicker_basket_01", x: -0.25, y: 0.11, z: 0.05, s: 1.5 } ] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -1.0, y: 1.62, auMur: true, s: 0.8 }, { t: "modele", f: "wall_clock", mur: "S", u: -0.45, y: 1.95, auMur: true },
         { t: "modele", f: "potted_plant_02", x: -1.95, z: 1.6, h: 0.85, sansOmbre: true } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3, 2.8], sol: "carrelage", camera: [0.5, 1.62, 0.95], yaw: 0.28, pitch: -0.2, objets: [
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3, 2.8], sol: "carrelage", camera: [0.3, 1.62, 1.1], yaw: 0, pitch: -0.1, objets: [
         { t: "inter", id: "int_cuisine", mur: "E", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" }, { t: "prise", id: "pc_cuisine1", mur: "N", u: -0.9, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: -0.2, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "O", u: 0.6, y: 1.15 },
         porte("sejour", "E", 0.7),
         { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.5, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.55, hotte: true }] },
@@ -155,7 +155,7 @@ export default {
         { t: "frigo", id: "refrigerateur", x: -1.18, z: 0.42, r: Math.PI / 2 },
         { t: "modele", f: "round_wooden_table_01", x: -0.42, z: 1.0, e: [0.5, 0.75, 0.5], avec: [ { t: "tasse", x: 0.08, y: 0.753, z: 0.05, c: 0x2f5a6b }, { t: "modele", f: "plastic_thermos", x: -0.12, y: 0.753, z: -0.08, s: 0.9 }, { t: "modele", f: "wooden_bowl_02", x: -0.05, y: 0.753, z: 0.16, s: 1.2 } ] },
         { t: "modele", f: "painted_wooden_chair_02", x: 0.02, z: 1.12, r: -Math.PI / 2 - 0.3, s: 0.74 },
-        { t: "modele", f: "pot_enamel_01", x: 0.2, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.25, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", mur: "E", u: -0.85, y: 1.2 } ] },
+        { t: "modele", f: "pot_enamel_01", x: 0.2, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.25, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", x: -0.6, y: 0.62, z: -0.785 } ] },
       chambre1: { nom: "la chambre 1", court: "La chambre 1", raccourci: "Chambre 1", taille: [3.2, 3.2], sol: "bois", camera: [0.85, 1.62, 1.1], yaw: 0.4, pitch: -0.2, objets: [
         { t: "inter", id: "int_chambre1", mur: "S", u: 0.6, y: 1.1 }, { t: "plafonnier", id: "pl_chambre1" }, { t: "prise", id: "pc_chambre1", mur: "N", u: 0.9, y: 0.75 }, porte("couloir", "S", -0.7),
         { t: "fenetre", mur: "O", u: 0.25, y: 1.45, w: 1.0, h: 1.15, vue: "ville", volet: 0.7, rideaux: 0x4f5d73 },
@@ -176,7 +176,7 @@ export default {
         { t: "modele", f: "cardboard_box_01", x: -1.15, z: -1.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: -1.1, y: 0.3, z: -1.22, r: -0.2, s: 0.8 },
         { t: "tapis", x: 0.25, z: 0.2, w: 1.5, d: 1.1, couleurs: ["#2f3f55", "#d9c9a3", "#3f5a4a"] },
         { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: 0.3, y: 1.62, auMur: true, s: 0.55 } ] },
-      sdb: { nom: "la salle de bain", court: "La salle de bain", raccourci: "Salle de bain", taille: [2.4, 2.4], sol: "carrelage", teinte: 0xdce8ea, camera: [-0.2, 1.62, -0.75], yaw: Math.PI, pitch: -0.2, objets: [
+      sdb: { nom: "la salle de bain", court: "La salle de bain", raccourci: "Salle de bain", taille: [2.4, 2.4], sol: "carrelage", teinte: 0xdce8ea, camera: [-0.45, 1.62, -0.85], yaw: -2.25, pitch: -0.1, objets: [
         { t: "inter", id: "int_sdb", mur: "N", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_sdb" }, { t: "boite", id: "bd_sdb", mur: "S", u: 0, y: 2.25, w: 0.1, h: 0.1 }, { t: "prise", id: "pc_sdb", mur: "E", u: 0.5, y: 1.2 }, { t: "prise", id: "pc_lavelinge", mur: "O", u: -0.6, y: 1.2 },
         porte("couloir", "N", -0.2),
         // la douche est au milieu du mur du fond, à distance des deux prises

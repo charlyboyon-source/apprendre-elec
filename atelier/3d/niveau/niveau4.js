@@ -140,7 +140,7 @@ export default {
         { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.7, y: 1.45, auMur: true, s: 0.9 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: 0.1, y: 1.62, auMur: true, s: 0.5 },
         { t: "modele", f: "rubber_boots", x: 0.85, z: 1.22, s: 0.9, e: [0.55, 1, 1], r: Math.PI } ] },
       // le séjour et la cuisine : la famille vit en bas ; la plaque de cuisson du tableau est ici
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [1.45, 1.62, 1.5], yaw: 0.6, pitch: -0.22, objets: [
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [0.45, 1.62, 1.7], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "S", u: -1.4, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour", mur: "N", u: -1.9, y: 0.75 },
         porte("entree", "S", 0.8), porte("cuisine", "O", 0.6),
         { t: "fenetre", mur: "N", u: 0.6, y: 1.45, w: 1.2, h: 1.15, vue: "nuit", rideaux: 0x8a5a3a },
@@ -153,7 +153,7 @@ export default {
           { t: "modele", f: "wicker_basket_02", x: 0.2, y: 1.66, z: 0.02 }, { t: "modele", f: "wicker_basket_01", x: -0.25, y: 0.11, z: 0.05, s: 1.5 } ] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "E", u: 1.2, y: 1.62, auMur: true, s: 0.8 }, { t: "modele", f: "wall_clock", mur: "S", u: -0.45, y: 1.95, auMur: true },
         { t: "modele", f: "potted_plant_02", x: -1.95, z: 1.6, h: 0.85, sansOmbre: true } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 2.8], sol: "carrelage", camera: [0.5, 1.62, 0.95], yaw: 0.28, pitch: -0.2, objets: [
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 2.8], sol: "carrelage", camera: [0.45, 1.62, 1.1], yaw: 0, pitch: -0.1, objets: [
         { t: "inter", id: "int_cuisine", mur: "E", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" }, { t: "prise", id: "pc_cuisine", mur: "O", u: 0.55, y: 1.15 },
         porte("sejour", "E", 0.7),
         { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.6, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.6, hotte: true }, { k: "bas", w: 0.6, haut: true }] },
@@ -162,7 +162,7 @@ export default {
         { t: "frigo", id: "refrigerateur", x: -1.28, z: 0.42, r: Math.PI / 2 },
         { t: "modele", f: "round_wooden_table_01", x: -0.3, z: 0.85, e: [0.62, 0.75, 0.62], avec: [ { t: "tasse", x: 0.12, y: 0.753, z: 0.05, c: 0xa8553f }, { t: "modele", f: "wooden_bowl_02", x: -0.1, y: 0.753, z: 0.12, s: 1.2 }, { t: "livre", x: 0.05, y: 0.753, z: -0.2, r: 0.5, c: 0x3f5a8a } ] },
         { t: "modele", f: "painted_wooden_chair_02", x: 0.3, z: 0.95, r: -Math.PI / 2 - 0.3, s: 0.74 }, { t: "modele", f: "painted_wooden_chair_02", x: -0.4, z: 0.25, r: 0.2, s: 0.74 },
-        { t: "modele", f: "pot_enamel_01", x: 0.62, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.35, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", mur: "E", u: -0.85, y: 1.2 } ] },
+        { t: "modele", f: "pot_enamel_01", x: 0.62, y: 0.93, z: -1.1 }, { t: "modele", f: "jug_01", x: -1.35, y: 0.92, z: -1.15, r: 0.6 }, { t: "torchon", x: -0.5, y: 0.62, z: -0.785 } ] },
       // l'escalier de la maison : une vraie cage à deux volées, de l'entrée au palier (cage.js) ; on la monte marche après marche
       escalier: { nom: "le pied de l'escalier", court: "L'escalier", raccourci: "Escalier", ensemble: "cage", coque: false, pos: [0, 0, 0], taille: [2.6, LE], h: 2.6, camera: [0, 1.62, LE / 2 - 0.45], pitch: 0.05, objets: [
         { t: "cageEtage", sol: "bois", marches: "bois", soubassement: false, sousEscalier: true }, monter("palier", LE),

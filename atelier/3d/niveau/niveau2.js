@@ -36,7 +36,7 @@ export default {
           { t: "cles", x: -0.36, y: 0.715, z: 0.04 }, { t: "courrier", x: -0.05, y: 0.715, z: 0.02 }, { t: "modele", f: "standing_picture_frame_01", x: 0.38, y: 0.715, z: -0.04, r: -0.3 }, { t: "modele", f: "potted_plant_04", x: 0.2, y: 0.715, z: 0.04 } ] },
         { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.8, y: 1.52, auMur: true, s: 1.35 }, { t: "modele", f: "hanging_picture_frame_01", mur: "E", u: 1.15, y: 1.55, auMur: true, s: 0.7 },
         { t: "modele", f: "potted_plant_01", x: 1.5, z: -1.18 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: 0.22, y: 1.68, auMur: true, s: 0.75 } ] },
-      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", camera: [1.75, 1.62, 1.75], yaw: 0.62, pitch: -0.24, objets: [
+      sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", camera: [0.5, 1.62, 1.8], yaw: 0.12, pitch: -0.1, objets: [
         { t: "inter", id: "int_sejour", mur: "O", u: -0.2, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.3, y: 0.78 }, { t: "prise", id: "pc_sejour2", mur: "N", u: 1.6, y: 0.35 },
         { t: "porte", vers: "entree", mur: "O", u: 1.2, y: 1.025 }, { t: "porte", vers: "cuisine", mur: "E", u: -1.2, y: 1.025 }, { t: "porte", vers: "terrasse", mur: "S", u: 0.9, y: 1.025 },
         { t: "fenetre", mur: "N", u: 0.9, y: 1.45, w: 1.15, h: 1.15 },
@@ -54,7 +54,7 @@ export default {
         { t: "modele", f: "hanging_picture_frame_02", mur: "N", u: -1.2, y: 1.8, auMur: true }, { t: "modele", f: "wall_clock", mur: "N", u: 2.15, y: 1.95, auMur: true },
         { t: "modele", f: "hanging_picture_frame_01", mur: "O", u: -1.25, y: 1.6, auMur: true, s: 0.8 }, { t: "modele", f: "fancy_picture_frame_01", mur: "E", u: 0.75, y: 2.25, auMur: true, s: 0.6 },
         { t: "modele", f: "potted_plant_01", x: -2.1, z: 1.7 } ] },
-      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.4, 1.62, 1.05], objets: [
+      cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.25, 1.62, 1.2], yaw: 0, pitch: -0.1, objets: [
         { t: "inter", id: "int_cuisine", mur: "O", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" },
         { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: 0.1, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.3, y: 1.15 },
         { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 },
@@ -66,7 +66,7 @@ export default {
         { t: "torchon", x: 0.675, y: 0.62, z: -0.82 },
         { t: "frigo", id: "refrigerateur", x: 1.28, z: 0.6, r: -Math.PI / 2 },
         { t: "modele", f: "dining_table", x: -1.1, z: -0.05, r: Math.PI / 2, e: [0.467, 0.93, 0.5], avec: [ { t: "modele", f: "wooden_bowl_02", x: 0.1, y: 0.755, z: 0, s: 2.2 }, { t: "modele", f: "tea_set_01", x: -0.25, y: 0.755, z: 0.05, s: 0.4 } ] },
-        { t: "modele", f: "dining_chair_02", x: -0.52, z: -0.32, r: -Math.PI / 2 }, { t: "modele", f: "dining_chair_02", x: -0.5, z: 0.25, r: -Math.PI / 2 - 0.25 },
+        { t: "modele", f: "dining_chair_02", x: -0.52, z: -0.32, r: -Math.PI / 2 }, { t: "modele", f: "dining_chair_02", x: -0.55, z: 0.3, r: -Math.PI / 2 - 0.25 },
         { t: "cadreTexte", mur: "E", u: -0.85, y: 1.6, titre: "NOVEMBRE" } ] },
       cellier: { nom: "le cellier", court: "Le cellier", raccourci: "Cellier", taille: [2.8, 3], sol: "beton", camera: [-0.15, 1.62, 1.1], yaw: -0.12, objets: [
         { t: "inter", id: "int_cellier", mur: "E", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cellier" },
