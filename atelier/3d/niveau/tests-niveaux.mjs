@@ -4,6 +4,7 @@ import { creerPartie } from "./coeur.js";
 import N2 from "./niveau2.js";
 import N3 from "./niveau3.js";
 import N5 from "./niveau5.js";
+import N6 from "./niveau6.js";
 import N4 from "./niveau4.js";
 
 function jouerNiveau2(cause) {
@@ -105,7 +106,46 @@ function jouerNiveau5(cause) {
   return { P, diag };
 }
 
+// Niveau 6 : reproduire, mesurer l'isolement (phase et neutre), puis chercher par où revient le neutre
+function jouerNiveau6(cause) {
+  const P = creerPartie(N6, cause), A = (a) => P.action(a).retour;
+  for (const q of ["quoi", "lequel", "cable", "tableau", "collegue"]) A({ type: "question", id: q });
+  const rearmer = () => { for (const d of ["ID1", "ID2"]) if (!P.e.positions[d]) A({ type: "manette", id: d, position: true }); };
+  const tombes = [];
+  for (let k = 0; k < 3; k++) { A({ type: "geste", id: "int_couloir" }); tombes.push(["ID1", "ID2"].filter((d) => !P.e.positions[d]).join("+")); A({ type: "geste", id: "int_couloir" }); rearmer(); }
+  A({ type: "manette", id: "Q2", position: false }); A({ type: "mesurer", outil: "vat", a: "pc_entree.L", b: "pc_entree.N" });
+  A({ type: "mesurer", outil: "iso", a: "Q2.Lout", b: "bt.PE" }); A({ type: "mesurer", outil: "iso", a: "Q2.Nout", b: "bt.PE" });
+  let diag = null;
+  if (P.vus.has("iso:mauvais")) { A({ type: "deplacer", lieu: "couloir" }); A({ type: "ouvrir", id: "spots" }); A({ type: "mesurer", outil: "vat", a: "spots.L", b: "spots.PE" }); diag = P.vus.has("pince:N") ? "C" : P.vus.has("pince:L") ? "D" : null; }
+  else {
+    A({ type: "manette", id: "Q2", position: true }); A({ type: "manette", id: "ID2", position: false }); A({ type: "geste", id: "int_couloir" }); A({ type: "geste", id: "int_couloir" }); A({ type: "manette", id: "ID2", position: true });
+    if (P.vus.has("r2:neutre")) {
+      if (A({ type: "regarder", id: "Q2" })) diag = "B";
+      else { A({ type: "manette", id: "Q2", position: false }); A({ type: "manette", id: "Q5", position: false }); A({ type: "deplacer", lieu: "combles" }); A({ type: "ouvrir", id: "bd_combles" }); A({ type: "mesurer", outil: "vat", a: "bd_combles.ph", b: "bd_combles.pe" }); if (P.vus.has("emprunt:combles")) diag = "A"; }
+    }
+  }
+  if (diag) { A({ type: "diagnostic", id: diag }); A({ type: "securiser", id: { A: "neutreSpots", B: "neutreTableau", C: "degagerN", D: "degagerL" }[diag] }); }
+  return { P, diag, tombes };
+}
+
 export function testsNiveaux(cas, egal, vrai) {
+  for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 6, cause ${cause} : le joueur automatique reproduit, mesure l'isolement, suit le neutre, trouve et répare`, () => {
+    const { P, diag, tombes } = jouerNiveau6(cause);
+    egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");
+    if (cause === "A" || cause === "B") egal(tombes, ["ID1", "ID2", "ID1+ID2"], "tantôt l'un, tantôt l'autre, tantôt les deux"); else egal(tombes, ["ID1", "ID1", "ID1"], "toujours le même");
+  });
+  cas("Niveau 6 : symptôme commun, couloir éteint tout tient ; allumé, un interrupteur différentiel déclenche", () => { for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N6, c); P.action({ type: "essayer", id: "int_sejour" }); vrai(P.calc().allume("pl_sejour") && P.e.positions.ID1 && P.e.positions.ID2, `${c} couloir éteint`); P.action({ type: "geste", id: "int_couloir" }); vrai(!P.e.positions.ID1 || !P.e.positions.ID2, `${c} allumé`); } });
+  cas("Niveau 6 : neutre emprunté ou mal rangé, l'isolement est bon partout ; neutre ou phase pincés, il est mauvais", () => {
+    for (const c of ["A", "B", "C", "D"]) { const P = creerPartie(N6, c); P.action({ type: "manette", id: "Q2", position: false }); P.action({ type: "mesurer", outil: "iso", a: "Q2.Lout", b: "bt.PE" }); P.action({ type: "mesurer", outil: "iso", a: "Q2.Nout", b: "bt.PE" }); egal(P.vus.has("iso:mauvais"), c === "C" || c === "D", c); }
+  });
+  cas("Niveau 6 : neutre contre la terre, plusieurs éclairages de la même rangée allumés ensemble font aussi déclencher", () => { const P = creerPartie(N6, "C"); for (const i of ["int_entree", "int_sejour", "int_chambre1", "int_chambre2"]) P.action({ type: "essayer", id: i }); vrai(!P.e.positions.ID1); vrai(P.e.positions.ID2); });
+  cas("Niveau 6 : accepter un différentiel moins sensible est une faute, et la partie ne se termine pas", () => { const P = creerPartie(N6, "A"); P.action({ type: "diagnostic", id: "A" }); vrai(!P.action({ type: "securiser", id: "moinsSensible" }).retour); vrai(P.fautes.length === 1 && !P.fini); });
+  cas("Niveau 6 : à l'ohmmètre, le neutre des spots répond sur la rangée des prises quand il est emprunté", () => {
+    const P = creerPartie(N6, "A"); for (const q of ["AGCP", "Q2"]) P.action({ type: "manette", id: q, position: false });
+    vrai(P.action({ type: "mesurer", outil: "ohm", a: "spots.N", b: "Q5.Nout" }).retour === true); vrai(P.vus.has("r2:neutre")); vrai(P.action({ type: "mesurer", outil: "ohm", a: "spots.N", b: "Q2.Nout" }).retour === false);
+    const S = creerPartie(N6, "D"); for (const q of ["AGCP", "Q2"]) S.action({ type: "manette", id: q, position: false }); vrai(S.action({ type: "mesurer", outil: "ohm", a: "spots.N", b: "Q5.Nout" }).retour === false);
+  });
+
   for (const cause of ["A", "B", "C", "D"]) cas(`Niveau 5, cause ${cause} : le joueur automatique lit, mesure, sépare par moitiés, trouve et répare`, () => {
     const { P, diag } = jouerNiveau5(cause);
     egal(diag, cause, "diagnostic"); vrai(P.fini, "partie finie"); vrai(!!P.bilan.preuve, "preuve"); egal(P.fautes, [], "fautes"); egal(P.bilan.etoiles, 3, "étoiles");

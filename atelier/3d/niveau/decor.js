@@ -344,6 +344,17 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       const src = new THREE.Object3D(); src.position.z = 0.25; g.add(src);
       sources.push({ id: o.id, lieu: lieuId, obj: src, couleur: 0xffe6c0, force: 5, portee: 9, on: (r) => r.allume(o.id), mats: [verre.material], k: 2 });
     },
+    // rampe de quatre spots au plafond (elle éclaire quand le point lumineux du câblage est alimenté)
+    rampeSpots(o, lieuId, lieu, G, g) {
+      const alu = mat(0xcfd3d8, { metalness: 0.9, roughness: 0.25 }), y = lieu.h, L = o.l || 1.5;
+      const rail = boite(L, 0.03, 0.06, alu); rail.position.set(0, y - 0.03, 0); g.add(rail); const mats = [];
+      for (let i = 0; i < 4; i++) { const x = -L / 2 + 0.2 + i * ((L - 0.4) / 3), bras = cyl(0.008, 0.008, 0.06, alu, 8); bras.position.set(x, y - 0.075, 0); g.add(bras);
+        const tete = cyl(0.045, 0.03, 0.08, alu, 16); tete.position.set(x, y - 0.13, 0); tete.rotation.z = (i - 1.5) * 0.18; g.add(tete);
+        const amp = new THREE.Mesh(new THREE.CircleGeometry(0.036, 16), emissif(0xf6f1e6, 0xffe2b0)); amp.rotation.x = Math.PI / 2; amp.position.set(x + (i - 1.5) * 0.008, y - 0.172, 0); g.add(amp); mats.push(amp.material); }
+      const src = new THREE.Object3D(); src.position.set(0, y - 0.3, 0); g.add(src);
+      sources.push({ id: o.id, lieu: lieuId, obj: src, couleur: 0xfff0d8, force: 6, portee: 9, on: (r) => r.allume(o.id), mats, plafond: true, k: 3 });
+      const z = boite(L + 0.1, 0.3, 0.3, M.invisible); z.position.set(0, y - 0.12, 0); z.castShadow = false; g.add(z); cible(`essayer:${o.id}`, z, [lieuId]);
+    },
     // ce que les peintres ont laissé : un pot, un rouleau, une bâche pliée
     peintres(o, lieuId, lieu, G, g) {
       const pot = cyl(0.11, 0.1, 0.2, mat(0xe9e6dc, { roughness: 0.4, metalness: 0.3 }), 20); pot.position.y = 0.1; g.add(pot); const cou = cyl(0.112, 0.112, 0.012, mat(0xf3ece0, { roughness: 0.6 }), 20); cou.position.y = 0.206; g.add(cou);
@@ -405,12 +416,15 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
     /* ----- faux plafond (plénum) : on est couché sur les plaques, sous la dalle ----- */
     // rails et suspentes, laine de verre déroulée, gaines des câbles qui arrivent à la boîte de dérivation, poussière
     fauxPlafond(o, lieuId, lieu, G, g) {
-      const [lx, lz] = lieu.taille, h = lieu.h, zinc = mat(0xb7bcc2, { metalness: 0.85, roughness: 0.35 });
+      const [lx, lz] = lieu.taille, h = lieu.h, zinc = o.bois ? pbr.m("kitchen_wood", [1, 4], { roughness: 0.9 }) : mat(0xb7bcc2, { metalness: 0.85, roughness: 0.35 });
       // les plaques de plâtre (vues de dessus : carton gris, bandes de joint)
       const TP = toile(256, 256), gp = TP.g; gp.fillStyle = "#b9b4a6"; gp.fillRect(0, 0, 256, 256); for (let i = 0; i < 2600; i++) { gp.fillStyle = `rgba(${90 + (i % 60)},${86 + (i % 50)},${74 + (i % 40)},0.18)`; gp.fillRect((i * 97) % 256, (i * 57) % 256, 2 + (i % 3), 1); } gp.fillStyle = "#d9d6cc"; gp.fillRect(0, 120, 256, 14); gp.fillRect(122, 0, 12, 256); TP.t.wrapS = TP.t.wrapT = THREE.RepeatWrapping; TP.t.repeat.set(lx / 1.2, lz / 1.2); TP.t.needsUpdate = true;
       const plaques = new THREE.Mesh(new THREE.PlaneGeometry(lx, lz), mat(0xffffff, { map: TP.t, roughness: 1 })); plaques.rotation.x = -Math.PI / 2; plaques.position.y = 0.004; plaques.receiveShadow = true; g.add(plaques);
       // fourrures métalliques (profilés) tous les 60 cm, suspentes vers la dalle
-      for (let x = -lx / 2 + 0.3; x < lx / 2; x += 0.6) { const f = boite(0.045, 0.018, lz, zinc); f.position.set(x, 0.013, 0); g.add(f); for (const z of [-lz / 2 + 0.35, lz / 2 - 0.35]) { const sp = boite(0.02, h - 0.02, 0.003, zinc); sp.position.set(x, h / 2, z); g.add(sp); const pt = boite(0.05, 0.004, 0.03, zinc); pt.position.set(x, 0.025, z); g.add(pt); } }
+      if (o.bois) { // combles : solives en bois au sol, chevrons de la charpente au-dessus
+        for (let x = -lx / 2 + 0.3; x < lx / 2; x += 0.6) { const f = boite(0.06, 0.1, lz, zinc); f.position.set(x, 0.05, 0); g.add(f); const ch = boite(0.06, 0.08, lz + 0.2, zinc); ch.position.set(x, h - 0.06, 0); g.add(ch); }
+        const faite = boite(lx, 0.1, 0.1, zinc); faite.position.set(0, h - 0.14, 0); g.add(faite);
+      } else for (let x = -lx / 2 + 0.3; x < lx / 2; x += 0.6) { const f = boite(0.045, 0.018, lz, zinc); f.position.set(x, 0.013, 0); g.add(f); for (const z of [-lz / 2 + 0.35, lz / 2 - 0.35]) { const sp = boite(0.02, h - 0.02, 0.003, zinc); sp.position.set(x, h / 2, z); g.add(sp); const pt = boite(0.05, 0.004, 0.03, zinc); pt.position.set(x, 0.025, z); g.add(pt); } }
       // laine de verre : des lés jaunes, bosselés, écartés autour de la boîte et de la trappe
       const ml = mat(0xd9b84a, { roughness: 1, normalMap: pbr.tex("fabric_pattern_07_nor.jpg", [3, 3], false) });
       for (const [x0, x1, z0, z1] of (o.laine || [])) { const w = x1 - x0, d = z1 - z0, geo = new THREE.PlaneGeometry(w, d, Math.max(4, Math.round(w * 14)), Math.max(4, Math.round(d * 14))), p = geo.attributes.position; for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), bx = Math.min(1, (w / 2 - Math.abs(x)) * 9), by = Math.min(1, (d / 2 - Math.abs(y)) * 9); p.setZ(i, (0.085 + 0.022 * Math.sin(x * 17 + y * 5) + 0.014 * Math.sin(y * 23 + x * 9)) * Math.max(0.12, Math.min(bx, by))); } geo.computeVertexNormals(); const l = new THREE.Mesh(geo, ml); l.rotation.x = -Math.PI / 2; l.position.set((x0 + x1) / 2, 0.02, (z0 + z1) / 2); l.castShadow = true; l.receiveShadow = true; g.add(l); }

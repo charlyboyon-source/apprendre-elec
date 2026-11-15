@@ -107,6 +107,8 @@ export function creerMonde(renderer, base, N, P) {
     if (o.peinture && o.peinture(P)) for (const [x, y, s] of [[0.02, 0.03, 1], [-0.028, 0.012, 0.7], [0.012, -0.03, 0.8]]) { const p = new THREE.Mesh(new THREE.CircleGeometry(0.012 * s, 10), mat(0xf3ece0, { roughness: 0.9 })); p.position.set(x, y, 0.0205); g.add(p); }
     const zone = boite(0.14, 0.14, 0.03, M.invisible); zone.position.z = 0.014; g.add(zone); cible(`essayer:${o.id}`, zone, [lieuId]);
   }
+  // ce qu'on voit correspond à ce qui est câblé : un fil raccordé sur la mauvaise borne (panne) est dessiné là où il est vraiment
+  const CABLAGE = L.conducteurs.map((c) => { const p = inst.pannes.find((k) => k.type === "conducteur_deplace" && k.conducteur === c.id); return p ? { ...c, [p.extremite]: p.borne } : c; });
   // boîte, sortie de câble : un couvercle ; ouverte, on voit les bornes du moteur et tous les conducteurs qui y arrivent
   function interieur(id, g, vue, ech = 1) {
     const org = inst.organe[id], bornes = org.bornes || ["L", "N", "PE"], G = new THREE.Group(); G.visible = false; g.add(G);
@@ -116,7 +118,7 @@ export function creerMonde(renderer, base, N, P) {
       const x = (i - (bornes.length - 1) / 2) * 0.036 * ech, nom = `${id}.${b}`;
       const bloc = boite(0.02 * ech, 0.016 * ech, 0.014, b === "bp" ? mat(0xe9e9e4) : b === "lp" ? mat(0xe8790c) : b.toLowerCase().startsWith("p") && b.toLowerCase() !== "ph" ? mat(0x4a9a35) : b.toLowerCase().startsWith("n") ? mat(0x2f6fd0) : mat(0x8a8f96)); bloc.position.set(x, 0, 0.011); G.add(bloc);
       const vis = cyl(0.0045 * ech, 0.0045 * ech, 0.004, M.laiton, 12); vis.rotation.x = Math.PI / 2; vis.position.set(x, 0, 0.019); G.add(vis); point(nom, vis, [vue], 0.011 * ech);
-      const lies = L.conducteurs.filter((c) => c.de === nom || c.vers === nom);
+      const lies = CABLAGE.filter((c) => c.de === nom || c.vers === nom);
       lies.forEach((c, k) => {
         const ext = c.de === nom ? "de" : "vers", haut = ext === "vers"; // ce qui arrive vient du haut, ce qui repart sort par le bas
         const rang = lies.filter((x, j) => j < k && (x.de === nom ? "de" : "vers") === ext).length;
