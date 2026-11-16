@@ -1,0 +1,482 @@
+{
+ "c17-principe.svg": {
+  "schema": "assets/img/schema-va-et-vient-developpe.webp",
+  "cours": "assets/img/cours-17-le-principe-du-montage.webp"
+ },
+ "s-va-et-vient-multifilaire.svg": {
+  "schema": "assets/img/schema-va-et-vient-multifilaire.webp"
+ },
+ "c18-dev.svg": {
+  "schema": "assets/img/schema-telerupteur-developpe.webp",
+  "cours": "assets/img/cours-18-le-schema-developpe.webp"
+ },
+ "s-telerupteur-multifilaire.svg": {
+  "schema": "assets/img/schema-telerupteur-multifilaire.webp"
+ },
+ "c16-simple-dev.svg": {
+  "schema": "assets/img/schema-simple-allumage-developpe.webp",
+  "cours": "assets/img/cours-16-le-simple-allumage-le-principe.webp"
+ },
+ "s-simple-allumage-multifilaire.svg": {
+  "schema": "assets/img/schema-simple-allumage-multifilaire.webp"
+ },
+ "c16-double-dev.svg": {
+  "schema": "assets/img/schema-double-allumage-developpe.webp",
+  "cours": "assets/img/cours-16-le-double-allumage-le-principe.webp"
+ },
+ "s-double-allumage-multifilaire.svg": {
+  "schema": "assets/img/schema-double-allumage-multifilaire.webp"
+ },
+ "s-permutateur-developpe.svg": {
+  "schema": "assets/img/schema-permutateur-developpe.webp"
+ },
+ "s-permutateur-multifilaire.svg": {
+  "schema": "assets/img/schema-permutateur-multifilaire.webp"
+ },
+ "s-minuterie-developpe.svg": {
+  "schema": "assets/img/schema-minuterie-developpe.webp"
+ },
+ "s-minuterie-multifilaire.svg": {
+  "schema": "assets/img/schema-minuterie-multifilaire.webp"
+ },
+ "c19-cablage.svg": {
+  "schema": "assets/img/schema-contacteur-heures-creuses-developpe.webp",
+  "cours": "assets/img/cours-19-cabler-le-contacteur-heures-creuses.webp"
+ },
+ "s-contacteur-heures-creuses-multifilaire.svg": {
+  "schema": "assets/img/schema-contacteur-heures-creuses-multifilaire.webp"
+ },
+ "c15-unifilaire.svg": {
+  "schema": "assets/img/schema-unifilaire-principe.webp",
+  "cours": "assets/img/cours-15-le-schema-unifilaire.webp"
+ },
+ "s-unifilaire-tableau-annote.svg": {
+  "schema": "assets/img/schema-unifilaire-tableau.webp"
+ },
+ "c1-usages.svg": {
+  "cours": "assets/img/cours-01-a-quoi-sert-l-electricite.webp"
+ },
+ "n1-atome.svg": {
+  "cours": "assets/img/cours-01-l-atome-et-les-electrons-libres.webp"
+ },
+ "c1-iso-cuivre.svg": {
+  "cours": "assets/img/cours-01-conducteurs-et-isolants.webp"
+ },
+ "n1-courant.svg": {
+  "cours": "assets/img/cours-01-le-courant-et-le-sens-conventionnel.webp"
+ },
+ "c1-continu-alternatif.svg": {
+  "cours": "assets/img/cours-01-comment-produit-on-l-electricite.webp"
+ },
+ "n1-intensite.svg": {
+  "cours": "assets/img/cours-01-l-intensite.webp"
+ },
+ "c1-iso-pile.svg": {
+  "cours": "assets/img/cours-01-la-tension.webp"
+ },
+ "n1-resistance.svg": {
+  "cours": "assets/img/cours-01-la-resistance.webp"
+ },
+ "n1-recap.svg": {
+  "cours": "assets/img/cours-01-les-trois-grandeurs-vers-la-loi-d-ohm.webp"
+ },
+ "c2-rappel.svg": {
+  "cours": "assets/img/cours-02-rappel-express-u-pousse-i-circule-r-freine.webp"
+ },
+ "n2-triangle.svg": {
+  "cours": "assets/img/cours-02-la-loi-d-ohm-u-r-i.webp"
+ },
+ "n2-calcul.svg": {
+  "cours": "assets/img/cours-02-la-loi-d-ohm-en-chiffres.webp"
+ },
+ "c2-iso-plaque.svg": {
+  "cours": "assets/img/cours-02-la-puissance-p-u-i.webp"
+ },
+ "c2-joule.svg": {
+  "cours": "assets/img/cours-02-la-puissance-dissipee-et-l-effet-joule.webp"
+ },
+ "c2-iso-compteur.svg": {
+  "cours": "assets/img/cours-02-l-energie-e-p-t.webp"
+ },
+ "n2-formules.svg": {
+  "cours": "assets/img/cours-02-les-4-formules-et-la-methode.webp"
+ },
+ "n3-boucle.svg": {
+  "cours": "assets/img/cours-03-un-circuit-est-une-boucle-fermee.webp"
+ },
+ "c3-familles.svg": {
+  "cours": "assets/img/cours-03-les-5-familles-de-composants.webp"
+ },
+ "n3-source.svg": {
+  "cours": "assets/img/cours-03-le-generateur-la-source.webp"
+ },
+ "n3-recepteurs.svg": {
+  "cours": "assets/img/cours-03-les-recepteurs-transformer-l-energie.webp"
+ },
+ "n3-interrupteur.svg": {
+  "cours": "assets/img/cours-03-les-appareils-de-commande.webp"
+ },
+ "c3-iso-fils.svg": {
+  "cours": "assets/img/cours-03-les-conducteurs-phase-neutre-terre.webp"
+ },
+ "n3-protection.svg": {
+  "cours": "assets/img/cours-03-les-appareils-de-protection.webp"
+ },
+ "n4-serie.svg": {
+  "cours": "assets/img/cours-04-en-serie-un-seul-chemin.webp"
+ },
+ "n4-parallele.svg": {
+  "cours": "assets/img/cours-04-en-parallele-chacun-sa-derivation.webp"
+ },
+ "n4-comparatif.svg": {
+  "cours": "assets/img/cours-04-resistance-equivalente-les-pieges.webp"
+ },
+ "n4-sinus.svg": {
+  "cours": "assets/img/cours-04-le-courant-alternatif.webp"
+ },
+ "n4-sinus-cotee.svg": {
+  "cours": "assets/img/cours-04-periode-frequence-valeur-efficace.webp"
+ },
+ "c4-iso-bloc1.svg": {
+  "cours": "assets/img/cours-04-recap-le-bloc-1-est-boucle.webp"
+ },
+ "corps-courant.svg": {
+  "cours": "assets/img/cours-05-electrisation-ou-electrocution.webp"
+ },
+ "c5-mouille.svg": {
+  "cours": "assets/img/cours-05-c-est-l-intensite-qui-tue-pas-la-tension.webp"
+ },
+ "seuils-courant.svg": {
+  "cours": "assets/img/cours-05-les-seuils-de-courant-et-leurs-effets.webp"
+ },
+ "courbe-securite.svg": {
+  "cours": "assets/img/cours-05-la-duree-de-passage-change-tout.webp"
+ },
+ "c5-ul-brulure.svg": {
+  "cours": "assets/img/cours-05-tension-limite-de-securite-et-brulures.webp"
+ },
+ "c5-conduite.svg": {
+  "cours": "assets/img/cours-05-conduite-a-tenir-face-a-une-victime.webp"
+ },
+ "c6-contacts.svg": {
+  "cours": "assets/img/cours-06-contact-direct-contact-indirect.webp"
+ },
+ "c6-pe-masses.svg": {
+  "cours": "assets/img/cours-06-les-masses-et-le-conducteur-de-protection-pe.webp"
+ },
+ "c6-circuit-terre.svg": {
+  "cours": "assets/img/cours-06-la-prise-de-terre-et-le-circuit-de-terre.webp"
+ },
+ "c6-regime-tt.svg": {
+  "cours": "assets/img/cours-06-le-regime-de-neutre-tt.webp"
+ },
+ "c6-boucle-defaut.svg": {
+  "cours": "assets/img/cours-06-la-boucle-de-defaut-et-la-tension-de-contact.webp"
+ },
+ "c6-ddr-principe.svg": {
+  "cours": "assets/img/cours-06-le-ddr-principe-et-sensibilites.webp"
+ },
+ "c6-types-ddr.svg": {
+  "cours": "assets/img/cours-06-les-types-de-ddr-ac-a-f-b.webp"
+ },
+ "c6-tableau-duo.svg": {
+  "cours": "assets/img/cours-06-disjoncteur-interrupteur-differentiel-disjoncteur-differenti.webp"
+ },
+ "c7-eau.svg": {
+  "cours": "assets/img/cours-07-pourquoi-l-eau-change-toutes-les-regles.webp"
+ },
+ "c7-volume0.svg": {
+  "cours": "assets/img/cours-07-le-volume-0-dans-l-eau.webp"
+ },
+ "c7-volume1.svg": {
+  "cours": "assets/img/cours-07-le-volume-1-debout-sous-la-douche.webp"
+ },
+ "c7-volume2.svg": {
+  "cours": "assets/img/cours-07-le-volume-2-a-portee-de-bras.webp"
+ },
+ "c7-cache.svg": {
+  "cours": "assets/img/cours-07-le-volume-cache-et-le-hors-volume.webp"
+ },
+ "c7-materiel.svg": {
+  "cours": "assets/img/cours-07-quel-materiel-dans-quel-volume.webp"
+ },
+ "c7-les.svg": {
+  "cours": "assets/img/cours-07-la-liaison-equipotentielle-supplementaire.webp"
+ },
+ "c8-deux-questions.svg": {
+  "cours": "assets/img/cours-08-deux-questions-devant-un-materiel.webp"
+ },
+ "c8-classe1.svg": {
+  "cours": "assets/img/cours-08-la-classe-i-la-securite-par-la-terre.webp"
+ },
+ "c8-classe2.svg": {
+  "cours": "assets/img/cours-08-la-classe-ii-la-double-isolation.webp"
+ },
+ "c8-classe3.svg": {
+  "cours": "assets/img/cours-08-la-classe-iii-la-tres-basse-tension.webp"
+ },
+ "c8-indice-ip.svg": {
+  "cours": "assets/img/cours-08-l-indice-ip-les-solides-et-l-eau.webp"
+ },
+ "c8-indice-ik.svg": {
+  "cours": "assets/img/cours-08-l-indice-ik-les-chocs-mecaniques.webp"
+ },
+ "c8-locaux.svg": {
+  "cours": "assets/img/cours-08-choisir-selon-le-local.webp"
+ },
+ "c9-habilitation.svg": {
+  "cours": "assets/img/cours-09-l-habilitation-electrique.webp"
+ },
+ "c9-symbole.svg": {
+  "cours": "assets/img/cours-09-lire-un-symbole-d-habilitation.webp"
+ },
+ "c9-titres.svg": {
+  "cours": "assets/img/cours-09-les-habilitations-qu-on-croise-le-plus.webp"
+ },
+ "c9-consignation.svg": {
+  "cours": "assets/img/cours-09-la-consignation-en-5-operations.webp"
+ },
+ "c9-vat.svg": {
+  "cours": "assets/img/cours-09-la-verification-d-absence-de-tension.webp"
+ },
+ "c9-epi.svg": {
+  "cours": "assets/img/cours-09-les-epi-et-les-protections-collectives.webp"
+ },
+ "c9-hauteur.svg": {
+  "cours": "assets/img/cours-09-travailler-en-hauteur.webp"
+ },
+ "c10-surintensites.svg": {
+  "cours": "assets/img/cours-10-surcharge-et-court-circuit-deux-surintensites.webp"
+ },
+ "c10-fusible.svg": {
+  "cours": "assets/img/cours-10-le-fusible.webp"
+ },
+ "c10-magnetothermique.svg": {
+  "cours": "assets/img/cours-10-le-disjoncteur-magnetothermique.webp"
+ },
+ "c10-calibre-pdc.svg": {
+  "cours": "assets/img/cours-10-calibre-et-pouvoir-de-coupure.webp"
+ },
+ "c10-courbes.svg": {
+  "cours": "assets/img/cours-10-les-courbes-b-c-et-d.webp"
+ },
+ "c10-agcp.svg": {
+  "cours": "assets/img/cours-10-l-agcp-le-disjoncteur-de-branchement.webp"
+ },
+ "c10-sections.svg": {
+  "cours": "assets/img/cours-10-choisir-la-protection-d-un-circuit.webp"
+ },
+ "c11-tableau.svg": {
+  "cours": "assets/img/cours-11-le-tableau-de-repartition.webp"
+ },
+ "c11-arborescence.svg": {
+  "cours": "assets/img/cours-11-de-l-agcp-aux-circuits.webp"
+ },
+ "c11-types.svg": {
+  "cours": "assets/img/cours-11-les-interrupteurs-differentiels-combien-et-lesquels.webp"
+ },
+ "c11-huit.svg": {
+  "cours": "assets/img/cours-11-huit-disjoncteurs-au-maximum.webp"
+ },
+ "c11-amont.svg": {
+  "cours": "assets/img/cours-11-calibre-du-differentiel-la-methode-amont.webp"
+ },
+ "c11-aval.svg": {
+  "cours": "assets/img/cours-11-calibre-du-differentiel-la-methode-aval.webp"
+ },
+ "c11-reserve.svg": {
+  "cours": "assets/img/cours-11-la-reserve.webp"
+ },
+ "c12-anatomie.svg": {
+  "cours": "assets/img/cours-12-conducteur-isole-ou-cable.webp"
+ },
+ "c12-ame.svg": {
+  "cours": "assets/img/cours-12-l-ame-rigide-ou-souple.webp"
+ },
+ "c12-h07vu.svg": {
+  "cours": "assets/img/cours-12-lire-une-designation-h07v-u.webp"
+ },
+ "c12-3g25.svg": {
+  "cours": "assets/img/cours-12-lire-un-cable-3g2-5-et-5g1-5.webp"
+ },
+ "c12-couleurs.svg": {
+  "cours": "assets/img/cours-12-les-couleurs-des-conducteurs.webp"
+ },
+ "c12-sections.svg": {
+  "cours": "assets/img/cours-12-la-section-et-le-courant.webp"
+ },
+ "c12-chute.svg": {
+  "cours": "assets/img/cours-12-la-chute-de-tension.webp"
+ },
+ "c13-role.svg": {
+  "cours": "assets/img/cours-13-a-quoi-sert-un-conduit.webp"
+ },
+ "c13-icta.svg": {
+  "cours": "assets/img/cours-13-l-icta-le-conduit-de-l-encastre.webp"
+ },
+ "c13-tiers.svg": {
+  "cours": "assets/img/cours-13-deux-regles-le-tiers-et-le-cintrage.webp"
+ },
+ "c13-irl.svg": {
+  "cours": "assets/img/cours-13-l-irl-le-conduit-de-l-apparent.webp"
+ },
+ "c13-tpc.svg": {
+  "cours": "assets/img/cours-13-le-tpc-le-conduit-enterre.webp"
+ },
+ "c13-encastre.svg": {
+  "cours": "assets/img/cours-13-trois-facons-d-encastrer.webp"
+ },
+ "c13-choix.svg": {
+  "cours": "assets/img/cours-13-choisir-selon-la-pose.webp"
+ },
+ "c14-gtl.svg": {
+  "cours": "assets/img/cours-14-la-gtl-et-l-etel.webp"
+ },
+ "c14-etel.svg": {
+  "cours": "assets/img/cours-14-les-dimensions-et-les-distances-de-l-etel.webp"
+ },
+ "c14-hauteurs.svg": {
+  "cours": "assets/img/cours-14-les-hauteurs-de-pose.webp"
+ },
+ "c14-eclairage.svg": {
+  "cours": "assets/img/cours-14-les-circuits-d-eclairage.webp"
+ },
+ "c14-prises.svg": {
+  "cours": "assets/img/cours-14-les-circuits-de-prises-de-courant.webp"
+ },
+ "c14-specialises.svg": {
+  "cours": "assets/img/cours-14-les-circuits-specialises.webp"
+ },
+ "c14-provisoire.svg": {
+  "cours": "assets/img/cours-14-l-alimentation-d-un-chantier.webp"
+ },
+ "c15-langage.svg": {
+  "cours": "assets/img/cours-15-le-schema-un-langage-commun.webp"
+ },
+ "c15-architectural.svg": {
+  "cours": "assets/img/cours-15-le-schema-architectural.webp"
+ },
+ "c15-multifilaire.svg": {
+  "cours": "assets/img/cours-15-le-schema-multifilaire.webp"
+ },
+ "c15-developpe.svg": {
+  "cours": "assets/img/cours-15-le-schema-developpe.webp"
+ },
+ "c15-symboles.svg": {
+  "cours": "assets/img/cours-15-les-symboles.webp"
+ },
+ "c15-quatre.svg": {
+  "cours": "assets/img/cours-15-quel-schema-pour-quelle-question.webp"
+ },
+ "c16-point.svg": {
+  "cours": "assets/img/cours-16-le-point-lumineux-et-sa-commande.webp"
+ },
+ "c16-simple-cablage.svg": {
+  "cours": "assets/img/cours-16-cabler-le-simple-allumage.webp"
+ },
+ "c16-phase.svg": {
+  "cours": "assets/img/cours-16-pourquoi-l-interrupteur-coupe-la-phase.webp"
+ },
+ "c16-double-cablage.svg": {
+  "cours": "assets/img/cours-16-cabler-le-double-allumage.webp"
+ },
+ "c16-pannes.svg": {
+  "cours": "assets/img/cours-16-depanner-un-allumage.webp"
+ },
+ "c17-besoin.svg": {
+  "cours": "assets/img/cours-17-commander-depuis-deux-endroits.webp"
+ },
+ "c17-inverseur.svg": {
+  "cours": "assets/img/cours-17-l-interrupteur-va-et-vient.webp"
+ },
+ "c17-cablage.svg": {
+  "cours": "assets/img/cours-17-cabler-le-va-et-vient.webp"
+ },
+ "c17-permutateur.svg": {
+  "cours": "assets/img/cours-17-trois-endroits-le-permutateur.webp"
+ },
+ "c17-nombre.svg": {
+  "cours": "assets/img/cours-17-combien-d-appareils.webp"
+ },
+ "c17-pannes.svg": {
+  "cours": "assets/img/cours-17-les-erreurs-de-cablage.webp"
+ },
+ "c18-bp.svg": {
+  "cours": "assets/img/cours-18-des-boutons-poussoirs-a-la-place-des-interrupteurs.webp"
+ },
+ "c18-telerupteur.svg": {
+  "cours": "assets/img/cours-18-le-telerupteur-de-l-interieur.webp"
+ },
+ "c18-3fils.svg": {
+  "cours": "assets/img/cours-18-le-montage-3-fils.webp"
+ },
+ "c18-4fils.svg": {
+  "cours": "assets/img/cours-18-le-montage-4-fils.webp"
+ },
+ "c18-minuterie.svg": {
+  "cours": "assets/img/cours-18-la-minuterie.webp"
+ },
+ "c18-choix.svg": {
+  "cours": "assets/img/cours-18-choisir-le-bon-montage.webp"
+ },
+ "c19-types.svg": {
+  "cours": "assets/img/cours-19-l-eau-chaude-sanitaire.webp"
+ },
+ "c19-instant-accu.svg": {
+  "cours": "assets/img/cours-19-instantane-ou-accumulation.webp"
+ },
+ "c19-cumulus.svg": {
+  "cours": "assets/img/cours-19-le-chauffe-eau-a-accumulation.webp"
+ },
+ "c19-thermo-solaire.svg": {
+  "cours": "assets/img/cours-19-thermodynamique-et-solaire.webp"
+ },
+ "c19-circuit.svg": {
+  "cours": "assets/img/cours-19-le-circuit-du-chauffe-eau.webp"
+ },
+ "c19-contacteur.svg": {
+  "cours": "assets/img/cours-19-les-heures-creuses-et-le-contacteur.webp"
+ },
+ "c20-irve.svg": {
+  "cours": "assets/img/cours-20-recharger-un-vehicule-electrique.webp"
+ },
+ "c20-modes.svg": {
+  "cours": "assets/img/cours-20-les-modes-de-charge.webp"
+ },
+ "c20-puissances.svg": {
+  "cours": "assets/img/cours-20-les-puissances-de-recharge.webp"
+ },
+ "c20-circuit.svg": {
+  "cours": "assets/img/cours-20-le-circuit-et-ses-protections.webp"
+ },
+ "c20-domotique.svg": {
+  "cours": "assets/img/cours-20-la-domotique-informer-decider-agir.webp"
+ },
+ "c20-liaisons.svg": {
+  "cours": "assets/img/cours-20-filaire-ou-radio-et-les-scenarios.webp"
+ },
+ "c20-energie.svg": {
+  "cours": "assets/img/cours-20-piloter-l-energie-sans-oublier-la-securite.webp"
+ },
+ "c21-effet.svg": {
+  "cours": "assets/img/cours-21-l-effet-photovoltaique.webp"
+ },
+ "c21-wc.svg": {
+  "cours": "assets/img/cours-21-de-la-cellule-a-l-installation.webp"
+ },
+ "c21-serie.svg": {
+  "cours": "assets/img/cours-21-les-modules-en-serie-et-en-parallele.webp"
+ },
+ "c21-onduleur.svg": {
+  "cours": "assets/img/cours-21-l-onduleur.webp"
+ },
+ "c21-usages.svg": {
+  "cours": "assets/img/cours-21-autoconsommer-ou-vendre.webp"
+ },
+ "c21-dangers.svg": {
+  "cours": "assets/img/cours-21-les-dangers-propres-au-continu.webp"
+ },
+ "c21-protections.svg": {
+  "cours": "assets/img/cours-21-les-protections-et-la-fin-du-parcours.webp"
+ }
+}

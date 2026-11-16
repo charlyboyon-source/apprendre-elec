@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire d'une minuterie d'escalier : la phase alimente la minuterie et les boutons-poussoirs branchés en parallèle, le retour bouton-poussoir blanc revient sur l'entrée de commande de la minuterie, la sortie de la minuterie alimente la lampe par le retour lampe orange, la minuterie et la lampe sont reliées au neutre">
-<rect width="900" height="540" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 566" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire d'une minuterie d'escalier : la phase alimente la minuterie et les boutons-poussoirs branchés en parallèle, le retour bouton-poussoir blanc revient sur l'entrée de commande de la minuterie, la sortie de la minuterie alimente la lampe par le retour lampe orange, la minuterie et la lampe sont reliées au neutre">
+<rect width="900" height="566" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
 <text x="450.0" y="32" text-anchor="middle" font-size="19" font-weight="800" fill="#1c2530">Minuterie d'escalier : schéma multifilaire</text>
+<g transform="translate(0 26)">
 <rect x="28" y="170" width="118" height="200" rx="10" fill="#eef0f2" stroke="#aeb5bd" stroke-width="1.5"/>
 <text x="87.0" y="148" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Tableau</text>
 <text x="87.0" y="196" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">disj. 16 A</text>
@@ -66,7 +67,7 @@
 <path d="M40 500 L74 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="5"/>
 <text x="82" y="504.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">phase</text>
 <path d="M210 500 L244 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a5058" stroke-width="7.4"/><path d="M210 500 L244 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="4.4"/>
-<text x="252" y="504.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour bouton-poussoir</text>
+<text x="252" y="504.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour BP (blanc)</text>
 <path d="M380 500 L414 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="5"/>
 <text x="422" y="504.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour lampe</text>
 <path d="M550 500 L584 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="5"/>
@@ -74,4 +75,5 @@
 <path d="M720 500 L754 500" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="5"/><path d="M720 500 L754 500" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="5" stroke-dasharray="9 9"/>
 <text x="762" y="504.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">terre (vert-jaune)</text>
 <text x="450.0" y="530" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1c2530">Ph : phase · N : neutre · B : boutons-poussoirs · S : sortie lampes (repères variables selon l'appareil)</text>
+</g>
 </svg>
