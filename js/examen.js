@@ -23,7 +23,9 @@ async function lancer() {
   // Deux questions par module, puis on ramène la série à 40.
   let tirage = [];
   for (const m of modules) {
-    for (const q of melanger(m.banque.slice()).slice(0, 2)) tirage.push({ ...q, _module: m.id });
+    // une question marquée « examen: false » ne se comprend qu'à la fin de son cours : l'examen blanc ne la tire jamais
+    // (le quiz de fin de module, lui, la pose toujours)
+    for (const q of melanger(m.banque.filter((x) => x.examen !== false)).slice(0, 2)) tirage.push({ ...q, _module: m.id });
   }
   tirage = melanger(tirage);
   while (tirage.length > NB) {
