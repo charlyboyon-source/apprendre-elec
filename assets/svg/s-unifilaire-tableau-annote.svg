@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 520" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma unifilaire annoté d'un tableau de logement : de haut en bas, le disjoncteur de branchement, deux interrupteurs différentiels 30 mA de type AC et de type A, puis les disjoncteurs avec leur calibre, la section des conducteurs et ce qu'ils alimentent ; trois traits obliques sur un trait signifient trois conducteurs">
+<rect width="1040" height="520" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
+<text x="520.0" y="32" text-anchor="middle" font-size="19" font-weight="800" fill="#1c2530">Lire le schéma unifilaire d'un tableau</text>
+<path d="M365 58 L365 76" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="350" y="76" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M357 102 L373 84" stroke="#1c2530" stroke-width="2"/>
+<text x="387" y="91" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">Disjoncteur de branchement (AGCP)</text>
+<path d="M365 110 L365 136" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M170 136 L560 136" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M170 136 L170 156" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="155" y="156" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M162 182 L178 164" stroke="#1c2530" stroke-width="2"/>
+<text x="192" y="171" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">Interrupteur différentiel</text>
+<text x="192" y="186" text-anchor="start" font-size="11.5" font-weight="500" fill="#5b6673">30 mA · type AC</text>
+<path d="M170 190 L170 216" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M100 216 L260 216" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M100 216 L100 236" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="85" y="236" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M92 262 L108 244" stroke="#1c2530" stroke-width="2"/>
+<text x="122" y="251" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">16 A</text>
+<path d="M100 270 L100 356" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M93 303 L107 293" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M93 310 L107 300" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M93 317 L107 307" stroke="#1c2530" stroke-width="1.8"/>
+<text x="114" y="312" text-anchor="start" font-size="12" font-weight="500" fill="#1c2530">1,5 mm²</text>
+<rect x="56" y="356" width="88" height="30" rx="6" fill="#fff6cf" stroke="#c9b25a"/>
+<text x="100" y="376" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">Éclairage</text>
+<path d="M260 216 L260 236" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="245" y="236" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M252 262 L268 244" stroke="#1c2530" stroke-width="2"/>
+<text x="282" y="251" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">20 A</text>
+<path d="M260 270 L260 356" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M253 303 L267 293" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M253 310 L267 300" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M253 317 L267 307" stroke="#1c2530" stroke-width="1.8"/>
+<text x="274" y="312" text-anchor="start" font-size="12" font-weight="500" fill="#1c2530">2,5 mm²</text>
+<rect x="216" y="356" width="88" height="30" rx="6" fill="#fff6cf" stroke="#c9b25a"/>
+<text x="260" y="376" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">Prises</text>
+<path d="M560 136 L560 156" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="545" y="156" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M552 182 L568 164" stroke="#1c2530" stroke-width="2"/>
+<text x="582" y="171" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">Interrupteur différentiel</text>
+<text x="582" y="186" text-anchor="start" font-size="11.5" font-weight="500" fill="#5b6673">30 mA · type A</text>
+<path d="M560 190 L560 216" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M490 216 L650 216" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M490 216 L490 236" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="475" y="236" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M482 262 L498 244" stroke="#1c2530" stroke-width="2"/>
+<text x="512" y="251" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">32 A</text>
+<path d="M490 270 L490 356" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M483 303 L497 293" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M483 310 L497 300" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M483 317 L497 307" stroke="#1c2530" stroke-width="1.8"/>
+<text x="504" y="312" text-anchor="start" font-size="12" font-weight="500" fill="#1c2530">6 mm²</text>
+<rect x="446" y="356" width="88" height="30" rx="6" fill="#fff6cf" stroke="#c9b25a"/>
+<text x="490" y="376" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">Plaque</text>
+<path d="M650 216 L650 236" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="635" y="236" width="30" height="34" rx="3" fill="#ffffff" stroke="#1c2530" stroke-width="2"/><path d="M642 262 L658 244" stroke="#1c2530" stroke-width="2"/>
+<text x="672" y="251" text-anchor="start" font-size="12" font-weight="800" fill="#1c2530">20 A</text>
+<path d="M650 270 L650 356" stroke="#1c2530" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M643 303 L657 293" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M643 310 L657 300" stroke="#1c2530" stroke-width="1.8"/>
+<path d="M643 317 L657 307" stroke="#1c2530" stroke-width="1.8"/>
+<text x="664" y="312" text-anchor="start" font-size="12" font-weight="500" fill="#1c2530">2,5 mm²</text>
+<rect x="606" y="356" width="88" height="30" rx="6" fill="#fff6cf" stroke="#c9b25a"/>
+<text x="650" y="376" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">Lave-linge</text>
+<rect x="820" y="130" width="196" height="250" rx="12" fill="#ffffff" stroke="#e3dccf"/>
+<text x="918" y="158" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Comment le lire</text>
+<text x="836" y="186" text-anchor="start" font-size="12.5" font-weight="800" fill="#1c2530">De haut en bas :</text>
+<text x="836" y="202" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">du branchement</text>
+<text x="836" y="218" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">vers les circuits.</text>
+<text x="836" y="250" text-anchor="start" font-size="12.5" font-weight="800" fill="#1c2530">1 trait = 1 circuit.</text>
+<text x="836" y="266" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">3 traits obliques</text>
+<text x="836" y="282" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">= 3 conducteurs.</text>
+<text x="836" y="314" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">À côté de chaque</text>
+<text x="836" y="330" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">protection : son</text>
+<text x="836" y="346" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">calibre, puis la</text>
+<text x="836" y="362" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">section du circuit.</text>
+<text x="520" y="430" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Il répond à la question : quels circuits, avec quelles protections ?</text>
+<text x="520" y="456" text-anchor="middle" font-size="12.5" font-weight="500" fill="#5b6673">Au moins deux interrupteurs différentiels 30 mA · 1,5 mm² → 16 A · 2,5 mm² → 20 A · 6 mm² → 32 A</text>
+<text x="520" y="492" text-anchor="middle" font-size="12" font-weight="500" fill="#5b6673">Exemple simplifié : un vrai tableau compte plus de circuits.</text>
+</svg>

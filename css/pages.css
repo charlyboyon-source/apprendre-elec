@@ -290,3 +290,23 @@
 .actu-legende { margin: -4px 0 10px; font-size: 0.78rem; color: var(--texte-2); font-style: italic; }
 .actu-article h1 { margin: 4px 0 12px; line-height: 1.25; }
 .actu-article p { line-height: 1.6; }
+
+/* Pages « schéma » : guide pratique d'un montage */
+.page-schema .niveau-objectif { font-size: 1rem; color: var(--texte); margin-bottom: 8px; }
+.page-schema h1 { margin-bottom: 8px; }
+.page-schema #developpe .cours-titre { margin-top: 6px; }
+.schema-figure { display: block; margin: 10px 0 14px; padding: 8px; text-align: center; overflow: hidden; }
+.schema-figure img { display: block; width: 100%; height: auto; max-width: 860px; margin: 0 auto; }
+.schema-figure figcaption { font-size: 0.86rem; color: var(--texte-2); margin-top: 6px; }
+.schema-etapes { padding-left: 1.3em; line-height: 1.6; }
+.schema-etapes li { margin: 0 0 8px; padding-left: 4px; }
+.schema-etapes li::marker { font-weight: 800; color: var(--orange); }
+.schema-erreurs { padding-left: 1.2em; line-height: 1.6; }
+.schema-erreurs li { margin: 0 0 8px; }
+.schema-question { font-size: 1rem; margin: 16px 0 4px; }
+.table-defile { overflow-x: auto; }
+.schema-table { font-size: 0.9rem; }
+.schema-liste { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.schema-liste li { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; line-height: 1.45; }
+.schema-liste li span { color: var(--texte-2); }
+.lien-schema { font-weight: 700; }

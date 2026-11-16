@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire du va-et-vient : la phase arrive sur la borne commune L du premier va-et-vient, deux navettes violettes relient les bornes 1 et 2 des deux appareils, le retour lampe orange part de la borne commune du second va-et-vient vers la lampe, le neutre et la terre vont directement à la lampe">
+<rect width="860" height="470" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
+<text x="430.0" y="32" text-anchor="middle" font-size="19" font-weight="800" fill="#1c2530">Va-et-vient : schéma multifilaire</text>
+<rect x="28" y="150" width="118" height="190" rx="10" fill="#eef0f2" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="87.0" y="128" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Tableau</text>
+<text x="87.0" y="176" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">disj. 16 A</text>
+<rect x="137" y="197.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="206.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="210.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">Ph</text>
+<rect x="137" y="254.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="263.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="267.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">N</text>
+<rect x="137" y="311.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="320.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="324.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">terre</text>
+<rect x="220" y="96" width="130" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="285.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Va-et-vient 1</text>
+<text x="285.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">commun L + navettes 1 et 2</text>
+<rect x="265.0" y="108" width="40" height="40" rx="6" fill="#f3f1ea" stroke="#c9c3b6"/>
+<rect x="237" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="246" cy="180" r="4" fill="#f3e3a8"/>
+<text x="246" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="277" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="286" cy="180" r="4" fill="#f3e3a8"/>
+<text x="286" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">1</text>
+<rect x="315" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="324" cy="180" r="4" fill="#f3e3a8"/>
+<text x="324" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">2</text>
+<rect x="430" y="96" width="130" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="495.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Va-et-vient 2</text>
+<text x="495.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">navettes 1 et 2 + commun L</text>
+<rect x="475.0" y="108" width="40" height="40" rx="6" fill="#f3f1ea" stroke="#c9c3b6"/>
+<rect x="447" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="456" cy="180" r="4" fill="#f3e3a8"/>
+<text x="456" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">2</text>
+<rect x="485" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="494" cy="180" r="4" fill="#f3e3a8"/>
+<text x="494" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">1</text>
+<rect x="525" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="534" cy="180" r="4" fill="#f3e3a8"/>
+<text x="534" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="660" y="96" width="150" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="735.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Lampe</text>
+<text x="735.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">point lumineux (DCL)</text>
+<circle cx="735.0" cy="126" r="15" fill="#fff6cf" stroke="#1c2530" stroke-width="2.2"/><path d="M724.5 115.5 L745.5 136.5 M745.5 115.5 L724.5 136.5" stroke="#1c2530" stroke-width="2.2"/>
+<rect x="677" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="686" cy="180" r="4" fill="#f3e3a8"/>
+<text x="686" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="726.0" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="735.0" cy="180" r="4" fill="#f3e3a8"/>
+<text x="735.0" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">N</text>
+<rect x="775" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="784" cy="180" r="4" fill="#f3e3a8"/>
+<text x="784" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">⏚</text>
+<path d="M146 206.0 L246 206.0 L246 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="4.5"/>
+<text x="196" y="197.0" text-anchor="middle" font-size="12" font-weight="500" fill="#d62828">phase</text>
+<path d="M324 180 L324 202 L456 202 L456 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#7b4bc4" stroke-width="4.5"/>
+<path d="M286 180 L286 226 L494 226 L494 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#7b4bc4" stroke-width="4.5"/>
+<text x="392" y="244" text-anchor="middle" font-size="12.5" font-weight="800" fill="#7b4bc4">2 navettes</text>
+<path d="M534 180 L534 252 L686 252 L686 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="4.5"/>
+<text x="610" y="244" text-anchor="middle" font-size="12" font-weight="500" fill="#b85a08">retour lampe</text>
+<path d="M146 263.0 L176 263.0 L176 289.0 L735.0 289.0 L735.0 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="4.5"/>
+<text x="330" y="280.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1f6fd0">neutre : directement à la lampe</text>
+<path d="M146 320.0 L784 320.0 L784 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="4.5"/><path d="M146 320.0 L784 320.0 L784 180" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="4.5" stroke-dasharray="9 9"/>
+<text x="330" y="311.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1e7a3c">terre : directement à la lampe</text>
+<path d="M30.0 395 L64.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="5"/>
+<text x="72.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">phase</text>
+<path d="M190.0 395 L224.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#7b4bc4" stroke-width="5"/>
+<text x="232.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">navettes</text>
+<path d="M350.0 395 L384.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="5"/>
+<text x="392.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour lampe</text>
+<path d="M510.0 395 L544.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="5"/>
+<text x="552.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">neutre</text>
+<path d="M670.0 395 L704.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="5"/><path d="M670.0 395 L704.0 395" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="5" stroke-dasharray="9 9"/>
+<text x="712.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">terre (vert-jaune)</text>
+<text x="430.0" y="425" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1c2530">3 fils à chaque va-et-vient · 3 fils à la lampe · tout en 1,5 mm²</text>
+</svg>

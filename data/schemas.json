@@ -1,0 +1,355 @@
+[
+ {
+  "slug": "schema-va-et-vient", "module": 17, "court": "Va-et-vient",
+  "titre": "Schéma va-et-vient : branchement et câblage pas à pas",
+  "description": "Le schéma du va-et-vient, développé et multifilaire : 3 fils par interrupteur, 2 navettes, le branchement en 6 étapes et les erreurs à éviter.",
+  "reponse": "Le va-et-vient commande un même point lumineux depuis <b>deux endroits</b> : les deux bouts d'un couloir, le haut et le bas d'un escalier. Il faut <b>deux interrupteurs va-et-vient</b>, reliés entre eux par <b>deux navettes</b> ; chaque interrupteur reçoit trois fils, la lampe aussi.",
+  "dev": {"svg": "c17-principe.svg", "fichier": "schema-va-et-vient-developpe", "legende": "Schéma développé : si S1 et S2 sont sur la même navette, la lampe est allumée ; sur deux navettes différentes, elle est éteinte."},
+  "multi": {"svg": "s-va-et-vient-multifilaire.svg", "fichier": "schema-va-et-vient-multifilaire", "legende": "Schéma multifilaire : chaque conducteur à sa couleur, borne par borne."},
+  "materiel": "Deux interrupteurs va-et-vient (trois bornes chacun : un commun repéré L, deux navettes repérées 1 et 2), un point lumineux avec son DCL, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit d'éclairage et vérifie l'absence de tension (VAT) sur les conducteurs que tu vas toucher.",
+   "Repère la borne commune de chaque va-et-vient : L, une flèche ou une borne d'une autre couleur. Sans repère lisible, un contrôle de continuité te la donne : c'est la borne reliée à l'une puis à l'autre quand tu bascules.",
+   "Au premier va-et-vient, raccorde la phase (rouge) sur la borne commune L.",
+   "Tire les deux navettes entre les bornes 1 et 2 des deux va-et-vient. Elles ne vont nulle part ailleurs : ni au tableau, ni à la lampe.",
+   "Au second va-et-vient, raccorde le retour lampe (orange) sur la borne commune L, et emmène-le jusqu'à la borne L du point lumineux.",
+   "Raccorde le neutre (bleu) et le conducteur de protection (vert-jaune) directement à la lampe, puis remets sous tension et essaie les quatre combinaisons de positions."
+  ],
+  "bornes": [
+   ["Va-et-vient 1", "L (commun)", "Phase", "rouge"],
+   ["Va-et-vient 1", "1 et 2", "Les deux navettes, vers le va-et-vient 2", "violet sur nos schémas"],
+   ["Va-et-vient 2", "1 et 2", "Les deux navettes, venant du va-et-vient 1", "violet sur nos schémas"],
+   ["Va-et-vient 2", "L (commun)", "Retour lampe, vers la lampe", "orange"],
+   ["Lampe (DCL)", "L", "Retour lampe", "orange"],
+   ["Lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
+   ["Lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+  ],
+  "erreurs": [
+   ["Confondre un commun et une navette", "C'est l'erreur qui ne pardonne pas : la phase ou le retour lampe se retrouve sur une borne de navette. Le montage ne marche plus que dans certaines positions."],
+   ["Croire que les navettes ont un sens", "Les deux navettes sont interchangeables. Si tu les croises entre les deux appareils, le montage fonctionne quand même : seules les positions « allumé » des bascules changent."],
+   ["Faire passer le neutre par les interrupteurs", "Le neutre et le conducteur de protection vont directement à la lampe. La commande coupe la phase, jamais le neutre."],
+   ["Se fier à la position de la bascule", "Avec un va-et-vient, « en haut » ne veut pas dire « allumé ». Avant d'intervenir : disjoncteur ouvert, absence de tension vérifiée."]
+  ],
+  "pannes": [
+   ["La lampe ne répond que dans certaines positions", "Un commun et une navette sont inversés sur l'un des deux appareils. Hors tension, identifie la borne commune de chacun et recâble."],
+   ["La lampe ne s'allume jamais", "Dans l'ordre : l'ampoule, le disjoncteur, puis une connexion desserrée ou un neutre coupé à la lampe."],
+   ["Le disjoncteur déclenche à l'allumage", "Court-circuit : le retour lampe touche le neutre. On ne réarme pas en boucle, on cherche."]
+  ],
+  "faq": [
+   ["Combien de fils faut-il pour un va-et-vient ?", "Trois fils à chaque interrupteur : la phase et deux navettes au premier, deux navettes et le retour lampe au second. À la lampe, trois fils aussi : le retour lampe, le neutre et le conducteur de protection. Tout se câble en 1,5 mm²."],
+   ["Peut-on faire un va-et-vient avec trois interrupteurs ?", "Oui, en ajoutant un permutateur sur les navettes, entre les deux va-et-vient. Trois endroits : deux va-et-vient aux extrémités et un permutateur au milieu."],
+   ["Va-et-vient ou télérupteur ?", "Pour deux points de commande, le va-et-vient. À partir de trois points de commande, on préfère généralement le télérupteur, commandé par des boutons-poussoirs : il est plus simple à câbler et à étendre."],
+   ["Un va-et-vient peut-il servir d'interrupteur simple ?", "Oui. Il suffit d'utiliser la borne commune et une seule navette. C'est pourquoi beaucoup d'interrupteurs vendus aujourd'hui sont des va-et-vient."],
+   ["Que se passe-t-il si on inverse les deux navettes ?", "Rien de grave : le montage fonctionne. Seules les positions des bascules qui allument la lampe changent."]
+  ],
+  "atelier": "vav", "depannage": "atelier-3d.html", "lexique": ["va-et-vient", "navette", "retour lampe", "permutateur"], "voisins": ["schema-permutateur", "schema-telerupteur", "schema-simple-allumage"]
+ },
+ {
+  "slug": "schema-telerupteur", "module": 18, "court": "Télérupteur",
+  "titre": "Schéma télérupteur : branchement 3 fils pas à pas",
+  "description": "Le schéma du télérupteur en montage 3 fils, développé et multifilaire : bornes A1, A2, 1 et 2, boutons-poussoirs en parallèle, erreurs à éviter.",
+  "reponse": "Le télérupteur commande un éclairage depuis <b>trois endroits ou plus</b>, avec de simples boutons-poussoirs. Il faut <b>un télérupteur</b>, le plus souvent au tableau, et autant de <b>boutons-poussoirs en parallèle</b> que de points de commande ; en montage 3 fils, chaque bouton-poussoir ne reçoit que deux fils.",
+  "dev": {"svg": "c18-dev.svg", "fichier": "schema-telerupteur-developpe", "legende": "Schéma développé : à gauche le circuit de commande (boutons-poussoirs et bobine A1-A2), à droite le circuit de puissance (contact 1-2 et lampe)."},
+  "multi": {"svg": "s-telerupteur-multifilaire.svg", "fichier": "schema-telerupteur-multifilaire", "legende": "Schéma multifilaire du montage 3 fils : la même phase sert à la commande et à la puissance."},
+  "materiel": "Un télérupteur (bobine entre A1 et A2, contact entre 1 et 2), des boutons-poussoirs, un ou plusieurs points lumineux, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit et vérifie l'absence de tension (VAT), y compris sur le circuit de commande.",
+   "Lis les repères gravés sur le télérupteur : A1 et A2 pour la bobine, 1 et 2 pour le contact. Lis aussi la tension de la bobine.",
+   "Raccorde la phase (rouge) sur la borne 1, et fais-la repartir vers tous les boutons-poussoirs.",
+   "Relie les boutons-poussoirs en parallèle : la phase d'un côté, le retour bouton-poussoir (blanc) de l'autre. Ramène ce retour sur la borne A1.",
+   "Relie la borne A2 au neutre (bleu).",
+   "De la borne 2, fais partir le retour lampe (orange) jusqu'à la lampe.",
+   "Raccorde le neutre et le conducteur de protection (vert-jaune) directement à la lampe, remets sous tension et essaie chaque bouton-poussoir : un appui allume, le suivant éteint."
+  ],
+  "bornes": [
+   ["Télérupteur", "1", "Phase (elle repart aussi vers les boutons-poussoirs)", "rouge"],
+   ["Télérupteur", "2", "Retour lampe, vers les lampes", "orange"],
+   ["Télérupteur", "A1", "Retour des boutons-poussoirs", "blanc"],
+   ["Télérupteur", "A2", "Neutre", "bleu"],
+   ["Chaque bouton-poussoir", "2 bornes", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
+   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+  ],
+  "erreurs": [
+   ["Mélanger la bobine et le contact", "Un bouton-poussoir raccordé sur la borne 1, ou une lampe sur A1 : rien ne fonctionne. Les repères sont gravés sur l'appareil, lis-les avant de serrer."],
+   ["Poser un interrupteur à la place d'un bouton-poussoir", "Un bouton-poussoir ne reste pas enfoncé : il envoie une brève impulsion puis revient au repos. C'est cette impulsion qui fait changer d'état le télérupteur."],
+   ["Brancher les boutons-poussoirs en série", "Ils sont toujours en parallèle : n'importe lequel doit pouvoir alimenter la bobine."],
+   ["Ignorer la tension de la bobine", "Une bobine prévue pour 24 V branchée en 230 V ne survit pas au premier appui ; l'inverse ne déclenchera jamais."]
+  ],
+  "pannes": [
+   ["On entend le « clac » mais la lampe ne s'allume pas", "La commande est bonne : cherche côté puissance (borne 1, borne 2, retour lampe, ampoule, neutre à la lampe)."],
+   ["Pas de « clac » à l'appui", "Cherche côté commande : phase aux boutons-poussoirs, retour sur A1, neutre sur A2."],
+   ["Le télérupteur bourdonne, reste collé ou s'enclenche tout seul", "Compte les boutons-poussoirs lumineux : chaque voyant laisse passer un très faible courant, et leur nombre est limité. La notice de l'appareil indique combien il en accepte."]
+  ],
+  "faq": [
+   ["Pourquoi dit-on « montage 3 fils » ?", "Parce que trois conducteurs relient le télérupteur au reste de l'installation : la phase qui va aux boutons-poussoirs, le retour bouton-poussoir et le retour lampe. La commande et la puissance utilisent la même phase."],
+   ["Quelle différence avec le montage 4 fils ?", "En 4 fils, le circuit de commande est séparé du circuit de puissance : deux conducteurs pour la commande, deux pour la puissance. C'est utile quand la commande a sa propre alimentation, par exemple une bobine en très basse tension."],
+   ["Combien de fils arrivent à un bouton-poussoir ?", "Deux en montage 3 fils : la phase et le retour bouton-poussoir. Pour ajouter un point de commande, il suffit d'ajouter un bouton-poussoir, repris sur son voisin."],
+   ["Que veut dire « bistable » ?", "Le contact du télérupteur a deux états stables : il change d'état à chaque impulsion et garde sa position entre deux, sans que la bobine soit alimentée."],
+   ["Télérupteur ou va-et-vient ?", "Deux endroits : le va-et-vient. Trois endroits ou plus : le télérupteur, plus simple à câbler et à étendre que des permutateurs."]
+  ],
+  "atelier": "tl", "depannage": "atelier-3d-5.html", "lexique": ["télérupteur", "bouton-poussoir", "retour lampe"], "voisins": ["schema-minuterie", "schema-va-et-vient", "schema-permutateur"]
+ },
+ {
+  "slug": "schema-simple-allumage", "module": 16, "court": "Simple allumage",
+  "titre": "Schéma simple allumage : branchement pas à pas",
+  "description": "Le schéma du simple allumage, développé et multifilaire : 2 fils à l'interrupteur, 3 fils à la lampe, le branchement en 5 étapes et les erreurs.",
+  "reponse": "Le simple allumage commande un point lumineux depuis <b>un seul endroit</b>. Il faut <b>un interrupteur simple</b> à deux bornes : deux fils à l'interrupteur (la phase et le retour lampe), trois fils à la lampe (le retour lampe, le neutre et le conducteur de protection).",
+  "dev": {"svg": "c16-simple-dev.svg", "fichier": "schema-simple-allumage-developpe", "legende": "Schéma développé : interrupteur ouvert, la boucle est coupée ; fermé, le courant traverse la lampe et revient par le neutre."},
+  "multi": {"svg": "s-simple-allumage-multifilaire.svg", "fichier": "schema-simple-allumage-multifilaire", "legende": "Schéma multifilaire : la phase passe par l'interrupteur, le neutre et la terre vont directement à la lampe."},
+  "materiel": "Un interrupteur simple, un point lumineux équipé d'un DCL, trois conducteurs de 1,5 mm² (phase, neutre, conducteur de protection) sous un disjoncteur de 16 A au maximum. Le circuit d'éclairage compte 8 points lumineux au plus.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit d'éclairage et vérifie l'absence de tension (VAT).",
+   "Raccorde la phase (rouge) sur la borne d'arrivée de l'interrupteur, souvent repérée L.",
+   "De l'autre borne de l'interrupteur, fais partir le retour lampe (orange) jusqu'à la borne L du point lumineux.",
+   "Raccorde le neutre (bleu) directement à la lampe, sans passer par l'interrupteur.",
+   "Raccorde le conducteur de protection (vert-jaune) à la borne de terre du DCL, puis remets sous tension et essaie."
+  ],
+  "bornes": [
+   ["Interrupteur", "L (arrivée)", "Phase, venant du disjoncteur", "rouge"],
+   ["Interrupteur", "Départ", "Retour lampe, vers la lampe", "orange"],
+   ["Lampe (DCL)", "L", "Retour lampe", "orange"],
+   ["Lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
+   ["Lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+  ],
+  "erreurs": [
+   ["Couper le neutre au lieu de la phase", "La lampe s'éteint, mais la phase arrive toujours à la douille : celui qui change l'ampoule en touchant le culot fait un contact direct. L'interrupteur coupe toujours la phase."],
+   ["Oublier la terre parce que le luminaire est de classe II", "Le conducteur de protection arrive toujours jusqu'au DCL. Le prochain luminaire sera peut-être en métal."],
+   ["Prendre l'interrupteur pour un appareil de sécurité", "C'est un appareil de commande. Avant d'intervenir sur un point lumineux : disjoncteur ouvert et absence de tension vérifiée."],
+   ["Poser l'interrupteur derrière la porte", "Il se place à l'entrée de la pièce, côté poignée, entre 0,90 m et 1,30 m du sol fini."]
+  ],
+  "pannes": [
+   ["La lampe ne s'allume pas", "Du plus simple au plus compliqué : l'ampoule, puis le disjoncteur, puis une connexion desserrée ou un conducteur coupé (phase à l'interrupteur, retour lampe, neutre à la lampe)."],
+   ["La lampe reste allumée", "Le courant arrive à la lampe sans passer par la commande : contact de l'interrupteur collé, ou phase et retour lampe reliés ensemble par erreur."],
+   ["Ça disjoncte à l'allumage", "Court-circuit : le retour lampe touche le neutre. S'il touche la terre ou une masse, c'est l'interrupteur différentiel 30 mA qui déclenche."]
+  ],
+  "faq": [
+   ["Combien de fils pour un simple allumage ?", "Deux fils à l'interrupteur : la phase et le retour lampe. Trois fils à la lampe : le retour lampe, le neutre et le conducteur de protection."],
+   ["Quelle section de fil pour un circuit d'éclairage ?", "1,5 mm², sous un disjoncteur de 16 A au maximum, avec 8 points lumineux au plus par circuit."],
+   ["Qu'est-ce que le retour lampe ?", "C'est le conducteur qui relie l'interrupteur à la lampe : une phase « commandée », sous tension seulement quand l'interrupteur est fermé. Sur ce site, on le dessine en orange."],
+   ["Peut-on allumer plusieurs lampes avec un seul interrupteur ?", "Oui : on les branche en parallèle. Chacune reçoit le même retour lampe et le même neutre."],
+   ["Faut-il respecter le sens des bornes de l'interrupteur ?", "Sur un simple allumage, inverser les deux bornes ne change rien au fonctionnement. Prends quand même l'habitude de respecter le repère L : sur les montages suivants, l'erreur ne pardonne plus."]
+  ],
+  "atelier": "simple", "depannage": "atelier-3d.html", "lexique": ["simple allumage", "retour lampe", "DCL", "point lumineux"], "voisins": ["schema-double-allumage", "schema-va-et-vient", "schema-unifilaire"]
+ },
+ {
+  "slug": "schema-double-allumage", "module": 16, "court": "Double allumage",
+  "titre": "Schéma double allumage : branchement pas à pas",
+  "description": "Le schéma du double allumage, développé et multifilaire : interrupteur double à 3 bornes, 2 retours lampe, le branchement et le piège classique.",
+  "reponse": "Le double allumage commande <b>deux points lumineux</b>, indépendamment l'un de l'autre, depuis <b>un seul endroit</b>. Il faut <b>un interrupteur double</b> à trois bornes : trois fils à l'interrupteur (une phase et deux retours lampe), trois fils à chaque lampe.",
+  "dev": {"svg": "c16-double-dev.svg", "fichier": "schema-double-allumage-developpe", "legende": "Schéma développé : deux contacts, S1 et S2, alimentés par la même phase ; chacun commande sa lampe."},
+  "multi": {"svg": "s-double-allumage-multifilaire.svg", "fichier": "schema-double-allumage-multifilaire", "legende": "Schéma multifilaire : une phase sur la borne commune, un retour lampe par sortie."},
+  "materiel": "Un interrupteur double (une borne commune et deux bornes de sortie, dans une seule boîte d'encastrement), deux points lumineux avec leur DCL, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit d'éclairage et vérifie l'absence de tension (VAT).",
+   "Repère la borne commune de l'interrupteur double et raccorde-y la phase (rouge).",
+   "De la première borne de sortie, fais partir un retour lampe (orange) vers le premier point lumineux.",
+   "De la seconde borne de sortie, fais partir l'autre retour lampe vers le second point lumineux. Repère-les dès le tirage, par un marquage.",
+   "Raccorde le neutre (bleu) et le conducteur de protection (vert-jaune) directement aux deux lampes.",
+   "Remets sous tension et vérifie que chaque commande allume sa lampe, seule."
+  ],
+  "bornes": [
+   ["Interrupteur double", "Commune (L)", "Phase, venant du disjoncteur", "rouge"],
+   ["Interrupteur double", "Sortie 1", "Retour lampe du premier point lumineux", "orange"],
+   ["Interrupteur double", "Sortie 2", "Retour lampe du second point lumineux", "orange"],
+   ["Chaque lampe (DCL)", "L", "Son retour lampe", "orange"],
+   ["Chaque lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
+   ["Chaque lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+  ],
+  "erreurs": [
+   ["Raccorder la phase sur une borne de sortie", "C'est le piège classique. Une des deux lampes ne s'allume alors que si les deux commandes sont fermées : les deux allumages ne sont plus indépendants."],
+   ["Confondre les deux retours lampe", "Une fois les fils coupés à la longueur dans la boîte, deux retours de la même couleur ne se distinguent plus qu'à l'essai. Repère-les au tirage."],
+   ["Prendre deux interrupteurs simples pour un double", "L'interrupteur double tient dans une seule boîte d'encastrement, et sa borne de phase est commune : une seule arrivée de phase alimente les deux commandes."]
+  ],
+  "pannes": [
+   ["Une lampe ne s'allume que si l'autre commande est fermée", "La phase est raccordée sur une borne de sortie au lieu de la borne commune. Hors tension, recâble la phase sur le commun."],
+   ["Une seule des deux lampes ne s'allume pas", "Son ampoule d'abord, puis son retour lampe et son neutre : connexion desserrée ou conducteur coupé."],
+   ["Le disjoncteur déclenche à l'allumage", "Court-circuit : un retour lampe touche le neutre. On cherche avant de réarmer."]
+  ],
+  "faq": [
+   ["Combien de fils pour un double allumage ?", "Trois fils à l'interrupteur : une phase et deux retours lampe. Trois fils à chaque lampe : son retour lampe, le neutre et le conducteur de protection."],
+   ["Combien de bornes possède un interrupteur double ?", "Trois : une borne commune pour l'arrivée de la phase, et deux bornes de sortie, une par commande."],
+   ["À quoi sert un double allumage ?", "À commander deux points lumineux, ou deux groupes de lampes, du même endroit : un lustre dont on allume la moitié ou la totalité des ampoules, ou le plafonnier et les appliques d'une même pièce."],
+   ["Double allumage ou va-et-vient ?", "Ce n'est pas le même besoin. Le double allumage commande deux lampes depuis un endroit ; le va-et-vient commande une lampe depuis deux endroits."]
+  ],
+  "atelier": "double", "depannage": "atelier-3d.html", "lexique": ["double allumage", "retour lampe", "DCL"], "voisins": ["schema-simple-allumage", "schema-va-et-vient", "schema-unifilaire"]
+ },
+ {
+  "slug": "schema-permutateur", "module": 17, "court": "Permutateur",
+  "titre": "Schéma permutateur : va-et-vient à 3 interrupteurs",
+  "description": "Le schéma du va-et-vient avec permutateur pour 3 points de commande : 4 bornes, 2 navettes, le branchement pas à pas et les erreurs à éviter.",
+  "reponse": "Le permutateur permet de commander une lampe depuis <b>trois endroits</b>. On l'insère sur les deux navettes, <b>entre deux interrupteurs va-et-vient</b> : il possède quatre bornes et reçoit quatre fils, deux navettes qui arrivent et deux qui repartent.",
+  "dev": {"svg": "s-permutateur-developpe.svg", "fichier": "schema-permutateur-developpe", "legende": "Schéma développé : le permutateur transmet les navettes tout droit, ou les croise."},
+  "multi": {"svg": "s-permutateur-multifilaire.svg", "fichier": "schema-permutateur-multifilaire", "legende": "Schéma multifilaire : va-et-vient, permutateur, va-et-vient."},
+  "materiel": "Deux interrupteurs va-et-vient (aux deux extrémités), un permutateur (au milieu), un point lumineux avec son DCL, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit d'éclairage et vérifie l'absence de tension (VAT).",
+   "Au premier va-et-vient, raccorde la phase (rouge) sur la borne commune L.",
+   "Tire deux navettes des bornes 1 et 2 du premier va-et-vient jusqu'aux deux bornes d'arrivée du permutateur.",
+   "Tire deux autres navettes des deux bornes de départ du permutateur jusqu'aux bornes 1 et 2 du second va-et-vient.",
+   "Au second va-et-vient, raccorde le retour lampe (orange) sur la borne commune L, jusqu'à la lampe.",
+   "Raccorde le neutre (bleu) et le conducteur de protection (vert-jaune) directement à la lampe, remets sous tension et manœuvre chacun des trois appareils : chaque action doit inverser l'état de la lampe."
+  ],
+  "bornes": [
+   ["Va-et-vient 1", "L (commun)", "Phase", "rouge"],
+   ["Va-et-vient 1", "1 et 2", "Deux navettes, vers le permutateur", "violet sur nos schémas"],
+   ["Permutateur", "2 bornes d'arrivée", "Les deux navettes venant du va-et-vient 1", "violet sur nos schémas"],
+   ["Permutateur", "2 bornes de départ", "Les deux navettes allant au va-et-vient 2", "violet sur nos schémas"],
+   ["Va-et-vient 2", "1 et 2", "Deux navettes, venant du permutateur", "violet sur nos schémas"],
+   ["Va-et-vient 2", "L (commun)", "Retour lampe, vers la lampe", "orange"],
+   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+  ],
+  "erreurs": [
+   ["Placer le permutateur en bout de montage", "Il se place toujours au milieu : il n'a ni borne pour la phase, ni borne pour le retour lampe. Aux deux extrémités, ce sont toujours des va-et-vient."],
+   ["Mélanger arrivées et départs sur le permutateur", "Les deux navettes d'un même côté vont sur les deux bornes d'un même côté. Repère-les au tirage, avec une couleur qui ne sert à rien d'autre dans la boîte."],
+   ["Confondre un commun et une navette sur un va-et-vient", "Comme dans tout va-et-vient, la phase va sur un commun, le retour lampe sur l'autre commun, et les navettes ne relient que des bornes de navette."]
+  ],
+  "pannes": [
+   ["Le montage ne répond que dans certaines positions", "Un commun et une navette sont inversés sur l'un des va-et-vient. Hors tension, identifie la borne commune de chacun."],
+   ["La lampe ne s'allume jamais", "Comme pour tout allumage : ampoule, disjoncteur, connexion desserrée, neutre coupé à la lampe."],
+   ["Le dépannage devient long", "Quatre fils dans la boîte du permutateur et deux navettes d'un bout à l'autre : c'est le défaut de ce montage. Redessine le schéma développé et suis le chemin du courant, maillon par maillon."]
+  ],
+  "faq": [
+   ["Combien de bornes a un permutateur ?", "Quatre : deux pour les navettes qui arrivent, deux pour les navettes qui repartent. Il a deux positions : il transmet les navettes tout droit, ou il les croise."],
+   ["Combien d'appareils pour trois ou quatre points de commande ?", "Trois endroits : deux va-et-vient et un permutateur. Quatre endroits : deux va-et-vient et deux permutateurs. Les extrémités sont toujours des va-et-vient, les points intermédiaires des permutateurs."],
+   ["Permutateur ou télérupteur ?", "À partir de trois points de commande, on préfère généralement le télérupteur, plus simple à câbler et à étendre. Le permutateur se pose encore en rénovation, quand deux va-et-vient existent déjà et qu'on veut ajouter un troisième point sans tout recâbler."],
+   ["Comment fonctionne un permutateur ?", "Le manœuvrer revient à échanger les deux navettes. Si la lampe était allumée, les deux va-et-vient ne sont plus sur la même navette : elle s'éteint. Et inversement."]
+  ],
+  "atelier": "perm", "depannage": "atelier-3d.html", "lexique": ["permutateur", "va-et-vient", "navette"], "voisins": ["schema-va-et-vient", "schema-telerupteur", "schema-minuterie"]
+ },
+ {
+  "slug": "schema-minuterie", "module": 18, "court": "Minuterie",
+  "titre": "Schéma minuterie d'escalier : branchement pas à pas",
+  "description": "Le schéma de la minuterie d'escalier, développé et multifilaire : boutons-poussoirs en parallèle, extinction automatique, branchement et pannes.",
+  "reponse": "La minuterie allume un éclairage sur un appui et l'<b>éteint toute seule</b> au bout d'une durée réglée : c'est le montage des escaliers, couloirs et parties communes. Il faut <b>une minuterie</b> et des <b>boutons-poussoirs en parallèle</b>, deux fils par bouton-poussoir.",
+  "dev": {"svg": "s-minuterie-developpe.svg", "fichier": "schema-minuterie-developpe", "legende": "Schéma développé : un circuit de commande (boutons-poussoirs) et un circuit de puissance (contact temporisé et lampe)."},
+  "multi": {"svg": "s-minuterie-multifilaire.svg", "fichier": "schema-minuterie-multifilaire", "legende": "Schéma multifilaire : le repérage des bornes varie selon l'appareil, lis toujours sa notice."},
+  "materiel": "Une minuterie, des boutons-poussoirs, un ou plusieurs points lumineux, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
+  "etapes": [
+   "Coupe le disjoncteur du circuit et vérifie l'absence de tension (VAT), y compris sur le circuit de commande.",
+   "Lis la notice de la minuterie : le repérage des bornes change d'un appareil à l'autre. Repère l'alimentation (phase et neutre), l'entrée de commande et la sortie vers les lampes.",
+   "Alimente la minuterie : la phase (rouge) et le neutre (bleu).",
+   "Relie les boutons-poussoirs en parallèle : la phase d'un côté, le retour bouton-poussoir (blanc) de l'autre, ramené sur l'entrée de commande de la minuterie.",
+   "De la sortie de la minuterie, fais partir le retour lampe (orange) vers les lampes.",
+   "Raccorde le neutre et le conducteur de protection (vert-jaune) directement aux lampes.",
+   "Remets sous tension, règle la durée en parcourant toi-même le trajet le plus long, puis ajoute une marge."
+  ],
+  "bornes": [
+   ["Minuterie", "Alimentation", "Phase et neutre", "rouge et bleu"],
+   ["Minuterie", "Entrée de commande", "Retour des boutons-poussoirs", "blanc"],
+   ["Minuterie", "Sortie", "Retour lampe, vers les lampes", "orange"],
+   ["Chaque bouton-poussoir", "2 bornes", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
+   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+  ],
+  "erreurs": [
+   ["Régler une durée trop courte", "Une minuterie trop courte dans un escalier, c'est quelqu'un dans le noir entre deux étages. Parcours le trajet le plus long, au pas d'une personne chargée."],
+   ["Oublier la marche permanente", "La plupart des minuteries ont une position marche permanente, utile pour un ménage ou un déménagement. Si l'éclairage ne s'éteint plus, vérifie d'abord cette position."],
+   ["Multiplier les boutons-poussoirs lumineux", "Leur nombre est limité : chaque voyant laisse passer un très faible courant, et trop de voyants finissent par faire réagir l'appareil."],
+   ["Câbler sans la notice", "Contrairement au télérupteur, le repérage des bornes n'est pas le même d'un appareil à l'autre."]
+  ],
+  "pannes": [
+   ["L'éclairage ne s'éteint plus", "Le sélecteur est resté sur marche permanente, ou un bouton-poussoir est resté enfoncé : la commande reçoit la phase en continu."],
+   ["Rien ne s'allume à l'appui", "Cherche côté commande : phase aux boutons-poussoirs, retour jusqu'à l'entrée de commande, alimentation de la minuterie."],
+   ["La minuterie réagit mais les lampes restent éteintes", "Cherche côté puissance : sortie de la minuterie, retour lampe, ampoules, neutre aux lampes."]
+  ],
+  "faq": [
+   ["Quelle différence entre une minuterie et un télérupteur ?", "Les deux sont commandés par des boutons-poussoirs en parallèle. Avec le télérupteur, un appui allume et le suivant éteint. Avec la minuterie, un appui allume, puis l'appareil éteint seul au bout de la durée réglée."],
+   ["Sur quelle durée régler une minuterie ?", "De quelques dizaines de secondes à plusieurs minutes, selon le temps qu'il faut pour traverser les lieux. On la règle sur l'appareil."],
+   ["Où installe-t-on une minuterie ?", "Dans les parties communes des immeubles, les escaliers, les couloirs, les caves, les locaux à vélos : partout où un éclairage risque de rester allumé pour rien."],
+   ["Combien de fils arrivent à un bouton-poussoir ?", "Deux : la phase et le retour bouton-poussoir. Pour ajouter un point de commande, on ajoute un bouton-poussoir en parallèle."]
+  ],
+  "atelier": "minuterie", "depannage": "atelier-3d-5.html", "lexique": ["minuterie", "bouton-poussoir", "télérupteur"], "voisins": ["schema-telerupteur", "schema-va-et-vient", "schema-contacteur-heures-creuses"]
+ },
+ {
+  "slug": "schema-contacteur-heures-creuses", "module": 19, "court": "Contacteur heures creuses",
+  "titre": "Schéma contacteur heures creuses : branchement",
+  "description": "Le schéma du contacteur heures creuses du chauffe-eau : bornes A1, A2, C1 et C2, disjoncteurs 2 A et 20 A, branchement pas à pas et pannes.",
+  "reponse": "Le contacteur heures creuses met le chauffe-eau en marche <b>seulement pendant les heures creuses</b>. Il se câble en deux circuits : une <b>commande</b> protégée par un disjoncteur de 2 A, pilotée par le contact C1-C2 du compteur, et une <b>puissance</b> en 2,5 mm² sous un disjoncteur de 20 A.",
+  "dev": {"svg": "c19-cablage.svg", "fichier": "schema-contacteur-heures-creuses-developpe", "legende": "Schéma développé : à gauche la commande (2 A, C1-C2, bobine A1-A2), à droite la puissance (20 A, contacts, chauffe-eau)."},
+  "multi": {"svg": "s-contacteur-heures-creuses-multifilaire.svg", "fichier": "schema-contacteur-heures-creuses-multifilaire", "legende": "Schéma multifilaire : le conducteur de protection va directement au chauffe-eau."},
+  "materiel": "Un contacteur heures creuses (bobine A1-A2, contacts de puissance, manette Auto · 0 · I), un disjoncteur de 2 A pour la commande, un disjoncteur de 20 A et des conducteurs de 2,5 mm² pour le chauffe-eau, le tout derrière un interrupteur différentiel de sensibilité 30 mA.",
+  "etapes": [
+   "Coupe les disjoncteurs concernés et vérifie l'absence de tension (VAT).",
+   "Commande : amène la phase protégée par le disjoncteur de 2 A sur la borne C1 du compteur.",
+   "De la borne C2 du compteur, rejoins la borne A1 de la bobine du contacteur.",
+   "Relie la borne A2 de la bobine au neutre (bleu).",
+   "Puissance : fais passer la phase et le neutre du disjoncteur de 20 A par les contacts de puissance du contacteur, puis vers le chauffe-eau, en 2,5 mm².",
+   "Raccorde le conducteur de protection (vert-jaune) directement au chauffe-eau. Le chauffe-eau se raccorde à poste fixe, sans prise de courant.",
+   "Remets sous tension, passe en marche forcée (I) pour vérifier la puissance, puis reviens sur Auto."
+  ],
+  "bornes": [
+   ["Compteur", "C1", "Phase de commande, protégée par le disjoncteur de 2 A", "rouge"],
+   ["Compteur", "C2", "Vers la borne A1 du contacteur", "signal heures creuses"],
+   ["Contacteur", "A1", "Venant de la borne C2 du compteur", "signal heures creuses"],
+   ["Contacteur", "A2", "Neutre", "bleu"],
+   ["Contacteur", "Contacts de puissance", "Phase et neutre du disjoncteur de 20 A, vers le chauffe-eau", "rouge et bleu, 2,5 mm²"],
+   ["Chauffe-eau", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+  ],
+  "erreurs": [
+   ["Oublier le disjoncteur de 2 A", "Il y a deux disjoncteurs : le 2 A pour la commande, le 20 A pour la puissance."],
+   ["Laisser le contacteur sur I", "Un contacteur oublié en marche forcée fait chauffer en heures pleines pendant des mois sans que personne s'en aperçoive. Après une marche forcée, on revient sur Auto."],
+   ["Brancher le chauffe-eau sur une prise", "Il se raccorde à poste fixe, par une sortie de câble ou une boîte de connexion, sur un circuit spécialisé."],
+   ["Se fier au thermostat", "Ce n'est pas un organe de coupure : résistance froide ne veut pas dire appareil hors tension. Disjoncteur ouvert, absence de tension vérifiée sur le bornier."]
+  ],
+  "pannes": [
+   ["Plus d'eau chaude le matin, mais la marche forcée fonctionne", "La puissance est bonne : c'est le circuit de commande qu'il faut contrôler. Regarde le disjoncteur de 2 A, puis le signal aux bornes C1-C2."],
+   ["Le chauffe-eau ne chauffe pas, même en marche forcée", "Cherche côté puissance : le disjoncteur de 20 A, les contacts du contacteur, le raccordement du chauffe-eau."],
+   ["Le chauffe-eau chauffe en heures pleines", "La manette est restée sur I. Remets-la sur Auto."]
+  ],
+  "faq": [
+   ["À quoi servent les positions Auto, 0 et I ?", "Auto : le contacteur suit le signal du compteur. 0 : arrêt, le chauffe-eau est coupé. I : marche forcée, le chauffe-eau chauffe tout de suite, quelle que soit l'heure."],
+   ["Quel disjoncteur pour un chauffe-eau ?", "Un disjoncteur de 20 A, avec des conducteurs de 2,5 mm², sur un circuit spécialisé. Exemple : un chauffe-eau de 2 300 W sous 230 V appelle 10 A."],
+   ["Où se trouve le contact heures creuses ?", "Sur le compteur, entre deux bornes repérées C1 et C2. Il se ferme pendant les heures creuses."],
+   ["Quelle différence avec un télérupteur ?", "Les deux ont une bobine A1-A2. Mais le contacteur n'est pas bistable : son contact reste fermé tant que la bobine est alimentée, et s'ouvre dès qu'elle ne l'est plus."]
+  ],
+  "atelier": "hc", "depannage": "atelier-3d-2.html", "lexique": ["contacteur heures creuses", "heures creuses", "ECS"], "voisins": ["schema-telerupteur", "schema-unifilaire", "schema-minuterie"]
+ },
+ {
+  "slug": "schema-unifilaire", "module": 15, "court": "Schéma unifilaire",
+  "titre": "Schéma unifilaire : lire le schéma d'un tableau",
+  "description": "Lire un schéma unifilaire de tableau électrique : un trait par circuit, les traits obliques, les protections, les calibres et les sections.",
+  "reponse": "Le schéma unifilaire est <b>le schéma du tableau</b> : chaque circuit y est représenté par <b>un seul trait</b>, quel que soit le nombre de conducteurs. Il répond à une question : quels circuits, avec quelles protections ?",
+  "dev": {"svg": "c15-unifilaire.svg", "fichier": "schema-unifilaire-principe", "legende": "Un trait par circuit ; les traits obliques donnent le nombre de conducteurs."},
+  "multi": {"svg": "s-unifilaire-tableau-annote.svg", "fichier": "schema-unifilaire-tableau", "legende": "Exemple simplifié de tableau, annoté : on le lit de haut en bas."},
+  "titres": {"dev": "Le principe : un trait par circuit", "multi": "Un schéma unifilaire de tableau, annoté", "etapes": "Lire un schéma unifilaire en {n} étapes", "bornes": "Ce que dit chaque élément du schéma"},
+  "materiel": "",
+  "etapes": [
+   "Commence par la légende, s'il y en a une : elle rappelle les symboles utilisés sur ce plan.",
+   "Lis de haut en bas : en tête, le disjoncteur de branchement (AGCP).",
+   "Repère les interrupteurs différentiels : pour chacun, sa sensibilité (30 mA), son type (AC, A…) et son calibre.",
+   "Sous chaque interrupteur différentiel, lis les disjoncteurs : leur calibre est écrit à côté.",
+   "Suis le trait de chaque circuit : les traits obliques donnent le nombre de conducteurs, et la section est écrite à côté.",
+   "Termine par ce que le circuit alimente : éclairage, prises, plaque de cuisson, lave-linge…"
+  ],
+  "colonnes": ["Sur le schéma", "Ce qu'on lit", "Exemple"],
+  "bornes": [
+   ["Un trait vertical", "Un circuit, quel que soit son nombre de conducteurs", "Le circuit d'éclairage"],
+   ["Trois traits obliques", "Trois conducteurs : phase, neutre et conducteur de protection", "Un circuit de prises"],
+   ["En tête", "Le disjoncteur de branchement (AGCP)", "Un seul, pour toute l'installation"],
+   ["Deuxième rang", "Les interrupteurs différentiels, avec leur type et leur calibre", "30 mA type AC, 30 mA type A"],
+   ["Troisième rang", "Les disjoncteurs, avec leur calibre", "16 A, 20 A, 32 A"],
+   ["Le long du trait", "La section des conducteurs du circuit", "1,5 mm², 2,5 mm², 6 mm²"]
+  ],
+  "erreurs": [
+   ["Le prendre pour un schéma de câblage", "L'unifilaire ne montre pas quel conducteur arrive sur quelle borne : c'est le rôle du schéma multifilaire."],
+   ["Oublier de compter les traits obliques", "Un seul trait ne veut pas dire un seul fil. Ce sont les traits obliques qui donnent le nombre de conducteurs."],
+   ["Lire un calibre sans regarder la section", "Les deux vont ensemble : 1,5 mm² sous 16 A au maximum, 2,5 mm² sous 20 A, 6 mm² sous 32 A."],
+   ["Ne pas le laisser dans le tableau", "Le schéma unifilaire fait partie du dossier remis avec l'installation. Colle-en un exemplaire dans la porte du tableau."]
+  ],
+  "titre_pannes": "Quel schéma pour quelle question ?",
+  "pannes": [
+   ["Où sont les appareils dans le logement ?", "Le schéma architectural : il place les appareils sur le plan des pièces."],
+   ["Quels circuits, avec quelles protections ?", "Le schéma unifilaire : c'est le schéma du tableau."],
+   ["Comment raccorder ?", "Le schéma multifilaire : un trait par conducteur, à sa couleur, borne par borne."],
+   ["Comment ça fonctionne ?", "Le schéma développé : phase en haut, neutre en bas, les éléments dans l'ordre où le courant les traverse."]
+  ],
+  "colonnes_pannes": ["La question", "Le schéma qui y répond"],
+  "faq": [
+   ["Que veut dire « unifilaire » ?", "Un fil : chaque circuit est représenté par un seul trait, quel que soit le nombre de conducteurs qu'il contient. On le barre de petits traits obliques, autant que de conducteurs."],
+   ["Quelle différence entre unifilaire et multifilaire ?", "L'unifilaire dessine un trait par circuit et montre l'organisation du tableau. Le multifilaire dessine un trait par conducteur et montre le câblage réel, borne par borne."],
+   ["Que lit-on sur le schéma unifilaire d'un tableau ?", "De haut en bas : le disjoncteur de branchement, les interrupteurs différentiels avec leur type et leur calibre, puis chaque disjoncteur avec son calibre, la section des conducteurs qu'il protège et ce qu'il alimente."],
+   ["Combien d'interrupteurs différentiels sur un tableau de logement ?", "Au moins deux, de sensibilité 30 mA. La cuisson et le lave-linge passent sous un type A, les autres circuits sous un type AC au minimum."],
+   ["Où trouve-t-on le schéma unifilaire ?", "Dans le dossier remis avec l'installation, et idéalement collé dans la porte du tableau : celui qui interviendra ensuite saura ce que protège chaque appareil."]
+  ],
+  "atelier": "", "depannage": "atelier-3d-3.html", "lexique": ["schéma unifilaire", "schéma multifilaire", "schéma développé", "schéma architectural"], "voisins": ["schema-simple-allumage", "schema-va-et-vient", "schema-contacteur-heures-creuses"]
+ }
+]

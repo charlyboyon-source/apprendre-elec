@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 470" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire du double allumage : la phase arrive sur la borne commune L de l'interrupteur double, deux retours lampe orange partent des bornes 1 et 2 vers les deux points lumineux, le neutre et la terre vont directement aux deux lampes">
+<rect width="860" height="470" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
+<text x="430.0" y="32" text-anchor="middle" font-size="19" font-weight="800" fill="#1c2530">Double allumage : schéma multifilaire</text>
+<rect x="28" y="150" width="118" height="190" rx="10" fill="#eef0f2" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="87.0" y="128" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Tableau</text>
+<text x="87.0" y="176" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">disj. 16 A</text>
+<rect x="137" y="197.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="206.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="210.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">Ph</text>
+<rect x="137" y="254.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="263.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="267.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">N</text>
+<rect x="137" y="311.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="320.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="324.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">terre</text>
+<rect x="250" y="96" width="134" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="317.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Interrupteur double</text>
+<text x="317.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">3 bornes : 1 commune, 2 sorties</text>
+<rect x="297.0" y="108" width="40" height="40" rx="6" fill="#f3f1ea" stroke="#c9c3b6"/>
+<rect x="267" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="276" cy="180" r="4" fill="#f3e3a8"/>
+<text x="276" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="309" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="318" cy="180" r="4" fill="#f3e3a8"/>
+<text x="318" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">1</text>
+<rect x="349" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="358" cy="180" r="4" fill="#f3e3a8"/>
+<text x="358" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">2</text>
+<rect x="480" y="96" width="150" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="555.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Lampe E1</text>
+<text x="555.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">point lumineux 1</text>
+<circle cx="555.0" cy="126" r="15" fill="#fff6cf" stroke="#1c2530" stroke-width="2.2"/><path d="M544.5 115.5 L565.5 136.5 M565.5 115.5 L544.5 136.5" stroke="#1c2530" stroke-width="2.2"/>
+<rect x="497" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="506" cy="180" r="4" fill="#f3e3a8"/>
+<text x="506" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="546.0" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="555.0" cy="180" r="4" fill="#f3e3a8"/>
+<text x="555.0" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">N</text>
+<rect x="595" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="604" cy="180" r="4" fill="#f3e3a8"/>
+<text x="604" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">⏚</text>
+<rect x="680" y="96" width="150" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="755.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Lampe E2</text>
+<text x="755.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">point lumineux 2</text>
+<circle cx="755.0" cy="126" r="15" fill="#fff6cf" stroke="#1c2530" stroke-width="2.2"/><path d="M744.5 115.5 L765.5 136.5 M765.5 115.5 L744.5 136.5" stroke="#1c2530" stroke-width="2.2"/>
+<rect x="697" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="706" cy="180" r="4" fill="#f3e3a8"/>
+<text x="706" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="746.0" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="755.0" cy="180" r="4" fill="#f3e3a8"/>
+<text x="755.0" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">N</text>
+<rect x="795" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="804" cy="180" r="4" fill="#f3e3a8"/>
+<text x="804" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">⏚</text>
+<path d="M146 206.0 L276 206.0 L276 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="4.5"/>
+<text x="205" y="197.0" text-anchor="middle" font-size="12" font-weight="500" fill="#d62828">phase</text>
+<path d="M318 180 L318 222 L506 222 L506 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="4.5"/>
+<path d="M358 180 L358 250 L706 250 L706 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="4.5"/>
+<text x="420" y="214" text-anchor="middle" font-size="12" font-weight="500" fill="#b85a08">retour lampe 1</text>
+<text x="658" y="242" text-anchor="middle" font-size="12" font-weight="500" fill="#b85a08">retour lampe 2</text>
+<path d="M146 263.0 L190 263.0 L190 281.0 L755.0 281.0 L755.0 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="4.5"/>
+<path d="M555.0 281.0 L555.0 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="4.5"/>
+<circle cx="555.0" cy="281.0" r="6" fill="#1f6fd0"/>
+<text x="330" y="272.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1f6fd0">neutre commun aux deux lampes</text>
+<path d="M146 320.0 L804 320.0 L804 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="4.5"/><path d="M146 320.0 L804 320.0 L804 180" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="4.5" stroke-dasharray="9 9"/>
+<path d="M604 320.0 L604 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="4.5"/><path d="M604 320.0 L604 180" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="4.5" stroke-dasharray="9 9"/>
+<circle cx="604" cy="320.0" r="6" fill="#2e9e4f"/>
+<text x="330" y="311.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1e7a3c">terre aux deux lampes</text>
+<path d="M30.0 395 L64.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="5"/>
+<text x="72.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">phase</text>
+<path d="M230.0 395 L264.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="5"/>
+<text x="272.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour lampe</text>
+<path d="M430.0 395 L464.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="5"/>
+<text x="472.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">neutre</text>
+<path d="M630.0 395 L664.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="5"/><path d="M630.0 395 L664.0 395" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="5" stroke-dasharray="9 9"/>
+<text x="672.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">terre (vert-jaune)</text>
+<text x="430.0" y="425" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1c2530">3 fils à l'interrupteur (1 phase + 2 retours) · 3 fils à chaque lampe</text>
+</svg>

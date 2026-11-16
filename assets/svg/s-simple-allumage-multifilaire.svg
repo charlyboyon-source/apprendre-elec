@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 470" font-family="'Segoe UI',system-ui,sans-serif" role="img" aria-label="Schéma multifilaire du simple allumage : la phase va du disjoncteur 16 A à la borne L de l'interrupteur, le retour lampe orange va de l'interrupteur à la lampe, le neutre et la terre vont directement à la lampe">
+<rect width="780" height="470" rx="16" fill="#fbf8f1" stroke="#e3dccf"/>
+<text x="390.0" y="32" text-anchor="middle" font-size="19" font-weight="800" fill="#1c2530">Simple allumage : schéma multifilaire</text>
+<rect x="28" y="150" width="118" height="190" rx="10" fill="#eef0f2" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="87.0" y="128" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Tableau</text>
+<text x="87.0" y="176" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1c2530">disj. 16 A</text>
+<rect x="137" y="197.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="206.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="210.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">Ph</text>
+<rect x="137" y="254.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="263.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="267.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">N</text>
+<rect x="137" y="311.0" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="146" cy="320.0" r="4" fill="#f3e3a8"/>
+<text x="130" y="324.5" text-anchor="end" font-size="12.5" font-weight="800" fill="#1c2530">terre</text>
+<rect x="280" y="96" width="124" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="342.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Interrupteur simple</text>
+<text x="342.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">2 bornes</text>
+<rect x="322.0" y="108" width="40" height="40" rx="6" fill="#f3f1ea" stroke="#c9c3b6"/>
+<rect x="307" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="316" cy="180" r="4" fill="#f3e3a8"/>
+<text x="316" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="359" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="368" cy="180" r="4" fill="#f3e3a8"/>
+<text x="368" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">1</text>
+<rect x="560" y="96" width="150" height="84" rx="10" fill="#ffffff" stroke="#aeb5bd" stroke-width="1.5"/>
+<text x="635.0" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#1c2530">Lampe</text>
+<text x="635.0" y="89" text-anchor="middle" font-size="11.5" font-weight="500" fill="#5b6673">point lumineux (DCL)</text>
+<circle cx="635.0" cy="126" r="15" fill="#fff6cf" stroke="#1c2530" stroke-width="2.2"/><path d="M624.5 115.5 L645.5 136.5 M645.5 115.5 L624.5 136.5" stroke="#1c2530" stroke-width="2.2"/>
+<rect x="577" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="586" cy="180" r="4" fill="#f3e3a8"/>
+<text x="586" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">L</text>
+<rect x="626.0" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="635.0" cy="180" r="4" fill="#f3e3a8"/>
+<text x="635.0" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">N</text>
+<rect x="675" y="171" width="18" height="18" rx="4" fill="#c9a44a" stroke="#8a6a1c"/><circle cx="684" cy="180" r="4" fill="#f3e3a8"/>
+<text x="684" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#1c2530">⏚</text>
+<path d="M146 206.0 L316 206.0 L316 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="4.5"/>
+<text x="230" y="197.0" text-anchor="middle" font-size="12" font-weight="500" fill="#d62828">phase 1,5 mm²</text>
+<path d="M368 180 L368 222 L586 222 L586 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="4.5"/>
+<text x="470" y="214" text-anchor="middle" font-size="12" font-weight="500" fill="#b85a08">retour lampe</text>
+<path d="M146 263.0 L635.0 263.0 L635.0 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="4.5"/>
+<text x="330" y="254.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1f6fd0">neutre : directement à la lampe</text>
+<path d="M146 320.0 L684 320.0 L684 180" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="4.5"/><path d="M146 320.0 L684 320.0 L684 180" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="4.5" stroke-dasharray="9 9"/>
+<text x="330" y="311.0" text-anchor="middle" font-size="12" font-weight="500" fill="#1e7a3c">terre : directement à la lampe</text>
+<path d="M30.0 395 L64.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#d62828" stroke-width="5"/>
+<text x="72.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">phase</text>
+<path d="M210.0 395 L244.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#f08a00" stroke-width="5"/>
+<text x="252.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">retour lampe</text>
+<path d="M390.0 395 L424.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#1f6fd0" stroke-width="5"/>
+<text x="432.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">neutre</text>
+<path d="M570.0 395 L604.0 395" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#2e9e4f" stroke-width="5"/><path d="M570.0 395 L604.0 395" fill="none" stroke-linejoin="round" stroke="#f2d21a" stroke-width="5" stroke-dasharray="9 9"/>
+<text x="612.0" y="399.5" text-anchor="start" font-size="12.5" font-weight="500" fill="#1c2530">terre (vert-jaune)</text>
+<text x="390.0" y="425" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1c2530">2 fils à l'interrupteur · 3 fils à la lampe · circuit en 1,5 mm² sous 16 A</text>
+</svg>
