@@ -133,3 +133,10 @@
   .accueil-actu-liste { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .accueil-actu-item { flex: 0 0 72%; scroll-snap-align: start; }
 }
+
+/* Sous le titre : les schémas de branchement et le dépannage 3D, à un toucher */
+.accueil-schemas { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; max-width: 1180px; margin: 0 auto 22px; padding: 0 var(--esp-3); font-size: 0.9rem; }
+.accueil-schemas b { margin-right: 4px; }
+.accueil-schemas a { padding: 6px 12px; border: 1px solid var(--bordure); border-radius: 999px; background: var(--fond-2); color: var(--texte); text-decoration: none; }
+.accueil-schemas a:hover { border-color: var(--accent); }
+.accueil-schemas a.fort { background: var(--jaune); color: #fff; border-color: var(--jaune); font-weight: 700; }
