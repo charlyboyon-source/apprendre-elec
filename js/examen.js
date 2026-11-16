@@ -21,11 +21,18 @@ async function lancer() {
   ]);
 
   // Deux questions par module, puis on ramène la série à 40.
+  // Une question marquée « examen: false » ne se comprend qu'à la fin de son cours : l'examen blanc ne la tire jamais
+  // (le quiz de fin de module, lui, la pose toujours). Et jamais deux questions au même texte dans un examen :
+  // la même question peut exister dans deux modules.
   let tirage = [];
+  const textes = new Set(), cle = (q) => q.question.replace(/\s+/g, " ").trim().toLowerCase();
   for (const m of modules) {
-    // une question marquée « examen: false » ne se comprend qu'à la fin de son cours : l'examen blanc ne la tire jamais
-    // (le quiz de fin de module, lui, la pose toujours)
-    for (const q of melanger(m.banque.filter((x) => x.examen !== false)).slice(0, 2)) tirage.push({ ...q, _module: m.id });
+    let pris = 0;
+    for (const q of melanger(m.banque.filter((x) => x.examen !== false))) {
+      if (pris === 2) break;
+      if (textes.has(cle(q))) continue;
+      textes.add(cle(q)); tirage.push({ ...q, _module: m.id }); pris++;
+    }
   }
   tirage = melanger(tirage);
   while (tirage.length > NB) {
