@@ -149,6 +149,7 @@ export function lancerNiveau(N) {
     if (quoi === "regarder") return "Regarder de près";
     if (quoi === "ouvrir") return "Ouvrir";
     if (quoi === "fil") { const c = P.inst.conducteur[reste[0]]; return c ? `Fil ${c.couleur} · vers ${P.nomOrgane(c[reste[1] === "de" ? "vers" : "de"].split(".")[0], true)}` : "Débrancher / rebrancher"; }
+    if (quoi === "essayer" && N.libelles && N.libelles[arg]) return N.libelles[arg];
     if (quoi === "essayer") return o ? (o.type === "interrupteur" ? "Interrupteur" : o.type === "prise" ? "Essayer la prise" : o.nom) : "Essayer";
     return "Poser une pointe";
   }

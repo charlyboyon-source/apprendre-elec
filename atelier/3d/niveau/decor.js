@@ -119,8 +119,11 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       let x = -o.w / 2; for (let i = 0; i < n; i++) { const ep = 0.018 + ((i * 7) % 5) * 0.007, hh = 0.17 + ((i * 5) % 6) * 0.012; if (x + ep > o.w / 2) { d.scale.set(0, 0, 0); } else { d.position.set(x + ep / 2, hh / 2, ((i * 3) % 4) * 0.004); d.scale.set(ep, hh, 0.13); d.rotation.z = i % 9 === 8 ? 0.12 : 0; } d.updateMatrix(); im.setMatrixAt(i, d.matrix); im.setColorAt(i, new THREE.Color(teintes[(i * 3 + (o.g || 0)) % teintes.length])); x += ep + 0.002; }
       im.castShadow = true; g.add(im);
     },
-    cadreTexte(o, lieuId, lieu, G, g) { // un petit cadre dessiné (calendrier, liste de courses) pour les murs
-      const T = toile(128, 160), gg = T.g; gg.fillStyle = "#fbfaf4"; gg.fillRect(0, 0, 128, 160); gg.fillStyle = "#c8261e"; gg.fillRect(0, 0, 128, 34); gg.fillStyle = "#fff"; gg.font = "700 20px system-ui"; gg.textAlign = "center"; gg.fillText(o.titre || "NOVEMBRE", 64, 24); gg.fillStyle = "#333"; gg.font = "11px system-ui"; for (let i = 0; i < 30; i++) gg.fillText(String(i + 1), 14 + (i % 7) * 17, 56 + Math.floor(i / 7) * 22); T.t.needsUpdate = true;
+    cadreTexte(o, lieuId, lieu, G, g) { // un petit cadre dessiné pour les murs : un calendrier, ou une liste de courses (genre: "liste")
+      const T = toile(128, 160), gg = T.g; gg.fillStyle = "#fbfaf4"; gg.fillRect(0, 0, 128, 160);
+      if (o.genre === "liste") { gg.fillStyle = "#e9d98a"; gg.fillRect(0, 0, 128, 160); gg.fillStyle = "#3a3320"; gg.font = "700 17px system-ui"; gg.textAlign = "center"; gg.fillText("À ACHETER", 64, 24); gg.textAlign = "left"; gg.font = "italic 13px Georgia, serif"; ["café", "pain", "lait", "œufs", "ampoule E27", "piles"].forEach((t, i) => { gg.fillText("– " + t, 16, 50 + i * 19); }); gg.strokeStyle = "#3a3320"; gg.lineWidth = 1.5; gg.beginPath(); gg.moveTo(14, 46); gg.lineTo(60, 46); gg.stroke(); }
+      else { gg.fillStyle = o.teinte || "#c8261e"; gg.fillRect(0, 0, 128, 34); gg.fillStyle = "#fff"; gg.font = "700 20px system-ui"; gg.textAlign = "center"; gg.fillText(o.titre || "NOVEMBRE", 64, 24); gg.fillStyle = "#333"; gg.font = "11px system-ui"; for (let i = 0; i < (o.titre === "JANVIER" ? 31 : 30); i++) gg.fillText(String(i + 1), 14 + (i % 7) * 17, 56 + Math.floor(i / 7) * 22); }
+      T.t.needsUpdate = true;
       const p = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.275), new THREE.MeshStandardMaterial({ map: T.t, roughness: 0.9 })); p.position.z = 0.006; g.add(p);
     },
 

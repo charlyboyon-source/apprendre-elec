@@ -219,6 +219,13 @@ export function poseursCage({ M, mat, boite, cyl, cible, pbr, toile, temoins }) 
       if (o.telephone) { const t = boite(0.07, 0.012, 0.14, new THREE.MeshStandardMaterial({ color: 0x1b1d20, emissive: 0xbfd8ff, emissiveIntensity: 0.7, roughness: 0.3 })); t.position.set(0, a + 0.335, 0.45); t.rotation.x = -0.7; g.add(t); }
       if (o.id) { const z = boite(0.6, a + 1.0, 0.8, M.invisible); z.castShadow = false; z.position.set(0, (a + 1) / 2, 0.2); g.add(z); cible(`essayer:${o.id}`, z, [lieuId]); }
     },
+    // quelqu'un qui n'est pas dans l'image : on voit seulement ses affaires (un casque posé, un téléphone allumé),
+    // et on l'appelle en touchant l'endroit où il se tient d'habitude. Sa réponse arrive par écrit.
+    presence(o, lieuId, lieu, G, g) {
+      if (o.casque) { const c = new THREE.Group(); c.position.set(...o.casque); c.rotation.set(Math.PI / 2 - 0.25, 0, 0.4); g.add(c); const arc = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.011, 8, 22, Math.PI), M.noir); arc.castShadow = true; c.add(arc); for (const s of [-1, 1]) { const e = cyl(0.04, 0.04, 0.032, M.noir, 16); e.rotation.z = Math.PI / 2; e.position.set(s * 0.085, -0.012, 0); e.castShadow = true; c.add(e); const m = cyl(0.03, 0.03, 0.006, mat(0x3a3f46), 14); m.rotation.z = Math.PI / 2; m.position.set(s * 0.066, -0.012, 0); c.add(m); } }
+      if (o.telephone) { const t = boite(0.075, 0.009, 0.15, new THREE.MeshStandardMaterial({ color: 0x1b1d20, emissive: 0xbfd8ff, emissiveIntensity: 0.7, roughness: 0.3 })); t.position.set(...o.telephone); t.rotation.y = 0.5; g.add(t); }
+      const [zw, zh, zd] = o.zone || [0.6, 1.4, 0.8], z = boite(zw, zh, zd, M.invisible); z.castShadow = false; z.position.set(0, zh / 2, 0.2); g.add(z); cible(`essayer:${o.id}`, z, [lieuId]);
+    },
     // une tablette fixée au mur, sur deux équerres ; ce qu'on pose dessus se met dans « avec » (y = 0.012)
     tablette(o, lieuId, lieu, G, g) {
       const w = o.w || 0.8, d = o.d || 0.18, bois = mat(o.c || 0x8a6a4a, { roughness: 0.7 });

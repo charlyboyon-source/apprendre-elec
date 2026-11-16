@@ -178,7 +178,7 @@ export default {
         { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "RDC", sous: "escalier ↑" }, { t: "extincteur", mur: "O", u: -1.35, y: 1.0 },
         { t: "tapis", x: 0, z: 1.35, w: 1.5, d: 0.8, couleurs: ["#3a3530", "#57504a", "#22262d"] },
         { t: "velo", x: -1.72, z: -1.05, r: 0 }, { t: "modele", f: "potted_plant_01", x: 1.55, z: 1.65, h: 0.9, sansOmbre: true } ] },
-      local: { nom: "le local technique", court: "Le local technique", raccourci: "Local", taille: [2.6, 2.4], sol: "beton", sombre: true, teinte: 0xe6e4de, peint: true, camera: [0.1, 1.62, 0.75], objets: [
+      local: { nom: "le local technique", court: "Le local technique", raccourci: "Local", taille: [2.6, 2.4], sol: "beton", sombre: true, teinte: 0xe6e4de, peint: true, camera: [0.1, 1.62, 0.25], objets: [
         // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
         { t: "planEvacuation", mur: "E", u: 0.1, y: 1.6, etage: "Local technique" }, { t: "extincteur", mur: "S", u: -1.15, y: 1.0 },
         { t: "tableau", mur: "N", u: -0.2, y: 1.5 }, { t: "boite", id: "bd_tab", mur: "N", u: 0.75, y: 1.15 }, { t: "schema", id: "schema", mur: "N", u: 0.75, y: 1.62 },
@@ -186,12 +186,12 @@ export default {
         porte("hall", "S", 0.3),
         { t: "tuyaux", mur: "N", u: -1.05, y: 1.2 }, { t: "etagere", mur: "O", u: -0.35, y: 0, w: 0.9 },
         { t: "balai", x: -1.12, z: 0.75, r: 1.5 }, { t: "modele", f: "wooden_bucket_01", x: -0.75, z: 0.85, h: 0.32 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.05, z: 0.2 }, { t: "modele", f: "multi_cleaner_5_litre", x: 1.08, z: 0.45, r: 0.6 }, { t: "modele", f: "cardboard_box_01", x: 1.0, z: 0.9, r: 0.3, h: 0.3 } ] },
-      cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, camera: [0.1, 1.62, 1.3], objets: [
+      cave: { nom: "la cave", court: "La cave", raccourci: "Cave", taille: [3.4, 3], h: 2.2, sol: "beton", teinte: 0xb9b6ae, sombre: true, camera: [0.55, 1.62, 0.55], objets: [
         { t: "plafonnier", id: "l_cave" }, { t: "bp", id: "bp_cave", mur: "S", u: -0.85, y: 1.1, lampe: "l_cave", voyantMort: true }, { t: "boite", id: "bd_cave", mur: "S", u: -1.35, y: 1.9 },
         porte("hall", "S", 0.2),
         { t: "cloture", mur: "N", u: 0, y: 0, w: 3.3, h: 1.9 }, { t: "modele", f: "wooden_crate_02", x: -1.2, z: 0.2, r: 0.3 }, { t: "modele", f: "cardboard_box_01", x: 1.2, z: 0.6, r: -0.2 }, { t: "modele", f: "wine_bottles_01", x: 1.25, z: -0.6 }, { t: "modele", f: "wooden_bucket_01", x: -1.25, z: -0.8, h: 0.36 }, { t: "modele", f: "cardboard_box_01", x: -0.6, z: -1.0, r: 0.5, h: 0.3 },
         // ce qu'on trouve dans une cave d'immeuble : une étagère chargée, un vieux vélo, des cartons empilés, la tuyauterie
-        { t: "etagere", mur: "E", u: -0.5, y: 0, w: 1.0 }, { t: "velo", x: -0.55, z: -1.28, r: Math.PI / 2, teinte: 0x8a3a2a }, { t: "tuyaux", mur: "O", u: 0.9, y: 1.2 },
+        { t: "etagere", mur: "E", u: -0.5, y: 0, w: 1.0 }, { t: "etagere", mur: "E", u: 1.0, y: 0, w: 0.8 }, { t: "velo", x: -0.55, z: -1.28, r: Math.PI / 2, teinte: 0x8a3a2a }, { t: "tuyaux", mur: "O", u: 0.9, y: 1.2 },
         { t: "modele", f: "cardboard_box_01", x: 0.45, z: -1.15, r: 0.15, h: 0.34 }, { t: "modele", f: "cardboard_box_01", x: 0.47, y: 0.34, z: -1.13, r: -0.3, h: 0.28 }, { t: "modele", f: "wooden_crate_02", x: 0.95, z: -1.1, r: 0.1 } ] },
       palier1: { ...cage(1), nom: "le palier du 1er", court: "Le palier du 1er", raccourci: "1er", objets: [
         { t: "cageEtage", arrive: true }, monter("palier2", LP), descendre("hall", LP),
