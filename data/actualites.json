@@ -2,6 +2,39 @@
   "regles": "Une actualité n'est publiée que si elle est vérifiée sur une source officielle ou sur le site du fabricant, citée avec son lien. Texte écrit avec nos mots, jamais recopié. Les plus récentes en premier. Les images sont des photos générées par l'IA de Canva pour ce site (dossier assets/photos) : on ne reprend jamais les photos des fabricants ou d'autres sites.",
   "actualites": [
     {
+      "date": "2026-11-16",
+      "categorie": "Réglementation",
+      "titre": "Raccordement Enedis : nouveau barème de facturation, les prix montent",
+      "texte": "Enedis a mis à jour le 28 octobre 2026 son barème de facturation des raccordements au réseau public de distribution (référence Enedis-NMO-RAC_009E), qui remplace celui de 2023. D'après le centre de ressources photovoltaique.info, les coûts de raccordement augmentent nettement, surtout à cause du prix des matières premières et du matériel. À titre indicatif, pour les consommateurs et les producteurs en basse tension jusqu'à 36 kVA, la hausse moyenne est de 13 % pour les travaux de branchement et de 11 % pour les travaux d'extension. Une formule de prix simplifiée est aussi ajoutée pour le passage en branchement triphasé quand on ajoute un producteur de moins de 36 kVA sur un site de consommation déjà raccordé.",
+      "a_retenir": "Maison neuve ou installation photovoltaïque : préviens le client que le coût du raccordement Enedis a augmenté et fais chiffrer le raccordement avec le barème à jour.",
+      "source": "photovoltaique.info, « Barème de facturation des raccordements Enedis », 29 octobre 2026",
+      "url": "https://www.photovoltaique.info/fr/actualites/detail/bareme-de-facturation-des-raccordements-enedis-mise-a-jour-du-bareme-de-facturation/",
+      "image": "assets/photos/actu-norme.webp",
+      "image_generee": true
+    },
+    {
+      "date": "2026-11-16",
+      "categorie": "Sécurité",
+      "titre": "Amiante : pas de travaux dans l'ancien sans repérage, rappelle l'INRS",
+      "texte": "L'INRS a mis à jour le 27 octobre 2026 son point juridique sur le repérage de l'amiante avant travaux. C'est au donneur d'ordres, au maître d'ouvrage ou au propriétaire de le faire réaliser, avant le début de l'opération (article L. 4412-2 du Code du travail). L'amiante est interdit en France depuis le 1er janvier 1997 : la vigilance porte en particulier sur les immeubles dont le permis de construire a été délivré avant le 1er juillet 1997. Le rapport de repérage est remis aux entreprises qui interviennent ; dans les cas de dispense prévus par le Code du travail (une urgence après un sinistre, par exemple), on se protège comme si l'amiante était présent.",
+      "a_retenir": "Avant de percer ou de saigner un mur, un plafond ou un sol dans un bâtiment dont le permis de construire date d'avant le 1er juillet 1997, demande le rapport de repérage amiante au client ou au donneur d'ordres.",
+      "source": "INRS, focus juridique « Repérage amiante avant travaux », mis à jour le 27 octobre 2026",
+      "url": "https://www.inrs.fr/publications/juridique/focus-juridiques/focus-juridique-reperage-amiante-avant-travaux.html",
+      "image": "assets/photos/actu-norme.webp",
+      "image_generee": true
+    },
+    {
+      "date": "2026-11-16",
+      "categorie": "Photovoltaïque",
+      "titre": "Batterie et panneaux : un tableau pour ne pas surdimensionner le stockage",
+      "texte": "L'association Hespul a publié le 29 septembre 2026, sur photovoltaique.info, un outil d'aide à la décision pour choisir la capacité de stockage d'une installation photovoltaïque en autoconsommation chez un particulier. Les offres sont souvent standardisées à 1 kWh de batterie par kWc de panneaux, sans tenir compte de la consommation annuelle d'électricité du logement. L'outil est un tableau qui donne la capacité maximale de stockage à installer selon la puissance des panneaux (en kWc) et la consommation annuelle (en kWh/an). Exemple donné : pour 3 kWc et 8 000 kWh/an, 4 kWh de stockage au maximum.",
+      "a_retenir": "Avant de proposer une batterie, demande au client sa consommation annuelle d'électricité : c'est elle, avec la puissance des panneaux, qui fixe la capacité de stockage utile.",
+      "source": "photovoltaique.info, « Outil d'aide à la décision pour dimensionner la capacité de stockage », 29 septembre 2026",
+      "url": "https://www.photovoltaique.info/fr/actualites/detail/publication-outil-daide-a-la-decision-pour-dimensionner-la-capacite-de-stockage-des-installations-residentielles/",
+      "image": "assets/photos/actu-onduleur.webp",
+      "image_generee": true
+    },
+    {
       "date": "2026-11-12",
       "categorie": "Matériel",
       "titre": "Knipex : la pince coupante à forte démultiplication 74 250 renouvelée, et une pince 3 en 1 pour le photovoltaïque",
