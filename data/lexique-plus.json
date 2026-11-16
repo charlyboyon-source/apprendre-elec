@@ -121,6 +121,53 @@
       "DDR",
       "boucle de défaut",
       "tension de contact"
+    ],
+    "titre": "Régime TT : définition, schéma et rôle du différentiel",
+    "image": "c6-regime-tt.svg",
+    "module": 6,
+    "debut": "Le régime TT est le régime de neutre de tous les logements raccordés au réseau public. Le premier T dit que le neutre du transformateur est relié à la terre, côté distributeur. Le second T dit que les masses de l'installation sont reliées à la terre chez l'usager, par une prise distincte.",
+    "tableau": {
+      "titre": "Le régime TT en chiffres",
+      "colonnes": [
+        "Élément",
+        "Repère du cours"
+      ],
+      "lignes": [
+        [
+          "Tension limite de sécurité",
+          "50 V en alternatif"
+        ],
+        [
+          "Sensibilité du disjoncteur de branchement",
+          "500 mA"
+        ],
+        [
+          "Résistance maximale de la prise de terre",
+          "50 V / 0,5 A = 100 Ω"
+        ],
+        [
+          "Protection complémentaire des personnes",
+          "DDR de sensibilité 30 mA"
+        ],
+        [
+          "Tableau de logement",
+          "au moins deux DDR 30 mA"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Que veut dire TT ?",
+        "Deux fois « Terre » : le neutre du transformateur à la terre côté distributeur, les masses à la terre côté usager. Ce sont deux prises de terre distinctes."
+      ],
+      [
+        "Pourquoi le différentiel est-il indispensable en régime TT ?",
+        "Parce que le courant de défaut traverse les deux prises de terre en série : il reste faible, et le disjoncteur ne déclenche pas. C'est le dispositif différentiel qui doit couper."
+      ],
+      [
+        "Quelle résistance de terre faut-il en régime TT ?",
+        "100 Ω au plus avec le différentiel 500 mA du disjoncteur de branchement : 50 V / 0,5 A = 100 Ω, pour que la tension de contact reste sous 50 V."
+      ]
     ]
   },
   "prise de terre": {
@@ -169,6 +216,53 @@
       "masse",
       "prise de terre",
       "conducteur de protection"
+    ],
+    "titre": "Liaison équipotentielle principale : définition, rôle",
+    "image": "c6-circuit-terre.svg",
+    "module": 6,
+    "debut": "La liaison équipotentielle principale relie à la borne principale de terre les canalisations métalliques qui entrent dans le bâtiment, comme l'eau, le gaz ou le chauffage, et les éléments métalliques de sa structure. Son rôle : mettre tout ce métal au même potentiel, pour qu'aucune tension dangereuse n'apparaisse entre deux éléments touchés en même temps.",
+    "tableau": {
+      "titre": "Le circuit de terre, maillon par maillon",
+      "colonnes": [
+        "Élément",
+        "Repère du cours"
+      ],
+      "lignes": [
+        [
+          "Prise de terre",
+          "piquet de 2 m, ou boucle à fond de fouille (la meilleure)"
+        ],
+        [
+          "Conducteur de terre",
+          "25 mm² en cuivre nu"
+        ],
+        [
+          "Borne principale de terre",
+          "avec la barrette de coupure, pour mesurer"
+        ],
+        [
+          "Conducteur principal de protection",
+          "10 mm² si l'alimentation est en 10 mm², 16 mm² au-delà"
+        ],
+        [
+          "Liaison équipotentielle principale",
+          "canalisations métalliques entrantes et structure, reliées à la borne principale"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "À quoi sert une liaison équipotentielle ?",
+        "À supprimer les différences de potentiel entre des éléments métalliques qu'on peut toucher en même temps. Sans différence de potentiel, pas de courant dans le corps."
+      ],
+      [
+        "Quelle différence entre liaison équipotentielle principale et supplémentaire ?",
+        "La principale concerne tout le bâtiment : elle part de la borne principale de terre. La supplémentaire est locale : elle relie entre eux les éléments conducteurs d'une salle de bain."
+      ],
+      [
+        "Que relie-t-on à la liaison équipotentielle principale ?",
+        "Les grosses canalisations métalliques qui entrent dans le bâtiment (eau, gaz, chauffage) et les éléments métalliques de sa structure."
+      ]
     ]
   },
   "GTL": {
@@ -185,6 +279,65 @@
       "tableau de répartition",
       "AGCP",
       "NF C 15-100"
+    ],
+    "titre": "GTL électricité : définition, dimensions, emplacement",
+    "image": "c14-gtl.svg",
+    "module": 14,
+    "debut": "La GTL, gaine technique logement, est l'emplacement unique du logement où arrivent et d'où repartent le courant fort et les réseaux de communication. On y trouve le panneau de contrôle, avec le compteur et le disjoncteur de branchement, le tableau de répartition et le tableau de communication. Elle occupe un espace réservé : l'ETEL.",
+    "tableau": {
+      "titre": "La GTL et l'ETEL en chiffres",
+      "colonnes": [
+        "Ce qu'on regarde",
+        "La règle"
+      ],
+      "lignes": [
+        [
+          "Largeur de l'ETEL",
+          "60 cm"
+        ],
+        [
+          "Profondeur de l'ETEL",
+          "25 cm"
+        ],
+        [
+          "Hauteur de l'ETEL",
+          "du sol au plafond"
+        ],
+        [
+          "Distance à une canalisation de gaz",
+          "10 cm"
+        ],
+        [
+          "Distance à une source de chaleur non isolée thermiquement",
+          "40 cm"
+        ],
+        [
+          "Distance à un point d'eau",
+          "60 cm"
+        ],
+        [
+          "Tableau de répartition",
+          "entre 0,90 m et 1,80 m du sol fini"
+        ],
+        [
+          "Organes de manœuvre du panneau de contrôle",
+          "1,80 m au maximum ; entre 0,90 m et 1,30 m en accessibilité PMR"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelle différence entre GTL et ETEL ?",
+        "L'ETEL est l'espace réservé, du sol au plafond. La GTL est ce qu'on y installe : le panneau de contrôle, le tableau de répartition et le tableau de communication."
+      ],
+      [
+        "Où place-t-on la GTL ?",
+        "Près d'une entrée ou dans le garage. Le tableau est interdit dans les volumes 0, 1, 2 et caché d'une salle de bain."
+      ],
+      [
+        "La GTL doit-elle aller du sol au plafond ?",
+        "Elle n'a pas à être matérialisée sur toute la hauteur quand les arrivées et les départs se font tous par le haut ou tous par le bas."
+      ]
     ]
   },
   "ETEL": {
@@ -219,6 +372,53 @@
       "IRL",
       "TPC",
       "goulotte"
+    ],
+    "titre": "Gaine ICTA : définition, diamètres et pose",
+    "image": "c13-icta.svg",
+    "module": 13,
+    "debut": "La gaine ICTA est le conduit annelé de la pose encastrée : on le noie dans les murs, les cloisons et les dalles pour protéger les conducteurs et pouvoir les remplacer. Son nom décrit ses qualités : Isolant, Cintrable, Transversalement élastique, Annelé. Elle existe du diamètre 16 mm au diamètre 63 mm.",
+    "tableau": {
+      "titre": "L'ICTA en chiffres",
+      "colonnes": [
+        "Ce qu'on regarde",
+        "La règle"
+      ],
+      "lignes": [
+        [
+          "Diamètres",
+          "de 16 mm à 63 mm"
+        ],
+        [
+          "Remplissage",
+          "un tiers de la section intérieure au maximum, quand les conducteurs sont tirés après la pose"
+        ],
+        [
+          "Cintrage",
+          "on courbe largement, sans pincer le conduit"
+        ],
+        [
+          "Tracé dans les murs",
+          "toujours horizontal ou vertical"
+        ],
+        [
+          "Usage",
+          "la pose encastrée ; l'apparent se fait en IRL, l'enterré en TPC"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Que veut dire ICTA ?",
+        "Isolant, Cintrable, Transversalement élastique, Annelé. Isolant : il ne conduit pas le courant. Cintrable : il se courbe à la main. Transversalement élastique : écrasé, il reprend sa forme. Annelé : sa paroi est faite d'anneaux."
+      ],
+      [
+        "Combien de fils peut-on passer dans une gaine ICTA ?",
+        "On applique la règle du tiers : quand ils sont tirés après la pose du conduit, les conducteurs occupent au plus un tiers de sa section intérieure. Au-delà, ils ne coulissent plus et on ne pourra pas les remplacer."
+      ],
+      [
+        "Peut-on enterrer une gaine ICTA ?",
+        "Non, l'ICTA n'est pas fait pour être enterré. Pour une canalisation enterrée, on utilise un TPC, rouge pour le courant fort."
+      ]
     ]
   },
   "IRL": {
@@ -249,6 +449,49 @@
       "ICTA",
       "IRL",
       "câble"
+    ],
+    "titre": "TPC : la gaine rouge enterrée (définition, profondeur)",
+    "image": "c13-tpc.svg",
+    "module": 13,
+    "debut": "Le TPC, tube de protection des câbles, est le conduit des canalisations enterrées : on y passe le câble qui alimente un portail, un abri ou un éclairage de jardin. Il est rouge pour le courant fort. On l'enterre à 50 cm de profondeur au moins, avec un grillage avertisseur rouge posé 20 cm au-dessus.",
+    "tableau": {
+      "titre": "Le TPC en chiffres",
+      "colonnes": [
+        "Ce qu'on regarde",
+        "La règle"
+      ],
+      "lignes": [
+        [
+          "Couleur",
+          "rouge pour le courant fort"
+        ],
+        [
+          "Profondeur en terrain ordinaire",
+          "50 cm au moins"
+        ],
+        [
+          "Sous une voie accessible aux voitures ou un trottoir",
+          "85 cm"
+        ],
+        [
+          "Grillage avertisseur",
+          "rouge, 20 cm au-dessus du conduit"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "À quelle profondeur enterre-t-on une gaine TPC ?",
+        "À 50 cm au moins en terrain ordinaire, et à 85 cm à la traversée des voies accessibles aux voitures et sous les trottoirs."
+      ],
+      [
+        "À quoi sert le grillage avertisseur ?",
+        "Posé 20 cm au-dessus du conduit, il prévient celui qui creusera plus tard : en le voyant, il sait qu'une canalisation électrique se trouve juste en dessous."
+      ],
+      [
+        "Quelle différence entre TPC et ICTA ?",
+        "Le TPC est fait pour être enterré. L'ICTA, la gaine grise annelée, est fait pour la pose encastrée dans les murs, les cloisons et les dalles : on ne l'enterre pas."
+      ]
     ]
   },
   "télérupteur": {
@@ -268,6 +511,50 @@
       "minuterie",
       "va-et-vient",
       "permutateur"
+    ],
+    "titre": "Télérupteur : définition, fonctionnement, branchement",
+    "image": "c18-telerupteur.svg",
+    "module": 18,
+    "schema": "schema-telerupteur",
+    "debut": "Le télérupteur est un appareil, placé le plus souvent au tableau, qui commande un éclairage à partir de boutons-poussoirs. Chaque impulsion sur sa bobine, entre les bornes A1 et A2, fait changer d'état son contact, entre les bornes 1 et 2. Un appui allume, l'appui suivant éteint, d'où que vienne l'appui.",
+    "tableau": {
+      "titre": "Les bornes du télérupteur, montage 3 fils",
+      "colonnes": [
+        "Borne",
+        "Ce qu'on y raccorde"
+      ],
+      "lignes": [
+        [
+          "1",
+          "la phase (elle repart aussi vers les boutons-poussoirs)"
+        ],
+        [
+          "2",
+          "le retour lampe, vers les lampes"
+        ],
+        [
+          "A1",
+          "le retour des boutons-poussoirs"
+        ],
+        [
+          "A2",
+          "le neutre"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelle différence entre un télérupteur et un va-et-vient ?",
+        "Le va-et-vient commande une lampe depuis deux endroits, avec des interrupteurs et sans appareil au tableau. Le télérupteur la commande depuis autant d'endroits qu'on veut, avec des boutons-poussoirs en parallèle."
+      ],
+      [
+        "Pourquoi dit-on que le télérupteur est bistable ?",
+        "Parce que son contact a deux états stables : il garde sa position entre deux impulsions, sans que la bobine soit alimentée."
+      ],
+      [
+        "Mon télérupteur claque mais la lumière ne s'allume pas : où chercher ?",
+        "Si on entend le « clac », la commande est bonne : on cherche côté puissance. S'il ne claque pas, on cherche côté commande."
+      ]
     ]
   },
   "va-et-vient": {
@@ -283,6 +570,58 @@
       "permutateur",
       "télérupteur",
       "simple allumage"
+    ],
+    "titre": "Va-et-vient : définition, principe et branchement",
+    "image": "c17-inverseur.svg",
+    "module": 17,
+    "schema": "schema-va-et-vient",
+    "debut": "Le va-et-vient est le montage qui commande un même point lumineux depuis deux endroits, comme les deux bouts d'un couloir ou le haut et le bas d'un escalier. Il utilise deux interrupteurs inverseurs à trois bornes, reliés entre eux par deux navettes. Chaque interrupteur allume ou éteint, quelle que soit la position de l'autre.",
+    "tableau": {
+      "titre": "Le va-et-vient en chiffres",
+      "colonnes": [
+        "Ce qu'on regarde",
+        "Le repère"
+      ],
+      "lignes": [
+        [
+          "Bornes d'un interrupteur va-et-vient",
+          "3 : un commun (L) et deux navettes (1 et 2)"
+        ],
+        [
+          "Fils au premier va-et-vient",
+          "3 : la phase et deux navettes"
+        ],
+        [
+          "Fils au second va-et-vient",
+          "3 : deux navettes et le retour lampe"
+        ],
+        [
+          "Fils à la lampe",
+          "3 : retour lampe, neutre, conducteur de protection"
+        ],
+        [
+          "Section",
+          "1,5 mm², sous un disjoncteur de 16 A au maximum"
+        ],
+        [
+          "Trois points de commande",
+          "2 va-et-vient et 1 permutateur"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Combien de fils pour un va-et-vient ?",
+        "Trois fils à chaque interrupteur et trois fils à la lampe. Entre les deux interrupteurs passent les deux navettes."
+      ],
+      [
+        "Comment reconnaître la borne commune ?",
+        "Elle est souvent repérée L, par une flèche ou par une couleur. Sans repère, un contrôle de continuité hors tension la donne : c'est la borne reliée à l'une puis à l'autre quand on bascule."
+      ],
+      [
+        "Pourquoi mon va-et-vient ne marche-t-il que dans certaines positions ?",
+        "Presque toujours parce qu'un commun et une navette ont été inversés sur l'un des deux appareils."
+      ]
     ]
   },
   "permutateur": {
@@ -345,6 +684,57 @@
       "IPX7",
       "volume de sécurité",
       "classe II"
+    ],
+    "titre": "Indice IP : signification des chiffres (IP44, IPX4…)",
+    "image": "c8-indice-ip.svg",
+    "module": 8,
+    "debut": "L'indice IP, ou indice de protection, indique comment l'enveloppe d'un matériel électrique résiste à ce qui l'entoure. Il s'écrit avec deux chiffres : le premier, de 0 à 6, note la protection contre les corps solides et la poussière ; le second note la protection contre l'eau. Un chiffre non précisé s'écrit X.",
+    "tableau": {
+      "titre": "Quel indice IP selon le local ?",
+      "colonnes": [
+        "Lieu",
+        "Indice demandé"
+      ],
+      "lignes": [
+        [
+          "Local sec",
+          "IP20"
+        ],
+        [
+          "Salle de bain, volumes 1 et 2",
+          "IPX4 au minimum"
+        ],
+        [
+          "Salle de bain, volume 0",
+          "IPX7"
+        ],
+        [
+          "Extérieur",
+          "IPX4 au minimum (IP44 est courant)"
+        ],
+        [
+          "Extérieur avec arrosage au jet",
+          "IPX5"
+        ],
+        [
+          "Local poussiéreux",
+          "IP5X ou IP6X"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Que signifie IPX4 ?",
+        "X : la protection contre les solides n'est pas précisée. 4 : le matériel est protégé contre les projections d'eau de toutes directions."
+      ],
+      [
+        "Que signifient les chiffres 4, 5 et 7 pour l'eau ?",
+        "4 : protégé contre les projections d'eau. 5 : protégé contre les jets d'eau. 7 : protégé contre l'immersion temporaire."
+      ],
+      [
+        "Quelle différence entre IP et IK ?",
+        "L'indice IP note la résistance aux solides et à l'eau. L'indice IK note la résistance aux chocs mécaniques. Les deux se lisent sur la plaque signalétique."
+      ]
     ]
   },
   "indice IK": {
@@ -426,6 +816,59 @@
       "VAT",
       "habilitation électrique",
       "NF C 18-510"
+    ],
+    "titre": "Consignation électrique : les 5 étapes dans l'ordre",
+    "image": "c9-consignation.svg",
+    "module": 9,
+    "debut": "La consignation électrique est la procédure qui met un ouvrage en sécurité avant d'y travailler hors tension. Elle compte cinq opérations, toujours dans le même ordre : séparer, condamner, identifier, vérifier l'absence de tension, puis mettre à la terre et en court-circuit. Elle est encadrée par la norme NF C 18-510.",
+    "tableau": {
+      "titre": "Les cinq opérations de la consignation",
+      "colonnes": [
+        "Ordre",
+        "Opération",
+        "Ce qu'on fait"
+      ],
+      "lignes": [
+        [
+          "1",
+          "Séparer",
+          "on isole l'ouvrage de toute source : on ouvre le disjoncteur"
+        ],
+        [
+          "2",
+          "Condamner",
+          "cadenas et pancarte, pour empêcher toute remise sous tension"
+        ],
+        [
+          "3",
+          "Identifier",
+          "on s'assure qu'on intervient bien sur le bon circuit"
+        ],
+        [
+          "4",
+          "Vérifier l'absence de tension",
+          "avec un vérificateur dédié, testé avant et après"
+        ],
+        [
+          "5",
+          "Mettre à la terre et en court-circuit",
+          "juste après la VAT ; obligatoire en haute tension, pas toujours requis en basse tension"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelles sont les 5 étapes de la consignation ?",
+        "Séparer, condamner, identifier, vérifier l'absence de tension, mettre à la terre et en court-circuit. Dans cet ordre, sans en sauter une."
+      ],
+      [
+        "Qui a le droit de consigner ?",
+        "La consignation relève de l'habilitation BC. L'habilitation est délivrée par l'employeur, après formation."
+      ],
+      [
+        "Comment vérifie-t-on l'absence de tension ?",
+        "Avec un vérificateur d'absence de tension (VAT) dédié, testé avant et après, au plus près de la zone de travail, entre tous les conducteurs et par rapport à la terre. Tant que ce n'est pas fait, on considère que c'est sous tension."
+      ]
     ]
   },
   "habilitation électrique": {
@@ -1712,6 +2155,44 @@
       "chaîne photovoltaïque",
       "onduleur",
       "énergie électrique"
+    ],
+    "titre": "Watt-crête (Wc) : définition et calcul",
+    "image": "c21-wc.svg",
+    "module": 21,
+    "debut": "Le watt-crête, noté Wc, est l'unité de puissance d'un module photovoltaïque : c'est la puissance qu'il fournit dans des conditions d'essai de référence, proches du plein soleil. C'est un maximum, pas une production garantie. La puissance d'une installation s'obtient en additionnant celle de ses modules, en kilowatts-crête (kWc).",
+    "tableau": {
+      "titre": "Calculer une puissance en watts-crête",
+      "colonnes": [
+        "Installation",
+        "Calcul",
+        "Puissance"
+      ],
+      "lignes": [
+        [
+          "8 modules de 400 Wc",
+          "8 × 400 Wc",
+          "3,2 kWc"
+        ],
+        [
+          "10 modules de 400 Wc",
+          "10 × 400 Wc",
+          "4 kWc"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelle différence entre watt-crête et watt ?",
+        "Le watt mesure une puissance quelconque. Le watt-crête est la puissance d'un module dans les conditions d'essai de référence : il sert à comparer des modules entre eux."
+      ],
+      [
+        "Une installation de 4 kWc produit-elle 4 kW ?",
+        "Pas en permanence. Le watt-crête est un maximum : la production réelle dépend du soleil, de l'orientation, de l'inclinaison, de la saison, de la température et de l'ombre."
+      ],
+      [
+        "Quelle différence entre kWc et kWh ?",
+        "Le kWc est une puissance maximale. Le kWh est une énergie : c'est en kWh que se compte la production d'une année."
+      ]
     ]
   },
   "chaîne photovoltaïque": {
@@ -1761,6 +2242,209 @@
       "effet photovoltaïque",
       "délestage",
       "heures creuses"
+    ]
+  },
+  "effet Joule": {
+    "titre": "Effet Joule : définition, formule et exemples",
+    "image": "c2-joule.svg",
+    "module": 2,
+    "debut": "L'effet Joule est l'échauffement d'un conducteur ou d'une résistance traversés par un courant : une partie de l'énergie électrique s'y transforme en chaleur. La puissance ainsi dissipée se calcule par P = R × I², en watts. On le recherche dans un radiateur ; on le redoute dans un fil trop fin.",
+    "chantier": "L'effet Joule explique pourquoi la section d'un conducteur se choisit d'après le courant : un fil trop fin pour le courant qu'il transporte chauffe, et son isolant vieillit. C'est aussi lui qui trahit une connexion desserrée : elle résiste au passage du courant, chauffe et brunit. Le calibre du disjoncteur protège le conducteur : 16 A au maximum en 1,5 mm², 20 A en 2,5 mm².",
+    "tableau": {
+      "titre": "Utile ou dangereux ?",
+      "colonnes": [
+        "Situation",
+        "Ce que fait l'effet Joule"
+      ],
+      "lignes": [
+        [
+          "Radiateur, chauffe-eau, plaque de cuisson",
+          "utile : la chaleur est le but de l'appareil"
+        ],
+        [
+          "Fusible",
+          "utile : l'élément calibré fond en cas de surintensité"
+        ],
+        [
+          "Conducteur de section trop faible",
+          "dangereux : le fil s'échauffe"
+        ],
+        [
+          "Connexion desserrée",
+          "dangereux : le point de contact chauffe et brunit"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelle est la formule de l'effet Joule ?",
+        "P = R × I² : la puissance dissipée en chaleur, en watts, égale la résistance en ohms multipliée par le carré de l'intensité en ampères."
+      ],
+      [
+        "Que se passe-t-il si le courant double ?",
+        "La chaleur est multipliée par quatre, puisque l'intensité est au carré dans la formule. C'est pourquoi une surcharge, même modérée, échauffe vite un conducteur."
+      ],
+      [
+        "L'effet Joule est-il toujours une perte ?",
+        "Non. Dans un radiateur, c'est exactement ce qu'on cherche. Il devient une perte, et un danger, quand il se produit là où on ne veut pas de chaleur : dans un fil trop fin ou une connexion mal serrée."
+      ]
+    ]
+  },
+  "loi d'Ohm": {
+    "titre": "Loi d'Ohm : formule U = R × I, exemples et calculs",
+    "image": "n2-triangle.svg",
+    "module": 2,
+    "debut": "La loi d'Ohm relie les trois grandeurs de base de l'électricité : la tension U en volts, la résistance R en ohms et l'intensité I en ampères. Elle s'écrit U = R × I. Avec deux grandeurs connues, on calcule la troisième : R = U / I ou I = U / R.",
+    "chantier": "Sur le chantier, la loi d'Ohm sert surtout à vérifier un ordre de grandeur. Sous 230 V, une résistance de 23 Ω laisse passer 10 A. Elle explique aussi le danger : avec une résistance du corps d'environ 2 000 Ω, 230 V donnent plus de 100 mA. On travaille toujours en volts, en ohms et en ampères.",
+    "tableau": {
+      "titre": "Les trois formes de la loi d'Ohm",
+      "colonnes": [
+        "On cherche",
+        "Formule",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "La tension U",
+          "U = R × I",
+          "6 Ω × 2 A = 12 V"
+        ],
+        [
+          "L'intensité I",
+          "I = U / R",
+          "230 V / 23 Ω = 10 A"
+        ],
+        [
+          "La résistance R",
+          "R = U / I",
+          "230 V / 0,5 A = 460 Ω"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Comment retenir la loi d'Ohm ?",
+        "Avec le triangle : U en haut, R et I en bas. On cache la grandeur cherchée et on lit la formule : U = R × I, R = U / I, I = U / R."
+      ],
+      [
+        "Quelles unités utiliser dans la loi d'Ohm ?",
+        "Toujours le volt pour la tension, l'ohm pour la résistance et l'ampère pour l'intensité. Un courant donné en milliampères se convertit d'abord en ampères."
+      ],
+      [
+        "Quelle différence entre la loi d'Ohm et la formule de la puissance ?",
+        "La loi d'Ohm, U = R × I, relie tension, résistance et intensité. La puissance se calcule par P = U × I, en watts. Les deux se combinent : pour une résistance, P = R × I²."
+      ]
+    ]
+  },
+  "puissance": {
+    "titre": "Puissance électrique : formule P = U × I et calcul",
+    "image": "c2-iso-plaque.svg",
+    "module": 2,
+    "debut": "La puissance électrique, notée P, est l'énergie qu'un appareil convertit chaque seconde. Elle se mesure en watts (W) et se lit sur sa plaque signalétique. Elle se calcule par P = U × I : la tension en volts multipliée par l'intensité en ampères. Pour une résistance, on écrit aussi P = R × I².",
+    "chantier": "La formule la plus utile sur le chantier est I = P / U : elle donne le courant qu'appelle un appareil, donc la protection et la section qu'il lui faut. Un chauffe-eau de 2 300 W sous 230 V appelle 10 A. À ne pas confondre avec l'énergie, qui se compte en kWh : un radiateur de 2 kW allumé 5 heures consomme 10 kWh.",
+    "tableau": {
+      "titre": "Les formules de la puissance",
+      "colonnes": [
+        "On cherche",
+        "Formule",
+        "Exemple"
+      ],
+      "lignes": [
+        [
+          "La puissance P",
+          "P = U × I",
+          "230 V × 10 A = 2 300 W"
+        ],
+        [
+          "Le courant I",
+          "I = P / U",
+          "2 300 W / 230 V = 10 A"
+        ],
+        [
+          "La puissance dissipée",
+          "P = R × I²",
+          "courant × 2, chaleur × 4"
+        ],
+        [
+          "L'énergie E",
+          "E = P × t",
+          "2 kW × 5 h = 10 kWh"
+        ]
+      ]
+    },
+    "faq": [
+      [
+        "Quelle est l'unité de la puissance ?",
+        "Le watt, noté W. Mille watts font un kilowatt (kW)."
+      ],
+      [
+        "Comment calculer le courant d'un appareil à partir de sa puissance ?",
+        "On divise la puissance par la tension : I = P / U. Un appareil de 2 300 W sous 230 V appelle 10 A."
+      ],
+      [
+        "Quelle différence entre puissance et énergie ?",
+        "La puissance, en watts, dit à quelle vitesse l'appareil consomme. L'énergie, en kilowattheures, dit combien il a consommé pendant une durée : E = P × t."
+      ]
+    ]
+  },
+  "disjoncteur": {
+    "titre": "Disjoncteur : définition, rôle, calibre et courbes",
+    "image": "c10-magnetothermique.svg",
+    "module": 10,
+    "debut": "Le disjoncteur est un appareil de protection qui coupe automatiquement un circuit en cas de surintensité : une surcharge, courant un peu trop fort qui dure, ou un court-circuit, courant énorme et instantané. Il protège les conducteurs, pas les personnes. Contrairement au fusible, il se réarme d'un geste une fois le défaut supprimé.",
+    "chantier": "Dans un tableau de logement neuf, chaque circuit a son disjoncteur. Son calibre se choisit d'après la section des conducteurs qu'il protège, jamais d'après l'appareil qui « fait sauter » : on ne monte pas le calibre pour arrêter les déclenchements. Le disjoncteur magnétothermique a deux déclencheurs : le thermique, un bilame, pour la surcharge ; le magnétique, un électroaimant, pour le court-circuit.",
+    "tableau": {
+      "titre": "Calibre maximal du disjoncteur selon la section",
+      "colonnes": [
+        "Section des conducteurs",
+        "Calibre maximal"
+      ],
+      "lignes": [
+        [
+          "1,5 mm²",
+          "16 A"
+        ],
+        [
+          "2,5 mm²",
+          "20 A"
+        ],
+        [
+          "6 mm²",
+          "32 A"
+        ],
+        [
+          "10 mm²",
+          "40 A"
+        ],
+        [
+          "16 mm²",
+          "63 A"
+        ]
+      ]
+    },
+    "confondre": [
+      [
+        "interrupteur différentiel",
+        "il surveille les fuites de courant, en milliampères, pour protéger les personnes ; il ne protège pas contre la surcharge."
+      ],
+      [
+        "fusible",
+        "il protège aussi contre la surcharge et le court-circuit, mais il ne se réarme pas : il se remplace, au même calibre."
+      ]
+    ],
+    "faq": [
+      [
+        "Quelle différence entre un disjoncteur et un interrupteur différentiel ?",
+        "Le disjoncteur se compte en ampères et protège les conducteurs contre la surcharge et le court-circuit. L'interrupteur différentiel se compte en milliampères et protège les personnes contre les fuites de courant. Le disjoncteur différentiel réunit les deux fonctions."
+      ],
+      [
+        "Que signifient les courbes B, C et D ?",
+        "C'est le seuil du déclencheur magnétique. Courbe B : 3 à 5 fois le calibre. Courbe C : 5 à 10 fois, pour l'usage général. Courbe D : à partir de 10 fois, pour les forts appels de courant."
+      ],
+      [
+        "Peut-on remplacer un disjoncteur par un plus gros s'il saute souvent ?",
+        "Non. Le calibre protège le conducteur : 16 A au maximum en 1,5 mm², 20 A en 2,5 mm². On cherche la cause du déclenchement."
+      ]
     ]
   }
 }
