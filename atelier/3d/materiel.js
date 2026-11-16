@@ -1,4 +1,4 @@
-// Le matériel de l'électricien, modélisé par le code : multimètre, VAT bipolaire, pointes, tournevis, plateau aimanté.
+// Le matériel de l'électricien, modélisé par le code : multimètre, VAT bipolaire, pointes, tournevis.
 // Le multimètre et le VAT sont « tenus » en bas de l'image : ils sont accrochés à la caméra.
 import * as THREE from "./three.module.min.js";
 
@@ -87,8 +87,7 @@ export function creerTournevis() {
 /* ---------- Plateau aimanté où l'on pose les vis ---------- */
 export function creerPlateau() {
   const g = new THREE.Group();
-  const fond = cyl(0.03, 0.026, 0.008, mat(0x2b2f34, { roughness: 0.4, metalness: 0.5 }), 32); fond.rotation.x = Math.PI / 2; g.add(fond);
-  const creux = cyl(0.026, 0.026, 0.002, mat(0x16181b, { roughness: 0.6 }), 32); creux.rotation.x = Math.PI / 2; creux.position.z = 0.0035; g.add(creux);
+  // on ne dessine plus de plateau : les vis dévissées partent dans la poche (il ne reste ici que leurs deux places, hors de l'image)
   const places = [new THREE.Vector3(-0.009, 0.004, 0.006), new THREE.Vector3(0.009, -0.004, 0.006)].map((p) => { const o = new THREE.Object3D(); o.position.copy(p); g.add(o); return o; });
   g.userData = { places, hauteur: 0.06 };
   return g;

@@ -50,78 +50,14 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
     const T = toile(128, 48), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: T.t, toneMapped: false })); m.position.set(x, y, z); g.add(m);
     let dernier = null; return (txt) => { if (txt === dernier) return; dernier = txt; T.g.fillStyle = "#06090a"; T.g.fillRect(0, 0, 128, 48); if (txt) { T.g.fillStyle = coul; T.g.font = "700 30px ui-monospace, Menlo, monospace"; T.g.textAlign = "center"; T.g.textBaseline = "middle"; T.g.fillText(txt, 64, 26); } T.t.needsUpdate = true; };
   }
-  // ce qu'on voit par les fenêtres : le jardin (ciel photographié, haie, pelouse, allée et sa borne), dessiné une fois
-  let jardin = null;
-  function vueJardin() {
-    if (jardin) return jardin;
-    const T = (jardin = toile(512, 512)), g = T.g, img = (f) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = `${base}../textures/${f}`; });
-    g.fillStyle = "#cfe3f7"; g.fillRect(0, 0, 512, 512);
-    Promise.all([img("ciel_jour.jpg"), img("pelouse_diff.jpg"), img("gravel_floor_diff.jpg")]).then(([ciel, herbe, gravier]) => {
-      if (ciel) g.drawImage(ciel, 80, 120, 330, 150, 0, 0, 512, 300); else { g.fillStyle = "#bfe0ff"; g.fillRect(0, 0, 512, 300); }
-      // la haie du fond, la clôture, puis la pelouse en perspective
-      g.fillStyle = "#6b5a48"; g.fillRect(0, 232, 512, 40); g.fillStyle = "#57493a"; for (let x = 0; x < 512; x += 14) g.fillRect(x, 232, 2, 40);
-      g.fillStyle = "#1f3a1a"; g.beginPath(); g.moveTo(0, 262); for (let x = 0; x <= 512; x += 16) g.lineTo(x, 236 + Math.sin(x * 0.07) * 5 + ((x * 7) % 9)); g.lineTo(512, 300); g.lineTo(0, 300); g.fill();
-      for (let i = 0; i < 1400; i++) { g.fillStyle = `hsl(${100 + (i % 30)}, 40%, ${14 + (i % 14)}%)`; g.beginPath(); g.ellipse((i * 131) % 512, 240 + ((i * 53) % 58), 3.5, 2, i, 0, 7); g.fill(); }
-      if (herbe) { for (let r = 0; r < 7; r++) { const y = 296 + r * r * 4.6, h = 10 + r * 9.2, k = 0.35 + r * 0.25; g.save(); g.translate(0, y); g.scale(k, k * 0.45); g.fillStyle = g.createPattern(herbe, "repeat"); g.fillRect(0, 0, 512 / k, h / (k * 0.45) + 2); g.restore(); } } else { g.fillStyle = "#3f6a35"; g.fillRect(0, 296, 512, 216); }
-      g.save(); g.beginPath(); g.moveTo(300, 296); g.lineTo(330, 296); g.lineTo(470, 512); g.lineTo(250, 512); g.closePath(); g.clip(); if (gravier) { g.fillStyle = g.createPattern(gravier, "repeat"); g.fillRect(0, 290, 512, 230); } else { g.fillStyle = "#b9ad98"; g.fillRect(0, 290, 512, 230); } g.restore();
-      const om = g.createLinearGradient(0, 296, 0, 512); om.addColorStop(0, "rgba(255,255,255,0.18)"); om.addColorStop(1, "rgba(0,0,0,0.22)"); g.fillStyle = om; g.fillRect(0, 296, 512, 216);
-      g.fillStyle = "#23272c"; g.fillRect(412, 372, 9, 52); g.fillStyle = "#f2efe2"; g.fillRect(410, 362, 13, 12); g.fillStyle = "#23272c"; g.fillRect(408, 358, 17, 5);
-      flouter(T, 1.2);
-    });
+  // ce qu'on voit par les fenêtres : une vraie photo d'extérieur par logement (panoramas libres de Poly Haven, voir
+  // ../CREDITS.md), chargée une seule fois. En attendant l'image, la vitre a la couleur du ciel.
+  const vuesDehors = {};
+  function vueDehors(nom) {
+    if (vuesDehors[nom]) return vuesDehors[nom];
+    const T = (vuesDehors[nom] = toile(768, 512)); T.g.fillStyle = nom === "nuit" ? "#141a2a" : "#cfe3f7"; T.g.fillRect(0, 0, 768, 512); T.t.needsUpdate = true;
+    const im = new Image(); im.onload = () => { T.g.drawImage(im, 0, 0, 768, 512); T.t.needsUpdate = true; }; im.src = `${base}../textures/vue_${nom}.jpg`;
     return T;
-  }
-  // ce qu'on voit par la fenêtre une nuit de pluie : la rue, un réverbère et son halo, les fenêtres des voisins, la chaussée mouillée
-  let rueNuit = null;
-  function vueNuit() {
-    if (rueNuit) return rueNuit;
-    const T = (rueNuit = toile(512, 512)), g = T.g, ciel = g.createLinearGradient(0, 0, 0, 330); ciel.addColorStop(0, "#070b16"); ciel.addColorStop(1, "#1a2540"); g.fillStyle = ciel; g.fillRect(0, 0, 512, 512);
-    for (let i = 0; i < 9; i++) { g.fillStyle = `rgba(60,72,100,${0.10 + (i % 3) * 0.05})`; g.beginPath(); g.ellipse((i * 97) % 512, 40 + ((i * 53) % 90), 90 + (i % 4) * 30, 18 + (i % 3) * 8, 0, 0, 7); g.fill(); }
-    // les maisons d'en face, toits, quelques fenêtres allumées
-    const maisons = [[-10, 150, 190, 300], [170, 190, 150, 300], [310, 140, 215, 300]];
-    for (const [x, y, w] of maisons) { g.fillStyle = "#0b0f18"; g.fillRect(x, y, w, 340 - y); g.beginPath(); g.moveTo(x - 8, y); g.lineTo(x + w / 2, y - 46); g.lineTo(x + w + 8, y); g.fill(); g.fillRect(x + w * 0.7, y - 50, 14, 34); }
-    for (const [x, y, c] of [[36, 196, "#ffcf7a"], [112, 196, "#191f2c"], [36, 262, "#191f2c"], [112, 262, "#ffd998"], [206, 232, "#9fc4ff"], [262, 232, "#191f2c"], [346, 186, "#ffcf7a"], [430, 186, "#191f2c"], [346, 256, "#191f2c"], [430, 256, "#ffe2a8"]]) { g.fillStyle = c; g.fillRect(x, y, 38, 44); g.strokeStyle = "#0b0f18"; g.lineWidth = 3; g.strokeRect(x, y, 38, 44); g.beginPath(); g.moveTo(x + 19, y); g.lineTo(x + 19, y + 44); g.stroke(); }
-    // la chaussée mouillée et ses reflets
-    const sol = g.createLinearGradient(0, 340, 0, 512); sol.addColorStop(0, "#0d1220"); sol.addColorStop(1, "#05070c"); g.fillStyle = sol; g.fillRect(0, 340, 512, 172);
-    g.fillStyle = "#11161f"; g.fillRect(0, 336, 512, 10);
-    // le réverbère et son halo
-    g.fillStyle = "#05070a"; g.fillRect(286, 150, 7, 200); g.fillRect(262, 146, 30, 6);
-    const halo = g.createRadialGradient(264, 160, 2, 264, 160, 150); halo.addColorStop(0, "rgba(255,214,150,0.95)"); halo.addColorStop(0.08, "rgba(255,190,110,0.55)"); halo.addColorStop(0.4, "rgba(255,170,90,0.14)"); halo.addColorStop(1, "rgba(255,170,90,0)"); g.fillStyle = halo; g.fillRect(64, 0, 400, 360);
-    for (const [x, c, w] of [[264, "255,190,110", 26], [55, "255,207,122", 12], [131, "255,217,152", 12], [225, "159,196,255", 12], [365, "255,207,122", 12], [449, "255,226,168", 12]]) { const r = g.createLinearGradient(0, 346, 0, 500); r.addColorStop(0, `rgba(${c},0.5)`); r.addColorStop(1, `rgba(${c},0)`); g.fillStyle = r; for (let k = 0; k < 6; k++) g.fillRect(x - w / 2 + ((k * 7) % 5) - 2, 346 + k * 24, w, 16); }
-    // la haie du jardin, au premier plan
-    g.fillStyle = "#04070a"; g.beginPath(); g.moveTo(0, 512); g.lineTo(0, 440); for (let x = 0; x <= 512; x += 14) g.lineTo(x, 432 + Math.sin(x * 0.09) * 8 + ((x * 7) % 11)); g.lineTo(512, 512); g.fill();
-    T.t.needsUpdate = true; return T;
-  }
-  // ce qu'on voit d'un appartement en étage : le ciel, les immeubles d'en face, les cimes des arbres
-  let ville = null;
-  function vueVille() {
-    if (ville) return ville;
-    const T = (ville = toile(512, 512)), g = T.g; g.fillStyle = "#cfe3f7"; g.fillRect(0, 0, 512, 512);
-    const im = new Image(); im.onload = () => { g.drawImage(im, 60, 90, 360, 200, 0, 0, 512, 512); dessin(); flouter(T, 1.4); }; im.onerror = () => { dessin(); flouter(T, 1.4); }; im.src = `${base}../textures/ciel_jour.jpg`;
-    const dessin = () => {
-      for (const [x, y, w, c] of [[-20, 250, 190, "#b9b2a4"], [150, 190, 150, "#c9c3b6"], [290, 270, 250, "#a9a396"]]) {
-        g.fillStyle = c; g.fillRect(x, y, w, 512 - y); g.fillStyle = "rgba(0,0,0,0.12)"; g.fillRect(x + w - 16, y, 16, 512 - y);
-        for (let r = 0; r < 9; r++) for (let k = 0; k < Math.floor(w / 34); k++) { const fx = x + 10 + k * 34, fy = y + 14 + r * 34; if (fy > 500) continue; g.fillStyle = (r * 7 + k * 3) % 5 === 0 ? "#f2e6c2" : "#5d6d80"; g.fillRect(fx, fy, 20, 22); g.fillStyle = "#e9e6dc"; g.fillRect(fx - 2, fy + 22, 24, 3); }
-      }
-      for (let i = 0; i < 900; i++) { g.fillStyle = `hsl(${95 + (i % 30)}, 38%, ${18 + (i % 16)}%)`; g.beginPath(); g.ellipse((i * 131) % 512, 455 + ((i * 53) % 60), 7, 5, i, 0, 7); g.fill(); }
-    };
-    dessin(); T.t.needsUpdate = true; return T;
-  }
-  // un flou léger sur ce qu'on voit dehors : la vitre et la distance (sans effet sur les navigateurs qui ne le gèrent pas)
-  const flouter = (T, px = 1.6) => { try { const c2 = document.createElement("canvas"); c2.width = T.c.width; c2.height = T.c.height; const g2 = c2.getContext("2d"); g2.filter = `blur(${px}px)`; g2.drawImage(T.c, 0, 0); T.g.drawImage(c2, 0, 0); } catch { /* rien */ } T.t.needsUpdate = true; };
-  // la vue de la maison de M. Girard (niveau 6) : un lotissement, des toits, une haie, la rue
-  let campagne = null;
-  function vueCampagne() {
-    if (campagne) return campagne;
-    const T = (campagne = toile(512, 512)), g = T.g, ciel = g.createLinearGradient(0, 0, 0, 300); ciel.addColorStop(0, "#9cc4ee"); ciel.addColorStop(1, "#e6f0f8"); g.fillStyle = ciel; g.fillRect(0, 0, 512, 512);
-    for (let i = 0; i < 7; i++) { g.fillStyle = "rgba(255,255,255,0.75)"; g.beginPath(); g.ellipse(40 + i * 75, 60 + ((i * 37) % 70), 46, 15, 0, 0, 7); g.fill(); }
-    g.fillStyle = "#8aa58a"; g.beginPath(); g.moveTo(0, 270); for (let x = 0; x <= 512; x += 32) g.lineTo(x, 252 + Math.sin(x * 0.02) * 16); g.lineTo(512, 330); g.lineTo(0, 330); g.fill();
-    for (const [x, w, h, mur, toit] of [[20, 120, 70, "#e9e2d2", "#8a4a3a"], [170, 150, 84, "#f2ead8", "#5d5f66"], [350, 130, 66, "#e2d9c6", "#8a4a3a"]]) {
-      const y = 330 - h; g.fillStyle = mur; g.fillRect(x, y, w, h); g.fillStyle = toit; g.beginPath(); g.moveTo(x - 10, y); g.lineTo(x + w / 2, y - 46); g.lineTo(x + w + 10, y); g.fill();
-      g.fillStyle = "#5d6d80"; for (let k = 0; k < 2; k++) g.fillRect(x + 18 + k * (w - 58), y + 18, 22, 24); g.fillStyle = "#6b4a3a"; g.fillRect(x + w / 2 - 9, y + h - 34, 18, 34);
-    }
-    g.fillStyle = "#2f4a2a"; g.fillRect(0, 322, 512, 30); for (let i = 0; i < 700; i++) { g.fillStyle = `hsl(${100 + (i % 30)}, 36%, ${18 + (i % 14)}%)`; g.beginPath(); g.ellipse((i * 131) % 512, 318 + ((i * 53) % 34), 6, 4, i, 0, 7); g.fill(); }
-    g.fillStyle = "#6f7a5a"; g.fillRect(0, 352, 512, 60); g.fillStyle = "#8d8f92"; g.fillRect(0, 412, 512, 100); g.fillStyle = "#e6e2d6"; for (let x = 10; x < 512; x += 90) g.fillRect(x, 458, 46, 6);
-    flouter(T); return T;
   }
   const hhmm = (h) => { const m = Math.round(h * 60) % 1440; return `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
 
@@ -136,9 +72,13 @@ export function creerDecor({ base, M, mat, boite, cyl, cible, pbr, P, inst, sour
       const w = o.w || 1.1, h = o.h || 1.2, pvc = mat(0xf3f1ec, { roughness: 0.45 });
       for (const [bw, bh, x, y] of [[w + 0.1, 0.06, 0, h / 2 + 0.02], [w + 0.1, 0.06, 0, -h / 2 - 0.02], [0.06, h, -w / 2 - 0.02, 0], [0.06, h, w / 2 + 0.02, 0], [0.04, h, 0, 0]]) { const b = boite(bw, bh, 0.05, pvc); b.position.set(x, y, 0.02); g.add(b); }
       const appui = boite(w + 0.24, 0.03, 0.14, pvc); appui.position.set(0, -h / 2 - 0.06, 0.06); g.add(appui);
-      const T = o.vue === "nuit" ? vueNuit() : o.vue === "ville" ? vueVille() : o.vue === "campagne" ? vueCampagne() : vueJardin();
+      const T = vueDehors(["nuit", "ville", "campagne"].includes(o.vue) ? o.vue : "jardin");
       const vitre = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: T.t })); vitre.position.z = 0.012; g.add(vitre);
-      if (o.vue !== "nuit") temoins.push((r, e, lc, nuit) => { vitre.material.color.setScalar(nuit ? 0.035 : 1.7); });
+      { // la photo n'est pas déformée : chaque fenêtre en montre la partie qui correspond à ses proportions
+        const uv = vitre.geometry.attributes.uv, fx = Math.min(1, (w / h) / 1.5), fy = Math.min(1, 1.5 / (w / h)), dx = o.decale || 0;
+        for (let i = 0; i < uv.count; i++) uv.setXY(i, 0.5 + dx * (1 - fx) / 2 + (uv.getX(i) - 0.5) * fx, 0.5 + (uv.getY(i) - 0.5) * fy); }
+      if (o.vue === "nuit") vitre.material.color.setScalar(0.4); // la nuit, dehors est sombre : on devine la rue sous son lampadaire
+      if (o.vue !== "nuit") temoins.push((r, e, lc, nuit) => { vitre.material.color.setScalar(nuit ? 0.035 : 1.15); });
       if (o.volet) { // volet roulant à moitié baissé : des lames, devant la vitre
         const hv = h * o.volet, lames = Math.max(3, Math.round(hv / 0.045)), ml = mat(0xdcd8cf, { roughness: 0.6 });
         for (let i = 0; i < lames; i++) { const l = boite(w - 0.01, hv / lames - 0.004, 0.006, ml); l.castShadow = false; l.position.set(0, h / 2 - (i + 0.5) * (hv / lames), 0.016); g.add(l); }
@@ -589,11 +529,16 @@ lavelinge(o, lieuId, lieu, G, g) {
 
     /* ----- entrée ----- */
     porteEntree(o, lieuId, lieu, G, g) {
-      const bois = pbr.m("rough_pine_door", [1, 1], { color: 0x6f8a7a, roughness: 0.6 }), cadre = mat(0xefece4, { roughness: 0.5 });
+      const bois = pbr.m("rough_pine_door", [1, 1], { color: o.teinte || 0x6f8a7a, roughness: 0.6 }), cadre = mat(0xefece4, { roughness: 0.5 });
       for (const [w, h, x, y] of [[1.06, 0.07, 0, 2.1], [0.07, 2.12, -0.5, 1.06], [0.07, 2.12, 0.5, 1.06]]) { const b = boite(w, h, 0.08, cadre); b.position.set(x, y, 0.03); g.add(b); }
       const vantail = boite(0.92, 2.05, 0.045, bois); vantail.position.set(0, 1.035, 0.03); g.add(vantail);
       for (const [y, h] of [[0.5, 0.7], [1.3, 0.55]]) { const p = boite(0.66, h, 0.012, bois); p.position.set(0, y, 0.056); g.add(p); }
-      const im = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.26), new THREE.MeshBasicMaterial({ color: 0xcfe4ff })); im.position.set(0, 1.83, 0.055); g.add(im); temoins.push((r, e, lc, nuit) => im.material.color.setScalar(nuit ? 0.03 : 1.5));
+      const im = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.26), new THREE.MeshBasicMaterial({ color: 0xcfe4ff })); im.position.set(0, 1.83, 0.055); g.add(im); temoins.push((r, e, lc, nuit) => { if (nuit) im.material.color.setRGB(0.07, 0.1, 0.17); else im.material.color.setScalar(1.5); });
+      // l'imposte vitrée a ses petits bois ; la porte a son judas, sa serrure et sa fente à courrier : on la reconnaît même de près
+      for (const x of [-0.1, 0.1]) { const pb = boite(0.018, 0.26, 0.012, bois); pb.position.set(x, 1.83, 0.058); pb.castShadow = false; g.add(pb); }
+      const judas = cyl(0.014, 0.014, 0.012, M.laiton, 14); judas.rotation.x = Math.PI / 2; judas.position.set(0, 1.52, 0.064); g.add(judas);
+      const serrure = cyl(0.018, 0.018, 0.014, M.laiton, 14); serrure.rotation.x = Math.PI / 2; serrure.position.set(0.38, 1.16, 0.064); g.add(serrure);
+      const fente = boite(0.26, 0.045, 0.008, M.laiton); fente.position.set(0, 0.98, 0.064); g.add(fente); const noirF = boite(0.2, 0.012, 0.004, M.noir); noirF.position.set(0, 0.98, 0.069); g.add(noirF);
       const pg = cyl(0.012, 0.012, 0.13, M.laiton, 10); pg.rotation.z = Math.PI / 2; pg.position.set(0.33, 1.02, 0.09); g.add(pg); const ros = boite(0.04, 0.18, 0.012, M.laiton); ros.position.set(0.38, 1.0, 0.058); g.add(ros);
       const T = toile(128, 64), gg = T.g; gg.fillStyle = "#5a4630"; gg.fillRect(0, 0, 128, 64); gg.strokeStyle = "#2b2014"; gg.lineWidth = 4; gg.strokeRect(4, 4, 120, 56); gg.fillStyle = "#2b2014"; gg.font = "700 22px system-ui"; gg.textAlign = "center"; gg.fillText("Bienvenue", 64, 40); T.t.needsUpdate = true;
       const pail = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.015, 0.45), mat(0xffffff, { map: T.t, roughness: 1 })); pail.position.set(0, 0.008, 0.42); pail.receiveShadow = true; g.add(pail);

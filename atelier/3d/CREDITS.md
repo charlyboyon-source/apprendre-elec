@@ -91,6 +91,10 @@ Tout ce qui vient d'une banque libre est sous licence CC0 (domaine public : usag
 | `ciel_interieur.jpg` | Reflets à l'intérieur (HDRI `lebombo`, image réduite) | Poly Haven, https://polyhaven.com/a/lebombo | CC0 |
 | `ciel_jour.jpg` | Ciel de jour (HDRI `kloofendal_48d_partly_cloudy_puresky`, image réduite) | Poly Haven, https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky | CC0 |
 | `ciel_nuit.jpg` | Ciel de nuit (HDRI `dikhololo_night`, image réduite) | Poly Haven, https://polyhaven.com/a/dikhololo_night | CC0 |
+| `vue_jardin.jpg` | Vue par les fenêtres, maison avec jardin (HDRI `suburban_garden`, extrait réduit) | Poly Haven, https://polyhaven.com/a/suburban_garden | CC0 |
+| `vue_ville.jpg` | Vue par les fenêtres, appartement en ville (HDRI `residential_garden`, extrait réduit) | Poly Haven, https://polyhaven.com/a/residential_garden | CC0 |
+| `vue_nuit.jpg` | Vue par les fenêtres, la nuit (HDRI `street_lamp`, extrait réduit) | Poly Haven, https://polyhaven.com/a/street_lamp | CC0 |
+| `vue_campagne.jpg` | Vue par les fenêtres, maison en lotissement (HDRI `suburban_parking_area`, extrait réduit) | Poly Haven, https://polyhaven.com/a/suburban_parking_area | CC0 |
 
 ## Modèles 3D ajoutés pour le niveau 1 (la chambre et l'entrée de Mme Martin)
 

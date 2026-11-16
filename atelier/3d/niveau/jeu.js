@@ -180,7 +180,11 @@ export function lancerNiveau(N) {
     if (quoi === "mode") { sons.clip(); return void jouer({ type: "mode", id: arg }); }
     if (quoi === "regler") { sons.clip(); return void jouer({ type: "regler_horloge", id: arg }); }
     if (quoi === "essayer") { sons.interrupteur(); return void jouer(N.gestes && N.gestes[arg] ? { type: "geste", id: arg } : { type: "essayer", id: arg }); }
-    if (quoi === "ouvrir") { sons.clip(); if (J.outil !== "tournevis") ranger(); return void jouer({ type: "ouvrir", id: arg }); }
+    if (quoi === "ouvrir") { // la boîte ouverte, on se rapproche de ce qu'il y a dedans
+      sons.clip(); if (J.outil !== "tournevis") ranger(); const vu = J.vue; jouer({ type: "ouvrir", id: arg });
+      if (J.vue === vu && !W.vues[vu].libre && P.ouverts.has(arg)) { const c = cadrage(vu); regard.base = { yaw: 0, pitch: c.pitch }; await glisser(c, 450); }
+      return;
+    }
     if (quoi === "fil" && W.sorti(reste[0], reste[1])) return void jouer({ type: "regarder", id });
     if (quoi === "fil") { const [cid, ext] = reste; sons.clip(); const deja = !!P.e.deconnecte[`${cid}:${ext}`]; ranger(); return void jouer({ type: deja ? "rebrancher" : "debrancher", conducteur: cid, extremite: ext }); }
     return poserPointe(id); // un point de mesure

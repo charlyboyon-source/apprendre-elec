@@ -66,23 +66,46 @@ export function creerMonde(renderer, base, N, P) {
   }
   const largeurVue = (camera) => 2 * Math.tan((32 / 2) * Math.PI / 180) * Math.min(1.25, camera.aspect);
   // vue rapprochée d'un objet : la caméra se place devant, à la distance où « largeur » remplit l'image
-  function vueProche(id, lieuId, groupe, largeur, { nom, court, parent, centre = V(0, 0, 0), haut = 0, hauteur = 0 } = {}) {
+  function vueProche(id, lieuId, groupe, largeur0, { nom, court, parent, centre: centre0 = V(0, 0, 0), haut: haut0 = 0, hauteur: hauteur0 = 0, ouvert = null } = {}) {
     vues[id] = { lieu: lieuId, parent: parent || lieuId, nom, court: court || nom, cadre(camera) {
+      // fermé, on voit l'objet dans son contexte (le mur autour) ; ouvert, on se rapproche de ce qu'il y a dedans
+      const k = ouvert && P.ouverts.has(id.slice(2)) ? ouvert : {}, largeur = k.largeur || largeur0, centre = k.centre || centre0, haut = k.haut === undefined ? haut0 : k.haut, hauteur = k.hauteur === undefined ? hauteur0 : k.hauteur;
       groupe.updateMatrixWorld(true); const d = Math.max(largeur / largeurVue(camera), hauteur / (2 * Math.tan(16 * Math.PI / 180))); // tout doit tenir, en largeur comme en hauteur
       return { pos: groupe.localToWorld(centre.clone().add(V(0, haut * d, d))), cible: groupe.localToWorld(centre.clone()) };
     } };
   }
 
+  // le conducteur de protection est vert-jaune : rayé, jamais vert uni
+  const rayures = (() => { const T = toile(64, 64), g = T.g; g.fillStyle = "#3f9a35"; g.fillRect(0, 0, 64, 64); g.fillStyle = "#f2d21f"; for (let i = -64; i < 128; i += 32) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i + 16, 0); g.lineTo(i + 16 + 64, 64); g.lineTo(i + 64, 64); g.fill(); } T.t.wrapS = T.t.wrapT = THREE.RepeatWrapping; T.t.repeat.set(5, 1); T.t.needsUpdate = true; return T.t; })();
+  const matFil = (couleur) => (couleur === "vert-jaune" ? mat(0xffffff, { map: rayures, roughness: 0.45 }) : mat(COULEURS[couleur] || 0x888888, { roughness: 0.45 }));
+  M.gaine = mat(0x7d838a, { roughness: 0.7 });
+  // une gaine annelée (ICTA), le long de l'axe y
+  function gaineAnnelee(r, l) { const pts = [], n = Math.max(4, Math.round(l / 0.0035)); for (let i = 0; i <= n; i++) pts.push(new THREE.Vector2(r * (i % 2 ? 1.13 : 0.93), -l / 2 + (l * i) / n)); const x = new THREE.Mesh(new THREE.LatheGeometry(pts, 14), M.gaine); x.castShadow = true; return x; }
+  const tube = (pts, r, m) => { const x = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 18, r, 8), m); x.castShadow = true; return x; };
+  // une tête de vis fendue
+  const visFendue = (r, m = M.acier) => { const v = new THREE.Group(), t = cyl(r, r, r * 0.6, m, 14); t.rotation.x = Math.PI / 2; v.add(t); const f = boite(r * 1.7, r * 0.28, r * 0.2, M.noir); f.position.z = r * 0.3; f.castShadow = false; v.add(f); return v; };
+
   /* =====================  Appareillage  ===================== */
+  // prise 2P+T vue de près : une plaque avec son bord, un puits rond en creux, deux alvéoles fermées par leurs éclisses
+  // (les obturateurs de sécurité), la broche de terre en saillie
+  const formePlaque = (() => { const c = 0.041, r = 0.007, f = new THREE.Shape(); f.moveTo(-c + r, -c); f.lineTo(c - r, -c); f.quadraticCurveTo(c, -c, c, -c + r); f.lineTo(c, c - r); f.quadraticCurveTo(c, c, c - r, c); f.lineTo(-c + r, c); f.quadraticCurveTo(-c, c, -c, c - r); f.lineTo(-c, -c + r); f.quadraticCurveTo(-c, -c, -c + r, -c);
+    const t = new THREE.Path(); t.absarc(0, 0, 0.0195, 0, Math.PI * 2, true); f.holes.push(t); return new THREE.ExtrudeGeometry(f, { depth: 0.009, bevelEnabled: true, bevelThickness: 0.0025, bevelSize: 0.002, bevelSegments: 3, curveSegments: 28 }); })();
+  const puitsMat = mat(0xe6e5df, { roughness: 0.5, side: THREE.BackSide }), eclisseMat = mat(0xcfcdc5, { roughness: 0.6 });
   function prise(o, lieuId, g) {
     const org = inst.organe[o.id];
-    g.add(boite(0.082, 0.082, 0.008, M.plastique));
-    const puits = cyl(0.02, 0.02, 0.006, M.blanc, 28); puits.rotation.x = Math.PI / 2; puits.position.z = 0.004; g.add(puits);
-    const pts = { L: V(0.0095, 0, 0.008), N: V(-0.0095, 0, 0.008), PE: V(0, 0.013, 0.01) };
-    for (const [b, p] of Object.entries(pts)) { const t = cyl(b === "PE" ? 0.0024 : 0.003, b === "PE" ? 0.0024 : 0.003, 0.006, b === "PE" ? M.laiton : M.noir, 12); t.rotation.x = Math.PI / 2; t.position.copy(p); g.add(t); point(`${o.id}.${b}`, t, [`v:${o.id}`], 0.0075); }
+    const support = boite(0.088, 0.088, 0.003, mat(0xdedcd5, { roughness: 0.6 })); support.position.z = 0.0015; g.add(support);
+    const pl = new THREE.Mesh(formePlaque, M.plastique); pl.position.z = 0.0045; pl.castShadow = true; pl.receiveShadow = true; g.add(pl);
+    const paroi = new THREE.Mesh(new THREE.CylinderGeometry(0.0197, 0.0197, 0.013, 32, 1, true), puitsMat); paroi.rotation.x = Math.PI / 2; paroi.position.z = 0.0095; g.add(paroi);
+    const fond = cyl(0.0197, 0.0197, 0.002, mat(0xf1f0eb, { roughness: 0.5 }), 32); fond.rotation.x = Math.PI / 2; fond.position.z = 0.003; fond.receiveShadow = true; g.add(fond);
+    const pts = { L: V(0.0095, 0, 0.0042), N: V(-0.0095, 0, 0.0042), PE: V(0, 0.0105, 0.0095) };
+    for (const [b, p] of Object.entries(pts)) {
+      const t = b === "PE" ? cyl(0.0024, 0.0024, 0.012, M.laiton, 14) : cyl(0.0031, 0.0031, 0.0012, M.noir, 16); t.rotation.x = Math.PI / 2; t.position.copy(p); g.add(t); point(`${o.id}.${b}`, t, [`v:${o.id}`], 0.0075);
+      if (b === "PE") { const bout = new THREE.Mesh(new THREE.SphereGeometry(0.0024, 12, 8), M.laiton); bout.position.set(p.x, p.y, 0.0155); g.add(bout); }
+      else { const e = cyl(0.0021, 0.0021, 0.0012, eclisseMat, 14); e.rotation.x = Math.PI / 2; e.position.set(p.x, p.y, 0.0046); g.add(e); }
+    }
     const zone = boite(0.11, 0.11, 0.03, M.invisible); zone.position.z = 0.012; g.add(zone);
-    cible(`approcher:${o.id}`, zone, [lieuId]); cible(`essayer:${o.id}`, boite(0.082, 0.02, 0.012, M.invisible), [`v:${o.id}`]).position.set(0, -0.034, 0.006); g.add(cibles[cibles.length - 1].objet);
-    vueProche(`v:${o.id}`, lieuId, g, 0.15, { nom: org.nom.toLowerCase(), court: org.nom });
+    cible(`approcher:${o.id}`, zone, [lieuId]); cible(`essayer:${o.id}`, boite(0.082, 0.02, 0.012, M.invisible), [`v:${o.id}`]).position.set(0, -0.034, 0.012); g.add(cibles[cibles.length - 1].objet);
+    vueProche(`v:${o.id}`, lieuId, g, 0.2, { nom: org.nom.toLowerCase(), court: org.nom });
   }
   function inter(o, lieuId, g) {
     g.add(boite(0.082, 0.082, 0.008, M.plastique));
@@ -116,56 +139,88 @@ export function creerMonde(renderer, base, N, P) {
   // ce qu'on voit correspond à ce qui est câblé : un fil raccordé sur la mauvaise borne (panne) est dessiné là où il est vraiment
   const CABLAGE = L.conducteurs.map((c) => { const p = inst.pannes.find((k) => k.type === "conducteur_deplace" && k.conducteur === c.id); return p ? { ...c, [p.extremite]: p.borne } : c; });
   // boîte, sortie de câble : un couvercle ; ouverte, on voit les bornes du moteur et tous les conducteurs qui y arrivent
-  function interieur(id, g, vue, ech = 1) {
+  function interieur(id, g, vue, ech = 1, { gaines = true } = {}) {
     const org = inst.organe[id], bornes = org.bornes || ["L", "N", "PE"], G = new THREE.Group(); G.visible = false; g.add(G);
-    const fond = boite(Math.max(0.13, bornes.length * 0.04) * ech, 0.11 * ech, 0.004, M.gris); fond.position.z = 0.002; G.add(fond);
+    const W0 = Math.max(0.13, bornes.length * 0.04) * ech, H0 = 0.11 * ech;
+    const fond = boite(W0, H0, 0.004, mat(0xb4b8bd, { roughness: 0.8 })); fond.position.z = 0.002; fond.castShadow = false; G.add(fond);
+    const rail = boite(W0 * 0.92, 0.008 * ech, 0.004, M.acier); rail.position.z = 0.006; rail.castShadow = false; G.add(rail);
+    // une gaine par câble : ce qui arrive entre par le haut, ce qui repart sort par le bas
+    const autre = (c, nom) => (c.de === nom ? c.vers : c.de).split(".")[0].split("#")[0], cotes = { 1: [], [-1]: [] };
+    bornes.forEach((b) => { const nom = `${id}.${b}`; for (const c of CABLAGE.filter((k) => k.de === nom || k.vers === nom)) { const sens = c.de === nom ? -1 : 1, a = autre(c, nom); if (!cotes[sens].includes(a)) cotes[sens].push(a); } });
+    const xGaine = (sens, a) => { const l = cotes[sens]; return (l.indexOf(a) - (l.length - 1) / 2) * (W0 / Math.max(1, l.length)) * 0.8; };
+    if (gaines) for (const sens of [1, -1]) for (const a of cotes[sens]) { const t = gaineAnnelee(0.0085 * ech, 0.07 * ech); t.position.set(xGaine(sens, a), sens * (H0 / 2 + 0.022 * ech), 0.0125 * ech + 0.002); g.add(t); const col = cyl(0.0105 * ech, 0.0105 * ech, 0.006 * ech, mat(0x5a5f66), 14); col.position.set(xGaine(sens, a), sens * (H0 / 2 + 0.058 * ech), 0.0125 * ech + 0.002); g.add(col); }
     const fils = [];
     bornes.forEach((b, i) => {
       const x = (i - (bornes.length - 1) / 2) * 0.036 * ech, nom = `${id}.${b}`;
-      const bloc = boite(0.02 * ech, 0.016 * ech, 0.014, b === "bp" ? mat(0xe9e9e4) : b === "lp" ? mat(0xe8790c) : b.toLowerCase().startsWith("p") && b.toLowerCase() !== "ph" ? mat(0x4a9a35) : b.toLowerCase().startsWith("n") ? mat(0x2f6fd0) : mat(0x8a8f96)); bloc.position.set(x, 0, 0.011); G.add(bloc);
+      const coul = b === "bp" ? mat(0xe9e9e4) : b === "lp" ? mat(0xe8790c) : b.toLowerCase().startsWith("p") && b.toLowerCase() !== "ph" ? mat(0x4a9a35) : b.toLowerCase().startsWith("n") ? mat(0x2f6fd0) : mat(0x8a8f96);
+      // une borne en volume : un corps, une tête de couleur (le repère), la vis de serrage
+      const corps = boite(0.021 * ech, 0.02 * ech, 0.009, mat(0xe2e3e0, { roughness: 0.5 })); corps.position.set(x, 0, 0.0085); G.add(corps);
+      let bloc = boite(0.017 * ech, 0.013 * ech, 0.006, coul); bloc.position.set(x, 0, 0.0155); G.add(bloc);
       const vis = cyl(0.0045 * ech, 0.0045 * ech, 0.004, M.laiton, 12); vis.rotation.x = Math.PI / 2; vis.position.set(x, 0, 0.019); G.add(vis); point(nom, vis, [vue], 0.011 * ech);
+      const fente = boite(0.007 * ech, 0.0012 * ech, 0.001, M.noir); fente.position.set(x, 0, 0.0212); fente.castShadow = false; G.add(fente);
       const lies = CABLAGE.filter((c) => c.de === nom || c.vers === nom);
       lies.forEach((c, k) => {
         const ext = c.de === nom ? "de" : "vers", haut = ext === "vers"; // ce qui arrive vient du haut, ce qui repart sort par le bas
         const rang = lies.filter((x, j) => j < k && (x.de === nom ? "de" : "vers") === ext).length;
         const dx = (rang - 0.5 * (lies.filter((x) => (x.de === nom ? "de" : "vers") === ext).length - 1)) * 0.011 * ech, sens = haut ? 1 : -1;
-        const m = mat(COULEURS[c.couleur] || 0x888888, { roughness: 0.45 });
+        const m = matFil(c.couleur);
         const fil = new THREE.Group(); fil.position.set(x + dx, sens * 0.012 * ech, 0.012); G.add(fil);
-        const gaine = cyl(0.0022 * ech, 0.0022 * ech, 0.05 * ech, m, 10); gaine.position.y = sens * 0.03 * ech; fil.add(gaine);
+        // le conducteur part de la borne, fait sa boucle dans la boîte et rejoint sa gaine
+        const gx = (gaines ? xGaine(sens, autre(c, nom)) : x + dx) - (x + dx), yB = sens * (H0 / 2 - 0.012 * ech);
+        fil.add(tube([V(0, sens * 0.004 * ech, 0), V(0, sens * 0.016 * ech, 0.004 * ech), V(gx * 0.35, sens * 0.03 * ech, 0.009 * ech), V(gx * 0.85, yB * 0.82, 0.006 * ech), V(gx, yB + sens * 0.012 * ech, 0.0025 * ech)], 0.0022 * ech, m));
         const ame = cyl(0.0011 * ech, 0.0011 * ech, 0.008 * ech, M.cuivre, 8); ame.position.y = sens * 0.002 * ech; fil.add(ame);
-        const prise0 = boite(0.012 * ech, 0.03 * ech, 0.012, M.invisible); prise0.position.y = sens * 0.036 * ech; fil.add(prise0); cible(`fil:${c.id}:${ext}`, prise0, [vue], { ancre: prise0 });
+        const prise0 = boite(0.012 * ech, 0.03 * ech, 0.012, M.invisible); prise0.position.y = sens * 0.022 * ech; fil.add(prise0); cible(`fil:${c.id}:${ext}`, prise0, [vue], { ancre: prise0 });
         const bout = new THREE.Object3D(); bout.position.y = sens * 0.002 * ech; fil.add(bout); point(`${c.id}#${ext}`, bout, [vue], 0.009 * ech); point(`${c.id}#bout`, bout, [vue], 0.009 * ech); cibles[cibles.length - 1].ext = ext;
-        if (inst.pannes.some((p) => p.type === "connexion_desserree" && p.conducteur === c.id && p.extremite === ext && c.role === "phase")) bloc.material = mat(0x3a2a1c, { roughness: 1 });
+        if (inst.pannes.some((p) => p.type === "connexion_desserree" && p.conducteur === c.id && p.extremite === ext && c.role === "phase")) { bloc.material = mat(0x3a2a1c, { roughness: 1 }); corps.material = mat(0x6a5a48, { roughness: 1 }); }
         fils.push({ c, ext, fil, sens, x: x + dx });
       });
     });
     interieurs[id] = { G, fils, ech };
     return G;
   }
+  // boîte de dérivation : son corps dépasse du mur, les gaines y entrent, le couvercle est tenu par quatre vis
   function boiteDerivation(o, lieuId, g, { w = 0.14, h = 0.12, nomVue } = {}) {
     w = Math.max(w, (inst.organe[o.id].bornes || []).length * 0.04 + 0.02);
-    const org = inst.organe[o.id], vue = `v:${o.id}`, ext = typeof o.ext === "function" ? o.ext(P) : !!o.ext;
-    const corps = boite(w, h, 0.05, ext ? mat(0x9aa0a6, { roughness: 0.6 }) : M.plastique); corps.position.z = -0.022; g.add(corps);
-    const capot = boite(w + 0.006, h + 0.006, 0.008, ext ? mat(0xb3b9c0, { roughness: 0.5 }) : M.blanc); capot.position.z = 0.008; g.add(capot); capots[o.id] = capot;
-    cible(`ouvrir:${o.id}`, capot, [vue]);
+    const org = inst.organe[o.id], vue = `v:${o.id}`, ext = typeof o.ext === "function" ? o.ext(P) : !!o.ext, PR = 0.034;
+    const mc = ext ? mat(0x9aa0a6, { roughness: 0.6 }) : mat(0xe9e8e3, { roughness: 0.45 });
+    for (const [bw, bh, x, y] of [[w, 0.005, 0, h / 2 - 0.0025], [w, 0.005, 0, -h / 2 + 0.0025], [0.005, h, -w / 2 + 0.0025, 0], [0.005, h, w / 2 - 0.0025, 0]]) { const b = boite(bw, bh, PR, mc); b.position.set(x, y, PR / 2); g.add(b); }
+    const capot = new THREE.Group(); capot.position.z = PR; g.add(capot); capots[o.id] = capot;
+    const couv = boite(w + 0.008, h + 0.008, 0.007, ext ? mat(0xb3b9c0, { roughness: 0.5 }) : M.blanc); couv.position.z = 0.0035; capot.add(couv);
+    const relief = boite(w - 0.03, h - 0.03, 0.002, ext ? mat(0xbcc2c9, { roughness: 0.5 }) : mat(0xf4f3ef, { roughness: 0.4 })); relief.position.z = 0.008; relief.castShadow = false; capot.add(relief);
+    for (const sx of [-1, 1]) for (const sy of [-1, 1]) { const v = visFendue(0.0042); v.position.set(sx * (w / 2 - 0.007), sy * (h / 2 - 0.007), 0.0075); v.rotation.z = sx * sy * 0.5; capot.add(v); }
+    const zc = boite(w + 0.008, h + 0.008, 0.012, M.invisible); zc.position.z = 0.006; capot.add(zc); cible(`ouvrir:${o.id}`, zc, [vue]);
     const I = interieur(o.id, g, vue);
-    if (o.eau && o.eau(P)) { const eau = boite(0.128, 0.04, 0.02, M.eau); eau.position.set(0, -0.035, 0.012); I.add(eau); }
+    if (o.eau && o.eau(P)) { const eau = boite(w - 0.012, 0.04, 0.02, M.eau); eau.position.set(0, -h / 2 + 0.026, 0.012); I.add(eau); }
     const zone = boite(w + 0.1, h + 0.1, 0.08, M.invisible); zone.position.z = 0.02; g.add(zone); cible(`approcher:${o.id}`, zone, [lieuId]);
-    vueProche(vue, lieuId, g, Math.max(0.2, w + 0.05), { nom: nomVue || org.nom.toLowerCase(), court: org.nom });
-    return corps;
+    vueProche(vue, lieuId, g, w + 0.3, { nom: nomVue || org.nom.toLowerCase(), court: org.nom, ouvert: { largeur: Math.max(0.2, w + 0.06) } });
+    return capot;
   }
+  // borne lumineuse du jardin : le fût, le diffuseur et son capot, la trappe de raccordement tenue par deux vis,
+  // et le presse-étoupe par où le câble sort du sol. Fermée, on la voit entière ; ouverte, on se rapproche de la trappe.
   function borneJardin(o, lieuId, G) {
     const g = new THREE.Group(); g.position.set(o.x, 0, o.z); g.rotation.y = o.r || 0; G.add(g);
-    const fut = cyl(0.045, 0.05, 0.55, mat(0x2b2f34, { roughness: 0.5, metalness: 0.4 }), 20); fut.position.y = 0.275; g.add(fut);
-    const verre = cyl(0.05, 0.05, 0.12, new THREE.MeshStandardMaterial({ color: 0xf2f2ea, emissive: 0xffe2b0, emissiveIntensity: 0, roughness: 0.2, transparent: true, opacity: 0.9 }), 20); verre.position.y = 0.61; g.add(verre);
-    const chapeau = cyl(0.062, 0.062, 0.02, mat(0x2b2f34, { metalness: 0.4 }), 20); chapeau.position.y = 0.68; g.add(chapeau);
+    const sombre = mat(0x2b2f34, { roughness: 0.5, metalness: 0.4 });
+    const semelle = cyl(0.075, 0.08, 0.025, mat(0x3a3f46, { metalness: 0.4, roughness: 0.6 }), 24); semelle.position.y = 0.0125; g.add(semelle);
+    for (let i = 0; i < 3; i++) { const b = cyl(0.007, 0.007, 0.008, M.acier, 6); b.position.set(Math.cos(i * 2.1 + 0.5) * 0.063, 0.028, Math.sin(i * 2.1 + 0.5) * 0.063); g.add(b); }
+    const fut = cyl(0.045, 0.05, 0.55, sombre, 24); fut.position.y = 0.275; g.add(fut);
+    const bague = cyl(0.052, 0.052, 0.014, mat(0x3a3f46, { metalness: 0.5 }), 24); bague.position.y = 0.553; g.add(bague);
+    const verre = cyl(0.05, 0.05, 0.12, new THREE.MeshStandardMaterial({ color: 0xf2f2ea, emissive: 0xffe2b0, emissiveIntensity: 0, roughness: 0.2, transparent: true, opacity: 0.9 }), 24); verre.position.y = 0.61; g.add(verre);
+    for (let i = 0; i < 4; i++) { const m = boite(0.006, 0.12, 0.006, sombre); m.position.set(Math.cos(i * Math.PI / 2 + 0.78) * 0.052, 0.61, Math.sin(i * Math.PI / 2 + 0.78) * 0.052); g.add(m); }
+    const chapeau = cyl(0.03, 0.066, 0.03, sombre, 24); chapeau.position.y = 0.685; g.add(chapeau);
     sources.push({ id: o.id, lieu: lieuId, obj: verre, couleur: 0xffe2b0, force: 4.5, portee: 6.5, on: (r) => r.allume(o.id), mats: [verre.material] });
     const tete = new THREE.Group(); tete.position.set(0, 0.36, 0.05); g.add(tete);
-    const capot = boite(0.085, 0.1, 0.008, mat(0x3a3f46, { metalness: 0.4, roughness: 0.5 })); capot.position.z = 0.004; tete.add(capot); capots[o.id] = capot; cible(`ouvrir:${o.id}`, capot, [`v:${o.id}`]);
-    interieur(o.id, tete, `v:${o.id}`, 0.62);
+    const capot = new THREE.Group(); tete.add(capot); capots[o.id] = capot;
+    const tr = boite(0.085, 0.1, 0.008, mat(0x3a3f46, { metalness: 0.4, roughness: 0.5 })); tr.position.z = 0.004; capot.add(tr); cible(`ouvrir:${o.id}`, tr, [`v:${o.id}`]);
+    for (const y of [-0.04, 0.04]) { const v = visFendue(0.0045); v.position.set(0, y, 0.0085); v.rotation.z = y * 12; capot.add(v); }
+    const cadreT = boite(0.093, 0.108, 0.004, sombre); cadreT.position.z = -0.001; tete.add(cadreT);
+    interieur(o.id, tete, `v:${o.id}`, 0.62, { gaines: false });
+    // le presse-étoupe, au pied : le câble d'alimentation sort du sol sous sa gaine et entre dans le fût
+    const pe = cyl(0.014, 0.014, 0.02, mat(0x8d949c, { roughness: 0.5 }), 6); pe.rotation.x = Math.PI / 2; pe.position.set(0, 0.09, 0.055); g.add(pe);
+    const ecrou = cyl(0.011, 0.011, 0.012, mat(0x6b7178), 6); ecrou.rotation.x = Math.PI / 2; ecrou.position.set(0, 0.09, 0.07); g.add(ecrou);
+    g.add(tube([V(0, 0.09, 0.07), V(0, 0.085, 0.1), V(0, 0.05, 0.115), V(0, 0, 0.118)], 0.006, M.noir));
     if (typeof o.buee === "function" ? o.buee(P) : o.buee) { const b = cyl(0.051, 0.051, 0.06, mat(0xffffff, { transparent: true, opacity: 0.55, roughness: 1 }), 20); b.position.y = 0.6; g.add(b); }
     const zone = boite(0.3, 0.8, 0.3, M.invisible); zone.position.y = 0.4; g.add(zone); cible(`approcher:${o.id}`, zone, [lieuId]);
-    vueProche(`v:${o.id}`, lieuId, tete, 0.13, { nom: inst.organe[o.id].nom.toLowerCase(), court: inst.organe[o.id].nom, haut: 0.25 });
+    vueProche(`v:${o.id}`, lieuId, tete, 0.5, { nom: inst.organe[o.id].nom.toLowerCase(), court: inst.organe[o.id].nom, haut: 0.3, hauteur: 0.86, centre: V(0, 0, 0), ouvert: { largeur: 0.13, haut: 0.25, hauteur: 0 } });
   }
 
   /* =====================  Tableau  ===================== */
@@ -353,7 +408,8 @@ export function creerMonde(renderer, base, N, P) {
           const vant = boite(0.86, 2.0, 0.04, o.facade ? mat(0x39424d, { roughness: 0.15, metalness: 0.3 }) : mat(0xf1ede3, { roughness: 0.55 })); vant.position.set(0, -0.02, 0.012); g.add(vant);
           if (!o.facade) for (const [y, h] of [[-0.55, 0.75], [0.42, 0.95]]) { const p = boite(0.62, h, 0.006, mat(0xe4dfd3, { roughness: 0.6 })); p.position.set(0, y, 0.034); p.castShadow = false; g.add(p); }
           const bq = cyl(0.011, 0.011, 0.12, M.acier, 10); bq.rotation.z = Math.PI / 2; bq.position.set(0.3, -0.03, 0.07); g.add(bq);
-          const lbl = panneau(0.5, 0.125, etiquette(nomVers, { w: 512, h: 128, taille: 64, fond: "#22262d", coul: "#ffe08a" })); lbl.position.set(0, 0.62, 0.042); g.add(lbl);
+          // une petite plaque de porte, à hauteur des yeux : lisible de la pièce, discrète de près (le nom complet s'affiche au survol)
+          const lbl = panneau(0.27, 0.0675, etiquette(nomVers, { w: 512, h: 128, taille: 64, fond: "#22262d", coul: "#ffe08a" })); lbl.position.set(0, 0.6, 0.042); g.add(lbl);
           cible(`aller:${o.vers}`, vant, [id]);
         }
         lieux[id].portes = { ...(lieux[id].portes || {}), [o.vers]: g };

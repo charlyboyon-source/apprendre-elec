@@ -179,6 +179,8 @@ export default {
         { t: "tapis", x: 0, z: 1.35, w: 1.5, d: 0.8, couleurs: ["#3a3530", "#57504a", "#22262d"] },
         { t: "velo", x: -1.72, z: -1.05, r: 0 }, { t: "modele", f: "potted_plant_01", x: 1.55, z: 1.65, h: 0.9, sansOmbre: true } ] },
       local: { nom: "le local technique", court: "Le local technique", raccourci: "Local", taille: [2.6, 2.4], sol: "beton", sombre: true, teinte: 0xe6e4de, peint: true, camera: [0.1, 1.62, 0.75], objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "planEvacuation", mur: "E", u: 0.1, y: 1.6, etage: "Local technique" }, { t: "extincteur", mur: "S", u: -1.15, y: 1.0 },
         { t: "tableau", mur: "N", u: -0.2, y: 1.5 }, { t: "boite", id: "bd_tab", mur: "N", u: 0.75, y: 1.15 }, { t: "schema", id: "schema", mur: "N", u: 0.75, y: 1.62 },
         { t: "inter", id: "int_local", mur: "S", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_local" }, { t: "prise", id: "pc_local", mur: "E", u: -0.3, y: 1.15 }, { t: "boite", id: "bd_local", mur: "E", u: 0.6, y: 2.2 },
         porte("hall", "S", 0.3),
@@ -203,7 +205,9 @@ export default {
         { t: "porteAppart", mur: "O", u: 0.35, y: 0, nom: "Petit", teinte: 0x6a4a3a, sonnette: "gauche" }, { t: "porteAppart", mur: "E", u: -0.35, y: 0, nom: "Benali", mot: "WELCOME", paillasson: "#6b4a2a" },
         { t: "plaqueEtage", mur: "N", u: 1.55, y: 1.75, texte: "2e" }, { t: "extincteur", mur: "E", u: 0.95, y: 1.0 }, { t: "planEvacuation", mur: "S", u: -0.55, y: 1.5, etage: "2e étage" }, { t: "colonne", mur: "S", u: 0.15, y: 1.0 },
         { t: "ruban", mur: "N", u: 1.55, y: 1.1, bandes: [[-0.08, 0.075, 0.2, 0.05], [0.075, -0.02, 0.16, 1.5]] },
-        { t: "modele", f: "rubber_boots", x: 1.6, z: 0.5, s: 0.9, e: [0.55, 1, 1], r: -Math.PI / 2 }, { t: "peintres", x: -1.35, z: 0.9, r: 1.9 } ] },
+        { t: "modele", f: "rubber_boots", x: 1.6, z: 0.5, s: 0.9, e: [0.55, 1, 1], r: -Math.PI / 2 }, { t: "peintres", x: -1.35, z: 0.9, r: 1.9 },
+        // ce palier ne ressemble pas à celui du 1er : des cartons d'emménagement devant chez les Benali, une grande plante verte côté Petit
+        { t: "modele", f: "cardboard_box_01", x: 1.5, z: -0.92, h: 0.36, r: 0.2 }, { t: "modele", f: "cardboard_box_01", x: 1.52, y: 0.36, z: -0.9, h: 0.3, r: -0.3 }, { t: "modele", f: "calathea_orbifolia_01", x: -1.5, z: -0.95, h: 0.7, sansOmbre: true } ] },
       palier3: { ...cage(3), nom: "le palier du 3e", court: "Le palier du 3e", raccourci: "3e", objets: [
         { t: "cageEtage", arrive: true, monte: false, dernier: true }, descendre("palier2", LP),
         { t: "plafonnier", id: "l_3", hublot: true, portee: 7, force: 9 }, { t: "bp", id: "bp_3", mur: "N", u: 1.55, y: 1.1, lampe: "l_3" }, { t: "boite", id: "bd_3", mur: "N", u: -1.55, y: 2.25 },

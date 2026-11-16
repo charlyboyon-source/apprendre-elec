@@ -28,6 +28,8 @@ export default {
     tableau: { extras: { ID2: ["horloge", "kc"] } },
     lieux: {
       entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [4.2, 3], sol: "bois", camera: [0.1, 1.62, 1.05], objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: -0.1, y: 1.6, auMur: true, s: 0.8 }, { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: 1.1, y: 1.58, auMur: true, s: 0.42 },
         { t: "tableau", mur: "N", u: 0.9, y: 1.55 }, { t: "inter", id: "int_entree", mur: "N", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "boite", id: "bd_ecl", mur: "N", u: 1.85, y: 2.2 },
         { t: "prise", id: "pc_entree", mur: "O", u: 0.3, y: 0.35 }, { t: "porte", vers: "sejour", mur: "E", u: 0.3, y: 1.025 }, { t: "porte", vers: "cellier", mur: "O", u: -0.9, y: 1.025 },
         { t: "porteEntree", mur: "N", u: -1.15, y: 0 }, { t: "portemanteau", mur: "O", u: 1.0, y: 1.74 }, { t: "chaussures", mur: "O", u: 1.0, y: 0 },
@@ -37,6 +39,8 @@ export default {
         { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.8, y: 1.52, auMur: true, s: 1.35 }, { t: "modele", f: "hanging_picture_frame_01", mur: "E", u: 1.15, y: 1.55, auMur: true, s: 0.7 },
         { t: "modele", f: "potted_plant_01", x: 1.5, z: -1.18 }, { t: "modele", f: "fancy_picture_frame_01", mur: "N", u: 0.22, y: 1.68, auMur: true, s: 0.75 } ] },
       sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [5, 4.2], sol: "bois", camera: [0.5, 1.62, 1.8], yaw: 0.12, pitch: -0.1, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: -0.55, y: 1.6, auMur: true, s: 0.5 }, { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: -1.3, y: 1.58, auMur: true, s: 0.7 },
         { t: "inter", id: "int_sejour", mur: "O", u: -0.2, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.3, y: 0.78 }, { t: "prise", id: "pc_sejour2", mur: "N", u: 1.6, y: 0.35 },
         { t: "porte", vers: "entree", mur: "O", u: 1.2, y: 1.025 }, { t: "porte", vers: "cuisine", mur: "E", u: -1.2, y: 1.025 }, { t: "porte", vers: "terrasse", mur: "S", u: 0.9, y: 1.025 },
         { t: "fenetre", mur: "N", u: 0.9, y: 1.45, w: 1.15, h: 1.15 },
@@ -55,6 +59,8 @@ export default {
         { t: "modele", f: "hanging_picture_frame_01", mur: "O", u: -1.25, y: 1.6, auMur: true, s: 0.8 }, { t: "modele", f: "fancy_picture_frame_01", mur: "E", u: 0.75, y: 2.25, auMur: true, s: 0.6 },
         { t: "modele", f: "potted_plant_01", x: -2.1, z: 1.7 } ] },
       cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3.2, 3], sol: "carrelage", camera: [0.55, 1.62, 1.35], yaw: 0.08, pitch: -0.1, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "fancy_picture_frame_02", mur: "S", u: -0.45, y: 1.6, auMur: true, s: 0.45 }, { t: "cadreTexte", mur: "S", u: -0.92, y: 1.6, titre: "DÉCEMBRE" },
         { t: "inter", id: "int_cuisine", mur: "O", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" },
         { t: "prise", id: "pc_cuisine1", mur: "N", u: -1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: 0.1, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "N", u: 1.3, y: 1.15 }, { t: "prise", id: "pc_cuisine4", mur: "E", u: -0.3, y: 1.15 },
         { t: "porte", vers: "sejour", mur: "O", u: -1.0, y: 1.025 },
@@ -69,6 +75,8 @@ export default {
         { t: "modele", f: "dining_chair_02", x: -0.52, z: -0.32, r: -Math.PI / 2 }, { t: "modele", f: "dining_chair_02", x: -0.55, z: 0.3, r: -Math.PI / 2 - 0.25 },
         { t: "cadreTexte", mur: "E", u: -0.85, y: 1.6, titre: "NOVEMBRE" } ] },
       cellier: { nom: "le cellier", court: "Le cellier", raccourci: "Cellier", taille: [2.8, 3], sol: "beton", camera: [-0.15, 1.62, 1.1], yaw: -0.12, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "cadreTexte", mur: "S", u: 0.2, y: 1.6 }, { t: "crochets", mur: "S", u: 1.0, y: 1.78, w: 0.6, quoi: ["tablier", "torchon"], couleurs: [0x2f4a6b, 0xf2efe6] },
         { t: "inter", id: "int_cellier", mur: "E", u: 0.2, y: 1.1 }, { t: "plafonnier", id: "pl_cellier" },
         { t: "ballon", id: "chauffe_eau", mur: "N", u: 0.3, y: 1.55 }, { t: "boite", id: "sc_ce", mur: "N", u: 0.78, y: 0.95, w: 0.09, h: 0.09 },
         { t: "congelateur", id: "congelateur", x: -0.82, z: -1.19 }, { t: "prise", id: "pc_congelateur", mur: "N", u: -0.82, y: 1.2 },

@@ -188,21 +188,55 @@ export function poseursCage({ M, mat, boite, cyl, cible, pbr, toile, temoins }) 
       [0.25, 0.72, 1.2, 1.66].forEach((y, k) => { const t = boite(w, 0.02, d, alu); t.position.set(0, y, d / 2 + 0.01); g.add(t);
         for (let i = 0; i < 3; i++) { if ((i + k) % 4 === 3) continue; const bw = 0.16 + ((i * 7 + k * 3) % 4) * 0.035, bh = 0.12 + ((i + k * 2) % 3) * 0.06, obj = (i + k) % 2 ? cyl(bw / 2.4, bw / 2.4, bh, mat([0x2f6fd0, 0xe9b400, 0xf1ede3, 0x4a9a35][(i + k) % 4], { roughness: 0.5 }), 14) : boite(bw, bh, 0.2, mat([0xb08a5a, 0x8a6a4a, 0xc9b28a][(i + k) % 3], { roughness: 0.95 })); obj.position.set(-w / 2 + 0.17 + i * 0.28, y + 0.01 + bh / 2, d / 2 + 0.01); g.add(obj); } });
     },
-    // silhouette d'une personne assise (un adolescent à son bureau ou sur son lit) : elle ne bouge pas, elle habite la pièce
+    // une personne assise (un adolescent à son bureau ou sur son lit), en volumes arrondis, vue de dos ou tête baissée :
+    // elle ne bouge pas, elle habite la pièce. Capuche, casque, cheveux longs : on ne voit jamais un visage de près.
     personne(o, lieuId, lieu, G, g) {
-      const peau = mat(o.peau || 0xd9a983, { roughness: 0.8 }), haut = mat(o.haut || 0x3f5a8a, { roughness: 0.95 }), bas = mat(o.bas || 0x2b3440, { roughness: 0.95 }), chev = mat(o.cheveux || 0x2b1d14, { roughness: 1 });
+      const peau = mat(o.peau || 0xd9a983, { roughness: 0.75 }), haut = mat(o.haut || 0x3f5a8a, { roughness: 1 }), bas = mat(o.bas || 0x2b3440, { roughness: 1 }), chev = mat(o.cheveux || 0x2b1d14, { roughness: 1 });
       const a = o.assise === undefined ? 0.46 : o.assise; // hauteur de l'assise
-      const bassin = boite(0.32, 0.16, 0.24, bas); bassin.position.set(0, a + 0.08, 0); g.add(bassin);
-      for (const s of [-1, 1]) { const cu = boite(0.13, 0.12, 0.42, bas); cu.position.set(s * 0.09, a + 0.07, 0.24); g.add(cu); const ja = boite(0.11, a, 0.12, bas); ja.position.set(s * 0.09, a / 2, 0.42); g.add(ja); const pi = boite(0.1, 0.07, 0.24, mat(0xf1ede3, { roughness: 0.7 })); pi.position.set(s * 0.09, 0.035, 0.48); g.add(pi); }
-      const tronc = boite(0.36, 0.5, 0.2, haut); tronc.position.set(0, a + 0.4, 0.03); tronc.rotation.x = 0.16; g.add(tronc);
-      const cou = cyl(0.045, 0.05, 0.08, peau, 10); cou.position.set(0, a + 0.69, 0.08); g.add(cou);
-      const tete = new THREE.Mesh(new THREE.SphereGeometry(0.105, 18, 14), peau); tete.scale.set(0.92, 1.1, 1); tete.position.set(0, a + 0.83, 0.1); tete.castShadow = true; g.add(tete);
-      const ch = new THREE.Mesh(new THREE.SphereGeometry(0.112, 18, 12, 0, 7, 0, Math.PI * 0.58), chev); ch.scale.set(0.95, 1.1, 1.04); ch.position.set(0, a + 0.845, 0.085); g.add(ch);
-      if (o.longs) { const q = boite(0.2, 0.3, 0.06, chev); q.position.set(0, a + 0.66, -0.02); g.add(q); }
-      for (const s of [-1, 1]) { const br = boite(0.09, 0.3, 0.1, haut); br.position.set(s * 0.225, a + 0.47, 0.08); br.rotation.x = -0.5; g.add(br); const av = boite(0.075, 0.075, 0.3, o.manches ? haut : peau); av.position.set(s * 0.2, a + 0.33, 0.3); av.rotation.y = -s * 0.25; g.add(av); }
-      if (o.casque) { const arc = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.012, 6, 16, Math.PI), M.noir); arc.position.set(0, a + 0.85, 0.09); g.add(arc); for (const s of [-1, 1]) { const e = cyl(0.04, 0.04, 0.03, M.noir, 12); e.rotation.z = Math.PI / 2; e.position.set(s * 0.11, a + 0.83, 0.09); g.add(e); } }
-      if (o.telephone) { const t = boite(0.07, 0.012, 0.14, new THREE.MeshStandardMaterial({ color: 0x1b1d20, emissive: 0xbfd8ff, emissiveIntensity: 0.7, roughness: 0.3 })); t.position.set(0, a + 0.36, 0.44); t.rotation.x = -0.6; g.add(t); }
+      const cap = (r, l, m, x, y, z, rx = 0, rz = 0, e = [1, 1, 1]) => { const c = new THREE.Mesh(new THREE.CapsuleGeometry(r, l, 6, 14), m); c.position.set(x, y, z); c.rotation.set(rx, 0, rz); c.scale.set(...e); c.castShadow = true; g.add(c); return c; };
+      const boule = (r, m, x, y, z, e = [1, 1, 1]) => { const c = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 14), m); c.position.set(x, y, z); c.scale.set(...e); c.castShadow = true; g.add(c); return c; };
+      boule(0.17, bas, 0, a + 0.09, 0.0, [1.05, 0.62, 0.9]); // bassin
+      for (const s of [-1, 1]) {
+        cap(0.068, 0.3, bas, s * 0.09, a + 0.075, 0.22, Math.PI / 2);           // cuisse
+        cap(0.052, Math.max(0.05, a - 0.16), bas, s * 0.09, a / 2 + 0.03, 0.43); // jambe
+        boule(0.06, mat(0xf1ede3, { roughness: 0.7 }), s * 0.09, 0.04, 0.48, [0.85, 0.65, 1.9]); // chaussure
+      }
+      cap(0.15, 0.3, haut, 0, a + 0.4, 0.035, 0.18, 0, [1.12, 1, 0.72]); // buste, un peu penché en avant
+      boule(0.16, haut, 0, a + 0.585, 0.06, [1.25, 0.5, 0.72]);           // épaules
+      const T = new THREE.Group(); T.position.set(0, a + 0.7, 0.085); T.rotation.x = o.penchee ? 0.5 : 0.12; g.add(T); // la tête, sur son cou
+      const dans = (m) => { g.remove(m); T.add(m); return m; };
+      dans(cap(0.045, 0.05, peau, 0, 0.0, 0));
+      dans(boule(0.1, peau, 0, 0.125, 0.012, [0.9, 1.08, 1]));
+      const ch = new THREE.Mesh(new THREE.SphereGeometry(0.108, 20, 14, 0, 7, 0, Math.PI * 0.62), chev); ch.scale.set(0.95, 1.1, 1.06); ch.position.set(0, 0.135, -0.004); ch.castShadow = true; T.add(ch);
+      if (o.longs) { dans(cap(0.085, 0.2, chev, 0, -0.01, -0.062, 0.1, 0, [1.15, 1, 0.5])); for (const s of [-1, 1]) dans(cap(0.03, 0.2, chev, s * 0.085, 0.0, 0.03, -0.05, 0, [1, 1, 1.4])); }
+      if (o.capuche) { const cp = new THREE.Mesh(new THREE.SphereGeometry(0.128, 20, 14, 0, 7, 0, Math.PI * 0.72), haut); cp.scale.set(1, 1.1, 1.1); cp.position.set(0, 0.125, -0.012); cp.rotation.x = -0.25; cp.castShadow = true; T.add(cp); dans(boule(0.1, haut, 0, -0.03, -0.07, [1.3, 0.6, 0.8])); }
+      if (o.casque) { const arc = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.013, 8, 20, Math.PI), M.noir); arc.position.set(0, 0.14, 0.005); T.add(arc); for (const s of [-1, 1]) { const e = cyl(0.045, 0.045, 0.035, M.noir, 16); e.rotation.z = Math.PI / 2; e.position.set(s * 0.108, 0.125, 0.005); T.add(e); } }
+      for (const s of [-1, 1]) {
+        cap(0.048, 0.2, haut, s * 0.2, a + 0.45, 0.1, -0.55, s * 0.08);                       // bras
+        cap(0.04, 0.2, o.manches ? haut : peau, s * 0.17, a + 0.31, 0.3, Math.PI / 2 - 0.15, s * 0.3); // avant-bras
+        boule(0.04, peau, s * 0.12, a + 0.3, 0.43, [0.9, 0.7, 1.2]);                            // main
+      }
+      if (o.telephone) { const t = boite(0.07, 0.012, 0.14, new THREE.MeshStandardMaterial({ color: 0x1b1d20, emissive: 0xbfd8ff, emissiveIntensity: 0.7, roughness: 0.3 })); t.position.set(0, a + 0.335, 0.45); t.rotation.x = -0.7; g.add(t); }
       if (o.id) { const z = boite(0.6, a + 1.0, 0.8, M.invisible); z.castShadow = false; z.position.set(0, (a + 1) / 2, 0.2); g.add(z); cible(`essayer:${o.id}`, z, [lieuId]); }
+    },
+    // une tablette fixée au mur, sur deux équerres ; ce qu'on pose dessus se met dans « avec » (y = 0.012)
+    tablette(o, lieuId, lieu, G, g) {
+      const w = o.w || 0.8, d = o.d || 0.18, bois = mat(o.c || 0x8a6a4a, { roughness: 0.7 });
+      const t = boite(w, 0.024, d, bois); t.position.set(0, 0, d / 2); g.add(t);
+      for (const x of [-w / 2 + 0.1, w / 2 - 0.1]) { const e = boite(0.02, 0.12, 0.02, M.noir); e.position.set(x, -0.07, 0.012); g.add(e); const b = boite(0.02, 0.02, d - 0.04, M.noir); b.position.set(x, -0.022, d / 2 - 0.01); g.add(b); }
+    },
+    // une barre à crochets, avec ce qu'on y pend dans une cuisine ou un cellier : tablier, sac en toile, torchon
+    crochets(o, lieuId, lieu, G, g) {
+      const w = o.w || 0.8, quoi = o.quoi || ["tablier", "sac", "torchon"], c = o.couleurs || [0x3f5a4a, 0xd9c9a3, 0xb04a3a, 0x2f4a6b], n = quoi.length;
+      const pl = boite(w, 0.07, 0.018, mat(o.c || 0x8a6a4a, { roughness: 0.7 })); pl.position.z = 0.009; g.add(pl);
+      const etoffe = (lw, lh, coul, x, plis = 30) => { const geo = new THREE.PlaneGeometry(lw, lh, 10, 12), p = geo.attributes.position; for (let i = 0; i < p.count; i++) { const y = p.getY(i), bas = 0.5 - y / lh; p.setZ(i, Math.sin(p.getX(i) * plis) * (0.004 + bas * 0.012)); p.setX(i, p.getX(i) * (0.55 + 0.45 * Math.min(1, bas * 2.2))); } geo.computeVertexNormals(); const m = new THREE.Mesh(geo, mat(coul, { roughness: 1, side: THREE.DoubleSide })); m.position.set(x, -0.04 - lh / 2, 0.04); m.castShadow = true; g.add(m); return m; };
+      quoi.forEach((q, i) => { const x = -w / 2 + (w / n) * (i + 0.5);
+        const cr = cyl(0.006, 0.006, 0.05, M.acier, 8); cr.rotation.x = Math.PI / 2 - 0.5; cr.position.set(x, -0.005, 0.035); g.add(cr); const bt = new THREE.Mesh(new THREE.SphereGeometry(0.009, 8, 6), M.acier); bt.position.set(x, 0.008, 0.058); g.add(bt);
+        if (q === "tablier") { etoffe(0.34, 0.66, c[i % c.length], x, 24); const po = boite(0.14, 0.1, 0.004, mat(new THREE.Color(c[i % c.length]).multiplyScalar(0.8).getHex(), { roughness: 1 })); po.position.set(x, -0.48, 0.058); g.add(po); }
+        else if (q === "sac") { const sc = boite(0.3, 0.34, 0.03, mat(c[i % c.length], { roughness: 1 })); sc.position.set(x, -0.33, 0.035); g.add(sc); for (const s of [-1, 1]) { const an = boite(0.014, 0.17, 0.006, mat(c[i % c.length], { roughness: 1 })); an.position.set(x + s * 0.045, -0.08, 0.04); an.rotation.z = -s * 0.28; g.add(an); } }
+        else if (q === "balayette") { const m = cyl(0.011, 0.011, 0.3, mat(0xc8261e, { roughness: 0.5 }), 10); m.position.set(x, -0.17, 0.04); g.add(m); const br = boite(0.16, 0.07, 0.03, mat(0x2b2f34, { roughness: 1 })); br.position.set(x, -0.35, 0.04); g.add(br); }
+        else etoffe(0.2, 0.44, c[i % c.length], x, 40);
+      });
     },
   };
 }

@@ -198,12 +198,15 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
     paroi.rotation.x = Math.PI / 2; paroi.position.set(x, 0, -0.02); appareil.add(paroi);
     const fond = new THREE.Mesh(new THREE.CircleGeometry(RB, 40), new THREE.MeshStandardMaterial({ color: 0x4a535c, roughness: 0.85, emissive: 0x2c343c, emissiveIntensity: 0.55 }));
     fond.position.set(x, 0, -0.0399); appareil.add(fond);
-    const bord = new THREE.Mesh(new THREE.RingGeometry(RB, RB + 0.0025, 40), new THREE.MeshStandardMaterial({ color: 0x9aa1a8, roughness: 0.7 }));
+    const bord = new THREE.Mesh(new THREE.RingGeometry(RB, RB + 0.004, 40), new THREE.MeshStandardMaterial({ color: 0xaab1b8, roughness: 0.7 }));
     bord.position.set(x, 0, 0.0003); appareil.add(bord);
-    const gaine = new THREE.Group(); gaine.position.set(x - 0.006, -RB + 0.004, -0.026); appareil.add(gaine);
-    for (let k = 0; k < 6; k++) { const anneau = new THREE.Mesh(new THREE.TorusGeometry(0.0078, 0.0018, 6, 18), gaineMat); anneau.rotation.x = Math.PI / 2; anneau.position.y = -k * 0.0035; gaine.add(anneau); }
+    // les deux pattes où se vissent les vis du mécanisme, à gauche et à droite de la boîte
+    for (const sx of [-1, 1]) { const patte = new THREE.Mesh(new THREE.CylinderGeometry(0.0042, 0.0042, 0.03, 12), new THREE.MeshStandardMaterial({ color: 0x7d8790, roughness: 0.7, emissive: 0x39424c, emissiveIntensity: 0.4 })); patte.rotation.x = Math.PI / 2; patte.position.set(x + sx * 0.0295, 0, -0.0155); appareil.add(patte); const trouP = new THREE.Mesh(new THREE.CircleGeometry(0.0016, 10), new THREE.MeshBasicMaterial({ color: 0x0c0c0c })); trouP.position.set(x + sx * 0.0295, 0, -0.0003); appareil.add(trouP); }
+    // la gaine annelée (ICTA) entre par le bas de la boîte : on en voit le bout, d'où sortent les conducteurs
+    const gaine = new THREE.Group(); gaine.position.set(x - 0.006, -RB + 0.017, -0.026); appareil.add(gaine);
+    for (let k = 0; k < 8; k++) { const anneau = new THREE.Mesh(new THREE.TorusGeometry(0.0078, 0.0018, 6, 18), gaineMat); anneau.rotation.x = Math.PI / 2; anneau.position.y = -k * 0.0035; gaine.add(anneau); }
     const bouche = new THREE.Mesh(new THREE.CircleGeometry(0.0062, 18), new THREE.MeshBasicMaterial({ color: 0x0c0c0c })); bouche.rotation.x = -Math.PI / 2; bouche.position.y = 0.0016; gaine.add(bouche);
-    pointsGaine.push(new THREE.Vector3(x - 0.006, -RB + 0.006, -0.026));
+    pointsGaine.push(new THREE.Vector3(x - 0.006, -RB + 0.019, -0.026));
   }
   // conducteurs (tubes recalculés par le jeu quand le mécanisme bouge)
   const fils = new THREE.Group(); appareil.add(fils);
@@ -222,7 +225,7 @@ export function creerMonde(renderer, base = "", { rangees: RANGS = [], etiquette
   const repere = new THREE.Mesh(new THREE.PlaneGeometry(0.008, 0.002), new THREE.MeshBasicMaterial({ color: 0x9a9a9a })); repere.position.set(0, -0.016, 0.0095); touche.add(repere);
   // bornes sous le mécanisme (L et 1), repères gravés, visibles quand on le sort et qu'on le bascule
   const bornesMeca = {};
-  const etiqBornes = new THREE.Mesh(new THREE.PlaneGeometry(0.044, 0.012), new THREE.MeshBasicMaterial({ map: texte([{ t: "L                1", taille: 40 }], { w: 256, h: 64, fond: "#e2ddd2", coul: "#8a857b" }) }));
+  const etiqBornes = new THREE.Mesh(new THREE.PlaneGeometry(0.044, 0.012), new THREE.MeshBasicMaterial({ map: texte([{ t: "L             1", taille: 56 }], { w: 256, h: 72, fond: "#e9e5db", coul: "#1d2228" }) }));
   etiqBornes.rotation.x = Math.PI / 2; etiqBornes.position.set(0, -0.02255, 0.004); meca.add(etiqBornes);
   for (const [id, x] of [["int-E", -0.012], ["int-S", 0.012]]) {
     const b = new THREE.Group(); b.position.set(x, -0.0232, -0.008); meca.add(b);

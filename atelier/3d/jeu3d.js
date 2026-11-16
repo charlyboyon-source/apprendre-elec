@@ -73,7 +73,7 @@ function cadreProche(vue) {
   if (vue === "inter") {
     obj = W.appareil;
     // mécanisme sorti : vue de trois quarts, à distance de bras (le mur, la boîte, la platine et les bornes) ; plus près au téléphone
-    if (e.mecaSorti) { const d = (camera.aspect < 1 ? 0.15 : 0.2) / k; p = [0.03 - d * 0.28, -0.025 - d * 0.12, 0.03 + d * 0.95]; c = [0.03, -0.025, 0.03]; }
+    if (e.mecaSorti) { const d = (camera.aspect < 1 ? 0.15 : 0.2) / k; p = [0.02 - d * 0.58, -0.02 - d * 0.1, 0.025 + d * 0.8]; c = [0.02, -0.02, 0.025]; }
     // plaque retirée : tout le poste (interrupteur et prise) avec un peu de mur autour
     else if (!e.plaque) { const d = 0.2 / k; p = [0.0355 - d * 0.12, -d * 0.06, d]; c = [0.0355, 0, 0]; }
     else { const d = 0.162 / k; p = [0.0355, 0, d]; c = [0.0355, 0, 0]; }
@@ -191,7 +191,7 @@ function majMain() {
   // plaque et vis déposées : visibles seulement devant l'interrupteur démonté (le reste du temps, dans la sacoche)
   const depose = proche && !e.mecaSorti;
   main.plateau.visible = depose && e.vis.some((v) => !v);
-  if (main.plateau.visible) poserEnMain(main.plateau, 0.12, -0.84, 0.3, -0.9, 0);
+  if (main.plateau.visible) poserEnMain(main.plateau, 0.12, -1.25, 0.3, -0.9, 0);
   if (W.plaque.parent === camera) { W.plaque.visible = depose; if (!W.plaque.userData.enVol) poserPlaqueEnMain(); }
 }
 function poserPlaqueEnMain() {
@@ -242,7 +242,10 @@ function filsPrise() {
   const g = W.pointsGaine[1], E = W.E;
   tube("p-rouge", chemin(g, new THREE.Vector3(E - 0.008, -0.004, -0.03), 0.003), W.M.rouge);
   tube("p-bleu", chemin(g.clone().add(new THREE.Vector3(0.003, 0, 0)), new THREE.Vector3(E + 0.008, -0.004, -0.03), 0.003), W.M.bleu);
-  const vj = new THREE.MeshStandardMaterial({ color: 0x3f9a3a, roughness: 0.45 });
+  // le conducteur de protection est vert-jaune : rayé, jamais vert uni
+  const cv = document.createElement("canvas"); cv.width = cv.height = 64; const gv = cv.getContext("2d"); gv.fillStyle = "#3f9a35"; gv.fillRect(0, 0, 64, 64); gv.fillStyle = "#f2d21f"; for (let i = -64; i < 128; i += 32) { gv.beginPath(); gv.moveTo(i, 0); gv.lineTo(i + 16, 0); gv.lineTo(i + 80, 64); gv.lineTo(i + 64, 64); gv.fill(); }
+  const tv = new THREE.CanvasTexture(cv); tv.colorSpace = THREE.SRGBColorSpace; tv.wrapS = tv.wrapT = THREE.RepeatWrapping; tv.repeat.set(5, 1);
+  const vj = new THREE.MeshStandardMaterial({ map: tv, roughness: 0.45 });
   tube("p-terre", chemin(g.clone().add(new THREE.Vector3(-0.003, 0, 0)), new THREE.Vector3(E, 0.01, -0.03), 0.003), vj);
 }
 
@@ -391,7 +394,7 @@ async function visGeste(i) {
   const axe = new THREE.Vector3(0, 0, 1).applyQuaternion(W.appareil.getWorldQuaternion(new THREE.Quaternion()));
   const place = new THREE.Vector3(i ? 0.0295 : -0.0295, 0, 0.0038);
   if (e.vis[i]) {
-    // la vis tourne et sort, puis va sur le plateau aimanté
+    // la vis tourne et sort, puis part dans la poche (en bas de l'image)
     e.vis[i] = false; temps(0.5);
     const p = v.getWorldPosition(new THREE.Vector3());
     const anim = anime(860, (t) => { v.rotation.z = -t * 3 * Math.PI; v.position.z = place.z + 0.012 * t; });
@@ -401,11 +404,12 @@ async function visGeste(i) {
     slot.attach(v);
     const p0 = v.position.clone(), q0 = v.quaternion.clone(), s0 = v.scale.x;
     await anime(380, (t) => { v.position.lerpVectors(p0, new THREE.Vector3(), t); v.quaternion.slerpQuaternions(q0, new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)), t); v.scale.setScalar(s0 + (1 - s0) * t); });
-    dire(e.vis.some(Boolean) ? "Une vis est sortie, posée sur le plateau. Il en reste une." : "Les deux vis sont sorties : touche le mécanisme pour le tirer hors de sa boîte.", "ok");
+    v.visible = false; // la vis est dans la poche : rien ne traîne sous le poste
+    dire(e.vis.some(Boolean) ? "Une vis est sortie, tu la gardes dans ta poche. Il en reste une." : "Les deux vis sont sorties : touche le mécanisme pour le tirer hors de sa boîte.", "ok");
   } else {
-    // la vis revient du plateau, se pose dans son trou, et se visse
+    // la vis revient de la poche, se pose dans son trou, et se visse
     e.vis[i] = true; temps(0.5);
-    W.meca.attach(v);
+    v.visible = true; W.meca.attach(v);
     const p0 = v.position.clone(), q0 = v.quaternion.clone(), s0 = v.scale.x, haut = place.clone().add(new THREE.Vector3(0, 0, 0.012));
     await anime(380, (t) => { v.position.lerpVectors(p0, haut, t); v.quaternion.slerpQuaternions(q0, new THREE.Quaternion(), t); v.scale.setScalar(s0 + (1 - s0) * t); });
     const p = W.appareil.localToWorld(place.clone());

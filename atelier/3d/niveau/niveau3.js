@@ -119,6 +119,8 @@ export default {
       // L'appartement de M. Haddad, infirmier de nuit : il dort le jour (volets à moitié baissés), sa tenue attend sur une chaise,
       // sa tasse de café traîne. Les prises, interrupteurs, boîtes et portes sont là où le câblage les met.
       entree: { nom: "l'entrée", court: "L'entrée", raccourci: "Entrée", taille: [2.6, 2.6], sol: "bois", camera: [0.8, 1.62, 0.85], yaw: 0.8, pitch: -0.08, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: -0.98, y: 1.6, auMur: true, s: 0.42 }, { t: "cadreTexte", mur: "E", u: 1.05, y: 1.6 },
         { t: "tableau", mur: "N", u: 0.2, y: 1.45 }, { t: "inter", id: "int_entree", mur: "N", u: -0.9, y: 1.1 }, { t: "plafonnier", id: "pl_entree" }, { t: "prise", id: "pc_entree", mur: "O", u: -0.85, y: 0.75 }, porte("couloir", "E", 0.2),
         { t: "porteEntree", mur: "S", u: 0, y: 0 }, { t: "portemanteau", mur: "O", u: 0.2, y: 1.74 }, { t: "chaussures", mur: "O", u: 0.2, y: 0 },
         { t: "tapis", x: 0, z: 0.1, w: 1.5, d: 1.1, couleurs: ["#3f5a4a", "#e2d3ae", "#2f3f55"] },
@@ -127,12 +129,16 @@ export default {
         { t: "modele", f: "ornate_mirror_01", mur: "E", u: -0.82, y: 1.5, auMur: true, s: 1.0 },
         { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -0.38, y: 1.78, auMur: true, s: 0.7 } ] },
       couloir: { nom: "le couloir", court: "Le couloir", raccourci: "Couloir", taille: [5.2, 1.6], sol: "bois", camera: [2.1, 1.62, 0], yaw: Math.PI / 2, pitch: -0.05, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: -1.9, y: 1.62, auMur: true, s: 0.42 },
         { t: "inter", id: "int_couloir", mur: "N", u: 1.9, y: 1.1 }, { t: "plafonnier", id: "pl_couloir", x: 0.3 }, { t: "prise", id: "pc_couloir", mur: "S", u: -1.5, y: 0.75 }, { t: "trappe", vers: "plafond", x: -1.2, z: 0 },
         porte("entree", "E", 0), porte("sejour", "N", 0.6), porte("chambre1", "N", -0.9), porte("sdb", "S", 0.2), porte("chambre2", "O", 0),
         { t: "tapis", x: -0.1, z: 0, w: 3.9, d: 0.72, couleurs: ["#6b2a26", "#d9c9a3", "#2f3f55"] },
         { t: "modele", f: "fancy_picture_frame_02", mur: "N", u: 1.32, y: 1.62, auMur: true, s: 0.45 }, { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: 1.45, y: 1.62, auMur: true, s: 0.5 },
         { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -2.0, y: 1.62, auMur: true, s: 0.75 }, { t: "modele", f: "potted_plant_01", x: -2.32, z: 0.6, h: 0.7, sansOmbre: true } ] },
       sejour: { nom: "le séjour", court: "Le séjour", raccourci: "Séjour", taille: [4.6, 4], sol: "bois", camera: [0.45, 1.62, 1.85], yaw: 0.12, pitch: -0.1, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "modele", f: "fancy_picture_frame_01", mur: "S", u: -0.45, y: 1.52, auMur: true, s: 0.4 }, { t: "modele", f: "hanging_picture_frame_02", mur: "S", u: -0.98, y: 1.6, auMur: true, s: 0.6 },
         { t: "inter", id: "int_sejour", mur: "S", u: -1.4, y: 1.1 }, { t: "plafonnier", id: "pl_sejour" }, { t: "prise", id: "pc_sejour1", mur: "N", u: -1.2, y: 0.75 }, { t: "prise", id: "pc_sejour2", mur: "E", u: 0.8, y: 0.75 }, { t: "boite", id: "bd_a", mur: "N", u: 1.5, y: 2.2 },
         porte("couloir", "S", 0.8), porte("cuisine", "O", 0.6),
         { t: "fenetre", mur: "N", u: 0.42, y: 1.45, w: 1.05, h: 1.15, vue: "ville", volet: 0.45, rideaux: 0x6f7f8f },
@@ -147,6 +153,8 @@ export default {
         { t: "modele", f: "fancy_picture_frame_02", mur: "O", u: -1.0, y: 1.62, auMur: true, s: 0.8 }, { t: "modele", f: "wall_clock", mur: "S", u: -0.45, y: 1.95, auMur: true },
         { t: "modele", f: "potted_plant_02", x: -1.95, z: 1.6, h: 0.85, sansOmbre: true } ] },
       cuisine: { nom: "la cuisine", court: "La cuisine", raccourci: "Cuisine", taille: [3, 2.8], sol: "carrelage", camera: [0.95, 1.62, 1.1], yaw: 0.22, pitch: -0.1, objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "cadreTexte", mur: "S", u: -0.62, y: 1.6 }, { t: "modele", f: "hanging_picture_frame_03", mur: "S", u: -1.05, y: 1.6, auMur: true, s: 0.45 },
         { t: "inter", id: "int_cuisine", mur: "E", u: -0.3, y: 1.1 }, { t: "plafonnier", id: "pl_cuisine" }, { t: "prise", id: "pc_cuisine1", mur: "N", u: -0.9, y: 1.15 }, { t: "prise", id: "pc_cuisine2", mur: "N", u: -0.2, y: 1.15 }, { t: "prise", id: "pc_cuisine3", mur: "O", u: 0.6, y: 1.15 },
         porte("sejour", "E", 0.7),
         { t: "cuisine", mur: "N", u: 0, y: 0, x0: -1.5, segments: [{ k: "bas", w: 0.6, haut: true }, { k: "evier", w: 0.8 }, { k: "tiroirs", w: 0.6, haut: true }, { k: "vide", w: 0.55, hotte: true }] },
@@ -167,6 +175,8 @@ export default {
         { t: "modele", f: "painted_wooden_chair_02", x: 1.15, z: 0.75, r: -2.0, s: 0.74, avec: [ { t: "vetement", x: 0, y: 0.94, z: -0.2, w: 0.44, l: 1.0, c: 0xdfe9f2 } ] },
         { t: "modele", f: "hanging_picture_frame_03", mur: "N", u: -0.6, y: 1.92, auMur: true, s: 0.8 } ] },
       chambre2: { nom: "la chambre 2", court: "La chambre du fond", raccourci: "Chambre 2", taille: [3, 3.2], sol: "bois", objets: [
+        // murs du côté opposé à l'arrivée (tâche 13.2) : ils ne sont plus nus
+        { t: "tablette", mur: "S", u: -0.95, y: 1.42, w: 0.8, avec: [ { t: "livres", x: -0.12, y: 0.012, z: 0.09, w: 0.5, g: 5, n: 12 }, { t: "modele", f: "ceramic_vase_01", x: 0.28, y: 0.012, z: 0.09, s: 0.5 } ] },
         { t: "inter", id: "int_chambre2", mur: "E", u: 0.9, y: 1.1 }, { t: "plafonnier", id: "pl_chambre2" }, { t: "prise", id: "pc_chambre2", mur: "N", u: -0.8, y: 0.75 }, porte("couloir", "E", -0.2),
         { t: "fenetre", mur: "N", u: 0.45, y: 1.55, w: 0.9, h: 0.95, vue: "ville", volet: 0.3, rideaux: 0x8a6a44 },
         // la chambre du fond sert de bureau et de débarras
