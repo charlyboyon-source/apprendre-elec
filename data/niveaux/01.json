@@ -102,22 +102,22 @@
     {
       "question": "De quoi est composé un atome ?",
       "choix": [
-        "Uniquement d'électrons",
-        "Un noyau positif entouré d'électrons négatifs",
-        "Un noyau négatif entouré de protons",
-        "Seulement de cuivre"
+        "D'un noyau négatif entouré d'électrons positifs",
+        "D'un noyau positif entouré d'électrons négatifs",
+        "D'un noyau neutre entouré d'électrons positifs",
+        "D'électrons libres uniquement, sans noyau"
       ],
       "bonne": 1,
       "explication": "Un noyau chargé + au centre, des électrons chargés − autour.",
       "renvoi_lecon": 1
     },
     {
-      "question": "Quelle est la charge d'un électron ?",
+      "question": "Quelle est la charge électrique d'un électron ?",
       "choix": [
         "Positive",
         "Négative",
         "Neutre",
-        "Elle change tout le temps"
+        "Positive ou négative selon le matériau"
       ],
       "bonne": 1,
       "explication": "L'électron est négatif (−) ; le noyau, lui, est positif (+).",
@@ -126,10 +126,10 @@
     {
       "question": "Qu'est-ce qu'un électron libre dans un métal ?",
       "choix": [
-        "Un électron arraché et perdu",
-        "Un électron peu retenu qui passe d'atome en atome",
-        "Un proton qui s'échappe",
-        "Un atome sans noyau"
+        "Un électron sorti du fil, qui se déplace dans l'air",
+        "Un électron peu retenu, qui passe d'atome en atome",
+        "Un électron fixé définitivement à son noyau",
+        "Un électron chargé positivement"
       ],
       "bonne": 1,
       "explication": "Dans les métaux, les électrons de la couche externe sont peu retenus : ils circulent d'atome en atome.",
@@ -148,24 +148,24 @@
       "renvoi_lecon": 1
     },
     {
-      "question": "Dans un fil de cuivre non branché, les électrons libres :",
+      "question": "Que font les électrons libres dans un fil de cuivre qui n'est relié à aucune source ?",
       "choix": [
-        "N'existent pas",
-        "Se déplacent en désordre",
-        "Avancent tous vers le +",
-        "Sont collés au noyau"
+        "Ils restent immobiles autour de leur noyau",
+        "Ils s'agitent en désordre, dans tous les sens",
+        "Ils avancent tous vers la même extrémité du fil",
+        "Ils sortent peu à peu du fil"
       ],
       "bonne": 1,
       "explication": "Au repos, ils s'agitent dans tous les sens. Il faut une tension pour les faire avancer ensemble.",
       "renvoi_lecon": 1
     },
     {
-      "question": "Un conducteur est un matériau qui :",
+      "question": "Qu'est-ce qu'un matériau conducteur ?",
       "choix": [
-        "Bloque le courant",
-        "Laisse passer le courant",
-        "Produit le courant",
-        "Stocke le courant"
+        "Un matériau qui bloque le passage du courant",
+        "Un matériau qui laisse passer le courant",
+        "Un matériau qui produit le courant",
+        "Un matériau qui stocke le courant"
       ],
       "bonne": 1,
       "explication": "Le conducteur laisse circuler le courant grâce à ses électrons libres.",
@@ -186,22 +186,22 @@
     {
       "question": "Pourquoi un métal conduit-il le courant ?",
       "choix": [
-        "Parce qu'il est dur",
+        "Parce qu'il est plus dense qu'un isolant",
         "Parce qu'il contient des électrons libres",
-        "Parce qu'il est brillant",
-        "Parce qu'il est lourd"
+        "Parce que ses atomes n'ont pas de noyau",
+        "Parce qu'il chauffe quand le courant passe"
       ],
       "bonne": 1,
       "explication": "Ce sont les électrons libres, abondants dans les métaux, qui transportent le courant.",
       "renvoi_lecon": 2
     },
     {
-      "question": "À quoi sert la gaine en PVC qui entoure un conducteur ?",
+      "question": "À quoi sert l'isolant en PVC qui entoure l'âme en cuivre d'un fil électrique ?",
       "choix": [
-        "À conduire le courant",
-        "À isoler et protéger",
-        "À augmenter l'intensité",
-        "À refroidir le cuivre"
+        "À conduire une partie du courant",
+        "À isoler le cuivre et à protéger des contacts",
+        "À augmenter l'intensité transportée",
+        "À refroidir l'âme en cuivre"
       ],
       "bonne": 1,
       "explication": "Le PVC est isolant : il empêche le courant de partir où il ne faut pas et protège l'utilisateur.",
@@ -220,103 +220,103 @@
       "renvoi_lecon": 2
     },
     {
-      "question": "Le manche isolant d'un tournevis sert à :",
+      "question": "À quoi sert le manche isolant d'un tournevis d'électricien ?",
       "choix": [
-        "Mieux visser",
-        "Empêcher l'électricien de faire partie du circuit",
-        "Conduire le courant jusqu'à la vis",
-        "Décorer l'outil"
+        "À serrer plus fort les bornes",
+        "À éviter que le courant traverse la main de l'électricien",
+        "À conduire le courant jusqu'à la vis",
+        "À repérer la phase sans appareil de mesure"
       ],
       "bonne": 1,
       "explication": "L'isolant du manche évite que le courant ne traverse l'électricien : c'est une protection.",
       "renvoi_lecon": 2
     },
     {
-      "question": "Le courant électrique, c'est :",
+      "question": "Qu'est-ce que le courant électrique dans un fil ?",
       "choix": [
-        "Des électrons immobiles",
-        "Un déplacement ordonné d'électrons",
-        "De la chaleur qui circule",
-        "Une réaction chimique"
+        "Une agitation désordonnée des électrons",
+        "Un déplacement d'ensemble des électrons libres, dans le même sens",
+        "Un déplacement des noyaux des atomes",
+        "De la chaleur qui se propage dans le cuivre"
       ],
       "bonne": 1,
       "explication": "Le courant est le déplacement d'ensemble des électrons libres, tous dans le même sens.",
       "renvoi_lecon": 3
     },
     {
-      "question": "Le sens conventionnel du courant va :",
+      "question": "À l'extérieur du générateur, dans quel sens va le sens conventionnel du courant ?",
       "choix": [
-        "Du − vers le +",
-        "Du + vers le −",
-        "Dans les deux sens à la fois",
-        "Du neutre vers la terre"
+        "De la borne − vers la borne +",
+        "De la borne + vers la borne −",
+        "Du neutre vers la terre",
+        "De la terre vers la borne +"
       ],
       "bonne": 1,
       "explication": "Par convention, sur les schémas, le courant va du + vers le − à l'extérieur du générateur.",
       "renvoi_lecon": 3
     },
     {
-      "question": "En réalité, dans un métal, les électrons se déplacent :",
+      "question": "Dans un fil relié à une pile, dans quel sens les électrons se déplacent-ils réellement ?",
       "choix": [
-        "Du + vers le −",
-        "Du − vers le +",
-        "Ils ne bougent pas",
-        "Au hasard, même branché"
+        "De la borne + vers la borne −",
+        "De la borne − vers la borne +",
+        "Ils restent immobiles : seule la tension se déplace",
+        "Des deux bornes vers le milieu du fil"
       ],
       "bonne": 1,
       "explication": "Les électrons (négatifs) vont du − vers le + — l'inverse du sens conventionnel.",
       "renvoi_lecon": 3
     },
     {
-      "question": "Sur un schéma, la flèche du courant indique :",
+      "question": "Les électrons vont de la borne − vers la borne +. Pourquoi les schémas indiquent-ils pourtant le courant du + vers le − ?",
       "choix": [
-        "Le sens réel des électrons",
-        "Le sens conventionnel (+ vers −)",
-        "Le sens du vent",
-        "La direction de la terre"
+        "Parce que les électrons changent de sens dans les récepteurs",
+        "Parce que ce sens a été fixé avant la découverte de l'électron, puis conservé",
+        "Parce que le courant et les électrons n'ont aucun rapport",
+        "Parce que ce sens n'est valable qu'en courant alternatif"
       ],
       "bonne": 1,
-      "explication": "La flèche représente le sens conventionnel, celui des calculs et des schémas.",
+      "explication": "Le sens + vers − a été choisi avant qu'on connaisse l'électron. On l'a gardé : c'est le sens conventionnel, celui des schémas et des calculs.",
       "renvoi_lecon": 3
     },
     {
-      "question": "Pourquoi la lampe s'allume instantanément alors que les électrons avancent lentement ?",
+      "question": "Les électrons avancent très lentement dans un fil. Pourquoi la lampe s'allume-t-elle pourtant dès qu'on ferme l'interrupteur ?",
       "choix": [
-        "Les électrons vont en fait très vite",
-        "L'effet se transmet de proche en proche, comme des dominos",
-        "La lampe stockait de l'électricité",
-        "C'est une illusion d'optique"
+        "Parce que les électrons accélèrent dès que le circuit est fermé",
+        "Parce que le fil est déjà plein d'électrons : la poussée se transmet de proche en proche",
+        "Parce que la lampe garde une réserve d'électricité",
+        "Parce que le courant passe par l'isolant, plus rapide que le cuivre"
       ],
       "bonne": 1,
-      "explication": "Comme un tuyau déjà plein : on pousse d'un côté, ça sort de l'autre aussitôt.",
+      "explication": "Comme un tuyau déjà plein d'eau : on pousse d'un côté, ça sort de l'autre aussitôt.",
       "renvoi_lecon": 3
     },
     {
-      "question": "À quelle vitesse avancent les électrons dans un fil ?",
+      "question": "À quelle vitesse les électrons avancent-ils dans un fil parcouru par un courant ?",
       "choix": [
         "À la vitesse de la lumière",
-        "Très lentement : de quelques millimètres à quelques centimètres par minute",
-        "À 100 km/h",
-        "Ils ne se déplacent jamais"
+        "De quelques millimètres à quelques centimètres par minute",
+        "À quelques mètres par seconde",
+        "À plusieurs kilomètres par seconde"
       ],
       "bonne": 1,
       "explication": "Leur dérive est très lente, mais l'impulsion se propage quasi instantanément.",
       "renvoi_lecon": 3
     },
     {
-      "question": "L'intensité du courant se mesure en :",
+      "question": "En quelle unité mesure-t-on l'intensité du courant ?",
       "choix": [
-        "Volts",
-        "Ampères",
-        "Ohms",
-        "Watts"
+        "En volts (V)",
+        "En ampères (A)",
+        "En ohms (Ω)",
+        "En watts (W)"
       ],
       "bonne": 1,
       "explication": "L'intensité (I) se mesure en ampères (A).",
       "renvoi_lecon": 5
     },
     {
-      "question": "Quel est le symbole de l'intensité ?",
+      "question": "Par quelle lettre note-t-on l'intensité du courant dans les formules ?",
       "choix": [
         "U",
         "I",
@@ -328,139 +328,139 @@
       "renvoi_lecon": 5
     },
     {
-      "question": "Dans l'analogie de l'eau, l'intensité correspond :",
+      "question": "Si l'on compare un circuit électrique à un circuit d'eau, à quoi correspond l'intensité ?",
       "choix": [
-        "À la pression",
-        "Au débit",
-        "À l'étranglement",
-        "À la température"
+        "À la pression de l'eau",
+        "Au débit de l'eau",
+        "À l'étranglement du tuyau",
+        "À la longueur du tuyau"
       ],
       "bonne": 1,
       "explication": "L'intensité est le débit ; la pression est la tension ; l'étranglement est la résistance.",
       "renvoi_lecon": 5
     },
     {
-      "question": "Comment branche-t-on un ampèremètre ?",
+      "question": "Comment branche-t-on un ampèremètre pour mesurer l'intensité dans un circuit ?",
       "choix": [
-        "En parallèle, aux bornes",
-        "En série, dans le circuit",
-        "Entre phase et terre",
-        "Peu importe"
+        "En parallèle, aux bornes du récepteur",
+        "En série, pour que le courant le traverse",
+        "Entre la phase et la terre",
+        "Entre le neutre et la terre"
       ],
       "bonne": 1,
       "explication": "En série : le courant doit le traverser pour être compté.",
       "renvoi_lecon": 5
     },
     {
-      "question": "Pourquoi l'ampèremètre se branche-t-il en série ?",
+      "question": "Pourquoi un ampèremètre se branche-t-il en série dans le circuit ?",
       "choix": [
-        "Pour mesurer la tension",
-        "Pour que le courant le traverse et soit compté",
-        "Pour le protéger des surtensions",
-        "Pour aller plus vite"
+        "Parce qu'il doit comparer deux points du circuit",
+        "Parce que tout le courant à mesurer doit le traverser",
+        "Parce qu'il doit être hors tension pour mesurer",
+        "Parce qu'il fournit lui-même le courant de mesure"
       ],
       "bonne": 1,
       "explication": "Mesurer un débit suppose que tout le courant passe par l'appareil : donc en série.",
       "renvoi_lecon": 5
     },
     {
-      "question": "Quel outil mesure l'intensité sans couper le fil ?",
+      "question": "Quel appareil mesure l'intensité sans ouvrir le circuit ?",
       "choix": [
         "Le voltmètre",
         "La pince ampèremétrique",
         "L'ohmmètre",
-        "Le tournevis testeur"
+        "L'ampèremètre branché en série"
       ],
       "bonne": 1,
       "explication": "La pince ampèremétrique se referme autour du conducteur et lit le courant sans coupure.",
       "renvoi_lecon": 5
     },
     {
-      "question": "La tension se mesure en :",
+      "question": "En quelle unité mesure-t-on la tension ?",
       "choix": [
-        "Ampères",
-        "Ohms",
-        "Volts",
-        "Watts"
+        "En ampères (A)",
+        "En ohms (Ω)",
+        "En volts (V)",
+        "En watts (W)"
       ],
       "bonne": 2,
       "explication": "La tension (U) se mesure en volts (V).",
       "renvoi_lecon": 6
     },
     {
-      "question": "Quel est le symbole de la tension ?",
+      "question": "Par quelle lettre note-t-on la tension dans les formules ?",
       "choix": [
         "I",
         "R",
         "U",
-        "Q"
+        "P"
       ],
       "bonne": 2,
       "explication": "U pour la tension (différence de potentiel).",
       "renvoi_lecon": 6
     },
     {
-      "question": "La tension est aussi appelée :",
+      "question": "Quel autre nom donne-t-on à la tension électrique ?",
       "choix": [
-        "Différence de potentiel",
-        "Débit",
-        "Résistance interne",
-        "Fréquence"
+        "La différence de potentiel",
+        "Le débit de courant",
+        "La résistance interne",
+        "La puissance"
       ],
       "bonne": 0,
       "explication": "Tension = différence de potentiel entre deux points.",
       "renvoi_lecon": 6
     },
     {
-      "question": "Comment branche-t-on un voltmètre ?",
+      "question": "Comment branche-t-on un voltmètre pour mesurer une tension ?",
       "choix": [
-        "En série",
-        "En parallèle, aux bornes",
-        "Entre deux phases",
-        "Toujours hors tension"
+        "En série, pour que le courant le traverse",
+        "En parallèle, aux bornes de l'élément",
+        "En série, sur le conducteur de neutre",
+        "Sur un circuit hors tension uniquement"
       ],
       "bonne": 1,
       "explication": "En parallèle, aux bornes de l'élément dont on compare le potentiel.",
       "renvoi_lecon": 6
     },
     {
-      "question": "La tension d'une prise de courant domestique est d'environ :",
+      "question": "Quelle tension mesure-t-on entre les deux alvéoles d'une prise de courant d'un logement ?",
       "choix": [
-        "12 V",
-        "230 V",
-        "400 V",
-        "1,5 V"
+        "Environ 12 V",
+        "Environ 230 V",
+        "Environ 400 V",
+        "Environ 1,5 V"
       ],
       "bonne": 1,
       "explication": "230 V entre phase et neutre, la tension normalisée du logement.",
       "renvoi_lecon": 6
     },
     {
-      "question": "Dans l'analogie de l'eau, la tension correspond :",
+      "question": "Si l'on compare un circuit électrique à un circuit d'eau, à quoi correspond la tension ?",
       "choix": [
-        "Au débit",
-        "À la différence de pression",
-        "À l'étranglement",
-        "Au volume du réservoir"
+        "Au débit de l'eau",
+        "À la différence de pression entre deux points",
+        "À l'étranglement du tuyau",
+        "À la quantité d'eau dans le réservoir"
       ],
       "bonne": 1,
       "explication": "La tension est la différence de pression qui pousse l'eau (le courant).",
       "renvoi_lecon": 6
     },
     {
-      "question": "La résistance se mesure en :",
+      "question": "En quelle unité mesure-t-on la résistance ?",
       "choix": [
-        "Volts",
-        "Ampères",
-        "Ohms",
-        "Hertz"
+        "En volts (V)",
+        "En ampères (A)",
+        "En ohms (Ω)",
+        "En hertz (Hz)"
       ],
       "bonne": 2,
       "explication": "La résistance (R) se mesure en ohms (Ω).",
       "renvoi_lecon": 7
     },
     {
-      "question": "Quel est le symbole de la résistance ?",
+      "question": "Par quelle lettre note-t-on la résistance dans les formules ?",
       "choix": [
         "R",
         "U",
@@ -472,60 +472,60 @@
       "renvoi_lecon": 7
     },
     {
-      "question": "À longueur et matériau égaux, un fil plus GROS (grosse section) a une résistance :",
+      "question": "À longueur et matériau identiques, que peut-on dire de la résistance d'un fil de plus grosse section ?",
       "choix": [
-        "Plus grande",
-        "Plus faible",
-        "Identique",
-        "Nulle"
+        "Elle est plus grande",
+        "Elle est plus faible",
+        "Elle est identique",
+        "Elle ne dépend que de la longueur"
       ],
       "bonne": 1,
       "explication": "Plus la section est grosse, plus le courant passe facilement : résistance plus faible.",
       "renvoi_lecon": 7
     },
     {
-      "question": "À section et matériau égaux, un fil plus LONG a une résistance :",
+      "question": "À section et matériau identiques, que peut-on dire de la résistance d'un fil plus long ?",
       "choix": [
-        "Plus faible",
-        "Plus grande",
-        "Identique",
-        "Nulle"
+        "Elle est plus faible",
+        "Elle est plus grande",
+        "Elle est identique",
+        "Elle ne dépend que de la section"
       ],
       "bonne": 1,
       "explication": "Plus le fil est long, plus il freine le courant : résistance plus grande.",
       "renvoi_lecon": 7
     },
     {
-      "question": "Quels sont les trois facteurs de la résistance d'un fil ?",
+      "question": "De quels trois facteurs dépend la résistance d'un fil ?",
       "choix": [
-        "Couleur, marque, prix",
-        "Longueur, section, matériau",
-        "Tension, courant, puissance",
-        "La température ambiante seulement"
+        "De sa longueur, de la couleur de son isolant et de son matériau",
+        "De sa longueur, de sa section et de son matériau",
+        "De la tension, de l'intensité et de la puissance",
+        "De sa section, de la tension et de la fréquence"
       ],
       "bonne": 1,
       "explication": "Longueur, section et matériau déterminent la résistance d'un conducteur.",
       "renvoi_lecon": 7
     },
     {
-      "question": "L'ohmmètre se branche :",
+      "question": "Dans quelle condition mesure-t-on une résistance avec un ohmmètre ?",
       "choix": [
         "Sur un circuit sous tension",
         "Sur un circuit hors tension",
-        "En série uniquement",
-        "Sur la prise de terre"
+        "Peu importe : l'ohmmètre s'adapte à la tension",
+        "Sous tension, mais uniquement en très basse tension"
       ],
       "bonne": 1,
       "explication": "Hors tension : l'ohmmètre injecte son propre courant de mesure, sinon la mesure est fausse et l'appareil en danger.",
       "renvoi_lecon": 7
     },
     {
-      "question": "Quel trio grandeur · symbole · unité est correct ?",
+      "question": "Quelle association grandeur, symbole et unité est correcte ?",
       "choix": [
-        "Tension · I · ampère",
-        "Intensité · I · ampère",
-        "Résistance · U · volt",
-        "Tension · R · ohm"
+        "Tension, I, ampère",
+        "Intensité, I, ampère",
+        "Résistance, U, volt",
+        "Tension, R, ohm"
       ],
       "bonne": 1,
       "explication": "Intensité = I = ampère. (Tension = U = volt ; résistance = R = ohm.)",
@@ -544,23 +544,23 @@
       "renvoi_lecon": 8
     },
     {
-      "question": "Le mot « voltage » :",
+      "question": "En français technique, comment appelle-t-on la grandeur qui se mesure en volts ?",
       "choix": [
-        "Désigne la tension en français technique",
-        "N'existe pas en français technique",
-        "Est l'unité de l'intensité",
-        "Sert à mesurer la résistance"
+        "Le voltage",
+        "La tension",
+        "L'ampérage",
+        "La puissance"
       ],
       "bonne": 1,
-      "explication": "En français technique, on dit « tension » (en volts). « Voltage » est un anglicisme à éviter.",
+      "explication": "On dit « tension » (en volts). « Voltage » est un anglicisme à éviter en français technique.",
       "renvoi_lecon": 8
     },
     {
-      "question": "La relation qui lie U, R et I s'appelle :",
+      "question": "Comment s'appelle la relation qui lie la tension U, la résistance R et l'intensité I ?",
       "choix": [
         "La loi de Joule",
         "La loi d'Ohm",
-        "La loi de Newton",
+        "La loi des mailles",
         "La loi des nœuds"
       ],
       "bonne": 1,
@@ -568,79 +568,79 @@
       "renvoi_lecon": 8
     },
     {
-      "question": "Si on augmente la tension appliquée à une résistance fixe, l'intensité :",
+      "question": "La résistance d'un circuit ne change pas et on augmente la tension. Que devient l'intensité ?",
       "choix": [
-        "Diminue",
-        "Augmente",
-        "Ne change pas",
-        "Devient nulle"
+        "Elle diminue",
+        "Elle augmente",
+        "Elle ne change pas",
+        "Elle devient nulle"
       ],
       "bonne": 1,
       "explication": "Plus on pousse (tension), plus le débit (intensité) grimpe, à résistance constante.",
       "renvoi_lecon": 8
     },
     {
-      "question": "Quelles sont les quatre grandes façons de produire de l'électricité ?",
+      "question": "Par quel phénomène un alternateur produit-il de l'électricité ?",
       "choix": [
-        "Magnétisme, photovoltaïque, chimique, statique",
-        "Cuivre, aluminium, or, fer",
-        "Phase, neutre, terre, masse",
-        "Volt, ampère, ohm, watt"
+        "Par magnétisme : un aimant tourne devant une bobine",
+        "Par réaction chimique entre deux bornes",
+        "Par l'action de la lumière sur un matériau",
+        "Par frottement entre deux matériaux"
       ],
       "bonne": 0,
-      "explication": "Magnétisme (alternateur), photovoltaïque (panneau), chimique (pile/batterie) et statique (frottement, marginal).",
+      "explication": "Dans un alternateur, un aimant tourne devant une bobine de fil : ce mouvement crée un courant alternatif. La chimie, c'est la pile ; la lumière, le panneau photovoltaïque ; le frottement, l'électricité statique.",
       "renvoi_lecon": 4
     },
     {
-      "question": "Quelle source produit du courant CONTINU ?",
+      "question": "Laquelle de ces sources produit du courant continu ?",
       "choix": [
-        "L'alternateur",
-        "La pile (voie chimique)",
-        "Le réseau électrique",
-        "Une éolienne"
+        "L'alternateur d'une centrale",
+        "La pile",
+        "Le réseau de distribution",
+        "L'éolienne"
       ],
       "bonne": 1,
       "explication": "Pile, batterie et panneau photovoltaïque donnent du continu. Alternateur, éolienne et réseau donnent de l'alternatif.",
       "renvoi_lecon": 4
     },
     {
-      "question": "Quelle source produit du courant ALTERNATIF ?",
+      "question": "Laquelle de ces sources produit du courant alternatif ?",
       "choix": [
-        "Une pile",
-        "Un panneau photovoltaïque",
-        "Un alternateur (magnétisme)",
-        "Une batterie de voiture"
+        "La pile",
+        "Le panneau photovoltaïque",
+        "L'alternateur",
+        "La batterie de voiture"
       ],
       "bonne": 2,
       "explication": "Le magnétisme — un aimant qui tourne devant une bobine — produit de l'alternatif : c'est l'alternateur.",
       "renvoi_lecon": 4
     },
     {
-      "question": "Le courant qui arrive par la prise de ton logement est :",
+      "question": "Quel type de courant le réseau fournit-il aux prises d'un logement ?",
       "choix": [
-        "Continu",
-        "Alternatif",
-        "Statique",
-        "Sans tension"
+        "Du courant continu",
+        "Du courant alternatif",
+        "De l'électricité statique",
+        "Du courant continu redressé"
       ],
       "bonne": 1,
       "explication": "Le réseau de distribution fournit du courant alternatif (détaillé au module 4).",
       "renvoi_lecon": 4
     },
     {
-      "question": "Un panneau photovoltaïque fournit :",
+      "question": "Quel type de courant un panneau photovoltaïque produit-il ?",
       "choix": [
-        "Du courant alternatif",
+        "Du courant alternatif à 50 Hz",
         "Du courant continu",
         "De l'électricité statique",
-        "Du courant triphasé"
+        "Du courant alternatif à haute fréquence"
       ],
       "bonne": 1,
       "explication": "La lumière sur le panneau crée un courant continu.",
       "renvoi_lecon": 4
     },
     {
-      "question": "Faire tourner un moteur, un volet roulant ou une VMC, c'est un usage appelé :",
+      "question": "Faire tourner le moteur d'un volet roulant ou d'une VMC correspond à quel usage de l'électricité ?",
       "choix": [
         "Le chauffage",
         "L'éclairage",
