@@ -3,6 +3,11 @@
 const ID = "GTM-P3BHQXP6"; // balise Google de la propriété apprendre-electricite.fr
 const CLE = "apprendreelec-mesure-v1"; // "oui" | "non"
 
+// Les essais ne sont pas comptés : la mesure ne marche que sur le vrai site,
+// et jamais dans un navigateur piloté par un script (joueur automatique, Chrome sans fenêtre).
+const HOTES = ["apprendre-electricite.fr", "www.apprendre-electricite.fr"];
+const VRAIE_VISITE = HOTES.includes(location.hostname) && !navigator.webdriver;
+
 function lireChoix() {
   try { return localStorage.getItem(CLE); } catch { return null; }
 }
@@ -11,7 +16,7 @@ function ecrireChoix(v) {
 }
 
 function chargerMesure() {
-  if (!ID || window.__mesureChargee) return;
+  if (!ID || !VRAIE_VISITE || window.__mesureChargee) return;
   window.__mesureChargee = true;
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () { window.dataLayer.push(arguments); };
@@ -23,7 +28,7 @@ function chargerMesure() {
 }
 
 function afficherBandeau() {
-  if (document.querySelector(".bandeau-mesure")) return;
+  if (!VRAIE_VISITE || document.querySelector(".bandeau-mesure")) return;
   const b = document.createElement("div");
   b.className = "bandeau-mesure";
   b.setAttribute("role", "dialog");
@@ -44,7 +49,7 @@ function afficherBandeau() {
   document.body.appendChild(b);
 }
 
-if (ID) {
+if (ID && VRAIE_VISITE) {
   const choix = lireChoix();
   if (choix === "oui") chargerMesure();
   else if (choix !== "non") afficherBandeau();
