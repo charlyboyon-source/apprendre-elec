@@ -310,3 +310,12 @@
 .schema-liste li { background: var(--fond-2); border: 1px solid var(--bordure); border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; line-height: 1.45; }
 .schema-liste li span { color: var(--texte-2); }
 .lien-schema { font-weight: 700; }
+
+/* Schéma ouvert en grand par-dessus la page */
+.schema-zoom { display: block; cursor: zoom-in; }
+.zoom-ouvert { overflow: hidden; }
+.zoom-voile { position: fixed; inset: 0; z-index: 1000; background: rgba(16, 20, 28, 0.92); display: flex; align-items: center; justify-content: center; padding: 56px 10px 10px; }
+.zoom-cadre { max-width: 100%; max-height: 100%; overflow: auto; -webkit-overflow-scrolling: touch; background: #fff; border-radius: 10px; }
+.zoom-cadre img { display: block; width: min(1400px, 96vw); height: auto; }
+@media (max-width: 700px) { .zoom-cadre img { width: 900px; max-width: none; } }
+.zoom-fermer { position: absolute; top: 8px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #fff; color: #1c2530; font-size: 1.3rem; font-weight: 800; cursor: pointer; }

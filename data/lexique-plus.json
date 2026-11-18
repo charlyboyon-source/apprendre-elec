@@ -168,7 +168,9 @@
         "Quelle résistance de terre faut-il en régime TT ?",
         "100 Ω au plus avec le différentiel 500 mA du disjoncteur de branchement : 50 V / 0,5 A = 100 Ω, pour que la tension de contact reste sous 50 V."
       ]
-    ]
+    ],
+    "schema": "schema-unifilaire",
+    "schema_texte": "📐 Lire le schéma unifilaire d'un tableau"
   },
   "prise de terre": {
     "chantier": "Sur une construction neuve, la meilleure solution est la boucle en fond de fouille, posée avant de couler les fondations. Sinon, on enfonce un piquet. On mesure ensuite sa résistance en ouvrant la barrette de la borne principale de terre : elle doit valoir 100 Ω au plus, parce que l'AGCP a une sensibilité de 500 mA (50 V / 0,5 A = 100 Ω).",
@@ -419,7 +421,8 @@
         "Peut-on enterrer une gaine ICTA ?",
         "Non, l'ICTA n'est pas fait pour être enterré. Pour une canalisation enterrée, on utilise un TPC, rouge pour le courant fort."
       ]
-    ]
+    ],
+    "h1": "Gaine ICTA (conduit ICTA)"
   },
   "IRL": {
     "chantier": "Dans un garage ou un local technique, on pose les conducteurs dans du tube IRL fixé au mur par des colliers. Il est rigide : on change de direction avec des coudes, et on trace au niveau ou au cordeau pour que la pose apparente soit propre.",
@@ -492,7 +495,8 @@
         "Quelle différence entre TPC et ICTA ?",
         "Le TPC est fait pour être enterré. L'ICTA, la gaine grise annelée, est fait pour la pose encastrée dans les murs, les cloisons et les dalles : on ne l'enterre pas."
       ]
-    ]
+    ],
+    "h1": "Gaine TPC (conduit TPC)"
   },
   "télérupteur": {
     "chantier": "Dès qu'on commande un éclairage depuis trois endroits ou plus (un long couloir, une cage d'escalier), on pose un télérupteur au tableau et des boutons-poussoirs en parallèle. Chaque impulsion fait basculer son contact : on entend un « clac » au tableau. S'il ne claque plus, on regarde la commande ; s'il claque sans que la lumière vienne, la puissance.",
@@ -2445,6 +2449,8 @@
         "Peut-on remplacer un disjoncteur par un plus gros s'il saute souvent ?",
         "Non. Le calibre protège le conducteur : 16 A au maximum en 1,5 mm², 20 A en 2,5 mm². On cherche la cause du déclenchement."
       ]
-    ]
+    ],
+    "schema": "schema-unifilaire",
+    "schema_texte": "📐 Lire le schéma unifilaire d'un tableau"
   }
 }
