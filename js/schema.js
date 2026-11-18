@@ -11,7 +11,7 @@ function ouvrir(lien) {
   origine = lien;
   const petite = lien.querySelector("img");
   voile = document.createElement("div");
-  voile.className = "zoom-voile"; voile.setAttribute("role", "dialog"); voile.setAttribute("aria-modal", "true"); voile.setAttribute("aria-label", "Schéma en grand");
+  voile.className = "zoom-voile" + (lien.hasAttribute("data-large") ? " large" : ""); voile.setAttribute("role", "dialog"); voile.setAttribute("aria-modal", "true"); voile.setAttribute("aria-label", "Schéma en grand");
   const croix = document.createElement("button");
   croix.type = "button"; croix.className = "zoom-fermer"; croix.setAttribute("aria-label", "Fermer le schéma"); croix.textContent = "✕";
   const cadre = document.createElement("div"); cadre.className = "zoom-cadre";

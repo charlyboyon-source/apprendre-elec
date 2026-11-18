@@ -22,7 +22,7 @@
    ["Va-et-vient 2", "L (commun)", "Retour lampe, vers la lampe", "orange"],
    ["Lampe (DCL)", "L", "Retour lampe", "orange"],
    ["Lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
-   ["Lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+   ["Lampe (DCL)", "PE (terre)", "Conducteur de protection, directement du tableau", "vert-jaune"]
   ],
   "erreurs": [
    ["Confondre un commun et une navette", "C'est l'erreur qui ne pardonne pas : la phase ou le retour lampe se retrouve sur une borne de navette. Le montage ne marche plus que dans certaines positions."],
@@ -66,8 +66,8 @@
    ["Télérupteur", "2", "Retour lampe, vers les lampes", "orange"],
    ["Télérupteur", "A1", "Retour des boutons-poussoirs", "blanc"],
    ["Télérupteur", "A2", "Neutre", "bleu"],
-   ["Chaque bouton-poussoir", "2 bornes", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
-   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+   ["Chaque bouton-poussoir", "1 et 2", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
+   ["Lampe (DCL)", "L, N, PE", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
   ],
   "erreurs": [
    ["Mélanger la bobine et le contact", "Un bouton-poussoir raccordé sur la borne 1, ou une lampe sur A1 : rien ne fonctionne. Les repères sont gravés sur l'appareil, lis-les avant de serrer."],
@@ -106,10 +106,10 @@
   ],
   "bornes": [
    ["Interrupteur", "L (arrivée)", "Phase, venant du disjoncteur", "rouge"],
-   ["Interrupteur", "Départ", "Retour lampe, vers la lampe", "orange"],
+   ["Interrupteur", "1 (départ)", "Retour lampe, vers la lampe", "orange"],
    ["Lampe (DCL)", "L", "Retour lampe", "orange"],
    ["Lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
-   ["Lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+   ["Lampe (DCL)", "PE (terre)", "Conducteur de protection, directement du tableau", "vert-jaune"]
   ],
   "erreurs": [
    ["Couper le neutre au lieu de la phase", "La lampe s'éteint, mais la phase arrive toujours à la douille : celui qui change l'ampoule en touchant le culot fait un contact direct. L'interrupteur coupe toujours la phase."],
@@ -148,12 +148,12 @@
    "Remets sous tension et vérifie que chaque commande allume sa lampe, seule."
   ],
   "bornes": [
-   ["Interrupteur double", "Commune (L)", "Phase, venant du disjoncteur", "rouge"],
-   ["Interrupteur double", "Sortie 1", "Retour lampe du premier point lumineux", "orange"],
-   ["Interrupteur double", "Sortie 2", "Retour lampe du second point lumineux", "orange"],
+   ["Interrupteur double", "L (commune)", "Phase, venant du disjoncteur", "rouge"],
+   ["Interrupteur double", "1 (sortie 1)", "Retour lampe du premier point lumineux", "orange"],
+   ["Interrupteur double", "2 (sortie 2)", "Retour lampe du second point lumineux", "orange"],
    ["Chaque lampe (DCL)", "L", "Son retour lampe", "orange"],
    ["Chaque lampe (DCL)", "N", "Neutre, directement du tableau", "bleu"],
-   ["Chaque lampe (DCL)", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+   ["Chaque lampe (DCL)", "PE (terre)", "Conducteur de protection, directement du tableau", "vert-jaune"]
   ],
   "erreurs": [
    ["Raccorder la phase sur une borne de sortie", "C'est le piège classique. Une des deux lampes ne s'allume alors que si les deux commandes sont fermées : les deux allumages ne sont plus indépendants."],
@@ -192,11 +192,11 @@
   "bornes": [
    ["Va-et-vient 1", "L (commun)", "Phase", "rouge"],
    ["Va-et-vient 1", "1 et 2", "Deux navettes, vers le permutateur", "violet sur nos schémas"],
-   ["Permutateur", "2 bornes d'arrivée", "Les deux navettes venant du va-et-vient 1", "violet sur nos schémas"],
-   ["Permutateur", "2 bornes de départ", "Les deux navettes allant au va-et-vient 2", "violet sur nos schémas"],
+   ["Permutateur", "1 et 2 (arrivée)", "Les deux navettes venant du va-et-vient 1", "violet sur nos schémas"],
+   ["Permutateur", "1' et 2' (départ)", "Les deux navettes allant au va-et-vient 2", "violet sur nos schémas"],
    ["Va-et-vient 2", "1 et 2", "Deux navettes, venant du permutateur", "violet sur nos schémas"],
    ["Va-et-vient 2", "L (commun)", "Retour lampe, vers la lampe", "orange"],
-   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+   ["Lampe (DCL)", "L, N, PE", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
   ],
   "erreurs": [
    ["Placer le permutateur en bout de montage", "Il se place toujours au milieu : il n'a ni borne pour la phase, ni borne pour le retour lampe. Aux deux extrémités, ce sont toujours des va-et-vient."],
@@ -226,7 +226,7 @@
   "materiel": "Une minuterie, des boutons-poussoirs, un ou plusieurs points lumineux, des conducteurs de 1,5 mm² sous un disjoncteur de 16 A au maximum.",
   "etapes": [
    "Coupe le disjoncteur du circuit et vérifie l'absence de tension (VAT), y compris sur le circuit de commande.",
-   "Lis la notice de la minuterie : le repérage des bornes change d'un appareil à l'autre. Repère l'alimentation (phase et neutre), l'entrée de commande et la sortie vers les lampes.",
+   "Lis la notice de la minuterie : le repérage des bornes change d'un appareil à l'autre. Repère l'alimentation (phase et neutre), l'entrée de commande et la sortie vers les lampes. Sur le folio de cette page, elles sont repérées L, N, B et S.",
    "Alimente la minuterie : la phase (rouge) et le neutre (bleu).",
    "Relie les boutons-poussoirs en parallèle : la phase d'un côté, le retour bouton-poussoir (blanc) de l'autre, ramené sur l'entrée de commande de la minuterie.",
    "De la sortie de la minuterie, fais partir le retour lampe (orange) vers les lampes.",
@@ -234,11 +234,11 @@
    "Remets sous tension, règle la durée en parcourant toi-même le trajet le plus long, puis ajoute une marge."
   ],
   "bornes": [
-   ["Minuterie", "Alimentation", "Phase et neutre", "rouge et bleu"],
-   ["Minuterie", "Entrée de commande", "Retour des boutons-poussoirs", "blanc"],
-   ["Minuterie", "Sortie", "Retour lampe, vers les lampes", "orange"],
-   ["Chaque bouton-poussoir", "2 bornes", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
-   ["Lampe (DCL)", "L, N, terre", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
+   ["Minuterie", "L et N (alimentation)", "Phase et neutre", "rouge et bleu"],
+   ["Minuterie", "B (entrée de commande)", "Retour des boutons-poussoirs", "blanc"],
+   ["Minuterie", "S (sortie)", "Retour lampe, vers les lampes", "orange"],
+   ["Chaque bouton-poussoir", "1 et 2", "La phase d'un côté, le retour bouton-poussoir de l'autre", "rouge et blanc"],
+   ["Lampe (DCL)", "L, N, PE", "Retour lampe, neutre, conducteur de protection", "orange, bleu, vert-jaune"]
   ],
   "erreurs": [
    ["Régler une durée trop courte", "Une minuterie trop courte dans un escalier, c'est quelqu'un dans le noir entre deux étages. Parcours le trajet le plus long, au pas d'une personne chargée."],
@@ -271,18 +271,19 @@
    "Coupe les disjoncteurs concernés et vérifie l'absence de tension (VAT).",
    "Commande : amène la phase protégée par le disjoncteur de 2 A sur la borne C1 du compteur.",
    "De la borne C2 du compteur, rejoins la borne A1 de la bobine du contacteur.",
-   "Relie la borne A2 de la bobine au neutre (bleu).",
+   "Relie la borne A2 de la bobine au neutre du disjoncteur de 2 A (bleu) : le circuit de commande a sa phase et son neutre sous le même disjoncteur.",
    "Puissance : fais passer la phase et le neutre du disjoncteur de 20 A par les contacts de puissance du contacteur, puis vers le chauffe-eau, en 2,5 mm².",
    "Raccorde le conducteur de protection (vert-jaune) directement au chauffe-eau. Le chauffe-eau se raccorde à poste fixe, sans prise de courant.",
    "Remets sous tension, passe en marche forcée (I) pour vérifier la puissance, puis reviens sur Auto."
   ],
   "bornes": [
    ["Compteur", "C1", "Phase de commande, protégée par le disjoncteur de 2 A", "rouge"],
-   ["Compteur", "C2", "Vers la borne A1 du contacteur", "signal heures creuses"],
-   ["Contacteur", "A1", "Venant de la borne C2 du compteur", "signal heures creuses"],
-   ["Contacteur", "A2", "Neutre", "bleu"],
-   ["Contacteur", "Contacts de puissance", "Phase et neutre du disjoncteur de 20 A, vers le chauffe-eau", "rouge et bleu, 2,5 mm²"],
-   ["Chauffe-eau", "Terre", "Conducteur de protection, directement du tableau", "vert-jaune"]
+   ["Compteur", "C2", "Signal heures creuses, vers la borne A1 du contacteur", "noir sur nos schémas"],
+   ["Contacteur", "A1", "Signal heures creuses, venant de la borne C2 du compteur", "noir sur nos schémas"],
+   ["Contacteur", "A2", "Neutre, venant du disjoncteur de 2 A", "bleu"],
+   ["Contacteur", "1 et 3", "Phase et neutre, venant du disjoncteur de 20 A", "rouge et bleu, 2,5 mm²"],
+   ["Contacteur", "2 et 4", "Phase et neutre, vers le chauffe-eau", "rouge et bleu, 2,5 mm²"],
+   ["Chauffe-eau", "PE (terre)", "Conducteur de protection, directement du tableau", "vert-jaune"]
   ],
   "erreurs": [
    ["Oublier le disjoncteur de 2 A", "Il y a deux disjoncteurs : le 2 A pour la commande, le 20 A pour la puissance."],
