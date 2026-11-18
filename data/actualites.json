@@ -2,6 +2,28 @@
   "regles": "Une actualité n'est publiée que si elle est vérifiée sur une source officielle ou sur le site du fabricant, citée avec son lien. Texte écrit avec nos mots, jamais recopié. Les plus récentes en premier. Les images sont des photos générées par l'IA de Canva pour ce site (dossier assets/photos) : on ne reprend jamais les photos des fabricants ou d'autres sites.",
   "actualites": [
     {
+      "date": "2026-11-18",
+      "categorie": "Réglementation",
+      "titre": "Heures creuses : des plages différentes l'hiver et l'été à partir du 1er décembre",
+      "texte": "Enedis a annoncé le 10 novembre 2026 la deuxième phase de la réforme des heures creuses, engagée par la Commission de régulation de l'énergie (CRE). À partir du 1er décembre 2026, et progressivement jusqu'à fin octobre 2027, 9,3 millions de clients supplémentaires en contrat heures creuses changent de plages horaires. Nouveauté : elles ne sont plus les mêmes selon la saison. Du 1er novembre au 31 mars, les 8 heures creuses sont réparties sur les plages 11h-17h et 21h-7h ; du 1er avril au 31 octobre, sur les plages 10h-18h et 23h-7h, avec au moins 5 heures consécutives la nuit. Le changement se fait à distance par le compteur Linky, sans intervention chez le client. Son fournisseur le prévient un mois avant.",
+      "a_retenir": "Chez un client en heures creuses, ne te fie plus aux anciens horaires : demande les plages communiquées par son fournisseur. Un appareil programmé par une horloge réglée sur les anciennes heures creuses est à reprogrammer.",
+      "source": "Enedis, communiqué de presse « Heures creuses : Enedis poursuit la modernisation du dispositif en ajoutant la saisonnalité été/hiver », 10 novembre 2026",
+      "url": "https://www.enedis.fr/presse/heures-creuses-enedis-poursuit-la-modernisation-du-dispositif-en-ajoutant-la-saisonnalite",
+      "image": "assets/photos/actu-norme.webp",
+      "image_generee": true
+    },
+    {
+      "date": "2026-11-18",
+      "categorie": "Sécurité",
+      "titre": "Poussières de silice : le cancer du poumon entre dans les maladies professionnelles",
+      "texte": "Le décret n° 2026-1026 du 3 novembre 2026, publié au Journal officiel du 5 novembre, complète les tableaux des maladies professionnelles liées à la silice cristalline. Il crée le tableau n° 25 ter : le cancer broncho-pulmonaire primitif provoqué par l'inhalation de poussières de silice cristalline. Le délai de prise en charge est de 40 ans, sous réserve d'une durée d'exposition de 10 ans. La liste des travaux, limitative, comprend entre autres le ponçage et le sciage de matériaux renfermant de la silice cristalline, et des travaux de construction, d'entretien et de démolition qui exposent à ces poussières. Le décret ajoute aussi le lupus érythémateux systémique au tableau n° 25. Il entre en vigueur le lendemain de sa publication.",
+      "a_retenir": "Saignées, découpes et perçages dans la maçonnerie font de la poussière qui peut rendre malade des années plus tard. Utilise les protections prévues par ton entreprise (aspiration, protection respiratoire) à chaque fois, même pour un petit travail.",
+      "source": "Légifrance, décret n° 2026-1026 du 3 novembre 2026 révisant et complétant les tableaux des maladies professionnelles, JORF n° 0259 du 5 novembre 2026",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000055057725",
+      "image": "assets/photos/actu-norme.webp",
+      "image_generee": true
+    },
+    {
       "date": "2026-11-16",
       "categorie": "Réglementation",
       "titre": "Raccordement Enedis : nouveau barème de facturation, les prix montent",
